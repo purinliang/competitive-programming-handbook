@@ -24,7 +24,7 @@ workspace/              临时题目接口、实验代码和提交代码工作�
 
 `templates/` 负责模板复用和 OJ 验证。模板代码中只保留必要中文注释，不在模板文件里讲原理。
 
-`workspace/` 是干净工作区，用来放临时题目接口、实验代码、提交代码和其他不适合沉淀进 `templates/` 的过程文件。提交代码优先由 agent 根据模板改写生成，不强制维护 bundler 或内联工具。
+`workspace/` 是本地工作区，用来放临时题目接口、实验代码、提交代码和其他不适合沉淀进 `templates/` 的过程文件。这里的内容默认不提交到 Git，只保留目录占位文件。提交代码优先由 agent 根据模板改写生成，不强制维护 bundler 或内联工具。
 
 `tools/diagrams/` 负责图示工具。图示源文件和工具提案放这里；可长期引用的图片资产后续放在 `notes/` 内部，临时生成图片放在 ignored 输出目录。
 
@@ -32,11 +32,29 @@ workspace/              临时题目接口、实验代码和提交代码工作�
 
 - 语言标准：C++17。
 - 默认编译参数：`-std=c++17 -O2 -Wall -Wextra`。
-- 格式化工具：后续使用 `clang-format`，配置文件在引入模板代码时补充。
+- 格式化工具：`clang-format`，配置见 `.clang-format`。这是初版格式，后续可以继续调整。
 - 代码风格：竞赛风，默认使用 `#include <bits/stdc++.h>` 和 `using namespace std;`。
+- 输入输出：默认使用 `scanf` / `printf` 风格，不使用 `ios::sync_with_stdio(false);` 和 `cin.tie(nullptr);`。
 - 常用别名：默认保留 `typedef long long ll;`。其他别名只在确实常用时加入，不为了凑框架提前增加。
 - 注释语言：中文。
 - 函数、变量、类型命名：使用清晰的英文命名，避免拼音和无意义缩写。
+
+## 基础工作流
+
+根目录 `Makefile` 提供最小本地工作流：
+
+```bash
+make init A
+make run A
+make format A
+make format templates/base.cpp
+```
+
+`make init A` 会用 `templates/base.cpp` 重新创建 `workspace/A.cpp`，并把 `workspace/A.in`、`workspace/A.out` 清空。`make run A` 会编译 `workspace/A.cpp`，把 `workspace/A.in` 重定向为标准输入，并把标准输出写入 `workspace/A.out`。临时二进制放在 `workspace/.build/`。
+
+`A`、`B` 这种单字母参数是 `workspace/A.cpp`、`workspace/B.cpp` 的简写，不需要写 `.cpp` 后缀。`run` 和 `init` 只用于 `workspace/` 下的题目文件；`format` 同时支持题号简写和全路径，例如 `make format A`、`make format templates/base.cpp`。
+
+`templates/base.cpp` 是当前基础代码框架。后续具体题目可以先复制到 `workspace/`，再按题意补输入输出和胶水代码。
 
 ## 笔记约定
 
@@ -68,6 +86,6 @@ Markdown 手稿以 Typora 友好为优先：普通 Markdown、代码块、LaTeX 
 
 `tools/diagrams/` 预留自研图示工具。第一版默认使用 YAML 描述数组、链表、树、图等结构，后续再实现 SVG/PNG 渲染器。
 
-如果发现有好用的现成工具，可以先试用；不合适时再自研。生成的数据集、临时图片、提交代码和 TeX 编译产物默认不提交到 Git。后续会补充 `.gitignore` 和根目录 `Makefile`，用于统一生成、编译和清理。
+如果发现有好用的现成工具，可以先试用；不合适时再自研。生成的数据集、临时图片、提交代码和 TeX 编译产物默认不提交到 Git。`.gitignore` 和根目录 `Makefile` 用于统一生成和编译。
 
 Agent 工作约定见 `AGENTS.md`。

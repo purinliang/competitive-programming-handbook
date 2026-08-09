@@ -1,0 +1,25 @@
+# 编译产物
+*.exe
+
+# 本地题目工作区
+workspace/*
+!workspace/.gitkeep
+
+# 图示生成物
+tools/diagrams/out/
+
+# TeX 编译产物
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
