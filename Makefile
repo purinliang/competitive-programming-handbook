@@ -4,7 +4,7 @@ WORKSPACE ?= workspace
 BUILD_DIR ?= $(WORKSPACE)/.build
 TEMPLATE ?= templates/base.cpp
 
-ARGS := $(filter-out init run format,$(MAKECMDGOALS))
+ARGS := $(filter-out init run format notes-check,$(MAKECMDGOALS))
 TASK := $(firstword $(ARGS))
 SRC := $(if $(findstring /,$(TASK)),$(if $(filter %.cpp,$(TASK)),$(TASK),$(TASK).cpp),$(if $(filter %.cpp,$(TASK)),$(TASK),$(WORKSPACE)/$(TASK).cpp))
 WORKSPACE_SRC := $(WORKSPACE)/$(TASK).cpp
@@ -12,7 +12,10 @@ WORKSPACE_STEM := $(WORKSPACE)/$(TASK)
 STEM := $(basename $(SRC))
 BIN := $(BUILD_DIR)/$(notdir $(STEM))
 
-.PHONY: init run format $(ARGS)
+.PHONY: init run format notes-check $(ARGS)
+
+notes-check:
+	python tools/notes/check_catalog.py
 
 run:
 	@test -n "$(TASK)" || (echo "usage: make run A" && exit 1)
