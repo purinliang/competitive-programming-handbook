@@ -12,10 +12,6 @@ PALETTE = {
     "green": "#2f7d4a",
 }
 
-# New node backgrounds intentionally expose only a light and a dark variant.
-NODE_FILLS = {"light": "#ffffff", "dark": "#303030"}
-NODE_TEXT_COLORS = {"light": "#303030", "dark": "#ffffff"}
-
 STROKE_WIDTH = 2.0
 ANNOTATION_STROKE_WIDTH = STROKE_WIDTH * 1.25
 ROUGHNESS = 0.0
