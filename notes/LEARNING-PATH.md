@@ -4,14 +4,21 @@
 
 阶段不是严格 rating：同一阶段中的数学、图论、数据结构等分支可以并行学习，但表内直接前置始终先出现。标为代码路径的文章尚在计划中；可点击链接表示已有草稿或已固化正文。
 
-## 阶段 0：读写竞赛 C++
+## 阶段 1：C++ 语境下的计算机基础
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0101 | 程序入口与竞赛代码骨架 | C++ | [cpp/0101-program-entry-and-skeleton.md](cpp/0101-program-entry-and-skeleton.md) |
-| 0102 | include 与头文件 | C++ | [cpp/0102-include.md](cpp/0102-include.md) |
-| 0103 | 命名空间与 std | C++ | [cpp/0103-namespace-and-std.md](cpp/0103-namespace-and-std.md) |
-| 0104 | 基本类型、范围与 ASCII | C++ | [cpp/0104-basic-types.md](cpp/0104-basic-types.md) |
+| 0101 | 二进制存储、基本类型、浮点数与 ASCII | C++ | [cpp/0101-binary-types-floating-ascii.md](cpp/0101-binary-types-floating-ascii.md) |
+| 0102 | 内存、地址、对象生命周期与存储期 | C++ | `cpp/0102-memory-address-lifetime.md` |
+| 0103 | 位运算与 bitset | C++ | `cpp/0103-bit-operations-and-bitset.md` |
+
+这一阶段只建立后续代码解释所需的机器与内存直觉。内存部分以 C++ 的存储期和对象生命周期为主，再说明竞赛环境中常见的栈、静态存储区与动态内存实现，不把平台相关的进程分段说成语言标准保证。
+
+## 阶段 2：C++ 基本语法
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0104 | 程序入口与竞赛代码骨架 | C++ | [cpp/0104-program-entry-and-skeleton.md](cpp/0104-program-entry-and-skeleton.md) |
 | 0105 | 运算符与类型转换 | C++ | [cpp/0105-operators-and-conversions.md](cpp/0105-operators-and-conversions.md) |
 | 0106 | 分支、循环与控制流 | C++ | [cpp/0106-control-flow.md](cpp/0106-control-flow.md) |
 | 0107 | 函数、参数与作用域 | C++ | [cpp/0107-functions.md](cpp/0107-functions.md) |
@@ -21,21 +28,27 @@
 | 0111 | 指针、引用与传参 | C++ | [cpp/0111-pointers-references-parameters.md](cpp/0111-pointers-references-parameters.md) |
 | 0112 | struct、enum 与复合类型 | C++ | [cpp/0112-composite-types.md](cpp/0112-composite-types.md) |
 | 0113 | const、static 与常用修饰符 | C++ | [cpp/0113-modifier-keywords.md](cpp/0113-modifier-keywords.md) |
-| 0114 | 位运算、二进制表示与 bitset | C++ | `cpp/0114-bit-operations-and-bitset.md` |
-| 0115 | 递归与调用栈 | C++ | `cpp/0115-recursion-and-call-stack.md` |
-| 0116 | pair、tuple 与 array | C++ | `cpp/0116-pair-tuple-array.md` |
-| 0117 | std::string | C++ | `cpp/0117-std-string.md` |
-| 0118 | vector 与迭代器 | C++ | `cpp/0118-vector-and-iterators.md` |
-| 0119 | STL 算法与比较器 | C++ | `cpp/0119-stl-algorithms-and-comparators.md` |
-| 0120 | stack | C++ | `cpp/0120-stack.md` |
-| 0121 | queue 与 deque | C++ | `cpp/0121-queue-and-deque.md` |
-| 0122 | priority_queue | C++ | `cpp/0122-priority-queue.md` |
-| 0123 | set、multiset 与 map | C++ | `cpp/0123-ordered-associative-containers.md` |
-| 0124 | unordered_set 与 unordered_map | C++ | `cpp/0124-unordered-associative-containers.md` |
+| 0114 | 递归与调用栈 | C++ | `cpp/0114-recursion-and-call-stack.md` |
+
+`include`、头文件、命名空间和 `using namespace std;` 不进入主路线。基础教程直接使用统一竞赛骨架；需要理解编译单元或名称查找时，再从模块目录进入对应星号参考稿。
+
+## 阶段 3：STL 专题
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0115 | pair、tuple 与 array | C++ | `cpp/0115-pair-tuple-array.md` |
+| 0116 | std::string | C++ | `cpp/0116-std-string.md` |
+| 0117 | vector 与迭代器 | C++ | `cpp/0117-vector-and-iterators.md` |
+| 0118 | STL 算法与比较器 | C++ | `cpp/0118-stl-algorithms-and-comparators.md` |
+| 0119 | stack | C++ | `cpp/0119-stack.md` |
+| 0120 | queue 与 deque | C++ | `cpp/0120-queue-and-deque.md` |
+| 0121 | priority_queue | C++ | `cpp/0121-priority-queue.md` |
+| 0122 | set、multiset 与 map | C++ | `cpp/0122-ordered-associative-containers.md` |
+| 0123 | unordered_set 与 unordered_map | C++ | `cpp/0123-unordered-associative-containers.md` |
 
 完成本阶段后，应能独立读写普通竞赛程序，并理解后续教程中的数组、函数、递归和 STL 代码。
 
-## 阶段 1：复杂度与基础解题工具
+## 阶段 4：复杂度与基础解题工具
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -56,7 +69,7 @@
 
 本阶段重点是把暴力复杂度、数组预处理、边界移动和常用容器连接起来，而不是记忆孤立模板。
 
-## 阶段 2：基础数据结构、图、数学与 DP
+## 阶段 5：基础数据结构、图、数学与 DP
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -92,7 +105,7 @@
 
 这些分支可以并行学习。进入下一阶段前，应至少掌握一种区间结构、图遍历、基础数论和 DP 状态表达。
 
-## 阶段 3：经典中级算法
+## 阶段 6：经典中级算法
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -124,7 +137,7 @@
 | 0603 | 直线、线段与相交判定 | 计算几何 | `computational-geometry/0603-lines-segments-intersections.md` |
 | 0604 | 多边形面积与点的位置 | 计算几何 | `computational-geometry/0604-polygon-area-point-location.md` |
 
-## 阶段 4：约 2100 前的高阶主干
+## 阶段 7：约 2100 前的高阶主干
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
