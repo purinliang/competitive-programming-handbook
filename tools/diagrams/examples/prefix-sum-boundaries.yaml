@@ -1,0 +1,30 @@
+schema: cp-diagram/v1
+type: array
+background: white
+label: prefix
+index: 1-based
+cells:
+  - 3
+  - 4
+  - 8
+  - 9
+  - 14
+  - 23
+annotations:
+  - type: cell
+    at: 1
+    color: red
+  - type: cell
+    at: 5
+    color: blue
+  - type: arrow
+    at: 1
+    side: top
+    length: 2
+    label: prefix[l - 1]
+    color: red
+  - type: arrow
+    at: 5
+    side: top
+    label: prefix[r]
+    color: blue

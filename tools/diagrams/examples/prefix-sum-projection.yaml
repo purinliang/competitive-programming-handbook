@@ -1,0 +1,10 @@
+schema: cp-diagram/v2
+type: array
+background: white
+layout: projection
+index: 1-based
+rows:
+  - id: prefix
+    cells: [3, 4, 8, 9, 14, 23, 25, 31, 36, 39, 44]
+  - id: a
+    cells: [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]

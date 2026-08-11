@@ -1,0 +1,35 @@
+schema: cp-diagram/v2
+type: tree
+background: white
+layout: rooted
+root: 1
+nodes:
+  - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
+  - id: 5
+  - id: 6
+  - id: 7
+  - id: 8
+  - id: 9
+  - id: 10
+edges:
+  - from: 1
+    to: 2
+  - from: 1
+    to: 3
+  - from: 1
+    to: 4
+  - from: 2
+    to: 5
+  - from: 2
+    to: 6
+  - from: 3
+    to: 7
+  - from: 4
+    to: 8
+  - from: 4
+    to: 9
+  - from: 4
+    to: 10

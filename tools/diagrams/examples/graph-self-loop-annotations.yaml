@@ -1,0 +1,37 @@
+schema: cp-diagram/v2
+type: graph
+background: white
+directed: false
+layout: balanced
+node-shape: circle
+nodes:
+  - {id: 1, value: A}
+  - {id: 2, value: B}
+  - {id: 3, value: C}
+  - {id: 4, value: D}
+  - {id: 5, value: E}
+  - {id: 6, value: F}
+  - {id: 7, value: G}
+  - {id: 8, value: H}
+  - {id: 9, value: I}
+  - {id: 10, value: J}
+edges:
+  - {from: 1, to: 2}
+  - {from: 2, to: 3}
+  - {from: 3, to: 1}
+  - {from: 3, to: 4}
+  - {from: 4, to: 5}
+  - {from: 5, to: 6}
+  - {from: 6, to: 7}
+  - {from: 4, to: 8}
+  - {from: 8, to: 9}
+  - {from: 8, to: 10}
+  - {from: 4, to: 4}
+annotations:
+  - type: path
+    nodes: [1, 2, 3]
+    closed: true
+    color: red
+  - type: path
+    nodes: [3, 4, 5, 6, 7]
+    color: blue

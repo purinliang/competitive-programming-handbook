@@ -1,0 +1,91 @@
+schema: cp-diagram/v2
+type: tree
+background: white
+layout: binary
+node-shape: square
+root: n1_11
+nodes:
+  - id: n1_11
+    index: "[1, 11]"
+    value: 44
+  - id: n1_6
+    index: "[1, 6]"
+    value: 23
+  - id: n7_11
+    index: "[7, 11]"
+    value: 21
+  - id: n1_3
+    index: "[1, 3]"
+    value: 8
+  - id: n4_6
+    index: "[4, 6]"
+    value: 15
+  - id: n7_9
+    index: "[7, 9]"
+    value: 13
+  - id: n10_11
+    index: "[10, 11]"
+    value: 8
+  - id: n1_2
+    index: "[1, 2]"
+    value: 4
+  - id: n3
+    index: "[3, 3]"
+    value: 4
+  - id: n4_5
+    index: "[4, 5]"
+    value: 6
+  - id: n6
+    index: "[6, 6]"
+    value: 9
+  - id: n7_8
+    index: "[7, 8]"
+    value: 8
+  - id: n9
+    index: "[9, 9]"
+    value: 5
+  - id: n10
+    index: "[10, 10]"
+    value: 3
+  - id: n11
+    index: "[11, 11]"
+    value: 5
+  - id: n1
+    index: "[1, 1]"
+    value: 3
+  - id: n2
+    index: "[2, 2]"
+    value: 1
+  - id: n4
+    index: "[4, 4]"
+    value: 1
+  - id: n5
+    index: "[5, 5]"
+    value: 5
+  - id: n7
+    index: "[7, 7]"
+    value: 2
+  - id: n8
+    index: "[8, 8]"
+    value: 6
+edges:
+  - {from: n1_11, to: n1_6, side: left}
+  - {from: n1_11, to: n7_11, side: right}
+  - {from: n1_6, to: n1_3, side: left}
+  - {from: n1_6, to: n4_6, side: right}
+  - {from: n7_11, to: n7_9, side: left}
+  - {from: n7_11, to: n10_11, side: right}
+  - {from: n1_3, to: n1_2, side: left}
+  - {from: n1_3, to: n3, side: right}
+  - {from: n4_6, to: n4_5, side: left}
+  - {from: n4_6, to: n6, side: right}
+  - {from: n7_9, to: n7_8, side: left}
+  - {from: n7_9, to: n9, side: right}
+  - {from: n10_11, to: n10, side: left}
+  - {from: n10_11, to: n11, side: right}
+  - {from: n1_2, to: n1, side: left}
+  - {from: n1_2, to: n2, side: right}
+  - {from: n4_5, to: n4, side: left}
+  - {from: n4_5, to: n5, side: right}
+  - {from: n7_8, to: n7, side: left}
+  - {from: n7_8, to: n8, side: right}

@@ -1,0 +1,2 @@
+class DiagramError(ValueError):
+    pass
