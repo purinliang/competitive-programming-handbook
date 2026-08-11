@@ -52,7 +52,7 @@ STL 教程只负责容器或算法的接口、常用复杂度和比赛所需的�
 # 树状数组
 
 > 状态：草稿
-> 直接前置：[0207 前缀和与差分](../algorithm-basics/0207-prefix-sums-and-difference.md)、[0122 位运算](../cpp/0122-bit-operations.md)
+> 直接前置：[0207 前缀和与差分](../algorithm-basics/0207-prefix-sums-and-difference.md)、[0114 位运算与 bitset](../cpp/0114-bit-operations-and-bitset.md)
 ```
 
 要求：

@@ -25,16 +25,18 @@
 | 0111 | 指针、引用与传参 | 草稿 | 0107,0110 | [0111-pointers-references-parameters.md](cpp/0111-pointers-references-parameters.md) |
 | 0112 | struct、enum 与复合类型 | 草稿 | 0104,0110 | [0112-composite-types.md](cpp/0112-composite-types.md) |
 | 0113 | const、static 与常用修饰符 | 草稿 | 0107,0111 | [0113-modifier-keywords.md](cpp/0113-modifier-keywords.md) |
-| 0114 | std::string | 计划 | 0110 | `cpp/0114-std-string.md` |
-| 0115 | vector 与迭代器 | 计划 | 0110,0112 | `cpp/0115-vector-and-iterators.md` |
-| 0116 | STL 算法与比较器 | 计划 | 0107,0115 | `cpp/0116-stl-algorithms-and-comparators.md` |
-| 0117 | stack | 计划 | 0115 | `cpp/0117-stack.md` |
-| 0118 | queue 与 deque | 计划 | 0115 | `cpp/0118-queue-and-deque.md` |
-| 0119 | priority_queue | 计划 | 0115,0116 | `cpp/0119-priority-queue.md` |
-| 0120 | set、multiset 与 map | 计划 | 0115,0116 | `cpp/0120-ordered-associative-containers.md` |
-| 0121 | unordered_set 与 unordered_map | 计划 | 0115 | `cpp/0121-unordered-associative-containers.md` |
-| 0122 | 位运算与二进制表示 | 计划 | 0105 | `cpp/0122-bit-operations.md` |
-| 0123 | 递归与调用栈 | 计划 | 0106,0107 | `cpp/0123-recursion-and-call-stack.md` |
+| 0114 | 位运算、二进制表示与 bitset | 计划 | 0105 | `cpp/0114-bit-operations-and-bitset.md` |
+| 0115 | 递归与调用栈 | 计划 | 0106,0107 | `cpp/0115-recursion-and-call-stack.md` |
+| 0116 | pair、tuple 与 array | 计划 | 0110,0112 | `cpp/0116-pair-tuple-array.md` |
+| 0117 | std::string | 计划 | 0110 | `cpp/0117-std-string.md` |
+| 0118 | vector 与迭代器 | 计划 | 0110,0112 | `cpp/0118-vector-and-iterators.md` |
+| 0119 | STL 算法与比较器 | 计划 | 0107,0118 | `cpp/0119-stl-algorithms-and-comparators.md` |
+| 0120 | stack | 计划 | 0118 | `cpp/0120-stack.md` |
+| 0121 | queue 与 deque | 计划 | 0118 | `cpp/0121-queue-and-deque.md` |
+| 0122 | priority_queue | 计划 | 0118,0119 | `cpp/0122-priority-queue.md` |
+| 0123 | set、multiset 与 map | 计划 | 0118,0119 | `cpp/0123-ordered-associative-containers.md` |
+| 0124 | unordered_set 与 unordered_map | 计划 | 0118 | `cpp/0124-unordered-associative-containers.md` |
+| 0125* | GNU PBDS 与 order-statistics tree | 计划 | 0123 | `cpp/0125-gnu-pbds.md` |
 
 ## 02 基础算法与通用技巧
 
@@ -48,9 +50,9 @@
 | 0206 | 离散化 | 计划 | 0203 | `algorithm-basics/0206-coordinate-compression.md` |
 | 0207 | 前缀和与差分 | 草稿 | 0110,0201 | [0207-prefix-sums-and-difference.md](algorithm-basics/0207-prefix-sums-and-difference.md) |
 | 0208 | 贪心的选择与证明 | 计划 | 0202,0203 | `algorithm-basics/0208-greedy.md` |
-| 0209 | 分治 | 计划 | 0123,0201 | `algorithm-basics/0209-divide-and-conquer.md` |
-| 0210 | 枚举、回溯与剪枝 | 计划 | 0123,0201 | `algorithm-basics/0210-enumeration-backtracking.md` |
-| 0211 | 子集与位掩码枚举 | 计划 | 0122,0210 | `algorithm-basics/0211-bitmask-enumeration.md` |
+| 0209 | 分治 | 计划 | 0115,0201 | `algorithm-basics/0209-divide-and-conquer.md` |
+| 0210 | 枚举、回溯与剪枝 | 计划 | 0115,0201 | `algorithm-basics/0210-enumeration-backtracking.md` |
+| 0211 | 子集与位掩码枚举 | 计划 | 0114,0210 | `algorithm-basics/0211-bitmask-enumeration.md` |
 | 0212 | Meet-in-the-Middle | 计划 | 0210,0211 | `algorithm-basics/0212-meet-in-the-middle.md` |
 | 0213 | 离线算法 | 计划 | 0203,0206 | `algorithm-basics/0213-offline-algorithms.md` |
 | 0214 | 扫描线与事件排序 | 计划 | 0203,0206 | `algorithm-basics/0214-sweep-line.md` |
@@ -64,16 +66,16 @@
 | ID | 知识点 | 状态 | 直接前置 | 文件 |
 | --- | --- | --- | --- | --- |
 | 0301 | 单向、双向与环形链表 | 计划 | 0111,0112,0201 | `data-structures/0301-linked-lists.md` |
-| 0302 | 二叉堆 | 计划 | 0110,0119,0201 | `data-structures/0302-binary-heap.md` |
-| 0303 | 哈希表 | 计划 | 0110,0121,0201 | `data-structures/0303-hash-table.md` |
-| 0304 | 线段树基础 | 草稿 | 0110,0123,0201 | [0304-segment-tree.md](data-structures/0304-segment-tree.md) |
+| 0302 | 二叉堆 | 计划 | 0110,0122,0201 | `data-structures/0302-binary-heap.md` |
+| 0303 | 哈希表 | 计划 | 0110,0124,0201 | `data-structures/0303-hash-table.md` |
+| 0304 | 线段树基础 | 草稿 | 0110,0115,0201 | [0304-segment-tree.md](data-structures/0304-segment-tree.md) |
 | 0305* | 线段树懒标记的组合顺序 | 草稿 | 0304 | [0305-segment-tree-lazy-tags.md](data-structures/0305-segment-tree-lazy-tags.md) |
-| 0306 | 树状数组 | 草稿 | 0122,0207,0201 | [0306-fenwick-tree.md](data-structures/0306-fenwick-tree.md) |
-| 0307 | 并查集 | 计划 | 0110,0123,0201 | `data-structures/0307-disjoint-set-union.md` |
-| 0308 | 稀疏表 ST | 计划 | 0110,0122,0201 | `data-structures/0308-sparse-table.md` |
-| 0309 | 单调栈与单调队列 | 计划 | 0117,0118,0205 | `data-structures/0309-monotonic-stack-queue.md` |
+| 0306 | 树状数组 | 草稿 | 0114,0207,0201 | [0306-fenwick-tree.md](data-structures/0306-fenwick-tree.md) |
+| 0307 | 并查集 | 计划 | 0110,0115,0201 | `data-structures/0307-disjoint-set-union.md` |
+| 0308 | 稀疏表 ST | 计划 | 0110,0114,0201 | `data-structures/0308-sparse-table.md` |
+| 0309 | 单调栈与单调队列 | 计划 | 0120,0121,0205 | `data-structures/0309-monotonic-stack-queue.md` |
 | 0310 | 带权并查集 | 计划 | 0307 | `data-structures/0310-weighted-disjoint-set.md` |
-| 0311 | 二叉树与前中后序遍历 | 计划 | 0111,0112,0123,0118 | `data-structures/0311-binary-tree-traversals.md` |
+| 0311 | 二叉树与前中后序遍历 | 计划 | 0111,0112,0115,0121 | `data-structures/0311-binary-tree-traversals.md` |
 | 0312* | 可撤销并查集 | 计划 | 0307,0213 | `data-structures/0312-rollback-disjoint-set.md` |
 | 0313* | 分块 | 计划 | 0207,0201 | `data-structures/0313-square-root-decomposition.md` |
 | 0314* | 莫队算法 | 计划 | 0313,0213 | `data-structures/0314-mo-algorithm.md` |
@@ -89,14 +91,15 @@
 | 0324* | B 树与 B+ 树 | 计划 | 0301,0302 | `data-structures/0324-b-tree-and-b-plus-tree.md` |
 | 0325* | 笛卡尔树 | 计划 | 0309 | `data-structures/0325-cartesian-tree.md` |
 | 0326* | Wavelet Matrix | 计划 | 0304,0206 | `data-structures/0326-wavelet-matrix.md` |
+| 0327* | 启发式合并（small-to-large） | 计划 | 0123,0201 | `data-structures/0327-small-to-large-merging.md` |
 
 ## 04 图论
 
 | ID | 知识点 | 状态 | 直接前置 | 文件 |
 | --- | --- | --- | --- | --- |
-| 0401 | 图的存储与边模型 | 计划 | 0115,0117 | `graph-theory/0401-graph-representation.md` |
-| 0402 | DFS、BFS 与生成树 | 计划 | 0123,0118,0401 | `graph-theory/0402-dfs-bfs.md` |
-| 0403 | 倍增 LCA | 草稿 | 0122,0402 | [0403-lca-binary-lifting.md](graph-theory/0403-lca-binary-lifting.md) |
+| 0401 | 图的存储与边模型 | 计划 | 0118,0120 | `graph-theory/0401-graph-representation.md` |
+| 0402 | DFS、BFS 与生成树 | 计划 | 0115,0121,0401 | `graph-theory/0402-dfs-bfs.md` |
+| 0403 | 倍增 LCA | 草稿 | 0114,0402 | [0403-lca-binary-lifting.md](graph-theory/0403-lca-binary-lifting.md) |
 | 0404 | 连通块与洪水填充 | 计划 | 0402 | `graph-theory/0404-connected-components.md` |
 | 0405 | 拓扑排序 | 计划 | 0402 | `graph-theory/0405-topological-sort.md` |
 | 0406 | BFS、0-1 BFS 与多源最短路 | 计划 | 0402 | `graph-theory/0406-unweighted-shortest-path.md` |
@@ -105,7 +108,7 @@
 | 0409 | Floyd 与传递闭包 | 计划 | 0110,0401,0201 | `graph-theory/0409-floyd-warshall.md` |
 | 0410 | 最小生成树 | 计划 | 0302,0307,0401 | `graph-theory/0410-minimum-spanning-tree.md` |
 | 0411 | 二分图判定 | 计划 | 0402 | `graph-theory/0411-bipartite-graph.md` |
-| 0412 | 二分图匹配 | 计划 | 0123,0411 | `graph-theory/0412-bipartite-matching.md` |
+| 0412 | 二分图匹配 | 计划 | 0115,0411 | `graph-theory/0412-bipartite-matching.md` |
 | 0413 | 强连通分量 | 计划 | 0402,0405 | `graph-theory/0413-strongly-connected-components.md` |
 | 0414 | 割点与桥 | 计划 | 0402 | `graph-theory/0414-articulation-points-bridges.md` |
 | 0415* | 点双、边双与圆方树 | 计划 | 0414 | `graph-theory/0415-biconnected-components-block-cut-tree.md` |
@@ -113,13 +116,17 @@
 | 0417 | 树的直径与中心 | 计划 | 0402 | `graph-theory/0417-tree-diameter-center.md` |
 | 0418 | DFS 序、子树区间与树上差分 | 计划 | 0207,0402 | `graph-theory/0418-tree-euler-tour-difference.md` |
 | 0419 | 树链剖分 | 计划 | 0304,0403,0418 | `graph-theory/0419-heavy-light-decomposition.md` |
-| 0420 | 2-SAT | 计划 | 0122,0413 | `graph-theory/0420-two-sat.md` |
-| 0421 | Dinic 最大流 | 计划 | 0123,0401,0406 | `graph-theory/0421-dinic-max-flow.md` |
+| 0420 | 2-SAT | 计划 | 0114,0413 | `graph-theory/0420-two-sat.md` |
+| 0421 | Dinic 最大流 | 计划 | 0115,0401,0406 | `graph-theory/0421-dinic-max-flow.md` |
 | 0422* | 最小费用最大流 | 计划 | 0407,0421 | `graph-theory/0422-min-cost-max-flow.md` |
 | 0423* | 虚树 | 计划 | 0403,0418 | `graph-theory/0423-virtual-tree.md` |
-| 0424* | 点分治 | 计划 | 0123,0417 | `graph-theory/0424-centroid-decomposition.md` |
+| 0424* | 点分治 | 计划 | 0115,0417 | `graph-theory/0424-centroid-decomposition.md` |
 | 0425* | SPFA 与队列优化最短路 | 计划 | 0408 | `graph-theory/0425-spfa.md` |
 | 0426 | 基环树与函数图 | 计划 | 0403,0402 | `graph-theory/0426-unicyclic-functional-graphs.md` |
+| 0427* | DSU on Tree | 计划 | 0327,0418 | `graph-theory/0427-dsu-on-tree.md` |
+| 0428* | 差分约束 | 计划 | 0408 | `graph-theory/0428-difference-constraints.md` |
+| 0429 | 分层图与状态最短路 | 计划 | 0406,0407 | `graph-theory/0429-layered-state-shortest-path.md` |
+| 0430* | 树哈希 | 计划 | 0402,0417 | `graph-theory/0430-tree-hashing.md` |
 
 ## 05 数学
 
@@ -128,7 +135,7 @@
 | 0501 | 整除、gcd 与 lcm | 草稿 | 0105 | [0501-divisibility-gcd-lcm.md](math/0501-divisibility-gcd-lcm.md) |
 | 0502 | 质数与唯一分解定理 | 草稿 | 0501 | [0502-prime-factorization.md](math/0502-prime-factorization.md) |
 | 0503 | 扩展欧几里得 | 草稿 | 0501 | [0503-extended-euclid.md](math/0503-extended-euclid.md) |
-| 0504 | 模运算与快速幂 | 计划 | 0105,0122 | `math/0504-modular-arithmetic-fast-power.md` |
+| 0504 | 模运算与快速幂 | 计划 | 0105,0114 | `math/0504-modular-arithmetic-fast-power.md` |
 | 0505 | 筛法与质因数预处理 | 计划 | 0502 | `math/0505-sieve.md` |
 | 0506 | 模逆元 | 计划 | 0503,0504 | `math/0506-modular-inverse.md` |
 | 0507 | 组合数与基础计数 | 计划 | 0505,0506 | `math/0507-combinatorics.md` |
@@ -137,8 +144,8 @@
 | 0510 | CRT 与 exCRT | 草稿 | 0503,0504 | [0510-crt-and-excrt.md](math/0510-crt-and-excrt.md) |
 | 0511 | 矩阵快速幂与递推加速 | 计划 | 0504,0509 | `math/0511-matrix-exponentiation.md` |
 | 0512 | 概率与期望基础 | 计划 | 0105 | `math/0512-probability-expectation.md` |
-| 0513 | Nim 与基础博弈论 | 计划 | 0122,0202 | `math/0513-nim-game-theory.md` |
-| 0514 | XOR 线性基 | 计划 | 0122,0202 | `math/0514-xor-linear-basis.md` |
+| 0513 | Nim、SG 函数与基础博弈论 | 计划 | 0114,0202 | `math/0513-nim-sg-game-theory.md` |
+| 0514 | XOR 线性基 | 计划 | 0114,0202 | `math/0514-xor-linear-basis.md` |
 | 0515 | 高斯消元 | 计划 | 0105,0202 | `math/0515-gaussian-elimination.md` |
 | 0516 | 容斥原理 | 计划 | 0507,0211 | `math/0516-inclusion-exclusion.md` |
 | 0517* | NTT | 计划 | 0504,0506 | `math/0517-ntt.md` |
@@ -156,7 +163,7 @@
 | 0605 | 凸包 | 计划 | 0203,0602 | `computational-geometry/0605-convex-hull.md` |
 | 0606* | 圆与圆的关系 | 计划 | 0601,0603 | `computational-geometry/0606-circles.md` |
 | 0607* | 旋转卡壳 | 计划 | 0605 | `computational-geometry/0607-rotating-calipers.md` |
-| 0608* | 几何扫描线 | 计划 | 0120,0214,0603 | `computational-geometry/0608-geometric-sweep-line.md` |
+| 0608* | 几何扫描线 | 计划 | 0123,0214,0603 | `computational-geometry/0608-geometric-sweep-line.md` |
 
 ## 07 动态规划
 
@@ -168,9 +175,9 @@
 | 0704 | 最长上升子序列 | 计划 | 0204,0702 | `dynamic-programming/0704-longest-increasing-subsequence.md` |
 | 0705 | 区间 DP | 计划 | 0701 | `dynamic-programming/0705-interval-dp.md` |
 | 0706 | DAG 上的动态规划 | 计划 | 0405,0701 | `dynamic-programming/0706-dag-dp.md` |
-| 0707 | 树形 DP | 计划 | 0402,0701 | `dynamic-programming/0707-tree-dp.md` |
+| 0707 | 树形 DP 与换根 DP | 计划 | 0402,0701 | `dynamic-programming/0707-tree-rerooting-dp.md` |
 | 0708 | 状压 DP | 计划 | 0211,0701 | `dynamic-programming/0708-bitmask-dp.md` |
-| 0709 | 数位 DP | 计划 | 0122,0701 | `dynamic-programming/0709-digit-dp.md` |
+| 0709 | 数位 DP | 计划 | 0114,0701 | `dynamic-programming/0709-digit-dp.md` |
 | 0710 | 概率与期望 DP | 计划 | 0512,0701 | `dynamic-programming/0710-probability-expectation-dp.md` |
 | 0711 | 单调队列优化 DP | 计划 | 0309,0703 | `dynamic-programming/0711-monotone-queue-optimization.md` |
 | 0712* | 斜率优化 DP | 计划 | 0214,0702 | `dynamic-programming/0712-convex-hull-trick.md` |
@@ -181,7 +188,7 @@
 
 | ID | 知识点 | 状态 | 直接前置 | 文件 |
 | --- | --- | --- | --- | --- |
-| 0801 | 字符串比较与模式匹配问题 | 计划 | 0114,0201 | `strings/0801-string-matching-foundations.md` |
+| 0801 | 字符串比较与模式匹配问题 | 计划 | 0117,0201 | `strings/0801-string-matching-foundations.md` |
 | 0802 | 字符串哈希 | 计划 | 0504,0801 | `strings/0802-rolling-hash.md` |
 | 0803 | KMP 与前缀函数 | 计划 | 0202,0801 | `strings/0803-kmp-prefix-function.md` |
 | 0804 | Z 函数 | 计划 | 0202,0801 | `strings/0804-z-function.md` |

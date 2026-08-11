@@ -21,16 +21,17 @@
 | 0111 | 指针、引用与传参 | C++ | [cpp/0111-pointers-references-parameters.md](cpp/0111-pointers-references-parameters.md) |
 | 0112 | struct、enum 与复合类型 | C++ | [cpp/0112-composite-types.md](cpp/0112-composite-types.md) |
 | 0113 | const、static 与常用修饰符 | C++ | [cpp/0113-modifier-keywords.md](cpp/0113-modifier-keywords.md) |
-| 0114 | std::string | C++ | `cpp/0114-std-string.md` |
-| 0115 | vector 与迭代器 | C++ | `cpp/0115-vector-and-iterators.md` |
-| 0116 | STL 算法与比较器 | C++ | `cpp/0116-stl-algorithms-and-comparators.md` |
-| 0117 | stack | C++ | `cpp/0117-stack.md` |
-| 0118 | queue 与 deque | C++ | `cpp/0118-queue-and-deque.md` |
-| 0119 | priority_queue | C++ | `cpp/0119-priority-queue.md` |
-| 0120 | set、multiset 与 map | C++ | `cpp/0120-ordered-associative-containers.md` |
-| 0121 | unordered_set 与 unordered_map | C++ | `cpp/0121-unordered-associative-containers.md` |
-| 0122 | 位运算与二进制表示 | C++ | `cpp/0122-bit-operations.md` |
-| 0123 | 递归与调用栈 | C++ | `cpp/0123-recursion-and-call-stack.md` |
+| 0114 | 位运算、二进制表示与 bitset | C++ | `cpp/0114-bit-operations-and-bitset.md` |
+| 0115 | 递归与调用栈 | C++ | `cpp/0115-recursion-and-call-stack.md` |
+| 0116 | pair、tuple 与 array | C++ | `cpp/0116-pair-tuple-array.md` |
+| 0117 | std::string | C++ | `cpp/0117-std-string.md` |
+| 0118 | vector 与迭代器 | C++ | `cpp/0118-vector-and-iterators.md` |
+| 0119 | STL 算法与比较器 | C++ | `cpp/0119-stl-algorithms-and-comparators.md` |
+| 0120 | stack | C++ | `cpp/0120-stack.md` |
+| 0121 | queue 与 deque | C++ | `cpp/0121-queue-and-deque.md` |
+| 0122 | priority_queue | C++ | `cpp/0122-priority-queue.md` |
+| 0123 | set、multiset 与 map | C++ | `cpp/0123-ordered-associative-containers.md` |
+| 0124 | unordered_set 与 unordered_map | C++ | `cpp/0124-unordered-associative-containers.md` |
 
 完成本阶段后，应能独立读写普通竞赛程序，并理解后续教程中的数组、函数、递归和 STL 代码。
 
@@ -101,7 +102,7 @@
 | 0510 | CRT 与 exCRT | 数学 | [math/0510-crt-and-excrt.md](math/0510-crt-and-excrt.md) |
 | 0511 | 矩阵快速幂与递推加速 | 数学 | `math/0511-matrix-exponentiation.md` |
 | 0512 | 概率与期望基础 | 数学 | `math/0512-probability-expectation.md` |
-| 0513 | Nim 与基础博弈论 | 数学 | `math/0513-nim-game-theory.md` |
+| 0513 | Nim、SG 函数与基础博弈论 | 数学 | `math/0513-nim-sg-game-theory.md` |
 | 0407 | Dijkstra | 图论 | `graph-theory/0407-dijkstra.md` |
 | 0408 | Bellman-Ford 与负环 | 图论 | `graph-theory/0408-bellman-ford.md` |
 | 0409 | Floyd 与传递闭包 | 图论 | `graph-theory/0409-floyd-warshall.md` |
@@ -115,7 +116,7 @@
 | 0704 | 最长上升子序列 | 动态规划 | `dynamic-programming/0704-longest-increasing-subsequence.md` |
 | 0705 | 区间 DP | 动态规划 | `dynamic-programming/0705-interval-dp.md` |
 | 0706 | DAG 上的动态规划 | 动态规划 | `dynamic-programming/0706-dag-dp.md` |
-| 0707 | 树形 DP | 动态规划 | `dynamic-programming/0707-tree-dp.md` |
+| 0707 | 树形 DP 与换根 DP | 动态规划 | `dynamic-programming/0707-tree-rerooting-dp.md` |
 | 0802 | 字符串哈希 | 字符串 | `strings/0802-rolling-hash.md` |
 | 0803 | KMP 与前缀函数 | 字符串 | `strings/0803-kmp-prefix-function.md` |
 | 0804 | Z 函数 | 字符串 | `strings/0804-z-function.md` |
@@ -134,6 +135,7 @@
 | 0420 | 2-SAT | 图论 | `graph-theory/0420-two-sat.md` |
 | 0421 | Dinic 最大流 | 图论 | `graph-theory/0421-dinic-max-flow.md` |
 | 0426 | 基环树与函数图 | 图论 | `graph-theory/0426-unicyclic-functional-graphs.md` |
+| 0429 | 分层图与状态最短路 | 图论 | `graph-theory/0429-layered-state-shortest-path.md` |
 | 0708 | 状压 DP | 动态规划 | `dynamic-programming/0708-bitmask-dp.md` |
 | 0709 | 数位 DP | 动态规划 | `dynamic-programming/0709-digit-dp.md` |
 | 0710 | 概率与期望 DP | 动态规划 | `dynamic-programming/0710-probability-expectation-dp.md` |
