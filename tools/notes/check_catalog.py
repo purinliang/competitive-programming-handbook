@@ -35,7 +35,7 @@ MARKDOWN_LINK = re.compile(r"\[[^]]*\]\(([^)]+)\)")
 FILE_LINK = re.compile(r"^\[([^]]+)\]\(([^)]+)\)$")
 CODE_PATH = re.compile(r"^`([^`]+)`$")
 LEGACY_DRAFTS = re.compile(r"<!--\s*legacy-drafts:\s*([^>]*)-->")
-ARTICLE_FILENAME = re.compile(r"^(\d{4})-[a-z0-9-]+\.md$")
+ARTICLE_FILENAME = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*\.md$")
 
 
 @dataclass(frozen=True)
@@ -189,10 +189,8 @@ class Checker:
             location = f"CATALOG.md ({entry.article_id})"
             if entry.status not in ALLOWED_STATUSES:
                 self.error(f"{location}: invalid status {entry.status!r}")
-            if not ARTICLE_FILENAME.match(Path(entry.path).name):
+            if not ARTICLE_FILENAME.fullmatch(Path(entry.path).name):
                 self.error(f"{location}: invalid article filename {entry.path!r}")
-            elif not Path(entry.path).name.startswith(entry.article_id + "-"):
-                self.error(f"{location}: ID does not match filename {entry.path!r}")
             module = Path(entry.path).parts[0] if Path(entry.path).parts else ""
             expected_prefix = MODULE_PREFIXES.get(module)
             if expected_prefix is None:
@@ -334,18 +332,20 @@ class Checker:
             for entry in entries.values()
             if entry.status != "计划"
         }
-        actual: dict[str, str] = {}
-        for path in NOTES.rglob("*.md"):
-            match = ARTICLE_FILENAME.match(path.name)
-            if match:
+        actual: set[str] = set()
+        for module in MODULE_PREFIXES:
+            module_root = NOTES / module
+            if not module_root.exists():
+                continue
+            for path in module_root.rglob("*.md"):
                 relative = path.relative_to(NOTES).as_posix()
-                actual[relative] = match.group(1)
+                actual.add(relative)
 
         for relative, entry in expected.items():
             path = NOTES / relative
             if not path.is_file():
                 self.error(f"CATALOG.md ({entry.article_id}): missing file notes/{relative}")
-        unregistered = sorted(set(actual) - set(expected))
+        unregistered = sorted(actual - set(expected))
         if unregistered:
             self.error(
                 "notes: article files absent from live catalog entries: "
