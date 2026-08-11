@@ -14,7 +14,7 @@ NOTES = ROOT / "notes"
 CATALOG = NOTES / "CATALOG.md"
 LEARNING_PATH = NOTES / "LEARNING-PATH.md"
 
-ALLOWED_STATUSES = {"计划", "草稿", "已固化"}
+ALLOWED_STATUSES = {"计划", "草稿", "定稿"}
 MODULE_PREFIXES = {
     "cpp": "01",
     "algorithm-basics": "02",
@@ -364,7 +364,7 @@ class Checker:
     def check_article_metadata(self, path: Path, text: str, entry: Entry) -> None:
         display = path.relative_to(ROOT).as_posix()
         title = re.search(r"^# (.+?)\s*$", text, re.MULTILINE)
-        status = re.search(r"^> 状态：(草稿|已固化)\s*$", text, re.MULTILINE)
+        status = re.search(r"^> 状态：(草稿|定稿)\s*$", text, re.MULTILINE)
         prerequisites = re.search(r"^> 直接前置：(.*?)\s*$", text, re.MULTILINE)
         if not title or title.group(1) != entry.title:
             self.error(f"{display}: article title differs from catalog")

@@ -2,7 +2,7 @@
 
 这里是教程正文的唯一知识注册表。文章 ID 按模块稳定编号，不表示学习先后；核心教程的推荐顺序见 [LEARNING-PATH.md](LEARNING-PATH.md)。
 
-无星号 ID 表示核心教程，带 `*` 的 ID 表示扩展专题。表中“直接前置”只列不可跳过的直接依赖。`计划`节点尚未创建文件，因此文件列只显示预定路径；`草稿`和`已固化`节点使用可点击链接。
+无星号 ID 表示核心教程，带 `*` 的 ID 表示扩展专题。表中“直接前置”只列不可跳过的直接依赖。`计划`节点尚未创建文件，因此文件列只显示预定路径；`草稿`和`定稿`节点使用可点击链接。
 
 以下现有文件是在新规范建立前形成的遗留草稿，第一次正式修订时必须补齐文章信息块，并从本清单移除对应 ID。
 
@@ -12,7 +12,7 @@
 
 | ID | 知识点 | 状态 | 直接前置 | 文件 |
 | --- | --- | --- | --- | --- |
-| 0101 | 入门：Hello World! | 已固化 | — | [hello-world.md](cpp/hello-world.md) |
+| 0101 | 入门：Hello World! | 定稿 | — | [hello-world.md](cpp/hello-world.md) |
 | 0102 | 基本类型：整数 | 草稿 | 0101 | [0102-integer-types.md](cpp/0102-integer-types.md) |
 | 0103 | 基本类型：浮点数 | 计划 | 0102 | `cpp/0103-floating-point-types.md` |
 | 0104 | 基本类型：字符 | 计划 | 0102 | `cpp/0104-character-types.md` |
@@ -69,7 +69,7 @@
 | 0155* | 修饰符：volatile | 计划 | 0124,0128 | `cpp/0155-volatile.md` |
 | 0156* | 扩展容器：order-statistics tree（GNU PBDS） | 计划 | 0145,0147 | `cpp/0156-gnu-pbds.md` |
 | 0157* | C++ 对象：生命周期 | 计划 | 0106,0125,0129,0130 | `cpp/0157-object-lifetime.md` |
-| 0158 | 入门：A+B Problem | 已固化 | 0101 | [a-plus-b-problem.md](cpp/a-plus-b-problem.md) |
+| 0158 | 入门：A+B Problem | 定稿 | 0101 | [a-plus-b-problem.md](cpp/a-plus-b-problem.md) |
 
 ## 02 基础算法与通用技巧
 
