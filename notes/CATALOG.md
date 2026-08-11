@@ -2,7 +2,7 @@
 
 这里是教程正文的唯一知识注册表。文章 ID 按模块稳定编号，不表示学习先后；核心教程的推荐顺序见 [LEARNING-PATH.md](LEARNING-PATH.md)。
 
-无星号 ID 表示核心教程，带 `*` 的 ID 表示扩展专题。表中“直接前置”只列不可跳过的直接依赖。`计划`节点尚未创建文件，因此文件列只显示预定路径；`草稿`和`定稿`节点使用可点击链接。
+四位数字 ID 表示核心教程，带 `*` 的 ID 表示独立扩展专题。直接配套某篇基础文章的扩展使用 `e1`、`e2` 等后缀并共享基础编号，例如 `0102e1`；配套扩展不进入核心学习路线，也不占用新的四位编号。表中“直接前置”只列不可跳过的直接依赖。`计划`节点尚未创建文件，因此文件列只显示预定路径；`草稿`和`定稿`节点使用可点击链接。
 
 以下现有文件是在新规范建立前形成的遗留草稿，第一次正式修订时必须补齐文章信息块，并从本清单移除对应 ID。
 
@@ -14,7 +14,11 @@
 | --- | --- | --- | --- | --- |
 | 0101 | 入门：Hello World! | 定稿 | — | [hello-world.md](cpp/hello-world.md) |
 | 0102 | 基本类型：整数 | 草稿 | 0101 | [integer-types.md](cpp/integer-types.md) |
-| 0103 | 基本类型：浮点数 | 计划 | 0102 | `cpp/0103-floating-point-types.md` |
+| 0102e1 | 基础：位、字节与存储单位 | 草稿 | 0101 | [bits-bytes-and-storage-units.md](cpp/bits-bytes-and-storage-units.md) |
+| 0102e2 | 基本类型：整数的二进制表示 | 草稿 | 0102 | [signed-integer-representations.md](cpp/signed-integer-representations.md) |
+| 0102e3 | 基本类型：整数的位宽与平台差异 | 草稿 | 0102 | [integer-type-widths.md](cpp/integer-type-widths.md) |
+| 0103 | 基本类型：浮点数 | 草稿 | 0102 | [floating-point-types.md](cpp/floating-point-types.md) |
+| 0103e1 | 浮点数表示：IEEE 754 | 草稿 | 0103 | [ieee-754.md](cpp/ieee-754.md) |
 | 0104 | 基本类型：字符 | 计划 | 0102 | `cpp/0104-character-types.md` |
 | 0105 | 基本类型：布尔 | 计划 | 0102 | `cpp/0105-boolean-type.md` |
 | 0106 | 变量：声明与初始化 | 计划 | 0101,0102 | `cpp/0106-variable-declaration-initialization.md` |

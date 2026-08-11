@@ -25,8 +25,9 @@ MODULE_PREFIXES = {
     "dynamic-programming": "07",
     "strings": "08",
 }
+ARTICLE_ID_PATTERN = r"\d{4}(?:e\d+)?"
 CATALOG_ROW = re.compile(
-    r"^\|\s*(\d{4})(\*)?\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
+    rf"^\|\s*({ARTICLE_ID_PATTERN})(\*)?\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
 )
 PATH_ROW = re.compile(
     r"^\|\s*(\d{4})\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
@@ -97,7 +98,11 @@ class Checker:
             status = status.strip()
             raw_prerequisites = raw_prerequisites.strip()
             raw_file = raw_file.strip()
-            kind = "扩展专题" if extension_marker else "核心教程"
+            kind = (
+                "扩展专题"
+                if extension_marker or re.fullmatch(r"\d{4}e\d+", article_id)
+                else "核心教程"
+            )
             prerequisites = self.parse_prerequisites(
                 raw_prerequisites, f"CATALOG.md:{line_number}"
             )
@@ -155,7 +160,9 @@ class Checker:
         if raw == "—":
             return ()
         prerequisites = tuple(part.strip() for part in raw.split(","))
-        if not prerequisites or any(not re.fullmatch(r"\d{4}", item) for item in prerequisites):
+        if not prerequisites or any(
+            not re.fullmatch(ARTICLE_ID_PATTERN, item) for item in prerequisites
+        ):
             self.error(f"{location}: invalid prerequisites {raw!r}")
         if len(prerequisites) != len(set(prerequisites)):
             self.error(f"{location}: duplicate prerequisite in {raw!r}")
@@ -199,6 +206,14 @@ class Checker:
                 self.error(
                     f"{location}: module {module!r} must use ID prefix {expected_prefix}"
                 )
+            elif "e" in entry.article_id:
+                base_id = entry.article_id[:4]
+                if base_id not in positions:
+                    self.error(f"{location}: companion base {base_id} is absent")
+                elif positions[base_id] >= positions[entry.article_id]:
+                    self.error(
+                        f"{location}: companion base {base_id} must appear earlier"
+                    )
             elif int(entry.article_id[2:]) != next_number[module]:
                 self.error(
                     f"{location}: expected the next module ID to be "
@@ -381,7 +396,9 @@ class Checker:
             self.error(f"{display}: missing article prerequisites")
             return
         raw_prerequisites = prerequisites.group(1)
-        metadata_ids = tuple(dict.fromkeys(re.findall(r"\b\d{4}\b", raw_prerequisites)))
+        metadata_ids = tuple(
+            dict.fromkeys(re.findall(rf"\b{ARTICLE_ID_PATTERN}\b", raw_prerequisites))
+        )
         if metadata_ids != entry.prerequisites:
             self.error(
                 f"{display}: article prerequisites {metadata_ids} differ from catalog "
