@@ -8,6 +8,11 @@ workspace/*
 # 图示生成物
 tools/diagrams/out/
 
+# Python 缓存
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
 # TeX 编译产物
 *.aux
 *.bbl
