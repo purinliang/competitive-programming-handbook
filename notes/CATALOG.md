@@ -12,7 +12,7 @@
 
 | ID | 知识点 | 状态 | 直接前置 | 文件 |
 | --- | --- | --- | --- | --- |
-| 0101 | 入门实践：Hello World 与整数加法 | 草稿 | — | [0101-program-entry-and-skeleton.md](cpp/0101-program-entry-and-skeleton.md) |
+| 0101 | Hello World! | 草稿 | — | [0101-hello-world.md](cpp/0101-hello-world.md) |
 | 0102 | 基本类型：整数 | 草稿 | 0101 | [0102-integer-types.md](cpp/0102-integer-types.md) |
 | 0103 | 基本类型：浮点数 | 计划 | 0102 | `cpp/0103-floating-point-types.md` |
 | 0104 | 基本类型：字符 | 计划 | 0102 | `cpp/0104-character-types.md` |

@@ -1,4 +1,4 @@
-# 入门实践：Hello World 与整数加法
+# Hello World!
 
 > 状态：草稿
 > 直接前置：—
@@ -14,7 +14,7 @@
 using namespace std;
 
 void solve() {
-    cout << "Hello, world!" << '\n';
+    cout << "Hello World!" << '\n';
 }
 
 int main() {
@@ -26,14 +26,14 @@ int main() {
 程序会输出：
 
 ```text
-Hello, world!
+Hello World!
 ```
 
 现在只需要对这份代码建立一个整体印象。以后随题目变化的内容通常写在 `solve` 里面：
 
 ```cpp
 void solve() {
-    cout << "Hello, world!" << '\n';
+    cout << "Hello World!" << '\n';
 }
 ```
 
