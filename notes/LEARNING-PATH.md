@@ -8,8 +8,8 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0101 | Hello World! | C++ | [cpp/hello-world.md](cpp/hello-world.md) |
-| 0158 | A+B Problem | C++ | [cpp/a-plus-b-problem.md](cpp/a-plus-b-problem.md) |
+| 0101 | 入门：Hello World! | C++ | [cpp/hello-world.md](cpp/hello-world.md) |
+| 0158 | 入门：A+B Problem | C++ | [cpp/a-plus-b-problem.md](cpp/a-plus-b-problem.md) |
 | 0102 | 基本类型：整数 | C++ | [cpp/0102-integer-types.md](cpp/0102-integer-types.md) |
 | 0103 | 基本类型：浮点数 | C++ | `cpp/0103-floating-point-types.md` |
 | 0104 | 基本类型：字符 | C++ | `cpp/0104-character-types.md` |

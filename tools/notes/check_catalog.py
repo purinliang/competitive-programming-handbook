@@ -363,17 +363,25 @@ class Checker:
 
     def check_article_metadata(self, path: Path, text: str, entry: Entry) -> None:
         display = path.relative_to(ROOT).as_posix()
+        title = re.search(r"^# (.+?)\s*$", text, re.MULTILINE)
         status = re.search(r"^> 状态：(草稿|已固化)\s*$", text, re.MULTILINE)
         prerequisites = re.search(r"^> 直接前置：(.*?)\s*$", text, re.MULTILINE)
-        if not status or not prerequisites:
+        if not title or title.group(1) != entry.title:
+            self.error(f"{display}: article title differs from catalog")
+        if not status:
             self.error(f"{display}: incomplete article information block")
             return
         if status.group(1) != entry.status:
             self.error(f"{display}: article status differs from catalog")
+        if not entry.prerequisites:
+            if prerequisites:
+                self.error(f"{display}: article without prerequisites must omit that line")
+            return
+        if not prerequisites:
+            self.error(f"{display}: missing article prerequisites")
+            return
         raw_prerequisites = prerequisites.group(1)
         metadata_ids = tuple(dict.fromkeys(re.findall(r"\b\d{4}\b", raw_prerequisites)))
-        if raw_prerequisites == "—":
-            metadata_ids = ()
         if metadata_ids != entry.prerequisites:
             self.error(
                 f"{display}: article prerequisites {metadata_ids} differ from catalog "
