@@ -1,6 +1,6 @@
 # 入门：A+B Problem
 
-> 状态：草稿
+> 状态：已固化
 > 直接前置：[0101 入门：Hello World!](hello-world.md)
 
 上一篇 [入门：Hello World!](hello-world.md) 中的程序只会输出固定文字。这一次，我们让它计算两个整数的和，并把完成的代码第一次提交给在线评测系统。
