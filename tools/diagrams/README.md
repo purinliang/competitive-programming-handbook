@@ -72,10 +72,8 @@ python -m cp_diagrams render examples/prefix-sum-range.yaml \
 - `examples/graph-directed.yaml`：边权位于斜边上侧的有向图。
 - `examples/graph-self-loop-annotations.yaml`：自环、红色回路和蓝色路径 annotation。
 - `examples/tree-rooted.yaml`：按子树宽度分配空间的普通有根树。
-- `examples/segment-tree.yaml`：长度 11 的非满线段树，单 value 节点使用正方形。
-- `examples/segment-tree-interval.yaml`：长度 11 的区间宽度线段树，节点宽度等于覆盖跨度，并把叶节点投影到虚线原数组。
-- `examples/fenwick-tree.yaml`：长度 11 的树状数组，全部节点投影到独立的全虚线原数组行。
-- `examples/fenwick-tree-interval.yaml`：长度 11 的区间宽度树状数组，只在虚线原数组显示一套下标。
+- `examples/segment-tree.yaml`：长度 11 的区间宽度线段树，节点宽度等于覆盖跨度，并把叶节点投影到虚线原数组。
+- `examples/fenwick-tree.yaml`：长度 11 的区间宽度树状数组，只在虚线原数组显示一套下标。
 
 ## 代码结构
 
@@ -139,4 +137,4 @@ python -m unittest discover -s tests -v
 
 ## 后续范围
 
-v2 先审核节点编号与值的文字层级、普通图自动布局、树层级、边权位置、自环和 path annotation。稳定后再增加多行数组 annotation、多重边，以及 PNG 导出和多帧步骤图。
+v2 先审核节点编号与值的文字层级、普通图自动布局、树层级、边权位置、自环和 path annotation。稳定后再增加多行数组 annotation、多重边和多帧步骤图。图示工具保持 SVG-only，不规划 PNG 输出。
