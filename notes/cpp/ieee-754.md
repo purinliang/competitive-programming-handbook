@@ -172,8 +172,8 @@ C++ 的 `numeric_limits` 因而给出了三种不同指标：
 
 ## 扩展阅读
 
-- [IEEE 754 官方标准页面](https://standards.ieee.org/ieee/754/6210/)给出标准的正式范围与版本信息。
-- [Wikipedia: IEEE 754](https://en.wikipedia.org/wiki/IEEE_754)提供便于查阅的格式表、编码示意和历史背景。
+- [IEEE 754 官方标准页面](https://standards.ieee.org/ieee/754/6210/) 给出标准的正式范围与版本信息。
+- [Wikipedia: IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) 提供便于查阅的格式表、编码示意和历史背景。
 
 ## 返回基础篇
 
