@@ -12,7 +12,7 @@
 
 | ID | 知识点 | 状态 | 直接前置 | 文件 |
 | --- | --- | --- | --- | --- |
-| 0101 | Hello World! | 草稿 | — | [0101-hello-world.md](cpp/0101-hello-world.md) |
+| 0101 | Hello World! | 草稿 | — | [hello-world.md](cpp/hello-world.md) |
 | 0102 | 基本类型：整数 | 草稿 | 0101 | [0102-integer-types.md](cpp/0102-integer-types.md) |
 | 0103 | 基本类型：浮点数 | 计划 | 0102 | `cpp/0103-floating-point-types.md` |
 | 0104 | 基本类型：字符 | 计划 | 0102 | `cpp/0104-character-types.md` |
@@ -69,6 +69,7 @@
 | 0155* | 修饰符：volatile | 计划 | 0124,0128 | `cpp/0155-volatile.md` |
 | 0156* | 扩展容器：order-statistics tree（GNU PBDS） | 计划 | 0145,0147 | `cpp/0156-gnu-pbds.md` |
 | 0157* | C++ 对象：生命周期 | 计划 | 0106,0125,0129,0130 | `cpp/0157-object-lifetime.md` |
+| 0158 | A+B Problem | 草稿 | 0101 | [a-plus-b-problem.md](cpp/a-plus-b-problem.md) |
 
 ## 02 基础算法与通用技巧
 

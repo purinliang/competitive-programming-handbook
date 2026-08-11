@@ -8,7 +8,8 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0101 | Hello World! | C++ | [cpp/0101-hello-world.md](cpp/0101-hello-world.md) |
+| 0101 | Hello World! | C++ | [cpp/hello-world.md](cpp/hello-world.md) |
+| 0158 | A+B Problem | C++ | [cpp/a-plus-b-problem.md](cpp/a-plus-b-problem.md) |
 | 0102 | 基本类型：整数 | C++ | [cpp/0102-integer-types.md](cpp/0102-integer-types.md) |
 | 0103 | 基本类型：浮点数 | C++ | `cpp/0103-floating-point-types.md` |
 | 0104 | 基本类型：字符 | C++ | `cpp/0104-character-types.md` |
@@ -42,7 +43,7 @@
 | 0131 | 函数：调用栈 | C++ | `cpp/0131-function-call-stack.md` |
 | 0132 | 函数：递归 | C++ | `cpp/0132-recursion.md` |
 
-0101 先让读者运行 Hello World，再亲手把 `solve` 改成两个整数相加，获得一次完整的编写与运行经验；它不负责系统教授其中每一项语法。基础类型、语法和必要的机器直觉随后交错推进，不再强行分成两条路线。整数文章内聚进制字面量、位宽和二进制表示；内存知识等数组、函数和指针可用后再引入。`include`、头文件、命名空间和 `using namespace std;` 的原理不进入主路线。
+0101 先让读者运行 Hello World，0158 再用 A+B 串起整数声明、输入输出和第一次 OJ 提交；它们只建立完整的实践经验，不负责系统教授其中每一项语法。基础类型、语法和必要的机器直觉随后交错推进，不再强行分成两条路线。整数文章内聚进制字面量、位宽和二进制表示；内存知识等数组、函数和指针可用后再引入。`include`、头文件、命名空间和 `using namespace std;` 的原理不进入主路线。
 
 ## 阶段 2：STL 专题
 
