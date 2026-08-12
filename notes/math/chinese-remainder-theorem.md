@@ -1,6 +1,6 @@
 # 数论：中国剩余定理（CRT）
 
-> 最近修订：2026-08-13 03:14 +10:00（未审阅）
+> 最近修订：2026-08-13 03:29 +10:00（未审阅）
 
 一个整数可以同时受到多个余数条件的约束。例如，我们想找到 $x$，使它除以 $3$ 余 $2$，除以 $5$ 余 $3$，除以 $7$ 余 $2$：
 
@@ -160,21 +160,89 @@ $$
 
 检查：$23$ 除以 $3,5,7$ 的余数分别是 $2,3,2$。
 
-## 完整代码
+## 显式模数
 
-下面只保留 CRT 自己的算法。代码复用 [模运算：modint](mod-int.md) 中的 `mint` 和 [数论：扩展欧几里得算法](extended-euclidean-algorithm.md) 中的 `exgcd`；把这两个已经讲过的工具放在同一份源文件前面，即可得到可提交的单文件程序。
+一般的固定模数题只有一个全局 `MOD`，但 CRT 同时使用每个输入模数 $m_i$ 和合并后的总模数 $M$。把当前模数藏进一份可以反复修改的全局状态，会让调用位置无法直接看出每一步究竟在哪个模数下计算。
 
-程序假设模数乘积可以放入 64 位整数。`mint` 负责余数归一化和中间乘法取模，但无法保存一个本身已经超出 64 位整数范围的 $M$。
+因此，代码中的归一化、模加法和龟速乘都显式接收参数 `mod`：
 
 ```cpp
+ll normalize(ll x, ll mod);
+ll add_mod(ll a, ll b, ll mod);
+ll multiply_mod(ll a, ll b, ll mod);
+```
+
+`add_mod` 要求 `a`、`b` 已经位于 `[0, mod)`；`multiply_mod` 会先归一化两个输入，再用安全模加法完成乘法。CRT 公式中的三因子乘积分两次计算：
+
+```cpp
+ll term = multiply_mod(a[i], Mi, M);
+term = multiply_mod(term, ti, M);
+ans = add_mod(ans, term, M);
+```
+
+每一行都明确写出本次使用的模数 `M`，不存在会影响其他对象的隐藏 `set_mod()`。
+
+## 完整代码
+
+下面给出可以直接编译的完整程序。程序假设所有输入模数为正整数，模数乘积可以放入 64 位整数；显式模数的龟速乘可以避免中间乘法溢出，但无法保存一个本身已经超出 64 位整数范围的 $M$。
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+
+ll normalize(ll x, ll mod) {
+    x %= mod;
+    if (x < 0) {
+        x += mod;
+    }
+    return x;
+}
+
+ll add_mod(ll a, ll b, ll mod) {
+    if (a >= mod - b) {
+        return a - (mod - b);
+    }
+    return a + b;
+}
+
+ll multiply_mod(ll a, ll b, ll mod) {
+    a = normalize(a, mod);
+    b = normalize(b, mod);
+
+    ll result = 0;
+    while (b > 0) {
+        if (b % 2 == 1) {
+            result = add_mod(result, a, mod);
+        }
+        a = add_mod(a, a, mod);
+        b /= 2;
+    }
+    return result;
+}
+
+ll exgcd(ll a, ll b, ll& x, ll& y) {
+    if (b == 0) {
+        x = 1;
+        y = 0;
+        return a;
+    }
+
+    ll x1, y1;
+    ll g = exgcd(b, a % b, x1, y1);
+    x = y1;
+    y = x1 - a / b * y1;
+    return g;
+}
+
 pair<ll, ll> crt(int n, const vector<ll>& a, const vector<ll>& m) {
     ll M = 1;
     for (int i = 1; i <= n; i++) {
         M *= m[i];
     }
 
-    mint::set_mod(M);
-    mint result = 0;
+    ll ans = 0;
     for (int i = 1; i <= n; i++) {
         ll Mi = M / m[i];
         ll ti, y;
@@ -182,9 +250,11 @@ pair<ll, ll> crt(int n, const vector<ll>& a, const vector<ll>& m) {
             return {-1, -1};
         }
 
-        result += mint(a[i]) * mint(Mi) * mint(ti);
+        ll term = multiply_mod(a[i], Mi, M);
+        term = multiply_mod(term, ti, M);
+        ans = add_mod(ans, term, M);
     }
-    return {result.value(), M};
+    return {ans, M};
 }
 
 int main() {
@@ -237,7 +307,7 @@ $$
 
 ## 复杂度
 
-对每个方程调用一次扩展欧几里得算法，并通过 `mint` 进行两次龟速乘。设所有模数的乘积为 $M$，总时间为
+对每个方程调用一次扩展欧几里得算法，并通过 `multiply_mod` 进行两次龟速乘。设所有模数的乘积为 $M$，总时间为
 
 $$
 O\left(\sum_{i=1}^k\log m_i+k\log M\right),

@@ -7,79 +7,35 @@ using namespace std;
 
 typedef long long ll;
 
-struct modint {
-    static ll m;
-    ll x;
-
-    modint(ll x = 0) : x(normalize(x)) {}
-
-    static void set_mod(ll new_m) {
-        m = new_m;
+ll normalize(ll x, ll mod) {
+    x %= mod;
+    if (x < 0) {
+        x += mod;
     }
+    return x;
+}
 
-    static ll normalize(ll x) {
-        x %= m;
-        if (x < 0) {
-            x += m;
+ll add_mod(ll a, ll b, ll mod) {
+    if (a >= mod - b) {
+        return a - (mod - b);
+    }
+    return a + b;
+}
+
+ll multiply_mod(ll a, ll b, ll mod) {
+    a = normalize(a, mod);
+    b = normalize(b, mod);
+
+    ll result = 0;
+    while (b > 0) {
+        if (b % 2 == 1) {
+            result = add_mod(result, a, mod);
         }
-        return x;
+        a = add_mod(a, a, mod);
+        b /= 2;
     }
-
-    static ll add(ll a, ll b) {
-        if (a >= m - b) {
-            return a - (m - b);
-        }
-        return a + b;
-    }
-
-    ll value() const {
-        return x;
-    }
-
-    modint& operator+=(const modint& other) {
-        x = add(x, other.x);
-        return *this;
-    }
-
-    modint& operator-=(const modint& other) {
-        if (x < other.x) {
-            x += m - other.x;
-        } else {
-            x -= other.x;
-        }
-        return *this;
-    }
-
-    modint& operator*=(const modint& other) {
-        ll a = x;
-        ll b = other.x;
-        x = 0;
-        while (b > 0) {
-            if (b % 2 == 1) {
-                x = add(x, a);
-            }
-            a = add(a, a);
-            b /= 2;
-        }
-        return *this;
-    }
-
-    friend modint operator+(modint a, const modint& b) {
-        return a += b;
-    }
-
-    friend modint operator-(modint a, const modint& b) {
-        return a -= b;
-    }
-
-    friend modint operator*(modint a, const modint& b) {
-        return a *= b;
-    }
-};
-
-ll modint::m = 1;
-
-typedef modint mint;
+    return result;
+}
 
 ll exgcd(ll a, ll b, ll& x, ll& y) {
     if (b == 0) {
@@ -104,22 +60,18 @@ pair<ll, ll> merge_congruence(ll a1, ll m1, ll a2, ll m2) {
     }
 
     ll period = m2 / g;
-    mint::set_mod(period);
-    ll t = (mint(s) * mint(c / g)).value();
+    ll t = multiply_mod(s, c / g, period);
 
     ll new_M = m1 / g * m2;
-    mint::set_mod(new_M);
-    ll new_a = (mint(a1) + mint(m1) * mint(t)).value();
+    ll new_a = add_mod(normalize(a1, new_M), multiply_mod(m1, t, new_M), new_M);
     return {new_a, new_M};
 }
 
 pair<ll, ll> excrt(int n, const vector<ll>& a, const vector<ll>& m) {
     ll M = m[1];
-    mint::set_mod(M);
-    ll ans = mint(a[1]).value();
+    ll ans = normalize(a[1], M);
     for (int i = 2; i <= n; i++) {
-        mint::set_mod(m[i]);
-        ll next_a = mint(a[i]).value();
+        ll next_a = normalize(a[i], m[i]);
         auto [new_ans, new_M] = merge_congruence(ans, M, next_a, m[i]);
         if (new_ans == -1) {
             return {-1, -1};

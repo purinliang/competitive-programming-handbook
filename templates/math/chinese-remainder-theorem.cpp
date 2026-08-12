@@ -7,79 +7,35 @@ using namespace std;
 
 typedef long long ll;
 
-struct modint {
-    static ll m;
-    ll x;
-
-    modint(ll x = 0) : x(normalize(x)) {}
-
-    static void set_mod(ll new_m) {
-        m = new_m;
+ll normalize(ll x, ll mod) {
+    x %= mod;
+    if (x < 0) {
+        x += mod;
     }
+    return x;
+}
 
-    static ll normalize(ll x) {
-        x %= m;
-        if (x < 0) {
-            x += m;
+ll add_mod(ll a, ll b, ll mod) {
+    if (a >= mod - b) {
+        return a - (mod - b);
+    }
+    return a + b;
+}
+
+ll multiply_mod(ll a, ll b, ll mod) {
+    a = normalize(a, mod);
+    b = normalize(b, mod);
+
+    ll result = 0;
+    while (b > 0) {
+        if (b % 2 == 1) {
+            result = add_mod(result, a, mod);
         }
-        return x;
+        a = add_mod(a, a, mod);
+        b /= 2;
     }
-
-    static ll add(ll a, ll b) {
-        if (a >= m - b) {
-            return a - (m - b);
-        }
-        return a + b;
-    }
-
-    ll value() const {
-        return x;
-    }
-
-    modint& operator+=(const modint& other) {
-        x = add(x, other.x);
-        return *this;
-    }
-
-    modint& operator-=(const modint& other) {
-        if (x < other.x) {
-            x += m - other.x;
-        } else {
-            x -= other.x;
-        }
-        return *this;
-    }
-
-    modint& operator*=(const modint& other) {
-        ll a = x;
-        ll b = other.x;
-        x = 0;
-        while (b > 0) {
-            if (b % 2 == 1) {
-                x = add(x, a);
-            }
-            a = add(a, a);
-            b /= 2;
-        }
-        return *this;
-    }
-
-    friend modint operator+(modint a, const modint& b) {
-        return a += b;
-    }
-
-    friend modint operator-(modint a, const modint& b) {
-        return a -= b;
-    }
-
-    friend modint operator*(modint a, const modint& b) {
-        return a *= b;
-    }
-};
-
-ll modint::m = 1;
-
-typedef modint mint;
+    return result;
+}
 
 ll exgcd(ll a, ll b, ll& x, ll& y) {
     if (b == 0) {
@@ -101,8 +57,7 @@ pair<ll, ll> crt(int n, const vector<ll>& a, const vector<ll>& m) {
         M *= m[i];
     }
 
-    mint::set_mod(M);
-    mint result = 0;
+    ll ans = 0;
     for (int i = 1; i <= n; i++) {
         ll Mi = M / m[i];
         ll ti, y;
@@ -110,9 +65,11 @@ pair<ll, ll> crt(int n, const vector<ll>& a, const vector<ll>& m) {
             return {-1, -1};
         }
 
-        result += mint(a[i]) * mint(Mi) * mint(ti);
+        ll term = multiply_mod(a[i], Mi, M);
+        term = multiply_mod(term, ti, M);
+        ans = add_mod(ans, term, M);
     }
-    return {result.value(), M};
+    return {ans, M};
 }
 
 int main() {

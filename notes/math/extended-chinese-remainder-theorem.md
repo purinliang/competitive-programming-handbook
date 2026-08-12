@@ -1,6 +1,6 @@
 # 数论：扩展中国剩余定理（exCRT）
 
-> 最近修订：2026-08-13 03:14 +10:00（未审阅）
+> 最近修订：2026-08-13 03:29 +10:00（未审阅）
 
 [数论：中国剩余定理（CRT）](chinese-remainder-theorem.md) 通过模逆元构造互不干扰的余数开关，但它要求模数两两互质。当模数不互质时，方程组可能无解，也可能仍然有解；只是原来的开关无法保证存在。
 
@@ -187,9 +187,60 @@ x = a2 (mod m2)
 
 合并成 `{new_a, new_m}` 返回。调用前要求 `m1,m2` 为正整数，并且 `a1,a2` 已分别归一化到对应模数范围内。正常余数一定非负，因此 `{-1, -1}` 可以无歧义地表示两个条件冲突。
 
-下面只保留 exCRT 自己的算法。代码复用 [模运算：modint](mod-int.md) 中的 `mint` 和 [数论：扩展欧几里得算法](extended-euclidean-algorithm.md) 中的 `exgcd`；把这两个已经讲过的工具放在同一份源文件前面，即可得到可提交的单文件程序。程序假设最终的最小公倍数可以放入 64 位整数。
+exCRT 会在 $m_2/g$、合并后的新模数和下一条输入模数之间切换。与 [数论：中国剩余定理（CRT）](chinese-remainder-theorem.md#显式模数) 相同，归一化和龟速乘都显式接收本次模数，不使用一份可以被 `set_mod()` 反复改写的隐藏状态。
+
+下面给出可以直接编译的完整程序。它内联安全模运算与 `exgcd`，并假设最终的最小公倍数可以放入 64 位整数。
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+
+ll normalize(ll x, ll mod) {
+    x %= mod;
+    if (x < 0) {
+        x += mod;
+    }
+    return x;
+}
+
+ll add_mod(ll a, ll b, ll mod) {
+    if (a >= mod - b) {
+        return a - (mod - b);
+    }
+    return a + b;
+}
+
+ll multiply_mod(ll a, ll b, ll mod) {
+    a = normalize(a, mod);
+    b = normalize(b, mod);
+
+    ll result = 0;
+    while (b > 0) {
+        if (b % 2 == 1) {
+            result = add_mod(result, a, mod);
+        }
+        a = add_mod(a, a, mod);
+        b /= 2;
+    }
+    return result;
+}
+
+ll exgcd(ll a, ll b, ll& x, ll& y) {
+    if (b == 0) {
+        x = 1;
+        y = 0;
+        return a;
+    }
+
+    ll x1, y1;
+    ll g = exgcd(b, a % b, x1, y1);
+    x = y1;
+    y = x1 - a / b * y1;
+    return g;
+}
+
 pair<ll, ll> merge_congruence(ll a1, ll m1, ll a2, ll m2) {
     ll s, y;
     ll g = exgcd(m1, m2, s, y);
@@ -199,12 +250,10 @@ pair<ll, ll> merge_congruence(ll a1, ll m1, ll a2, ll m2) {
     }
 
     ll period = m2 / g;
-    mint::set_mod(period);
-    ll t = (mint(s) * mint(c / g)).value();
+    ll t = multiply_mod(s, c / g, period);
 
     ll new_M = m1 / g * m2;
-    mint::set_mod(new_M);
-    ll new_a = (mint(a1) + mint(m1) * mint(t)).value();
+    ll new_a = add_mod(normalize(a1, new_M), multiply_mod(m1, t, new_M), new_M);
     return {new_a, new_M};
 }
 
@@ -214,14 +263,12 @@ int main() {
 
     ll M, ans;
     scanf("%lld%lld", &M, &ans);
-    mint::set_mod(M);
-    ans = mint(ans).value();
+    ans = normalize(ans, M);
 
     for (int i = 2; i <= n; i++) {
         ll next_m, next_a;
         scanf("%lld%lld", &next_m, &next_a);
-        mint::set_mod(next_m);
-        next_a = mint(next_a).value();
+        next_a = normalize(next_a, next_m);
 
         auto [new_ans, new_M] = merge_congruence(ans, M, next_a, next_m);
         if (new_ans == -1) {
@@ -274,7 +321,7 @@ $$
 
 ## 复杂度
 
-每合并一个方程，调用一次扩展欧几里得算法，并通过 `mint` 进行常数次龟速乘。对 $k$ 个方程，总时间可写为
+每合并一个方程，调用一次扩展欧几里得算法，并通过 `multiply_mod` 进行常数次龟速乘。对 $k$ 个方程，总时间可写为
 
 $$
 O\left(\sum_{i=2}^k\left(\log\min(M_{i-1},m_i)+\log M_i\right)\right),
@@ -301,4 +348,4 @@ $$
 
 ## 扩展阅读
 
-当合并后的模数本身超出 64 位整数范围时，`mint` 也无法保存新的模数，需要配合大整数或题目特定的取模要求。这是数值表示的额外问题，不改变本篇的合并原理，也不要求在当前阶段掌握。
+当合并后的模数本身超出 64 位整数范围时，64 位整数无法保存新的模数，需要配合大整数或题目特定的取模要求。这是数值表示的额外问题，不改变本篇的合并原理，也不要求在当前阶段掌握。

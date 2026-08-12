@@ -12,6 +12,36 @@ ll oracle_normalize(ll x, ll m) {
     return x;
 }
 
+ll oracle_multiply(ll a, ll b, ll m) {
+    __int128 x = a;
+    __int128 y = b;
+    x %= m;
+    y %= m;
+    if (x < 0) {
+        x += m;
+    }
+    if (y < 0) {
+        y += m;
+    }
+    return (ll)(x * y % m);
+}
+
+bool check_multiply_mod() {
+    vector<ll> moduli = {1, 2, 15, 1000000007, LLONG_MAX - 58, LLONG_MAX};
+    vector<ll> values = {LLONG_MIN, -1000000000000000000LL, -1,       0,
+                         1,         1000000000000000000LL,  LLONG_MAX};
+    for (ll mod : moduli) {
+        for (ll a : values) {
+            for (ll b : values) {
+                if (multiply_mod(a, b, mod) != oracle_multiply(a, b, mod)) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
 ll brute_excrt(int n, const vector<ll>& a, const vector<ll>& m, ll M) {
     for (ll x = 0; x < M; x++) {
         bool valid = true;
@@ -29,6 +59,11 @@ ll brute_excrt(int n, const vector<ll>& a, const vector<ll>& m, ll M) {
 }
 
 int main() {
+    if (!check_multiply_mod()) {
+        printf("multiply_mod failed\n");
+        return 1;
+    }
+
     mt19937 rng(20050314);
 
     for (int test = 1; test <= 10000; test++) {
