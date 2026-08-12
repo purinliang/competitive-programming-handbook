@@ -124,7 +124,7 @@
 | 0307 | 并查集 | 计划 | `data-structures/0307-disjoint-set-union.md` |
 | 0308 | 稀疏表 ST | 计划 | `data-structures/0308-sparse-table.md` |
 | 0310 | 带权并查集 | 计划 | `data-structures/0310-weighted-disjoint-set.md` |
-| 0311 | 二叉树：结构与存储 | 草稿 | [binary-tree-structure-and-storage.md](data-structures/binary-tree-structure-and-storage.md) |
+| 0311 | 二叉树：结构与存储 | 定稿 | [binary-tree-structure-and-storage.md](data-structures/binary-tree-structure-and-storage.md) |
 | 0312* | 可撤销并查集 | 计划 | `data-structures/0312-rollback-disjoint-set.md` |
 | 0313* | 分块 | 计划 | `data-structures/0313-square-root-decomposition.md` |
 | 0314* | 莫队算法 | 计划 | `data-structures/0314-mo-algorithm.md` |
