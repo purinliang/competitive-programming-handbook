@@ -248,4 +248,4 @@ int main() {
 
 ## 下一篇
 
-下一篇“修饰符：static”会分别解释 `static` 改变对象存储时间与名称可见范围的用法。
+下一篇 [变量：static 局部变量](static-local-variables.md) 会解释怎样让函数内的一个局部对象在多次调用之间保留状态。

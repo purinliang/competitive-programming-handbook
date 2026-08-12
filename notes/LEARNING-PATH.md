@@ -44,7 +44,7 @@
 | 0126 | 内存与别名：引用 | C++ | [cpp/references.md](cpp/references.md) |
 | 0127 | 函数：参数传递 | C++ | [cpp/parameter-passing.md](cpp/parameter-passing.md) |
 | 0128 | 修饰符：const | C++ | [cpp/const.md](cpp/const.md) |
-| 0129 | 修饰符：static | C++ | `cpp/0129-static.md` |
+| 0129 | 变量：static 局部变量 | C++ | [cpp/static-local-variables.md](cpp/static-local-variables.md) |
 | 0130 | 内存：竞赛程序的常见分区 | C++ | `cpp/0130-competitive-program-memory-layout.md` |
 | 0131 | 函数：调用栈 | C++ | `cpp/0131-function-call-stack.md` |
 | 0132 | 函数：递归 | C++ | `cpp/0132-recursion.md` |
@@ -231,6 +231,8 @@
 | 0103e1 | 浮点数表示：IEEE 754 | [cpp/ieee-754.md](cpp/ieee-754.md) |
 | 0119e1 | 数组：多维数组的布局与参数传递 | [cpp/multidimensional-array-layout-and-parameters.md](cpp/multidimensional-array-layout-and-parameters.md) |
 | 0121e1 | 复合类型：struct 的内存布局 | [cpp/struct-memory-layout.md](cpp/struct-memory-layout.md) |
+| 0129e1 | 链接：static 与内部链接 | `cpp/static-internal-linkage.md` |
+| 0129e2 | 类成员：static | `cpp/static-members.md` |
 | 0152* | 预处理：include | [cpp/include.md](cpp/include.md) |
 | 0153* | 名称：命名空间与 std | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
 | 0154* | 修饰符：inline | `cpp/0154-inline.md` |
