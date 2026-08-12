@@ -1,6 +1,6 @@
 # 浮点数表示：IEEE 754
 
-> 状态：草稿
+> 状态：定稿
 
 [基本类型：浮点数](floating-point-types.md) 已经足够支持一般竞赛题。本篇进一步解释浮点误差、精度位数、正负零、无穷和 $\mathrm{NaN}$ 从哪里来；这些编码细节很有意思，但不属于主线要求，不要求任何读者理解或记忆。
 
@@ -152,7 +152,7 @@ $$
 
 所以人们常说 `float` 大约有 7 位、`double` 大约有 16 位十进制有效数字。但二进制与十进制的刻度不能整齐对齐，这两个近似值不是对任意十进制数的保证。
 
-C++ 的 `numeric_limits` 因而给出了三种不同指标：
+C++ 的 `numeric_limits` 因而给出了三种不同指标；三者的正式含义可以在 [C++ 的 `numeric_limits` 成员说明](https://timsong-cpp.github.io/cppwp/n4659/numeric.limits.members) 中查阅：
 
 | 类型 | `digits` | `digits10` | `max_digits10` |
 | --- | ---: | ---: | ---: |
