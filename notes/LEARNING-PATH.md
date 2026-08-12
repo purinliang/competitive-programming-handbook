@@ -27,7 +27,7 @@
 | 0115 | 输入输出：标准输入 | C++ | [cpp/standard-input.md](cpp/standard-input.md) |
 | 0116 | 输入输出：标准输出 | C++ | `cpp/0116-standard-output.md` |
 | 0117 | 输入输出：文件重定向 | C++ | [cpp/file-redirection.md](cpp/file-redirection.md) |
-| 0118 | 数组：一维数组 | C++ | [cpp/0118-one-dimensional-arrays.md](cpp/0118-one-dimensional-arrays.md) |
+| 0118 | 数组：一维数组 | C++ | [cpp/one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
 | 0119 | 数组：多维数组 | C++ | `cpp/0119-multidimensional-arrays.md` |
 | 0120 | 字符串：C 字符串 | C++ | `cpp/0120-c-strings.md` |
 | 0121 | 复合类型：struct | C++ | [cpp/0121-struct.md](cpp/0121-struct.md) |
