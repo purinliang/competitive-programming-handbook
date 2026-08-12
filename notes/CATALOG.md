@@ -182,7 +182,7 @@
 | 0431 | 图：路径与环 | 定稿 | [paths-and-cycles.md](graph-theory/paths-and-cycles.md) |
 | 0432 | 图：度数 | 定稿 | [vertex-degrees.md](graph-theory/vertex-degrees.md) |
 | 0433 | 树：无根树 | 定稿 | [unrooted-trees.md](graph-theory/unrooted-trees.md) |
-| 0434 | 树的遍历：深度优先搜索（DFS） | 草稿 | [tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
+| 0434 | 树的遍历：深度优先搜索（DFS） | 定稿 | [tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
 | 0435 | 树的遍历：广度优先搜索（BFS） | 草稿 | [tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
 | 0436 | 图的遍历：深度优先搜索（DFS） | 定稿 | [graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
 | 0437 | 图的遍历：广度优先搜索（BFS） | 定稿 | [graph-breadth-first-search.md](graph-theory/graph-breadth-first-search.md) |
