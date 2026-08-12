@@ -6,7 +6,7 @@
 
 以下现有文件是在新规范建立前形成的遗留草稿，第一次正式修订时必须补齐文章信息块，并从本清单移除对应 ID。
 
-<!-- legacy-drafts: 0107,0111,0113,0115,0117,0118,0121,0125,0128,0152,0153,0207,0304,0305,0306,0403,0501,0502,0503,0510 -->
+<!-- legacy-drafts: 0107,0111,0113,0115,0117,0118,0121,0125,0128,0152,0153,0207,0403,0501,0502,0503,0510 -->
 
 ## 01 C++ 基础
 
@@ -118,9 +118,9 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 0304 | 线段树：基础 | 草稿 | [0304-segment-tree.md](data-structures/0304-segment-tree.md) |
-| 0305* | 线段树：懒标记的组合顺序 | 草稿 | [0305-segment-tree-lazy-tags.md](data-structures/0305-segment-tree-lazy-tags.md) |
-| 0306 | 树状数组：基础 | 草稿 | [0306-fenwick-tree.md](data-structures/0306-fenwick-tree.md) |
+| 0304 | 线段树：基础 | 定稿 | [data-structures/segment-tree.md](data-structures/segment-tree.md) |
+| 0305* | 线段树：懒标记的组合顺序 | 定稿 | [data-structures/segment-tree-lazy-tags.md](data-structures/segment-tree-lazy-tags.md) |
+| 0306 | 树状数组：基础 | 定稿 | [data-structures/fenwick-tree.md](data-structures/fenwick-tree.md) |
 | 0307 | 并查集 | 计划 | `data-structures/0307-disjoint-set-union.md` |
 | 0308 | 稀疏表 ST | 计划 | `data-structures/0308-sparse-table.md` |
 | 0310 | 带权并查集 | 计划 | `data-structures/0310-weighted-disjoint-set.md` |

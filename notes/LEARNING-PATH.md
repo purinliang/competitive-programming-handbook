@@ -138,8 +138,8 @@
 | --- | --- | --- | --- |
 | 0151 | 工具类型：bitset | C++ | `cpp/0151-bitset.md` |
 | 0227 | 二叉堆 | 基础算法 | `algorithm-basics/0227-binary-heap.md` |
-| 0304 | 线段树：基础 | 数据结构 | [data-structures/0304-segment-tree.md](data-structures/0304-segment-tree.md) |
-| 0306 | 树状数组：基础 | 数据结构 | [data-structures/0306-fenwick-tree.md](data-structures/0306-fenwick-tree.md) |
+| 0304 | 线段树：基础 | 数据结构 | [data-structures/segment-tree.md](data-structures/segment-tree.md) |
+| 0306 | 树状数组：基础 | 数据结构 | [data-structures/fenwick-tree.md](data-structures/fenwick-tree.md) |
 | 0307 | 并查集 | 数据结构 | `data-structures/0307-disjoint-set-union.md` |
 | 0308 | 稀疏表 ST | 数据结构 | `data-structures/0308-sparse-table.md` |
 | 0229 | 单调栈 | 基础算法 | `algorithm-basics/0229-monotonic-stack.md` |
@@ -237,7 +237,7 @@
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| 0305* | 线段树：懒标记的组合顺序 | [data-structures/0305-segment-tree-lazy-tags.md](data-structures/0305-segment-tree-lazy-tags.md) |
+| 0305* | 线段树：懒标记的组合顺序 | [data-structures/segment-tree-lazy-tags.md](data-structures/segment-tree-lazy-tags.md) |
 | 0312* | 可撤销并查集 | `data-structures/0312-rollback-disjoint-set.md` |
 | 0313* | 分块 | `data-structures/0313-square-root-decomposition.md` |
 | 0314* | 莫队算法 | `data-structures/0314-mo-algorithm.md` |
