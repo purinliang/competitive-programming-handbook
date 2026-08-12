@@ -1,5 +1,5 @@
 // 随机验证：../verification/mod-int-random.cpp
-// 运行时模数的模整数；乘法使用龟速乘，不依赖 __int128。
+// 固定模数的模整数；要求 (MOD - 1) * (MOD - 1) 能放入 ll。
 
 #include <bits/stdc++.h>
 
@@ -7,29 +7,16 @@ using namespace std;
 
 typedef long long ll;
 
+const ll MOD = 1000000007;
+
 struct modint {
-    static ll m;
     ll x;
 
-    modint(ll x = 0) : x(normalize(x)) {}
-
-    static void set_mod(ll new_m) {
-        m = new_m;
-    }
-
-    static ll normalize(ll x) {
-        x %= m;
+    modint(ll value = 0) {
+        x = value % MOD;
         if (x < 0) {
-            x += m;
+            x += MOD;
         }
-        return x;
-    }
-
-    static ll add(ll a, ll b) {
-        if (a >= m - b) {
-            return a - (m - b);
-        }
-        return a + b;
     }
 
     ll value() const {
@@ -37,30 +24,23 @@ struct modint {
     }
 
     modint& operator+=(const modint& other) {
-        x = add(x, other.x);
+        x += other.x;
+        if (x >= MOD) {
+            x -= MOD;
+        }
         return *this;
     }
 
     modint& operator-=(const modint& other) {
-        if (x < other.x) {
-            x += m - other.x;
-        } else {
-            x -= other.x;
+        x -= other.x;
+        if (x < 0) {
+            x += MOD;
         }
         return *this;
     }
 
     modint& operator*=(const modint& other) {
-        ll a = x;
-        ll b = other.x;
-        x = 0;
-        while (b > 0) {
-            if (b % 2 == 1) {
-                x = add(x, a);
-            }
-            a = add(a, a);
-            b /= 2;
-        }
+        x = x * other.x % MOD;
         return *this;
     }
 
@@ -77,15 +57,12 @@ struct modint {
     }
 };
 
-ll modint::m = 1;
-
 typedef modint mint;
 
 int main() {
-    ll m, a, b;
-    scanf("%lld%lld%lld", &m, &a, &b);
+    ll a, b;
+    scanf("%lld%lld", &a, &b);
 
-    mint::set_mod(m);
     mint x = a;
     mint y = b;
     printf("%lld\n", (x + y).value());
