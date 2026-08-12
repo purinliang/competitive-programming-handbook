@@ -183,57 +183,11 @@ x = a1 (mod m1)
 x = a2 (mod m2)
 ```
 
-合并，并将结果写回 `a1, m1`。调用前要求 `m1,m2` 为正整数，并且 `a1,a2` 已分别归一化到对应模数范围内。程序假设最终的最小公倍数可以放入 64 位整数；中间乘法复用经典 CRT 中的安全模加法与龟速乘，不依赖 `__int128`。
+合并，并将结果写回 `a1, m1`。调用前要求 `m1,m2` 为正整数，并且 `a1,a2` 已分别归一化到对应模数范围内。
+
+下面只保留 exCRT 自己的算法。代码复用 [模运算：modint](mod-int.md) 中的 `mint` 和 [数论：扩展欧几里得算法](extended-euclidean-algorithm.md) 中的 `exgcd`；把这两个已经讲过的工具放在同一份源文件前面，即可得到可提交的单文件程序。程序假设最终的最小公倍数可以放入 64 位整数。
 
 ```cpp
-#include <bits/stdc++.h>
-using namespace std;
-
-typedef long long ll;
-
-ll exgcd(ll a, ll b, ll& x, ll& y) {
-    if (b == 0) {
-        x = 1;
-        y = 0;
-        return a;
-    }
-
-    ll x1, y1;
-    ll g = exgcd(b, a % b, x1, y1);
-    x = y1;
-    y = x1 - a / b * y1;
-    return g;
-}
-
-ll normalize(ll x, ll m) {
-    x %= m;
-    if (x < 0) {
-        x += m;
-    }
-    return x;
-}
-
-ll add_mod(ll a, ll b, ll m) {
-    if (a >= m - b) {
-        return a - (m - b);
-    }
-    return a + b;
-}
-
-ll mul_mod(ll a, ll b, ll m) {
-    a = normalize(a, m);
-    b = normalize(b, m);
-    ll result = 0;
-    while (b > 0) {
-        if (b % 2 == 1) {
-            result = add_mod(result, a, m);
-        }
-        a = add_mod(a, a, m);
-        b /= 2;
-    }
-    return result;
-}
-
 bool merge_congruence(ll& a1, ll& m1, ll a2, ll m2) {
     ll s, y;
     ll g = exgcd(m1, m2, s, y);
@@ -243,11 +197,12 @@ bool merge_congruence(ll& a1, ll& m1, ll a2, ll m2) {
     }
 
     ll period = m2 / g;
-    ll t = mul_mod(s, c / g, period);
+    mint::set_mod(period);
+    ll t = (mint(s) * mint(c / g)).value();
 
     ll new_M = m1 / g * m2;
-    ll increment = mul_mod(m1, t, new_M);
-    a1 = add_mod(a1, increment, new_M);
+    mint::set_mod(new_M);
+    a1 = (mint(a1) + mint(m1) * mint(t)).value();
     m1 = new_M;
     return true;
 }
@@ -258,12 +213,14 @@ int main() {
 
     ll M, ans;
     scanf("%lld%lld", &M, &ans);
-    ans = normalize(ans, M);
+    mint::set_mod(M);
+    ans = mint(ans).value();
 
     for (int i = 2; i <= n; i++) {
         ll next_m, next_a;
         scanf("%lld%lld", &next_m, &next_a);
-        next_a = normalize(next_a, next_m);
+        mint::set_mod(next_m);
+        next_a = mint(next_a).value();
 
         if (!merge_congruence(ans, M, next_a, next_m)) {
             printf("No solution\n");
@@ -313,7 +270,7 @@ $$
 
 ## 复杂度
 
-每合并一个方程，调用一次扩展欧几里得算法，并进行常数次龟速乘。对 $k$ 个方程，总时间可写为
+每合并一个方程，调用一次扩展欧几里得算法，并通过 `mint` 进行常数次龟速乘。对 $k$ 个方程，总时间可写为
 
 $$
 O\left(\sum_{i=2}^k\left(\log\min(M_{i-1},m_i)+\log M_i\right)\right),
@@ -340,4 +297,4 @@ $$
 
 ## 扩展阅读
 
-当合并后的模数超出 64 位整数范围时，龟速乘也无法保存新的模数，需要配合大整数或题目特定的取模要求。这是数值表示的额外问题，不改变本篇的合并原理，也不要求在当前阶段掌握。
+当合并后的模数本身超出 64 位整数范围时，`mint` 也无法保存新的模数，需要配合大整数或题目特定的取模要求。这是数值表示的额外问题，不改变本篇的合并原理，也不要求在当前阶段掌握。
