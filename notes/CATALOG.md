@@ -39,6 +39,9 @@
 | 0120 | 字符串：C 字符串 | 待审阅 | [c-strings.md](cpp/c-strings.md) |
 | 0121 | 复合类型：struct | 定稿 | [struct.md](cpp/struct.md) |
 | 0121e1 | 复合类型：struct 的内存布局 | 待审阅 | [struct-memory-layout.md](cpp/struct-memory-layout.md) |
+| 0121e2 | 复合类型：class 与 struct | 计划 | `cpp/class-and-struct.md` |
+| 0121e3 | 类：继承与多重继承 | 计划 | `cpp/inheritance-and-multiple-inheritance.md` |
+| 0121e4 | 类：虚函数与运行时多态 | 计划 | `cpp/virtual-functions-and-runtime-polymorphism.md` |
 | 0122 | 复合类型：union | 待审阅 | [union.md](cpp/union.md) |
 | 0123 | 复合类型：enum | 待审阅 | [enum.md](cpp/enum.md) |
 | 0124 | 内存：字节寻址 | 待审阅 | [byte-addressing.md](cpp/byte-addressing.md) |

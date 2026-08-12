@@ -231,6 +231,9 @@
 | 0103e1 | 浮点数表示：IEEE 754 | [cpp/ieee-754.md](cpp/ieee-754.md) |
 | 0119e1 | 数组：多维数组的布局与参数传递 | [cpp/multidimensional-array-layout-and-parameters.md](cpp/multidimensional-array-layout-and-parameters.md) |
 | 0121e1 | 复合类型：struct 的内存布局 | [cpp/struct-memory-layout.md](cpp/struct-memory-layout.md) |
+| 0121e2 | 复合类型：class 与 struct | `cpp/class-and-struct.md` |
+| 0121e3 | 类：继承与多重继承 | `cpp/inheritance-and-multiple-inheritance.md` |
+| 0121e4 | 类：虚函数与运行时多态 | `cpp/virtual-functions-and-runtime-polymorphism.md` |
 | 0129e1 | 链接：static 与内部链接 | `cpp/static-internal-linkage.md` |
 | 0129e2 | 类成员：static | `cpp/static-members.md` |
 | 0152* | 预处理：include | [cpp/include.md](cpp/include.md) |
