@@ -109,7 +109,7 @@
 | 0220 | 双指针：滑动窗口 | 计划 | `algorithm-basics/0220-sliding-window.md` |
 | 0221 | 差分 | 计划 | `algorithm-basics/0221-difference-array.md` |
 | 0222 | 模拟 | 计划 | `algorithm-basics/0222-simulation.md` |
-| 0223 | 数组 | 计划 | `algorithm-basics/0223-array.md` |
+| 0223 | 线性结构：数组 | 待审阅 | [array.md](algorithm-basics/array.md) |
 | 0224 | 链表 | 计划 | `algorithm-basics/0224-linked-list.md` |
 | 0225 | 栈 | 计划 | `algorithm-basics/0225-stack.md` |
 | 0226 | 队列 | 计划 | `algorithm-basics/0226-queue.md` |
