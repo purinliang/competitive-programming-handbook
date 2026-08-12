@@ -1,0 +1,19 @@
+schema: cp-diagram/v2
+type: graph
+background: white
+directed: false
+layout: balanced
+node-shape: circle
+nodes:
+  - {id: A}
+  - {id: B}
+  - {id: C}
+  - {id: D}
+  - {id: E}
+edges:
+  - {from: A, to: B, value: 7}
+  - {from: B, to: C, directed: true}
+  - {from: C, to: D, value: 3}
+  - {from: D, to: A, directed: true}
+  - {from: A, to: E}
+  - {from: E, to: C, directed: true}
