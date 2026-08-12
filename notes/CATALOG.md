@@ -48,7 +48,7 @@
 | 0130 | 内存：竞赛程序的常见分区 | 计划 | `cpp/0130-competitive-program-memory-layout.md` |
 | 0131 | 函数：调用栈 | 计划 | `cpp/0131-function-call-stack.md` |
 | 0132 | 函数：递归 | 计划 | `cpp/0132-recursion.md` |
-| 0133 | 表达式：位运算符 | 计划 | `cpp/0133-bitwise-operators.md` |
+| 0133 | 表达式：位运算符 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
 | 0134 | 工具类型：pair | 计划 | `cpp/0134-pair.md` |
 | 0135 | 工具类型：tuple | 计划 | `cpp/0135-tuple.md` |
 | 0136 | 序列容器：array | 计划 | `cpp/0136-array.md` |

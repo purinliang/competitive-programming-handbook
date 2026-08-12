@@ -276,4 +276,4 @@ double average = sum / count;
 
 ## 下一篇
 
-下一篇 [表达式：位运算符（正文待写）](../CATALOG.md#01-c-基础) 会直接操作整数二进制表示中的每一位。
+下一篇 [表达式：位运算符](bitwise-operators.md) 会直接操作整数二进制表示中的每一位。
