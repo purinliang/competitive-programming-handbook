@@ -56,7 +56,7 @@
 | 0134 | 工具类型：pair | C++ | [cpp/pair.md](cpp/pair.md) |
 | 0135 | 工具类型：tuple | C++ | [cpp/tuple.md](cpp/tuple.md) |
 | 0136 | 序列容器：array | C++ | [cpp/array.md](cpp/array.md) |
-| 0137 | 字符串：string | C++ | `cpp/0137-std-string.md` |
+| 0137 | 字符串：string | C++ | [cpp/string.md](cpp/string.md) |
 | 0138 | 序列容器：vector | C++ | `cpp/0138-vector.md` |
 | 0140 | STL 算法：排序 | C++ | `cpp/0140-stl-sorting.md` |
 | 0141 | STL 算法：去重 | C++ | `cpp/0141-stl-deduplication.md` |
