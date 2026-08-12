@@ -141,7 +141,7 @@
 | 0325* | 笛卡尔树 | 计划 | `data-structures/0325-cartesian-tree.md` |
 | 0326* | Wavelet Matrix | 计划 | `data-structures/0326-wavelet-matrix.md` |
 | 0327* | 启发式合并（small-to-large） | 计划 | `data-structures/0327-small-to-large-merging.md` |
-| 0328 | 二叉树的遍历：前序、中序与后序 | 草稿 | [binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
+| 0328 | 二叉树的遍历：前序、中序与后序 | 定稿 | [binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
 | 0330* | 斜堆 | 计划 | `data-structures/0330-skew-heap.md` |
 | 0331* | 配对堆 | 计划 | `data-structures/0331-pairing-heap.md` |
 
