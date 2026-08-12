@@ -31,7 +31,7 @@
 | 0119 | 数组：多维数组 | C++ | [cpp/multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
 | 0120 | 字符串：C 字符串 | C++ | [cpp/c-strings.md](cpp/c-strings.md) |
 | 0121 | 复合类型：struct | C++ | [cpp/struct.md](cpp/struct.md) |
-| 0122 | 复合类型：union | C++ | `cpp/0122-union.md` |
+| 0122 | 复合类型：union | C++ | [cpp/union.md](cpp/union.md) |
 | 0123 | 复合类型：enum | C++ | `cpp/0123-enum.md` |
 | 0124 | 内存：字节寻址 | C++ | `cpp/0124-byte-addressing.md` |
 | 0125 | 内存与别名：指针 | C++ | [cpp/pointers.md](cpp/pointers.md) |
