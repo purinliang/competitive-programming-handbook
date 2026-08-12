@@ -22,7 +22,7 @@
 | 0133 | 表达式：位运算符 | C++ | `cpp/0133-bitwise-operators.md` |
 | 0111 | 控制流：条件分支 | C++ | [cpp/conditional-branches.md](cpp/conditional-branches.md) |
 | 0112 | 控制流：循环 | C++ | `cpp/0112-loops.md` |
-| 0113 | 函数：定义与调用 | C++ | [cpp/0113-functions-definition-call.md](cpp/0113-functions-definition-call.md) |
+| 0113 | 函数：定义与调用 | C++ | [cpp/function-definition-and-calls.md](cpp/function-definition-and-calls.md) |
 | 0114 | 名称：作用域 | C++ | `cpp/0114-scope.md` |
 | 0115 | 输入输出：标准输入 | C++ | [cpp/0115-standard-input.md](cpp/0115-standard-input.md) |
 | 0116 | 输入输出：标准输出 | C++ | `cpp/0116-standard-output.md` |
