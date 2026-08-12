@@ -102,7 +102,7 @@ def _draw_edge_geometry(
             placement=loop_placement,
         )
         return None
-    if source_side is None:
+    if source_side is None or shape == "circle":
         source = _shape_boundary(source_center, target_center, size, shape)
         target = _shape_boundary(target_center, source_center, size, shape)
     else:

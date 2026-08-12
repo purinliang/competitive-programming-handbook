@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import unittest
 import xml.etree.ElementTree as ET
-from math import atan2, pi
+from math import atan2, hypot, pi
 from unittest.mock import patch
 
+from cp_diagrams.common.canvas import Sketch
 from cp_diagrams.common.geometry import NodeSize, Point
 from cp_diagrams.common.theme import INDEX_FONT_SIZE, INDEX_GAP
 from cp_diagrams.layouts.graph import (
@@ -25,6 +26,7 @@ from cp_diagrams.renderers.interval_trees import (
     _interval_edge_endpoints,
 )
 from cp_diagrams.renderers.primitives import (
+    _draw_edge_geometry,
     _edge_label_position,
     _node_size,
     _shape_boundary,
@@ -319,6 +321,32 @@ class RenderV2Test(unittest.TestCase):
             positions["q"].x - positions["r"].x,
         )
         self.assertEqual(positions["l"].y, positions["q"].y)
+
+    def test_binary_circle_edges_end_on_each_circle(self) -> None:
+        source_center = Point(100, 50)
+        target_center = Point(40, 150)
+        geometry = _draw_edge_geometry(
+            Sketch(200, 200),
+            source_center,
+            target_center,
+            NodeSize(50, 50),
+            "circle",
+            directed=False,
+            color="default",
+            stroke_width=2,
+            z_index=0,
+            source_side="left",
+        )
+        assert geometry is not None
+        source, target = geometry
+        self.assertAlmostEqual(
+            hypot(source.x - source_center.x, source.y - source_center.y),
+            25,
+        )
+        self.assertAlmostEqual(
+            hypot(target.x - target_center.x, target.y - target_center.y),
+            25,
+        )
 
     def test_fenwick_levels_follow_lowbit(self) -> None:
         diagram = parse_diagram(
