@@ -107,7 +107,7 @@
 | 0435 | 树的广度优先搜索 | 图论 | [graph-theory/tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
 | 0436 | 图的深度优先搜索 | 图论 | [graph-theory/graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
 | 0437 | 图的广度优先搜索 | 图论 | [graph-theory/graph-breadth-first-search.md](graph-theory/graph-breadth-first-search.md) |
-| 0328 | 二叉树：前序、中序与后序遍历 | 数据结构 | `data-structures/binary-tree-traversals.md` |
+| 0328 | 二叉树：前序、中序与后序遍历 | 数据结构 | [data-structures/binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
 | 0404 | 连通块与洪水填充 | 图论 | `graph-theory/0404-connected-components.md` |
 | 0405 | 拓扑排序 | 图论 | `graph-theory/0405-topological-sort.md` |
 | 0406 | BFS、0-1 BFS 与多源最短路 | 图论 | `graph-theory/0406-unweighted-shortest-path.md` |
