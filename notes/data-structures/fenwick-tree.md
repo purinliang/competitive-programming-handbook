@@ -46,7 +46,7 @@ sum(l, r) = prefix[r] - prefix[l - 1]
 树状数组的核心函数是：
 
 ```cpp
-int lowbit(int x) {
+int lowbit (int x) {
     return x & -x;
 }
 ```
@@ -124,11 +124,11 @@ x = 0：结束
 代码：
 
 ```cpp
-ll prefix_sum(int x) {
+ll prefix_sum (int x) {
     ll res = 0;
     while (x > 0) {
         res += tree[x];
-        x -= lowbit(x);
+        x -= lowbit (x);
     }
     return res;
 }
@@ -157,10 +157,10 @@ x = 8：更新 tree[8]，负责 [1, 8]
 代码：
 
 ```cpp
-void add(int x, ll val) {
+void add (int x, ll val) {
     while (x <= n) {
         tree[x] += val;
-        x += lowbit(x);
+        x += lowbit (x);
     }
 }
 ```
@@ -172,8 +172,8 @@ void add(int x, ll val) {
 区间 `[l, r]` 的和等于两个前缀和之差：
 
 ```cpp
-ll range_sum(int l, int r) {
-    return prefix_sum(r) - prefix_sum(l - 1);
+ll range_sum (int l, int r) {
+    return prefix_sum (r) - prefix_sum (l - 1);
 }
 ```
 
@@ -188,14 +188,14 @@ ll range_sum(int l, int r) {
 ```cpp
 ll delta = val - a[pos];
 a[pos] = val;
-add(pos, delta);
+add (pos, delta);
 ```
 
 如果没有另外保存原数组，也可以用树状数组查询当前位置原来的值：
 
 ```cpp
-ll old_val = range_sum(pos, pos);
-add(pos, val - old_val);
+ll old_val = range_sum (pos, pos);
+add (pos, val - old_val);
 ```
 
 ## 完整基础代码
@@ -217,50 +217,50 @@ const int MAXN = 5e5 + 5;
 int n, q;
 ll tree[MAXN];
 
-int lowbit(int x) {
+int lowbit (int x) {
     return x & -x;
 }
 
-void add(int x, ll val) {
+void add (int x, ll val) {
     while (x <= n) {
         tree[x] += val;
-        x += lowbit(x);
+        x += lowbit (x);
     }
 }
 
-ll prefix_sum(int x) {
+ll prefix_sum (int x) {
     ll res = 0;
     while (x > 0) {
         res += tree[x];
-        x -= lowbit(x);
+        x -= lowbit (x);
     }
     return res;
 }
 
-ll range_sum(int l, int r) {
-    return prefix_sum(r) - prefix_sum(l - 1);
+ll range_sum (int l, int r) {
+    return prefix_sum (r) - prefix_sum (l - 1);
 }
 
-int main() {
-    scanf("%d%d", &n, &q);
+int main () {
+    scanf ("%d%d", &n, &q);
     for (int i = 1; i <= n; i++) {
         ll val;
-        scanf("%lld", &val);
-        add(i, val);
+        scanf ("%lld", &val);
+        add (i, val);
     }
 
     while (q--) {
         int op;
-        scanf("%d", &op);
+        scanf ("%d", &op);
         if (op == 1) {
             int pos;
             ll val;
-            scanf("%d%lld", &pos, &val);
-            add(pos, val);
+            scanf ("%d%lld", &pos, &val);
+            add (pos, val);
         } else {
             int l, r;
-            scanf("%d%d", &l, &r);
-            printf("%lld\n", range_sum(l, r));
+            scanf ("%d%d", &l, &r);
+            printf ("%lld\n", range_sum (l, r));
         }
     }
     return 0;

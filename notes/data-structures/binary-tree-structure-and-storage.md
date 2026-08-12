@@ -106,27 +106,16 @@ int value[MAXN];
 int left_child[MAXN];
 int right_child[MAXN];
 
-int main() {
+int main () {
     int n;
-    scanf("%d", &n);
+    scanf ("%d", &n);
 
     for (int u = 1; u <= n; u++) {
-        scanf(
-            "%d%d%d",
-            &value[u],
-            &left_child[u],
-            &right_child[u]
-        );
+        scanf ("%d%d%d", &value[u], &left_child[u], &right_child[u]);
     }
 
     for (int u = 1; u <= n; u++) {
-        printf(
-            "%d %d %d %d\n",
-            u,
-            value[u],
-            left_child[u],
-            right_child[u]
-        );
+        printf ("%d %d %d %d\n", u, value[u], left_child[u], right_child[u]);
     }
 
     return 0;

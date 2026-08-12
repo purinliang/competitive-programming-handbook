@@ -12,12 +12,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve() {
+void solve () {
     cout << "Hello World!" << '\n';
 }
 
-int main() {
-    solve();
+int main () {
+    solve ();
     return 0;
 }
 ```
@@ -35,7 +35,7 @@ Hello World!
 现在只需要对这份代码建立一个整体印象。以后随题目变化的内容通常写在 `solve` 里面：
 
 ```cpp
-void solve() {
+void solve () {
     cout << "Hello World!" << '\n';
 }
 ```

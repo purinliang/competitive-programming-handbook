@@ -69,13 +69,13 @@ $$
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve() {
+void solve () {
     double x = 0.1 + 0.2;
-    cout << fixed << setprecision(17) << x << '\n';
+    cout << fixed << setprecision (17) << x << '\n';
 }
 
-int main() {
-    solve();
+int main () {
+    solve ();
     return 0;
 }
 ```
@@ -93,9 +93,9 @@ int main() {
 C++ 的浮点字面量可以直接使用十进制科学计数法。字母 `e` 后面的整数表示 10 的指数：
 
 ```cpp
-double large = 1.25e6;   // 1.25 × 10^6，也就是 1250000
-double small = 3.5e-4;   // 3.5 × 10^-4，也就是 0.00035
-float single = 1.0e3f;   // 末尾的 f 表示 float
+double large = 1.25e6; // 1.25 × 10^6，也就是 1250000
+double small = 3.5e-4; // 3.5 × 10^-4，也就是 0.00035
+float single = 1.0e3f; // 末尾的 f 表示 float
 ```
 
 没有后缀的浮点字面量默认为 `double`；末尾增加 `f` 或 `F` 后才是 `float`。
@@ -116,17 +116,17 @@ float single = 1.0e3f;   // 末尾的 f 表示 float
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve() {
+void solve () {
     double x = 12345.6789;
 
     cout << defaultfloat << x << '\n';
     cout << scientific << x << '\n';
-    cout << fixed << setprecision(2) << x << '\n';
-    cout << scientific << setprecision(3) << x << '\n';
+    cout << fixed << setprecision (2) << x << '\n';
+    cout << scientific << setprecision (3) << x << '\n';
 }
 
-int main() {
-    solve();
+int main () {
+    solve ();
     return 0;
 }
 ```
@@ -143,7 +143,7 @@ int main() {
 `fixed`、`scientific` 和 `setprecision` 的设置会继续影响后面的输出，直到再次修改。竞赛题要求输出固定小数位数时，最常见的写法是：
 
 ```cpp
-cout << fixed << setprecision(2) << answer << '\n';
+cout << fixed << setprecision (2) << answer << '\n';
 ```
 
 这里的 `2` 表示保留两位小数；输出时会按照当前舍入规则得到最接近的显示结果。

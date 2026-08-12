@@ -28,17 +28,17 @@ BFS 需要记住已经发现、但还没有展开相邻节点的所有节点。�
 
 ```cpp
 queue<int> q;
-q.push(1);
+q.push (1);
 ```
 
 只要队列不为空，就取出队首节点：
 
 ```cpp
-while (!q.empty()) {
-    int u = q.front();
-    q.pop();
+while (!q.empty ()) {
+    int u = q.front ();
+    q.pop ();
 
-    printf("%d ", u);
+    printf ("%d ", u);
 }
 ```
 
@@ -58,7 +58,7 @@ int depth[MAXN];
 ```cpp
 parent[1] = 0;
 depth[1] = 0;
-q.push(1);
+q.push (1);
 ```
 
 从 `u` 发现相邻节点 `v` 时，如果 `v` 是 `u` 的父节点，就跳过；否则 `u` 就是 `v` 的父节点，而 `v` 比 `u` 深一层：
@@ -71,7 +71,7 @@ for (int v : g[u]) {
 
     parent[v] = u;
     depth[v] = depth[u] + 1;
-    q.push(v);
+    q.push (v);
 }
 ```
 
@@ -93,27 +93,27 @@ vector<int> g[MAXN];
 int parent[MAXN];
 int depth[MAXN];
 
-int main() {
+int main () {
     int n;
-    scanf("%d", &n);
+    scanf ("%d", &n);
 
     for (int i = 1; i < n; i++) {
         int u, v;
-        scanf("%d%d", &u, &v);
-        g[u].push_back(v);
-        g[v].push_back(u);
+        scanf ("%d%d", &u, &v);
+        g[u].push_back (v);
+        g[v].push_back (u);
     }
 
     queue<int> q;
     parent[1] = 0;
     depth[1] = 0;
-    q.push(1);
+    q.push (1);
 
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
+    while (!q.empty ()) {
+        int u = q.front ();
+        q.pop ();
 
-        printf("%d ", u);
+        printf ("%d ", u);
 
         for (int v : g[u]) {
             if (v == parent[u]) {
@@ -122,13 +122,13 @@ int main() {
 
             parent[v] = u;
             depth[v] = depth[u] + 1;
-            q.push(v);
+            q.push (v);
         }
     }
-    printf("\n");
+    printf ("\n");
 
     for (int u = 1; u <= n; u++) {
-        printf("depth[%d] = %d\n", u, depth[u]);
+        printf ("depth[%d] = %d\n", u, depth[u]);
     }
 
     return 0;

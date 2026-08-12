@@ -27,7 +27,7 @@
 先不接收输入，直接在程序中内定两个数：
 
 ```cpp
-void solve() {
+void solve () {
     int a = 3;
     int b = 5;
     cout << a + b << '\n';
@@ -45,7 +45,7 @@ void solve() {
 如果想让同一份程序处理任意两个整数，就不能提前决定 `a` 和 `b` 的值。我们保留整数声明，再用 `cin` 从输入中取得数值：
 
 ```cpp
-void solve() {
+void solve () {
     int a;
     int b;
     cin >> a >> b;
@@ -65,15 +65,15 @@ void solve() {
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve() {
+void solve () {
     int a;
     int b;
     cin >> a >> b;
     cout << a + b << '\n';
 }
 
-int main() {
-    solve();
+int main () {
+    solve ();
     return 0;
 }
 ```

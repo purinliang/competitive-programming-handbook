@@ -27,15 +27,15 @@ bool visited[MAXN];
 第一次进入点 `u` 时立刻标记，再处理它的所有相邻点：
 
 ```cpp
-void dfs(int u) {
+void dfs (int u) {
     visited[u] = true;
-    printf("%d ", u);
+    printf ("%d ", u);
 
     for (int v : g[u]) {
         if (visited[v]) {
             continue;
         }
-        dfs(v);
+        dfs (v);
     }
 }
 ```
@@ -59,7 +59,7 @@ void dfs(int u) {
 ```cpp
 for (int u = 1; u <= n; u++) {
     if (!visited[u]) {
-        dfs(u);
+        dfs (u);
     }
 }
 ```
@@ -96,27 +96,27 @@ const int MAXN = 2e5 + 5;
 vector<int> g[MAXN];
 bool visited[MAXN];
 
-void dfs(int u) {
+void dfs (int u) {
     visited[u] = true;
-    printf("%d ", u);
+    printf ("%d ", u);
 
     for (int v : g[u]) {
         if (visited[v]) {
             continue;
         }
-        dfs(v);
+        dfs (v);
     }
 }
 
-int main() {
+int main () {
     int n, m;
-    scanf("%d%d", &n, &m);
+    scanf ("%d%d", &n, &m);
 
     for (int i = 1; i <= m; i++) {
         int u, v;
-        scanf("%d%d", &u, &v);
-        g[u].push_back(v);
-        g[v].push_back(u);
+        scanf ("%d%d", &u, &v);
+        g[u].push_back (v);
+        g[v].push_back (u);
     }
 
     int component_count = 0;
@@ -124,11 +124,11 @@ int main() {
     for (int u = 1; u <= n; u++) {
         if (!visited[u]) {
             component_count++;
-            dfs(u);
+            dfs (u);
         }
     }
 
-    printf("\n%d\n", component_count);
+    printf ("\n%d\n", component_count);
 
     return 0;
 }

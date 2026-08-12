@@ -14,7 +14,7 @@
 选择起点 `start` 时，先把它加入路径并标记：
 
 ```cpp
-path.push_back(start);
+path.push_back (start);
 used[start] = true;
 ```
 
@@ -26,13 +26,13 @@ for (int v : g[u]) {
         continue;
     }
 
-    path.push_back(v);
+    path.push_back (v);
     used[v] = true;
 
     // 继续搜索
 
     used[v] = false;
-    path.pop_back();
+    path.pop_back ();
 }
 ```
 
@@ -43,7 +43,7 @@ for (int v : g[u]) {
 当 `path.size() == n` 时，所有点都已经恰好选择一次，因此找到了一条哈密顿路径：
 
 ```cpp
-if (path.size() == static_cast<size_t>(n)) {
+if (path.size () == static_cast<size_t> (n)) {
     return true;
 }
 ```
@@ -81,7 +81,7 @@ bool used[MAXN];
 vector<int> path;
 int n, m;
 
-bool has_edge(int u, int target) {
+bool has_edge (int u, int target) {
     for (int v : g[u]) {
         if (v == target) {
             return true;
@@ -90,12 +90,12 @@ bool has_edge(int u, int target) {
     return false;
 }
 
-bool search_cycle(int u, int start) {
-    if (path.size() == static_cast<size_t>(n)) {
-        if (!has_edge(u, start)) {
+bool search_cycle (int u, int start) {
+    if (path.size () == static_cast<size_t> (n)) {
+        if (!has_edge (u, start)) {
             return false;
         }
-        path.push_back(start);
+        path.push_back (start);
         return true;
     }
 
@@ -105,44 +105,44 @@ bool search_cycle(int u, int start) {
         }
 
         used[v] = true;
-        path.push_back(v);
+        path.push_back (v);
 
-        if (search_cycle(v, start)) {
+        if (search_cycle (v, start)) {
             return true;
         }
 
-        path.pop_back();
+        path.pop_back ();
         used[v] = false;
     }
 
     return false;
 }
 
-int main() {
-    scanf("%d%d", &n, &m);
+int main () {
+    scanf ("%d%d", &n, &m);
 
     for (int i = 1; i <= m; i++) {
         int u, v;
-        scanf("%d%d", &u, &v);
-        g[u].push_back(v);
-        g[v].push_back(u);
+        scanf ("%d%d", &u, &v);
+        g[u].push_back (v);
+        g[v].push_back (u);
     }
 
     int start = 1;
-    path.push_back(start);
+    path.push_back (start);
     used[start] = true;
 
-    if (!search_cycle(start, start)) {
-        printf("No Hamiltonian cycle\n");
+    if (!search_cycle (start, start)) {
+        printf ("No Hamiltonian cycle\n");
         return 0;
     }
 
-    for (int i = 0; i < static_cast<int>(path.size()); i++) {
-        printf("%d", path[i]);
-        if (i + 1 == static_cast<int>(path.size())) {
-            printf("\n");
+    for (int i = 0; i < static_cast<int> (path.size ()); i++) {
+        printf ("%d", path[i]);
+        if (i + 1 == static_cast<int> (path.size ())) {
+            printf ("\n");
         } else {
-            printf(" ");
+            printf (" ");
         }
     }
 

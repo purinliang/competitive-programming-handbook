@@ -79,8 +79,8 @@ Hierholzer 算法的关键是推迟写入答案：
 链式前向星把无向边 $(u,v)$ 连续存成两条记录：
 
 ```cpp
-add_edge(u, v);
-add_edge(v, u);
+add_edge (u, v);
+add_edge (v, u);
 ```
 
 编号 `i` 和 `i ^ 1` 表示同一条原始无向边的两个方向。选中其中一个方向后，必须同时标记两条记录：
@@ -108,18 +108,18 @@ head[u] = e[i].next;
 ```cpp
 vector<int> path_stack;
 vector<int> answer;
-path_stack.push_back(start);
+path_stack.push_back (start);
 
-while (!path_stack.empty()) {
-    int u = path_stack.back();
+while (!path_stack.empty ()) {
+    int u = path_stack.back ();
 
     while (head[u] != -1 && used[head[u]]) {
         head[u] = e[head[u]].next;
     }
 
     if (head[u] == -1) {
-        answer.push_back(u);
-        path_stack.pop_back();
+        answer.push_back (u);
+        path_stack.pop_back ();
         continue;
     }
 
@@ -127,10 +127,10 @@ while (!path_stack.empty()) {
     head[u] = e[i].next;
     used[i] = true;
     used[i ^ 1] = true;
-    path_stack.push_back(e[i].v);
+    path_stack.push_back (e[i].v);
 }
 
-reverse(answer.begin(), answer.end());
+reverse (answer.begin (), answer.end ());
 ```
 
 只有无边可走的点才会从 `path_stack` 弹出并进入 `answer`。因此 `answer` 最初是逆序，翻转后才是从起点出发的欧拉路径。
@@ -159,23 +159,23 @@ int degree[MAXN];
 bool used[MAXM];
 int cnt;
 
-void add_edge(int u, int v) {
+void add_edge (int u, int v) {
     e[cnt] = {v, head[u]};
     head[u] = cnt;
     cnt++;
 }
 
-int main() {
+int main () {
     int n, m;
-    scanf("%d%d", &n, &m);
+    scanf ("%d%d", &n, &m);
 
-    fill(head, head + n + 1, -1);
+    fill (head, head + n + 1, -1);
 
     for (int i = 1; i <= m; i++) {
         int u, v;
-        scanf("%d%d", &u, &v);
-        add_edge(u, v);
-        add_edge(v, u);
+        scanf ("%d%d", &u, &v);
+        add_edge (u, v);
+        add_edge (v, u);
         degree[u]++;
         degree[v]++;
     }
@@ -183,17 +183,17 @@ int main() {
     vector<int> odd;
     for (int u = 1; u <= n; u++) {
         if (degree[u] % 2 == 1) {
-            odd.push_back(u);
+            odd.push_back (u);
         }
     }
 
-    if (!odd.empty() && odd.size() != 2) {
-        printf("No Euler path\n");
+    if (!odd.empty () && odd.size () != 2) {
+        printf ("No Euler path\n");
         return 0;
     }
 
     int start = 1;
-    if (odd.size() == 2) {
+    if (odd.size () == 2) {
         start = odd[0];
     } else {
         for (int u = 1; u <= n; u++) {
@@ -207,16 +207,16 @@ int main() {
     vector<int> path_stack = {start};
     vector<int> answer;
 
-    while (!path_stack.empty()) {
-        int u = path_stack.back();
+    while (!path_stack.empty ()) {
+        int u = path_stack.back ();
 
         while (head[u] != -1 && used[head[u]]) {
             head[u] = e[head[u]].next;
         }
 
         if (head[u] == -1) {
-            answer.push_back(u);
-            path_stack.pop_back();
+            answer.push_back (u);
+            path_stack.pop_back ();
             continue;
         }
 
@@ -224,21 +224,21 @@ int main() {
         head[u] = e[i].next;
         used[i] = true;
         used[i ^ 1] = true;
-        path_stack.push_back(e[i].v);
+        path_stack.push_back (e[i].v);
     }
 
-    if (answer.size() != static_cast<size_t>(m + 1)) {
-        printf("No Euler path\n");
+    if (answer.size () != static_cast<size_t> (m + 1)) {
+        printf ("No Euler path\n");
         return 0;
     }
 
-    reverse(answer.begin(), answer.end());
+    reverse (answer.begin (), answer.end ());
     for (int i = 0; i <= m; i++) {
-        printf("%d", answer[i]);
+        printf ("%d", answer[i]);
         if (i == m) {
-            printf("\n");
+            printf ("\n");
         } else {
-            printf(" ");
+            printf (" ");
         }
     }
 

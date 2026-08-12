@@ -11,7 +11,7 @@
 ```cpp
 vector<int> graph[MAXN];
 
-graph[from].push_back(to);
+graph[from].push_back (to);
 ```
 
 加入有向边 `from -> to` 时，只在 `graph[from]` 中加入一次。枚举它的所有出边：
@@ -29,8 +29,8 @@ for (int to : graph[from]) {
 无向边 $(from,to)$ 可以从两端通行，因此要加入两个方向：
 
 ```cpp
-graph[from].push_back(to);
-graph[to].push_back(from);
+graph[from].push_back (to);
+graph[to].push_back (from);
 ```
 
 这两项只是同一条无向边的两个遍历方向。题目给出的原始边数仍然是 $m$，邻接表中则会保存 $2m$ 个邻接项。
@@ -42,7 +42,7 @@ graph[to].push_back(from);
 ```cpp
 vector<pair<int, int>> graph[MAXN];
 
-graph[from].push_back({to, weight});
+graph[from].push_back ({to, weight});
 ```
 
 C++17 可以用结构化绑定直接为两个位置命名：
@@ -68,8 +68,8 @@ for (const auto& [to, weight] : graph[from]) {
 带权无向边仍然加入两个方向，并让它们保存相同的边权：
 
 ```cpp
-graph[from].push_back({to, weight});
-graph[to].push_back({from, weight});
+graph[from].push_back ({to, weight});
+graph[to].push_back ({from, weight});
 ```
 
 此时枚举任意一个点的邻接项，都能直接得到可以到达的点及这条边的权值。
@@ -84,7 +84,7 @@ graph[to].push_back({from, weight});
 const int MAXN = 2e5 + 5;
 vector<int> g[MAXN];
 
-g[u].push_back(v);  // 有向边 u -> v
+g[u].push_back (v); // 有向边 u -> v
 
 for (int v : g[u]) {
     // 处理 u -> v
@@ -97,7 +97,7 @@ for (int v : g[u]) {
 const int MAXN = 2e5 + 5;
 vector<pair<int, int>> g[MAXN];
 
-g[u].push_back({v, w});  // 有向边 u -> v，边权为 w
+g[u].push_back ({v, w}); // 有向边 u -> v，边权为 w
 
 for (auto& [v, w] : g[u]) {
     // 处理 u -> v，边权为 w
@@ -117,23 +117,23 @@ using namespace std;
 const int MAXN = 2e5 + 5;
 vector<pair<int, int>> g[MAXN];
 
-int main() {
+int main () {
     int n, m;
-    scanf("%d%d", &n, &m);
+    scanf ("%d%d", &n, &m);
 
     for (int i = 1; i <= m; i++) {
         int u, v, w;
-        scanf("%d%d%d", &u, &v, &w);
-        g[u].push_back({v, w});
-        g[v].push_back({u, w});
+        scanf ("%d%d%d", &u, &v, &w);
+        g[u].push_back ({v, w});
+        g[v].push_back ({u, w});
     }
 
     for (int u = 1; u <= n; u++) {
-        printf("%d:", u);
+        printf ("%d:", u);
         for (auto& [v, w] : g[u]) {
-            printf(" (%d, %d)", v, w);
+            printf (" (%d, %d)", v, w);
         }
-        printf("\n");
+        printf ("\n");
     }
 
     return 0;
