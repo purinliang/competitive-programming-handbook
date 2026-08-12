@@ -183,7 +183,7 @@
 | 0432 | 图：度数 | 定稿 | [vertex-degrees.md](graph-theory/vertex-degrees.md) |
 | 0433 | 树：无根树 | 定稿 | [unrooted-trees.md](graph-theory/unrooted-trees.md) |
 | 0434 | 树的遍历：深度优先搜索（DFS） | 定稿 | [tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
-| 0435 | 树的遍历：广度优先搜索（BFS） | 草稿 | [tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
+| 0435 | 树的遍历：广度优先搜索（BFS） | 定稿 | [tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
 | 0436 | 图的遍历：深度优先搜索（DFS） | 定稿 | [graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
 | 0437 | 图的遍历：广度优先搜索（BFS） | 定稿 | [graph-breadth-first-search.md](graph-theory/graph-breadth-first-search.md) |
 | 0438 | 哈密顿问题：路径、回路与图 | 草稿 | [hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
