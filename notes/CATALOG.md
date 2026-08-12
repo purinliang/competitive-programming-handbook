@@ -39,18 +39,21 @@
 | 0120 | 字符串：C 字符串 | 待审阅 | [c-strings.md](cpp/c-strings.md) |
 | 0121 | 复合类型：struct | 定稿 | [struct.md](cpp/struct.md) |
 | 0121e1 | 复合类型：struct 的内存布局 | 待审阅 | [struct-memory-layout.md](cpp/struct-memory-layout.md) |
-| 0121e2 | 复合类型：class 与 struct | 计划 | `cpp/class-and-struct.md` |
-| 0121e3 | 类：继承与多重继承 | 计划 | `cpp/inheritance-and-multiple-inheritance.md` |
-| 0121e4 | 类：虚函数与运行时多态 | 计划 | `cpp/virtual-functions-and-runtime-polymorphism.md` |
-| 0122 | 复合类型：union | 待审阅 | [union.md](cpp/union.md) |
-| 0123 | 复合类型：enum | 待审阅 | [enum.md](cpp/enum.md) |
+| 0121e2 | 复合类型：class | 计划 | `cpp/class.md` |
+| 0121e3 | 类：成员 | 计划 | `cpp/class-members.md` |
+| 0121e4 | 类：访问权限 | 计划 | `cpp/class-access-control.md` |
+| 0121e5 | 类：构造函数 | 计划 | `cpp/constructors.md` |
+| 0121e6 | 类：析构函数 | 计划 | `cpp/destructors.md` |
+| 0121e7 | 类：继承 | 计划 | `cpp/inheritance.md` |
+| 0121e8 | 类：多态 | 计划 | `cpp/polymorphism.md` |
+| 0122* | 复合类型：union | 待审阅 | [union.md](cpp/union.md) |
+| 0123* | 复合类型：enum | 待审阅 | [enum.md](cpp/enum.md) |
 | 0124 | 内存：字节寻址 | 待审阅 | [byte-addressing.md](cpp/byte-addressing.md) |
 | 0125 | 内存与别名：指针 | 定稿 | [pointers.md](cpp/pointers.md) |
 | 0126 | 内存与别名：引用 | 待审阅 | [references.md](cpp/references.md) |
 | 0127 | 函数：参数传递 | 待审阅 | [parameter-passing.md](cpp/parameter-passing.md) |
 | 0128 | 修饰符：const | 定稿 | [const.md](cpp/const.md) |
 | 0129 | 变量：static 局部变量 | 待审阅 | [static-local-variables.md](cpp/static-local-variables.md) |
-| 0129e1 | 类成员：static | 计划 | `cpp/static-members.md` |
 | 0130 | 内存：竞赛程序的常见分区 | 计划 | `cpp/0130-competitive-program-memory-layout.md` |
 | 0131 | 函数：调用栈 | 计划 | `cpp/0131-function-call-stack.md` |
 | 0132 | 函数：递归 | 计划 | `cpp/0132-recursion.md` |

@@ -37,8 +37,6 @@
 | 0119 | 数组：多维数组 | C++ | [cpp/multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
 | 0120 | 字符串：C 字符串 | C++ | [cpp/c-strings.md](cpp/c-strings.md) |
 | 0121 | 复合类型：struct | C++ | [cpp/struct.md](cpp/struct.md) |
-| 0122 | 复合类型：union | C++ | [cpp/union.md](cpp/union.md) |
-| 0123 | 复合类型：enum | C++ | [cpp/enum.md](cpp/enum.md) |
 | 0124 | 内存：字节寻址 | C++ | [cpp/byte-addressing.md](cpp/byte-addressing.md) |
 | 0125 | 内存与别名：指针 | C++ | [cpp/pointers.md](cpp/pointers.md) |
 | 0126 | 内存与别名：引用 | C++ | [cpp/references.md](cpp/references.md) |
@@ -231,10 +229,15 @@
 | 0103e1 | 浮点数表示：IEEE 754 | [cpp/ieee-754.md](cpp/ieee-754.md) |
 | 0119e1 | 数组：多维数组的布局与参数传递 | [cpp/multidimensional-array-layout-and-parameters.md](cpp/multidimensional-array-layout-and-parameters.md) |
 | 0121e1 | 复合类型：struct 的内存布局 | [cpp/struct-memory-layout.md](cpp/struct-memory-layout.md) |
-| 0121e2 | 复合类型：class 与 struct | `cpp/class-and-struct.md` |
-| 0121e3 | 类：继承与多重继承 | `cpp/inheritance-and-multiple-inheritance.md` |
-| 0121e4 | 类：虚函数与运行时多态 | `cpp/virtual-functions-and-runtime-polymorphism.md` |
-| 0129e1 | 类成员：static | `cpp/static-members.md` |
+| 0121e2 | 复合类型：class | `cpp/class.md` |
+| 0121e3 | 类：成员 | `cpp/class-members.md` |
+| 0121e4 | 类：访问权限 | `cpp/class-access-control.md` |
+| 0121e5 | 类：构造函数 | `cpp/constructors.md` |
+| 0121e6 | 类：析构函数 | `cpp/destructors.md` |
+| 0121e7 | 类：继承 | `cpp/inheritance.md` |
+| 0121e8 | 类：多态 | `cpp/polymorphism.md` |
+| 0122* | 复合类型：union | [cpp/union.md](cpp/union.md) |
+| 0123* | 复合类型：enum | [cpp/enum.md](cpp/enum.md) |
 | 0152* | 预处理：include | [cpp/include.md](cpp/include.md) |
 | 0153* | 名称：命名空间与 std | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
 | 0154* | 修饰符：inline | `cpp/0154-inline.md` |
