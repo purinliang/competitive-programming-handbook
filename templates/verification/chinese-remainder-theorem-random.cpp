@@ -5,8 +5,9 @@
 #undef main
 
 bool pairwise_coprime(const vector<ll>& m) {
-    for (int i = 0; i < static_cast<int>(m.size()); i++) {
-        for (int j = i + 1; j < static_cast<int>(m.size()); j++) {
+    int n = m.size();
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
             if (gcd(m[i], m[j]) != 1) {
                 return false;
             }
@@ -15,11 +16,12 @@ bool pairwise_coprime(const vector<ll>& m) {
     return true;
 }
 
-ll brute_crt(const vector<ll>& a, const vector<ll>& m, ll mod) {
-    for (ll x = 0; x < mod; x++) {
+ll brute_crt(const vector<ll>& a, const vector<ll>& m, ll M) {
+    int n = a.size();
+    for (ll x = 0; x < M; x++) {
         bool valid = true;
-        for (int i = 0; i < static_cast<int>(a.size()); i++) {
-            if (x % m[i] != mod_norm(a[i], m[i])) {
+        for (int i = 0; i < n; i++) {
+            if (x % m[i] != normalize(a[i], m[i])) {
                 valid = false;
                 break;
             }
@@ -34,6 +36,13 @@ ll brute_crt(const vector<ll>& a, const vector<ll>& m, ll mod) {
 int main() {
     mt19937 rng(20050314);
 
+    ll large_m = LLONG_MAX - 58;
+    if (add_mod(large_m - 2, large_m - 3, large_m) != large_m - 5 ||
+        mul_mod(large_m - 2, large_m - 3, large_m) != 6) {
+        printf("large modular arithmetic mismatch\n");
+        return 1;
+    }
+
     for (int test = 1; test <= 10000; test++) {
         int n = static_cast<int>(rng() % 5) + 1;
         vector<ll> a(n);
@@ -46,16 +55,16 @@ int main() {
         }
 
         bool expected = pairwise_coprime(m);
-        ll ans, mod;
-        bool actual = crt(a, m, ans, mod);
-        if (actual != expected || mod != expected_mod) {
+        ll ans, M;
+        bool actual = crt(a, m, ans, M);
+        if (actual != expected || M != expected_mod) {
             printf("existence mismatch on test %d\n", test);
             return 1;
         }
 
         if (actual) {
-            ll brute = brute_crt(a, m, mod);
-            if (ans != brute || ans < 0 || ans >= mod) {
+            ll brute = brute_crt(a, m, M);
+            if (ans != brute || ans < 0 || ans >= M) {
                 printf("answer mismatch on test %d\n", test);
                 return 1;
             }

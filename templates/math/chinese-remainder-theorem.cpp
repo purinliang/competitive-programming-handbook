@@ -6,7 +6,6 @@
 using namespace std;
 
 typedef long long ll;
-typedef __int128 i128;
 
 ll exgcd(ll a, ll b, ll& x, ll& y) {
     if (b == 0) {
@@ -22,30 +21,53 @@ ll exgcd(ll a, ll b, ll& x, ll& y) {
     return g;
 }
 
-ll mod_norm(i128 x, ll mod) {
-    x %= mod;
+ll normalize(ll x, ll m) {
+    x %= m;
     if (x < 0) {
-        x += mod;
+        x += m;
     }
-    return static_cast<ll>(x);
+    return x;
 }
 
-bool crt(const vector<ll>& a, const vector<ll>& m, ll& ans, ll& mod) {
-    mod = 1;
+ll add_mod(ll a, ll b, ll m) {
+    if (a >= m - b) {
+        return a - (m - b);
+    }
+    return a + b;
+}
+
+ll mul_mod(ll a, ll b, ll m) {
+    a = normalize(a, m);
+    b = normalize(b, m);
+    ll result = 0;
+    while (b > 0) {
+        if (b % 2 == 1) {
+            result = add_mod(result, a, m);
+        }
+        a = add_mod(a, a, m);
+        b /= 2;
+    }
+    return result;
+}
+
+bool crt(const vector<ll>& a, const vector<ll>& m, ll& ans, ll& M) {
+    M = 1;
     for (ll x : m) {
-        mod *= x;
+        M *= x;
     }
 
     ans = 0;
-    for (int i = 0; i < static_cast<int>(a.size()); i++) {
-        ll partial_mod = mod / m[i];
-        ll inverse, y;
-        if (exgcd(partial_mod, m[i], inverse, y) != 1) {
+    int n = a.size();
+    for (int i = 0; i < n; i++) {
+        ll Mi = M / m[i];
+        ll ti, y;
+        if (exgcd(Mi, m[i], ti, y) != 1) {
             return false;
         }
 
-        i128 term = static_cast<i128>(mod_norm(a[i], m[i])) * partial_mod * inverse;
-        ans = mod_norm(static_cast<i128>(ans) + term, mod);
+        ll term = mul_mod(normalize(a[i], m[i]), Mi, M);
+        term = mul_mod(term, normalize(ti, m[i]), M);
+        ans = add_mod(ans, term, M);
     }
     return true;
 }
@@ -60,12 +82,12 @@ int main() {
         scanf("%lld%lld", &m[i], &a[i]);
     }
 
-    ll ans, mod;
-    if (!crt(a, m, ans, mod)) {
+    ll ans, M;
+    if (!crt(a, m, ans, M)) {
         printf("Moduli are not pairwise coprime\n");
         return 0;
     }
 
-    printf("%lld %lld\n", ans, mod);
+    printf("%lld %lld\n", ans, M);
     return 0;
 }
