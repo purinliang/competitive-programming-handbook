@@ -98,7 +98,7 @@
 | 0502 | 质数与唯一分解定理 | 数学 | [math/0502-prime-factorization.md](math/0502-prime-factorization.md) |
 | 0401 | 图：点与边 | 图论 | [graph-theory/vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
 | 0431 | 图：路径与环 | 图论 | [graph-theory/paths-and-cycles.md](graph-theory/paths-and-cycles.md) |
-| 0432 | 图：度数 | 图论 | `graph-theory/vertex-degrees.md` |
+| 0432 | 图：度数 | 图论 | [graph-theory/vertex-degrees.md](graph-theory/vertex-degrees.md) |
 | 0402 | 图的存储 | 图论 | `graph-theory/graph-representation.md` |
 | 0433 | 树与有根树 | 图论 | `graph-theory/trees-and-rooted-trees.md` |
 | 0311 | 二叉树：结构与存储 | 数据结构 | `data-structures/binary-tree-structure-and-storage.md` |
