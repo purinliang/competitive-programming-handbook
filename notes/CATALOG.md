@@ -112,7 +112,7 @@
 | 0223 | 线性结构：数组 | 待审阅 | [array.md](algorithm-basics/array.md) |
 | 0224 | 链表 | 待审阅 | [linked-list.md](algorithm-basics/linked-list.md) |
 | 0225 | 栈 | 待审阅 | [stack.md](algorithm-basics/stack.md) |
-| 0226 | 队列 | 计划 | `algorithm-basics/0226-queue.md` |
+| 0226 | 队列 | 待审阅 | [queue.md](algorithm-basics/queue.md) |
 | 0227 | 二叉堆 | 计划 | `algorithm-basics/0227-binary-heap.md` |
 | 0228 | 哈希表 | 计划 | `algorithm-basics/0228-hash-table.md` |
 | 0229 | 单调栈 | 计划 | `algorithm-basics/0229-monotonic-stack.md` |
