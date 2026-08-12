@@ -1,6 +1,6 @@
 # 树状数组：基础
 
-> 状态：定稿
+> 最近修订：2026-08-13 02:52 +10:00（未审阅）
 
 树状数组（Fenwick Tree，Binary Indexed Tree，BIT）用一个数组维护前缀信息。它最经典的用途是：
 
@@ -21,7 +21,9 @@
 - `sum` 能说明当前节点维护的是一段区间和，却没有说明它属于哪种数据结构；换成最大值等信息时也必须改名。
 - `tr` 和 `c` 在短竞赛代码里常见，但教学材料里不够直观。
 
-本文和线段树统一把内部存储数组写成 `tree`：数组名表达它在数据结构中的职责，`prefix_sum`、`range_sum` 表达查询的聚合信息。两份基础模板通常独立使用；如果同一程序确实同时维护多种树，再通过结构体或更具体的变量名区分。
+本文和线段树统一把内部存储数组写成 `tree`：数组名表达它在数据结构中的职责，`prefix_sum`、`range_sum` 表达查询的聚合信息。
+
+树状数组有自己的规模、存储和一组共同维护这些状态的操作，所以完整模板使用 `struct FenwickTree` 封装。内部 `vector` 按实际规模分配 `n + 1` 个元素，位置 `1..n` 保存数据，第 `0` 格有意留空。这样既保持 `lowbit` 的自然公式，也不会让 `n`、`tree`、`add` 等名称污染全局命名空间。
 
 ## 从前缀和的问题出发
 
@@ -121,7 +123,7 @@ x = 0：结束
 [1, 4] + [5, 6] + [7, 7]
 ```
 
-代码：
+下面的代码是 `FenwickTree` 的成员函数：
 
 ```cpp
 ll prefix_sum(int x) {
@@ -154,7 +156,7 @@ x = 6：更新 tree[6]，负责 [5, 6]
 x = 8：更新 tree[8]，负责 [1, 8]
 ```
 
-代码：
+对应的成员函数是：
 
 ```cpp
 void add(int x, ll val) {
@@ -207,46 +209,51 @@ add(pos, val - old_val);
 
 ```cpp
 #include <bits/stdc++.h>
-
 using namespace std;
 
 typedef long long ll;
 
-const int MAXN = 5e5 + 5;
+struct FenwickTree {
+    int n;
+    vector<ll> tree;
 
-int n, q;
-ll tree[MAXN];
+    FenwickTree(int n) : n(n), tree(n + 1) {}
 
-int lowbit(int x) {
-    return x & -x;
-}
-
-void add(int x, ll val) {
-    while (x <= n) {
-        tree[x] += val;
-        x += lowbit(x);
+    int lowbit(int x) const {
+        return x & -x;
     }
-}
 
-ll prefix_sum(int x) {
-    ll res = 0;
-    while (x > 0) {
-        res += tree[x];
-        x -= lowbit(x);
+    void add(int x, ll val) {
+        while (x <= n) {
+            tree[x] += val;
+            x += lowbit(x);
+        }
     }
-    return res;
-}
 
-ll range_sum(int l, int r) {
-    return prefix_sum(r) - prefix_sum(l - 1);
-}
+    ll prefix_sum(int x) const {
+        ll res = 0;
+        while (x > 0) {
+            res += tree[x];
+            x -= lowbit(x);
+        }
+        return res;
+    }
+
+    ll range_sum(int l, int r) const {
+        return prefix_sum(r) - prefix_sum(l - 1);
+    }
+};
 
 int main() {
+    int n;
+    int q;
     scanf("%d%d", &n, &q);
+
+    FenwickTree fenwick(n);
     for (int i = 1; i <= n; i++) {
         ll val;
         scanf("%lld", &val);
-        add(i, val);
+        fenwick.add(i, val);
     }
 
     while (q--) {
@@ -256,11 +263,12 @@ int main() {
             int pos;
             ll val;
             scanf("%d%lld", &pos, &val);
-            add(pos, val);
+            fenwick.add(pos, val);
         } else {
-            int l, r;
+            int l;
+            int r;
             scanf("%d%d", &l, &r);
-            printf("%lld\n", range_sum(l, r));
+            printf("%lld\n", fenwick.range_sum(l, r));
         }
     }
     return 0;
@@ -273,7 +281,7 @@ int main() {
 
 - 单点增加、前缀和和区间和的时间复杂度都是 $O(\log n)$。
 - 逐个调用 `add` 建树的时间复杂度是 $O(n\log n)$。
-- `tree` 共使用 $O(n)$ 空间。
+- `FenwickTree` 的内部 `tree` 共使用 $O(n)$ 空间，并按当前 `n` 分配。
 
 ## 树状数组和线段树怎样选择
 
@@ -306,6 +314,8 @@ int main() {
 - 单点赋值时直接 `add(pos, val)`，没有先计算新旧值之差。
 - `tree` 和查询结果使用 `int`，区间和发生溢出。
 - 多组数据时没有清空 `tree`。
+
+使用封装模板时，每组数据重新构造 `FenwickTree fenwick(n)`，内部 `vector` 会从全零状态开始；若复用同一个对象，则仍然要显式重新初始化。
 
 ## 调试方法
 

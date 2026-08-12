@@ -2,55 +2,66 @@
 // 单点增加，区间求和。
 
 #include <bits/stdc++.h>
-
 using namespace std;
 
 typedef long long ll;
 
-const int MAXN = 5e5 + 5;
+struct FenwickTree {
+    int n;
+    vector<ll> tree;
 
-int n, m;
-ll tree[MAXN];
+    FenwickTree(int n) : n(n), tree(n + 1) {}
 
-int lowbit(int x) {
-    return x & -x;
-}
-
-void add(int x, ll val) {
-    while (x <= n) {
-        tree[x] += val;
-        x += lowbit(x);
+    int lowbit(int x) const {
+        return x & -x;
     }
-}
 
-ll prefix_sum(int x) {
-    ll res = 0;
-    while (x > 0) {
-        res += tree[x];
-        x -= lowbit(x);
+    void add(int x, ll val) {
+        while (x <= n) {
+            tree[x] += val;
+            x += lowbit(x);
+        }
     }
-    return res;
-}
 
-ll range_sum(int l, int r) {
-    return prefix_sum(r) - prefix_sum(l - 1);
-}
+    ll prefix_sum(int x) const {
+        ll res = 0;
+        while (x > 0) {
+            res += tree[x];
+            x -= lowbit(x);
+        }
+        return res;
+    }
+
+    ll range_sum(int l, int r) const {
+        return prefix_sum(r) - prefix_sum(l - 1);
+    }
+};
 
 int main() {
+    int n;
+    int m;
     scanf("%d%d", &n, &m);
+
+    FenwickTree fenwick(n);
     for (int i = 1; i <= n; i++) {
         ll val;
         scanf("%lld", &val);
-        add(i, val);
+        fenwick.add(i, val);
     }
 
     while (m--) {
-        int op, x, y;
-        scanf("%d%d%d", &op, &x, &y);
+        int op;
+        scanf("%d", &op);
         if (op == 1) {
-            add(x, y);
+            int x;
+            ll val;
+            scanf("%d%lld", &x, &val);
+            fenwick.add(x, val);
         } else {
-            printf("%lld\n", range_sum(x, y));
+            int l;
+            int r;
+            scanf("%d%d", &l, &r);
+            printf("%lld\n", fenwick.range_sum(l, r));
         }
     }
     return 0;
