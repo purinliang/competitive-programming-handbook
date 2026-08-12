@@ -1,6 +1,6 @@
 # 数论：扩展中国剩余定理（exCRT）
 
-> 状态：草稿
+> 状态：定稿
 
 [数论：中国剩余定理（CRT）](chinese-remainder-theorem.md) 通过模逆元构造互不干扰的余数开关，但它要求模数两两互质。当模数不互质时，方程组可能无解，也可能仍然有解；只是原来的开关无法保证存在。
 
@@ -183,7 +183,7 @@ x = a1 (mod m1)
 x = a2 (mod m2)
 ```
 
-合并，并将结果写回 `a1, m1`。程序假设最终的最小公倍数可以放入 `long long`；中间乘法使用 `__int128`。
+合并，并将结果写回 `a1, m1`。调用前要求 `m1,m2` 为正整数，并且 `a1,a2` 已分别归一化到对应模数范围内。程序假设最终的最小公倍数可以放入 64 位整数；中间乘法使用主流 GNU C++ 竞赛环境提供的 `__int128`。
 
 ```cpp
 #include <bits/stdc++.h>
@@ -211,7 +211,7 @@ ll mod_norm(i128 x, ll mod) {
     if (x < 0) {
         x += mod;
     }
-    return (ll)x;
+    return static_cast<ll>(x);
 }
 
 bool merge_congruence(ll& a1, ll& m1, ll a2, ll m2) {
@@ -223,10 +223,10 @@ bool merge_congruence(ll& a1, ll& m1, ll a2, ll m2) {
     }
 
     ll period = m2 / g;
-    ll t = mod_norm((i128)s * (c / g), period);
+    ll t = mod_norm(static_cast<i128>(s) * (c / g), period);
 
     ll new_mod = m1 / g * m2;
-    a1 = mod_norm((i128)a1 + (i128)m1 * t, new_mod);
+    a1 = mod_norm(static_cast<i128>(a1) + static_cast<i128>(m1) * t, new_mod);
     m1 = new_mod;
     return true;
 }
@@ -245,7 +245,7 @@ int main() {
         next_ans = mod_norm(next_ans, next_mod);
 
         if (!merge_congruence(ans, mod, next_ans, next_mod)) {
-            puts("No solution");
+            printf("No solution\n");
             return 0;
         }
     }
@@ -262,6 +262,23 @@ x\equiv\texttt{ans}\pmod{\texttt{mod}}.
 $$
 
 `new_mod = m1 / g * m2` 已经先除后乘，但如果最终最小公倍数超出 64 位整数范围，这份模板仍然不适用。题目若不保证范围，必须另外做溢出检查或使用大整数。
+
+例如，输入三个同余条件：
+
+```text
+3
+4 2
+8 6
+5 1
+```
+
+前两个模数不互质，但两个条件并不冲突；程序输出：
+
+```text
+6 40
+```
+
+也就是说，全部解为 $x=6+40t$，其中 $t$ 是任意整数。代回可见 $6$ 分别满足模 $4$ 余 $2$、模 $8$ 余 $6$、模 $5$ 余 $1$。
 
 ## 与经典 CRT 的关系
 
@@ -283,6 +300,13 @@ $$
 
 其中 $M_{i-1}$ 是前 $i-1$ 个方程合并后的模数。除输入外只保存当前合并结果，额外空间为 $O(1)$。
 
+## 基础练习
+
+1. 判断 $x\equiv1\pmod4$ 与 $x\equiv2\pmod6$ 为什么冲突，再把第二个余数改成 $3$ 并合并两个方程。
+2. 手算样例中前两个条件的 $g,c,t$，以及合并后的余数和模数。
+3. 在样例后追加条件 $x\equiv2\pmod3$，判断它与当前结果是否冲突。
+4. 给出一组两两互质的模数，分别用经典 CRT 与逐个合并求解，并检查结果是否相同。
+
 ## 需要记住什么
 
 1. 为什么 $x\equiv a_1\pmod{m_1}$ 的所有解都能写成 $x=a_1+m_1t$？
@@ -295,4 +319,4 @@ $$
 
 ## 扩展阅读
 
-当合并后的模数超出 `long long`时，需要配合安全乘法、大整数或题目特定的取模要求。这是数值表示的额外问题，不改变本篇的合并原理，也不要求在当前阶段掌握。
+当合并后的模数超出 64 位整数范围时，需要配合安全乘法、大整数或题目特定的取模要求。这是数值表示的额外问题，不改变本篇的合并原理，也不要求在当前阶段掌握。
