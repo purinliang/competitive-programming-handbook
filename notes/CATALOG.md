@@ -20,7 +20,7 @@
 | 0103 | 基本类型：浮点数 | 定稿 | [floating-point-types.md](cpp/floating-point-types.md) |
 | 0103e1 | 浮点数表示：IEEE 754 | 定稿 | [ieee-754.md](cpp/ieee-754.md) |
 | 0104 | 基本类型：字符 | 待审阅 | [character-types.md](cpp/character-types.md) |
-| 0105 | 基本类型：布尔 | 计划 | `cpp/0105-boolean-type.md` |
+| 0105 | 基本类型：布尔 | 待审阅 | [boolean-type.md](cpp/boolean-type.md) |
 | 0106 | 变量：声明与初始化 | 计划 | `cpp/0106-variable-declaration-initialization.md` |
 | 0107 | 表达式：算术运算符 | 定稿 | [arithmetic-operators.md](cpp/arithmetic-operators.md) |
 | 0108 | 表达式：比较运算符 | 计划 | `cpp/0108-comparison-operators.md` |

@@ -13,7 +13,7 @@
 | 0102 | 基本类型：整数 | C++ | [cpp/integer-types.md](cpp/integer-types.md) |
 | 0103 | 基本类型：浮点数 | C++ | [cpp/floating-point-types.md](cpp/floating-point-types.md) |
 | 0104 | 基本类型：字符 | C++ | [cpp/character-types.md](cpp/character-types.md) |
-| 0105 | 基本类型：布尔 | C++ | `cpp/0105-boolean-type.md` |
+| 0105 | 基本类型：布尔 | C++ | [cpp/boolean-type.md](cpp/boolean-type.md) |
 | 0106 | 变量：声明与初始化 | C++ | `cpp/0106-variable-declaration-initialization.md` |
 | 0107 | 表达式：算术运算符 | C++ | [cpp/arithmetic-operators.md](cpp/arithmetic-operators.md) |
 | 0108 | 表达式：比较运算符 | C++ | `cpp/0108-comparison-operators.md` |
