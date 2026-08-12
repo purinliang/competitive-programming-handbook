@@ -44,7 +44,7 @@
 | 0128 | 修饰符：const | C++ | [cpp/const.md](cpp/const.md) |
 | 0129 | 变量：static 局部变量 | C++ | [cpp/static-local-variables.md](cpp/static-local-variables.md) |
 | 0130 | 内存：竞赛程序的常见分区 | C++ | [cpp/competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
-| 0131 | 函数：调用栈 | C++ | `cpp/0131-function-call-stack.md` |
+| 0131 | 函数：调用栈 | C++ | [cpp/function-call-stack.md](cpp/function-call-stack.md) |
 | 0132 | 函数：递归 | C++ | `cpp/0132-recursion.md` |
 
 本阶段只讲从 C++ 视角写程序所需的语言知识和少量机器直觉，不代替计算机组成、体系结构、操作系统或编译原理课程。`include`、命名空间和对象生命周期等不影响入门主线的细节放在扩展阅读中。
