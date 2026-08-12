@@ -24,7 +24,7 @@
 | 0106 | 变量：声明与初始化 | 待审阅 | [variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
 | 0107 | 表达式：算术运算符 | 定稿 | [arithmetic-operators.md](cpp/arithmetic-operators.md) |
 | 0108 | 表达式：比较运算符 | 待审阅 | [comparison-operators.md](cpp/comparison-operators.md) |
-| 0109 | 表达式：逻辑运算符 | 计划 | `cpp/0109-logical-operators.md` |
+| 0109 | 表达式：逻辑运算符 | 待审阅 | [logical-operators.md](cpp/logical-operators.md) |
 | 0110 | 表达式：类型转换 | 计划 | `cpp/0110-type-conversions.md` |
 | 0111 | 控制流：条件分支 | 定稿 | [conditional-branches.md](cpp/conditional-branches.md) |
 | 0112 | 控制流：循环 | 计划 | `cpp/0112-loops.md` |
