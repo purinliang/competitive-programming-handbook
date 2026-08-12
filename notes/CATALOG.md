@@ -112,7 +112,7 @@
 | 0308 | 稀疏表 ST | 计划 | 0118,0133,0201 | `data-structures/0308-sparse-table.md` |
 | 0309 | 单调栈与单调队列 | 计划 | 0142,0139,0205 | `data-structures/0309-monotonic-stack-queue.md` |
 | 0310 | 带权并查集 | 计划 | 0307 | `data-structures/0310-weighted-disjoint-set.md` |
-| 0311 | 二叉树与前中后序遍历 | 计划 | 0121,0125,0132,0143 | `data-structures/0311-binary-tree-traversals.md` |
+| 0311 | 二叉树：结构与存储 | 计划 | 0118,0121,0125,0433 | `data-structures/binary-tree-structure-and-storage.md` |
 | 0312* | 可撤销并查集 | 计划 | 0307,0213 | `data-structures/0312-rollback-disjoint-set.md` |
 | 0313* | 分块 | 计划 | 0207,0201 | `data-structures/0313-square-root-decomposition.md` |
 | 0314* | 莫队算法 | 计划 | 0313,0213 | `data-structures/0314-mo-algorithm.md` |
@@ -129,29 +129,30 @@
 | 0325* | 笛卡尔树 | 计划 | 0309 | `data-structures/0325-cartesian-tree.md` |
 | 0326* | Wavelet Matrix | 计划 | 0304,0206 | `data-structures/0326-wavelet-matrix.md` |
 | 0327* | 启发式合并（small-to-large） | 计划 | 0145,0201 | `data-structures/0327-small-to-large-merging.md` |
+| 0328 | 二叉树：前序、中序与后序遍历 | 计划 | 0311,0434 | `data-structures/binary-tree-traversals.md` |
 
 ## 04 图论
 
 | ID | 知识点 | 状态 | 直接前置 | 文件 |
 | --- | --- | --- | --- | --- |
-| 0401 | 图的存储与边模型 | 计划 | 0138,0142 | `graph-theory/0401-graph-representation.md` |
-| 0402 | DFS、BFS 与生成树 | 计划 | 0132,0143,0401 | `graph-theory/0402-dfs-bfs.md` |
-| 0403 | 倍增 LCA | 草稿 | 0133,0402 | [0403-lca-binary-lifting.md](graph-theory/0403-lca-binary-lifting.md) |
-| 0404 | 连通块与洪水填充 | 计划 | 0402 | `graph-theory/0404-connected-components.md` |
-| 0405 | 拓扑排序 | 计划 | 0402 | `graph-theory/0405-topological-sort.md` |
-| 0406 | BFS、0-1 BFS 与多源最短路 | 计划 | 0402 | `graph-theory/0406-unweighted-shortest-path.md` |
+| 0401 | 图：顶点与边 | 计划 | — | `graph-theory/vertices-and-edges.md` |
+| 0402 | 图的存储 | 计划 | 0119,0121,0138,0401 | `graph-theory/graph-representation.md` |
+| 0403 | 倍增 LCA | 草稿 | 0133,0434 | [0403-lca-binary-lifting.md](graph-theory/0403-lca-binary-lifting.md) |
+| 0404 | 连通块与洪水填充 | 计划 | 0436 | `graph-theory/0404-connected-components.md` |
+| 0405 | 拓扑排序 | 计划 | 0143,0402,0432 | `graph-theory/0405-topological-sort.md` |
+| 0406 | BFS、0-1 BFS 与多源最短路 | 计划 | 0437 | `graph-theory/0406-unweighted-shortest-path.md` |
 | 0407 | Dijkstra | 计划 | 0302,0401,0201 | `graph-theory/0407-dijkstra.md` |
 | 0408 | Bellman-Ford 与负环 | 计划 | 0401,0201 | `graph-theory/0408-bellman-ford.md` |
 | 0409 | Floyd 与传递闭包 | 计划 | 0119,0401,0201 | `graph-theory/0409-floyd-warshall.md` |
 | 0410 | 最小生成树 | 计划 | 0302,0307,0401 | `graph-theory/0410-minimum-spanning-tree.md` |
-| 0411 | 二分图判定 | 计划 | 0402 | `graph-theory/0411-bipartite-graph.md` |
+| 0411 | 二分图判定 | 计划 | 0437 | `graph-theory/0411-bipartite-graph.md` |
 | 0412 | 二分图匹配 | 计划 | 0132,0411 | `graph-theory/0412-bipartite-matching.md` |
-| 0413 | 强连通分量 | 计划 | 0402,0405 | `graph-theory/0413-strongly-connected-components.md` |
-| 0414 | 割点与桥 | 计划 | 0402 | `graph-theory/0414-articulation-points-bridges.md` |
+| 0413 | 强连通分量 | 计划 | 0405,0436 | `graph-theory/0413-strongly-connected-components.md` |
+| 0414 | 割点与桥 | 计划 | 0436 | `graph-theory/0414-articulation-points-bridges.md` |
 | 0415* | 点双、边双与圆方树 | 计划 | 0414 | `graph-theory/0415-biconnected-components-block-cut-tree.md` |
-| 0416 | 欧拉路径与欧拉回路 | 计划 | 0401,0202 | `graph-theory/0416-euler-trail-circuit.md` |
-| 0417 | 树的直径与中心 | 计划 | 0402 | `graph-theory/0417-tree-diameter-center.md` |
-| 0418 | DFS 序、子树区间与树上差分 | 计划 | 0207,0402 | `graph-theory/0418-tree-euler-tour-difference.md` |
+| 0416 | 欧拉路径、欧拉回路与欧拉图 | 计划 | 0132,0402,0432 | `graph-theory/eulerian-paths-and-circuits.md` |
+| 0417 | 树的直径与中心 | 计划 | 0434 | `graph-theory/0417-tree-diameter-center.md` |
+| 0418 | DFS 序、子树区间与树上差分 | 计划 | 0207,0434 | `graph-theory/0418-tree-euler-tour-difference.md` |
 | 0419 | 树链剖分 | 计划 | 0304,0403,0418 | `graph-theory/0419-heavy-light-decomposition.md` |
 | 0420 | 2-SAT | 计划 | 0133,0413 | `graph-theory/0420-two-sat.md` |
 | 0421 | Dinic 最大流 | 计划 | 0132,0401,0406 | `graph-theory/0421-dinic-max-flow.md` |
@@ -159,11 +160,19 @@
 | 0423* | 虚树 | 计划 | 0403,0418 | `graph-theory/0423-virtual-tree.md` |
 | 0424* | 点分治 | 计划 | 0132,0417 | `graph-theory/0424-centroid-decomposition.md` |
 | 0425* | SPFA 与队列优化最短路 | 计划 | 0408 | `graph-theory/0425-spfa.md` |
-| 0426 | 基环树与函数图 | 计划 | 0403,0402 | `graph-theory/0426-unicyclic-functional-graphs.md` |
+| 0426 | 基环树与函数图 | 计划 | 0403,0436 | `graph-theory/0426-unicyclic-functional-graphs.md` |
 | 0427* | DSU on Tree | 计划 | 0327,0418 | `graph-theory/0427-dsu-on-tree.md` |
 | 0428* | 差分约束 | 计划 | 0408 | `graph-theory/0428-difference-constraints.md` |
 | 0429 | 分层图与状态最短路 | 计划 | 0406,0407 | `graph-theory/0429-layered-state-shortest-path.md` |
-| 0430* | 树哈希 | 计划 | 0402,0417 | `graph-theory/0430-tree-hashing.md` |
+| 0430* | 树哈希 | 计划 | 0417,0434 | `graph-theory/0430-tree-hashing.md` |
+| 0431 | 图：路径与环 | 计划 | 0401 | `graph-theory/paths-and-cycles.md` |
+| 0432 | 图：度数 | 计划 | 0401 | `graph-theory/vertex-degrees.md` |
+| 0433 | 树与有根树 | 计划 | 0401,0431 | `graph-theory/trees-and-rooted-trees.md` |
+| 0434 | 树的深度优先搜索 | 计划 | 0132,0402,0433 | `graph-theory/tree-depth-first-search.md` |
+| 0435 | 树的广度优先搜索 | 计划 | 0143,0402,0433 | `graph-theory/tree-breadth-first-search.md` |
+| 0436 | 图的深度优先搜索 | 计划 | 0402,0434 | `graph-theory/graph-depth-first-search.md` |
+| 0437 | 图的广度优先搜索 | 计划 | 0402,0435 | `graph-theory/graph-breadth-first-search.md` |
+| 0438 | 哈密顿路径、哈密顿回路与哈密顿图 | 计划 | 0201,0431,0436 | `graph-theory/hamiltonian-paths-and-circuits.md` |
 
 ## 05 数学
 
@@ -185,9 +194,23 @@
 | 0514 | XOR 线性基 | 计划 | 0133,0202 | `math/0514-xor-linear-basis.md` |
 | 0515 | 高斯消元 | 计划 | 0107,0202 | `math/0515-gaussian-elimination.md` |
 | 0516 | 容斥原理 | 计划 | 0507,0211 | `math/0516-inclusion-exclusion.md` |
-| 0517* | NTT | 计划 | 0504,0506 | `math/0517-ntt.md` |
+| 0517* | 多项式：NTT | 计划 | 0504,0506,0521 | `math/0517-ntt.md` |
 | 0518 | Möbius 函数与反演 | 计划 | 0505,0508 | `math/0518-mobius-function-inversion.md` |
 | 0519* | BSGS 与离散对数 | 计划 | 0504,0506 | `math/0519-discrete-logarithm.md` |
+| 0520* | 多项式：表示、加法与减法 | 计划 | 0118 | `math/0520-polynomial-representation-addition-subtraction.md` |
+| 0521* | 多项式：卷积与朴素乘法 | 计划 | 0201,0520 | `math/0521-convolution-naive-multiplication.md` |
+| 0522* | 复数与单位根 | 计划 | 0103,0509 | `math/0522-complex-numbers-roots-of-unity.md` |
+| 0523* | 多项式：FFT | 计划 | 0521,0522 | `math/0523-fft.md` |
+| 0524* | 形式幂级数：求逆 | 计划 | 0506,0517,0520 | `math/0524-formal-power-series-inverse.md` |
+| 0525* | 形式幂级数：形式导数 | 计划 | 0520 | `math/0525-formal-derivative.md` |
+| 0526* | 形式幂级数：形式积分 | 计划 | 0506,0520 | `math/0526-formal-integral.md` |
+| 0527* | 形式幂级数：对数 | 计划 | 0517,0524,0525,0526 | `math/0527-formal-power-series-logarithm.md` |
+| 0528* | 形式幂级数：指数 | 计划 | 0517,0527 | `math/0528-formal-power-series-exponential.md` |
+| 0529* | 形式幂级数：平方根 | 计划 | 0517,0524,0528 | `math/0529-formal-power-series-square-root.md` |
+| 0530* | 形式幂级数：幂 | 计划 | 0527,0528 | `math/0530-formal-power-series-power.md` |
+| 0531* | 多项式：除法与余数 | 计划 | 0517,0524 | `math/0531-polynomial-division-remainder.md` |
+| 0532* | 多项式：多点求值 | 计划 | 0209,0531 | `math/0532-multipoint-evaluation.md` |
+| 0533* | 多项式：插值 | 计划 | 0506,0532 | `math/0533-polynomial-interpolation.md` |
 
 ## 06 计算几何
 
@@ -201,6 +224,11 @@
 | 0606* | 圆与圆的关系 | 计划 | 0601,0603 | `computational-geometry/0606-circles.md` |
 | 0607* | 旋转卡壳 | 计划 | 0605 | `computational-geometry/0607-rotating-calipers.md` |
 | 0608* | 几何扫描线 | 计划 | 0147,0214,0603 | `computational-geometry/0608-geometric-sweep-line.md` |
+| 0609* | 最近点对 | 计划 | 0203,0209,0601 | `computational-geometry/0609-closest-pair-of-points.md` |
+| 0610* | 凸多边形：点包含 | 计划 | 0204,0602,0605 | `computational-geometry/0610-point-in-convex-polygon.md` |
+| 0611* | 凸多边形：切线与极值查询 | 计划 | 0204,0602,0605 | `computational-geometry/0611-convex-polygon-tangents-extrema.md` |
+| 0612* | 半平面交 | 计划 | 0139,0203,0603,0605 | `computational-geometry/0612-half-plane-intersection.md` |
+| 0613* | 闵可夫斯基和 | 计划 | 0203,0602,0605 | `computational-geometry/0613-minkowski-sum.md` |
 
 ## 07 动态规划
 
@@ -212,7 +240,7 @@
 | 0704 | 最长上升子序列 | 计划 | 0204,0702 | `dynamic-programming/0704-longest-increasing-subsequence.md` |
 | 0705 | 区间 DP | 计划 | 0701 | `dynamic-programming/0705-interval-dp.md` |
 | 0706 | DAG 上的动态规划 | 计划 | 0405,0701 | `dynamic-programming/0706-dag-dp.md` |
-| 0707 | 树形 DP 与换根 DP | 计划 | 0402,0701 | `dynamic-programming/0707-tree-rerooting-dp.md` |
+| 0707 | 树形 DP 与换根 DP | 计划 | 0434,0701 | `dynamic-programming/0707-tree-rerooting-dp.md` |
 | 0708 | 状压 DP | 计划 | 0211,0701 | `dynamic-programming/0708-bitmask-dp.md` |
 | 0709 | 数位 DP | 计划 | 0133,0701 | `dynamic-programming/0709-digit-dp.md` |
 | 0710 | 概率与期望 DP | 计划 | 0512,0701 | `dynamic-programming/0710-probability-expectation-dp.md` |
@@ -231,9 +259,9 @@
 | 0804 | KMP 与前缀函数 | 计划 | 0202,0802 | `strings/0804-kmp-prefix-function.md` |
 | 0805 | Z 函数 | 计划 | 0202,0802 | `strings/0805-z-function.md` |
 | 0806 | Trie | 计划 | 0125,0801 | `strings/0806-trie.md` |
-| 0807 | AC 自动机 | 计划 | 0402,0804,0806 | `strings/0807-aho-corasick.md` |
+| 0807 | AC 自动机 | 计划 | 0437,0804,0806 | `strings/0807-aho-corasick.md` |
 | 0808 | Manacher | 计划 | 0202,0801 | `strings/0808-manacher.md` |
 | 0809* | 后缀数组 | 计划 | 0206,0801 | `strings/0809-suffix-array.md` |
-| 0810* | 后缀自动机 | 计划 | 0402,0806 | `strings/0810-suffix-automaton.md` |
+| 0810* | 后缀自动机 | 计划 | 0806 | `strings/0810-suffix-automaton.md` |
 | 0811* | 回文树 | 计划 | 0806,0808 | `strings/0811-palindromic-tree.md` |
 | 0812* | 后缀树 | 计划 | 0806 | `strings/0812-suffix-tree.md` |

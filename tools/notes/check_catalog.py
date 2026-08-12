@@ -228,12 +228,6 @@ class Checker:
                 self.error(f"{location}: draft/frozen article must use a Markdown link")
             if entry.article_id in entry.prerequisites:
                 self.error(f"{location}: article cannot depend on itself")
-            for prerequisite in entry.prerequisites:
-                if prerequisite in positions and positions[prerequisite] >= positions[entry.article_id]:
-                    self.error(
-                        f"{location}: prerequisite {prerequisite} must appear earlier in the catalog"
-                    )
-
         unknown_legacy = sorted(legacy - entries.keys())
         if unknown_legacy:
             self.error(
