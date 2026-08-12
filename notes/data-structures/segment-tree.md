@@ -1,6 +1,6 @@
 # 线段树：基础
 
-> 状态：定稿
+> 最近修订：2026-08-13 02:55 +10:00（未审阅）
 
 线段树维护的是一段序列上的区间信息。它的核心思想是：把一个区间递归拆成左右两半，每个节点维护自己负责区间的答案。
 
@@ -156,7 +156,7 @@ if (qr > mid) {
 
 ## 数组存树
 
-竞赛中常用数组模拟一棵按完全二叉树方式编号的树：
+竞赛中常用一段连续存储模拟按完全二叉树方式编号的树：
 
 ```text
 节点 u 的左儿子：u * 2
@@ -165,16 +165,19 @@ if (qr > mid) {
 
 直接写乘法和加法即可。编译器会自行完成等价的底层优化，手写位运算不会带来实用的性能优势。
 
-如果题目保证 `n <= 100000`，竞赛代码里常先把全局容量常量留出少量余量，再让线段树数组开到它的 4 倍：
+可复用模板把线段树自身的规模、节点信息与操作放进同一个 `struct`，内部按实际 `n` 分配 `vector`：
 
 ```cpp
-const int MAXN = 1e5 + 5;
+struct SegmentTree {
+    int n;
+    vector<ll> tree;
+    vector<ll> lazy;
 
-ll a[MAXN];
-ll tree[4 * MAXN];
+    SegmentTree(int n) : n(n), tree(4 * n + 5), lazy(4 * n + 5) {}
+};
 ```
 
-本文约定 `MAXN` 表示“已经留过余量的数组容量”，不是题目中 `n` 的理论最大值本身。`+5` 没有特殊的数学含义；对于只访问 `a[1]` 到 `a[n]` 的程序，理论上多留一个位置就够了。保留 5 个位置是中英文竞赛代码中都很常见的模板习惯，可以顺便容纳少量哨兵或边界位置，而且额外空间可以忽略。
+线段树根节点编号为 `1`，第 `0` 个元素有意留空。`tree` 与 `lazy` 都是对象内部状态，不会与其他线段树实例或题目变量重名；构造多个对象时，每个对象拥有自己的存储。
 
 这里有两个不同的问题：
 
@@ -214,24 +217,9 @@ ll tree[4 * MAXN];
 最大节点编号 < 2^(h + 1) < 4n
 ```
 
-这就是常见数组开 `4 * n` 的原因。它不是精确节点数，而是对完全二叉树编号方式足够安全的上界。
+这就是常见存储分配 `4 * n` 级别空间的原因。它不是精确节点数，而是对完全二叉树编号方式足够安全的上界。模板写 `4 * n + 5`，额外几个元素只作为边界余量，不具有特殊数学含义。
 
-因为本文的 `MAXN` 已经略大于题目允许的最大元素个数，所以：
-
-```cpp
-ll a[MAXN];
-ll tree[4 * MAXN];
-```
-
-普通数组可以直接使用 1-based 下标 `a[1]` 到 `a[n]`；线段树数组已经声明了下标 `0` 到 `4 * MAXN - 1`，而有效节点编号严格小于 `4 * n`。余量统一放在 `MAXN` 里以后，不需要在每个数组声明后重复写 `+1` 或 `+5`。
-
-例如题目上界为 $2 \times 10^6$ 时，可以写成：
-
-```cpp
-const int MAXN = 2e6 + 5;
-```
-
-这里的 `+5` 是统一的容量约定；线段树需要乘 `4` 才是数据结构本身的空间上界。
+原序列仍然可以使用 `vector<ll> a(n + 5)` 保存 `a[1]` 到 `a[n]`。这里的第 `0` 格与线段树节点 `0` 都不参与有效数据，末尾额外位置是统一边界余量：浪费常数个元素换来与题面、递归区间和树节点编号一致的 1-based 语义。
 
 ### 统一命名约定
 
@@ -257,16 +245,16 @@ struct Node {
     ll mx;
 };
 
-Node tree[4 * MAXN];
+vector<Node> tree(4 * n + 5);
 ```
 
-对于只含一种修改的基础模板，`lazy` 统一保存“操作是否存在”和操作参数：
+对于本篇唯一的区间加操作，`lazy[u]` 保存整个节点区间尚未下传的增量：
 
 ```cpp
-pair<bool, ll> lazy[4 * MAXN];
+vector<ll> lazy(4 * n + 5);
 ```
 
-`lazy[u].first` 表示是否存在待下传操作，`lazy[u].second` 表示操作参数。区间加、区间乘和区间赋值都可以采用这个外层形式，只需要改变 `apply` 中的具体组合规则。
+加法的单位元是 `0`，所以 `lazy[u] == 0` 正好表示没有需要下传的增量。区间赋值等操作不能这样借用 `0`，需要另设布尔标记；多种标记的表示与组合放在扩展篇讨论。
 
 ## pull
 
@@ -292,17 +280,17 @@ void pull(int u) {
 
 ## build
 
-建树把原数组信息放到叶子，再一路 `pull`。
+建树把原数组信息放到叶子，再一路 `pull`。原数组由构造函数以只读引用交给建树过程：
 
 ```cpp
-void build(int u, int l, int r) {
+void build(int u, int l, int r, const vector<ll>& a) {
     if (l == r) {
         tree[u] = a[l];
         return;
     }
     int mid = (l + r) / 2;
-    build(u * 2, l, mid);
-    build(u * 2 + 1, mid + 1, r);
+    build(u * 2, l, mid, a);
+    build(u * 2 + 1, mid + 1, r, a);
     pull(u);
 }
 ```
@@ -310,7 +298,7 @@ void build(int u, int l, int r) {
 调用：
 
 ```cpp
-build(1, 1, n);
+build(1, 1, n, a);
 ```
 
 ## 单点修改
@@ -373,67 +361,82 @@ ll query(int u, int l, int r, int ql, int qr) {
 
 ```cpp
 #include <bits/stdc++.h>
-
 using namespace std;
 
 typedef long long ll;
 
-const int MAXN = 1e5 + 5;
+struct SegmentTree {
+    int n;
+    vector<ll> tree;
 
-int n, q;
-ll a[MAXN];
-ll tree[4 * MAXN];
+    SegmentTree(int n, const vector<ll>& a) : n(n), tree(4 * n + 5) {
+        build(1, 1, n, a);
+    }
 
-void pull(int u) {
-    tree[u] = tree[u * 2] + tree[u * 2 + 1];
-}
+    void pull(int u) {
+        tree[u] = tree[u * 2] + tree[u * 2 + 1];
+    }
 
-void build(int u, int l, int r) {
-    if (l == r) {
-        tree[u] = a[l];
-        return;
+    void build(int u, int l, int r, const vector<ll>& a) {
+        if (l == r) {
+            tree[u] = a[l];
+            return;
+        }
+        int mid = (l + r) / 2;
+        build(u * 2, l, mid, a);
+        build(u * 2 + 1, mid + 1, r, a);
+        pull(u);
     }
-    int mid = (l + r) / 2;
-    build(u * 2, l, mid);
-    build(u * 2 + 1, mid + 1, r);
-    pull(u);
-}
 
-void update(int u, int l, int r, int pos, ll val) {
-    if (l == r) {
-        tree[u] += val;
-        return;
+    void update(int u, int l, int r, int pos, ll val) {
+        if (l == r) {
+            tree[u] += val;
+            return;
+        }
+        int mid = (l + r) / 2;
+        if (pos <= mid) {
+            update(u * 2, l, mid, pos, val);
+        } else {
+            update(u * 2 + 1, mid + 1, r, pos, val);
+        }
+        pull(u);
     }
-    int mid = (l + r) / 2;
-    if (pos <= mid) {
-        update(u * 2, l, mid, pos, val);
-    } else {
-        update(u * 2 + 1, mid + 1, r, pos, val);
-    }
-    pull(u);
-}
 
-ll query(int u, int l, int r, int ql, int qr) {
-    if (ql <= l && r <= qr) {
-        return tree[u];
+    ll query(int u, int l, int r, int ql, int qr) {
+        if (ql <= l && r <= qr) {
+            return tree[u];
+        }
+        int mid = (l + r) / 2;
+        ll res = 0;
+        if (ql <= mid) {
+            res += query(u * 2, l, mid, ql, qr);
+        }
+        if (qr > mid) {
+            res += query(u * 2 + 1, mid + 1, r, ql, qr);
+        }
+        return res;
     }
-    int mid = (l + r) / 2;
-    ll res = 0;
-    if (ql <= mid) {
-        res += query(u * 2, l, mid, ql, qr);
+
+    void update(int pos, ll val) {
+        update(1, 1, n, pos, val);
     }
-    if (qr > mid) {
-        res += query(u * 2 + 1, mid + 1, r, ql, qr);
+
+    ll query(int l, int r) {
+        return query(1, 1, n, l, r);
     }
-    return res;
-}
+};
 
 int main() {
+    int n;
+    int q;
     scanf("%d%d", &n, &q);
+
+    vector<ll> a(n + 5);
     for (int i = 1; i <= n; i++) {
         scanf("%lld", &a[i]);
     }
-    build(1, 1, n);
+
+    SegmentTree segment_tree(n, a);
 
     while (q--) {
         int op;
@@ -442,11 +445,12 @@ int main() {
             int pos;
             ll val;
             scanf("%d%lld", &pos, &val);
-            update(1, 1, n, pos, val);
+            segment_tree.update(pos, val);
         } else {
-            int l, r;
+            int l;
+            int r;
             scanf("%d%d", &l, &r);
-            printf("%lld\n", query(1, 1, n, l, r));
+            printf("%lld\n", segment_tree.query(l, r));
         }
     }
     return 0;
@@ -470,23 +474,23 @@ int main() {
 区间加、区间和的典型信息：
 
 ```cpp
-ll tree[4 * MAXN];
-pair<bool, ll> lazy[4 * MAXN];
+vector<ll> tree(4 * n + 5);
+vector<ll> lazy(4 * n + 5);
 ```
 
-基础模板中的 `tree[u]` 是节点区间和。`lazy[u].first` 表示是否有尚未下传的加法，`lazy[u].second` 表示要加多少。`tree` 和 `lazy` 描述它们在线段树中的职责，不把名字绑定到某一种聚合或修改。
+基础模板中的 `tree[u]` 是节点区间和，`lazy[u]` 是整个节点区间尚未下传的增量。`tree` 和 `lazy` 描述它们在线段树中的职责，不把名字绑定到某个具体题目。
 
-显式保存 `first` 后，代码不再借用加法单位元 `0` 或乘法单位元 `1` 表示“无标记”。参数可以正常取到这些值，标记是否存在只由布尔值决定。
+本篇只有区间加，因此 `lazy[u] == 0` 正好表示没有未下传的修改：给区间增加 $0$ 与什么都不做完全等价。基础模板不为一种无歧义的操作额外保存布尔值。
 
 区间乘法也存在，常见于取模意义下的“区间乘、区间加、区间和”。它需要维护乘法标记和加法标记的组合顺序，复杂度和细节都比基础懒标记更高，不放在第一份基础模板里。
 
-如果把修改操作换成区间赋值，存储形式不需要改变：
+如果把修改操作换成区间赋值，就不能再用数值 `0` 表示“无标记”，因为“把整个区间赋值为 0”是真实操作。此时可以显式保存操作是否存在：
 
 ```cpp
-pair<bool, ll> lazy[4 * MAXN];
+vector<pair<bool, ll>> lazy(4 * n + 5);
 ```
 
-此时 `lazy[u].first` 仍表示标记是否存在，`lazy[u].second` 改为表示赋值内容。
+`lazy[u].first` 表示是否存在待下传赋值，`lazy[u].second` 表示赋值内容。这属于另一种修改语义，不混入本篇区间加模板。
 
 多个懒标记的覆盖关系和下传顺序见 [线段树：懒标记的组合顺序](segment-tree-lazy-tags.md)。
 
@@ -495,8 +499,7 @@ pair<bool, ll> lazy[4 * MAXN];
 ```cpp
 void apply(int u, int l, int r, ll val) {
     tree[u] += val * (r - l + 1);
-    lazy[u].first = true;
-    lazy[u].second += val;
+    lazy[u] += val;
 }
 ```
 
@@ -504,13 +507,13 @@ void apply(int u, int l, int r, ll val) {
 
 ```cpp
 void push(int u, int l, int r) {
-    if (!lazy[u].first) {
+    if (lazy[u] == 0) {
         return;
     }
     int mid = (l + r) / 2;
-    apply(u * 2, l, mid, lazy[u].second);
-    apply(u * 2 + 1, mid + 1, r, lazy[u].second);
-    lazy[u] = {false, 0};
+    apply(u * 2, l, mid, lazy[u]);
+    apply(u * 2 + 1, mid + 1, r, lazy[u]);
+    lazy[u] = 0;
 }
 ```
 
@@ -563,101 +566,116 @@ ll query(int u, int l, int r, int ql, int qr) {
 
 ```cpp
 #include <bits/stdc++.h>
-
 using namespace std;
 
 typedef long long ll;
 
-const int MAXN = 2e5 + 5;
+struct SegmentTree {
+    int n;
+    vector<ll> tree;
+    vector<ll> lazy;
 
-int n, q;
-ll a[MAXN];
-ll tree[4 * MAXN];
-pair<bool, ll> lazy[4 * MAXN];
+    SegmentTree(int n, const vector<ll>& a) : n(n), tree(4 * n + 5), lazy(4 * n + 5) {
+        build(1, 1, n, a);
+    }
 
-void pull(int u) {
-    tree[u] = tree[u * 2] + tree[u * 2 + 1];
-}
+    void pull(int u) {
+        tree[u] = tree[u * 2] + tree[u * 2 + 1];
+    }
 
-void apply(int u, int l, int r, ll val) {
-    tree[u] += val * (r - l + 1);
-    lazy[u].first = true;
-    lazy[u].second += val;
-}
+    void apply(int u, int l, int r, ll val) {
+        tree[u] += val * (r - l + 1);
+        lazy[u] += val;
+    }
 
-void push(int u, int l, int r) {
-    if (!lazy[u].first) {
-        return;
+    void push(int u, int l, int r) {
+        if (lazy[u] == 0) {
+            return;
+        }
+        int mid = (l + r) / 2;
+        apply(u * 2, l, mid, lazy[u]);
+        apply(u * 2 + 1, mid + 1, r, lazy[u]);
+        lazy[u] = 0;
     }
-    int mid = (l + r) / 2;
-    apply(u * 2, l, mid, lazy[u].second);
-    apply(u * 2 + 1, mid + 1, r, lazy[u].second);
-    lazy[u] = {false, 0};
-}
 
-void build(int u, int l, int r) {
-    lazy[u] = {false, 0};
-    if (l == r) {
-        tree[u] = a[l];
-        return;
+    void build(int u, int l, int r, const vector<ll>& a) {
+        if (l == r) {
+            tree[u] = a[l];
+            return;
+        }
+        int mid = (l + r) / 2;
+        build(u * 2, l, mid, a);
+        build(u * 2 + 1, mid + 1, r, a);
+        pull(u);
     }
-    int mid = (l + r) / 2;
-    build(u * 2, l, mid);
-    build(u * 2 + 1, mid + 1, r);
-    pull(u);
-}
 
-void update(int u, int l, int r, int ql, int qr, ll val) {
-    if (ql <= l && r <= qr) {
-        apply(u, l, r, val);
-        return;
+    void update(int u, int l, int r, int ql, int qr, ll val) {
+        if (ql <= l && r <= qr) {
+            apply(u, l, r, val);
+            return;
+        }
+        push(u, l, r);
+        int mid = (l + r) / 2;
+        if (ql <= mid) {
+            update(u * 2, l, mid, ql, qr, val);
+        }
+        if (qr > mid) {
+            update(u * 2 + 1, mid + 1, r, ql, qr, val);
+        }
+        pull(u);
     }
-    push(u, l, r);
-    int mid = (l + r) / 2;
-    if (ql <= mid) {
-        update(u * 2, l, mid, ql, qr, val);
-    }
-    if (qr > mid) {
-        update(u * 2 + 1, mid + 1, r, ql, qr, val);
-    }
-    pull(u);
-}
 
-ll query(int u, int l, int r, int ql, int qr) {
-    if (ql <= l && r <= qr) {
-        return tree[u];
+    ll query(int u, int l, int r, int ql, int qr) {
+        if (ql <= l && r <= qr) {
+            return tree[u];
+        }
+        push(u, l, r);
+        int mid = (l + r) / 2;
+        ll res = 0;
+        if (ql <= mid) {
+            res += query(u * 2, l, mid, ql, qr);
+        }
+        if (qr > mid) {
+            res += query(u * 2 + 1, mid + 1, r, ql, qr);
+        }
+        return res;
     }
-    push(u, l, r);
-    int mid = (l + r) / 2;
-    ll res = 0;
-    if (ql <= mid) {
-        res += query(u * 2, l, mid, ql, qr);
+
+    void update(int l, int r, ll val) {
+        update(1, 1, n, l, r, val);
     }
-    if (qr > mid) {
-        res += query(u * 2 + 1, mid + 1, r, ql, qr);
+
+    ll query(int l, int r) {
+        return query(1, 1, n, l, r);
     }
-    return res;
-}
+};
 
 int main() {
+    int n;
+    int q;
     scanf("%d%d", &n, &q);
+
+    vector<ll> a(n + 5);
     for (int i = 1; i <= n; i++) {
         scanf("%lld", &a[i]);
     }
-    build(1, 1, n);
+
+    SegmentTree segment_tree(n, a);
 
     while (q--) {
         int op;
         scanf("%d", &op);
         if (op == 1) {
-            int l, r;
+            int l;
+            int r;
             ll val;
             scanf("%d%d%lld", &l, &r, &val);
-            update(1, 1, n, l, r, val);
+            segment_tree.update(l, r, val);
         } else {
-            int l, r;
+            int l;
+            int r;
             scanf("%d%d", &l, &r);
-            printf("%lld\n", query(1, 1, n, l, r));
+            printf("%lld\n", segment_tree.query(l, r));
         }
     }
     return 0;
@@ -669,7 +687,7 @@ int main() {
 - `build` 访问线段树的每个有效节点一次，时间复杂度是 $O(n)$。
 - 单点增加只经过一条从根到叶子的链，时间复杂度是 $O(\log n)$。
 - 一次区间查询或带懒标记的区间增加，时间复杂度是 $O(\log n)$。
-- 有效节点数是 $O(n)$，本文使用 `4 * MAXN` 的数组保证编号空间足够，空间复杂度是 $O(n)$。
+- 有效节点数是 $O(n)$，`SegmentTree` 内部按当前规模分配 `4 * n + 5` 个元素，空间复杂度是 $O(n)$。
 
 ## 不变量
 
@@ -683,7 +701,7 @@ int main() {
 
 ## 常见错误
 
-- 数组没有开到 `4 * n`。
+- 内部 `vector` 没有分配到 `4 * n` 级别。
 - `mid` 之后左右区间写错，导致死递归。
 - 查询右半边条件写成 `qr >= mid`，正确通常是 `qr > mid`。
 - 区间修改后忘记 `pull`。
@@ -752,7 +770,7 @@ query(2, 3) = 25
 1. 线段树的一个节点负责什么，左右儿子的区间怎样由 `[l, r]` 得到？
 2. `build`、`pull`、`update` 和 `query` 各自负责哪一步？
 3. 区间查询中，什么时候可以直接返回 `tree[u]`，什么时候要继续进入儿子？
-4. 为什么递归线段树通常将数组开到 `4 * MAXN`？
+4. 为什么递归线段树通常分配 `4 * n + 5` 个存储位置？
 5. 懒标记存在时，`tree[u]` 和它的两个儿子分别已经包含了哪些修改？
 6. `apply`、`push` 和 `pull` 的调用顺序为什么不能随意交换？
 

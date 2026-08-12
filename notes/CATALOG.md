@@ -120,8 +120,8 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 0304 | 线段树：基础 | 定稿 | [data-structures/segment-tree.md](data-structures/segment-tree.md) |
-| 0305* | 线段树：懒标记的组合顺序 | 定稿 | [data-structures/segment-tree-lazy-tags.md](data-structures/segment-tree-lazy-tags.md) |
+| 0304 | 线段树：基础 | 待审阅 | [data-structures/segment-tree.md](data-structures/segment-tree.md) |
+| 0305* | 线段树：懒标记的组合顺序 | 待审阅 | [data-structures/segment-tree-lazy-tags.md](data-structures/segment-tree-lazy-tags.md) |
 | 0306 | 树状数组：基础 | 待审阅 | [data-structures/fenwick-tree.md](data-structures/fenwick-tree.md) |
 | 0307 | 并查集 | 计划 | `data-structures/0307-disjoint-set-union.md` |
 | 0308 | 稀疏表 ST | 计划 | `data-structures/0308-sparse-table.md` |
