@@ -41,7 +41,7 @@
 | 0123 | 复合类型：enum | 待审阅 | [enum.md](cpp/enum.md) |
 | 0124 | 内存：字节寻址 | 待审阅 | [byte-addressing.md](cpp/byte-addressing.md) |
 | 0125 | 内存与别名：指针 | 定稿 | [pointers.md](cpp/pointers.md) |
-| 0126 | 内存与别名：引用 | 计划 | `cpp/0126-references.md` |
+| 0126 | 内存与别名：引用 | 待审阅 | [references.md](cpp/references.md) |
 | 0127 | 函数：参数传递 | 计划 | `cpp/0127-parameter-passing.md` |
 | 0128 | 修饰符：const | 定稿 | [const.md](cpp/const.md) |
 | 0129 | 修饰符：static | 计划 | `cpp/0129-static.md` |
