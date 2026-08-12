@@ -287,6 +287,7 @@
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
+| 0504e1 | 模运算：modint | [math/mod-int.md](math/mod-int.md) |
 | 0513* | Nim、SG 函数与基础博弈论 | `math/0513-nim-sg-game-theory.md` |
 | 0514* | XOR 线性基 | `math/0514-xor-linear-basis.md` |
 | 0515* | 高斯消元 | `math/0515-gaussian-elimination.md` |

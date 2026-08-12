@@ -207,6 +207,7 @@
 | 0502 | 数论：质数 | 定稿 | [prime-numbers.md](math/prime-numbers.md) |
 | 0503 | 数论：扩展欧几里得算法 | 定稿 | [extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
 | 0504 | 模运算与快速幂 | 计划 | `math/0504-modular-arithmetic-fast-power.md` |
+| 0504e1 | 模运算：modint | 定稿 | [mod-int.md](math/mod-int.md) |
 | 0505 | 筛法与质因数预处理 | 计划 | `math/0505-sieve.md` |
 | 0506 | 模逆元 | 计划 | `math/0506-modular-inverse.md` |
 | 0507 | 组合数与基础计数 | 计划 | `math/0507-combinatorics.md` |
