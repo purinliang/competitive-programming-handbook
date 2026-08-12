@@ -97,12 +97,12 @@ $+0$ 与 $-0$ 比较时相等，但符号位不同。$+\infty$ 和 $-\infty$ 表
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve () {
+void solve() {
     double positive_zero = 0.0;
-    double negative_zero = copysign (0.0, -1.0);
-    double positive_infinity = numeric_limits<double>::infinity ();
+    double negative_zero = copysign(0.0, -1.0);
+    double positive_infinity = numeric_limits<double>::infinity();
     double negative_infinity = -positive_infinity;
-    double nan = numeric_limits<double>::quiet_NaN ();
+    double nan = numeric_limits<double>::quiet_NaN();
 
     cout << boolalpha;
     cout << "+0: " << positive_zero << '\n';
@@ -112,12 +112,12 @@ void solve () {
     cout << "NaN: " << nan << '\n';
     cout << "+0 == -0: " << (positive_zero == negative_zero) << '\n';
     cout << "NaN == NaN: " << (nan == nan) << '\n';
-    cout << "signbit(+0): " << signbit (positive_zero) << '\n';
-    cout << "signbit(-0): " << signbit (negative_zero) << '\n';
+    cout << "signbit(+0): " << signbit(positive_zero) << '\n';
+    cout << "signbit(-0): " << signbit(negative_zero) << '\n';
 }
 
-int main () {
-    solve ();
+int main() {
+    solve();
     return 0;
 }
 ```

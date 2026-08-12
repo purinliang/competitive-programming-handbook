@@ -15,7 +15,7 @@ struct Edge {
 };
 
 vector<Edge> edges;
-edges.push_back ({from, to});
+edges.push_back({from, to});
 ```
 
 对于有向图，`from` 和 `to` 分别是起点和终点。对于无向图，这两个字段只是在记录中区分两个端点，并不赋予数学意义上的方向。
@@ -43,7 +43,7 @@ struct Edge {
 };
 
 vector<Edge> edges;
-edges.push_back ({from, to, weight});
+edges.push_back({from, to, weight});
 ```
 
 扫描全部带权边时，三个字段的含义始终明确：
@@ -111,18 +111,18 @@ struct Edge {
 
 vector<Edge> edges;
 
-int main () {
+int main() {
     int n, m;
-    scanf ("%d%d", &n, &m);
+    scanf("%d%d", &n, &m);
 
     for (int i = 1; i <= m; i++) {
         int u, v, w;
-        scanf ("%d%d%d", &u, &v, &w);
-        edges.push_back ({u, v, w});
+        scanf("%d%d%d", &u, &v, &w);
+        edges.push_back({u, v, w});
     }
 
     for (Edge edge : edges) {
-        printf ("%d -> %d, weight = %d\n", edge.u, edge.v, edge.w);
+        printf("%d -> %d, weight = %d\n", edge.u, edge.v, edge.w);
     }
 
     return 0;

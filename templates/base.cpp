@@ -3,13 +3,13 @@ using namespace std;
 
 typedef long long ll;
 
-void solve () {}
+void solve() {}
 
-int main () {
+int main() {
     int t = 1;
     // scanf ("%d", &t);
     while (t--) {
-        solve ();
+        solve();
     }
 
     return 0;

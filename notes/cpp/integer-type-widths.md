@@ -19,15 +19,15 @@ C++ 还提供 `short` 和 `long`：
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve () {
-    cout << "short: " << sizeof (short) << " bytes\n";
-    cout << "int: " << sizeof (int) << " bytes\n";
-    cout << "long: " << sizeof (long) << " bytes\n";
-    cout << "long long: " << sizeof (long long) << " bytes\n";
+void solve() {
+    cout << "short: " << sizeof(short) << " bytes\n";
+    cout << "int: " << sizeof(int) << " bytes\n";
+    cout << "long: " << sizeof(long) << " bytes\n";
+    cout << "long long: " << sizeof(long long) << " bytes\n";
 }
 
-int main () {
-    solve ();
+int main() {
+    solve();
     return 0;
 }
 ```

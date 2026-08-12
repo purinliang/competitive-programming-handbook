@@ -51,7 +51,7 @@ for (int edge_id = head[u]; edge_id != -1; edge_id = edges[edge_id].next) {
 加入有向边 `from -> to` 时，新记录放在全局边数组末尾。它的 `next` 指向原来的 `head[from]`，随后让 `head[from]` 指向新记录：
 
 ```cpp
-void add_edge (int from, int to, int weight) {
+void add_edge(int from, int to, int weight) {
     edges[edge_count] = {to, weight, head[from]};
     head[from] = edge_count;
     edge_count++;
@@ -61,7 +61,7 @@ void add_edge (int from, int to, int weight) {
 无权图只需删除 `weight` 参数和字段：
 
 ```cpp
-void add_edge (int from, int to) {
+void add_edge(int from, int to) {
     edges[edge_count] = {to, head[from]};
     head[from] = edge_count;
     edge_count++;
@@ -73,7 +73,7 @@ void add_edge (int from, int to) {
 使用前必须把所有 `head` 初始化为 `-1`，并让第一条边的编号从 `0` 开始：
 
 ```cpp
-fill (head, head + n + 1, -1);
+fill(head, head + n + 1, -1);
 edge_count = 0;
 ```
 
@@ -84,8 +84,8 @@ edge_count = 0;
 加入一条带权无向边 $(u,v,w)$ 时，严格连续调用两次：
 
 ```cpp
-add_edge (u, v, w);
-add_edge (v, u, w);
+add_edge(u, v, w);
+add_edge(v, u, w);
 ```
 
 因为 `edge_count` 从 `0` 开始，第一对边编号为 `0,1`，第二对为 `2,3`，依此类推。每一对中，偶数编号与紧随其后的奇数编号互为反向记录。
@@ -159,8 +159,8 @@ edge 2 -> edge 0 -> -1
 网络流同样连续加入一对记录，但它们的初始容量通常不同：
 
 ```cpp
-add_edge (u, v, capacity);
-add_edge (v, u, 0);
+add_edge(u, v, capacity);
+add_edge(v, u, 0);
 ```
 
 第二条不是原图本来就有的反向有向边，而是残量网络为了撤销或调整流量建立的反向边。两条记录仍可以用 `edge_id ^ 1` 高频互相访问。真正学习网络流时，会把字段 `weight` 改成语义明确的 `capacity`。
@@ -186,32 +186,32 @@ Edge e[MAXM];
 int head[MAXN];
 int cnt;
 
-void add_edge (int u, int v, int w) {
+void add_edge(int u, int v, int w) {
     e[cnt] = {v, w, head[u]};
     head[u] = cnt;
     cnt++;
 }
 
-int main () {
+int main() {
     int n, m;
-    scanf ("%d%d", &n, &m);
+    scanf("%d%d", &n, &m);
 
-    fill (head, head + n + 1, -1);
+    fill(head, head + n + 1, -1);
     cnt = 0;
 
     for (int i = 1; i <= m; i++) {
         int u, v, w;
-        scanf ("%d%d%d", &u, &v, &w);
-        add_edge (u, v, w);
-        add_edge (v, u, w);
+        scanf("%d%d%d", &u, &v, &w);
+        add_edge(u, v, w);
+        add_edge(v, u, w);
     }
 
     for (int u = 1; u <= n; u++) {
-        printf ("%d:", u);
+        printf("%d:", u);
         for (int i = head[u]; i != -1; i = e[i].next) {
-            printf (" (%d, %d, edge %d)", e[i].v, e[i].w, i);
+            printf(" (%d, %d, edge %d)", e[i].v, e[i].w, i);
         }
-        printf ("\n");
+        printf("\n");
     }
 
     return 0;

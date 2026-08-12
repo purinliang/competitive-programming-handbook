@@ -14,84 +14,84 @@ ll a[MAXN];
 ll tree[4 * MAXN];
 ll lazy[4 * MAXN];
 
-void pull (int u) {
+void pull(int u) {
     tree[u] = tree[u * 2] + tree[u * 2 + 1];
 }
 
-void apply (int u, int l, int r, ll val) {
+void apply(int u, int l, int r, ll val) {
     tree[u] += val * (r - l + 1);
     lazy[u] += val;
 }
 
-void push (int u, int l, int r) {
+void push(int u, int l, int r) {
     if (lazy[u] == 0) {
         return;
     }
     int mid = (l + r) / 2;
-    apply (u * 2, l, mid, lazy[u]);
-    apply (u * 2 + 1, mid + 1, r, lazy[u]);
+    apply(u * 2, l, mid, lazy[u]);
+    apply(u * 2 + 1, mid + 1, r, lazy[u]);
     lazy[u] = 0;
 }
 
-void build (int u, int l, int r) {
+void build(int u, int l, int r) {
     if (l == r) {
         tree[u] = a[l];
         return;
     }
     int mid = (l + r) / 2;
-    build (u * 2, l, mid);
-    build (u * 2 + 1, mid + 1, r);
-    pull (u);
+    build(u * 2, l, mid);
+    build(u * 2 + 1, mid + 1, r);
+    pull(u);
 }
 
-void update (int u, int l, int r, int ql, int qr, ll val) {
+void update(int u, int l, int r, int ql, int qr, ll val) {
     if (ql <= l && r <= qr) {
-        apply (u, l, r, val);
+        apply(u, l, r, val);
         return;
     }
-    push (u, l, r);
+    push(u, l, r);
     int mid = (l + r) / 2;
     if (ql <= mid) {
-        update (u * 2, l, mid, ql, qr, val);
+        update(u * 2, l, mid, ql, qr, val);
     }
     if (qr > mid) {
-        update (u * 2 + 1, mid + 1, r, ql, qr, val);
+        update(u * 2 + 1, mid + 1, r, ql, qr, val);
     }
-    pull (u);
+    pull(u);
 }
 
-ll query (int u, int l, int r, int ql, int qr) {
+ll query(int u, int l, int r, int ql, int qr) {
     if (ql <= l && r <= qr) {
         return tree[u];
     }
-    push (u, l, r);
+    push(u, l, r);
     int mid = (l + r) / 2;
     ll res = 0;
     if (ql <= mid) {
-        res += query (u * 2, l, mid, ql, qr);
+        res += query(u * 2, l, mid, ql, qr);
     }
     if (qr > mid) {
-        res += query (u * 2 + 1, mid + 1, r, ql, qr);
+        res += query(u * 2 + 1, mid + 1, r, ql, qr);
     }
     return res;
 }
 
-int main () {
-    scanf ("%d%d", &n, &m);
+int main() {
+    scanf("%d%d", &n, &m);
     for (int i = 1; i <= n; i++) {
-        scanf ("%lld", &a[i]);
+        scanf("%lld", &a[i]);
     }
-    build (1, 1, n);
+    build(1, 1, n);
 
     while (m--) {
         int op, l, r;
-        scanf ("%d%d%d", &op, &l, &r);
+        scanf("%d%d%d", &op, &l, &r);
         if (op == 1) {
             ll val;
-            scanf ("%lld", &val);
-            update (1, 1, n, l, r, val);
+            scanf("%lld", &val);
+            update(1, 1, n, l, r, val);
         } else {
-            printf ("%lld\n", query (1, 1, n, l, r));
+            printf("%lld\n", query(1, 1, n, l, r));
         }
     }
     return 0;

@@ -41,7 +41,7 @@ for (int u = 1; u <= n; u++) {
 ```cpp
 queue<int> q;
 distance[start] = 0;
-q.push (start);
+q.push(start);
 ```
 
 从点 `u` 查看相邻点 `v` 时，如果 `distance[v] != -1`，说明 `v` 以前已经发现，直接跳过。否则第一次发现 `v` 的路径比到 `u` 的路径多一条边：
@@ -53,7 +53,7 @@ for (int v : g[u]) {
     }
 
     distance[v] = distance[u] + 1;
-    q.push (v);
+    q.push(v);
 }
 ```
 
@@ -103,15 +103,15 @@ const int MAXN = 2e5 + 5;
 vector<int> g[MAXN];
 int distance_from_start[MAXN];
 
-int main () {
+int main() {
     int n, m, start;
-    scanf ("%d%d%d", &n, &m, &start);
+    scanf("%d%d%d", &n, &m, &start);
 
     for (int i = 1; i <= m; i++) {
         int u, v;
-        scanf ("%d%d", &u, &v);
-        g[u].push_back (v);
-        g[v].push_back (u);
+        scanf("%d%d", &u, &v);
+        g[u].push_back(v);
+        g[v].push_back(u);
     }
 
     for (int u = 1; u <= n; u++) {
@@ -120,11 +120,11 @@ int main () {
 
     queue<int> q;
     distance_from_start[start] = 0;
-    q.push (start);
+    q.push(start);
 
-    while (!q.empty ()) {
-        int u = q.front ();
-        q.pop ();
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
 
         for (int v : g[u]) {
             if (distance_from_start[v] != -1) {
@@ -132,12 +132,12 @@ int main () {
             }
 
             distance_from_start[v] = distance_from_start[u] + 1;
-            q.push (v);
+            q.push(v);
         }
     }
 
     for (int u = 1; u <= n; u++) {
-        printf ("%d%c", distance_from_start[u], " \n"[u == n]);
+        printf("%d%c", distance_from_start[u], " \n"[u == n]);
     }
 
     return 0;

@@ -29,13 +29,13 @@
 二叉树的递归遍历先处理空节点边界，再递归访问左、右子树：
 
 ```cpp
-void traverse (int u) {
+void traverse(int u) {
     if (u == 0) {
         return;
     }
 
-    traverse (left_child[u]);
-    traverse (right_child[u]);
+    traverse(left_child[u]);
+    traverse(right_child[u]);
 }
 ```
 
@@ -52,14 +52,14 @@ void traverse (int u) {
 所以在递归左子树之前处理当前节点：
 
 ```cpp
-void preorder (int u) {
+void preorder(int u) {
     if (u == 0) {
         return;
     }
 
-    printf ("%d ", value[u]);
-    preorder (left_child[u]);
-    preorder (right_child[u]);
+    printf("%d ", value[u]);
+    preorder(left_child[u]);
+    preorder(right_child[u]);
 }
 ```
 
@@ -82,14 +82,14 @@ void preorder (int u) {
 所以在两次递归调用之间处理当前节点：
 
 ```cpp
-void inorder (int u) {
+void inorder(int u) {
     if (u == 0) {
         return;
     }
 
-    inorder (left_child[u]);
-    printf ("%d ", value[u]);
-    inorder (right_child[u]);
+    inorder(left_child[u]);
+    printf("%d ", value[u]);
+    inorder(right_child[u]);
 }
 ```
 
@@ -114,14 +114,14 @@ void inorder (int u) {
 所以等两棵子树都递归返回后，再处理当前节点：
 
 ```cpp
-void postorder (int u) {
+void postorder(int u) {
     if (u == 0) {
         return;
     }
 
-    postorder (left_child[u]);
-    postorder (right_child[u]);
-    printf ("%d ", value[u]);
+    postorder(left_child[u]);
+    postorder(right_child[u]);
+    printf("%d ", value[u]);
 }
 ```
 
@@ -138,15 +138,15 @@ void postorder (int u) {
 三段代码只有 `printf` 的位置不同：
 
 ```cpp
-void traverse (int u) {
+void traverse(int u) {
     if (u == 0) {
         return;
     }
 
     // 前序位置：当前节点 -> 左 -> 右
-    traverse (left_child[u]);
+    traverse(left_child[u]);
     // 中序位置：左 -> 当前节点 -> 右
-    traverse (right_child[u]);
+    traverse(right_child[u]);
     // 后序位置：左 -> 右 -> 当前节点
 }
 ```
@@ -167,52 +167,52 @@ int value[MAXN];
 int left_child[MAXN];
 int right_child[MAXN];
 
-void preorder (int u) {
+void preorder(int u) {
     if (u == 0) {
         return;
     }
 
-    printf ("%d ", value[u]);
-    preorder (left_child[u]);
-    preorder (right_child[u]);
+    printf("%d ", value[u]);
+    preorder(left_child[u]);
+    preorder(right_child[u]);
 }
 
-void inorder (int u) {
+void inorder(int u) {
     if (u == 0) {
         return;
     }
 
-    inorder (left_child[u]);
-    printf ("%d ", value[u]);
-    inorder (right_child[u]);
+    inorder(left_child[u]);
+    printf("%d ", value[u]);
+    inorder(right_child[u]);
 }
 
-void postorder (int u) {
+void postorder(int u) {
     if (u == 0) {
         return;
     }
 
-    postorder (left_child[u]);
-    postorder (right_child[u]);
-    printf ("%d ", value[u]);
+    postorder(left_child[u]);
+    postorder(right_child[u]);
+    printf("%d ", value[u]);
 }
 
-int main () {
+int main() {
     int n, root;
-    scanf ("%d%d", &n, &root);
+    scanf("%d%d", &n, &root);
 
     for (int u = 1; u <= n; u++) {
-        scanf ("%d%d%d", &value[u], &left_child[u], &right_child[u]);
+        scanf("%d%d%d", &value[u], &left_child[u], &right_child[u]);
     }
 
-    preorder (root);
-    printf ("\n");
+    preorder(root);
+    printf("\n");
 
-    inorder (root);
-    printf ("\n");
+    inorder(root);
+    printf("\n");
 
-    postorder (root);
-    printf ("\n");
+    postorder(root);
+    printf("\n");
 
     return 0;
 }

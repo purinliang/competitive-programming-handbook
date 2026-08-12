@@ -25,19 +25,19 @@ DFS 顺序不是树本身唯一确定的。交换邻接表中两个相邻点的�
 递归函数首先需要知道当前节点 `u`：
 
 ```cpp
-void dfs (int u) {
-    printf ("%d ", u);
+void dfs(int u) {
+    printf("%d ", u);
 }
 ```
 
 接着要依次查看 `g[u]` 中从 `u` 出发的边记录：
 
 ```cpp
-void dfs (int u) {
-    printf ("%d ", u);
+void dfs(int u) {
+    printf("%d ", u);
 
     for (int v : g[u]) {
-        dfs (v);
+        dfs(v);
     }
 }
 ```
@@ -49,14 +49,14 @@ void dfs (int u) {
 进入当前节点时，同时记录我们是从哪个父节点 `p` 过来的。枚举相邻节点时，如果当前邻居 `v` 就是父节点 `p`，就跳过这条原路返回的边：
 
 ```cpp
-void dfs (int u, int p) {
-    printf ("%d ", u);
+void dfs(int u, int p) {
+    printf("%d ", u);
 
     for (int v : g[u]) {
         if (v == p) {
             continue;
         }
-        dfs (v, u);
+        dfs(v, u);
     }
 }
 ```
@@ -64,7 +64,7 @@ void dfs (int u, int p) {
 第一次从根节点开始时，根没有父节点。因为节点编号从 $1$ 开始，可以使用不存在的编号 `0`：
 
 ```cpp
-dfs (1, 0);
+dfs(1, 0);
 ```
 
 树中任意两个节点之间只有一条路径。除了刚刚经过的父节点，当前节点的其他相邻节点一定通向尚未访问的子树。因此，遍历树时只跳过父节点就足够了，不需要额外的 `visited` 数组。
@@ -76,15 +76,15 @@ dfs (1, 0);
 写在递归调用之前的操作，会在第一次进入节点时执行：
 
 ```cpp
-printf ("enter %d\n", u);
-dfs (v, u);
+printf("enter %d\n", u);
+dfs(v, u);
 ```
 
 写在递归调用之后的操作，要等节点 `v` 的整棵子树处理完、递归返回后才执行：
 
 ```cpp
-dfs (v, u);
-printf ("leave %d\n", v);
+dfs(v, u);
+printf("leave %d\n", v);
 ```
 
 这种“进入节点—递归处理每棵子树—离开节点”的结构，是后续计算子树大小、树形 DP 和二叉树遍历的基础。现在只需要先看懂调用发生在什么时候、返回又表示什么。
@@ -100,30 +100,30 @@ using namespace std;
 const int MAXN = 2e5 + 5;
 vector<int> g[MAXN];
 
-void dfs (int u, int p) {
-    printf ("%d ", u);
+void dfs(int u, int p) {
+    printf("%d ", u);
 
     for (int v : g[u]) {
         if (v == p) {
             continue;
         }
-        dfs (v, u);
+        dfs(v, u);
     }
 }
 
-int main () {
+int main() {
     int n;
-    scanf ("%d", &n);
+    scanf("%d", &n);
 
     for (int i = 1; i < n; i++) {
         int u, v;
-        scanf ("%d%d", &u, &v);
-        g[u].push_back (v);
-        g[v].push_back (u);
+        scanf("%d%d", &u, &v);
+        g[u].push_back(v);
+        g[v].push_back(u);
     }
 
-    dfs (1, 0);
-    printf ("\n");
+    dfs(1, 0);
+    printf("\n");
 
     return 0;
 }

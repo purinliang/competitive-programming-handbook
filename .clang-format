@@ -7,7 +7,7 @@ ColumnLimit: 100
 PointerAlignment: Left
 ReferenceAlignment: Left
 BreakBeforeBraces: Attach
-SpaceBeforeParens: Always
+SpaceBeforeParens: ControlStatements
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortLoopsOnASingleLine: false

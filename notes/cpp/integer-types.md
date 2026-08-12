@@ -24,13 +24,13 @@ $$
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve () {
-    cout << sizeof (int) << '\n';
-    cout << sizeof (int) * CHAR_BIT << '\n';
+void solve() {
+    cout << sizeof(int) << '\n';
+    cout << sizeof(int) * CHAR_BIT << '\n';
 }
 
-int main () {
-    solve ();
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -95,21 +95,21 @@ cout << bin_value << ' ' << oct_value << ' ' << dec_value << ' ' << hex_value <<
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve () {
+void solve() {
     int a;
     int b;
     int c;
 
     cin >> dec >> a;
-    cin >> setbase (0) >> b >> c;
+    cin >> setbase(0) >> b >> c;
     cout << "cin: " << a << ' ' << b << ' ' << c << '\n';
 
-    scanf ("%d %i %i", &a, &b, &c);
-    printf ("scanf: %d %d %d\n", a, b, c);
+    scanf("%d %i %i", &a, &b, &c);
+    printf("scanf: %d %d %d\n", a, b, c);
 }
 
-int main () {
-    solve ();
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -158,15 +158,15 @@ $$
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve () {
+void solve() {
     int x = 2147483647;
     cout << x << '\n';
     x = x + 1;
     cout << x << '\n';
 }
 
-int main () {
-    solve ();
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -208,15 +208,15 @@ $$
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve () {
+void solve() {
     unsigned int x = 0;
     cout << x << '\n';
     x = x - 1;
     cout << x << '\n';
 }
 
-int main () {
-    solve ();
+int main() {
+    solve();
     return 0;
 }
 ```

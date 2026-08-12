@@ -128,7 +128,7 @@ mid = (l + r) / 2
 递归线段树里经常同时出现两组区间：
 
 ```cpp
-query (u, l, r, ql, qr)
+query(u, l, r, ql, qr)
 ```
 
 - `u, l, r`：当前访问的节点，以及这个节点负责的区间 `[l, r]`。
@@ -275,7 +275,7 @@ pair<bool, ll> lazy[4 * MAXN];
 维护区间和：
 
 ```cpp
-void pull (int u) {
+void pull(int u) {
     tree[u] = tree[u * 2] + tree[u * 2 + 1];
 }
 ```
@@ -283,8 +283,8 @@ void pull (int u) {
 维护区间最大值：
 
 ```cpp
-void pull (int u) {
-    tree[u] = max (tree[u * 2], tree[u * 2 + 1]);
+void pull(int u) {
+    tree[u] = max(tree[u * 2], tree[u * 2 + 1]);
 }
 ```
 
@@ -295,22 +295,22 @@ void pull (int u) {
 建树把原数组信息放到叶子，再一路 `pull`。
 
 ```cpp
-void build (int u, int l, int r) {
+void build(int u, int l, int r) {
     if (l == r) {
         tree[u] = a[l];
         return;
     }
     int mid = (l + r) / 2;
-    build (u * 2, l, mid);
-    build (u * 2 + 1, mid + 1, r);
-    pull (u);
+    build(u * 2, l, mid);
+    build(u * 2 + 1, mid + 1, r);
+    pull(u);
 }
 ```
 
 调用：
 
 ```cpp
-build (1, 1, n);
+build(1, 1, n);
 ```
 
 ## 单点修改
@@ -320,18 +320,18 @@ build (1, 1, n);
 把位置 `pos` 改成 `val`：
 
 ```cpp
-void update (int u, int l, int r, int pos, ll val) {
+void update(int u, int l, int r, int pos, ll val) {
     if (l == r) {
         tree[u] = val;
         return;
     }
     int mid = (l + r) / 2;
     if (pos <= mid) {
-        update (u * 2, l, mid, pos, val);
+        update(u * 2, l, mid, pos, val);
     } else {
-        update (u * 2 + 1, mid + 1, r, pos, val);
+        update(u * 2 + 1, mid + 1, r, pos, val);
     }
-    pull (u);
+    pull(u);
 }
 ```
 
@@ -346,17 +346,17 @@ tree[u] += val;
 查询 `[ql, qr]` 的区间和：
 
 ```cpp
-ll query (int u, int l, int r, int ql, int qr) {
+ll query(int u, int l, int r, int ql, int qr) {
     if (ql <= l && r <= qr) {
         return tree[u];
     }
     int mid = (l + r) / 2;
     ll res = 0;
     if (ql <= mid) {
-        res += query (u * 2, l, mid, ql, qr);
+        res += query(u * 2, l, mid, ql, qr);
     }
     if (qr > mid) {
-        res += query (u * 2 + 1, mid + 1, r, ql, qr);
+        res += query(u * 2 + 1, mid + 1, r, ql, qr);
     }
     return res;
 }
@@ -384,69 +384,69 @@ int n, q;
 ll a[MAXN];
 ll tree[4 * MAXN];
 
-void pull (int u) {
+void pull(int u) {
     tree[u] = tree[u * 2] + tree[u * 2 + 1];
 }
 
-void build (int u, int l, int r) {
+void build(int u, int l, int r) {
     if (l == r) {
         tree[u] = a[l];
         return;
     }
     int mid = (l + r) / 2;
-    build (u * 2, l, mid);
-    build (u * 2 + 1, mid + 1, r);
-    pull (u);
+    build(u * 2, l, mid);
+    build(u * 2 + 1, mid + 1, r);
+    pull(u);
 }
 
-void update (int u, int l, int r, int pos, ll val) {
+void update(int u, int l, int r, int pos, ll val) {
     if (l == r) {
         tree[u] += val;
         return;
     }
     int mid = (l + r) / 2;
     if (pos <= mid) {
-        update (u * 2, l, mid, pos, val);
+        update(u * 2, l, mid, pos, val);
     } else {
-        update (u * 2 + 1, mid + 1, r, pos, val);
+        update(u * 2 + 1, mid + 1, r, pos, val);
     }
-    pull (u);
+    pull(u);
 }
 
-ll query (int u, int l, int r, int ql, int qr) {
+ll query(int u, int l, int r, int ql, int qr) {
     if (ql <= l && r <= qr) {
         return tree[u];
     }
     int mid = (l + r) / 2;
     ll res = 0;
     if (ql <= mid) {
-        res += query (u * 2, l, mid, ql, qr);
+        res += query(u * 2, l, mid, ql, qr);
     }
     if (qr > mid) {
-        res += query (u * 2 + 1, mid + 1, r, ql, qr);
+        res += query(u * 2 + 1, mid + 1, r, ql, qr);
     }
     return res;
 }
 
-int main () {
-    scanf ("%d%d", &n, &q);
+int main() {
+    scanf("%d%d", &n, &q);
     for (int i = 1; i <= n; i++) {
-        scanf ("%lld", &a[i]);
+        scanf("%lld", &a[i]);
     }
-    build (1, 1, n);
+    build(1, 1, n);
 
     while (q--) {
         int op;
-        scanf ("%d", &op);
+        scanf("%d", &op);
         if (op == 1) {
             int pos;
             ll val;
-            scanf ("%d%lld", &pos, &val);
-            update (1, 1, n, pos, val);
+            scanf("%d%lld", &pos, &val);
+            update(1, 1, n, pos, val);
         } else {
             int l, r;
-            scanf ("%d%d", &l, &r);
-            printf ("%lld\n", query (1, 1, n, l, r));
+            scanf("%d%d", &l, &r);
+            printf("%lld\n", query(1, 1, n, l, r));
         }
     }
     return 0;
@@ -493,7 +493,7 @@ pair<bool, ll> lazy[4 * MAXN];
 对节点 `[l, r]` 整体加 `val`：
 
 ```cpp
-void apply (int u, int l, int r, ll val) {
+void apply(int u, int l, int r, ll val) {
     tree[u] += val * (r - l + 1);
     lazy[u].first = true;
     lazy[u].second += val;
@@ -503,13 +503,13 @@ void apply (int u, int l, int r, ll val) {
 下传懒标记：
 
 ```cpp
-void push (int u, int l, int r) {
+void push(int u, int l, int r) {
     if (!lazy[u].first) {
         return;
     }
     int mid = (l + r) / 2;
-    apply (u * 2, l, mid, lazy[u].second);
-    apply (u * 2 + 1, mid + 1, r, lazy[u].second);
+    apply(u * 2, l, mid, lazy[u].second);
+    apply(u * 2 + 1, mid + 1, r, lazy[u].second);
     lazy[u] = {false, 0};
 }
 ```
@@ -517,38 +517,38 @@ void push (int u, int l, int r) {
 区间加：
 
 ```cpp
-void update (int u, int l, int r, int ql, int qr, ll val) {
+void update(int u, int l, int r, int ql, int qr, ll val) {
     if (ql <= l && r <= qr) {
-        apply (u, l, r, val);
+        apply(u, l, r, val);
         return;
     }
-    push (u, l, r);
+    push(u, l, r);
     int mid = (l + r) / 2;
     if (ql <= mid) {
-        update (u * 2, l, mid, ql, qr, val);
+        update(u * 2, l, mid, ql, qr, val);
     }
     if (qr > mid) {
-        update (u * 2 + 1, mid + 1, r, ql, qr, val);
+        update(u * 2 + 1, mid + 1, r, ql, qr, val);
     }
-    pull (u);
+    pull(u);
 }
 ```
 
 带懒标记的区间查询：
 
 ```cpp
-ll query (int u, int l, int r, int ql, int qr) {
+ll query(int u, int l, int r, int ql, int qr) {
     if (ql <= l && r <= qr) {
         return tree[u];
     }
-    push (u, l, r);
+    push(u, l, r);
     int mid = (l + r) / 2;
     ll res = 0;
     if (ql <= mid) {
-        res += query (u * 2, l, mid, ql, qr);
+        res += query(u * 2, l, mid, ql, qr);
     }
     if (qr > mid) {
-        res += query (u * 2 + 1, mid + 1, r, ql, qr);
+        res += query(u * 2 + 1, mid + 1, r, ql, qr);
     }
     return res;
 }
@@ -575,89 +575,89 @@ ll a[MAXN];
 ll tree[4 * MAXN];
 pair<bool, ll> lazy[4 * MAXN];
 
-void pull (int u) {
+void pull(int u) {
     tree[u] = tree[u * 2] + tree[u * 2 + 1];
 }
 
-void apply (int u, int l, int r, ll val) {
+void apply(int u, int l, int r, ll val) {
     tree[u] += val * (r - l + 1);
     lazy[u].first = true;
     lazy[u].second += val;
 }
 
-void push (int u, int l, int r) {
+void push(int u, int l, int r) {
     if (!lazy[u].first) {
         return;
     }
     int mid = (l + r) / 2;
-    apply (u * 2, l, mid, lazy[u].second);
-    apply (u * 2 + 1, mid + 1, r, lazy[u].second);
+    apply(u * 2, l, mid, lazy[u].second);
+    apply(u * 2 + 1, mid + 1, r, lazy[u].second);
     lazy[u] = {false, 0};
 }
 
-void build (int u, int l, int r) {
+void build(int u, int l, int r) {
     lazy[u] = {false, 0};
     if (l == r) {
         tree[u] = a[l];
         return;
     }
     int mid = (l + r) / 2;
-    build (u * 2, l, mid);
-    build (u * 2 + 1, mid + 1, r);
-    pull (u);
+    build(u * 2, l, mid);
+    build(u * 2 + 1, mid + 1, r);
+    pull(u);
 }
 
-void update (int u, int l, int r, int ql, int qr, ll val) {
+void update(int u, int l, int r, int ql, int qr, ll val) {
     if (ql <= l && r <= qr) {
-        apply (u, l, r, val);
+        apply(u, l, r, val);
         return;
     }
-    push (u, l, r);
+    push(u, l, r);
     int mid = (l + r) / 2;
     if (ql <= mid) {
-        update (u * 2, l, mid, ql, qr, val);
+        update(u * 2, l, mid, ql, qr, val);
     }
     if (qr > mid) {
-        update (u * 2 + 1, mid + 1, r, ql, qr, val);
+        update(u * 2 + 1, mid + 1, r, ql, qr, val);
     }
-    pull (u);
+    pull(u);
 }
 
-ll query (int u, int l, int r, int ql, int qr) {
+ll query(int u, int l, int r, int ql, int qr) {
     if (ql <= l && r <= qr) {
         return tree[u];
     }
-    push (u, l, r);
+    push(u, l, r);
     int mid = (l + r) / 2;
     ll res = 0;
     if (ql <= mid) {
-        res += query (u * 2, l, mid, ql, qr);
+        res += query(u * 2, l, mid, ql, qr);
     }
     if (qr > mid) {
-        res += query (u * 2 + 1, mid + 1, r, ql, qr);
+        res += query(u * 2 + 1, mid + 1, r, ql, qr);
     }
     return res;
 }
 
-int main () {
-    scanf ("%d%d", &n, &q);
+int main() {
+    scanf("%d%d", &n, &q);
     for (int i = 1; i <= n; i++) {
-        scanf ("%lld", &a[i]);
+        scanf("%lld", &a[i]);
     }
-    build (1, 1, n);
+    build(1, 1, n);
 
     while (q--) {
         int op;
-        scanf ("%d", &op);
+        scanf("%d", &op);
         if (op == 1) {
             int l, r;
             ll val;
-            scanf ("%d%d%lld", &l, &r, &val);
-            update (1, 1, n, l, r, val);
+            scanf("%d%d%lld", &l, &r, &val);
+            update(1, 1, n, l, r, val);
         } else {
             int l, r;
-            scanf ("%d%d", &l, &r);
-            printf ("%lld\n", query (1, 1, n, l, r));
+            scanf("%d%d", &l, &r);
+            printf("%lld\n", query(1, 1, n, l, r));
         }
     }
     return 0;

@@ -75,7 +75,7 @@ weight[from][to] = edge_weight;
 这里用 `INF` 表示没有边，因为边权 $0$ 可能是合法值。无向带权边仍要填写两个对称格子。存在重边时，一个格子不能同时保留多条边；如果题目只关心最小边权，可以写成：
 
 ```cpp
-weight[from][to] = min (weight[from][to], edge_weight);
+weight[from][to] = min(weight[from][to], edge_weight);
 ```
 
 布尔矩阵命名为 `connected`，带权矩阵命名为 `weight`，都比含义不明确的二维 `graph` 更容易阅读。

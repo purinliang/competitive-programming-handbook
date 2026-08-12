@@ -69,13 +69,13 @@ $$
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve () {
+void solve() {
     double x = 0.1 + 0.2;
-    cout << fixed << setprecision (17) << x << '\n';
+    cout << fixed << setprecision(17) << x << '\n';
 }
 
-int main () {
-    solve ();
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -116,17 +116,17 @@ float single = 1.0e3f; // 末尾的 f 表示 float
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve () {
+void solve() {
     double x = 12345.6789;
 
     cout << defaultfloat << x << '\n';
     cout << scientific << x << '\n';
-    cout << fixed << setprecision (2) << x << '\n';
-    cout << scientific << setprecision (3) << x << '\n';
+    cout << fixed << setprecision(2) << x << '\n';
+    cout << scientific << setprecision(3) << x << '\n';
 }
 
-int main () {
-    solve ();
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -143,7 +143,7 @@ int main () {
 `fixed`、`scientific` 和 `setprecision` 的设置会继续影响后面的输出，直到再次修改。竞赛题要求输出固定小数位数时，最常见的写法是：
 
 ```cpp
-cout << fixed << setprecision (2) << answer << '\n';
+cout << fixed << setprecision(2) << answer << '\n';
 ```
 
 这里的 `2` 表示保留两位小数；输出时会按照当前舍入规则得到最接近的显示结果。
