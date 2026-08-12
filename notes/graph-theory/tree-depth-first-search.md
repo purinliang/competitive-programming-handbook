@@ -1,7 +1,7 @@
 # 树的深度优先搜索
 
 > 状态：草稿
-> 直接前置：[0132 函数：递归（正文待写）](../CATALOG.md#01-c-基础)、[0433 树与有根树](trees-and-rooted-trees.md)、[0439 图的存储：vector 邻接表](vector-adjacency-list.md)
+> 直接前置：[0132 函数：递归（正文待写）](../CATALOG.md#01-c-基础)、[0433 树与有根树](trees-and-rooted-trees.md)、[0439 图的存储：邻接表（vector 实现）](vector-adjacency-list.md)
 
 一棵树通常只以无向边给出。为了处理每个节点，我们需要从一个节点出发，沿边访问整棵树。深度优先搜索（depth-first search，DFS）的选择是：走到一个节点后，先把它的一棵子树完整处理完，再回头处理下一棵子树。
 

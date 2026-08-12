@@ -1,7 +1,7 @@
 # 树的广度优先搜索
 
 > 状态：草稿
-> 直接前置：[0143 容器适配器：queue（正文待写）](../CATALOG.md#01-c-基础)、[0433 树与有根树](trees-and-rooted-trees.md)、[0439 图的存储：vector 邻接表](vector-adjacency-list.md)
+> 直接前置：[0143 容器适配器：queue（正文待写）](../CATALOG.md#01-c-基础)、[0433 树与有根树](trees-and-rooted-trees.md)、[0439 图的存储：邻接表（vector 实现）](vector-adjacency-list.md)
 
 深度优先搜索会沿一条分支不断深入。另一种自然的遍历方式是先访问离根最近的节点，再逐层向外扩展。这种方法称为广度优先搜索（breadth-first search，BFS）。
 

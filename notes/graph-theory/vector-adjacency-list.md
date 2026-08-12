@@ -1,4 +1,4 @@
-# 图的存储：vector 邻接表
+# 图的存储：邻接表（vector 实现）
 
 > 状态：草稿
 > 直接前置：[0138 序列容器：vector（正文待写）](../CATALOG.md#01-c-基础)、[0402 图的存储：基础概念](graph-representation.md)

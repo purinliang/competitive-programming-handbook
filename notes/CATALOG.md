@@ -173,7 +173,7 @@
 | 0436 | 图的深度优先搜索 | 草稿 | 0434,0439 | [graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
 | 0437 | 图的广度优先搜索 | 草稿 | 0435,0439 | [graph-breadth-first-search.md](graph-theory/graph-breadth-first-search.md) |
 | 0438 | 哈密顿路径、哈密顿回路与哈密顿图 | 计划 | 0201,0431,0436 | `graph-theory/hamiltonian-paths-and-circuits.md` |
-| 0439 | 图的存储：vector 邻接表 | 草稿 | 0138,0402 | [vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
+| 0439 | 图的存储：邻接表（vector 实现） | 草稿 | 0138,0402 | [vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
 | 0440 | 图的存储：链式前向星 | 草稿 | 0118,0402 | [chained-forward-star.md](graph-theory/chained-forward-star.md) |
 | 0441 | 图的存储：边集 | 草稿 | 0138,0402 | [edge-list.md](graph-theory/edge-list.md) |
 

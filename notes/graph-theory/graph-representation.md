@@ -145,4 +145,4 @@ to 的表加入 from
 
 ## 下一篇
 
-下一篇将把邻接表落实为普通图算法最常用的 [图的存储：vector 邻接表](vector-adjacency-list.md)。
+下一篇将把邻接表落实为普通图算法最常用的 [图的存储：邻接表（vector 实现）](vector-adjacency-list.md)。

@@ -1,7 +1,7 @@
 # 图的广度优先搜索
 
 > 状态：草稿
-> 直接前置：[0435 树的广度优先搜索](tree-breadth-first-search.md)、[0439 图的存储：vector 邻接表](vector-adjacency-list.md)
+> 直接前置：[0435 树的广度优先搜索](tree-breadth-first-search.md)、[0439 图的存储：邻接表（vector 实现）](vector-adjacency-list.md)
 
 树的 BFS 只需跳过父节点。一般图可能有环，同一个点还可能从多条边被发现；图也可能不连通，从一个起点无法到达所有点。一般图 BFS 因此需要访问标记，并且只会处理从起点可达的部分。
 
