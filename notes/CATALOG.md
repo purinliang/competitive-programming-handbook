@@ -203,7 +203,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 0501 | 数论：整除 | 草稿 | [divisibility.md](math/divisibility.md) |
+| 0501 | 数论：整除 | 定稿 | [divisibility.md](math/divisibility.md) |
 | 0502 | 数论：质数 | 草稿 | [prime-numbers.md](math/prime-numbers.md) |
 | 0503 | 数论：扩展欧几里得算法 | 草稿 | [extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
 | 0504 | 模运算与快速幂 | 计划 | `math/0504-modular-arithmetic-fast-power.md` |
