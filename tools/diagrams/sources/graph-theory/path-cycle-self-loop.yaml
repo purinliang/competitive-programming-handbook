@@ -1,0 +1,29 @@
+schema: cp-diagram/v2
+type: graph
+background: white
+directed: false
+layout: balanced
+node-shape: circle
+nodes:
+  - {id: A}
+  - {id: B}
+  - {id: C}
+  - {id: D}
+  - {id: E}
+  - {id: F}
+edges:
+  - {from: A, to: B}
+  - {from: B, to: C}
+  - {from: C, to: A}
+  - {from: C, to: D}
+  - {from: D, to: E}
+  - {from: E, to: F}
+  - {from: E, to: E}
+annotations:
+  - type: path
+    nodes: [A, B, C]
+    closed: true
+    color: red
+  - type: path
+    nodes: [C, D, E, F]
+    color: blue

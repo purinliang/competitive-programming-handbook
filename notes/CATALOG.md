@@ -135,7 +135,7 @@
 
 | ID | 知识点 | 状态 | 直接前置 | 文件 |
 | --- | --- | --- | --- | --- |
-| 0401 | 图：顶点与边 | 草稿 | — | [vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
+| 0401 | 图：点与边 | 草稿 | — | [vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
 | 0402 | 图的存储 | 计划 | 0119,0121,0138,0401 | `graph-theory/graph-representation.md` |
 | 0403 | 倍增 LCA | 草稿 | 0133,0434 | [0403-lca-binary-lifting.md](graph-theory/0403-lca-binary-lifting.md) |
 | 0404 | 连通块与洪水填充 | 计划 | 0436 | `graph-theory/0404-connected-components.md` |
@@ -165,7 +165,7 @@
 | 0428* | 差分约束 | 计划 | 0408 | `graph-theory/0428-difference-constraints.md` |
 | 0429 | 分层图与状态最短路 | 计划 | 0406,0407 | `graph-theory/0429-layered-state-shortest-path.md` |
 | 0430* | 树哈希 | 计划 | 0417,0434 | `graph-theory/0430-tree-hashing.md` |
-| 0431 | 图：路径与环 | 计划 | 0401 | `graph-theory/paths-and-cycles.md` |
+| 0431 | 图：路径与环 | 草稿 | 0401 | [paths-and-cycles.md](graph-theory/paths-and-cycles.md) |
 | 0432 | 图：度数 | 计划 | 0401 | `graph-theory/vertex-degrees.md` |
 | 0433 | 树与有根树 | 计划 | 0401,0431 | `graph-theory/trees-and-rooted-trees.md` |
 | 0434 | 树的深度优先搜索 | 计划 | 0132,0402,0433 | `graph-theory/tree-depth-first-search.md` |
