@@ -29,7 +29,7 @@
 | 0111 | 控制流：条件分支 | 定稿 | [conditional-branches.md](cpp/conditional-branches.md) |
 | 0112 | 控制流：循环 | 待审阅 | [loops.md](cpp/loops.md) |
 | 0113 | 函数：定义与调用 | 定稿 | [function-definition-and-calls.md](cpp/function-definition-and-calls.md) |
-| 0114 | 名称：作用域 | 计划 | `cpp/0114-scope.md` |
+| 0114 | 名称：作用域 | 待审阅 | [scope.md](cpp/scope.md) |
 | 0115 | 输入输出：标准输入 | 定稿 | [standard-input.md](cpp/standard-input.md) |
 | 0116 | 输入输出：标准输出 | 计划 | `cpp/0116-standard-output.md` |
 | 0117 | 输入输出：文件重定向 | 定稿 | [file-redirection.md](cpp/file-redirection.md) |
