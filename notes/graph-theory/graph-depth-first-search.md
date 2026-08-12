@@ -167,3 +167,7 @@ int main() {
 - DFS 树和 DFS 森林分别是什么？
 - 有向图中一次 DFS 的范围为什么由箭头方向决定？
 - 邻接表 DFS 的时间复杂度为什么是 $O(n+m)$？
+
+## 下一篇
+
+下一篇将介绍 [图的广度优先搜索](graph-breadth-first-search.md)。
