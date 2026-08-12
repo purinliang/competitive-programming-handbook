@@ -38,7 +38,7 @@
 | 0120 | 字符串：C 字符串 | 待审阅 | [c-strings.md](cpp/c-strings.md) |
 | 0121 | 复合类型：struct | 定稿 | [struct.md](cpp/struct.md) |
 | 0122 | 复合类型：union | 待审阅 | [union.md](cpp/union.md) |
-| 0123 | 复合类型：enum | 计划 | `cpp/0123-enum.md` |
+| 0123 | 复合类型：enum | 待审阅 | [enum.md](cpp/enum.md) |
 | 0124 | 内存：字节寻址 | 计划 | `cpp/0124-byte-addressing.md` |
 | 0125 | 内存与别名：指针 | 定稿 | [pointers.md](cpp/pointers.md) |
 | 0126 | 内存与别名：引用 | 计划 | `cpp/0126-references.md` |
