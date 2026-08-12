@@ -5,15 +5,15 @@ directed: false
 layout: balanced
 node-shape: circle
 nodes:
-  - {id: A}
-  - {id: B}
-  - {id: C}
-  - {id: D}
-  - {id: E}
+  - {id: 1, value: 5}
+  - {id: 2, value: 2}
+  - {id: 3, value: 8}
+  - {id: 4, value: 4}
+  - {id: 5, value: 6}
 edges:
-  - {from: A, to: B, value: 7}
-  - {from: B, to: C, directed: true}
-  - {from: C, to: D, value: 3}
-  - {from: D, to: A, directed: true}
-  - {from: A, to: E}
-  - {from: E, to: C, directed: true}
+  - {from: 1, to: 2, value: 7}
+  - {from: 2, to: 3, directed: true}
+  - {from: 3, to: 4, value: 3}
+  - {from: 4, to: 1, directed: true}
+  - {from: 1, to: 5}
+  - {from: 5, to: 3, directed: true}
