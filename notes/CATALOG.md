@@ -4,9 +4,9 @@
 
 四位数字 ID 表示核心教程，带 `*` 的 ID 表示独立扩展专题。直接配套某篇基础文章的扩展使用 `e1`、`e2` 等后缀并共享基础编号，例如 `0102e1`；配套扩展不进入核心学习路线，也不占用新的四位编号。`计划`节点尚未创建文件，因此文件列只显示预定路径；`草稿`和`定稿`节点使用可点击链接。正文尚未齐全时不维护前置编号，等实际引用稳定后再统一梳理。
 
-以下现有文件是在新规范建立前形成的遗留草稿，第一次正式修订时必须补齐文章信息块，并从本清单移除对应 ID。
+新规范建立前形成的遗留草稿已经全部完成首次正式修订；下方空标记保留给目录校验脚本。
 
-<!-- legacy-drafts: 0403 -->
+<!-- legacy-drafts: -->
 
 ## 01 C++ 基础
 
@@ -151,7 +151,7 @@
 | --- | --- | --- | --- |
 | 0401 | 图：点与边 | 草稿 | [vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
 | 0402 | 图的存储：基础概念 | 草稿 | [graph-representation.md](graph-theory/graph-representation.md) |
-| 0403 | 树上查询：倍增 LCA | 草稿 | [0403-lca-binary-lifting.md](graph-theory/0403-lca-binary-lifting.md) |
+| 0403 | 树上查询：倍增 LCA | 定稿 | [lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
 | 0404 | 图的遍历：连通块 | 计划 | `graph-theory/0404-connected-components.md` |
 | 0405 | 有向无环图：拓扑排序 | 计划 | `graph-theory/0405-topological-sort.md` |
 | 0406 | 图的遍历：多源 BFS | 计划 | `graph-theory/0406-multi-source-bfs.md` |

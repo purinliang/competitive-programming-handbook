@@ -161,7 +161,7 @@
 | 0509 | 矩阵运算与线性变换 | 数学 | `math/0509-matrix-operations.md` |
 | 0512 | 概率与期望基础 | 数学 | `math/0512-probability-expectation.md` |
 | 0518 | 莫比乌斯函数 | 数学 | `math/0518-mobius-function.md` |
-| 0403 | 树上查询：倍增 LCA | 图论 | [graph-theory/0403-lca-binary-lifting.md](graph-theory/0403-lca-binary-lifting.md) |
+| 0403 | 树上查询：倍增 LCA | 图论 | [graph-theory/lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
 | 0441 | 图的存储：边集 | 图论 | [graph-theory/edge-list.md](graph-theory/edge-list.md) |
 | 0440 | 图的存储：邻接表（链式前向星实现） | 图论 | [graph-theory/chained-forward-star.md](graph-theory/chained-forward-star.md) |
 | 0407 | 最短路：Dijkstra | 图论 | `graph-theory/0407-dijkstra.md` |
