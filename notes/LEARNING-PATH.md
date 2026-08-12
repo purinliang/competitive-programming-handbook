@@ -59,7 +59,7 @@
 | 0137 | 字符串：string | C++ | [cpp/string.md](cpp/string.md) |
 | 0138 | 序列容器：vector | C++ | [cpp/vector.md](cpp/vector.md) |
 | 0140 | STL 算法：排序 | C++ | [cpp/sorting.md](cpp/sorting.md) |
-| 0141 | STL 算法：去重 | C++ | `cpp/0141-stl-deduplication.md` |
+| 0141 | STL 算法：去重 | C++ | [cpp/deduplication.md](cpp/deduplication.md) |
 | 0201 | 时间空间复杂度 | 基础算法 | `algorithm-basics/0201-complexity.md` |
 | 0223 | 数组 | 基础算法 | `algorithm-basics/0223-array.md` |
 | 0224 | 链表 | 基础算法 | `algorithm-basics/0224-linked-list.md` |

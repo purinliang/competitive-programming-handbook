@@ -306,4 +306,4 @@ int main() {
 
 ## 下一篇
 
-下一篇 [STL 算法：去重（正文待写）](../CATALOG.md#01-c-基础) 会利用排序后的相邻关系，使用 `unique` 与 `erase` 删除重复元素。
+下一篇 [STL 算法：去重](deduplication.md) 会利用排序后的相邻关系，使用 `unique` 与 `erase` 删除重复元素。
