@@ -234,8 +234,7 @@
 | 0121e2 | 复合类型：class 与 struct | `cpp/class-and-struct.md` |
 | 0121e3 | 类：继承与多重继承 | `cpp/inheritance-and-multiple-inheritance.md` |
 | 0121e4 | 类：虚函数与运行时多态 | `cpp/virtual-functions-and-runtime-polymorphism.md` |
-| 0129e1 | 链接：static 与内部链接 | `cpp/static-internal-linkage.md` |
-| 0129e2 | 类成员：static | `cpp/static-members.md` |
+| 0129e1 | 类成员：static | `cpp/static-members.md` |
 | 0152* | 预处理：include | [cpp/include.md](cpp/include.md) |
 | 0153* | 名称：命名空间与 std | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
 | 0154* | 修饰符：inline | `cpp/0154-inline.md` |

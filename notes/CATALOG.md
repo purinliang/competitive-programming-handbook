@@ -50,8 +50,7 @@
 | 0127 | 函数：参数传递 | 待审阅 | [parameter-passing.md](cpp/parameter-passing.md) |
 | 0128 | 修饰符：const | 定稿 | [const.md](cpp/const.md) |
 | 0129 | 变量：static 局部变量 | 待审阅 | [static-local-variables.md](cpp/static-local-variables.md) |
-| 0129e1 | 链接：static 与内部链接 | 计划 | `cpp/static-internal-linkage.md` |
-| 0129e2 | 类成员：static | 计划 | `cpp/static-members.md` |
+| 0129e1 | 类成员：static | 计划 | `cpp/static-members.md` |
 | 0130 | 内存：竞赛程序的常见分区 | 计划 | `cpp/0130-competitive-program-memory-layout.md` |
 | 0131 | 函数：调用栈 | 计划 | `cpp/0131-function-call-stack.md` |
 | 0132 | 函数：递归 | 计划 | `cpp/0132-recursion.md` |
