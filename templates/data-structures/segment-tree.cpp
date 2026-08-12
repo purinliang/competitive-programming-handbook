@@ -96,7 +96,7 @@ int main() {
         scanf("%lld", &a[i]);
     }
 
-    SegmentTree segment_tree(n, a);
+    SegmentTree segment(n, a);
 
     while (m--) {
         int op;
@@ -106,9 +106,9 @@ int main() {
         if (op == 1) {
             ll val;
             scanf("%lld", &val);
-            segment_tree.update(l, r, val);
+            segment.update(l, r, val);
         } else {
-            printf("%lld\n", segment_tree.query(l, r));
+            printf("%lld\n", segment.query(l, r));
         }
     }
     return 0;

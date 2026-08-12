@@ -436,7 +436,7 @@ int main() {
         scanf("%lld", &a[i]);
     }
 
-    SegmentTree segment_tree(n, a);
+    SegmentTree segment(n, a);
 
     while (q--) {
         int op;
@@ -445,12 +445,12 @@ int main() {
             int pos;
             ll val;
             scanf("%d%lld", &pos, &val);
-            segment_tree.update(pos, val);
+            segment.update(pos, val);
         } else {
             int l;
             int r;
             scanf("%d%d", &l, &r);
-            printf("%lld\n", segment_tree.query(l, r));
+            printf("%lld\n", segment.query(l, r));
         }
     }
     return 0;
@@ -660,7 +660,7 @@ int main() {
         scanf("%lld", &a[i]);
     }
 
-    SegmentTree segment_tree(n, a);
+    SegmentTree segment(n, a);
 
     while (q--) {
         int op;
@@ -670,12 +670,12 @@ int main() {
             int r;
             ll val;
             scanf("%d%d%lld", &l, &r, &val);
-            segment_tree.update(l, r, val);
+            segment.update(l, r, val);
         } else {
             int l;
             int r;
             scanf("%d%d", &l, &r);
-            printf("%lld\n", segment_tree.query(l, r));
+            printf("%lld\n", segment.query(l, r));
         }
     }
     return 0;

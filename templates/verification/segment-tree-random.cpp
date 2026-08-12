@@ -12,7 +12,7 @@ int main() {
             a[i] = (int)(rng() % 2001) - 1000;
         }
 
-        SegmentTree segment_tree(n, a);
+        SegmentTree segment(n, a);
 
         for (int operation = 1; operation <= 1000; operation++) {
             int l = rng() % n + 1;
@@ -26,14 +26,14 @@ int main() {
                 for (int i = l; i <= r; i++) {
                     a[i] += val;
                 }
-                segment_tree.update(l, r, val);
+                segment.update(l, r, val);
             } else {
                 ll expected = 0;
                 for (int i = l; i <= r; i++) {
                     expected += a[i];
                 }
 
-                if (segment_tree.query(l, r) != expected) {
+                if (segment.query(l, r) != expected) {
                     return 1;
                 }
             }
