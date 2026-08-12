@@ -51,7 +51,7 @@ bool is_prime(long long n) {
 }
 ```
 
-循环条件 `i <= n / i` 与 $i^2\le n$ 等价，但避免了 `i * i` 在 `n` 接近 `long long` 上限时溢出。
+循环条件 `i <= n / i` 与 $i^2\le n$ 等价，但避免了 `i * i` 在 `n` 接近 64 位整数上限时溢出。
 
 ## 完整代码
 
