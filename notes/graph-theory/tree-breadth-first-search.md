@@ -88,7 +88,7 @@ for (int v : g[u]) {
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 200005;
+const int MAXN = 2e5 + 5;
 vector<int> g[MAXN];
 
 int parent[MAXN];

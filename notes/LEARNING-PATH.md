@@ -141,9 +141,9 @@
 | 0310 | 带权并查集 | 数据结构 | `data-structures/0310-weighted-disjoint-set.md` |
 | 0403 | 倍增 LCA | 图论 | [graph-theory/0403-lca-binary-lifting.md](graph-theory/0403-lca-binary-lifting.md) |
 | 0441 | 图的存储：边集 | 图论 | [graph-theory/edge-list.md](graph-theory/edge-list.md) |
-| 0440 | 图的存储：链式前向星 | 图论 | [graph-theory/chained-forward-star.md](graph-theory/chained-forward-star.md) |
-| 0416 | 欧拉路径、欧拉回路与欧拉图 | 图论 | `graph-theory/eulerian-paths-and-circuits.md` |
-| 0438 | 哈密顿路径、哈密顿回路与哈密顿图 | 图论 | `graph-theory/hamiltonian-paths-and-circuits.md` |
+| 0440 | 图的存储：邻接表（链式前向星实现） | 图论 | [graph-theory/chained-forward-star.md](graph-theory/chained-forward-star.md) |
+| 0416 | 欧拉路径、欧拉回路与欧拉图 | 图论 | [graph-theory/eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
+| 0438 | 哈密顿路径、哈密顿回路与哈密顿图 | 图论 | [graph-theory/hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
 | 0417 | 树的直径与中心 | 图论 | `graph-theory/0417-tree-diameter-center.md` |
 | 0418 | DFS 序、子树区间与树上差分 | 图论 | `graph-theory/0418-tree-euler-tour-difference.md` |
 | 0601 | 坐标、点、向量与精度 | 计算几何 | `computational-geometry/0601-points-vectors-precision.md` |

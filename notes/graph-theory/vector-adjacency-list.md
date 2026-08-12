@@ -82,7 +82,7 @@ graph[to].push_back({from, weight});
 无权图的核心写法是：
 
 ```cpp
-const int MAXN = 200005;
+const int MAXN = 2e5 + 5;
 vector<int> g[MAXN];
 
 g[u].push_back(v);  // 有向边 u -> v
@@ -95,7 +95,7 @@ for (int v : g[u]) {
 带权图的核心写法是：
 
 ```cpp
-const int MAXN = 200005;
+const int MAXN = 2e5 + 5;
 vector<pair<int, int>> g[MAXN];
 
 g[u].push_back({v, w});  // 有向边 u -> v，边权为 w
@@ -115,7 +115,7 @@ for (auto& [v, w] : g[u]) {
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 200005;
+const int MAXN = 2e5 + 5;
 vector<pair<int, int>> g[MAXN];
 
 int main() {
@@ -151,7 +151,7 @@ int main() {
 
 DFS、BFS、最短路和绝大多数普通图算法只需快速枚举当前点的出边，`vector` 邻接表代码最短，也最容易修改，因此是本书的默认实现。同一点的邻接项连续保存在同一个 `vector` 中，枚举时通常也有良好的内存局部性。
 
-如果算法要整体扫描或排序全部边，应改用独立的 [图的存储：边集](edge-list.md)。如果算法需要高频访问与当前边配对的反向记录，例如欧拉图和网络流，本书改用 [图的存储：链式前向星](chained-forward-star.md)，让两条记录在全局边数组中连续存放。
+如果算法要整体扫描或排序全部边，应改用独立的 [图的存储：边集](edge-list.md)。如果算法需要高频访问与当前边配对的反向记录，例如欧拉图和网络流，本书改用 [图的存储：邻接表（链式前向星实现）](chained-forward-star.md)，让两条记录在全局边数组中连续存放。
 
 哈密顿路径和哈密顿回路限制的是每个点只出现一次，不需要为一条无向边的两个方向维护“已经共同使用”的状态，因此通常仍然使用 `vector` 邻接表。
 

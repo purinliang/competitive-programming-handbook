@@ -150,7 +150,7 @@
 | 0413 | 强连通分量 | 计划 | 0405,0436 | `graph-theory/0413-strongly-connected-components.md` |
 | 0414 | 割点与桥 | 计划 | 0436 | `graph-theory/0414-articulation-points-bridges.md` |
 | 0415* | 点双、边双与圆方树 | 计划 | 0414 | `graph-theory/0415-biconnected-components-block-cut-tree.md` |
-| 0416 | 欧拉路径、欧拉回路与欧拉图 | 计划 | 0132,0432,0440 | `graph-theory/eulerian-paths-and-circuits.md` |
+| 0416 | 欧拉路径、欧拉回路与欧拉图 | 草稿 | 0138,0431,0432,0440 | [eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
 | 0417 | 树的直径与中心 | 计划 | 0434 | `graph-theory/0417-tree-diameter-center.md` |
 | 0418 | DFS 序、子树区间与树上差分 | 计划 | 0207,0434 | `graph-theory/0418-tree-euler-tour-difference.md` |
 | 0419 | 树链剖分 | 计划 | 0304,0403,0418 | `graph-theory/0419-heavy-light-decomposition.md` |
@@ -172,9 +172,10 @@
 | 0435 | 树的广度优先搜索 | 草稿 | 0143,0433,0439 | [tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
 | 0436 | 图的深度优先搜索 | 草稿 | 0434,0439 | [graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
 | 0437 | 图的广度优先搜索 | 草稿 | 0435,0439 | [graph-breadth-first-search.md](graph-theory/graph-breadth-first-search.md) |
-| 0438 | 哈密顿路径、哈密顿回路与哈密顿图 | 计划 | 0201,0431,0436 | `graph-theory/hamiltonian-paths-and-circuits.md` |
+| 0438 | 哈密顿路径、哈密顿回路与哈密顿图 | 草稿 | 0431 | [hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
+| 0438e1 | 哈密顿问题：小规模回溯 | 草稿 | 0210,0436,0438 | [hamiltonian-backtracking.md](graph-theory/hamiltonian-backtracking.md) |
 | 0439 | 图的存储：邻接表（vector 实现） | 草稿 | 0138,0402 | [vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
-| 0440 | 图的存储：链式前向星 | 草稿 | 0118,0402 | [chained-forward-star.md](graph-theory/chained-forward-star.md) |
+| 0440 | 图的存储：邻接表（链式前向星实现） | 草稿 | 0118,0402 | [chained-forward-star.md](graph-theory/chained-forward-star.md) |
 | 0441 | 图的存储：边集 | 草稿 | 0138,0402 | [edge-list.md](graph-theory/edge-list.md) |
 
 ## 05 数学

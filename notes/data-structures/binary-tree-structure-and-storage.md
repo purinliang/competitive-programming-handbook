@@ -44,7 +44,7 @@
 节点编号是 `1, 2, ..., n` 时，可以直接用数组保存表中的每一列：
 
 ```cpp
-const int MAXN = 200005;
+const int MAXN = 2e5 + 5;
 
 int value[MAXN];
 int left_child[MAXN];
@@ -101,7 +101,7 @@ Node root = {8, nullptr, nullptr};
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 200005;
+const int MAXN = 2e5 + 5;
 
 int value[MAXN];
 int left_child[MAXN];

@@ -164,4 +164,4 @@ int main() {
 
 ## 下一篇
 
-下一篇将介绍邻接表的另一种数组实现：[图的存储：链式前向星](chained-forward-star.md)。
+下一篇将介绍邻接表的另一种数组实现：[图的存储：邻接表（链式前向星实现）](chained-forward-star.md)。

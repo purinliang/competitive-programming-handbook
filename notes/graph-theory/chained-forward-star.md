@@ -1,4 +1,4 @@
-# 图的存储：链式前向星
+# 图的存储：邻接表（链式前向星实现）
 
 > 状态：草稿
 > 直接前置：[0118 数组：一维数组](../cpp/0118-one-dimensional-arrays.md)、[0402 图的存储：基础概念](graph-representation.md)
@@ -175,8 +175,8 @@ add_edge(v, u, 0);
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 200005;
-const int MAXM = 400005;
+const int MAXN = 2e5 + 5;
+const int MAXM = 2 * MAXN;
 
 struct Edge {
     int v;
