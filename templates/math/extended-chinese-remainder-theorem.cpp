@@ -7,23 +7,19 @@ using namespace std;
 
 typedef long long ll;
 
-ll exgcd(ll a, ll b, ll& x, ll& y) {
+tuple<ll, ll, ll> exgcd(ll a, ll b) {
     if (b == 0) {
-        x = 1;
-        y = 0;
-        return a;
+        return {a, 1, 0};
     }
 
-    ll x1, y1;
-    ll g = exgcd(b, a % b, x1, y1);
-    x = y1;
-    y = x1 - a / b * y1;
-    return g;
+    auto [g, x1, y1] = exgcd(b, a % b);
+    ll x = y1;
+    ll y = x1 - a / b * y1;
+    return {g, x, y};
 }
 
 pair<ll, ll> merge_congruence(ll a1, ll m1, ll a2, ll m2) {
-    ll s, y;
-    ll g = exgcd(m1, m2, s, y);
+    auto [g, s, y] = exgcd(m1, m2);
     ll c = a2 - a1;
     if (c % g != 0) {
         return {-1, -1};
