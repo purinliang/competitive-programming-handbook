@@ -1,6 +1,6 @@
 # 树状数组：基础
 
-> 最近修订：2026-08-13 02:52 +10:00（未审阅）
+> 最近修订：2026-08-13 02:57 +10:00（未审阅）
 
 树状数组（Fenwick Tree，Binary Indexed Tree，BIT）用一个数组维护前缀信息。它最经典的用途是：
 
@@ -23,7 +23,7 @@
 
 本文和线段树统一把内部存储数组写成 `tree`：数组名表达它在数据结构中的职责，`prefix_sum`、`range_sum` 表达查询的聚合信息。
 
-树状数组有自己的规模、存储和一组共同维护这些状态的操作，所以完整模板使用 `struct FenwickTree` 封装。内部 `vector` 按实际规模分配 `n + 1` 个元素，位置 `1..n` 保存数据，第 `0` 格有意留空。这样既保持 `lowbit` 的自然公式，也不会让 `n`、`tree`、`add` 等名称污染全局命名空间。
+树状数组有自己的规模、存储和一组共同维护这些状态的操作，所以完整模板使用 `struct FenwickTree` 封装。内部 `vector` 按实际规模分配 `n + 5` 个元素，位置 `1..n` 保存数据，第 `0` 格有意留空，末尾 4 格是与其他动态数据结构一致的边界余量。这样既保持 `lowbit` 的自然公式，也不会让 `n`、`tree`、`add` 等名称污染全局命名空间。
 
 ## 从前缀和的问题出发
 
@@ -217,7 +217,7 @@ struct FenwickTree {
     int n;
     vector<ll> tree;
 
-    FenwickTree(int n) : n(n), tree(n + 1) {}
+    FenwickTree(int n) : n(n), tree(n + 5) {}
 
     int lowbit(int x) const {
         return x & -x;

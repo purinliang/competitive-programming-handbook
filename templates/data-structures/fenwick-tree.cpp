@@ -10,7 +10,7 @@ struct FenwickTree {
     int n;
     vector<ll> tree;
 
-    FenwickTree(int n) : n(n), tree(n + 1) {}
+    FenwickTree(int n) : n(n), tree(n + 5) {}
 
     int lowbit(int x) const {
         return x & -x;
