@@ -1,6 +1,6 @@
 # 基本类型：整数
 
-> 状态：草稿
+> 状态：定稿
 
 上一篇 [入门：A+B Problem](a-plus-b-problem.md) 第一次使用了 `int`。它是竞赛中最常用的整数类型，也是理解其他整数类型的起点。
 
@@ -252,7 +252,7 @@ C++ 还提供 `short` 和 `long`，但它们在不同平台上的位宽并不完
 
 - `bool` 只表示 `false` 和 `true`。它没有 `signed bool`、`unsigned bool`、`short bool` 或 `long bool`。
 - `char` 主要保存字符，但底层仍使用整数值。它恰好占 1 字节；这个字节有多少位由 `CHAR_BIT` 决定。主流竞赛环境的 `CHAR_BIT` 为 8，所以 `char` 占 8 位。
-- `char`、`signed char` 和 `unsigned char` 是三个不同的类型。单独写 `char` 时，它是否能够表示负数由编译器和目标平台决定。当前常见的 x86-64 + GCC 环境默认把 `char` 视为有符号类型，但程序不能跨平台依赖这一点；需要明确行为时直接写 `signed char` 或 `unsigned char`。
+- `char`、`signed char` 和 `unsigned char` 是三个不同的类型。单独写 `char` 时，它是否能够表示负数由编译器和目标平台决定；程序不能依赖某一种默认结果。需要明确行为时直接写 `signed char` 或 `unsigned char`。
 
 后续的“基本类型：布尔”和“基本类型：字符”会分别解释它们的具体行为；当前只需知道它们属于整数家族，却不应该当作普通 `int` 的缩小版使用。
 

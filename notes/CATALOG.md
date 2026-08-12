@@ -13,7 +13,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 0101 | 入门：Hello World! | 定稿 | [hello-world.md](cpp/hello-world.md) |
-| 0102 | 基本类型：整数 | 草稿 | [integer-types.md](cpp/integer-types.md) |
+| 0102 | 基本类型：整数 | 定稿 | [integer-types.md](cpp/integer-types.md) |
 | 0102e1 | 基础：位、字节与存储单位 | 草稿 | [bits-bytes-and-storage-units.md](cpp/bits-bytes-and-storage-units.md) |
 | 0102e2 | 基本类型：整数的二进制表示 | 草稿 | [signed-integer-representations.md](cpp/signed-integer-representations.md) |
 | 0102e3 | 基本类型：整数的位宽与平台差异 | 草稿 | [integer-type-widths.md](cpp/integer-type-widths.md) |
