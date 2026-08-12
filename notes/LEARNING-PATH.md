@@ -16,7 +16,7 @@
 | 0105 | 基本类型：布尔 | C++ | [cpp/boolean-type.md](cpp/boolean-type.md) |
 | 0106 | 变量：声明与初始化 | C++ | [cpp/variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
 | 0107 | 表达式：算术运算符 | C++ | [cpp/arithmetic-operators.md](cpp/arithmetic-operators.md) |
-| 0108 | 表达式：比较运算符 | C++ | `cpp/0108-comparison-operators.md` |
+| 0108 | 表达式：比较运算符 | C++ | [cpp/comparison-operators.md](cpp/comparison-operators.md) |
 | 0109 | 表达式：逻辑运算符 | C++ | `cpp/0109-logical-operators.md` |
 | 0110 | 表达式：类型转换 | C++ | `cpp/0110-type-conversions.md` |
 | 0133 | 表达式：位运算符 | C++ | `cpp/0133-bitwise-operators.md` |
