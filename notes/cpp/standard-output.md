@@ -1,6 +1,6 @@
 # 输入输出：标准输出
 
-> 最近修订：2026-08-13 02:16 +10:00（未审阅）
+> 最近修订：2026-08-13 02:26 +10:00（未审阅）
 
 程序计算出答案后，需要按照题目规定的文本格式交给评测系统。C++ 将程序通常写出结果的目标称为**标准输出**。
 
@@ -244,7 +244,7 @@ int main() {
     int count;
     scanf("%d%d", &sum, &count);
 
-    double average = static_cast<double>(sum) / count;
+    double average = 1.0 * sum / count;
 
     printf("%d\n", sum);
     printf("%.2f\n", average);

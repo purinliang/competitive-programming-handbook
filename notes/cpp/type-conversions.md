@@ -1,6 +1,6 @@
 # 表达式：类型转换
 
-> 最近修订：2026-08-13 02:05 +10:00（未审阅）
+> 最近修订：2026-08-13 02:26 +10:00（未审阅）
 
 C++ 允许不同类型的值共同参与程序。例如，用整数总分除以人数得到小数平均分，把字符转换成编号，或者把计算结果保存进另一种类型的变量。它们背后都需要同一件事：把一个类型的值转换成另一个类型。
 
@@ -70,21 +70,13 @@ double wrong_average = a / b;
 
 程序先算出整数 `2`，随后才把它转换成 `double`，所以 `wrong_average` 是 `2.0`，丢失的小数部分不会回来。
 
-要执行浮点除法，必须在除法发生之前让至少一个操作数成为浮点数：
-
-```cpp
-double correct_average = static_cast<double>(a) / b;
-```
-
-左操作数先转换成 `double`。为了让两个操作数采用共同类型，`b` 也会隐式转换成 `double`，然后计算得到 `2.5`。
-
-也可以使用浮点字面量参与运算：
+要执行浮点除法，必须在除法发生之前让至少一个操作数成为浮点数。竞赛代码最常用浮点字面量 `1.0` 引入这次转换：
 
 ```cpp
 double correct_average = 1.0 * a / b;
 ```
 
-这在竞赛代码中很常见，但 `static_cast<double>(a)` 更明确地写出了真正目的：从这里开始进行浮点计算。
+`1.0` 是 `double`，所以乘法先把 `a` 转换成 `double`，得到的乘积也是 `double`。它再与 `b` 相除时，`b` 也会转换成 `double`，最终得到 `2.5`。
 
 ## 混合算术的共同类型
 
@@ -137,29 +129,23 @@ if (count != 0) {
 
 ## 显式转换
 
-C++ 的 `static_cast<目标类型>(值)` 可以明确要求一次常规类型转换：
+需要明确指定目标类型时，竞赛代码常把目标类型写在值前面的圆括号中：
 
 ```cpp
-double x = static_cast<double>(a);
-int y = static_cast<int>(3.9);
-int code = static_cast<int>('A');
+double x = (double)a;
+int y = (int)3.9;
+int code = (int)'A';
 ```
 
-尖括号中是目标类型，圆括号中是需要转换的值。上面三行分别得到浮点数 `a`、整数 `3` 和字符 `'A'` 的编号。
+上面三行分别得到浮点数 `a`、整数 `3` 和字符 `'A'` 的编号。这种写法表示“程序员有意在这里改变类型”，不要在没有必要时到处添加。
 
-`static_cast` 最重要的用途不是让代码变长，而是标出“这里有意改变类型”。它尤其适合在整数除法之前引入浮点操作数：
-
-```cpp
-double average = static_cast<double>(sum) / count;
-```
-
-有些代码会写成 C 风格转换：
+整数除法也可以这样提前转换一个操作数：
 
 ```cpp
 double average = (double)sum / count;
 ```
 
-这种写法在竞赛代码中可以见到，但本书统一使用 `static_cast<double>(sum)`。它更容易搜索，也更明确地区分类型与普通圆括号。
+不过只为了进入浮点运算时，本书优先使用更常见也更直观的 `1.0 * sum / count`。
 
 ## 窄化会丢失信息
 
@@ -173,7 +159,7 @@ double average = (double)sum / count;
 
 ```cpp
 double distance = 12.8;
-int whole_distance = static_cast<int>(distance);
+int whole_distance = (int)distance;
 ```
 
 `whole_distance` 是 `12`。如果题目要的是向上取整到 `13`，这次转换就不是正确算法。
@@ -184,7 +170,7 @@ int whole_distance = static_cast<int>(distance);
 int x{3.9};
 ```
 
-这段代码无法通过编译。初学阶段若希望编译器帮助发现意外精度损失，可以优先使用花括号初始化；若确实要截去小数，则用 `static_cast<int>` 明确表达。
+这段代码无法通过编译。初学阶段若希望编译器帮助发现意外精度损失，可以优先使用花括号初始化；若确实要截去小数，则用 `(int)distance` 明确表达。
 
 ## 有符号与无符号混合
 
@@ -206,7 +192,7 @@ bool smaller = a < b;
 
 输入整数总分 `sum` 和正整数人数 `count`，输出平均分，保留两位小数。
 
-若直接计算 `sum / count`，小数部分会在赋值给 `double` 之前丢失。因此先把 `sum` 显式转换成 `double`：
+若直接计算 `sum / count`，小数部分会在赋值给 `double` 之前丢失。因此先让浮点字面量 `1.0` 参与计算：
 
 ```cpp
 #include <bits/stdc++.h>
@@ -217,7 +203,7 @@ int main() {
     int count;
     cin >> sum >> count;
 
-    double average = static_cast<double>(sum) / count;
+    double average = 1.0 * sum / count;
     cout << fixed << setprecision(2) << average << '\n';
     return 0;
 }
@@ -247,7 +233,7 @@ double average = sum / count;
 
 ### 在整数除法之后才转换
 
-`static_cast<double>(a / b)` 会先执行整数除法，再转换已经截断的结果。应把转换放到一个操作数上：`static_cast<double>(a) / b`。
+`(double)(a / b)` 会先执行整数除法，再转换已经截断的结果。应让浮点数在除法前参与运算，例如 `1.0 * a / b`。
 
 ### 把浮点转整数当成四舍五入
 
@@ -266,7 +252,7 @@ double average = sum / count;
 1. 隐式转换与显式转换分别由谁发起？
 2. `double x = 5 / 2;` 中，除法按整数还是浮点数计算？最终 `x` 是多少？
 3. 怎样在除法发生之前把一个操作数转换成 `double`？
-4. `static_cast<int>(3.9)` 和 `static_cast<int>(-3.9)` 分别得到什么？这是四舍五入吗？
+4. `(int)3.9` 和 `(int)-3.9` 分别得到什么？这是四舍五入吗？
 5. `char` 和 `short` 参与普通整数算术时通常先提升成什么类型？
 6. 整数 `0` 和非零整数转换成 `bool` 时分别得到什么？
 7. 什么是窄化转换？花括号初始化怎样帮助发现它？
