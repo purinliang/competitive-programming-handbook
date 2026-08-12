@@ -136,7 +136,7 @@
 | ID | 知识点 | 状态 | 直接前置 | 文件 |
 | --- | --- | --- | --- | --- |
 | 0401 | 图：点与边 | 草稿 | — | [vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
-| 0402 | 图的存储 | 计划 | 0119,0121,0138,0401 | `graph-theory/graph-representation.md` |
+| 0402 | 图的存储 | 草稿 | 0119,0121,0138,0401 | [graph-representation.md](graph-theory/graph-representation.md) |
 | 0403 | 倍增 LCA | 草稿 | 0133,0434 | [0403-lca-binary-lifting.md](graph-theory/0403-lca-binary-lifting.md) |
 | 0404 | 连通块与洪水填充 | 计划 | 0436 | `graph-theory/0404-connected-components.md` |
 | 0405 | 拓扑排序 | 计划 | 0143,0402,0432 | `graph-theory/0405-topological-sort.md` |
