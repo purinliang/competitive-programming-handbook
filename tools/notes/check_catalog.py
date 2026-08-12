@@ -14,7 +14,7 @@ NOTES = ROOT / "notes"
 CATALOG = NOTES / "CATALOG.md"
 LEARNING_PATH = NOTES / "LEARNING-PATH.md"
 
-ALLOWED_STATUSES = {"计划", "草稿", "定稿"}
+ALLOWED_STATUSES = {"计划", "待审阅", "已审阅", "草稿", "定稿"}
 MODULE_PREFIXES = {
     "cpp": "01",
     "algorithm-basics": "02",
@@ -41,6 +41,7 @@ CODE_PATH = re.compile(r"^`([^`]+)`$")
 LEGACY_DRAFTS = re.compile(r"<!--\s*legacy-drafts:\s*([^>]*)-->")
 ARTICLE_FILENAME = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*\.md$")
 FORBIDDEN_LATEX_MACROS = {"operatorname"}
+DATETIME_PATTERN = r"\d{4}-\d{2}-\d{2} \d{2}:\d{2} [+-]\d{2}:\d{2}"
 
 
 @dataclass(frozen=True)
@@ -253,7 +254,7 @@ class Checker:
             if entry.status == "计划" and entry.linked:
                 self.error(f"{location}: planned article must use a code path")
             if entry.status != "计划" and not entry.linked:
-                self.error(f"{location}: draft/frozen article must use a Markdown link")
+                self.error(f"{location}: article with a body must use a Markdown link")
         unknown_legacy = sorted(legacy - entries.keys())
         if unknown_legacy:
             self.error(
@@ -423,7 +424,9 @@ class Checker:
     def check_article_metadata(self, path: Path, text: str, entry: Entry) -> None:
         display = path.relative_to(ROOT).as_posix()
         title = re.search(r"^# (.+?)\s*$", text, re.MULTILINE)
-        status = re.search(r"^> 状态：(草稿|定稿)\s*$", text, re.MULTILINE)
+        status = re.search(
+            r"^> 状态：(待审阅|已审阅|草稿|定稿)\s*$", text, re.MULTILINE
+        )
         if not title or title.group(1) != entry.title:
             self.error(f"{display}: article title differs from catalog")
         if not status:
@@ -431,6 +434,29 @@ class Checker:
             return
         if status.group(1) != entry.status:
             self.error(f"{display}: article status differs from catalog")
+        if status.group(1) in {"待审阅", "已审阅"}:
+            self.check_article_dates(path, text, status.group(1))
+
+    def check_article_dates(self, path: Path, text: str, status: str) -> None:
+        display = path.relative_to(ROOT).as_posix()
+        first_draft = re.search(r"^> 初稿：(.*?)\s*$", text, re.MULTILINE)
+        revised = re.search(r"^> 最近修订：(.*?)\s*$", text, re.MULTILINE)
+        reviewed = re.search(r"^> 最近审阅：(.*?)\s*$", text, re.MULTILINE)
+
+        if first_draft and not re.fullmatch(DATETIME_PATTERN, first_draft.group(1)):
+            self.error(f"{display}: invalid first-draft datetime")
+        if not revised or not re.fullmatch(DATETIME_PATTERN, revised.group(1)):
+            self.error(f"{display}: missing or invalid revision datetime")
+        if not reviewed:
+            self.error(f"{display}: missing review datetime")
+            return
+        review_value = reviewed.group(1)
+        if status == "已审阅" and not re.fullmatch(DATETIME_PATTERN, review_value):
+            self.error(f"{display}: reviewed article needs a valid review datetime")
+        if status == "待审阅" and review_value != "未审阅" and not re.fullmatch(
+            DATETIME_PATTERN, review_value
+        ):
+            self.error(f"{display}: invalid review datetime")
 
     def check_local_links(self, path: Path, text: str) -> None:
         display = path.relative_to(ROOT).as_posix()
