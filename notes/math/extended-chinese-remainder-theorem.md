@@ -183,14 +183,13 @@ x = a1 (mod m1)
 x = a2 (mod m2)
 ```
 
-合并，并将结果写回 `a1, m1`。调用前要求 `m1,m2` 为正整数，并且 `a1,a2` 已分别归一化到对应模数范围内。程序假设最终的最小公倍数可以放入 64 位整数；中间乘法使用主流 GNU C++ 竞赛环境提供的 `__int128`。
+合并，并将结果写回 `a1, m1`。调用前要求 `m1,m2` 为正整数，并且 `a1,a2` 已分别归一化到对应模数范围内。程序假设最终的最小公倍数可以放入 64 位整数；中间乘法复用经典 CRT 中的安全模加法与龟速乘，不依赖 `__int128`。
 
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
 typedef long long ll;
-typedef __int128 i128;
 
 ll exgcd(ll a, ll b, ll& x, ll& y) {
     if (b == 0) {
@@ -206,12 +205,33 @@ ll exgcd(ll a, ll b, ll& x, ll& y) {
     return g;
 }
 
-ll mod_norm(i128 x, ll mod) {
-    x %= mod;
+ll normalize(ll x, ll m) {
+    x %= m;
     if (x < 0) {
-        x += mod;
+        x += m;
     }
-    return static_cast<ll>(x);
+    return x;
+}
+
+ll add_mod(ll a, ll b, ll m) {
+    if (a >= m - b) {
+        return a - (m - b);
+    }
+    return a + b;
+}
+
+ll mul_mod(ll a, ll b, ll m) {
+    a = normalize(a, m);
+    b = normalize(b, m);
+    ll result = 0;
+    while (b > 0) {
+        if (b % 2 == 1) {
+            result = add_mod(result, a, m);
+        }
+        a = add_mod(a, a, m);
+        b /= 2;
+    }
+    return result;
 }
 
 bool merge_congruence(ll& a1, ll& m1, ll a2, ll m2) {
@@ -223,11 +243,12 @@ bool merge_congruence(ll& a1, ll& m1, ll a2, ll m2) {
     }
 
     ll period = m2 / g;
-    ll t = mod_norm(static_cast<i128>(s) * (c / g), period);
+    ll t = mul_mod(s, c / g, period);
 
-    ll new_mod = m1 / g * m2;
-    a1 = mod_norm(static_cast<i128>(a1) + static_cast<i128>(m1) * t, new_mod);
-    m1 = new_mod;
+    ll new_M = m1 / g * m2;
+    ll increment = mul_mod(m1, t, new_M);
+    a1 = add_mod(a1, increment, new_M);
+    m1 = new_M;
     return true;
 }
 
@@ -235,33 +256,33 @@ int main() {
     int n;
     scanf("%d", &n);
 
-    ll mod, ans;
-    scanf("%lld%lld", &mod, &ans);
-    ans = mod_norm(ans, mod);
+    ll M, ans;
+    scanf("%lld%lld", &M, &ans);
+    ans = normalize(ans, M);
 
     for (int i = 2; i <= n; i++) {
-        ll next_mod, next_ans;
-        scanf("%lld%lld", &next_mod, &next_ans);
-        next_ans = mod_norm(next_ans, next_mod);
+        ll next_m, next_a;
+        scanf("%lld%lld", &next_m, &next_a);
+        next_a = normalize(next_a, next_m);
 
-        if (!merge_congruence(ans, mod, next_ans, next_mod)) {
+        if (!merge_congruence(ans, M, next_a, next_m)) {
             printf("No solution\n");
             return 0;
         }
     }
 
-    printf("%lld %lld\n", ans, mod);
+    printf("%lld %lld\n", ans, M);
     return 0;
 }
 ```
 
-输入的每行依次给出模数和余数。输出 `ans mod` 表示全部解为
+输入的每行依次给出模数和余数。输出 `ans M` 表示全部解为
 
 $$
-x\equiv\texttt{ans}\pmod{\texttt{mod}}.
+x\equiv\texttt{ans}\pmod M.
 $$
 
-`new_mod = m1 / g * m2` 已经先除后乘，但如果最终最小公倍数超出 64 位整数范围，这份模板仍然不适用。题目若不保证范围，必须另外做溢出检查或使用大整数。
+`new_M = m1 / g * m2` 已经先除后乘，但如果最终最小公倍数超出 64 位整数范围，这份模板仍然不适用。题目若不保证范围，必须另外做溢出检查或使用大整数。
 
 例如，输入三个同余条件：
 
@@ -292,10 +313,10 @@ $$
 
 ## 复杂度
 
-每合并一个方程，调用一次扩展欧几里得算法。对 $k$ 个方程，若忽略大整数的位复杂度，总时间可写为
+每合并一个方程，调用一次扩展欧几里得算法，并进行常数次龟速乘。对 $k$ 个方程，总时间可写为
 
 $$
-O\left(\sum_{i=2}^k\log\min(M_{i-1},m_i)\right),
+O\left(\sum_{i=2}^k\left(\log\min(M_{i-1},m_i)+\log M_i\right)\right),
 $$
 
 其中 $M_{i-1}$ 是前 $i-1$ 个方程合并后的模数。除输入外只保存当前合并结果，额外空间为 $O(1)$。
@@ -319,4 +340,4 @@ $$
 
 ## 扩展阅读
 
-当合并后的模数超出 64 位整数范围时，需要配合安全乘法、大整数或题目特定的取模要求。这是数值表示的额外问题，不改变本篇的合并原理，也不要求在当前阶段掌握。
+当合并后的模数超出 64 位整数范围时，龟速乘也无法保存新的模数，需要配合大整数或题目特定的取模要求。这是数值表示的额外问题，不改变本篇的合并原理，也不要求在当前阶段掌握。
