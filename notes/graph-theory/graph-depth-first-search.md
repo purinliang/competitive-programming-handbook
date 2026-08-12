@@ -1,7 +1,7 @@
 # 图的深度优先搜索
 
 > 状态：草稿
-> 直接前置：[0402 图的存储](graph-representation.md)、[0434 树的深度优先搜索](tree-depth-first-search.md)
+> 直接前置：[0434 树的深度优先搜索](tree-depth-first-search.md)、[0439 图的存储：vector 邻接表](vector-adjacency-list.md)
 
 树的 DFS 只需跳过父节点，因为任意两个节点之间只有一条路径。一般图可能有环，也可能不连通：搜索可能从另一条边回到早已到达的点，从一个起点也未必能到达所有点。为了解决这两个问题，需要记录哪些点已经访问过，并在每个尚未访问的连通块重新开始搜索。
 
@@ -32,7 +32,7 @@ void dfs(int u) {
     visited[u] = true;
     printf("%d ", u);
 
-    for (int v : graph[u]) {
+    for (int v : g[u]) {
         if (visited[v]) {
             continue;
         }
@@ -81,7 +81,7 @@ for (int u = 1; u <= n; u++) {
 
 ## 有向图
 
-同一份 DFS 代码也可以遍历有向图，但 `graph[u]` 只保存从 `u` 出发的边。调用 `dfs(start)` 只会访问从 `start` 沿箭头方向能够到达的点。
+同一份 DFS 代码也可以遍历有向图，但 `g[u]` 只保存从 `u` 出发的边。调用 `dfs(start)` 只会访问从 `start` 沿箭头方向能够到达的点。
 
 在有向图中，即使忽略方向后所有点连在一起，从某个起点也未必能沿箭头到达所有点。最外层循环仍能让每个点最终被访问，但循环产生的树不能直接解释为无向图的连通块；有向图有另外的可达性和强连通概念。
 
@@ -94,14 +94,14 @@ for (int u = 1; u <= n; u++) {
 using namespace std;
 
 const int MAXN = 200005;
-vector<int> graph[MAXN];
+vector<int> g[MAXN];
 bool visited[MAXN];
 
 void dfs(int u) {
     visited[u] = true;
     printf("%d ", u);
 
-    for (int v : graph[u]) {
+    for (int v : g[u]) {
         if (visited[v]) {
             continue;
         }
@@ -116,8 +116,8 @@ int main() {
     for (int i = 1; i <= m; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
-        graph[u].push_back(v);
-        graph[v].push_back(u);
+        g[u].push_back(v);
+        g[v].push_back(u);
     }
 
     int component_count = 0;

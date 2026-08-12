@@ -1,7 +1,7 @@
 # 树的深度优先搜索
 
 > 状态：草稿
-> 直接前置：[0132 函数：递归（正文待写）](../CATALOG.md#01-c-基础)、[0402 图的存储](graph-representation.md)、[0433 树与有根树](trees-and-rooted-trees.md)
+> 直接前置：[0132 函数：递归（正文待写）](../CATALOG.md#01-c-基础)、[0433 树与有根树](trees-and-rooted-trees.md)、[0439 图的存储：vector 邻接表](vector-adjacency-list.md)
 
 一棵树通常只以无向边给出。为了处理每个节点，我们需要从一个节点出发，沿边访问整棵树。深度优先搜索（depth-first search，DFS）的选择是：走到一个节点后，先把它的一棵子树完整处理完，再回头处理下一棵子树。
 
@@ -31,19 +31,19 @@ void dfs(int u) {
 }
 ```
 
-接着要依次查看 `graph[u]` 中与 `u` 相邻的节点：
+接着要依次查看 `g[u]` 中从 `u` 出发的边记录：
 
 ```cpp
 void dfs(int u) {
     printf("%d ", u);
 
-    for (int v : graph[u]) {
+    for (int v : g[u]) {
         dfs(v);
     }
 }
 ```
 
-这段代码还不能运行。无向边 $(u,v)$ 在邻接表中存了两个方向：从 `u` 进入 `v` 后，`graph[v]` 又会看见 `u`，于是递归会立刻沿原边返回，再次进入 `v`，永远重复下去。
+这段代码还不能运行。无向边 $(u,v)$ 在邻接表中存了两个方向：从 `u` 进入 `v` 后，`g[v]` 又会看见 `u`，于是递归会立刻沿原边返回，再次进入 `v`，永远重复下去。
 
 ## 跳过父节点
 
@@ -53,7 +53,7 @@ void dfs(int u) {
 void dfs(int u, int parent) {
     printf("%d ", u);
 
-    for (int v : graph[u]) {
+    for (int v : g[u]) {
         if (v == parent) {
             continue;
         }
@@ -99,12 +99,12 @@ printf("leave %d\n", v);
 using namespace std;
 
 const int MAXN = 200005;
-vector<int> graph[MAXN];
+vector<int> g[MAXN];
 
 void dfs(int u, int parent) {
     printf("%d ", u);
 
-    for (int v : graph[u]) {
+    for (int v : g[u]) {
         if (v == parent) {
             continue;
         }
@@ -119,8 +119,8 @@ int main() {
     for (int i = 1; i < n; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
-        graph[u].push_back(v);
-        graph[v].push_back(u);
+        g[u].push_back(v);
+        g[v].push_back(u);
     }
 
     dfs(1, 0);

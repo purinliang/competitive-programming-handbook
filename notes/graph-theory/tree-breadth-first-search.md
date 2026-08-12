@@ -1,7 +1,7 @@
 # 树的广度优先搜索
 
 > 状态：草稿
-> 直接前置：[0143 容器适配器：queue（正文待写）](../CATALOG.md#01-c-基础)、[0402 图的存储](graph-representation.md)、[0433 树与有根树](trees-and-rooted-trees.md)
+> 直接前置：[0143 容器适配器：queue（正文待写）](../CATALOG.md#01-c-基础)、[0433 树与有根树](trees-and-rooted-trees.md)、[0439 图的存储：vector 邻接表](vector-adjacency-list.md)
 
 深度优先搜索会沿一条分支不断深入。另一种自然的遍历方式是先访问离根最近的节点，再逐层向外扩展。这种方法称为广度优先搜索（breadth-first search，BFS）。
 
@@ -43,7 +43,7 @@ while (!q.empty()) {
 }
 ```
 
-现在还要查看 `graph[u]`，把节点 $u$ 的子节点依次放到队尾。队列中原本等待的同层节点仍在前面，所以会先处理完当前层；新发现的下一层节点排在它们后面。
+现在还要查看 `g[u]`，把节点 $u$ 的子节点依次放到队尾。队列中原本等待的同层节点仍在前面，所以会先处理完当前层；新发现的下一层节点排在它们后面。
 
 ## 父节点与深度
 
@@ -65,7 +65,7 @@ q.push(1);
 从 `u` 发现相邻节点 `v` 时，如果 `v` 是 `u` 的父节点，就跳过；否则 `u` 就是 `v` 的父节点，而 `v` 比 `u` 深一层：
 
 ```cpp
-for (int v : graph[u]) {
+for (int v : g[u]) {
     if (v == parent[u]) {
         continue;
     }
@@ -89,7 +89,7 @@ for (int v : graph[u]) {
 using namespace std;
 
 const int MAXN = 200005;
-vector<int> graph[MAXN];
+vector<int> g[MAXN];
 
 int parent[MAXN];
 int depth[MAXN];
@@ -101,8 +101,8 @@ int main() {
     for (int i = 1; i < n; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
-        graph[u].push_back(v);
-        graph[v].push_back(u);
+        g[u].push_back(v);
+        g[v].push_back(u);
     }
 
     queue<int> q;
@@ -116,7 +116,7 @@ int main() {
 
         printf("%d ", u);
 
-        for (int v : graph[u]) {
+        for (int v : g[u]) {
             if (v == parent[u]) {
                 continue;
             }

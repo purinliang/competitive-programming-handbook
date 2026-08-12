@@ -136,10 +136,10 @@
 | ID | 知识点 | 状态 | 直接前置 | 文件 |
 | --- | --- | --- | --- | --- |
 | 0401 | 图：点与边 | 草稿 | — | [vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
-| 0402 | 图的存储 | 草稿 | 0119,0121,0138,0401 | [graph-representation.md](graph-theory/graph-representation.md) |
+| 0402 | 图的存储：边的记录 | 草稿 | 0121,0401 | [graph-representation.md](graph-theory/graph-representation.md) |
 | 0403 | 倍增 LCA | 草稿 | 0133,0434 | [0403-lca-binary-lifting.md](graph-theory/0403-lca-binary-lifting.md) |
 | 0404 | 连通块与洪水填充 | 计划 | 0436 | `graph-theory/0404-connected-components.md` |
-| 0405 | 拓扑排序 | 计划 | 0143,0402,0432 | `graph-theory/0405-topological-sort.md` |
+| 0405 | 拓扑排序 | 计划 | 0143,0432,0439 | `graph-theory/0405-topological-sort.md` |
 | 0406 | BFS、0-1 BFS 与多源最短路 | 计划 | 0437 | `graph-theory/0406-unweighted-shortest-path.md` |
 | 0407 | Dijkstra | 计划 | 0302,0401,0201 | `graph-theory/0407-dijkstra.md` |
 | 0408 | Bellman-Ford 与负环 | 计划 | 0401,0201 | `graph-theory/0408-bellman-ford.md` |
@@ -150,12 +150,12 @@
 | 0413 | 强连通分量 | 计划 | 0405,0436 | `graph-theory/0413-strongly-connected-components.md` |
 | 0414 | 割点与桥 | 计划 | 0436 | `graph-theory/0414-articulation-points-bridges.md` |
 | 0415* | 点双、边双与圆方树 | 计划 | 0414 | `graph-theory/0415-biconnected-components-block-cut-tree.md` |
-| 0416 | 欧拉路径、欧拉回路与欧拉图 | 计划 | 0132,0402,0432 | `graph-theory/eulerian-paths-and-circuits.md` |
+| 0416 | 欧拉路径、欧拉回路与欧拉图 | 计划 | 0132,0432,0440 | `graph-theory/eulerian-paths-and-circuits.md` |
 | 0417 | 树的直径与中心 | 计划 | 0434 | `graph-theory/0417-tree-diameter-center.md` |
 | 0418 | DFS 序、子树区间与树上差分 | 计划 | 0207,0434 | `graph-theory/0418-tree-euler-tour-difference.md` |
 | 0419 | 树链剖分 | 计划 | 0304,0403,0418 | `graph-theory/0419-heavy-light-decomposition.md` |
 | 0420 | 2-SAT | 计划 | 0133,0413 | `graph-theory/0420-two-sat.md` |
-| 0421 | Dinic 最大流 | 计划 | 0132,0401,0406 | `graph-theory/0421-dinic-max-flow.md` |
+| 0421 | Dinic 最大流 | 计划 | 0132,0406,0440 | `graph-theory/0421-dinic-max-flow.md` |
 | 0422* | 最小费用最大流 | 计划 | 0407,0421 | `graph-theory/0422-min-cost-max-flow.md` |
 | 0423* | 虚树 | 计划 | 0403,0418 | `graph-theory/0423-virtual-tree.md` |
 | 0424* | 点分治 | 计划 | 0132,0417 | `graph-theory/0424-centroid-decomposition.md` |
@@ -168,11 +168,13 @@
 | 0431 | 图：路径与环 | 草稿 | 0401 | [paths-and-cycles.md](graph-theory/paths-and-cycles.md) |
 | 0432 | 图：度数 | 草稿 | 0401 | [vertex-degrees.md](graph-theory/vertex-degrees.md) |
 | 0433 | 树与有根树 | 草稿 | 0401,0431 | [trees-and-rooted-trees.md](graph-theory/trees-and-rooted-trees.md) |
-| 0434 | 树的深度优先搜索 | 草稿 | 0132,0402,0433 | [tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
-| 0435 | 树的广度优先搜索 | 草稿 | 0143,0402,0433 | [tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
-| 0436 | 图的深度优先搜索 | 草稿 | 0402,0434 | [graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
-| 0437 | 图的广度优先搜索 | 计划 | 0402,0435 | `graph-theory/graph-breadth-first-search.md` |
+| 0434 | 树的深度优先搜索 | 草稿 | 0132,0433,0439 | [tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
+| 0435 | 树的广度优先搜索 | 草稿 | 0143,0433,0439 | [tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
+| 0436 | 图的深度优先搜索 | 草稿 | 0434,0439 | [graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
+| 0437 | 图的广度优先搜索 | 计划 | 0435,0439 | `graph-theory/graph-breadth-first-search.md` |
 | 0438 | 哈密顿路径、哈密顿回路与哈密顿图 | 计划 | 0201,0431,0436 | `graph-theory/hamiltonian-paths-and-circuits.md` |
+| 0439 | 图的存储：vector 邻接表 | 草稿 | 0119,0138,0402 | [vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
+| 0440 | 图的存储：链式前向星 | 计划 | 0118,0402,0439 | `graph-theory/chained-forward-star.md` |
 
 ## 05 数学
 
