@@ -21,7 +21,7 @@
 | 0110 | 表达式：类型转换 | C++ | [cpp/type-conversions.md](cpp/type-conversions.md) |
 | 0133 | 表达式：位运算符 | C++ | [cpp/bitwise-operators.md](cpp/bitwise-operators.md) |
 | 0111 | 控制流：条件分支 | C++ | [cpp/conditional-branches.md](cpp/conditional-branches.md) |
-| 0112 | 控制流：循环 | C++ | `cpp/0112-loops.md` |
+| 0112 | 控制流：循环 | C++ | [cpp/loops.md](cpp/loops.md) |
 | 0113 | 函数：定义与调用 | C++ | [cpp/function-definition-and-calls.md](cpp/function-definition-and-calls.md) |
 | 0114 | 名称：作用域 | C++ | `cpp/0114-scope.md` |
 | 0115 | 输入输出：标准输入 | C++ | [cpp/standard-input.md](cpp/standard-input.md) |
