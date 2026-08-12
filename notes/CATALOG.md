@@ -56,7 +56,7 @@
 | 0129 | 变量：static 局部变量 | 待审阅 | [static-local-variables.md](cpp/static-local-variables.md) |
 | 0130 | 内存：竞赛程序的常见分区 | 待审阅 | [competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
 | 0131 | 函数：调用栈 | 待审阅 | [function-call-stack.md](cpp/function-call-stack.md) |
-| 0132 | 函数：递归 | 计划 | `cpp/0132-recursion.md` |
+| 0132 | 函数：递归 | 待审阅 | [recursion.md](cpp/recursion.md) |
 | 0133 | 表达式：位运算符 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
 | 0134 | 工具类型：pair | 计划 | `cpp/0134-pair.md` |
 | 0135 | 工具类型：tuple | 计划 | `cpp/0135-tuple.md` |
