@@ -112,7 +112,7 @@
 | 0308 | 稀疏表 ST | 计划 | 0118,0133,0201 | `data-structures/0308-sparse-table.md` |
 | 0309 | 单调栈与单调队列 | 计划 | 0142,0139,0205 | `data-structures/0309-monotonic-stack-queue.md` |
 | 0310 | 带权并查集 | 计划 | 0307 | `data-structures/0310-weighted-disjoint-set.md` |
-| 0311 | 二叉树：结构与存储 | 计划 | 0118,0121,0125,0433 | `data-structures/binary-tree-structure-and-storage.md` |
+| 0311 | 二叉树：结构与存储 | 草稿 | 0118,0121,0125,0433 | [binary-tree-structure-and-storage.md](data-structures/binary-tree-structure-and-storage.md) |
 | 0312* | 可撤销并查集 | 计划 | 0307,0213 | `data-structures/0312-rollback-disjoint-set.md` |
 | 0313* | 分块 | 计划 | 0207,0201 | `data-structures/0313-square-root-decomposition.md` |
 | 0314* | 莫队算法 | 计划 | 0313,0213 | `data-structures/0314-mo-algorithm.md` |

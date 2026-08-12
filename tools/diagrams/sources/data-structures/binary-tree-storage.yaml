@@ -1,0 +1,21 @@
+schema: cp-diagram/v2
+type: tree
+background: white
+layout: binary
+root: 1
+node-shape: circle
+nodes:
+  - {id: 1, value: 8}
+  - {id: 2, value: 3}
+  - {id: 3, value: 10}
+  - {id: 4, value: 1}
+  - {id: 5, value: 6}
+  - {id: 6, value: 14}
+  - {id: 7, value: 4}
+edges:
+  - {from: 1, to: 2, side: left}
+  - {from: 1, to: 3, side: right}
+  - {from: 2, to: 4, side: left}
+  - {from: 2, to: 5, side: right}
+  - {from: 3, to: 6, side: right}
+  - {from: 5, to: 7, side: left}
