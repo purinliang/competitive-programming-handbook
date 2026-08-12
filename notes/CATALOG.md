@@ -34,7 +34,7 @@
 | 0116 | 输入输出：标准输出 | 待审阅 | [standard-output.md](cpp/standard-output.md) |
 | 0117 | 输入输出：文件重定向 | 定稿 | [file-redirection.md](cpp/file-redirection.md) |
 | 0118 | 数组：一维数组 | 定稿 | [one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
-| 0119 | 数组：多维数组 | 计划 | `cpp/0119-multidimensional-arrays.md` |
+| 0119 | 数组：多维数组 | 待审阅 | [multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
 | 0120 | 字符串：C 字符串 | 计划 | `cpp/0120-c-strings.md` |
 | 0121 | 复合类型：struct | 定稿 | [struct.md](cpp/struct.md) |
 | 0122 | 复合类型：union | 计划 | `cpp/0122-union.md` |
