@@ -6,7 +6,7 @@
 
 以下现有文件是在新规范建立前形成的遗留草稿，第一次正式修订时必须补齐文章信息块，并从本清单移除对应 ID。
 
-<!-- legacy-drafts: 0207,0403 -->
+<!-- legacy-drafts: 0403 -->
 
 ## 01 C++ 基础
 
@@ -84,7 +84,7 @@
 | 0204 | 查找：二分查找 | 计划 | `algorithm-basics/0204-binary-search.md` |
 | 0205 | 双指针 | 计划 | `algorithm-basics/0205-two-pointers.md` |
 | 0206 | 离散化 | 计划 | `algorithm-basics/0206-coordinate-compression.md` |
-| 0207 | 前缀和 | 草稿 | [prefix-sums.md](algorithm-basics/prefix-sums.md) |
+| 0207 | 前缀和 | 定稿 | [prefix-sums.md](algorithm-basics/prefix-sums.md) |
 | 0208 | 贪心：选择与证明 | 计划 | `algorithm-basics/0208-greedy.md` |
 | 0209 | 分治：基础 | 计划 | `algorithm-basics/0209-divide-and-conquer.md` |
 | 0210 | 枚举 | 计划 | `algorithm-basics/0210-enumeration.md` |
