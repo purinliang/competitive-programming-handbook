@@ -160,107 +160,19 @@ $$
 
 ## 完整代码
 
-下面的程序假设模数乘积可以放入 64 位整数。公式中的乘积在取模前仍可能暂时溢出，因此代码使用俗称“龟速乘”的 `mul_mod`：把乘数按二进制拆开，通过反复模加法求出乘积的余数。模加法只是其中的一步，整个方法通常称为龟速乘。
+下面只保留 CRT 自己的算法。代码复用 [模运算：modint](mod-int.md) 中的 `mint` 和 [数论：扩展欧几里得算法](extended-euclidean-algorithm.md) 中的 `exgcd`；把这两个已经讲过的工具放在同一份源文件前面，即可得到可提交的单文件程序。
 
-先把任意 64 位整数归一化到 $[0,m)$：
-
-```cpp
-ll normalize(ll x, ll m) {
-    x %= m;
-    if (x < 0) {
-        x += m;
-    }
-    return x;
-}
-```
-
-若 `a,b` 已经位于这个区间，可以在不直接计算 `a + b` 的情况下安全求和：
+程序假设模数乘积可以放入 64 位整数。`mint` 负责余数归一化和中间乘法取模，但无法保存一个本身已经超出 64 位整数范围的 $M$。
 
 ```cpp
-ll add_mod(ll a, ll b, ll m) {
-    if (a >= m - b) {
-        return a - (m - b);
-    }
-    return a + b;
-}
-```
-
-再像快速幂一样反复翻倍 `a`、折半 `b`：
-
-```cpp
-ll mul_mod(ll a, ll b, ll m) {
-    a = normalize(a, m);
-    b = normalize(b, m);
-    ll result = 0;
-    while (b > 0) {
-        if (b % 2 == 1) {
-            result = add_mod(result, a, m);
-        }
-        a = add_mod(a, a, m);
-        b /= 2;
-    }
-    return result;
-}
-```
-
-它只使用 64 位整数，不依赖 `__int128`。这仍不能解决最终模数乘积本身超出 64 位整数范围的问题。
-
-```cpp
-#include <bits/stdc++.h>
-using namespace std;
-
-typedef long long ll;
-
-ll exgcd(ll a, ll b, ll& x, ll& y) {
-    if (b == 0) {
-        x = 1;
-        y = 0;
-        return a;
-    }
-
-    ll x1, y1;
-    ll g = exgcd(b, a % b, x1, y1);
-    x = y1;
-    y = x1 - a / b * y1;
-    return g;
-}
-
-ll normalize(ll x, ll m) {
-    x %= m;
-    if (x < 0) {
-        x += m;
-    }
-    return x;
-}
-
-ll add_mod(ll a, ll b, ll m) {
-    if (a >= m - b) {
-        return a - (m - b);
-    }
-    return a + b;
-}
-
-ll mul_mod(ll a, ll b, ll m) {
-    a = normalize(a, m);
-    b = normalize(b, m);
-    ll result = 0;
-    while (b > 0) {
-        if (b % 2 == 1) {
-            result = add_mod(result, a, m);
-        }
-        a = add_mod(a, a, m);
-        b /= 2;
-    }
-    return result;
-}
-
 bool crt(const vector<ll>& a, const vector<ll>& m, ll& ans, ll& M) {
     M = 1;
     for (ll x : m) {
         M *= x;
     }
 
-    ans = 0;
+    mint::set_mod(M);
+    mint result = 0;
     int n = a.size();
     for (int i = 0; i < n; i++) {
         ll Mi = M / m[i];
@@ -269,10 +181,9 @@ bool crt(const vector<ll>& a, const vector<ll>& m, ll& ans, ll& M) {
             return false;
         }
 
-        ll term = mul_mod(normalize(a[i], m[i]), Mi, M);
-        term = mul_mod(term, normalize(ti, m[i]), M);
-        ans = add_mod(ans, term, M);
+        result += mint(a[i]) * mint(Mi) * mint(ti);
     }
+    ans = result.value();
     return true;
 }
 
@@ -324,7 +235,7 @@ $$
 
 ## 复杂度
 
-对每个方程调用一次扩展欧几里得算法，并进行两次龟速乘。设所有模数的乘积为 $M$，总时间为
+对每个方程调用一次扩展欧几里得算法，并通过 `mint` 进行两次龟速乘。设所有模数的乘积为 $M$，总时间为
 
 $$
 O\left(\sum_{i=1}^k\log m_i+k\log M\right),
