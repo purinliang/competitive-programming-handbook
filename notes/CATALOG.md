@@ -6,7 +6,7 @@
 
 以下现有文件是在新规范建立前形成的遗留草稿，第一次正式修订时必须补齐文章信息块，并从本清单移除对应 ID。
 
-<!-- legacy-drafts: 0107,0111,0113,0115,0117,0118,0121,0125,0128,0152,0153,0207,0403 -->
+<!-- legacy-drafts: 0111,0113,0115,0117,0118,0121,0125,0128,0152,0153,0207,0403 -->
 
 ## 01 C++ 基础
 
@@ -22,7 +22,7 @@
 | 0104 | 基本类型：字符 | 计划 | `cpp/0104-character-types.md` |
 | 0105 | 基本类型：布尔 | 计划 | `cpp/0105-boolean-type.md` |
 | 0106 | 变量：声明与初始化 | 计划 | `cpp/0106-variable-declaration-initialization.md` |
-| 0107 | 表达式：算术运算符 | 草稿 | [0107-arithmetic-operators.md](cpp/0107-arithmetic-operators.md) |
+| 0107 | 表达式：算术运算符 | 定稿 | [arithmetic-operators.md](cpp/arithmetic-operators.md) |
 | 0108 | 表达式：比较运算符 | 计划 | `cpp/0108-comparison-operators.md` |
 | 0109 | 表达式：逻辑运算符 | 计划 | `cpp/0109-logical-operators.md` |
 | 0110 | 表达式：类型转换 | 计划 | `cpp/0110-type-conversions.md` |
