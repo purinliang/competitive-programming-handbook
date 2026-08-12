@@ -36,7 +36,7 @@
 | 0124 | 内存：字节寻址 | C++ | [cpp/byte-addressing.md](cpp/byte-addressing.md) |
 | 0125 | 内存与别名：指针 | C++ | [cpp/pointers.md](cpp/pointers.md) |
 | 0126 | 内存与别名：引用 | C++ | [cpp/references.md](cpp/references.md) |
-| 0127 | 函数：参数传递 | C++ | `cpp/0127-parameter-passing.md` |
+| 0127 | 函数：参数传递 | C++ | [cpp/parameter-passing.md](cpp/parameter-passing.md) |
 | 0128 | 修饰符：const | C++ | [cpp/const.md](cpp/const.md) |
 | 0129 | 修饰符：static | C++ | `cpp/0129-static.md` |
 | 0130 | 内存：竞赛程序的常见分区 | C++ | `cpp/0130-competitive-program-memory-layout.md` |
