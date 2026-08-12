@@ -1,6 +1,6 @@
 # Competitive Programming Handbook
 
-这是一个中文算法竞赛一体化仓库，用来长期整理 Codeforces、ICPC、CCPC、NOI、NOIP、CSP-J/S 相关的知识、模板、复盘、教学材料和个人记录。
+这是一个中文算法竞赛一体化 handbook 仓库，用来长期整理 Codeforces、ICPC、CCPC、NOI、NOIP、CSP-J/S 相关的知识、模板、复盘、教学材料和个人记录。
 
 核心目标：
 
@@ -8,25 +8,26 @@
 - 保存训练、复盘、回忆录和其他算法竞赛相关事务。
 - 维护可复用 C++17 模板库，并配套验证和提交工作流。
 - 支持“口述思路、AI 协助整理和实现”的工作方式，把重点放在 idea、复杂度可行性和可复用模板上。
+- 优先服务已有 C++ 基础、准备初赛/复赛复习和提高的读者；不以从零入门教程为主要目标。
 
 ## 目录结构
 
 ```text
-notes/                  知识笔记、训练计划、复盘、教学材料
+notes/                  知识库、训练计划、复盘、教学材料和个人记录
 templates/              纯 C++17 模板代码库，以及配套的 OJ 验证入口
-tools/diagrams/         结构化输入生成数据结构示意图的工具提案
+tools/diagrams/         结构化输入生成数据结构示意图的工具
 workspace/              临时题目接口、实验代码和提交代码工作区
 ```
 
-这是第一版轻量提案。后续如果内容变多，再在目录内部自然拆分。
+各目录只承担一种稳定职责，内容增长后继续在对应目录内部按模块拆分。
 
-`notes/` 负责解释算法原理，并一步一步推导出为什么要这样写。训练计划、复盘、教学材料、编译错误、调试错误经验和回忆录也放在这里。Markdown 和后续 TeX 编译应引用同一套图片资产。
+`notes/` 负责保存知识库、学习路线、训练计划、复盘、教学材料、错误经验和回忆录。知识正文按功能或领域存放；`CATALOG.md` 维护模块目录，`LEARNING-PATH.md` 维护教学顺序，两者指向同一份正文。Markdown 和后续 TeX 编译应引用同一套图片资产。
 
 `templates/` 负责模板复用和 OJ 验证。模板代码中只保留必要中文注释，不在模板文件里讲原理。
 
 `workspace/` 是本地工作区，用来放临时题目接口、实验代码、提交代码和其他不适合沉淀进 `templates/` 的过程文件。这里的内容默认不提交到 Git，只保留目录占位文件。提交代码优先由 agent 根据模板改写生成，不强制维护 bundler 或内联工具。
 
-`tools/diagrams/` 负责图示工具。图示源文件和工具提案放这里；可长期引用的图片资产后续放在 `notes/` 内部，临时生成图片放在 ignored 输出目录。
+`tools/diagrams/` 负责图示工具。图示源文件、schema 和渲染器放这里；可长期引用的图片资产放在 `notes/` 内部，临时生成图片放在 ignored 输出目录。
 
 ## C++ 标准
 
@@ -58,7 +59,9 @@ make format templates/base.cpp
 
 ## 笔记约定
 
-Markdown 手稿以 Typora 友好为优先：普通 Markdown、代码块、LaTeX 公式块和简单表格。
+Markdown 手稿以 Typora 友好为优先：普通 Markdown、代码块、LaTeX 公式块和简单表格。后续需要 TeX 版本时，再从 Markdown 手稿整理。
+
+本仓库首先是 handbook，不是从零开始的 tutorial。笔记按功能或领域组织，每篇文章尽量自洽，允许收录暂时用不到但值得了解的知识。
 
 ## 模板验证
 
@@ -83,8 +86,8 @@ Markdown 手稿以 Typora 友好为优先：普通 Markdown、代码块、LaTeX 
 
 ## 图示工具
 
-`tools/diagrams/` 预留自研图示工具。第一版默认使用 YAML 描述数组、链表、树、图等结构，后续再实现 SVG/PNG 渲染器。
+`tools/diagrams/` 保存自研图示工具。`cp-diagram/v1` 使用 YAML 描述单行数组、箭头和范围标记；`cp-diagram/v2` 草案增加多行数组、普通图、普通树、二叉树和树状数组。渲染器由 Python、PyYAML 和 rough-py 稳定生成使用手写印刷体与精确几何线条的 SVG。YAML 只表达内容和结构，坐标、线宽、字体、具体色值和随机种子由统一主题控制。
 
-如果发现有好用的现成工具，可以先试用；不合适时再自研。生成的数据集、临时图片、提交代码和 TeX 编译产物默认不提交到 Git。`.gitignore` 和根目录 `Makefile` 用于统一生成和编译。
+可长期引用的 SVG 放在 `notes/assets/`，临时预览放在已忽略的 `tools/diagrams/out/`。当前已经用于前缀和、普通图、树、二叉树、线段树和树状数组等教程图示。
 
 Agent 工作约定见 `AGENTS.md`。
