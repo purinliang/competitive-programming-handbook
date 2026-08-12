@@ -131,6 +131,7 @@
 | 0148 | 有序关联容器：multimap | C++ | `cpp/0148-multimap.md` |
 | 0149 | 无序关联容器：unordered_set | C++ | `cpp/0149-unordered-set.md` |
 | 0150 | 无序关联容器：unordered_map | C++ | `cpp/0150-unordered-map.md` |
+| 0544 | 高精度整数：加法、减法与乘法 | 数学 | `math/0544-big-integer-addition-subtraction-multiplication.md` |
 | 0405 | 有向无环图：拓扑排序 | 图论 | `graph-theory/0405-topological-sort.md` |
 | 0406 | 图的遍历：多源 BFS | 图论 | `graph-theory/0406-multi-source-bfs.md` |
 | 0444 | 最短路：0-1 BFS | 图论 | `graph-theory/0444-zero-one-bfs.md` |
@@ -323,6 +324,7 @@
 | 0532* | 多项式：多点求值 | `math/0532-multipoint-evaluation.md` |
 | 0533* | 多项式：插值 | `math/0533-polynomial-interpolation.md` |
 | 0534* | 莫比乌斯反演 | `math/0534-mobius-inversion.md` |
+| 0544e1 | 高精度整数：除法与余数 | `math/big-integer-division-remainder.md` |
 
 ### 06 计算几何
 

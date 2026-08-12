@@ -256,6 +256,8 @@
 | 0541 | 数论：正因数和 | 计划 | `math/0541-divisor-sum.md` |
 | 0542 | 数论：线性不定方程 | 计划 | `math/0542-linear-diophantine-equations.md` |
 | 0543 | 数论：线性同余方程 | 计划 | `math/0543-linear-congruences.md` |
+| 0544 | 高精度整数：加法、减法与乘法 | 计划 | `math/0544-big-integer-addition-subtraction-multiplication.md` |
+| 0544e1 | 高精度整数：除法与余数 | 计划 | `math/big-integer-division-remainder.md` |
 
 ## 06 计算几何
 
