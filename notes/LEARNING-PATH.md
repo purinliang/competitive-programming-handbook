@@ -86,8 +86,12 @@
 | 0142 | 容器适配器：stack | C++ | `cpp/0142-stack.md` |
 | 0139 | 序列容器：deque | C++ | `cpp/0139-deque.md` |
 | 0143 | 容器适配器：queue | C++ | `cpp/0143-queue.md` |
-| 0501 | 整除、gcd 与 lcm | 数学 | [math/0501-divisibility-gcd-lcm.md](math/0501-divisibility-gcd-lcm.md) |
-| 0502 | 质数与唯一分解定理 | 数学 | [math/0502-prime-factorization.md](math/0502-prime-factorization.md) |
+| 0501 | 数论：整除 | 数学 | [math/divisibility.md](math/divisibility.md) |
+| 0502 | 数论：质数 | 数学 | [math/prime-numbers.md](math/prime-numbers.md) |
+| 0535 | 数论：算术基本定理 | 数学 | [math/fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
+| 0539 | 数论：质因数分解 | 数学 | `math/0539-prime-factorization.md` |
+| 0536 | 数论：最大公约数与最小公倍数 | 数学 | [math/greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
+| 0537 | 数论：欧几里得算法 | 数学 | [math/euclidean-algorithm.md](math/euclidean-algorithm.md) |
 | 0228 | 哈希表 | 基础算法 | `algorithm-basics/0228-hash-table.md` |
 | 0401 | 图：点与边 | 图论 | [graph-theory/vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
 | 0431 | 图：路径与环 | 图论 | [graph-theory/paths-and-cycles.md](graph-theory/paths-and-cycles.md) |
@@ -144,10 +148,14 @@
 | 0308 | 稀疏表 ST | 数据结构 | `data-structures/0308-sparse-table.md` |
 | 0229 | 单调栈 | 基础算法 | `algorithm-basics/0229-monotonic-stack.md` |
 | 0230 | 单调队列 | 基础算法 | `algorithm-basics/0230-monotonic-queue.md` |
-| 0503 | 扩展欧几里得 | 数学 | [math/0503-extended-euclid.md](math/0503-extended-euclid.md) |
 | 0504 | 模运算与快速幂 | 数学 | `math/0504-modular-arithmetic-fast-power.md` |
-| 0505 | 筛法与质因数预处理 | 数学 | `math/0505-sieve.md` |
+| 0503 | 数论：扩展欧几里得算法 | 数学 | [math/extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
+| 0542 | 数论：线性不定方程 | 数学 | `math/0542-linear-diophantine-equations.md` |
+| 0543 | 数论：线性同余方程 | 数学 | `math/0543-linear-congruences.md` |
 | 0506 | 模逆元 | 数学 | `math/0506-modular-inverse.md` |
+| 0505 | 筛法与质因数预处理 | 数学 | `math/0505-sieve.md` |
+| 0540 | 数论：正因数个数 | 数学 | `math/0540-divisor-count.md` |
+| 0541 | 数论：正因数和 | 数学 | `math/0541-divisor-sum.md` |
 | 0507 | 组合数与基础计数 | 数学 | `math/0507-combinatorics.md` |
 | 0508 | 欧拉函数 | 数学 | `math/0508-euler-totient.md` |
 | 0509 | 矩阵运算与线性变换 | 数学 | `math/0509-matrix-operations.md` |
@@ -190,7 +198,8 @@
 | 0419 | 树上数据结构：树链剖分 | 图论 | `graph-theory/0419-heavy-light-decomposition.md` |
 | 0429 | 最短路：分层图与状态图 | 图论 | `graph-theory/0429-layered-state-shortest-path.md` |
 | 0446 | 树上技巧：树上差分 | 图论 | `graph-theory/0446-tree-difference.md` |
-| 0510 | CRT 与 exCRT | 数学 | [math/0510-crt-and-excrt.md](math/0510-crt-and-excrt.md) |
+| 0510 | 数论：中国剩余定理（CRT） | 数学 | [math/chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
+| 0538 | 数论：扩展中国剩余定理（exCRT） | 数学 | [math/extended-chinese-remainder-theorem.md](math/extended-chinese-remainder-theorem.md) |
 | 0511 | 矩阵快速幂与递推加速 | 数学 | `math/0511-matrix-exponentiation.md` |
 | 0516 | 容斥原理 | 数学 | `math/0516-inclusion-exclusion.md` |
 | 0603 | 直线、线段与相交判定 | 计算几何 | `computational-geometry/0603-lines-segments-intersections.md` |

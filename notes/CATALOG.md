@@ -6,7 +6,7 @@
 
 以下现有文件是在新规范建立前形成的遗留草稿，第一次正式修订时必须补齐文章信息块，并从本清单移除对应 ID。
 
-<!-- legacy-drafts: 0107,0111,0113,0115,0117,0118,0121,0125,0128,0152,0153,0207,0403,0501,0502,0503,0510 -->
+<!-- legacy-drafts: 0107,0111,0113,0115,0117,0118,0121,0125,0128,0152,0153,0207,0403 -->
 
 ## 01 C++ 基础
 
@@ -203,16 +203,16 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 0501 | 整除、gcd 与 lcm | 草稿 | [0501-divisibility-gcd-lcm.md](math/0501-divisibility-gcd-lcm.md) |
-| 0502 | 质数与唯一分解定理 | 草稿 | [0502-prime-factorization.md](math/0502-prime-factorization.md) |
-| 0503 | 扩展欧几里得 | 草稿 | [0503-extended-euclid.md](math/0503-extended-euclid.md) |
+| 0501 | 数论：整除 | 草稿 | [divisibility.md](math/divisibility.md) |
+| 0502 | 数论：质数 | 草稿 | [prime-numbers.md](math/prime-numbers.md) |
+| 0503 | 数论：扩展欧几里得算法 | 草稿 | [extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
 | 0504 | 模运算与快速幂 | 计划 | `math/0504-modular-arithmetic-fast-power.md` |
 | 0505 | 筛法与质因数预处理 | 计划 | `math/0505-sieve.md` |
 | 0506 | 模逆元 | 计划 | `math/0506-modular-inverse.md` |
 | 0507 | 组合数与基础计数 | 计划 | `math/0507-combinatorics.md` |
 | 0508 | 欧拉函数 | 计划 | `math/0508-euler-totient.md` |
 | 0509 | 矩阵运算与线性变换 | 计划 | `math/0509-matrix-operations.md` |
-| 0510 | CRT 与 exCRT | 草稿 | [0510-crt-and-excrt.md](math/0510-crt-and-excrt.md) |
+| 0510 | 数论：中国剩余定理（CRT） | 草稿 | [chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
 | 0511 | 矩阵快速幂与递推加速 | 计划 | `math/0511-matrix-exponentiation.md` |
 | 0512 | 概率与期望基础 | 计划 | `math/0512-probability-expectation.md` |
 | 0513* | Nim、SG 函数与基础博弈论 | 计划 | `math/0513-nim-sg-game-theory.md` |
@@ -237,6 +237,15 @@
 | 0532* | 多项式：多点求值 | 计划 | `math/0532-multipoint-evaluation.md` |
 | 0533* | 多项式：插值 | 计划 | `math/0533-polynomial-interpolation.md` |
 | 0534* | 莫比乌斯反演 | 计划 | `math/0534-mobius-inversion.md` |
+| 0535 | 数论：算术基本定理 | 草稿 | [fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
+| 0536 | 数论：最大公约数与最小公倍数 | 草稿 | [greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
+| 0537 | 数论：欧几里得算法 | 草稿 | [euclidean-algorithm.md](math/euclidean-algorithm.md) |
+| 0538 | 数论：扩展中国剩余定理（exCRT） | 草稿 | [extended-chinese-remainder-theorem.md](math/extended-chinese-remainder-theorem.md) |
+| 0539 | 数论：质因数分解 | 计划 | `math/0539-prime-factorization.md` |
+| 0540 | 数论：正因数个数 | 计划 | `math/0540-divisor-count.md` |
+| 0541 | 数论：正因数和 | 计划 | `math/0541-divisor-sum.md` |
+| 0542 | 数论：线性不定方程 | 计划 | `math/0542-linear-diophantine-equations.md` |
+| 0543 | 数论：线性同余方程 | 计划 | `math/0543-linear-congruences.md` |
 
 ## 06 计算几何
 
