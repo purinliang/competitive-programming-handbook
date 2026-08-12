@@ -54,7 +54,7 @@
 | 0127 | 函数：参数传递 | 待审阅 | [parameter-passing.md](cpp/parameter-passing.md) |
 | 0128 | 修饰符：const | 定稿 | [const.md](cpp/const.md) |
 | 0129 | 变量：static 局部变量 | 待审阅 | [static-local-variables.md](cpp/static-local-variables.md) |
-| 0130 | 内存：竞赛程序的常见分区 | 计划 | `cpp/0130-competitive-program-memory-layout.md` |
+| 0130 | 内存：竞赛程序的常见分区 | 待审阅 | [competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
 | 0131 | 函数：调用栈 | 计划 | `cpp/0131-function-call-stack.md` |
 | 0132 | 函数：递归 | 计划 | `cpp/0132-recursion.md` |
 | 0133 | 表达式：位运算符 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
