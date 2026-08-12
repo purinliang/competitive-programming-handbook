@@ -102,7 +102,7 @@
 | 0402 | 图的存储 | 图论 | [graph-theory/graph-representation.md](graph-theory/graph-representation.md) |
 | 0433 | 树与有根树 | 图论 | [graph-theory/trees-and-rooted-trees.md](graph-theory/trees-and-rooted-trees.md) |
 | 0311 | 二叉树：结构与存储 | 数据结构 | [data-structures/binary-tree-structure-and-storage.md](data-structures/binary-tree-structure-and-storage.md) |
-| 0434 | 树的深度优先搜索 | 图论 | `graph-theory/tree-depth-first-search.md` |
+| 0434 | 树的深度优先搜索 | 图论 | [graph-theory/tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
 | 0435 | 树的广度优先搜索 | 图论 | `graph-theory/tree-breadth-first-search.md` |
 | 0436 | 图的深度优先搜索 | 图论 | `graph-theory/graph-depth-first-search.md` |
 | 0437 | 图的广度优先搜索 | 图论 | `graph-theory/graph-breadth-first-search.md` |

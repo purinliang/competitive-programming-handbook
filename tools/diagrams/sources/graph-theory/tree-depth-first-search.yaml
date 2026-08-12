@@ -1,0 +1,23 @@
+schema: cp-diagram/v2
+type: tree
+background: white
+layout: rooted
+root: 1
+node-shape: circle
+nodes:
+  - {id: 1, label: "1 · #1"}
+  - {id: 2, label: "2 · #2"}
+  - {id: 3, label: "3 · #5"}
+  - {id: 4, label: "4 · #7"}
+  - {id: 5, label: "5 · #3"}
+  - {id: 6, label: "6 · #4"}
+  - {id: 7, label: "7 · #6"}
+  - {id: 8, label: "8 · #8"}
+edges:
+  - {from: 1, to: 2}
+  - {from: 1, to: 3}
+  - {from: 1, to: 4}
+  - {from: 2, to: 5}
+  - {from: 2, to: 6}
+  - {from: 3, to: 7}
+  - {from: 4, to: 8}

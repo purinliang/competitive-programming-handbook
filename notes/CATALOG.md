@@ -168,7 +168,7 @@
 | 0431 | 图：路径与环 | 草稿 | 0401 | [paths-and-cycles.md](graph-theory/paths-and-cycles.md) |
 | 0432 | 图：度数 | 草稿 | 0401 | [vertex-degrees.md](graph-theory/vertex-degrees.md) |
 | 0433 | 树与有根树 | 草稿 | 0401,0431 | [trees-and-rooted-trees.md](graph-theory/trees-and-rooted-trees.md) |
-| 0434 | 树的深度优先搜索 | 计划 | 0132,0402,0433 | `graph-theory/tree-depth-first-search.md` |
+| 0434 | 树的深度优先搜索 | 草稿 | 0132,0402,0433 | [tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
 | 0435 | 树的广度优先搜索 | 计划 | 0143,0402,0433 | `graph-theory/tree-breadth-first-search.md` |
 | 0436 | 图的深度优先搜索 | 计划 | 0402,0434 | `graph-theory/graph-depth-first-search.md` |
 | 0437 | 图的广度优先搜索 | 计划 | 0402,0435 | `graph-theory/graph-breadth-first-search.md` |
