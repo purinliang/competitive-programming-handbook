@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the notes registry, learning path, article metadata, and SVG sources."""
+"""Check the notes registry, route/index coverage, article metadata, and SVG sources."""
 
 from __future__ import annotations
 
@@ -27,10 +27,13 @@ MODULE_PREFIXES = {
 }
 ARTICLE_ID_PATTERN = r"\d{4}(?:e\d+)?"
 CATALOG_ROW = re.compile(
-    rf"^\|\s*({ARTICLE_ID_PATTERN})(\*)?\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
+    rf"^\|\s*({ARTICLE_ID_PATTERN})(\*)?\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
 )
 PATH_ROW = re.compile(
     r"^\|\s*(\d{4})\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
+)
+EXTENSION_INDEX_ROW = re.compile(
+    rf"^\|\s*({ARTICLE_ID_PATTERN})(\*)?\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
 )
 MARKDOWN_LINK = re.compile(r"\[[^]]*\]\(([^)]+)\)")
 FILE_LINK = re.compile(r"^\[([^]]+)\]\(([^)]+)\)$")
@@ -45,7 +48,6 @@ class Entry:
     title: str
     kind: str
     status: str
-    prerequisites: tuple[str, ...]
     path: str
     linked: bool
 
@@ -60,6 +62,15 @@ class RouteEntry:
     stage: str
 
 
+@dataclass(frozen=True)
+class ExtensionIndexEntry:
+    article_id: str
+    title: str
+    path: str
+    linked: bool
+    section: str
+
+
 class Checker:
     def __init__(self) -> None:
         self.errors: list[str] = []
@@ -71,13 +82,13 @@ class Checker:
         catalog_text = CATALOG.read_text(encoding="utf-8")
         path_text = LEARNING_PATH.read_text(encoding="utf-8")
         entries = self.parse_catalog(catalog_text)
-        route = self.parse_learning_path(path_text)
+        route, extension_index = self.parse_learning_path(path_text)
         legacy = self.parse_legacy_drafts(catalog_text)
 
         self.check_module_headings(catalog_text)
         self.check_catalog(entries, legacy)
-        self.check_dag(entries)
         self.check_learning_path(entries, route)
+        self.check_extension_index(entries, extension_index)
         self.check_article_files(entries, legacy)
         self.check_svg_sources()
 
@@ -92,19 +103,15 @@ class Checker:
             match = CATALOG_ROW.match(line)
             if not match:
                 continue
-            article_id, extension_marker, title, status, raw_prerequisites, raw_file = match.groups()
+            article_id, extension_marker, title, status, raw_file = match.groups()
             article_id = article_id.strip()
             title = title.strip()
             status = status.strip()
-            raw_prerequisites = raw_prerequisites.strip()
             raw_file = raw_file.strip()
             kind = (
                 "扩展专题"
                 if extension_marker or re.fullmatch(r"\d{4}e\d+", article_id)
                 else "核心教程"
-            )
-            prerequisites = self.parse_prerequisites(
-                raw_prerequisites, f"CATALOG.md:{line_number}"
             )
             path, linked = self.parse_file_cell(
                 raw_file, f"CATALOG.md:{line_number}"
@@ -122,7 +129,6 @@ class Checker:
                 title,
                 kind,
                 status,
-                prerequisites,
                 path,
                 linked,
             )
@@ -130,12 +136,44 @@ class Checker:
             self.error("CATALOG.md: no catalog entries found")
         return entries
 
-    def parse_learning_path(self, text: str) -> list[RouteEntry]:
+    def parse_learning_path(
+        self, text: str
+    ) -> tuple[list[RouteEntry], list[ExtensionIndexEntry]]:
         route: list[RouteEntry] = []
+        extension_index: list[ExtensionIndexEntry] = []
         stage = "(no stage)"
+        section = "(no section)"
+        in_extension_index = False
         for line_number, line in enumerate(text.splitlines(), start=1):
+            if line == "## 扩展阅读索引":
+                in_extension_index = True
+                section = "扩展阅读索引"
+                continue
             if line.startswith("## "):
                 stage = line[3:].strip()
+                continue
+            if line.startswith("### "):
+                section = line[4:].strip()
+                continue
+            if in_extension_index:
+                extension_match = EXTENSION_INDEX_ROW.match(line)
+                if not extension_match:
+                    continue
+                article_id, _marker, title, raw_file = (
+                    part.strip() if part else part
+                    for part in extension_match.groups()
+                )
+                link = FILE_LINK.fullmatch(raw_file)
+                if link and link.group(1) != link.group(2).split("#", 1)[0]:
+                    self.error(
+                        f"LEARNING-PATH.md:{line_number}: link label must show the relative path"
+                    )
+                path, linked = self.parse_file_cell(
+                    raw_file, f"LEARNING-PATH.md:{line_number}"
+                )
+                extension_index.append(
+                    ExtensionIndexEntry(article_id, title, path, linked, section)
+                )
                 continue
             match = PATH_ROW.match(line)
             if not match:
@@ -154,19 +192,9 @@ class Checker:
             route.append(RouteEntry(article_id, title, module, path, linked, stage))
         if not route:
             self.error("LEARNING-PATH.md: no learning-path entries found")
-        return route
-
-    def parse_prerequisites(self, raw: str, location: str) -> tuple[str, ...]:
-        if raw == "—":
-            return ()
-        prerequisites = tuple(part.strip() for part in raw.split(","))
-        if not prerequisites or any(
-            not re.fullmatch(ARTICLE_ID_PATTERN, item) for item in prerequisites
-        ):
-            self.error(f"{location}: invalid prerequisites {raw!r}")
-        if len(prerequisites) != len(set(prerequisites)):
-            self.error(f"{location}: duplicate prerequisite in {raw!r}")
-        return prerequisites
+        if not extension_index:
+            self.error("LEARNING-PATH.md: no extension-index entries found")
+        return route, extension_index
 
     def parse_file_cell(self, raw: str, location: str) -> tuple[str, bool]:
         link = FILE_LINK.fullmatch(raw)
@@ -191,7 +219,7 @@ class Checker:
 
     def check_catalog(self, entries: dict[str, Entry], legacy: set[str]) -> None:
         positions = {article_id: index for index, article_id in enumerate(entries)}
-        next_number = {module: 1 for module in MODULE_PREFIXES}
+        last_number = {module: 0 for module in MODULE_PREFIXES}
         for entry in entries.values():
             location = f"CATALOG.md ({entry.article_id})"
             if entry.status not in ALLOWED_STATUSES:
@@ -214,20 +242,17 @@ class Checker:
                     self.error(
                         f"{location}: companion base {base_id} must appear earlier"
                     )
-            elif int(entry.article_id[2:]) != next_number[module]:
+            elif int(entry.article_id[2:]) <= last_number[module]:
                 self.error(
-                    f"{location}: expected the next module ID to be "
-                    f"{expected_prefix}{next_number[module]:02d}"
+                    f"{location}: module IDs must increase; previous number is "
+                    f"{last_number[module]:02d}"
                 )
-                next_number[module] = int(entry.article_id[2:]) + 1
             else:
-                next_number[module] += 1
+                last_number[module] = int(entry.article_id[2:])
             if entry.status == "计划" and entry.linked:
                 self.error(f"{location}: planned article must use a code path")
             if entry.status != "计划" and not entry.linked:
                 self.error(f"{location}: draft/frozen article must use a Markdown link")
-            if entry.article_id in entry.prerequisites:
-                self.error(f"{location}: article cannot depend on itself")
         unknown_legacy = sorted(legacy - entries.keys())
         if unknown_legacy:
             self.error(
@@ -249,40 +274,6 @@ class Checker:
                 + " -> ".join(expected)
                 + f"; got {' -> '.join(headings)}"
             )
-
-    def check_dag(self, entries: dict[str, Entry]) -> None:
-        for entry in entries.values():
-            for prerequisite in entry.prerequisites:
-                if prerequisite not in entries:
-                    self.error(
-                        f"CATALOG.md ({entry.article_id}): unknown prerequisite {prerequisite}"
-                    )
-                elif entry.kind == "核心教程" and entries[prerequisite].kind != "核心教程":
-                    self.error(
-                        f"CATALOG.md ({entry.article_id}): core article depends on extension {prerequisite}"
-                    )
-
-        state: dict[str, int] = {}
-        stack: list[str] = []
-
-        def visit(article_id: str) -> None:
-            if state.get(article_id) == 2:
-                return
-            if state.get(article_id) == 1:
-                start = stack.index(article_id)
-                cycle = stack[start:] + [article_id]
-                self.error("CATALOG.md: dependency cycle: " + " -> ".join(cycle))
-                return
-            state[article_id] = 1
-            stack.append(article_id)
-            for prerequisite in entries[article_id].prerequisites:
-                if prerequisite in entries:
-                    visit(prerequisite)
-            stack.pop()
-            state[article_id] = 2
-
-        for article_id in entries:
-            visit(article_id)
 
     def check_learning_path(
         self, entries: dict[str, Entry], route: list[RouteEntry]
@@ -321,17 +312,74 @@ class Checker:
         if extra:
             self.error("LEARNING-PATH.md: non-core IDs present: " + ", ".join(extra))
 
-        positions = {article_id: index for index, article_id in enumerate(route_ids)}
-        for article_id in route_ids:
-            entry = entries.get(article_id)
-            if not entry:
+        stages = list(dict.fromkeys(item.stage for item in route))
+        expected_stages = [
+            "阶段 1：C++ 基础",
+            "阶段 2：算法基础",
+            "阶段 3：初中基础",
+            "阶段 4：初中进阶",
+            "阶段 5：高中基础",
+            "阶段 6：高中进阶",
+        ]
+        if stages != expected_stages:
+            self.error(
+                "LEARNING-PATH.md: stages must be exactly "
+                + " -> ".join(expected_stages)
+            )
+
+    def check_extension_index(
+        self,
+        entries: dict[str, Entry],
+        extension_index: list[ExtensionIndexEntry],
+    ) -> None:
+        actual_ids: list[str] = []
+        seen: set[str] = set()
+        for item in extension_index:
+            location = f"LEARNING-PATH.md ({item.article_id}, {item.section})"
+            if item.article_id in seen:
+                self.error(f"{location}: duplicate extension-index ID")
                 continue
-            for prerequisite in entry.prerequisites:
-                if prerequisite in positions and positions[prerequisite] >= positions[article_id]:
-                    self.error(
-                        "LEARNING-PATH.md: prerequisite "
-                        f"{prerequisite} must appear before {article_id}"
-                    )
+            seen.add(item.article_id)
+            actual_ids.append(item.article_id)
+            entry = entries.get(item.article_id)
+            if not entry:
+                self.error(f"{location}: ID is absent from CATALOG.md")
+                continue
+            if entry.kind != "扩展专题":
+                self.error(f"{location}: core article must stay in stages 1–6")
+            if item.title != entry.title:
+                self.error(
+                    f"{location}: title differs from catalog ({item.title!r} != {entry.title!r})"
+                )
+            if item.path != entry.path:
+                self.error(
+                    f"{location}: path differs from catalog ({item.path!r} != {entry.path!r})"
+                )
+            if item.linked != entry.linked:
+                self.error(f"{location}: file link/code style differs from catalog status")
+
+        expected_ids = [
+            article_id
+            for article_id, entry in entries.items()
+            if entry.kind == "扩展专题"
+        ]
+        if actual_ids != expected_ids:
+            missing = sorted(set(expected_ids) - set(actual_ids))
+            extra = sorted(set(actual_ids) - set(expected_ids))
+            if missing:
+                self.error(
+                    "LEARNING-PATH.md: extension index missing IDs: "
+                    + ", ".join(missing)
+                )
+            if extra:
+                self.error(
+                    "LEARNING-PATH.md: extension index has non-extension IDs: "
+                    + ", ".join(extra)
+                )
+            if not missing and not extra:
+                self.error(
+                    "LEARNING-PATH.md: extension index must follow catalog module/ID order"
+                )
 
     def check_article_files(
         self, entries: dict[str, Entry], legacy: set[str]
@@ -374,7 +422,6 @@ class Checker:
         display = path.relative_to(ROOT).as_posix()
         title = re.search(r"^# (.+?)\s*$", text, re.MULTILINE)
         status = re.search(r"^> 状态：(草稿|定稿)\s*$", text, re.MULTILINE)
-        prerequisites = re.search(r"^> 直接前置：(.*?)\s*$", text, re.MULTILINE)
         if not title or title.group(1) != entry.title:
             self.error(f"{display}: article title differs from catalog")
         if not status:
@@ -382,22 +429,6 @@ class Checker:
             return
         if status.group(1) != entry.status:
             self.error(f"{display}: article status differs from catalog")
-        if not entry.prerequisites:
-            if prerequisites:
-                self.error(f"{display}: article without prerequisites must omit that line")
-            return
-        if not prerequisites:
-            self.error(f"{display}: missing article prerequisites")
-            return
-        raw_prerequisites = prerequisites.group(1)
-        metadata_ids = tuple(
-            dict.fromkeys(re.findall(rf"\b{ARTICLE_ID_PATTERN}\b", raw_prerequisites))
-        )
-        if metadata_ids != entry.prerequisites:
-            self.error(
-                f"{display}: article prerequisites {metadata_ids} differ from catalog "
-                f"{entry.prerequisites}"
-            )
 
     def check_local_links(self, path: Path, text: str) -> None:
         display = path.relative_to(ROOT).as_posix()

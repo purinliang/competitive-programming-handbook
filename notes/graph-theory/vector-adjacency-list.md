@@ -1,7 +1,6 @@
 # 图的存储：邻接表（vector 实现）
 
 > 状态：草稿
-> 直接前置：[0138 序列容器：vector（正文待写）](../CATALOG.md#01-c-基础)、[0402 图的存储：基础概念](graph-representation.md)
 
 [图的存储：基础概念](graph-representation.md) 已经把邻接表定义为“为每个点分别保存全部出边”。本篇只讨论它在普通图算法中的默认实现：用一个 `vector` 保存每个点的邻接项。
 
@@ -168,4 +167,4 @@ DFS、BFS、最短路和绝大多数普通图算法只需快速枚举当前点�
 
 ## 下一篇
 
-下一篇将回到图的特殊形态，介绍 [树与有根树](trees-and-rooted-trees.md)。
+下一篇将在邻接表上介绍 [图的遍历：深度优先搜索（DFS）](graph-depth-first-search.md)。

@@ -1,7 +1,6 @@
 # 基本类型：整数
 
 > 状态：草稿
-> 直接前置：[0101 入门：Hello World!](hello-world.md)
 
 上一篇 [入门：A+B Problem](a-plus-b-problem.md) 第一次使用了 `int`。它是竞赛中最常用的整数类型，也是理解其他整数类型的起点。
 

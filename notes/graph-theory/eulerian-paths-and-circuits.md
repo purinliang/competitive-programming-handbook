@@ -1,7 +1,6 @@
-# 欧拉路径、欧拉回路与欧拉图
+# 欧拉问题：路径、回路与图
 
 > 状态：草稿
-> 直接前置：[0138 序列容器：vector（正文待写）](../CATALOG.md#01-c-基础)、[0431 图：路径与环](paths-and-cycles.md)、[0432 图：度数](vertex-degrees.md)、[0440 图的存储：邻接表（链式前向星实现）](chained-forward-star.md)
 
 普通路径关心经过哪些点；欧拉问题换了一个目标：图中的每条原始边都必须恰好使用一次。
 
@@ -277,4 +276,4 @@ int main() {
 
 ## 下一篇
 
-下一篇将比较另一种“恰好一次”：[哈密顿路径、哈密顿回路与哈密顿图](hamiltonian-paths-and-circuits.md)。
+下一篇将比较另一种“恰好一次”：[哈密顿问题：路径、回路与图](hamiltonian-paths-and-circuits.md)。

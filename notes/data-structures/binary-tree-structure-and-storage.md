@@ -1,9 +1,8 @@
 # 二叉树：结构与存储
 
 > 状态：草稿
-> 直接前置：[0118 数组：一维数组](../cpp/0118-one-dimensional-arrays.md)、[0121 复合类型：struct](../cpp/0121-struct.md)、[0125 内存与别名：指针](../cpp/0125-pointers.md)、[0433 树与有根树](../graph-theory/trees-and-rooted-trees.md)
 
-[树与有根树](../graph-theory/trees-and-rooted-trees.md) 主要关心节点与边形成的关系。现在换到数据结构视角：我们要让每个节点明确保存自己的值、左子节点和右子节点，以便后续按照这个结构访问数据。
+[树：有根树](../graph-theory/rooted-trees.md) 主要关心节点与边形成的层级关系。现在换到数据结构视角：我们要让每个节点明确保存自己的值、左子节点和右子节点，以便后续按照这个结构访问数据。
 
 ## 二叉树
 
@@ -159,4 +158,4 @@ int main() {
 
 ## 下一篇
 
-下一篇将回到图论视角，介绍 [树的深度优先搜索](../graph-theory/tree-depth-first-search.md)。
+下一篇将介绍 [二叉树的遍历：前序、中序与后序](binary-tree-traversals.md)。

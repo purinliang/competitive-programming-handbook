@@ -1,7 +1,6 @@
 # 哈密顿问题：小规模回溯
 
 > 状态：草稿
-> 直接前置：[0210 枚举、回溯与剪枝（正文待写）](../CATALOG.md#02-基础算法与通用技巧)、[0436 图的深度优先搜索](graph-depth-first-search.md)、[0438 哈密顿路径、哈密顿回路与哈密顿图](hamiltonian-paths-and-circuits.md)
 
 一般的哈密顿问题没有像 Hierholzer 那样的通用线性算法。点数很小时，可以按路径顺序逐点枚举，并在发现当前选择无法继续时回溯。本篇保存这个可选实现，不属于核心学习路线。
 
@@ -174,4 +173,4 @@ int main() {
 
 ## 返回基础篇
 
-返回 [哈密顿路径、哈密顿回路与哈密顿图](hamiltonian-paths-and-circuits.md) 继续主学习路线。
+返回 [哈密顿问题：路径、回路与图](hamiltonian-paths-and-circuits.md) 继续主学习路线。
