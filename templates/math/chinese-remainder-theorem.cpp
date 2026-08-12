@@ -95,40 +95,38 @@ ll exgcd(ll a, ll b, ll& x, ll& y) {
     return g;
 }
 
-bool crt(const vector<ll>& a, const vector<ll>& m, ll& ans, ll& M) {
-    M = 1;
-    for (ll x : m) {
-        M *= x;
+pair<ll, ll> crt(int n, const vector<ll>& a, const vector<ll>& m) {
+    ll M = 1;
+    for (int i = 1; i <= n; i++) {
+        M *= m[i];
     }
 
     mint::set_mod(M);
     mint result = 0;
-    int n = a.size();
-    for (int i = 0; i < n; i++) {
+    for (int i = 1; i <= n; i++) {
         ll Mi = M / m[i];
         ll ti, y;
         if (exgcd(Mi, m[i], ti, y) != 1) {
-            return false;
+            return {-1, -1};
         }
 
         result += mint(a[i]) * mint(Mi) * mint(ti);
     }
-    ans = result.value();
-    return true;
+    return {result.value(), M};
 }
 
 int main() {
     int n;
     scanf("%d", &n);
 
-    vector<ll> a(n);
-    vector<ll> m(n);
-    for (int i = 0; i < n; i++) {
+    vector<ll> a(n + 5);
+    vector<ll> m(n + 5);
+    for (int i = 1; i <= n; i++) {
         scanf("%lld%lld", &m[i], &a[i]);
     }
 
-    ll ans, M;
-    if (!crt(a, m, ans, M)) {
+    auto [ans, M] = crt(n, a, m);
+    if (ans == -1) {
         printf("Moduli are not pairwise coprime\n");
         return 0;
     }

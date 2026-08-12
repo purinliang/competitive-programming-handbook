@@ -95,12 +95,12 @@ ll exgcd(ll a, ll b, ll& x, ll& y) {
     return g;
 }
 
-bool merge_congruence(ll& a1, ll& m1, ll a2, ll m2) {
+pair<ll, ll> merge_congruence(ll a1, ll m1, ll a2, ll m2) {
     ll s, y;
     ll g = exgcd(m1, m2, s, y);
     ll c = a2 - a1;
     if (c % g != 0) {
-        return false;
+        return {-1, -1};
     }
 
     ll period = m2 / g;
@@ -109,38 +109,39 @@ bool merge_congruence(ll& a1, ll& m1, ll a2, ll m2) {
 
     ll new_M = m1 / g * m2;
     mint::set_mod(new_M);
-    a1 = (mint(a1) + mint(m1) * mint(t)).value();
-    m1 = new_M;
-    return true;
+    ll new_a = (mint(a1) + mint(m1) * mint(t)).value();
+    return {new_a, new_M};
 }
 
-bool excrt(const vector<ll>& a, const vector<ll>& m, ll& ans, ll& M) {
-    M = m[0];
+pair<ll, ll> excrt(int n, const vector<ll>& a, const vector<ll>& m) {
+    ll M = m[1];
     mint::set_mod(M);
-    ans = mint(a[0]).value();
-    int n = a.size();
-    for (int i = 1; i < n; i++) {
+    ll ans = mint(a[1]).value();
+    for (int i = 2; i <= n; i++) {
         mint::set_mod(m[i]);
         ll next_a = mint(a[i]).value();
-        if (!merge_congruence(ans, M, next_a, m[i])) {
-            return false;
+        auto [new_ans, new_M] = merge_congruence(ans, M, next_a, m[i]);
+        if (new_ans == -1) {
+            return {-1, -1};
         }
+        ans = new_ans;
+        M = new_M;
     }
-    return true;
+    return {ans, M};
 }
 
 int main() {
     int n;
     scanf("%d", &n);
 
-    vector<ll> a(n);
-    vector<ll> m(n);
-    for (int i = 0; i < n; i++) {
+    vector<ll> a(n + 5);
+    vector<ll> m(n + 5);
+    for (int i = 1; i <= n; i++) {
         scanf("%lld%lld", &m[i], &a[i]);
     }
 
-    ll ans, M;
-    if (!excrt(a, m, ans, M)) {
+    auto [ans, M] = excrt(n, a, m);
+    if (ans == -1) {
         printf("No solution\n");
         return 0;
     }

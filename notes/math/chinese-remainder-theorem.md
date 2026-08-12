@@ -1,6 +1,6 @@
 # 数论：中国剩余定理（CRT）
 
-> 状态：定稿
+> 最近修订：2026-08-13 03:14 +10:00（未审阅）
 
 一个整数可以同时受到多个余数条件的约束。例如，我们想找到 $x$，使它除以 $3$ 余 $2$，除以 $5$ 余 $3$，除以 $7$ 余 $2$：
 
@@ -33,6 +33,8 @@ $$
 $$
 M=m_1m_2\cdots m_k
 $$
+
+这里用大写 $M$ 表示所有 $m_i$ 合并后的总模数，以区别单条方程的模数 $m_i$。最终解每隔 $M$ 重复一次，因此同一个 $M$ 也是解集的周期。
 
 有唯一解。“模 $M$ 唯一”表示所有整数解都可以写成
 
@@ -165,40 +167,38 @@ $$
 程序假设模数乘积可以放入 64 位整数。`mint` 负责余数归一化和中间乘法取模，但无法保存一个本身已经超出 64 位整数范围的 $M$。
 
 ```cpp
-bool crt(const vector<ll>& a, const vector<ll>& m, ll& ans, ll& M) {
-    M = 1;
-    for (ll x : m) {
-        M *= x;
+pair<ll, ll> crt(int n, const vector<ll>& a, const vector<ll>& m) {
+    ll M = 1;
+    for (int i = 1; i <= n; i++) {
+        M *= m[i];
     }
 
     mint::set_mod(M);
     mint result = 0;
-    int n = a.size();
-    for (int i = 0; i < n; i++) {
+    for (int i = 1; i <= n; i++) {
         ll Mi = M / m[i];
         ll ti, y;
         if (exgcd(Mi, m[i], ti, y) != 1) {
-            return false;
+            return {-1, -1};
         }
 
         result += mint(a[i]) * mint(Mi) * mint(ti);
     }
-    ans = result.value();
-    return true;
+    return {result.value(), M};
 }
 
 int main() {
     int n;
     scanf("%d", &n);
 
-    vector<ll> a(n);
-    vector<ll> m(n);
-    for (int i = 0; i < n; i++) {
+    vector<ll> a(n + 5);
+    vector<ll> m(n + 5);
+    for (int i = 1; i <= n; i++) {
         scanf("%lld%lld", &m[i], &a[i]);
     }
 
-    ll ans, M;
-    if (!crt(a, m, ans, M)) {
+    auto [ans, M] = crt(n, a, m);
+    if (ans == -1) {
         printf("Moduli are not pairwise coprime\n");
         return 0;
     }
@@ -208,7 +208,9 @@ int main() {
 }
 ```
 
-余数和模数保存在 `vector` 中，因此代码使用从 `0` 开始的下标；这与本书中 STL 类型的统一习惯一致。
+第 `i` 条同余式保存在 `a[i]` 和 `m[i]` 中，其中 `1 <= i <= n`。两个 `vector` 都分配 `n + 5` 个位置，因此 `crt` 必须显式接收真实方程数量 `n`，不能使用 `vector.size()` 代替。
+
+`crt` 返回 `{ans, M}`。合法答案一定满足 `0 <= ans < M`，因此这里可以用 `{-1, -1}` 表示模数不满足两两互质的要求，而不会与正常答案混淆。
 
 输出的两个数 `ans M` 表示方程组的全部解是
 

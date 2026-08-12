@@ -12,11 +12,10 @@ ll oracle_normalize(ll x, ll m) {
     return x;
 }
 
-ll brute_excrt(const vector<ll>& a, const vector<ll>& m, ll M) {
-    int n = a.size();
+ll brute_excrt(int n, const vector<ll>& a, const vector<ll>& m, ll M) {
     for (ll x = 0; x < M; x++) {
         bool valid = true;
-        for (int i = 0; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             if (x % m[i] != oracle_normalize(a[i], m[i])) {
                 valid = false;
                 break;
@@ -34,20 +33,20 @@ int main() {
 
     for (int test = 1; test <= 10000; test++) {
         int n = static_cast<int>(rng() % 5) + 1;
-        vector<ll> a(n);
-        vector<ll> m(n);
+        vector<ll> a(n + 5);
+        vector<ll> m(n + 5);
         ll expected_mod = 1;
-        for (int i = 0; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             m[i] = static_cast<ll>(rng() % 9) + 2;
             a[i] = static_cast<ll>(rng() % 101) - 50;
             expected_mod = lcm(expected_mod, m[i]);
         }
 
-        ll brute = brute_excrt(a, m, expected_mod);
+        ll brute = brute_excrt(n, a, m, expected_mod);
         bool expected = brute != -1;
 
-        ll ans, M;
-        bool actual = excrt(a, m, ans, M);
+        auto [ans, M] = excrt(n, a, m);
+        bool actual = ans != -1;
         if (actual != expected) {
             printf("existence mismatch on test %d\n", test);
             return 1;

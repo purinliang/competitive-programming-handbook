@@ -1,6 +1,6 @@
 # 数论：扩展中国剩余定理（exCRT）
 
-> 状态：定稿
+> 最近修订：2026-08-13 03:14 +10:00（未审阅）
 
 [数论：中国剩余定理（CRT）](chinese-remainder-theorem.md) 通过模逆元构造互不干扰的余数开关，但它要求模数两两互质。当模数不互质时，方程组可能无解，也可能仍然有解；只是原来的开关无法保证存在。
 
@@ -133,6 +133,8 @@ $$
 m'=\mathrm{lcm}(m_1,m_2)=\frac{m_1}{g}m_2.
 $$
 
+这个 $m'$ 既是合并后方程的模数，也是合并后解集的周期。代码把每一步的新值写成 `new_M`，反复合并后的当前总模数写成 `M`，用大写字母与输入中的单个 `m_i` 区分。
+
 这也可以从 $t$ 的周期看出。$t$ 增加 $m_2/g$ 时，$x=a_1+m_1t$ 增加
 
 $$
@@ -183,17 +185,17 @@ x = a1 (mod m1)
 x = a2 (mod m2)
 ```
 
-合并，并将结果写回 `a1, m1`。调用前要求 `m1,m2` 为正整数，并且 `a1,a2` 已分别归一化到对应模数范围内。
+合并成 `{new_a, new_m}` 返回。调用前要求 `m1,m2` 为正整数，并且 `a1,a2` 已分别归一化到对应模数范围内。正常余数一定非负，因此 `{-1, -1}` 可以无歧义地表示两个条件冲突。
 
 下面只保留 exCRT 自己的算法。代码复用 [模运算：modint](mod-int.md) 中的 `mint` 和 [数论：扩展欧几里得算法](extended-euclidean-algorithm.md) 中的 `exgcd`；把这两个已经讲过的工具放在同一份源文件前面，即可得到可提交的单文件程序。程序假设最终的最小公倍数可以放入 64 位整数。
 
 ```cpp
-bool merge_congruence(ll& a1, ll& m1, ll a2, ll m2) {
+pair<ll, ll> merge_congruence(ll a1, ll m1, ll a2, ll m2) {
     ll s, y;
     ll g = exgcd(m1, m2, s, y);
     ll c = a2 - a1;
     if (c % g != 0) {
-        return false;
+        return {-1, -1};
     }
 
     ll period = m2 / g;
@@ -202,9 +204,8 @@ bool merge_congruence(ll& a1, ll& m1, ll a2, ll m2) {
 
     ll new_M = m1 / g * m2;
     mint::set_mod(new_M);
-    a1 = (mint(a1) + mint(m1) * mint(t)).value();
-    m1 = new_M;
-    return true;
+    ll new_a = (mint(a1) + mint(m1) * mint(t)).value();
+    return {new_a, new_M};
 }
 
 int main() {
@@ -222,10 +223,13 @@ int main() {
         mint::set_mod(next_m);
         next_a = mint(next_a).value();
 
-        if (!merge_congruence(ans, M, next_a, next_m)) {
+        auto [new_ans, new_M] = merge_congruence(ans, M, next_a, next_m);
+        if (new_ans == -1) {
             printf("No solution\n");
             return 0;
         }
+        ans = new_ans;
+        M = new_M;
     }
 
     printf("%lld %lld\n", ans, M);

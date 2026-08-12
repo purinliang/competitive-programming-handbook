@@ -215,7 +215,7 @@
 | 0507 | 组合数与基础计数 | 计划 | `math/0507-combinatorics.md` |
 | 0508 | 欧拉函数 | 计划 | `math/0508-euler-totient.md` |
 | 0509 | 矩阵运算与线性变换 | 计划 | `math/0509-matrix-operations.md` |
-| 0510 | 数论：中国剩余定理（CRT） | 定稿 | [chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
+| 0510 | 数论：中国剩余定理（CRT） | 待审阅 | [chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
 | 0511 | 矩阵快速幂与递推加速 | 计划 | `math/0511-matrix-exponentiation.md` |
 | 0512 | 概率与期望基础 | 计划 | `math/0512-probability-expectation.md` |
 | 0513* | Nim、SG 函数与基础博弈论 | 计划 | `math/0513-nim-sg-game-theory.md` |
@@ -243,7 +243,7 @@
 | 0535 | 数论：算术基本定理 | 定稿 | [fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
 | 0536 | 数论：最大公约数与最小公倍数 | 定稿 | [greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
 | 0537 | 数论：欧几里得算法 | 定稿 | [euclidean-algorithm.md](math/euclidean-algorithm.md) |
-| 0538 | 数论：扩展中国剩余定理（exCRT） | 定稿 | [extended-chinese-remainder-theorem.md](math/extended-chinese-remainder-theorem.md) |
+| 0538 | 数论：扩展中国剩余定理（exCRT） | 待审阅 | [extended-chinese-remainder-theorem.md](math/extended-chinese-remainder-theorem.md) |
 | 0539 | 数论：质因数分解 | 计划 | `math/0539-prime-factorization.md` |
 | 0540 | 数论：正因数个数 | 计划 | `math/0540-divisor-count.md` |
 | 0541 | 数论：正因数和 | 计划 | `math/0541-divisor-sum.md` |
