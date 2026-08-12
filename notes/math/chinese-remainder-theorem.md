@@ -160,14 +160,56 @@ $$
 
 ## 完整代码
 
-下面的程序假设模数乘积可以放入 64 位整数。中间乘法使用 `__int128` 避免在取模前过早溢出；这不能解决最终模数本身超出 64 位整数范围的问题。`__int128` 是主流 GNU C++ 竞赛环境提供的扩展整数类型，不是 C++17 标准强制提供的类型。
+下面的程序假设模数乘积可以放入 64 位整数。公式中的乘积在取模前仍可能暂时溢出，因此代码使用俗称“龟速乘”的 `mul_mod`：把乘数按二进制拆开，通过反复模加法求出乘积的余数。模加法只是其中的一步，整个方法通常称为龟速乘。
+
+先把任意 64 位整数归一化到 $[0,m)$：
+
+```cpp
+ll normalize(ll x, ll m) {
+    x %= m;
+    if (x < 0) {
+        x += m;
+    }
+    return x;
+}
+```
+
+若 `a,b` 已经位于这个区间，可以在不直接计算 `a + b` 的情况下安全求和：
+
+```cpp
+ll add_mod(ll a, ll b, ll m) {
+    if (a >= m - b) {
+        return a - (m - b);
+    }
+    return a + b;
+}
+```
+
+再像快速幂一样反复翻倍 `a`、折半 `b`：
+
+```cpp
+ll mul_mod(ll a, ll b, ll m) {
+    a = normalize(a, m);
+    b = normalize(b, m);
+    ll result = 0;
+    while (b > 0) {
+        if (b % 2 == 1) {
+            result = add_mod(result, a, m);
+        }
+        a = add_mod(a, a, m);
+        b /= 2;
+    }
+    return result;
+}
+```
+
+它只使用 64 位整数，不依赖 `__int128`。这仍不能解决最终模数乘积本身超出 64 位整数范围的问题。
 
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
 typedef long long ll;
-typedef __int128 i128;
 
 ll exgcd(ll a, ll b, ll& x, ll& y) {
     if (b == 0) {
@@ -183,30 +225,53 @@ ll exgcd(ll a, ll b, ll& x, ll& y) {
     return g;
 }
 
-ll mod_norm(i128 x, ll mod) {
-    x %= mod;
+ll normalize(ll x, ll m) {
+    x %= m;
     if (x < 0) {
-        x += mod;
+        x += m;
     }
-    return static_cast<ll>(x);
+    return x;
 }
 
-bool crt(const vector<ll>& a, const vector<ll>& m, ll& ans, ll& mod) {
-    mod = 1;
+ll add_mod(ll a, ll b, ll m) {
+    if (a >= m - b) {
+        return a - (m - b);
+    }
+    return a + b;
+}
+
+ll mul_mod(ll a, ll b, ll m) {
+    a = normalize(a, m);
+    b = normalize(b, m);
+    ll result = 0;
+    while (b > 0) {
+        if (b % 2 == 1) {
+            result = add_mod(result, a, m);
+        }
+        a = add_mod(a, a, m);
+        b /= 2;
+    }
+    return result;
+}
+
+bool crt(const vector<ll>& a, const vector<ll>& m, ll& ans, ll& M) {
+    M = 1;
     for (ll x : m) {
-        mod *= x;
+        M *= x;
     }
 
     ans = 0;
-    for (int i = 0; i < static_cast<int>(a.size()); i++) {
-        ll partial_mod = mod / m[i];
-        ll inverse, y;
-        if (exgcd(partial_mod, m[i], inverse, y) != 1) {
+    int n = a.size();
+    for (int i = 0; i < n; i++) {
+        ll Mi = M / m[i];
+        ll ti, y;
+        if (exgcd(Mi, m[i], ti, y) != 1) {
             return false;
         }
 
-        i128 term = static_cast<i128>(mod_norm(a[i], m[i])) * partial_mod * inverse;
-        ans = mod_norm(static_cast<i128>(ans) + term, mod);
+        ll term = mul_mod(normalize(a[i], m[i]), Mi, M);
+        term = mul_mod(term, normalize(ti, m[i]), M);
+        ans = add_mod(ans, term, M);
     }
     return true;
 }
@@ -221,21 +286,23 @@ int main() {
         scanf("%lld%lld", &m[i], &a[i]);
     }
 
-    ll ans, mod;
-    if (!crt(a, m, ans, mod)) {
+    ll ans, M;
+    if (!crt(a, m, ans, M)) {
         printf("Moduli are not pairwise coprime\n");
         return 0;
     }
 
-    printf("%lld %lld\n", ans, mod);
+    printf("%lld %lld\n", ans, M);
     return 0;
 }
 ```
 
-输出的两个数表示方程组的全部解是
+余数和模数保存在 `vector` 中，因此代码使用从 `0` 开始的下标；这与本书中 STL 类型的统一习惯一致。
+
+输出的两个数 `ans M` 表示方程组的全部解是
 
 $$
-x\equiv\texttt{ans}\pmod{\texttt{mod}}.
+x\equiv\texttt{ans}\pmod M.
 $$
 
 输入开头例子中的三个条件：
@@ -257,10 +324,10 @@ $$
 
 ## 复杂度
 
-对每个方程调用一次扩展欧几里得算法。若忽略大整数运算的位复杂度，总时间为
+对每个方程调用一次扩展欧几里得算法，并进行两次龟速乘。设所有模数的乘积为 $M$，总时间为
 
 $$
-O\left(\sum_{i=1}^k\log m_i\right),
+O\left(\sum_{i=1}^k\log m_i+k\log M\right),
 $$
 
 保存余数和模数需要 $O(k)$ 空间。
