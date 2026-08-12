@@ -7,36 +7,6 @@ using namespace std;
 
 typedef long long ll;
 
-ll normalize(ll x, ll mod) {
-    x %= mod;
-    if (x < 0) {
-        x += mod;
-    }
-    return x;
-}
-
-ll add_mod(ll a, ll b, ll mod) {
-    if (a >= mod - b) {
-        return a - (mod - b);
-    }
-    return a + b;
-}
-
-ll multiply_mod(ll a, ll b, ll mod) {
-    a = normalize(a, mod);
-    b = normalize(b, mod);
-
-    ll result = 0;
-    while (b > 0) {
-        if (b % 2 == 1) {
-            result = add_mod(result, a, mod);
-        }
-        a = add_mod(a, a, mod);
-        b /= 2;
-    }
-    return result;
-}
-
 ll exgcd(ll a, ll b, ll& x, ll& y) {
     if (b == 0) {
         x = 1;
@@ -57,7 +27,7 @@ pair<ll, ll> crt(int n, const vector<ll>& a, const vector<ll>& m) {
         M *= m[i];
     }
 
-    ll ans = 0;
+    __int128 ans = 0;
     for (int i = 1; i <= n; i++) {
         ll Mi = M / m[i];
         ll ti, y;
@@ -65,11 +35,14 @@ pair<ll, ll> crt(int n, const vector<ll>& a, const vector<ll>& m) {
             return {-1, -1};
         }
 
-        ll term = multiply_mod(a[i], Mi, M);
-        term = multiply_mod(term, ti, M);
-        ans = add_mod(ans, term, M);
+        __int128 term = (__int128)a[i] * Mi % M;
+        term = term * ti % M;
+        ans = (ans + term) % M;
     }
-    return {ans, M};
+    if (ans < 0) {
+        ans += M;
+    }
+    return {(ll)ans, M};
 }
 
 int main() {

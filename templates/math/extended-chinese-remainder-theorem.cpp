@@ -7,36 +7,6 @@ using namespace std;
 
 typedef long long ll;
 
-ll normalize(ll x, ll mod) {
-    x %= mod;
-    if (x < 0) {
-        x += mod;
-    }
-    return x;
-}
-
-ll add_mod(ll a, ll b, ll mod) {
-    if (a >= mod - b) {
-        return a - (mod - b);
-    }
-    return a + b;
-}
-
-ll multiply_mod(ll a, ll b, ll mod) {
-    a = normalize(a, mod);
-    b = normalize(b, mod);
-
-    ll result = 0;
-    while (b > 0) {
-        if (b % 2 == 1) {
-            result = add_mod(result, a, mod);
-        }
-        a = add_mod(a, a, mod);
-        b /= 2;
-    }
-    return result;
-}
-
 ll exgcd(ll a, ll b, ll& x, ll& y) {
     if (b == 0) {
         x = 1;
@@ -60,18 +30,30 @@ pair<ll, ll> merge_congruence(ll a1, ll m1, ll a2, ll m2) {
     }
 
     ll period = m2 / g;
-    ll t = multiply_mod(s, c / g, period);
+    ll t = (ll)((__int128)s * (c / g) % period);
+    if (t < 0) {
+        t += period;
+    }
 
     ll new_M = m1 / g * m2;
-    ll new_a = add_mod(normalize(a1, new_M), multiply_mod(m1, t, new_M), new_M);
+    ll new_a = (ll)((a1 + (__int128)m1 * t) % new_M);
+    if (new_a < 0) {
+        new_a += new_M;
+    }
     return {new_a, new_M};
 }
 
 pair<ll, ll> excrt(int n, const vector<ll>& a, const vector<ll>& m) {
     ll M = m[1];
-    ll ans = normalize(a[1], M);
+    ll ans = a[1] % M;
+    if (ans < 0) {
+        ans += M;
+    }
     for (int i = 2; i <= n; i++) {
-        ll next_a = normalize(a[i], m[i]);
+        ll next_a = a[i] % m[i];
+        if (next_a < 0) {
+            next_a += m[i];
+        }
         auto [new_ans, new_M] = merge_congruence(ans, M, next_a, m[i]);
         if (new_ans == -1) {
             return {-1, -1};

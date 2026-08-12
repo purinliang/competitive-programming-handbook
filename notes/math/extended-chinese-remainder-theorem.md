@@ -1,6 +1,6 @@
 # 数论：扩展中国剩余定理（exCRT）
 
-> 最近修订：2026-08-13 03:29 +10:00（未审阅）
+> 最近修订：2026-08-13 03:38 +10:00（未审阅）
 
 [数论：中国剩余定理（CRT）](chinese-remainder-theorem.md) 通过模逆元构造互不干扰的余数开关，但它要求模数两两互质。当模数不互质时，方程组可能无解，也可能仍然有解；只是原来的开关无法保证存在。
 
@@ -187,45 +187,15 @@ x = a2 (mod m2)
 
 合并成 `{new_a, new_m}` 返回。调用前要求 `m1,m2` 为正整数，并且 `a1,a2` 已分别归一化到对应模数范围内。正常余数一定非负，因此 `{-1, -1}` 可以无歧义地表示两个条件冲突。
 
-exCRT 会在 $m_2/g$、合并后的新模数和下一条输入模数之间切换。与 [数论：中国剩余定理（CRT）](chinese-remainder-theorem.md#显式模数) 相同，归一化和龟速乘都显式接收本次模数，不使用一份可以被 `set_mod()` 反复改写的隐藏状态。
+计算 $s(c/g)$ 和 $a_1+m_1t$ 时，64 位整数可能在取模之前乘法溢出。代码与 [数论：中国剩余定理（CRT）](chinese-remainder-theorem.md#中间乘法) 相同，只用 `__int128` 保存中间乘积，取模后立即转换回 `ll`。
 
-下面给出可以直接编译的完整程序。它内联安全模运算与 `exgcd`，并假设最终的最小公倍数可以放入 64 位整数。
+下面给出可以直接编译的完整程序。它假设最终的最小公倍数可以放入 64 位整数，并且编译器支持 `__int128`；不支持时，中间乘法的替代方案由具体平台和题目范围决定。
 
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
 typedef long long ll;
-
-ll normalize(ll x, ll mod) {
-    x %= mod;
-    if (x < 0) {
-        x += mod;
-    }
-    return x;
-}
-
-ll add_mod(ll a, ll b, ll mod) {
-    if (a >= mod - b) {
-        return a - (mod - b);
-    }
-    return a + b;
-}
-
-ll multiply_mod(ll a, ll b, ll mod) {
-    a = normalize(a, mod);
-    b = normalize(b, mod);
-
-    ll result = 0;
-    while (b > 0) {
-        if (b % 2 == 1) {
-            result = add_mod(result, a, mod);
-        }
-        a = add_mod(a, a, mod);
-        b /= 2;
-    }
-    return result;
-}
 
 ll exgcd(ll a, ll b, ll& x, ll& y) {
     if (b == 0) {
@@ -250,10 +220,16 @@ pair<ll, ll> merge_congruence(ll a1, ll m1, ll a2, ll m2) {
     }
 
     ll period = m2 / g;
-    ll t = multiply_mod(s, c / g, period);
+    ll t = (ll)((__int128)s * (c / g) % period);
+    if (t < 0) {
+        t += period;
+    }
 
     ll new_M = m1 / g * m2;
-    ll new_a = add_mod(normalize(a1, new_M), multiply_mod(m1, t, new_M), new_M);
+    ll new_a = (ll)((a1 + (__int128)m1 * t) % new_M);
+    if (new_a < 0) {
+        new_a += new_M;
+    }
     return {new_a, new_M};
 }
 
@@ -263,12 +239,18 @@ int main() {
 
     ll M, ans;
     scanf("%lld%lld", &M, &ans);
-    ans = normalize(ans, M);
+    ans %= M;
+    if (ans < 0) {
+        ans += M;
+    }
 
     for (int i = 2; i <= n; i++) {
         ll next_m, next_a;
         scanf("%lld%lld", &next_m, &next_a);
-        next_a = normalize(next_a, next_m);
+        next_a %= next_m;
+        if (next_a < 0) {
+            next_a += next_m;
+        }
 
         auto [new_ans, new_M] = merge_congruence(ans, M, next_a, next_m);
         if (new_ans == -1) {
@@ -321,10 +303,10 @@ $$
 
 ## 复杂度
 
-每合并一个方程，调用一次扩展欧几里得算法，并通过 `multiply_mod` 进行常数次龟速乘。对 $k$ 个方程，总时间可写为
+每合并一个方程，调用一次扩展欧几里得算法；将固定宽度整数运算视为 $O(1)$，对 $k$ 个方程，总时间可写为
 
 $$
-O\left(\sum_{i=2}^k\left(\log\min(M_{i-1},m_i)+\log M_i\right)\right),
+O\left(\sum_{i=2}^k\log\min(M_{i-1},m_i)\right),
 $$
 
 其中 $M_{i-1}$ 是前 $i-1$ 个方程合并后的模数。除输入外只保存当前合并结果，额外空间为 $O(1)$。
