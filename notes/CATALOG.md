@@ -136,15 +136,15 @@
 | ID | 知识点 | 状态 | 直接前置 | 文件 |
 | --- | --- | --- | --- | --- |
 | 0401 | 图：点与边 | 草稿 | — | [vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
-| 0402 | 图的存储：边的记录 | 草稿 | 0121,0401 | [graph-representation.md](graph-theory/graph-representation.md) |
+| 0402 | 图的存储：基础概念 | 草稿 | 0119,0121,0401 | [graph-representation.md](graph-theory/graph-representation.md) |
 | 0403 | 倍增 LCA | 草稿 | 0133,0434 | [0403-lca-binary-lifting.md](graph-theory/0403-lca-binary-lifting.md) |
 | 0404 | 连通块与洪水填充 | 计划 | 0436 | `graph-theory/0404-connected-components.md` |
 | 0405 | 拓扑排序 | 计划 | 0143,0432,0439 | `graph-theory/0405-topological-sort.md` |
 | 0406 | BFS、0-1 BFS 与多源最短路 | 计划 | 0437 | `graph-theory/0406-unweighted-shortest-path.md` |
 | 0407 | Dijkstra | 计划 | 0302,0401,0201 | `graph-theory/0407-dijkstra.md` |
-| 0408 | Bellman-Ford 与负环 | 计划 | 0401,0201 | `graph-theory/0408-bellman-ford.md` |
+| 0408 | Bellman-Ford 与负环 | 计划 | 0201,0441 | `graph-theory/0408-bellman-ford.md` |
 | 0409 | Floyd 与传递闭包 | 计划 | 0119,0401,0201 | `graph-theory/0409-floyd-warshall.md` |
-| 0410 | 最小生成树 | 计划 | 0302,0307,0401 | `graph-theory/0410-minimum-spanning-tree.md` |
+| 0410 | 最小生成树 | 计划 | 0302,0307,0441 | `graph-theory/0410-minimum-spanning-tree.md` |
 | 0411 | 二分图判定 | 计划 | 0437 | `graph-theory/0411-bipartite-graph.md` |
 | 0412 | 二分图匹配 | 计划 | 0132,0411 | `graph-theory/0412-bipartite-matching.md` |
 | 0413 | 强连通分量 | 计划 | 0405,0436 | `graph-theory/0413-strongly-connected-components.md` |
@@ -173,8 +173,9 @@
 | 0436 | 图的深度优先搜索 | 草稿 | 0434,0439 | [graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
 | 0437 | 图的广度优先搜索 | 草稿 | 0435,0439 | [graph-breadth-first-search.md](graph-theory/graph-breadth-first-search.md) |
 | 0438 | 哈密顿路径、哈密顿回路与哈密顿图 | 计划 | 0201,0431,0436 | `graph-theory/hamiltonian-paths-and-circuits.md` |
-| 0439 | 图的存储：vector 邻接表 | 草稿 | 0119,0138,0402 | [vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
-| 0440 | 图的存储：链式前向星 | 计划 | 0118,0402,0439 | `graph-theory/chained-forward-star.md` |
+| 0439 | 图的存储：vector 邻接表 | 草稿 | 0138,0402 | [vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
+| 0440 | 图的存储：链式前向星 | 草稿 | 0118,0402 | [chained-forward-star.md](graph-theory/chained-forward-star.md) |
+| 0441 | 图的存储：边集 | 草稿 | 0138,0402 | [edge-list.md](graph-theory/edge-list.md) |
 
 ## 05 数学
 

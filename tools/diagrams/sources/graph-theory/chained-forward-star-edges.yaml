@@ -1,0 +1,17 @@
+schema: cp-diagram/v2
+type: array
+background: white
+index: none
+layout: stacked
+rows:
+  - id: edge_id
+    label: edge id
+    cells: [0, 1, 2, 3, 4, 5]
+  - id: from
+    cells: [1, 2, 1, 3, 2, 3]
+  - id: to
+    cells: [2, 1, 3, 1, 3, 2]
+  - id: weight
+    cells: [4, 4, 7, 7, 5, 5]
+  - id: next
+    cells: [-1, -1, 0, -1, 1, 3]

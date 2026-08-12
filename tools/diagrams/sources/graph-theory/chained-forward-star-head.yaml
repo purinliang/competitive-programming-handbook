@@ -1,0 +1,8 @@
+schema: cp-diagram/v2
+type: array
+background: white
+index: 1-based
+layout: stacked
+rows:
+  - id: head
+    cells: [2, 4, 5]

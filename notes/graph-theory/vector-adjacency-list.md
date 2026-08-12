@@ -1,165 +1,138 @@
 # 图的存储：vector 邻接表
 
 > 状态：草稿
-> 直接前置：[0119 数组：多维数组（正文待写）](../CATALOG.md#01-c-基础)、[0138 序列容器：vector（正文待写）](../CATALOG.md#01-c-基础)、[0402 图的存储：边的记录](graph-representation.md)
+> 直接前置：[0138 序列容器：vector（正文待写）](../CATALOG.md#01-c-基础)、[0402 图的存储：基础概念](graph-representation.md)
 
-一张图可能有很多条边。图算法最常见的操作不是“依次查看输入中的所有边”，而是给定当前点 $u$，迅速枚举所有从 $u$ 出发的边。存图方式应该直接支持这种访问。
+[图的存储：基础概念](graph-representation.md) 已经把邻接表定义为“为每个点分别保存全部出边”。本篇只讨论它在普通图算法中的默认实现：用一个 `vector` 保存每个点的邻接项。
 
-本书的可复制图算法统一使用 `vector` 邻接表。本篇先排除其他表示，再给出唯一的主线模板。
+## 无权有向图
 
-## 邻接矩阵
-
-邻接矩阵为每一对点保留一个格子。无权图可以用布尔值表示从 `from` 到 `to` 是否有边：
+教学代码先使用完整名称。令 `graph[from]` 表示从点 `from` 出发的全部边；无权邻接项只需保存终点 `to`：
 
 ```cpp
-bool connected[MAXN][MAXN];
+vector<int> graph[MAXN];
 
-connected[from][to] = true;
+graph[from].push_back(to);
 ```
 
-这里使用 `connected`，因为这个名字准确说明格子保存的是“是否直接相连”。如果格子保存边权，则更适合命名为 `weight[from][to]`，并另外约定什么值表示没有边。二维 `graph` 无法说明格子的真实含义，本书不采用这种命名。
-
-邻接矩阵判断一条边是否存在只需 $O(1)$ 时间，但是始终占用 $O(n^2)$ 空间。枚举点 $u$ 的所有出边也必须检查整行的 $n$ 个格子。
-
-竞赛图通常远没有 $n^2$ 条边。主线算法需要的是按实际边数 $m$ 付出空间和遍历时间，所以不使用邻接矩阵模板。只有点数很小，或者题目频繁查询任意两点是否直接相连时，才临时使用它。
-
-## 直接存边
-
-也可以把完整边记录依次放进一个数组：
+加入有向边 `from -> to` 时，只在 `graph[from]` 中加入一次。枚举它的所有出边：
 
 ```cpp
-struct Edge {
-    int from;
-    int to;
-    int weight;
-};
-
-vector<Edge> edges;
+for (int to : graph[from]) {
+    // 处理 from -> to
+}
 ```
 
-这种表示称为边集或直接存边。空间是 $O(m)$，依次扫描、排序所有边很方便；Kruskal 算法按边权排序全部边，是最典型的使用场景。Bellman–Ford 等逐边松弛算法也会直接扫描边集。
+起点由数组下标 `from` 表达，所以 `vector` 中不必再次保存它。
 
-但要找某点 `from` 的全部出边，只能扫描整个 `edges` 并逐条比较起点，一次需要 $O(m)$。对每个点都这样做，无法得到 DFS、BFS 所需的 $O(n+m)$ 遍历。
+## 无权无向图
 
-如果先把边按 `from` 排序，使同一起点的边连续存放，再记录每个点对应区间的起点，就得到了前向星（forward star）。它已经不再是没有索引的原始边集；构建时需要排序或计数分组，还要维护额外的区间边界。
-
-## 邻接表的目标
-
-我们真正想要的是：对每个点 `from`，直接保存所有从它出发的边。
-
-教学示例使用完整名称可以写成：
+无向边 $(from,to)$ 可以从两端通行，因此要加入两个方向：
 
 ```cpp
-struct Edge {
-    int to;
-    int weight;
-};
+graph[from].push_back(to);
+graph[to].push_back(from);
+```
 
-vector<Edge> graph[MAXN];
+这两项只是同一条无向边的两个遍历方向。题目给出的原始边数仍然是 $m$，邻接表中则会保存 $2m$ 个邻接项。
+
+## 带权有向图
+
+带权邻接项还要保存边权。本书固定使用 `pair<int, int>`，并约定两个位置依次是 `(to, weight)`：
+
+```cpp
+vector<pair<int, int>> graph[MAXN];
 
 graph[from].push_back({to, weight});
 ```
 
-起点 `from` 已经体现在 `graph[from]` 的下标中，所以每一项只需保存终点 `to` 和边权 `weight`，不必重复保存 `from`。
+C++17 可以用结构化绑定直接为两个位置命名：
 
-这就是使用 `vector` 实现的邻接表。只为实际存在的边保存元素，总空间为 $O(n+m)$；枚举点 $u$ 的全部出边只需遍历 `graph[u]`，时间与它的出度成正比。
+```cpp
+for (auto& [to, weight] : graph[from]) {
+    // 处理 from -> to，边权为 weight
+}
+```
 
-链式前向星用 `head` 和边的 `next` 下标实现同一种“按起点找出边”的能力。它的内存布局和边编号更容易精确控制，但代码更长，也更容易出现下标和初始化错误。普通图算法没有必要承担这份复杂度；等到欧拉图和网络流高频访问配对反向边时，本书才会单独学习它。
+这里的 `auto&` 表示直接引用邻接项，不复制 `pair`。如果循环只读取内容，不会修改终点和边权，可以写得更严格：
 
-## 无权图模板
+```cpp
+for (const auto& [to, weight] : graph[from]) {
+    // 只读访问
+}
+```
 
-进入可复制的竞赛代码后，`graph` 缩写为 `g`，端点使用 `u`、`v`。无权图只需保存终点编号：
+本书始终使用 `(to, weight)` 这个顺序，避免在不同算法中反复猜测 `first` 和 `second` 的含义。
+
+## 带权无向图
+
+带权无向边仍然加入两个方向，并让它们保存相同的边权：
+
+```cpp
+graph[from].push_back({to, weight});
+graph[to].push_back({from, weight});
+```
+
+此时枚举任意一个点的邻接项，都能直接得到可以到达的点及这条边的权值。
+
+## 竞赛模板
+
+进入可复制的竞赛代码后，`graph` 缩写为 `g`，端点和边权使用 `u`、`v`、`w`。
+
+无权图的核心写法是：
 
 ```cpp
 const int MAXN = 200005;
 vector<int> g[MAXN];
-```
 
-加入有向边 $u\to v$：
+g[u].push_back(v);  // 有向边 u -> v
 
-```cpp
-g[u].push_back(v);
-```
-
-加入无向边 $(u,v)$ 时，展开为两个方向：
-
-```cpp
-g[u].push_back(v);
-g[v].push_back(u);
-```
-
-枚举从点 $u$ 出发的所有边：
-
-```cpp
 for (int v : g[u]) {
-    // 处理有向边 u -> v
+    // 处理 u -> v
 }
 ```
 
-即使原图是无向图，循环中的每个邻接项也按一条从当前点 `u` 指向相邻点 `v` 的边记录理解。
-
-## 带权图模板
-
-带权图让每个邻接项同时保存终点 `v` 和边权 `w`：
+带权图的核心写法是：
 
 ```cpp
-struct Edge {
-    int v;
-    int w;
-};
-
 const int MAXN = 200005;
-vector<Edge> g[MAXN];
-```
+vector<pair<int, int>> g[MAXN];
 
-加入带权有向边：
+g[u].push_back({v, w});  // 有向边 u -> v，边权为 w
 
-```cpp
-g[u].push_back({v, w});
-```
-
-加入带权无向边：
-
-```cpp
-g[u].push_back({v, w});
-g[v].push_back({u, w});
-```
-
-枚举出边时，`edge.v` 和 `edge.w` 分别是终点和边权：
-
-```cpp
-for (Edge edge : g[u]) {
-    int v = edge.v;
-    int w = edge.w;
+for (auto& [v, w] : g[u]) {
+    // 处理 u -> v，边权为 w
 }
 ```
+
+处理无向图时，两种模板都只需把加入边的语句反向再写一次。
 
 ## 完整代码
 
-下面只提供主线真正会复制的无权无向图 `vector` 邻接表。程序读入图，再按当前存储顺序输出每个点的出边终点。
+下面的完整程序读取一张带权无向图，再按当前存储顺序输出每个点的邻接项。无权版本只需把 `pair<int, int>` 改为 `int`，并去掉所有 `w`。
 
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
 const int MAXN = 200005;
-vector<int> g[MAXN];
+vector<pair<int, int>> g[MAXN];
 
 int main() {
     int n, m;
     scanf("%d%d", &n, &m);
 
     for (int i = 1; i <= m; i++) {
-        int u, v;
-        scanf("%d%d", &u, &v);
-        g[u].push_back(v);
-        g[v].push_back(u);
+        int u, v, w;
+        scanf("%d%d%d", &u, &v, &w);
+        g[u].push_back({v, w});
+        g[v].push_back({u, w});
     }
 
     for (int u = 1; u <= n; u++) {
         printf("%d:", u);
-        for (int v : g[u]) {
-            printf(" %d", v);
+        for (auto& [v, w] : g[u]) {
+            printf(" (%d, %d)", v, w);
         }
         printf("\n");
     }
@@ -168,39 +141,31 @@ int main() {
 }
 ```
 
-对于下图的输入：
+## 复杂度
 
-![用于展示 vector 邻接表的无向图](../assets/graph-theory/graph-representation.svg)
+`vector` 邻接表只为实际存在的边保存邻接项。保存有向图需要 $O(n+m)$ 空间；保存无向图虽然会把每条边加入两次，渐进空间仍然是 $O(n+m)$。
 
-```text
-5 5
-1 2
-1 3
-2 4
-3 4
-4 5
-```
+枚举点 $u$ 的全部出边只访问 `g[u]`，时间为 $O(\deg(u))$。枚举整张图的全部邻接项，时间为 $O(n+m)$。
 
-输出为：
+## 使用边界
 
-```text
-1: 2 3
-2: 1 4
-3: 1 4
-4: 2 3 5
-5: 4
-```
+DFS、BFS、最短路和绝大多数普通图算法只需快速枚举当前点的出边，`vector` 邻接表代码最短，也最容易修改，因此是本书的默认实现。同一点的邻接项连续保存在同一个 `vector` 中，枚举时通常也有良好的内存局部性。
+
+如果算法要整体扫描或排序全部边，应改用独立的 [图的存储：边集](edge-list.md)。如果算法需要高频访问与当前边配对的反向记录，例如欧拉图和网络流，本书改用 [图的存储：链式前向星](chained-forward-star.md)，让两条记录在全局边数组中连续存放。
+
+哈密顿路径和哈密顿回路限制的是每个点只出现一次，不需要为一条无向边的两个方向维护“已经共同使用”的状态，因此通常仍然使用 `vector` 邻接表。
 
 ## 需要记住什么
 
-- 为什么布尔邻接矩阵命名为 `connected` 比 `graph` 更明确？
-- 邻接矩阵为什么不适合作为大多数竞赛图的默认存储？
-- 边集适合哪类需要扫描或排序全部边的算法？为什么不适合 DFS 和 BFS？
-- 原始边集还需要增加什么，才成为按起点分组的前向星？
-- `graph[from]` 已经表达起点后，每个邻接项为什么只保存 `to` 和 `weight`？
-- 主线无权图模板中的 `g[u]` 表示什么？
-- 一条无向边为什么在 `g` 中加入两个方向？
+- `graph[from]` 和竞赛代码中的 `g[u]` 分别表示什么？
+- 无权邻接项为什么只保存终点？
+- 无向边为什么要加入两个方向？
+- 本书在 `pair<int, int>` 中按什么顺序保存终点和边权？
+- `auto& [v, w]` 分别取出什么？只读循环可以怎样写？
+- `vector` 邻接表的空间复杂度和枚举出边的时间复杂度是多少？
+- 哪两类需求分别更适合边集和链式前向星？
+- 哈密顿问题为什么不会仅仅因为原图无向，就要求使用链式前向星？
 
 ## 下一篇
 
-下一篇将介绍 [树与有根树](trees-and-rooted-trees.md)。
+下一篇将回到图的特殊形态，介绍 [树与有根树](trees-and-rooted-trees.md)。

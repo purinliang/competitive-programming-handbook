@@ -99,7 +99,7 @@
 | 0401 | 图：点与边 | 图论 | [graph-theory/vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
 | 0431 | 图：路径与环 | 图论 | [graph-theory/paths-and-cycles.md](graph-theory/paths-and-cycles.md) |
 | 0432 | 图：度数 | 图论 | [graph-theory/vertex-degrees.md](graph-theory/vertex-degrees.md) |
-| 0402 | 图的存储：边的记录 | 图论 | [graph-theory/graph-representation.md](graph-theory/graph-representation.md) |
+| 0402 | 图的存储：基础概念 | 图论 | [graph-theory/graph-representation.md](graph-theory/graph-representation.md) |
 | 0439 | 图的存储：vector 邻接表 | 图论 | [graph-theory/vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
 | 0433 | 树与有根树 | 图论 | [graph-theory/trees-and-rooted-trees.md](graph-theory/trees-and-rooted-trees.md) |
 | 0311 | 二叉树：结构与存储 | 数据结构 | [data-structures/binary-tree-structure-and-storage.md](data-structures/binary-tree-structure-and-storage.md) |
@@ -140,7 +140,8 @@
 | 0309 | 单调栈与单调队列 | 数据结构 | `data-structures/0309-monotonic-stack-queue.md` |
 | 0310 | 带权并查集 | 数据结构 | `data-structures/0310-weighted-disjoint-set.md` |
 | 0403 | 倍增 LCA | 图论 | [graph-theory/0403-lca-binary-lifting.md](graph-theory/0403-lca-binary-lifting.md) |
-| 0440 | 图的存储：链式前向星 | 图论 | `graph-theory/chained-forward-star.md` |
+| 0441 | 图的存储：边集 | 图论 | [graph-theory/edge-list.md](graph-theory/edge-list.md) |
+| 0440 | 图的存储：链式前向星 | 图论 | [graph-theory/chained-forward-star.md](graph-theory/chained-forward-star.md) |
 | 0416 | 欧拉路径、欧拉回路与欧拉图 | 图论 | `graph-theory/eulerian-paths-and-circuits.md` |
 | 0438 | 哈密顿路径、哈密顿回路与哈密顿图 | 图论 | `graph-theory/hamiltonian-paths-and-circuits.md` |
 | 0417 | 树的直径与中心 | 图论 | `graph-theory/0417-tree-diameter-center.md` |
