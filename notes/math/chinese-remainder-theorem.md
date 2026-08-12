@@ -1,6 +1,6 @@
 # 数论：中国剩余定理（CRT）
 
-> 状态：草稿
+> 状态：定稿
 
 一个整数可以同时受到多个余数条件的约束。例如，我们想找到 $x$，使它除以 $3$ 余 $2$，除以 $5$ 余 $3$，除以 $7$ 余 $2$：
 
@@ -41,6 +41,8 @@ x=x_0+tM,\qquad t\in\mathbb Z,
 $$
 
 通常输出其中唯一的最小非负代表元 $x_0\in[0,M)$。
+
+余数 $a_i$ 不必事先落在 $[0,m_i)$ 中；把它对 $m_i$ 取模并归一化，不会改变同余条件。
 
 ## 一个条件的开关
 
@@ -113,6 +115,22 @@ $$
 
 因此这个 $x$ 同时满足所有方程。公式的来源就是逐个构造互不干扰的余数开关。
 
+## 为什么解唯一
+
+设 $x$ 和 $y$ 都满足全部同余条件。对每个 $m_i$，都有
+
+$$
+x-y\equiv0\pmod{m_i},
+$$
+
+所以每个 $m_i$ 都整除 $x-y$。这些模数两两互质，因此它们的乘积 $M$ 也整除 $x-y$，即
+
+$$
+x\equiv y\pmod M.
+$$
+
+这说明所有整数解都属于同一个模 $M$ 的同余类，而区间 $[0,M)$ 中恰好只有一个代表元。
+
 ## 手算例子
 
 对于开头的方程组，
@@ -142,7 +160,7 @@ $$
 
 ## 完整代码
 
-下面的程序假设模数乘积可以放入 `long long`。中间乘法使用 `__int128` 避免在取模前过早溢出；这不能解决最终模数本身超出 `long long` 的问题。
+下面的程序假设模数乘积可以放入 64 位整数。中间乘法使用 `__int128` 避免在取模前过早溢出；这不能解决最终模数本身超出 64 位整数范围的问题。`__int128` 是主流 GNU C++ 竞赛环境提供的扩展整数类型，不是 C++17 标准强制提供的类型。
 
 ```cpp
 #include <bits/stdc++.h>
@@ -170,7 +188,7 @@ ll mod_norm(i128 x, ll mod) {
     if (x < 0) {
         x += mod;
     }
-    return (ll)x;
+    return static_cast<ll>(x);
 }
 
 bool crt(const vector<ll>& a, const vector<ll>& m, ll& ans, ll& mod) {
@@ -180,14 +198,15 @@ bool crt(const vector<ll>& a, const vector<ll>& m, ll& ans, ll& mod) {
     }
 
     ans = 0;
-    for (int i = 0; i < (int)a.size(); i++) {
-        ll Mi = mod / m[i];
-        ll ti, y;
-        if (exgcd(Mi, m[i], ti, y) != 1) {
+    for (int i = 0; i < static_cast<int>(a.size()); i++) {
+        ll partial_mod = mod / m[i];
+        ll inverse, y;
+        if (exgcd(partial_mod, m[i], inverse, y) != 1) {
             return false;
         }
 
-        ans = mod_norm((i128)ans + (i128)mod_norm(a[i], m[i]) * Mi * ti, mod);
+        i128 term = static_cast<i128>(mod_norm(a[i], m[i])) * partial_mod * inverse;
+        ans = mod_norm(static_cast<i128>(ans) + term, mod);
     }
     return true;
 }
@@ -204,7 +223,7 @@ int main() {
 
     ll ans, mod;
     if (!crt(a, m, ans, mod)) {
-        puts("Moduli are not pairwise coprime");
+        printf("Moduli are not pairwise coprime\n");
         return 0;
     }
 
@@ -219,6 +238,23 @@ $$
 x\equiv\texttt{ans}\pmod{\texttt{mod}}.
 $$
 
+输入开头例子中的三个条件：
+
+```text
+3
+3 2
+5 3
+7 2
+```
+
+输出：
+
+```text
+23 105
+```
+
+也就是说，全部解为 $x=23+105t$，其中 $t$ 是任意整数。
+
 ## 复杂度
 
 对每个方程调用一次扩展欧几里得算法。若忽略大整数运算的位复杂度，总时间为
@@ -229,6 +265,13 @@ $$
 
 保存余数和模数需要 $O(k)$ 空间。
 
+## 基础练习
+
+1. 手算方程组 $x\equiv1\pmod2$、$x\equiv2\pmod3$、$x\equiv3\pmod5$ 的每个 $M_i$、逆元和最终答案。
+2. 对开头的例子，把第一个余数从 $2$ 改成 $-1$，先归一化余数，再检查解是否改变。
+3. 假设两个数都满足同一组 CRT 条件，沿“每个 $m_i$ 都整除两数之差”的思路证明它们模 $M$ 相同。
+4. 输入一组不两两互质的模数，观察程序在哪一次逆元不存在，并说明为什么经典 CRT 不能继续使用开关公式。
+
 ## 需要记住什么
 
 1. 经典 CRT 对模数有什么要求？解在哪个模数下唯一？
@@ -237,6 +280,7 @@ $$
 4. 为什么 $M_i$ 在模 $m_i$ 下一定存在逆元 $t_i$？
 5. $E_i=M_it_i$ 为什么可以被理解为只打开第 $i$ 个余数条件的开关？
 6. 如何由这些开关组合出 CRT 的解？
+7. 为什么满足全部条件的两个解一定模 $M$ 相同？
 
 ## 下一篇
 

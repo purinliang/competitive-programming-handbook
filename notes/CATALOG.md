@@ -212,7 +212,7 @@
 | 0507 | 组合数与基础计数 | 计划 | `math/0507-combinatorics.md` |
 | 0508 | 欧拉函数 | 计划 | `math/0508-euler-totient.md` |
 | 0509 | 矩阵运算与线性变换 | 计划 | `math/0509-matrix-operations.md` |
-| 0510 | 数论：中国剩余定理（CRT） | 草稿 | [chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
+| 0510 | 数论：中国剩余定理（CRT） | 定稿 | [chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
 | 0511 | 矩阵快速幂与递推加速 | 计划 | `math/0511-matrix-exponentiation.md` |
 | 0512 | 概率与期望基础 | 计划 | `math/0512-probability-expectation.md` |
 | 0513* | Nim、SG 函数与基础博弈论 | 计划 | `math/0513-nim-sg-game-theory.md` |
