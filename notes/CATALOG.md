@@ -189,7 +189,7 @@
 | 0438 | 哈密顿问题：路径、回路与图 | 草稿 | [hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
 | 0438e1 | 哈密顿问题：小规模回溯 | 草稿 | [hamiltonian-backtracking.md](graph-theory/hamiltonian-backtracking.md) |
 | 0439 | 图的存储：邻接表（vector 实现） | 定稿 | [vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
-| 0440 | 图的存储：邻接表（链式前向星实现） | 草稿 | [chained-forward-star.md](graph-theory/chained-forward-star.md) |
+| 0440 | 图的存储：邻接表（链式前向星实现） | 定稿 | [chained-forward-star.md](graph-theory/chained-forward-star.md) |
 | 0441 | 图的存储：边集 | 定稿 | [edge-list.md](graph-theory/edge-list.md) |
 | 0442 | 树：有根树 | 定稿 | [rooted-trees.md](graph-theory/rooted-trees.md) |
 | 0443 | 搜索：DFS、回溯与剪枝 | 计划 | `graph-theory/0443-dfs-backtracking-pruning.md` |
