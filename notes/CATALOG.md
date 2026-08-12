@@ -35,8 +35,10 @@
 | 0117 | 输入输出：文件重定向 | 定稿 | [file-redirection.md](cpp/file-redirection.md) |
 | 0118 | 数组：一维数组 | 定稿 | [one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
 | 0119 | 数组：多维数组 | 待审阅 | [multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
+| 0119e1 | 数组：多维数组的布局与参数传递 | 待审阅 | [multidimensional-array-layout-and-parameters.md](cpp/multidimensional-array-layout-and-parameters.md) |
 | 0120 | 字符串：C 字符串 | 待审阅 | [c-strings.md](cpp/c-strings.md) |
 | 0121 | 复合类型：struct | 定稿 | [struct.md](cpp/struct.md) |
+| 0121e1 | 复合类型：struct 的内存布局 | 待审阅 | [struct-memory-layout.md](cpp/struct-memory-layout.md) |
 | 0122 | 复合类型：union | 待审阅 | [union.md](cpp/union.md) |
 | 0123 | 复合类型：enum | 待审阅 | [enum.md](cpp/enum.md) |
 | 0124 | 内存：字节寻址 | 待审阅 | [byte-addressing.md](cpp/byte-addressing.md) |
