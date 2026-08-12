@@ -31,7 +31,7 @@
 | 0113 | 函数：定义与调用 | 定稿 | [function-definition-and-calls.md](cpp/function-definition-and-calls.md) |
 | 0114 | 名称：作用域 | 待审阅 | [scope.md](cpp/scope.md) |
 | 0115 | 输入输出：标准输入 | 定稿 | [standard-input.md](cpp/standard-input.md) |
-| 0116 | 输入输出：标准输出 | 计划 | `cpp/0116-standard-output.md` |
+| 0116 | 输入输出：标准输出 | 待审阅 | [standard-output.md](cpp/standard-output.md) |
 | 0117 | 输入输出：文件重定向 | 定稿 | [file-redirection.md](cpp/file-redirection.md) |
 | 0118 | 数组：一维数组 | 定稿 | [one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
 | 0119 | 数组：多维数组 | 计划 | `cpp/0119-multidimensional-arrays.md` |
