@@ -187,7 +187,7 @@
 | 0436 | 图的遍历：深度优先搜索（DFS） | 定稿 | [graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
 | 0437 | 图的遍历：广度优先搜索（BFS） | 定稿 | [graph-breadth-first-search.md](graph-theory/graph-breadth-first-search.md) |
 | 0438 | 哈密顿问题：路径、回路与图 | 定稿 | [hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
-| 0438e1 | 哈密顿问题：小规模回溯 | 草稿 | [hamiltonian-backtracking.md](graph-theory/hamiltonian-backtracking.md) |
+| 0438e1 | 哈密顿问题：小规模回溯 | 定稿 | [hamiltonian-backtracking.md](graph-theory/hamiltonian-backtracking.md) |
 | 0439 | 图的存储：邻接表（vector 实现） | 定稿 | [vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
 | 0440 | 图的存储：邻接表（链式前向星实现） | 定稿 | [chained-forward-star.md](graph-theory/chained-forward-star.md) |
 | 0441 | 图的存储：边集 | 定稿 | [edge-list.md](graph-theory/edge-list.md) |
