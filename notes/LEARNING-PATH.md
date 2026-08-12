@@ -54,7 +54,7 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0134 | 工具类型：pair | C++ | [cpp/pair.md](cpp/pair.md) |
-| 0135 | 工具类型：tuple | C++ | `cpp/0135-tuple.md` |
+| 0135 | 工具类型：tuple | C++ | [cpp/tuple.md](cpp/tuple.md) |
 | 0136 | 序列容器：array | C++ | `cpp/0136-array.md` |
 | 0137 | 字符串：string | C++ | `cpp/0137-std-string.md` |
 | 0138 | 序列容器：vector | C++ | `cpp/0138-vector.md` |

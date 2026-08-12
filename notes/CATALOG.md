@@ -59,7 +59,7 @@
 | 0132 | 函数：递归 | 待审阅 | [recursion.md](cpp/recursion.md) |
 | 0133 | 表达式：位运算符 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
 | 0134 | 工具类型：pair | 待审阅 | [pair.md](cpp/pair.md) |
-| 0135 | 工具类型：tuple | 计划 | `cpp/0135-tuple.md` |
+| 0135 | 工具类型：tuple | 待审阅 | [tuple.md](cpp/tuple.md) |
 | 0136 | 序列容器：array | 计划 | `cpp/0136-array.md` |
 | 0137 | 字符串：string | 计划 | `cpp/0137-std-string.md` |
 | 0138 | 序列容器：vector | 计划 | `cpp/0138-vector.md` |
