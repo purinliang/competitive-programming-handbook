@@ -21,7 +21,7 @@ $$
 若正整数 $m$ 同时是 $a$ 和 $b$ 的倍数，就称 $m$ 是 $a,b$ 的**公倍数**。所有正公倍数中最小的一个称为**最小公倍数**（least common multiple），记作
 
 $$
-\operatorname{lcm}(a,b).
+\mathrm{lcm}(a,b).
 $$
 
 例如，$12$ 和 $18$ 的最小公倍数是 $36$。
@@ -59,7 +59,7 @@ $$
 为了让公倍数尽可能小，不应当额外增加任何指数。所以
 
 $$
-\operatorname{lcm}(a,b)=\prod_p p^{\max(e_p(a),e_p(b))}.
+\mathrm{lcm}(a,b)=\prod_p p^{\max(e_p(a),e_p(b))}.
 $$
 
 `lcm` 就是对每个质因数指数分别取 `max`。
@@ -91,7 +91,7 @@ $$
 $$
 
 $$
-\operatorname{lcm}(72,120)=2^3\times3^2\times5=360.
+\mathrm{lcm}(72,120)=2^3\times3^2\times5=360.
 $$
 
 ## 乘积关系
@@ -105,7 +105,7 @@ $$
 而两个数相乘时，质因数指数正好相加。所以对正整数 $a,b$，
 
 $$
-\gcd(a,b)\operatorname{lcm}(a,b)=ab.
+\gcd(a,b)\mathrm{lcm}(a,b)=ab.
 $$
 
 由此可以用 `gcd` 计算 `lcm`。下面的函数假设 `a,b` 都是非负整数：
@@ -132,7 +132,7 @@ $$
 $$
 
 $$
-\operatorname{lcm}(a,0)=0.
+\mathrm{lcm}(a,0)=0.
 $$
 
 特别地，$\gcd(0,0)=0$。常见数论题通常只输入正整数，但这些约定可以让聚合多个数的代码从初值 $0$ 开始。
@@ -140,7 +140,7 @@ $$
 ## 常用性质
 
 - `gcd` 和 `lcm` 都满足交换律与结合律。
-- 若 $a\mid b$，则 $\gcd(a,b)=|a|$，$\operatorname{lcm}(a,b)=|b|$。
+- 若 $a\mid b$，则 $\gcd(a,b)=|a|$，$\mathrm{lcm}(a,b)=|b|$。
 - $\gcd(a,b)$ 整除 $a,b$ 的任意线性组合 $ax+by$。
 - 多个数的最大公约数可以从左到右合并：$\gcd(a,b,c)=\gcd(\gcd(a,b),c)$。
 
@@ -181,8 +181,8 @@ int main() {
 
 ## 基础练习
 
-1. 用质因数指数分别求出 $\gcd(84,126)$ 和 $\operatorname{lcm}(84,126)$。
-2. 证明 $\gcd(a,b)$ 一定整除 $\operatorname{lcm}(a,b)$。
+1. 用质因数指数分别求出 $\gcd(84,126)$ 和 $\mathrm{lcm}(84,126)$。
+2. 证明 $\gcd(a,b)$ 一定整除 $\mathrm{lcm}(a,b)$。
 3. 依次合并数组 $[18,24,30]$，求三个数的最大公约数；再把初值改成 $0$，检查结果为什么不变。
 4. 构造一组 64 位整数范围内的正整数，使 `a * b` 溢出而 `a / gcd(a, b) * b` 仍可表示。
 
@@ -191,9 +191,9 @@ int main() {
 1. 公约数、最大公约数、公倍数和最小公倍数分别如何定义？
 2. 为什么 `gcd` 对每个质因数指数取 `min`？
 3. 为什么 `lcm` 对每个质因数指数取 `max`？
-4. 怎样由 `min(x, y) + max(x, y) = x + y` 推出 $\gcd(a,b)\operatorname{lcm}(a,b)=ab$？
+4. 怎样由 `min(x, y) + max(x, y) = x + y` 推出 $\gcd(a,b)\mathrm{lcm}(a,b)=ab$？
 5. 计算 `lcm` 时为什么应当先除以 `gcd` 再相乘？
-6. $\gcd(a,0)$ 和 $\operatorname{lcm}(a,0)$ 分别约定为什么？
+6. $\gcd(a,0)$ 和 $\mathrm{lcm}(a,0)$ 分别约定为什么？
 
 ## 下一篇
 

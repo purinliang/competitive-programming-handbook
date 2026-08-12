@@ -40,6 +40,7 @@ FILE_LINK = re.compile(r"^\[([^]]+)\]\(([^)]+)\)$")
 CODE_PATH = re.compile(r"^`([^`]+)`$")
 LEGACY_DRAFTS = re.compile(r"<!--\s*legacy-drafts:\s*([^>]*)-->")
 ARTICLE_FILENAME = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*\.md$")
+FORBIDDEN_LATEX_MACROS = {"operatorname"}
 
 
 @dataclass(frozen=True)
@@ -415,6 +416,7 @@ class Checker:
                 continue
             text = path.read_text(encoding="utf-8")
             self.check_local_links(path, text)
+            self.check_latex_compatibility(path, text)
             if entry.article_id not in legacy:
                 self.check_article_metadata(path, text, entry)
 
@@ -449,6 +451,16 @@ class Checker:
                 self.error(f"{display}: missing linked resource {target}")
             if destination.suffix.lower() == ".png":
                 self.error(f"{display}: tutorial images must use SVG, not PNG: {target}")
+
+    def check_latex_compatibility(self, path: Path, text: str) -> None:
+        display = path.relative_to(ROOT).as_posix()
+        for line_number, line in enumerate(text.splitlines(), start=1):
+            for macro in FORBIDDEN_LATEX_MACROS:
+                if f"\\{macro}" in line:
+                    self.error(
+                        f"{display}:{line_number}: LaTeX macro \\{macro} "
+                        "is not supported by GitHub"
+                    )
 
     def check_svg_sources(self) -> None:
         assets = NOTES / "assets"
