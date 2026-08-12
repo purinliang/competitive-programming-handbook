@@ -24,7 +24,7 @@
 | 0112 | 控制流：循环 | C++ | `cpp/0112-loops.md` |
 | 0113 | 函数：定义与调用 | C++ | [cpp/function-definition-and-calls.md](cpp/function-definition-and-calls.md) |
 | 0114 | 名称：作用域 | C++ | `cpp/0114-scope.md` |
-| 0115 | 输入输出：标准输入 | C++ | [cpp/0115-standard-input.md](cpp/0115-standard-input.md) |
+| 0115 | 输入输出：标准输入 | C++ | [cpp/standard-input.md](cpp/standard-input.md) |
 | 0116 | 输入输出：标准输出 | C++ | `cpp/0116-standard-output.md` |
 | 0117 | 输入输出：文件重定向 | C++ | [cpp/0117-file-redirection.md](cpp/0117-file-redirection.md) |
 | 0118 | 数组：一维数组 | C++ | [cpp/0118-one-dimensional-arrays.md](cpp/0118-one-dimensional-arrays.md) |
