@@ -6,7 +6,7 @@
 
 以下现有文件是在新规范建立前形成的遗留草稿，第一次正式修订时必须补齐文章信息块，并从本清单移除对应 ID。
 
-<!-- legacy-drafts: 0117,0118,0121,0125,0128,0152,0153,0207,0403 -->
+<!-- legacy-drafts: 0118,0121,0125,0128,0152,0153,0207,0403 -->
 
 ## 01 C++ 基础
 
@@ -32,7 +32,7 @@
 | 0114 | 名称：作用域 | 计划 | `cpp/0114-scope.md` |
 | 0115 | 输入输出：标准输入 | 定稿 | [standard-input.md](cpp/standard-input.md) |
 | 0116 | 输入输出：标准输出 | 计划 | `cpp/0116-standard-output.md` |
-| 0117 | 输入输出：文件重定向 | 草稿 | [0117-file-redirection.md](cpp/0117-file-redirection.md) |
+| 0117 | 输入输出：文件重定向 | 定稿 | [file-redirection.md](cpp/file-redirection.md) |
 | 0118 | 数组：一维数组 | 草稿 | [0118-one-dimensional-arrays.md](cpp/0118-one-dimensional-arrays.md) |
 | 0119 | 数组：多维数组 | 计划 | `cpp/0119-multidimensional-arrays.md` |
 | 0120 | 字符串：C 字符串 | 计划 | `cpp/0120-c-strings.md` |
