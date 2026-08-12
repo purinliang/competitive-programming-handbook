@@ -202,6 +202,41 @@ class SchemaV2Test(unittest.TestCase):
         self.assertEqual(diagram.edges[0].value, "4")
         self.assertTrue(diagram.directed)
 
+    def test_graph_edges_can_override_the_default_direction(self) -> None:
+        diagram = parse_diagram(
+            {
+                "schema": "cp-diagram/v2",
+                "type": "graph",
+                "directed": False,
+                "nodes": [{"id": 1}, {"id": 2}, {"id": 3}],
+                "edges": [
+                    {"from": 2, "to": 1, "directed": True},
+                    {"from": 2, "to": 3},
+                ],
+                "annotations": [
+                    {"type": "path", "nodes": [3, 2, 1]}
+                ],
+            }
+        )
+        assert isinstance(diagram, GraphDiagram)
+        self.assertTrue(diagram.edges[0].directed)
+        self.assertIsNone(diagram.edges[1].directed)
+
+    def test_tree_rejects_per_edge_direction(self) -> None:
+        with self.assertRaisesRegex(DiagramError, "未知字段"):
+            parse_diagram(
+                {
+                    "schema": "cp-diagram/v2",
+                    "type": "tree",
+                    "layout": "rooted",
+                    "root": 1,
+                    "nodes": [{"id": 1}, {"id": 2}],
+                    "edges": [
+                        {"from": 1, "to": 2, "directed": True}
+                    ],
+                }
+            )
+
     def test_circle_rejects_multi_field_nodes(self) -> None:
         with self.assertRaisesRegex(DiagramError, "rectangle"):
             parse_diagram(

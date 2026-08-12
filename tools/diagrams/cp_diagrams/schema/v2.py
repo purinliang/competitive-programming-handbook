@@ -119,7 +119,7 @@ def _parse_v2_graph(root: dict[str, Any]) -> GraphDiagram:
     if any(node.interval is not None for node in nodes):
         raise DiagramError("nodes: interval 只支持区间宽度的树")
     _validate_node_shape(nodes, node_shape)
-    edges = _edges(root["edges"], allow_side=False)
+    edges = _edges(root["edges"], allow_side=False, allow_directed=True)
     _validate_edges(nodes, edges, directed=directed)
     annotations = _path_annotations(
         root.get("annotations", []), nodes, edges, directed=directed
@@ -241,7 +241,9 @@ def _parse_v2_tree(root: dict[str, Any]) -> TreeDiagram:
     if "edges" not in root:
         raise DiagramError("edges: rooted 和 binary 布局必须指定边")
     root_id = _identifier(root["root"], "root")
-    edges = _edges(root["edges"], allow_side=layout == "binary")
+    edges = _edges(
+        root["edges"], allow_side=layout == "binary", allow_directed=False
+    )
     _validate_tree(nodes, edges, root_id, layout)
     source_array: SourceArray | None = None
     if node_width == "interval":
@@ -363,18 +365,32 @@ def _node_interval(value: Any, path: str) -> tuple[int, int] | None:
     return left, right
 
 
-def _edges(value: Any, *, allow_side: bool) -> tuple[Edge, ...]:
+def _edges(
+    value: Any, *, allow_side: bool, allow_directed: bool
+) -> tuple[Edge, ...]:
     if not isinstance(value, list):
         raise DiagramError("edges: 必须是列表")
-    return tuple(_edge(item, i, allow_side=allow_side) for i, item in enumerate(value))
+    return tuple(
+        _edge(
+            item,
+            i,
+            allow_side=allow_side,
+            allow_directed=allow_directed,
+        )
+        for i, item in enumerate(value)
+    )
 
 
-def _edge(item: Any, position: int, *, allow_side: bool) -> Edge:
+def _edge(
+    item: Any, position: int, *, allow_side: bool, allow_directed: bool
+) -> Edge:
     path = f"edges[{position}]"
     edge = _mapping(item, path)
     allowed = {"from", "to", "value"}
     if allow_side:
         allowed.add("side")
+    if allow_directed:
+        allowed.add("directed")
     _fields(edge, allowed=allowed, required={"from", "to"}, path=path)
     source = _identifier(edge["from"], f"{path}.from")
     target = _identifier(edge["to"], f"{path}.to")
@@ -385,7 +401,16 @@ def _edge(item: Any, position: int, *, allow_side: bool) -> Edge:
     if allow_side:
         if side not in {"left", "right"}:
             raise DiagramError(f"{path}.side: binary 布局必须明确写 left 或 right")
-    return Edge(source=source, target=target, value=value, side=side)
+    edge_directed = edge.get("directed")
+    if edge_directed is not None:
+        edge_directed = _boolean(edge_directed, f"{path}.directed")
+    return Edge(
+        source=source,
+        target=target,
+        value=value,
+        side=side,
+        directed=edge_directed,
+    )
 
 
 def _validate_node_shape(nodes: tuple[Node, ...], node_shape: str) -> None:
@@ -397,15 +422,18 @@ def _validate_edges(
     nodes: tuple[Node, ...], edges: tuple[Edge, ...], *, directed: bool
 ) -> None:
     node_ids = {node.id for node in nodes}
-    seen: set[tuple[str, str]] = set()
+    seen: set[tuple[str, str, str]] = set()
     for position, edge in enumerate(edges):
         if edge.source not in node_ids:
             raise DiagramError(f"edges[{position}].from: 未找到节点 {edge.source}")
         if edge.target not in node_ids:
             raise DiagramError(f"edges[{position}].to: 未找到节点 {edge.target}")
-        key = (edge.source, edge.target)
-        if not directed:
-            key = tuple(sorted(key))
+        edge_directed = directed if edge.directed is None else edge.directed
+        if edge_directed:
+            key = ("directed", edge.source, edge.target)
+        else:
+            left, right = sorted((edge.source, edge.target))
+            key = ("undirected", left, right)
         if key in seen:
             raise DiagramError(f"edges[{position}]: 不允许重复边")
         seen.add(key)
@@ -421,9 +449,6 @@ def _path_annotations(
     if not isinstance(value, list):
         raise DiagramError("annotations: 必须是列表")
     node_ids = {node.id for node in nodes}
-    edge_keys = {
-        _edge_key(edge.source, edge.target, directed=directed) for edge in edges
-    }
     result: list[PathHighlight] = []
     for position, item in enumerate(value):
         path = f"annotations[{position}]"
@@ -455,17 +480,27 @@ def _path_annotations(
         if closed:
             pairs.append((route[-1], route[0]))
         for source, target in pairs:
-            if _edge_key(source, target, directed=directed) not in edge_keys:
+            if not any(
+                _edge_matches(edge, source, target, directed=directed)
+                for edge in edges
+            ):
                 raise DiagramError(f"{path}: 路径中不存在边 {source} -> {target}")
         color = _color(annotation.get("color", "red"), f"{path}.color")
         result.append(PathHighlight(nodes=route, closed=closed, color=color))
     return tuple(result)
 
 
-def _edge_key(source: str, target: str, *, directed: bool) -> tuple[str, str]:
-    if directed:
-        return (source, target)
-    return tuple(sorted((source, target)))
+def _edge_matches(
+    edge: Edge, source: str, target: str, *, directed: bool
+) -> bool:
+    edge_directed = directed if edge.directed is None else edge.directed
+    if edge.source == source and edge.target == target:
+        return True
+    return (
+        not edge_directed
+        and edge.source == target
+        and edge.target == source
+    )
 
 
 def _validate_tree(

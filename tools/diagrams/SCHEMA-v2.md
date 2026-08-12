@@ -144,6 +144,17 @@ edges:
 
 有向边的箭头接触目标节点的外边框。`from` 和 `to` 只决定方向，不暗含树中的父子关系。
 
+每条边可以单独提供 `directed: true` 或 `directed: false`，没有提供时继承图顶层的 `directed`。因此混合图不需要拆成两张图：
+
+```yaml
+directed: false
+edges:
+  - {from: 1, to: 2}
+  - {from: 2, to: 3, directed: true}
+```
+
+上例中 `1 - 2` 是无向边，`2 -> 3` 是有向边。逐边方向只适用于 `type: graph`；树的边仍由树顶层的 `directed` 统一控制。
+
 ### path annotation
 
 ```yaml
@@ -154,7 +165,7 @@ annotations:
     color: red
 ```
 
-`nodes` 按路径经过顺序至少列出两个节点。`closed: true` 会额外连接最后一个节点和第一个节点，此时起点不在列表末尾重复书写。渲染器校验每一对相邻节点之间确实存在边；有向图还必须沿边方向前进。
+`nodes` 按路径经过顺序至少列出两个节点。`closed: true` 会额外连接最后一个节点和第一个节点，此时起点不在列表末尾重复书写。渲染器校验每一对相邻节点之间确实存在边；有向边还必须沿边方向前进。
 
 path annotation 用基础线宽的 1.25 倍覆盖路径边和相关节点外框，节点内部 value 与外部编号仍保持黑色。`color` 默认 `red`，也可以显式使用 `blue` 或 `green`。同图需要表示主回路和第二条路径时，先用红色，再用蓝色。
 

@@ -3,6 +3,7 @@ from __future__ import annotations
 import unittest
 import xml.etree.ElementTree as ET
 from math import atan2, pi
+from unittest.mock import patch
 
 from cp_diagrams.common.geometry import NodeSize, Point
 from cp_diagrams.common.theme import INDEX_FONT_SIZE, INDEX_GAP
@@ -221,6 +222,28 @@ class RenderV2Test(unittest.TestCase):
         )
         self.assertGreaterEqual(closest, max(size.width, size.height) + 25.9)
         self.assertEqual(render_svg(diagram), render_svg(diagram))
+
+    def test_graph_renders_each_edge_with_its_effective_direction(self) -> None:
+        diagram = parse_diagram(
+            {
+                "schema": "cp-diagram/v2",
+                "type": "graph",
+                "directed": False,
+                "nodes": [{"id": 1}, {"id": 2}, {"id": 3}],
+                "edges": [
+                    {"from": 1, "to": 2},
+                    {"from": 2, "to": 3, "directed": True},
+                ],
+            }
+        )
+        with patch(
+            "cp_diagrams.renderers.primitives._draw_edge_geometry"
+        ) as draw:
+            render_svg(diagram)
+        self.assertEqual(
+            [call.kwargs["directed"] for call in draw.call_args_list],
+            [False, True],
+        )
 
     def test_slanted_edge_label_uses_upper_normal(self) -> None:
         forward = _edge_label_position(Point(0, 0), Point(100, 100))

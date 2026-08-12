@@ -70,6 +70,7 @@ python -m cp_diagrams render examples/prefix-sum-range.yaml \
 - `examples/prefix-sum-projection.yaml`：长度 11 的前缀和数组向下投影到虚线原数组，只在原数组显示下标。
 - `examples/graph-undirected-weighted.yaml`：同时显示点编号、点权和边权的无向图。
 - `examples/graph-directed.yaml`：边权位于斜边上侧的有向图。
+- `examples/graph-mixed.yaml`：在同一张图中混合无向边与有向边。
 - `examples/graph-self-loop-annotations.yaml`：自环、红色回路和蓝色路径 annotation。
 - `examples/tree-rooted.yaml`：按子树宽度分配空间的普通有根树。
 - `examples/segment-tree.yaml`：长度 11 的区间宽度线段树，节点宽度等于覆盖跨度，并把叶节点投影到虚线原数组。

@@ -24,6 +24,7 @@ class Edge:
     target: str
     value: str | None
     side: str | None = None
+    directed: bool | None = None
 
 
 @dataclass(frozen=True)

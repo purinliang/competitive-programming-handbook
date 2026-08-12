@@ -39,6 +39,7 @@ def _draw_edges(
     loop_placements: dict[str, LoopPlacement],
 ) -> None:
     for edge in edges:
+        edge_directed = directed if edge.directed is None else edge.directed
         source_center = positions[edge.source]
         target_center = positions[edge.target]
         geometry = _draw_edge_geometry(
@@ -47,7 +48,7 @@ def _draw_edges(
             target_center,
             size,
             shape,
-            directed=directed,
+            directed=edge_directed,
             color="default",
             stroke_width=STROKE_WIDTH,
             z_index=0,
@@ -243,13 +244,14 @@ def _draw_path_annotations(
             pairs.append((annotation.nodes[-1], annotation.nodes[0]))
         for source, target in pairs:
             edge = _path_edge(edges, source, target, directed)
+            edge_directed = directed if edge.directed is None else edge.directed
             _draw_edge_geometry(
                 sketch,
                 positions[edge.source],
                 positions[edge.target],
                 size,
                 shape,
-                directed=directed,
+                directed=edge_directed,
                 color=annotation.color,
                 stroke_width=ANNOTATION_STROKE_WIDTH,
                 z_index=100,
@@ -272,9 +274,10 @@ def _path_edge(
     edges: tuple[Edge, ...], source: str, target: str, directed: bool
 ) -> Edge:
     for edge in edges:
+        edge_directed = directed if edge.directed is None else edge.directed
         if edge.source == source and edge.target == target:
             return edge
-        if not directed and edge.source == target and edge.target == source:
+        if not edge_directed and edge.source == target and edge.target == source:
             return edge
     raise AssertionError("validated path edge is missing")
 
