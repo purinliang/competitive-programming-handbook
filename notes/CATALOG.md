@@ -6,7 +6,7 @@
 
 以下现有文件是在新规范建立前形成的遗留草稿，第一次正式修订时必须补齐文章信息块，并从本清单移除对应 ID。
 
-<!-- legacy-drafts: 0152,0153,0207,0403 -->
+<!-- legacy-drafts: 0153,0207,0403 -->
 
 ## 01 C++ 基础
 
@@ -67,7 +67,7 @@
 | 0149 | 无序关联容器：unordered_set | 计划 | `cpp/0149-unordered-set.md` |
 | 0150 | 无序关联容器：unordered_map | 计划 | `cpp/0150-unordered-map.md` |
 | 0151 | 工具类型：bitset | 计划 | `cpp/0151-bitset.md` |
-| 0152* | 预处理：include | 草稿 | [0152-include.md](cpp/0152-include.md) |
+| 0152* | 预处理：include | 定稿 | [include.md](cpp/include.md) |
 | 0153* | 名称：命名空间与 std | 草稿 | [0153-namespace-and-std.md](cpp/0153-namespace-and-std.md) |
 | 0154* | 修饰符：inline | 计划 | `cpp/0154-inline.md` |
 | 0155* | 修饰符：volatile | 计划 | `cpp/0155-volatile.md` |
