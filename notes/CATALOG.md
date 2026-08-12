@@ -64,7 +64,7 @@
 | 0137 | 字符串：string | 待审阅 | [string.md](cpp/string.md) |
 | 0138 | 序列容器：vector | 待审阅 | [vector.md](cpp/vector.md) |
 | 0139 | 序列容器：deque | 计划 | `cpp/0139-deque.md` |
-| 0140 | STL 算法：排序 | 计划 | `cpp/0140-stl-sorting.md` |
+| 0140 | STL 算法：排序 | 待审阅 | [sorting.md](cpp/sorting.md) |
 | 0141 | STL 算法：去重 | 计划 | `cpp/0141-stl-deduplication.md` |
 | 0142 | 容器适配器：stack | 计划 | `cpp/0142-stack.md` |
 | 0143 | 容器适配器：queue | 计划 | `cpp/0143-queue.md` |
