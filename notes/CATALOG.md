@@ -164,7 +164,7 @@
 | 0413 | 有向图：强连通分量 | 计划 | `graph-theory/0413-strongly-connected-components.md` |
 | 0414 | 无向图：割点与桥 | 计划 | `graph-theory/0414-articulation-points-bridges.md` |
 | 0415* | 无向图：双连通分量与圆方树 | 计划 | `graph-theory/0415-biconnected-components-block-cut-tree.md` |
-| 0416 | 欧拉问题：路径、回路与图 | 草稿 | [eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
+| 0416 | 欧拉问题：路径、回路与图 | 定稿 | [eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
 | 0417 | 树：直径与中心 | 计划 | `graph-theory/0417-tree-diameter-center.md` |
 | 0418 | 树的遍历：DFS 序与子树区间 | 计划 | `graph-theory/0418-tree-euler-tour.md` |
 | 0419 | 树上数据结构：树链剖分 | 计划 | `graph-theory/0419-heavy-light-decomposition.md` |
