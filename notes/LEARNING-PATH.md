@@ -29,7 +29,7 @@
 | 0117 | 输入输出：文件重定向 | C++ | [cpp/file-redirection.md](cpp/file-redirection.md) |
 | 0118 | 数组：一维数组 | C++ | [cpp/one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
 | 0119 | 数组：多维数组 | C++ | [cpp/multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
-| 0120 | 字符串：C 字符串 | C++ | `cpp/0120-c-strings.md` |
+| 0120 | 字符串：C 字符串 | C++ | [cpp/c-strings.md](cpp/c-strings.md) |
 | 0121 | 复合类型：struct | C++ | [cpp/struct.md](cpp/struct.md) |
 | 0122 | 复合类型：union | C++ | `cpp/0122-union.md` |
 | 0123 | 复合类型：enum | C++ | `cpp/0123-enum.md` |

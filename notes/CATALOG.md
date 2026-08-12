@@ -30,12 +30,12 @@
 | 0112 | 控制流：循环 | 待审阅 | [loops.md](cpp/loops.md) |
 | 0113 | 函数：定义与调用 | 定稿 | [function-definition-and-calls.md](cpp/function-definition-and-calls.md) |
 | 0114 | 名称：作用域 | 待审阅 | [scope.md](cpp/scope.md) |
-| 0115 | 输入输出：标准输入 | 定稿 | [standard-input.md](cpp/standard-input.md) |
+| 0115 | 输入输出：标准输入 | 待审阅 | [standard-input.md](cpp/standard-input.md) |
 | 0116 | 输入输出：标准输出 | 待审阅 | [standard-output.md](cpp/standard-output.md) |
 | 0117 | 输入输出：文件重定向 | 定稿 | [file-redirection.md](cpp/file-redirection.md) |
 | 0118 | 数组：一维数组 | 定稿 | [one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
 | 0119 | 数组：多维数组 | 待审阅 | [multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
-| 0120 | 字符串：C 字符串 | 计划 | `cpp/0120-c-strings.md` |
+| 0120 | 字符串：C 字符串 | 待审阅 | [c-strings.md](cpp/c-strings.md) |
 | 0121 | 复合类型：struct | 定稿 | [struct.md](cpp/struct.md) |
 | 0122 | 复合类型：union | 计划 | `cpp/0122-union.md` |
 | 0123 | 复合类型：enum | 计划 | `cpp/0123-enum.md` |
