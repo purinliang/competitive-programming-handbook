@@ -6,7 +6,7 @@
 
 以下现有文件是在新规范建立前形成的遗留草稿，第一次正式修订时必须补齐文章信息块，并从本清单移除对应 ID。
 
-<!-- legacy-drafts: 0125,0128,0152,0153,0207,0403 -->
+<!-- legacy-drafts: 0128,0152,0153,0207,0403 -->
 
 ## 01 C++ 基础
 
@@ -40,7 +40,7 @@
 | 0122 | 复合类型：union | 计划 | `cpp/0122-union.md` |
 | 0123 | 复合类型：enum | 计划 | `cpp/0123-enum.md` |
 | 0124 | 内存：字节寻址 | 计划 | `cpp/0124-byte-addressing.md` |
-| 0125 | 内存与别名：指针 | 草稿 | [0125-pointers.md](cpp/0125-pointers.md) |
+| 0125 | 内存与别名：指针 | 定稿 | [pointers.md](cpp/pointers.md) |
 | 0126 | 内存与别名：引用 | 计划 | `cpp/0126-references.md` |
 | 0127 | 函数：参数传递 | 计划 | `cpp/0127-parameter-passing.md` |
 | 0128 | 修饰符：const | 草稿 | [0128-const.md](cpp/0128-const.md) |

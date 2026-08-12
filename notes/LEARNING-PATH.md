@@ -34,7 +34,7 @@
 | 0122 | 复合类型：union | C++ | `cpp/0122-union.md` |
 | 0123 | 复合类型：enum | C++ | `cpp/0123-enum.md` |
 | 0124 | 内存：字节寻址 | C++ | `cpp/0124-byte-addressing.md` |
-| 0125 | 内存与别名：指针 | C++ | [cpp/0125-pointers.md](cpp/0125-pointers.md) |
+| 0125 | 内存与别名：指针 | C++ | [cpp/pointers.md](cpp/pointers.md) |
 | 0126 | 内存与别名：引用 | C++ | `cpp/0126-references.md` |
 | 0127 | 函数：参数传递 | C++ | `cpp/0127-parameter-passing.md` |
 | 0128 | 修饰符：const | C++ | [cpp/0128-const.md](cpp/0128-const.md) |
