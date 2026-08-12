@@ -6,7 +6,7 @@
 
 以下现有文件是在新规范建立前形成的遗留草稿，第一次正式修订时必须补齐文章信息块，并从本清单移除对应 ID。
 
-<!-- legacy-drafts: 0121,0125,0128,0152,0153,0207,0403 -->
+<!-- legacy-drafts: 0125,0128,0152,0153,0207,0403 -->
 
 ## 01 C++ 基础
 
@@ -36,7 +36,7 @@
 | 0118 | 数组：一维数组 | 定稿 | [one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
 | 0119 | 数组：多维数组 | 计划 | `cpp/0119-multidimensional-arrays.md` |
 | 0120 | 字符串：C 字符串 | 计划 | `cpp/0120-c-strings.md` |
-| 0121 | 复合类型：struct | 草稿 | [0121-struct.md](cpp/0121-struct.md) |
+| 0121 | 复合类型：struct | 定稿 | [struct.md](cpp/struct.md) |
 | 0122 | 复合类型：union | 计划 | `cpp/0122-union.md` |
 | 0123 | 复合类型：enum | 计划 | `cpp/0123-enum.md` |
 | 0124 | 内存：字节寻址 | 计划 | `cpp/0124-byte-addressing.md` |
