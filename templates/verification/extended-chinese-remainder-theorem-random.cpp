@@ -4,11 +4,12 @@
 #include "../math/extended-chinese-remainder-theorem.cpp"
 #undef main
 
-ll brute_excrt(const vector<ll>& a, const vector<ll>& m, ll mod) {
-    for (ll x = 0; x < mod; x++) {
+ll brute_excrt(const vector<ll>& a, const vector<ll>& m, ll M) {
+    int n = a.size();
+    for (ll x = 0; x < M; x++) {
         bool valid = true;
-        for (int i = 0; i < static_cast<int>(a.size()); i++) {
-            if (x % m[i] != mod_norm(a[i], m[i])) {
+        for (int i = 0; i < n; i++) {
+            if (x % m[i] != normalize(a[i], m[i])) {
                 valid = false;
                 break;
             }
@@ -22,6 +23,13 @@ ll brute_excrt(const vector<ll>& a, const vector<ll>& m, ll mod) {
 
 int main() {
     mt19937 rng(20050314);
+
+    ll large_m = LLONG_MAX - 58;
+    if (add_mod(large_m - 2, large_m - 3, large_m) != large_m - 5 ||
+        mul_mod(large_m - 2, large_m - 3, large_m) != 6) {
+        printf("large modular arithmetic mismatch\n");
+        return 1;
+    }
 
     for (int test = 1; test <= 10000; test++) {
         int n = static_cast<int>(rng() % 5) + 1;
@@ -37,14 +45,14 @@ int main() {
         ll brute = brute_excrt(a, m, expected_mod);
         bool expected = brute != -1;
 
-        ll ans, mod;
-        bool actual = excrt(a, m, ans, mod);
+        ll ans, M;
+        bool actual = excrt(a, m, ans, M);
         if (actual != expected) {
             printf("existence mismatch on test %d\n", test);
             return 1;
         }
 
-        if (actual && (ans != brute || mod != expected_mod || ans < 0 || ans >= mod)) {
+        if (actual && (ans != brute || M != expected_mod || ans < 0 || ans >= M)) {
             printf("answer mismatch on test %d\n", test);
             return 1;
         }

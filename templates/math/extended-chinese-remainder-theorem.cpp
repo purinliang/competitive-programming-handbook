@@ -6,7 +6,6 @@
 using namespace std;
 
 typedef long long ll;
-typedef __int128 i128;
 
 ll exgcd(ll a, ll b, ll& x, ll& y) {
     if (b == 0) {
@@ -22,12 +21,33 @@ ll exgcd(ll a, ll b, ll& x, ll& y) {
     return g;
 }
 
-ll mod_norm(i128 x, ll mod) {
-    x %= mod;
+ll normalize(ll x, ll m) {
+    x %= m;
     if (x < 0) {
-        x += mod;
+        x += m;
     }
-    return static_cast<ll>(x);
+    return x;
+}
+
+ll add_mod(ll a, ll b, ll m) {
+    if (a >= m - b) {
+        return a - (m - b);
+    }
+    return a + b;
+}
+
+ll mul_mod(ll a, ll b, ll m) {
+    a = normalize(a, m);
+    b = normalize(b, m);
+    ll result = 0;
+    while (b > 0) {
+        if (b % 2 == 1) {
+            result = add_mod(result, a, m);
+        }
+        a = add_mod(a, a, m);
+        b /= 2;
+    }
+    return result;
 }
 
 bool merge_congruence(ll& a1, ll& m1, ll a2, ll m2) {
@@ -39,20 +59,22 @@ bool merge_congruence(ll& a1, ll& m1, ll a2, ll m2) {
     }
 
     ll period = m2 / g;
-    ll t = mod_norm(static_cast<i128>(s) * (c / g), period);
+    ll t = mul_mod(s, c / g, period);
 
-    ll new_mod = m1 / g * m2;
-    a1 = mod_norm(static_cast<i128>(a1) + static_cast<i128>(m1) * t, new_mod);
-    m1 = new_mod;
+    ll new_M = m1 / g * m2;
+    ll increment = mul_mod(m1, t, new_M);
+    a1 = add_mod(a1, increment, new_M);
+    m1 = new_M;
     return true;
 }
 
-bool excrt(const vector<ll>& a, const vector<ll>& m, ll& ans, ll& mod) {
-    ans = mod_norm(a[0], m[0]);
-    mod = m[0];
-    for (int i = 1; i < static_cast<int>(a.size()); i++) {
-        ll next_ans = mod_norm(a[i], m[i]);
-        if (!merge_congruence(ans, mod, next_ans, m[i])) {
+bool excrt(const vector<ll>& a, const vector<ll>& m, ll& ans, ll& M) {
+    ans = normalize(a[0], m[0]);
+    M = m[0];
+    int n = a.size();
+    for (int i = 1; i < n; i++) {
+        ll next_a = normalize(a[i], m[i]);
+        if (!merge_congruence(ans, M, next_a, m[i])) {
             return false;
         }
     }
@@ -69,12 +91,12 @@ int main() {
         scanf("%lld%lld", &m[i], &a[i]);
     }
 
-    ll ans, mod;
-    if (!excrt(a, m, ans, mod)) {
+    ll ans, M;
+    if (!excrt(a, m, ans, M)) {
         printf("No solution\n");
         return 0;
     }
 
-    printf("%lld %lld\n", ans, mod);
+    printf("%lld %lld\n", ans, M);
     return 0;
 }
