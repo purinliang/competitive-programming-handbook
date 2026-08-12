@@ -62,7 +62,7 @@
 | 0135 | 工具类型：tuple | 待审阅 | [tuple.md](cpp/tuple.md) |
 | 0136 | 序列容器：array | 待审阅 | [array.md](cpp/array.md) |
 | 0137 | 字符串：string | 待审阅 | [string.md](cpp/string.md) |
-| 0138 | 序列容器：vector | 计划 | `cpp/0138-vector.md` |
+| 0138 | 序列容器：vector | 待审阅 | [vector.md](cpp/vector.md) |
 | 0139 | 序列容器：deque | 计划 | `cpp/0139-deque.md` |
 | 0140 | STL 算法：排序 | 计划 | `cpp/0140-stl-sorting.md` |
 | 0141 | STL 算法：去重 | 计划 | `cpp/0141-stl-deduplication.md` |

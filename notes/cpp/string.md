@@ -296,4 +296,4 @@ Competitive Programming!
 
 ## 下一篇
 
-下一篇 [序列容器：vector（正文待写）](../CATALOG.md#01-c-基础) 会把自动调整长度的能力用于任意相同类型的元素，而不只是一串 `char`。
+下一篇 [序列容器：vector](vector.md) 会把自动调整长度的能力用于任意相同类型的元素，而不只是一串 `char`。

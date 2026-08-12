@@ -57,7 +57,7 @@
 | 0135 | 工具类型：tuple | C++ | [cpp/tuple.md](cpp/tuple.md) |
 | 0136 | 序列容器：array | C++ | [cpp/array.md](cpp/array.md) |
 | 0137 | 字符串：string | C++ | [cpp/string.md](cpp/string.md) |
-| 0138 | 序列容器：vector | C++ | `cpp/0138-vector.md` |
+| 0138 | 序列容器：vector | C++ | [cpp/vector.md](cpp/vector.md) |
 | 0140 | STL 算法：排序 | C++ | `cpp/0140-stl-sorting.md` |
 | 0141 | STL 算法：去重 | C++ | `cpp/0141-stl-deduplication.md` |
 | 0201 | 时间空间复杂度 | 基础算法 | `algorithm-basics/0201-complexity.md` |
