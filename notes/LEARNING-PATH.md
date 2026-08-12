@@ -65,7 +65,7 @@
 | 0224 | 链表 | 基础算法 | [algorithm-basics/linked-list.md](algorithm-basics/linked-list.md) |
 | 0225 | 栈 | 基础算法 | [algorithm-basics/stack.md](algorithm-basics/stack.md) |
 | 0226 | 队列 | 基础算法 | [algorithm-basics/queue.md](algorithm-basics/queue.md) |
-| 0203 | 排序：基础排序 | 基础算法 | `algorithm-basics/0203-sorting.md` |
+| 0203 | 排序：基础排序 | 基础算法 | [algorithm-basics/sorting.md](algorithm-basics/sorting.md) |
 | 0231 | 排序：快速排序 | 基础算法 | `algorithm-basics/0231-quicksort.md` |
 | 0232 | 排序：归并排序 | 基础算法 | `algorithm-basics/0232-merge-sort.md` |
 | 0204 | 查找：二分查找 | 基础算法 | `algorithm-basics/0204-binary-search.md` |
