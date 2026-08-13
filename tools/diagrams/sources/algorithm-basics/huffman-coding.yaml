@@ -1,0 +1,29 @@
+schema: cp-diagram/v2
+type: tree
+background: white
+layout: rooted
+root: root
+node-shape: circle
+nodes:
+  - {id: root, label: "100"}
+  - {id: a, label: "A · 45"}
+  - {id: n55, label: "55"}
+  - {id: n25, label: "25"}
+  - {id: n30, label: "30"}
+  - {id: c, label: "C · 12"}
+  - {id: b, label: "B · 13"}
+  - {id: n14, label: "14"}
+  - {id: d, label: "D · 16"}
+  - {id: f, label: "F · 5"}
+  - {id: e, label: "E · 9"}
+edges:
+  - {from: root, to: a, value: 0}
+  - {from: root, to: n55, value: 1}
+  - {from: n55, to: n25, value: 0}
+  - {from: n55, to: n30, value: 1}
+  - {from: n25, to: c, value: 0}
+  - {from: n25, to: b, value: 1}
+  - {from: n30, to: n14, value: 0}
+  - {from: n30, to: d, value: 1}
+  - {from: n14, to: f, value: 0}
+  - {from: n14, to: e, value: 1}
