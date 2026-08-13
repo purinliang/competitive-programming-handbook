@@ -117,7 +117,7 @@
 | 0228 | 哈希表 | 计划 | `algorithm-basics/0228-hash-table.md` |
 | 0229 | 单调栈 | 计划 | `algorithm-basics/0229-monotonic-stack.md` |
 | 0230 | 单调队列 | 计划 | `algorithm-basics/0230-monotonic-queue.md` |
-| 0231 | 排序：快速排序 | 计划 | `algorithm-basics/0231-quicksort.md` |
+| 0231 | 排序：快速排序 | 待审阅 | [quicksort.md](algorithm-basics/quicksort.md) |
 | 0232 | 排序：归并排序 | 计划 | `algorithm-basics/0232-merge-sort.md` |
 | 0233* | 排序：堆排序 | 计划 | `algorithm-basics/0233-heap-sort.md` |
 | 0234* | 排序：基数排序 | 计划 | `algorithm-basics/0234-radix-sort.md` |
