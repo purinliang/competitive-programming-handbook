@@ -74,7 +74,7 @@
 | 0220 | 双指针：滑动窗口 | 基础算法 | [algorithm-basics/sliding-window.md](algorithm-basics/sliding-window.md) |
 | 0206 | 离散化 | 基础算法 | [algorithm-basics/coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
 | 0207 | 前缀和 | 基础算法 | [algorithm-basics/prefix-sums.md](algorithm-basics/prefix-sums.md) |
-| 0221 | 差分 | 基础算法 | `algorithm-basics/0221-difference-array.md` |
+| 0221 | 差分 | 基础算法 | [algorithm-basics/difference-array.md](algorithm-basics/difference-array.md) |
 | 0208 | 贪心：选择与证明 | 基础算法 | `algorithm-basics/0208-greedy.md` |
 | 0209 | 分治：基础 | 基础算法 | `algorithm-basics/0209-divide-and-conquer.md` |
 | 0210 | 枚举 | 基础算法 | `algorithm-basics/0210-enumeration.md` |

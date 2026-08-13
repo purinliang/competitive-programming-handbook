@@ -1,0 +1,28 @@
+schema: cp-diagram/v1
+type: array
+background: white
+label: difference
+index: 1-based
+cells: [3, 2, 3, -3, 4, 0]
+annotations:
+  - type: range
+    from: 2
+    to: 5
+    label: a[2..5] += 4
+    color: red
+  - type: cell
+    at: 2
+    color: red
+  - type: cell
+    at: 6
+    color: blue
+  - type: arrow
+    at: 2
+    side: top
+    label: "+4"
+    color: red
+  - type: arrow
+    at: 6
+    side: top
+    label: -4
+    color: blue
