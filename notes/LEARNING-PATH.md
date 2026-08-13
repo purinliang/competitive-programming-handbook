@@ -68,7 +68,7 @@
 | 0203 | 排序：基础排序 | 基础算法 | [algorithm-basics/sorting.md](algorithm-basics/sorting.md) |
 | 0231 | 排序：快速排序 | 基础算法 | [algorithm-basics/quicksort.md](algorithm-basics/quicksort.md) |
 | 0232 | 排序：归并排序 | 基础算法 | [algorithm-basics/merge-sort.md](algorithm-basics/merge-sort.md) |
-| 0204 | 查找：二分查找 | 基础算法 | `algorithm-basics/0204-binary-search.md` |
+| 0204 | 查找：二分查找 | 基础算法 | [algorithm-basics/binary-search.md](algorithm-basics/binary-search.md) |
 | 0219 | 二分答案 | 基础算法 | `algorithm-basics/0219-binary-search-on-answer.md` |
 | 0205 | 双指针 | 基础算法 | `algorithm-basics/0205-two-pointers.md` |
 | 0220 | 双指针：滑动窗口 | 基础算法 | `algorithm-basics/0220-sliding-window.md` |

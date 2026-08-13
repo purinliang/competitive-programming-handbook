@@ -90,7 +90,7 @@
 | --- | --- | --- | --- |
 | 0201 | 复杂度：时间与空间 | 待审阅 | [complexity.md](algorithm-basics/complexity.md) |
 | 0203 | 排序：基础排序 | 待审阅 | [sorting.md](algorithm-basics/sorting.md) |
-| 0204 | 查找：二分查找 | 计划 | `algorithm-basics/0204-binary-search.md` |
+| 0204 | 查找：二分查找 | 待审阅 | [binary-search.md](algorithm-basics/binary-search.md) |
 | 0205 | 双指针 | 计划 | `algorithm-basics/0205-two-pointers.md` |
 | 0206 | 离散化 | 计划 | `algorithm-basics/0206-coordinate-compression.md` |
 | 0207 | 前缀和 | 定稿 | [prefix-sums.md](algorithm-basics/prefix-sums.md) |
