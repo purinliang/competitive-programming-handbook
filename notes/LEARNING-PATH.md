@@ -78,7 +78,7 @@
 | 0208 | 贪心：选择与证明 | 基础算法 | [algorithm-basics/greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
 | 0209 | 分治：基础 | 基础算法 | [algorithm-basics/divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
 | 0210 | 枚举 | 基础算法 | [algorithm-basics/enumeration.md](algorithm-basics/enumeration.md) |
-| 0211 | 枚举：子集与位掩码 | 基础算法 | `algorithm-basics/0211-bitmask-enumeration.md` |
+| 0211 | 枚举：子集与位掩码 | 基础算法 | [algorithm-basics/subset-bitmask-enumeration.md](algorithm-basics/subset-bitmask-enumeration.md) |
 | 0222 | 模拟 | 基础算法 | `algorithm-basics/0222-simulation.md` |
 
 本阶段交错安排基础算法、基础数据结构和当前真正需要的标准库接口。先把 `string`、`vector` 和 `sort` 当作可靠工具使用；学习复杂度以后，再从结构、操作成本和算法原理重新理解数组与排序。数组、链表、栈和队列解释抽象结构，相邻的标准库文章只解释 C++ 编码接口。

@@ -97,7 +97,7 @@
 | 0208 | 贪心：选择与证明 | 待审阅 | [greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
 | 0209 | 分治：基础 | 待审阅 | [divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
 | 0210 | 枚举 | 待审阅 | [enumeration.md](algorithm-basics/enumeration.md) |
-| 0211 | 枚举：子集与位掩码 | 计划 | `algorithm-basics/0211-bitmask-enumeration.md` |
+| 0211 | 枚举：子集与位掩码 | 待审阅 | [subset-bitmask-enumeration.md](algorithm-basics/subset-bitmask-enumeration.md) |
 | 0212 | 枚举：Meet-in-the-Middle | 计划 | `algorithm-basics/0212-meet-in-the-middle.md` |
 | 0213 | 离线算法 | 计划 | `algorithm-basics/0213-offline-algorithms.md` |
 | 0214 | 扫描线与事件排序 | 计划 | `algorithm-basics/0214-sweep-line.md` |
