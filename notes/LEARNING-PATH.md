@@ -131,7 +131,7 @@
 | 0146 | 有序关联容器：multiset | C++ | [cpp/multiset.md](cpp/multiset.md) |
 | 0147 | 有序关联容器：map | C++ | [cpp/map.md](cpp/map.md) |
 | 0148 | 有序关联容器：multimap | C++ | [cpp/multimap.md](cpp/multimap.md) |
-| 0149 | 无序关联容器：unordered_set | C++ | `cpp/0149-unordered-set.md` |
+| 0149 | 无序关联容器：unordered_set | C++ | [cpp/unordered-set.md](cpp/unordered-set.md) |
 | 0150 | 无序关联容器：unordered_map | C++ | `cpp/0150-unordered-map.md` |
 | 0544 | 高精度整数：加法、减法与乘法 | 数学 | [math/big-integer-addition-subtraction-multiplication.md](math/big-integer-addition-subtraction-multiplication.md) |
 | 0405 | 有向无环图：拓扑排序 | 图论 | `graph-theory/0405-topological-sort.md` |
