@@ -1,0 +1,20 @@
+schema: cp-diagram/v2
+type: graph
+background: white
+directed: false
+layout: balanced
+node-shape: circle
+nodes:
+  - {id: 1, value: A}
+  - {id: 2, value: B}
+  - {id: 3, value: B}
+  - {id: 4, value: A}
+  - {id: 5, value: A}
+  - {id: 6, value: B}
+edges:
+  - {from: 1, to: 2}
+  - {from: 1, to: 3}
+  - {from: 2, to: 4}
+  - {from: 3, to: 5}
+  - {from: 5, to: 6}
+  - {from: 4, to: 6}

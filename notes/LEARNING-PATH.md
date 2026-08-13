@@ -137,7 +137,7 @@
 | 0405 | 有向无环图：拓扑排序 | 图论 | [graph-theory/topological-sort.md](graph-theory/topological-sort.md) |
 | 0406 | 图的遍历：多源 BFS | 图论 | [graph-theory/multi-source-bfs.md](graph-theory/multi-source-bfs.md) |
 | 0444 | 最短路：0-1 BFS | 图论 | [graph-theory/zero-one-bfs.md](graph-theory/zero-one-bfs.md) |
-| 0411 | 二分图：判定 | 图论 | `graph-theory/0411-bipartite-graph.md` |
+| 0411 | 二分图：判定 | 图论 | [graph-theory/bipartite-graph.md](graph-theory/bipartite-graph.md) |
 | 0417 | 树：直径与中心 | 图论 | `graph-theory/0417-tree-diameter-center.md` |
 | 0445 | 树：重心 | 图论 | `graph-theory/0445-tree-centroid.md` |
 | 0311 | 二叉树：结构与存储 | 数据结构 | [data-structures/binary-tree-structure-and-storage.md](data-structures/binary-tree-structure-and-storage.md) |

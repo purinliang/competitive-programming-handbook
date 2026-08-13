@@ -173,7 +173,7 @@
 | 0408 | 最短路：Bellman–Ford 与负环 | 计划 | `graph-theory/0408-bellman-ford.md` |
 | 0409 | 最短路：Floyd–Warshall | 计划 | `graph-theory/0409-floyd-warshall.md` |
 | 0410 | 最小生成树：Kruskal | 计划 | `graph-theory/0410-kruskal.md` |
-| 0411 | 二分图：判定 | 计划 | `graph-theory/0411-bipartite-graph.md` |
+| 0411 | 二分图：判定 | 待审阅 | [bipartite-graph.md](graph-theory/bipartite-graph.md) |
 | 0412* | 二分图：最大匹配 | 计划 | `graph-theory/0412-bipartite-matching.md` |
 | 0413 | 有向图：强连通分量 | 计划 | `graph-theory/0413-strongly-connected-components.md` |
 | 0414 | 无向图：割点与桥 | 计划 | `graph-theory/0414-articulation-points-bridges.md` |
