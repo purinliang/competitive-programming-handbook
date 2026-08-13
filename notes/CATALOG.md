@@ -74,7 +74,7 @@
 | 0147 | 有序关联容器：map | 待审阅 | [map.md](cpp/map.md) |
 | 0148 | 有序关联容器：multimap | 待审阅 | [multimap.md](cpp/multimap.md) |
 | 0149 | 无序关联容器：unordered_set | 待审阅 | [unordered-set.md](cpp/unordered-set.md) |
-| 0150 | 无序关联容器：unordered_map | 计划 | `cpp/0150-unordered-map.md` |
+| 0150 | 无序关联容器：unordered_map | 待审阅 | [unordered-map.md](cpp/unordered-map.md) |
 | 0151 | 工具类型：bitset | 计划 | `cpp/0151-bitset.md` |
 | 0152* | 预处理：include | 定稿 | [include.md](cpp/include.md) |
 | 0153* | 名称：命名空间与 std | 定稿 | [namespace-and-std.md](cpp/namespace-and-std.md) |
