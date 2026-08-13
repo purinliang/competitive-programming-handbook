@@ -68,7 +68,7 @@
 | 0141 | STL 算法：去重 | 待审阅 | [deduplication.md](cpp/deduplication.md) |
 | 0142 | 容器适配器：stack | 待审阅 | [stack.md](cpp/stack.md) |
 | 0143 | 容器适配器：queue | 待审阅 | [queue.md](cpp/queue.md) |
-| 0144 | 容器适配器：priority_queue | 计划 | `cpp/0144-priority-queue.md` |
+| 0144 | 容器适配器：priority_queue | 待审阅 | [priority-queue.md](cpp/priority-queue.md) |
 | 0145 | 有序关联容器：set | 计划 | `cpp/0145-set.md` |
 | 0146 | 有序关联容器：multiset | 计划 | `cpp/0146-multiset.md` |
 | 0147 | 有序关联容器：map | 计划 | `cpp/0147-map.md` |
