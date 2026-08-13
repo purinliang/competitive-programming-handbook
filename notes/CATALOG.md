@@ -302,7 +302,7 @@
 | 0713* | 动态规划优化：分治 | 计划 | `dynamic-programming/0713-divide-conquer-optimization.md` |
 | 0714* | 动态规划：Slope Trick | 计划 | `dynamic-programming/0714-slope-trick.md` |
 | 0715 | 背包：完全背包 | 待审阅 | [complete-knapsack.md](dynamic-programming/complete-knapsack.md) |
-| 0716 | 背包：多重背包 | 计划 | `dynamic-programming/0716-multiple-knapsack.md` |
+| 0716 | 背包：多重背包 | 待审阅 | [multiple-knapsack.md](dynamic-programming/multiple-knapsack.md) |
 | 0717 | 动态规划：状态机 DP | 计划 | `dynamic-programming/0717-state-machine-dp.md` |
 
 ## 08 字符串
