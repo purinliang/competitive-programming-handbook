@@ -70,7 +70,7 @@
 | 0232 | 排序：归并排序 | 基础算法 | [algorithm-basics/merge-sort.md](algorithm-basics/merge-sort.md) |
 | 0204 | 查找：二分查找 | 基础算法 | [algorithm-basics/binary-search.md](algorithm-basics/binary-search.md) |
 | 0219 | 二分答案 | 基础算法 | [algorithm-basics/binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |
-| 0205 | 双指针 | 基础算法 | `algorithm-basics/0205-two-pointers.md` |
+| 0205 | 双指针 | 基础算法 | [algorithm-basics/two-pointers.md](algorithm-basics/two-pointers.md) |
 | 0220 | 双指针：滑动窗口 | 基础算法 | `algorithm-basics/0220-sliding-window.md` |
 | 0206 | 离散化 | 基础算法 | `algorithm-basics/0206-coordinate-compression.md` |
 | 0207 | 前缀和 | 基础算法 | [algorithm-basics/prefix-sums.md](algorithm-basics/prefix-sums.md) |
