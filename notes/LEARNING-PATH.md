@@ -89,7 +89,7 @@
 | --- | --- | --- | --- |
 | 0142 | 容器适配器：stack | C++ | [cpp/stack.md](cpp/stack.md) |
 | 0236 | 栈的应用：出栈序列判定 | 基础算法 | [algorithm-basics/stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
-| 0237 | 栈的应用：表达式求值 | 基础算法 | `algorithm-basics/expression-evaluation.md` |
+| 0237 | 栈的应用：表达式求值 | 基础算法 | [algorithm-basics/expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
 | 0139 | 序列容器：deque | C++ | `cpp/0139-deque.md` |
 | 0143 | 容器适配器：queue | C++ | `cpp/0143-queue.md` |
 | 0501 | 数论：整除 | 数学 | [math/divisibility.md](math/divisibility.md) |
