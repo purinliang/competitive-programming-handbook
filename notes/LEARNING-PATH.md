@@ -91,7 +91,7 @@
 | 0236 | 栈的应用：出栈序列判定 | 基础算法 | [algorithm-basics/stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
 | 0237 | 栈的应用：表达式求值 | 基础算法 | [algorithm-basics/expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
 | 0139 | 序列容器：deque | C++ | [cpp/deque.md](cpp/deque.md) |
-| 0143 | 容器适配器：queue | C++ | `cpp/0143-queue.md` |
+| 0143 | 容器适配器：queue | C++ | [cpp/queue.md](cpp/queue.md) |
 | 0501 | 数论：整除 | 数学 | [math/divisibility.md](math/divisibility.md) |
 | 0502 | 数论：质数 | 数学 | [math/prime-numbers.md](math/prime-numbers.md) |
 | 0535 | 数论：算术基本定理 | 数学 | [math/fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
