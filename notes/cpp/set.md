@@ -466,4 +466,4 @@ int main() {
 
 ## 下一篇
 
-下一篇 [有序关联容器：multiset](../CATALOG.md#01-c-基础) 会保留重复键，并重新解释 `count`、`erase` 和等值区间在允许重复时的语义。
+下一篇 [有序关联容器：multiset](multiset.md) 会保留重复键，并重新解释 `count`、`erase` 和等值区间在允许重复时的语义。
