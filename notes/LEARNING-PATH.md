@@ -89,9 +89,7 @@
 | --- | --- | --- | --- |
 | 0142 | 容器适配器：stack | C++ | `cpp/0142-stack.md` |
 | 0236 | 栈的应用：出栈序列判定 | 基础算法 | `algorithm-basics/stack-pop-sequence-validation.md` |
-| 0237 | 表达式表示：前缀、中缀与后缀 | 基础算法 | `algorithm-basics/prefix-infix-postfix-expressions.md` |
-| 0238 | 栈的应用：中缀表达式转后缀表达式 | 基础算法 | `algorithm-basics/infix-to-postfix.md` |
-| 0239 | 栈的应用：后缀表达式求值 | 基础算法 | `algorithm-basics/postfix-expression-evaluation.md` |
+| 0237 | 栈的应用：表达式求值 | 基础算法 | `algorithm-basics/expression-evaluation.md` |
 | 0139 | 序列容器：deque | C++ | `cpp/0139-deque.md` |
 | 0143 | 容器适配器：queue | C++ | `cpp/0143-queue.md` |
 | 0501 | 数论：整除 | 数学 | [math/divisibility.md](math/divisibility.md) |
@@ -144,10 +142,7 @@
 | 0445 | 树：重心 | 图论 | `graph-theory/0445-tree-centroid.md` |
 | 0311 | 二叉树：结构与存储 | 数据结构 | [data-structures/binary-tree-structure-and-storage.md](data-structures/binary-tree-structure-and-storage.md) |
 | 0328 | 二叉树的遍历：前序、中序与后序 | 数据结构 | [data-structures/binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
-| 0329 | 二叉树：表达式树 | 数据结构 | `data-structures/expression-tree.md` |
-| 0240 | 编码：定长编码 | 基础算法 | `algorithm-basics/fixed-length-coding.md` |
-| 0241 | 编码：前缀编码 | 基础算法 | `algorithm-basics/prefix-codes.md` |
-| 0242 | 编码：哈夫曼树与哈夫曼编码 | 基础算法 | `algorithm-basics/huffman-tree-and-coding.md` |
+| 0240 | 编码：哈夫曼编码 | 基础算法 | `algorithm-basics/huffman-coding.md` |
 
 ## 阶段 5：高中基础
 

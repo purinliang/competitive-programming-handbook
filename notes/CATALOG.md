@@ -124,12 +124,8 @@
 | 0234* | 排序：基数排序 | 计划 | `algorithm-basics/0234-radix-sort.md` |
 | 0235* | 排序：桶排序 | 计划 | `algorithm-basics/0235-bucket-sort.md` |
 | 0236 | 栈的应用：出栈序列判定 | 计划 | `algorithm-basics/stack-pop-sequence-validation.md` |
-| 0237 | 表达式表示：前缀、中缀与后缀 | 计划 | `algorithm-basics/prefix-infix-postfix-expressions.md` |
-| 0238 | 栈的应用：中缀表达式转后缀表达式 | 计划 | `algorithm-basics/infix-to-postfix.md` |
-| 0239 | 栈的应用：后缀表达式求值 | 计划 | `algorithm-basics/postfix-expression-evaluation.md` |
-| 0240 | 编码：定长编码 | 计划 | `algorithm-basics/fixed-length-coding.md` |
-| 0241 | 编码：前缀编码 | 计划 | `algorithm-basics/prefix-codes.md` |
-| 0242 | 编码：哈夫曼树与哈夫曼编码 | 计划 | `algorithm-basics/huffman-tree-and-coding.md` |
+| 0237 | 栈的应用：表达式求值 | 计划 | `algorithm-basics/expression-evaluation.md` |
+| 0240 | 编码：哈夫曼编码 | 计划 | `algorithm-basics/huffman-coding.md` |
 
 ## 03 数据结构
 
@@ -159,7 +155,6 @@
 | 0326* | Wavelet Matrix | 计划 | `data-structures/0326-wavelet-matrix.md` |
 | 0327* | 启发式合并（small-to-large） | 计划 | `data-structures/0327-small-to-large-merging.md` |
 | 0328 | 二叉树的遍历：前序、中序与后序 | 定稿 | [binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
-| 0329 | 二叉树：表达式树 | 计划 | `data-structures/expression-tree.md` |
 | 0330* | 斜堆 | 计划 | `data-structures/0330-skew-heap.md` |
 | 0331* | 配对堆 | 计划 | `data-structures/0331-pairing-heap.md` |
 
