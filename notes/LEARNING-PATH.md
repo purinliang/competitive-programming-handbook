@@ -143,7 +143,7 @@
 | 0311 | 二叉树：结构与存储 | 数据结构 | [data-structures/binary-tree-structure-and-storage.md](data-structures/binary-tree-structure-and-storage.md) |
 | 0328 | 二叉树的遍历：前序、中序与后序 | 数据结构 | [data-structures/binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
 | 0240 | 编码：哈夫曼编码 | 基础算法 | [algorithm-basics/huffman-coding.md](algorithm-basics/huffman-coding.md) |
-| 0241 | 编码：格雷码 | 基础算法 | `algorithm-basics/gray-code.md` |
+| 0241 | 编码：格雷码 | 基础算法 | [algorithm-basics/gray-code.md](algorithm-basics/gray-code.md) |
 
 ## 阶段 5：高中基础
 

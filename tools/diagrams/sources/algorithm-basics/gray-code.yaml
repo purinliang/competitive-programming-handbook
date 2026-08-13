@@ -1,0 +1,12 @@
+schema: cp-diagram/v2
+type: array
+background: white
+index: none
+layout: stacked
+rows:
+  - id: binary
+    label: binary i
+    cells: ["000", "001", "010", "011", "100", "101", "110", "111"]
+  - id: gray
+    label: Gray(i)
+    cells: ["000", "001", "011", "010", "110", "111", "101", "100"]
