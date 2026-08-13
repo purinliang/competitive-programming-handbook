@@ -184,4 +184,4 @@ int main() {
 
 ## 下一篇
 
-学习模运算的基本概念后，[数论：扩展欧几里得算法](extended-euclidean-algorithm.md) 会追踪 `gcd` 如何由原来的 $a,b$ 线性组合而来。
+下一篇 [哈希表](../algorithm-basics/hash-table.md) 会把很大范围内的整数键映射到数量有限的桶中，并处理不同键落入同一个桶的冲突。

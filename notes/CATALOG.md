@@ -114,7 +114,7 @@
 | 0225 | 栈 | 待审阅 | [stack.md](algorithm-basics/stack.md) |
 | 0226 | 队列 | 待审阅 | [queue.md](algorithm-basics/queue.md) |
 | 0227 | 二叉堆 | 计划 | `algorithm-basics/0227-binary-heap.md` |
-| 0228 | 哈希表 | 计划 | `algorithm-basics/0228-hash-table.md` |
+| 0228 | 哈希表 | 待审阅 | [hash-table.md](algorithm-basics/hash-table.md) |
 | 0229 | 单调栈 | 计划 | `algorithm-basics/0229-monotonic-stack.md` |
 | 0230 | 单调队列 | 计划 | `algorithm-basics/0230-monotonic-queue.md` |
 | 0231 | 排序：快速排序 | 待审阅 | [quicksort.md](algorithm-basics/quicksort.md) |

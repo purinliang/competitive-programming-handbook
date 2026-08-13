@@ -98,7 +98,7 @@
 | 0539 | 数论：质因数分解 | 数学 | [math/prime-factorization.md](math/prime-factorization.md) |
 | 0536 | 数论：最大公约数与最小公倍数 | 数学 | [math/greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
 | 0537 | 数论：欧几里得算法 | 数学 | [math/euclidean-algorithm.md](math/euclidean-algorithm.md) |
-| 0228 | 哈希表 | 基础算法 | `algorithm-basics/0228-hash-table.md` |
+| 0228 | 哈希表 | 基础算法 | [algorithm-basics/hash-table.md](algorithm-basics/hash-table.md) |
 | 0401 | 图：点与边 | 图论 | [graph-theory/vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
 | 0431 | 图：路径与环 | 图论 | [graph-theory/paths-and-cycles.md](graph-theory/paths-and-cycles.md) |
 | 0432 | 图：度数 | 图论 | [graph-theory/vertex-degrees.md](graph-theory/vertex-degrees.md) |
