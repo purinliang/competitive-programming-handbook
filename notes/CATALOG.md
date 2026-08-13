@@ -126,6 +126,7 @@
 | 0236 | 栈的应用：出栈序列判定 | 计划 | `algorithm-basics/stack-pop-sequence-validation.md` |
 | 0237 | 栈的应用：表达式求值 | 计划 | `algorithm-basics/expression-evaluation.md` |
 | 0240 | 编码：哈夫曼编码 | 计划 | `algorithm-basics/huffman-coding.md` |
+| 0241 | 编码：格雷码 | 计划 | `algorithm-basics/gray-code.md` |
 
 ## 03 数据结构
 
