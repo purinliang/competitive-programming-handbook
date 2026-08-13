@@ -112,7 +112,7 @@
 | 0442 | 树：有根树 | 图论 | [graph-theory/rooted-trees.md](graph-theory/rooted-trees.md) |
 | 0434 | 树的遍历：深度优先搜索（DFS） | 图论 | [graph-theory/tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
 | 0435 | 树的遍历：广度优先搜索（BFS） | 图论 | [graph-theory/tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
-| 0701 | 动态规划：状态与转移 | 动态规划 | `dynamic-programming/0701-dp-foundations.md` |
+| 0701 | 动态规划：状态与转移 | 动态规划 | [dynamic-programming/dp-state-transition.md](dynamic-programming/dp-state-transition.md) |
 | 0702 | 动态规划：线性 DP | 动态规划 | `dynamic-programming/0702-linear-dp.md` |
 | 0703 | 背包：0-1 背包 | 动态规划 | `dynamic-programming/0703-zero-one-knapsack.md` |
 | 0715 | 背包：完全背包 | 动态规划 | `dynamic-programming/0715-complete-knapsack.md` |
