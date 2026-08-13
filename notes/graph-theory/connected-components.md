@@ -1,0 +1,411 @@
+# 图的遍历：连通块
+
+> 最近修订：2026-08-13 22:20 +10:00（未审阅）
+
+一张道路图中可能存在互不相通的若干片区域。题目不仅可能询问区域数量，还可能反复询问两座城市能否互相到达、某座城市所在区域有多少座城市。
+
+若每次查询都重新执行一次 DFS 或 BFS，单次搜索最坏需要 $O(n+m)$ 时间，$q$ 次查询会达到 $O(q(n+m))$。整张图没有随查询改变，同一份可达关系不应反复计算。
+
+本篇先定义无向图的连通块，再用一次完整遍历为每个点记录连通块编号和连通块大小。预处理完成后，两点连通性和所在连通块大小都能在 $O(1)$ 时间内回答。
+
+## 连通关系
+
+在无向图中，若点 $u$ 到点 $v$ 之间存在一条 [路径](paths-and-cycles.md)，就称 $u$ 与 $v$ 连通。
+
+一个点与自己也连通：即使它没有任何边，也可以使用长度为 $0$、只包含自身的路径。因此孤立点不会被排除在连通性定义之外。
+
+无向图的连通关系具有三项性质：
+
+- 每个点与自己连通；
+- 若 $u$ 与 $v$ 连通，那么 $v$ 与 $u$ 也连通；
+- 若 $u$ 与 $v$ 连通，并且 $v$ 与 $w$ 连通，那么 $u$ 与 $w$ 也连通。
+
+第三项可以把两条路径首尾连接起来理解。于是所有点会自然分成若干组：同一组中的任意两点连通，不同组之间不存在路径。
+
+## 连通块
+
+无向图中的一个极大连通子图称为连通分量（connected component），竞赛中通常简称连通块。
+
+“极大”表示已经不能再加入任何其他点并保持整体连通。一个连通块中的一小段路径本身也是连通子图，但只要还能加入同组的其他点，它就不是完整连通块。
+
+所有连通块恰好划分整张图的点集：
+
+- 每个点属于且只属于一个连通块；
+- 同一个连通块中的两点互相连通；
+- 不同连通块之间没有边，否则这条边本身就会把两边连接成同一个连通块。
+
+孤立点自己构成大小为 $1$ 的连通块。自环和重边不会改变哪些点互相可达，因此也不会改变连通块划分。
+
+## 重复搜索的问题
+
+若查询 `(u, v)` 时才从 `u` 开始 DFS，可以判断当前这一次是否到达 `v`：
+
+```text
+查询 1：从 u1 重新搜索
+查询 2：从 u2 重新搜索
+查询 3：从 u3 重新搜索
+...
+```
+
+同一连通块可能被不同查询反复遍历。更直接的目标不是分别回答每次“能否到达”，而是预先计算一个分类：
+
+```text
+component_id[u] = 点 u 所属连通块的编号
+```
+
+此后两点连通当且仅当：
+
+```cpp
+component_id[u] == component_id[v]
+```
+
+连通块编号只是分类标签，不表示大小、距离或先后关系。本篇从 `1` 开始编号，并保留 `0` 表示“这个点尚未归入任何连通块”。
+
+## 从一个起点标记整块
+
+[图的遍历：深度优先搜索（DFS）](graph-depth-first-search.md) 已经证明：在无向图中，从点 `start` 开始一次 DFS，恰好访问 `start` 所在连通块的所有点。
+
+因此 DFS 不再只记录 `visited`，而是直接把访问到的每个点标成当前连通块编号 `id`：
+
+```cpp
+void dfs(int u, int id) {
+    component_id[u] = id;
+
+    for (int v : g[u]) {
+        if (component_id[v] != 0) {
+            continue;
+        }
+        dfs(v, id);
+    }
+}
+```
+
+`component_id[u] != 0` 同时表示点 `u` 已经访问过，不需要再维护一份内容完全重复的 `visited` 数组。
+
+标记仍然必须发生在递归邻点以前。图中可能有环，若等递归返回后才标记，搜索会在环上不断进入尚未标记的旧点。
+
+## 发现新连通块
+
+按点编号检查 `1..n`。若点 `u` 已经有非零编号，它所在的整个连通块此前都已处理；若它仍为 `0`，此前的所有搜索都无法到达它，因此它属于一个尚未发现的新连通块。
+
+发现新连通块时先增加计数，再把这次 DFS 的所有点标成新编号：
+
+```cpp
+component_count = 0;
+
+for (int u = 1; u <= n; u++) {
+    if (component_id[u] == 0) {
+        component_count++;
+        dfs(u, component_count);
+    }
+}
+```
+
+第一次找到的连通块编号为 `1`，第二个编号为 `2`，依次增加。由于外层循环按点编号前进，一个连通块的编号取决于其中最小编号的点何时被发现。
+
+换一种遍历次序可能改变具体编号，但不会改变哪些点拥有相同编号。算法应当依赖“编号是否相等”，不能依赖“编号较小的连通块更重要”。
+
+## 连通块大小
+
+最多可能有 $n$ 个连通块，所以建立 `n + 5` 个计数位置：
+
+```cpp
+vector<int> component_size(n + 5, 0);
+```
+
+点 `u` 第一次被标成连通块 `id` 时，把这个连通块的大小增加 `1`：
+
+```cpp
+void dfs(int u, int id) {
+    component_id[u] = id;
+    component_size[id]++;
+
+    for (int v : g[u]) {
+        if (component_id[v] != 0) {
+            continue;
+        }
+        dfs(v, id);
+    }
+}
+```
+
+每个点只会第一次进入 DFS 时计数，因此 `component_size[id]` 最终恰好等于这个连通块的点数。点 `u` 所在连通块的大小可以直接读取：
+
+```cpp
+component_size[component_id[u]]
+```
+
+孤立点也会从外层循环开始一次 DFS。它没有未访问邻点，计数增加一次后立即返回，所以所在连通块大小正确地等于 `1`。
+
+## 状态封装
+
+邻接表、连通块编号、大小和总数都属于同一次预处理，并由加边、遍历和查询操作共同使用，因此封装成一个对象：
+
+```cpp
+struct connected_components {
+    int n;
+    int component_count;
+    vector<vector<int>> g;
+    vector<int> component_id;
+    vector<int> component_size;
+
+    connected_components(int size) {
+        n = size;
+        component_count = 0;
+        g.resize(n + 5);
+        component_id.resize(n + 5, 0);
+        component_size.resize(n + 5, 0);
+    }
+};
+```
+
+图中真实点使用 `1..n`，位置 `0` 不保存真实点；`component_id[u] == 0` 因而可以无歧义地表示尚未分类。
+
+无向边必须向邻接表加入两个方向：
+
+```cpp
+void add_edge(int u, int v) {
+    g[u].push_back(v);
+    g[v].push_back(u);
+}
+```
+
+所有边加入完成后才能执行 `build()`。若预处理以后又增加边，两个原本不同的连通块可能合并，旧编号就不再有效；必须重新构建，或改用后续的并查集处理动态加边。
+
+## 查询接口
+
+预处理以后，两点是否连通只需比较编号：
+
+```cpp
+bool same_component(int u, int v) const {
+    return component_id[u] == component_id[v];
+}
+```
+
+点 `u` 所在连通块大小也只需两次数组访问：
+
+```cpp
+int size_of(int u) const {
+    return component_size[component_id[u]];
+}
+```
+
+这两个查询都是 $O(1)$。它们要求已经执行 `build()`；构建前所有真实点编号都是 `0`，直接比较会错误地认为任意两点属于同一块。
+
+## 正确性
+
+一次 `dfs(start, id)` 只沿图中真实存在的边前进，所以它标记的每个点都能从 `start` 到达，不会把其他连通块的点错误标成 `id`。
+
+反过来，任意一个能从 `start` 到达的点，都位于某条从 `start` 出发的路径上。DFS 从路径起点开始依次检查每条边；只要下一个点尚未编号，就会继续递归。因此路径上的每个点最终都会被标成 `id`，整个连通块不会遗漏。
+
+外层循环遇到编号仍为 `0` 的点 `u` 时，已有连通块的 DFS 都没有到达它。如果 `u` 与某个已有起点连通，那次 DFS 本应沿路径到达并标记 `u`，与当前状态矛盾。因此 `u` 必须属于新连通块，此时增加 `component_count` 是正确的。
+
+每个点第一次标记时只增加一次对应大小，所以所有 `component_size` 也正确。
+
+## 完整代码
+
+程序先输出连通块总数，再依次输出每个点的连通块编号和所在连通块大小，最后回答 $q$ 次两点连通性查询。
+
+输入格式：
+
+```text
+n m q
+m 条无向边 u v
+q 次查询 u v
+```
+
+完整代码：
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+struct connected_components {
+    int n;
+    int component_count;
+    vector<vector<int>> g;
+    vector<int> component_id;
+    vector<int> component_size;
+
+    connected_components(int size) {
+        n = size;
+        component_count = 0;
+        g.resize(n + 5);
+        component_id.resize(n + 5, 0);
+        component_size.resize(n + 5, 0);
+    }
+
+    void add_edge(int u, int v) {
+        g[u].push_back(v);
+        g[v].push_back(u);
+    }
+
+    void dfs(int u, int id) {
+        component_id[u] = id;
+        component_size[id]++;
+
+        for (int v : g[u]) {
+            if (component_id[v] != 0) {
+                continue;
+            }
+            dfs(v, id);
+        }
+    }
+
+    void build() {
+        component_count = 0;
+        fill(component_id.begin(), component_id.end(), 0);
+        fill(component_size.begin(), component_size.end(), 0);
+
+        for (int u = 1; u <= n; u++) {
+            if (component_id[u] == 0) {
+                component_count++;
+                dfs(u, component_count);
+            }
+        }
+    }
+
+    bool same_component(int u, int v) const {
+        return component_id[u] == component_id[v];
+    }
+
+    int size_of(int u) const {
+        return component_size[component_id[u]];
+    }
+};
+
+int main() {
+    int n, m, q;
+    scanf("%d%d%d", &n, &m, &q);
+
+    connected_components components(n);
+    for (int i = 1; i <= m; i++) {
+        int u, v;
+        scanf("%d%d", &u, &v);
+        components.add_edge(u, v);
+    }
+
+    components.build();
+
+    printf("%d\n", components.component_count);
+    for (int u = 1; u <= n; u++) {
+        printf("%d%c", components.component_id[u], " \n"[u == n]);
+    }
+    for (int u = 1; u <= n; u++) {
+        printf("%d%c", components.size_of(u), " \n"[u == n]);
+    }
+
+    for (int i = 1; i <= q; i++) {
+        int u, v;
+        scanf("%d%d", &u, &v);
+        printf("%s\n", components.same_component(u, v) ? "Yes" : "No");
+    }
+    return 0;
+}
+```
+
+输入：
+
+```text
+8 5 4
+1 2
+2 3
+4 5
+5 6
+6 4
+1 3
+1 4
+7 8
+7 7
+```
+
+输出：
+
+```text
+4
+1 1 1 2 2 2 3 4
+3 3 3 3 3 3 1 1
+Yes
+No
+No
+Yes
+```
+
+点 `1,2,3` 属于第一个连通块，点 `4,5,6` 属于第二个，孤立点 `7` 和 `8` 各自形成一个连通块。
+
+## BFS 实现
+
+连通块来自可达关系，不取决于使用 DFS 还是 BFS。从一个未编号点开始 BFS，同样会恰好访问它所在连通块的所有点。只需在点第一次入队时设置 `component_id[v] = id`，并增加对应大小。
+
+若图可能是一条很长的链，递归 DFS 的调用深度会达到 $O(n)$，可能超过评测环境的调用栈限制。此时使用显式队列的 BFS，或使用显式栈模拟 DFS，可以保持相同的连通块划分。
+
+## 有向图的区别
+
+本篇只处理无向图。有向图中，“从 $u$ 能到达 $v$”不保证“从 $v$ 能到达 $u$”，因此不能直接形成本文的无向连通块。
+
+忽略所有边的方向后得到的是弱连通关系；要求两点能沿有向边互相到达得到的是强连通关系。强连通分量需要单独的算法，不能把本篇外层 DFS 直接解释成强连通分量。
+
+## 复杂度
+
+构建过程中，每个点只会第一次编号一次；无向边在邻接表中保存两个方向，每个邻接项也只扫描一次。因此预处理时间复杂度是 $O(n+m)$。
+
+每次连通性或大小查询都是 $O(1)$，$q$ 次查询共需 $O(q)$。包括查询在内的总时间复杂度为：
+
+$$
+O(n+m+q).
+$$
+
+邻接表占用 $O(n+m)$ 空间，编号、大小和最深 $O(n)$ 层的递归调用占用 $O(n)$ 空间，总空间复杂度是 $O(n+m)$。
+
+## 常见错误
+
+### 每次查询重新搜索
+
+图不变化时，应先给所有点编号。重复 DFS 虽然仍能得到正确答案，却把 $q$ 次查询的最坏复杂度放大到 $O(q(n+m))$。
+
+### 每遇到一个点都增加编号
+
+只有外层循环发现一个尚未编号的点时，才发现新连通块。DFS 内部访问到的其他点都沿用同一个 `id`。
+
+### 标记太晚
+
+进入 `dfs(u, id)` 后立刻设置 `component_id[u]`。若处理完邻点才标记，含环图会反复递归。
+
+### 忽略孤立点
+
+只从边的端点开始搜索会漏掉没有边的点。外层循环必须检查完整的 `1..n`。
+
+### 把编号当成大小或顺序
+
+`component_id[u]` 只是标签。连通块大小保存在 `component_size[id]`；编号的数值大小不表达图论性质。
+
+### 套用到有向图
+
+有向可达关系不对称。本篇代码加入的是双向无向边，也只证明了无向图连通块的正确性。
+
+## 基础练习
+
+1. 删除图中的一条边，使原来的某个连通块分裂，重新计算每个点的编号和大小。
+2. 在完整代码中加入自环和重边，验证连通块划分与大小不变。
+3. 把 DFS 改成 BFS，保持输出完全相同。
+4. 对每个连通块统计边数。无向边在邻接表中出现两次，最终计数应怎样处理？
+5. 输出最大的连通块大小，以及所有属于最大连通块的点。
+6. 图建成以后有大量连通性查询，比较逐次 DFS 与一次预处理的总复杂度。
+
+## 需要记住什么
+
+1. 无向图中两点连通是什么意思？孤立点为什么也与自己连通？
+2. 连通块定义中的“极大”排除了什么情况？
+3. 为什么所有点恰好属于一个连通块？
+4. `component_id[u] == 0` 同时表达了什么访问状态？
+5. 外层循环什么时候才能增加 `component_count`？
+6. 为什么同一连通块中的所有点一定得到相同编号？
+7. 两点连通性和连通块大小怎样在预处理后 $O(1)$ 查询？
+8. 为什么具体编号可能改变，但连通块划分不会改变？
+9. 本篇代码为什么不能直接求有向图的强连通分量？
+
+动态图中的加边连通性适合使用并查集；强连通分量、点双连通分量和边双连通分量具有额外定义与算法，不属于本篇基础目标。
+
+## 下一篇
+
+下一篇 [树：无根树](unrooted-trees.md) 会研究只有一个连通块且不含环的特殊无向图。

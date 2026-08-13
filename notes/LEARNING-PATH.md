@@ -107,7 +107,7 @@
 | 0436 | 图的遍历：深度优先搜索（DFS） | 图论 | [graph-theory/graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
 | 0443 | 搜索：DFS、回溯与剪枝 | 图论 | [graph-theory/dfs-backtracking-pruning.md](graph-theory/dfs-backtracking-pruning.md) |
 | 0437 | 图的遍历：广度优先搜索（BFS） | 图论 | [graph-theory/graph-breadth-first-search.md](graph-theory/graph-breadth-first-search.md) |
-| 0404 | 图的遍历：连通块 | 图论 | `graph-theory/0404-connected-components.md` |
+| 0404 | 图的遍历：连通块 | 图论 | [graph-theory/connected-components.md](graph-theory/connected-components.md) |
 | 0433 | 树：无根树 | 图论 | [graph-theory/unrooted-trees.md](graph-theory/unrooted-trees.md) |
 | 0442 | 树：有根树 | 图论 | [graph-theory/rooted-trees.md](graph-theory/rooted-trees.md) |
 | 0434 | 树的遍历：深度优先搜索（DFS） | 图论 | [graph-theory/tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
