@@ -88,4 +88,4 @@ $$
 
 ## 下一篇
 
-下一篇 [数论：最大公约数与最小公倍数](greatest-common-divisor-and-least-common-multiple.md) 会说明这两个概念本质上就是对每一个指数分别取 `min` 和 `max`。
+下一篇 [数论：质因数分解](prime-factorization.md) 会用试除法实际求出正整数的非零质因数指数。
