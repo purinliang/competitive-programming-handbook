@@ -71,7 +71,7 @@
 | 0144 | 容器适配器：priority_queue | 待审阅 | [priority-queue.md](cpp/priority-queue.md) |
 | 0145 | 有序关联容器：set | 待审阅 | [set.md](cpp/set.md) |
 | 0146 | 有序关联容器：multiset | 待审阅 | [multiset.md](cpp/multiset.md) |
-| 0147 | 有序关联容器：map | 计划 | `cpp/0147-map.md` |
+| 0147 | 有序关联容器：map | 待审阅 | [map.md](cpp/map.md) |
 | 0148 | 有序关联容器：multimap | 计划 | `cpp/0148-multimap.md` |
 | 0149 | 无序关联容器：unordered_set | 计划 | `cpp/0149-unordered-set.md` |
 | 0150 | 无序关联容器：unordered_map | 计划 | `cpp/0150-unordered-map.md` |
