@@ -108,7 +108,7 @@
 | 0219 | 二分答案 | 待审阅 | [binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |
 | 0220 | 双指针：滑动窗口 | 待审阅 | [sliding-window.md](algorithm-basics/sliding-window.md) |
 | 0221 | 差分 | 待审阅 | [difference-array.md](algorithm-basics/difference-array.md) |
-| 0222 | 模拟 | 计划 | `algorithm-basics/0222-simulation.md` |
+| 0222 | 模拟 | 待审阅 | [simulation.md](algorithm-basics/simulation.md) |
 | 0223 | 线性结构：数组 | 待审阅 | [array.md](algorithm-basics/array.md) |
 | 0224 | 链表 | 待审阅 | [linked-list.md](algorithm-basics/linked-list.md) |
 | 0225 | 栈 | 待审阅 | [stack.md](algorithm-basics/stack.md) |
