@@ -95,7 +95,7 @@
 | 0206 | 离散化 | 待审阅 | [coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
 | 0207 | 前缀和 | 定稿 | [prefix-sums.md](algorithm-basics/prefix-sums.md) |
 | 0208 | 贪心：选择与证明 | 待审阅 | [greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
-| 0209 | 分治：基础 | 计划 | `algorithm-basics/0209-divide-and-conquer.md` |
+| 0209 | 分治：基础 | 待审阅 | [divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
 | 0210 | 枚举 | 计划 | `algorithm-basics/0210-enumeration.md` |
 | 0211 | 枚举：子集与位掩码 | 计划 | `algorithm-basics/0211-bitmask-enumeration.md` |
 | 0212 | 枚举：Meet-in-the-Middle | 计划 | `algorithm-basics/0212-meet-in-the-middle.md` |
