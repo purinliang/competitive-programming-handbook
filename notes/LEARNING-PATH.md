@@ -67,7 +67,7 @@
 | 0226 | 队列 | 基础算法 | [algorithm-basics/queue.md](algorithm-basics/queue.md) |
 | 0203 | 排序：基础排序 | 基础算法 | [algorithm-basics/sorting.md](algorithm-basics/sorting.md) |
 | 0231 | 排序：快速排序 | 基础算法 | [algorithm-basics/quicksort.md](algorithm-basics/quicksort.md) |
-| 0232 | 排序：归并排序 | 基础算法 | `algorithm-basics/0232-merge-sort.md` |
+| 0232 | 排序：归并排序 | 基础算法 | [algorithm-basics/merge-sort.md](algorithm-basics/merge-sort.md) |
 | 0204 | 查找：二分查找 | 基础算法 | `algorithm-basics/0204-binary-search.md` |
 | 0219 | 二分答案 | 基础算法 | `algorithm-basics/0219-binary-search-on-answer.md` |
 | 0205 | 双指针 | 基础算法 | `algorithm-basics/0205-two-pointers.md` |
@@ -254,6 +254,7 @@
 | 0216* | 随机化算法 | `algorithm-basics/0216-randomized-algorithms.md` |
 | 0217* | 整体二分与并行二分 | `algorithm-basics/0217-parallel-binary-search.md` |
 | 0218* | CDQ 分治 | `algorithm-basics/0218-cdq-divide-and-conquer.md` |
+| 0232e1 | 归并排序：逆序对计数 | `algorithm-basics/merge-sort-inversion-count.md` |
 | 0233* | 排序：堆排序 | `algorithm-basics/0233-heap-sort.md` |
 | 0234* | 排序：基数排序 | `algorithm-basics/0234-radix-sort.md` |
 | 0235* | 排序：桶排序 | `algorithm-basics/0235-bucket-sort.md` |
