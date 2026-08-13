@@ -127,7 +127,7 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0144 | 容器适配器：priority_queue | C++ | [cpp/priority-queue.md](cpp/priority-queue.md) |
-| 0145 | 有序关联容器：set | C++ | `cpp/0145-set.md` |
+| 0145 | 有序关联容器：set | C++ | [cpp/set.md](cpp/set.md) |
 | 0146 | 有序关联容器：multiset | C++ | `cpp/0146-multiset.md` |
 | 0147 | 有序关联容器：map | C++ | `cpp/0147-map.md` |
 | 0148 | 有序关联容器：multimap | C++ | `cpp/0148-multimap.md` |
