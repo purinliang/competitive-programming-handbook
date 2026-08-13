@@ -139,7 +139,7 @@
 | 0444 | 最短路：0-1 BFS | 图论 | [graph-theory/zero-one-bfs.md](graph-theory/zero-one-bfs.md) |
 | 0411 | 二分图：判定 | 图论 | [graph-theory/bipartite-graph.md](graph-theory/bipartite-graph.md) |
 | 0417 | 树：直径与中心 | 图论 | [graph-theory/tree-diameter-center.md](graph-theory/tree-diameter-center.md) |
-| 0445 | 树：重心 | 图论 | `graph-theory/0445-tree-centroid.md` |
+| 0445 | 树：重心 | 图论 | [graph-theory/tree-centroid.md](graph-theory/tree-centroid.md) |
 | 0311 | 二叉树：结构与存储 | 数据结构 | [data-structures/binary-tree-structure-and-storage.md](data-structures/binary-tree-structure-and-storage.md) |
 | 0328 | 二叉树的遍历：前序、中序与后序 | 数据结构 | [data-structures/binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
 | 0240 | 编码：哈夫曼编码 | 基础算法 | `algorithm-basics/huffman-coding.md` |
