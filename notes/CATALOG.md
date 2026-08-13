@@ -289,7 +289,7 @@
 | --- | --- | --- | --- |
 | 0701 | 动态规划：状态与转移 | 待审阅 | [dp-state-transition.md](dynamic-programming/dp-state-transition.md) |
 | 0702 | 动态规划：线性 DP | 待审阅 | [linear-dp.md](dynamic-programming/linear-dp.md) |
-| 0703 | 背包：0-1 背包 | 计划 | `dynamic-programming/0703-zero-one-knapsack.md` |
+| 0703 | 背包：0-1 背包 | 待审阅 | [zero-one-knapsack.md](dynamic-programming/zero-one-knapsack.md) |
 | 0704 | 动态规划：最长上升子序列 | 计划 | `dynamic-programming/0704-longest-increasing-subsequence.md` |
 | 0705 | 动态规划：区间 DP | 计划 | `dynamic-programming/0705-interval-dp.md` |
 | 0706 | 动态规划：DAG 上的 DP | 计划 | `dynamic-programming/0706-dag-dp.md` |

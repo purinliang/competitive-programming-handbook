@@ -114,7 +114,7 @@
 | 0435 | 树的遍历：广度优先搜索（BFS） | 图论 | [graph-theory/tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
 | 0701 | 动态规划：状态与转移 | 动态规划 | [dynamic-programming/dp-state-transition.md](dynamic-programming/dp-state-transition.md) |
 | 0702 | 动态规划：线性 DP | 动态规划 | [dynamic-programming/linear-dp.md](dynamic-programming/linear-dp.md) |
-| 0703 | 背包：0-1 背包 | 动态规划 | `dynamic-programming/0703-zero-one-knapsack.md` |
+| 0703 | 背包：0-1 背包 | 动态规划 | [dynamic-programming/zero-one-knapsack.md](dynamic-programming/zero-one-knapsack.md) |
 | 0715 | 背包：完全背包 | 动态规划 | `dynamic-programming/0715-complete-knapsack.md` |
 | 0716 | 背包：多重背包 | 动态规划 | `dynamic-programming/0716-multiple-knapsack.md` |
 | 0717 | 动态规划：状态机 DP | 动态规划 | `dynamic-programming/0717-state-machine-dp.md` |
