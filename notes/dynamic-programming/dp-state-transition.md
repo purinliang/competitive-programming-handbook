@@ -196,8 +196,7 @@ ll count_ways(int remaining) {
         return memo[remaining];
     }
 
-    memo[remaining] = count_ways(remaining - 1) +
-                      count_ways(remaining - 2);
+    memo[remaining] = count_ways(remaining - 1) + count_ways(remaining - 2);
     return memo[remaining];
 }
 ```

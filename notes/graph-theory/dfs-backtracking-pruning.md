@@ -158,8 +158,7 @@ vector<bool> used_sum_diagonal(2 * n + 5, false);
 尝试一个格子时，只要列或任意一类对角线已经被占用，当前选择就立刻与前面的皇后冲突：
 
 ```cpp
-if (used_column[column] ||
-    used_difference_diagonal[difference_index] ||
+if (used_column[column] || used_difference_diagonal[difference_index] ||
     used_sum_diagonal[sum_index]) {
     continue;
 }
@@ -279,8 +278,7 @@ struct n_queens_solver {
             int difference_index = row - column + n;
             int sum_index = row + column;
 
-            if (used_column[column] ||
-                used_difference_diagonal[difference_index] ||
+            if (used_column[column] || used_difference_diagonal[difference_index] ||
                 used_sum_diagonal[sum_index]) {
                 continue;
             }

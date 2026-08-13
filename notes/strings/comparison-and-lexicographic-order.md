@@ -165,12 +165,12 @@ int lexicographic_compare(const string& a, const string& b) {
 `string` 已经按照字典序定义了六个比较运算符：
 
 ```cpp
-a == b
-a != b
-a < b
-a > b
-a <= b
-a >= b
+a == b;
+a != b;
+a < b;
+a > b;
+a <= b;
+a >= b;
 ```
 
 在主流竞赛环境使用的 ASCII 兼容编码中，对于本篇只包含小写英文字母的字符串，字符顺序就是：

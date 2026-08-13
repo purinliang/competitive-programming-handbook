@@ -108,8 +108,7 @@ for (int i = 1; i <= n; i++) {
     for (int c = 0; c <= capacity; c++) {
         dp[i][c] = dp[i - 1][c];
         if (weight[i] <= c) {
-            dp[i][c] = max(dp[i][c],
-                           dp[i][c - weight[i]] + value[i]);
+            dp[i][c] = max(dp[i][c], dp[i][c - weight[i]] + value[i]);
         }
     }
 }
@@ -226,10 +225,7 @@ c = 6：dp[6] = dp[3] + 5 = 10
 计算只依赖本次输入的物品种类和容量，没有跨调用状态，使用普通函数：
 
 ```cpp
-ll complete_knapsack(const vector<int>& weight,
-                     const vector<ll>& value,
-                     int n,
-                     int capacity)
+ll complete_knapsack(const vector<int>& weight, const vector<ll>& value, int n, int capacity)
 ```
 
 物品种类使用 `1..n`，位置 `0` 留空；容量使用 `0..capacity`，其中 `0` 是真实边界状态。
@@ -251,10 +247,7 @@ using namespace std;
 
 typedef long long ll;
 
-ll complete_knapsack(const vector<int>& weight,
-                     const vector<ll>& value,
-                     int n,
-                     int capacity) {
+ll complete_knapsack(const vector<int>& weight, const vector<ll>& value, int n, int capacity) {
     vector<ll> dp(capacity + 5, 0);
 
     for (int i = 1; i <= n; i++) {
@@ -275,8 +268,7 @@ int main() {
         scanf("%d%lld", &weight[i], &value[i]);
     }
 
-    printf("%lld\n",
-           complete_knapsack(weight, value, n, capacity));
+    printf("%lld\n", complete_knapsack(weight, value, n, capacity));
     return 0;
 }
 ```

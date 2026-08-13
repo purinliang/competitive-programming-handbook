@@ -206,11 +206,8 @@ $$
 计算只依赖本次重量、价值、数量和容量，使用无状态函数：
 
 ```cpp
-ll multiple_knapsack(const vector<int>& weight,
-                     const vector<ll>& value,
-                     const vector<int>& quantity,
-                     int n,
-                     int capacity)
+ll multiple_knapsack(const vector<int>& weight, const vector<ll>& value,
+                     const vector<int>& quantity, int n, int capacity)
 ```
 
 三份物品信息都使用 `1..n`，位置 `0` 留空。容量状态使用 `0..capacity`。
@@ -232,11 +229,8 @@ using namespace std;
 
 typedef long long ll;
 
-ll multiple_knapsack(const vector<int>& weight,
-                     const vector<ll>& value,
-                     const vector<int>& quantity,
-                     int n,
-                     int capacity) {
+ll multiple_knapsack(const vector<int>& weight, const vector<ll>& value,
+                     const vector<int>& quantity, int n, int capacity) {
     vector<ll> dp(capacity + 5, 0);
 
     for (int i = 1; i <= n; i++) {
@@ -270,8 +264,7 @@ int main() {
         scanf("%d%lld%d", &weight[i], &value[i], &quantity[i]);
     }
 
-    printf("%lld\n",
-           multiple_knapsack(weight, value, quantity, n, capacity));
+    printf("%lld\n", multiple_knapsack(weight, value, quantity, n, capacity));
     return 0;
 }
 ```

@@ -114,8 +114,7 @@ for (int i = 1; i <= n; i++) {
     for (int c = 0; c <= capacity; c++) {
         dp[i][c] = dp[i - 1][c];
         if (weight[i] <= c) {
-            dp[i][c] = max(dp[i][c],
-                           dp[i - 1][c - weight[i]] + value[i]);
+            dp[i][c] = max(dp[i][c], dp[i - 1][c - weight[i]] + value[i]);
         }
     }
 }
@@ -214,10 +213,7 @@ c = 6：dp[6] = dp[3] + 5 = 10
 0-1 背包的计算只依赖本次传入的重量、价值、物品数和容量，没有需要跨调用共享的持续对象状态，因此使用普通函数：
 
 ```cpp
-ll zero_one_knapsack(const vector<int>& weight,
-                     const vector<ll>& value,
-                     int n,
-                     int capacity)
+ll zero_one_knapsack(const vector<int>& weight, const vector<ll>& value, int n, int capacity)
 ```
 
 `weight` 与 `value` 都按照物品编号使用 `1..n`，位置 `0` 留空。容量状态从 `0` 开始，因为“没有可用容量”具有真实边界语义。
@@ -241,10 +237,7 @@ using namespace std;
 
 typedef long long ll;
 
-ll zero_one_knapsack(const vector<int>& weight,
-                     const vector<ll>& value,
-                     int n,
-                     int capacity) {
+ll zero_one_knapsack(const vector<int>& weight, const vector<ll>& value, int n, int capacity) {
     vector<ll> dp(capacity + 5, 0);
 
     for (int i = 1; i <= n; i++) {
@@ -265,8 +258,7 @@ int main() {
         scanf("%d%lld", &weight[i], &value[i]);
     }
 
-    printf("%lld\n",
-           zero_one_knapsack(weight, value, n, capacity));
+    printf("%lld\n", zero_one_knapsack(weight, value, n, capacity));
     return 0;
 }
 ```

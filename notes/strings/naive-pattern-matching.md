@@ -175,10 +175,7 @@ text[0], pattern[0] 只是占位
 朴素匹配只依赖本次输入，没有跨调用持续状态，使用普通函数：
 
 ```cpp
-vector<int> find_occurrences(const string& text,
-                             const string& pattern,
-                             int n,
-                             int m) {
+vector<int> find_occurrences(const string& text, const string& pattern, int n, int m) {
     vector<int> occurrences;
 
     for (int start = 1; start + m - 1 <= n; start++) {
@@ -222,10 +219,7 @@ vector<int> find_occurrences(const string& text,
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> find_occurrences(const string& text,
-                             const string& pattern,
-                             int n,
-                             int m) {
+vector<int> find_occurrences(const string& text, const string& pattern, int n, int m) {
     vector<int> occurrences;
 
     for (int start = 1; start + m - 1 <= n; start++) {

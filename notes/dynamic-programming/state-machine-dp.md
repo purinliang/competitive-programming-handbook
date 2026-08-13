@@ -214,10 +214,8 @@ int main() {
     not_holding[0] = 0;
 
     for (int i = 1; i <= n; i++) {
-        not_holding[i] = max(not_holding[i - 1],
-                             holding[i - 1] + price[i]);
-        holding[i] = max(holding[i - 1],
-                         not_holding[i - 1] - price[i]);
+        not_holding[i] = max(not_holding[i - 1], holding[i - 1] + price[i]);
+        holding[i] = max(holding[i - 1], not_holding[i - 1] - price[i]);
     }
 
     printf("%lld\n", not_holding[n]);
