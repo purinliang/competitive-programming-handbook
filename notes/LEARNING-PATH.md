@@ -72,7 +72,7 @@
 | 0219 | 二分答案 | 基础算法 | [algorithm-basics/binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |
 | 0205 | 双指针 | 基础算法 | [algorithm-basics/two-pointers.md](algorithm-basics/two-pointers.md) |
 | 0220 | 双指针：滑动窗口 | 基础算法 | [algorithm-basics/sliding-window.md](algorithm-basics/sliding-window.md) |
-| 0206 | 离散化 | 基础算法 | `algorithm-basics/0206-coordinate-compression.md` |
+| 0206 | 离散化 | 基础算法 | [algorithm-basics/coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
 | 0207 | 前缀和 | 基础算法 | [algorithm-basics/prefix-sums.md](algorithm-basics/prefix-sums.md) |
 | 0221 | 差分 | 基础算法 | `algorithm-basics/0221-difference-array.md` |
 | 0208 | 贪心：选择与证明 | 基础算法 | `algorithm-basics/0208-greedy.md` |

@@ -92,7 +92,7 @@
 | 0203 | 排序：基础排序 | 待审阅 | [sorting.md](algorithm-basics/sorting.md) |
 | 0204 | 查找：二分查找 | 待审阅 | [binary-search.md](algorithm-basics/binary-search.md) |
 | 0205 | 双指针 | 待审阅 | [two-pointers.md](algorithm-basics/two-pointers.md) |
-| 0206 | 离散化 | 计划 | `algorithm-basics/0206-coordinate-compression.md` |
+| 0206 | 离散化 | 待审阅 | [coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
 | 0207 | 前缀和 | 定稿 | [prefix-sums.md](algorithm-basics/prefix-sums.md) |
 | 0208 | 贪心：选择与证明 | 计划 | `algorithm-basics/0208-greedy.md` |
 | 0209 | 分治：基础 | 计划 | `algorithm-basics/0209-divide-and-conquer.md` |
