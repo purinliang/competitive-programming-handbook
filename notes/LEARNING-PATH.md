@@ -134,7 +134,7 @@
 | 0149 | 无序关联容器：unordered_set | C++ | [cpp/unordered-set.md](cpp/unordered-set.md) |
 | 0150 | 无序关联容器：unordered_map | C++ | [cpp/unordered-map.md](cpp/unordered-map.md) |
 | 0544 | 高精度整数：加法、减法与乘法 | 数学 | [math/big-integer-addition-subtraction-multiplication.md](math/big-integer-addition-subtraction-multiplication.md) |
-| 0405 | 有向无环图：拓扑排序 | 图论 | `graph-theory/0405-topological-sort.md` |
+| 0405 | 有向无环图：拓扑排序 | 图论 | [graph-theory/topological-sort.md](graph-theory/topological-sort.md) |
 | 0406 | 图的遍历：多源 BFS | 图论 | `graph-theory/0406-multi-source-bfs.md` |
 | 0444 | 最短路：0-1 BFS | 图论 | `graph-theory/0444-zero-one-bfs.md` |
 | 0411 | 二分图：判定 | 图论 | `graph-theory/0411-bipartite-graph.md` |
