@@ -179,4 +179,4 @@ DFS 总是按照 `g[u]` 中邻接项的先后顺序选择下一条边。交换�
 
 ## 下一篇
 
-下一篇将介绍 [图的遍历：广度优先搜索（BFS）](graph-breadth-first-search.md)。
+下一篇 [搜索：DFS、回溯与剪枝](dfs-backtracking-pruning.md) 会把逐步选择产生的状态看成一棵隐式搜索树，并在递归返回时撤销当前选择。
