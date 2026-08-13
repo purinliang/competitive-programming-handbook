@@ -77,7 +77,7 @@
 | 0221 | 差分 | 基础算法 | [algorithm-basics/difference-array.md](algorithm-basics/difference-array.md) |
 | 0208 | 贪心：选择与证明 | 基础算法 | [algorithm-basics/greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
 | 0209 | 分治：基础 | 基础算法 | [algorithm-basics/divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
-| 0210 | 枚举 | 基础算法 | `algorithm-basics/0210-enumeration.md` |
+| 0210 | 枚举 | 基础算法 | [algorithm-basics/enumeration.md](algorithm-basics/enumeration.md) |
 | 0211 | 枚举：子集与位掩码 | 基础算法 | `algorithm-basics/0211-bitmask-enumeration.md` |
 | 0222 | 模拟 | 基础算法 | `algorithm-basics/0222-simulation.md` |
 
