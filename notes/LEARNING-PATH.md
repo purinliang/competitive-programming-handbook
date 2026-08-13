@@ -118,7 +118,7 @@
 | 0715 | 背包：完全背包 | 动态规划 | [dynamic-programming/complete-knapsack.md](dynamic-programming/complete-knapsack.md) |
 | 0716 | 背包：多重背包 | 动态规划 | [dynamic-programming/multiple-knapsack.md](dynamic-programming/multiple-knapsack.md) |
 | 0717 | 动态规划：状态机 DP | 动态规划 | [dynamic-programming/state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
-| 0704 | 动态规划：最长上升子序列 | 动态规划 | `dynamic-programming/0704-longest-increasing-subsequence.md` |
+| 0704 | 动态规划：最长上升子序列 | 动态规划 | [dynamic-programming/longest-increasing-subsequence.md](dynamic-programming/longest-increasing-subsequence.md) |
 | 0801 | 字符串：比较与字典序 | 字符串 | `strings/0801-string-comparison-lexicographic-order.md` |
 | 0802 | 字符串：模式匹配与朴素算法 | 字符串 | `strings/0802-naive-pattern-matching.md` |
 
@@ -349,6 +349,7 @@
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
+| 0704e1 | 最长上升子序列：$O(n\log n)$ 优化 | `dynamic-programming/lis-n-log-n.md` |
 | 0712* | 动态规划优化：斜率 | `dynamic-programming/0712-convex-hull-trick.md` |
 | 0713* | 动态规划优化：分治 | `dynamic-programming/0713-divide-conquer-optimization.md` |
 | 0714* | 动态规划：Slope Trick | `dynamic-programming/0714-slope-trick.md` |

@@ -317,4 +317,4 @@ holding = max(holding, not_holding - price[i]);
 
 ## 下一篇
 
-下一篇 [动态规划：最长上升子序列](../CATALOG.md#07-动态规划) 会把“恰好以位置 `i` 结尾”的状态推广到需要枚举所有更早位置的转移。
+下一篇 [动态规划：最长上升子序列](longest-increasing-subsequence.md) 会把“恰好以位置 `i` 结尾”的状态推广到需要枚举所有更早位置的转移。
