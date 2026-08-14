@@ -7,9 +7,10 @@ import { ArticleNavigation } from "@/components/article-navigation";
 import { ArticleNavigationView } from "@/components/article-navigation-view";
 import { ArticleNeighbors } from "@/components/article-neighbors";
 import { ArticleNeighborsView } from "@/components/article-neighbors-view";
+import { ArticleSiteHeader } from "@/components/article-site-header";
 import { ScrollArea } from "@/components/scroll-area";
 import { SiteHeader } from "@/components/site-header";
-import { getArticle, getArticleLearningNavigation, getArticleLearningNeighbors, getArticleModuleNavigation, getArticleModuleNeighbors, getArticles } from "@/lib/content/catalog";
+import { getArticle, getArticleLearningNavigation, getArticleLearningNeighbors, getArticleModuleNavigation, getArticleModuleNeighbors, getArticles, getLearningStages, getModules } from "@/lib/content/catalog";
 import { renderArticle } from "@/lib/content/markdown";
 
 interface ArticlePageProps {
@@ -45,10 +46,23 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const learningNavigation = getArticleLearningNavigation(article.articleKey);
   const moduleNeighbors = getArticleModuleNeighbors(article.articleKey);
   const learningNeighbors = getArticleLearningNeighbors(article.articleKey);
+  const stage = getLearningStages().find((item) => item.articleKeys.includes(article.articleKey));
+  const catalogHeaderNavigation = getModules().map((item) => ({
+    href: `/catalog/#${item.anchor}`,
+    label: item.title,
+    active: item.key === article.moduleKey,
+  }));
+  const learningHeaderNavigation = stage ? getLearningStages().map((item, index) => ({
+    href: `/learn/#${item.key}`,
+    label: `${index + 1}. ${item.title}`,
+    active: item.key === stage.key,
+  })) : undefined;
 
   return (
     <>
-      <SiteHeader />
+      <Suspense fallback={<SiteHeader activeSection="catalog" secondaryNavigation={catalogHeaderNavigation} />}>
+        <ArticleSiteHeader catalogNavigation={catalogHeaderNavigation} learningNavigation={learningHeaderNavigation} />
+      </Suspense>
       <div className="docs-layout">
         <Suspense fallback={<ArticleNavigationView articleKey={article.articleKey} mode="catalog" navigation={moduleNavigation} />}>
           <ArticleNavigation articleKey={article.articleKey} moduleNavigation={moduleNavigation} learningNavigation={learningNavigation} />

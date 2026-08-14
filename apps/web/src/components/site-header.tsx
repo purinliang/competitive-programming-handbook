@@ -6,6 +6,7 @@ type HeaderSection = "learn" | "catalog" | "search";
 interface SecondaryNavigationItem {
   href: string;
   label: string;
+  active?: boolean;
 }
 
 export function SiteHeader({ activeSection, secondaryNavigation }: { activeSection?: HeaderSection; secondaryNavigation?: SecondaryNavigationItem[] }) {
@@ -25,7 +26,7 @@ export function SiteHeader({ activeSection, secondaryNavigation }: { activeSecti
       {secondaryNavigation?.length ? (
         <nav className="secondary-nav" aria-label={activeSection === "learn" ? "学习阶段" : "知识模块"}>
           <div className="secondary-nav-inner">
-            {secondaryNavigation.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
+            {secondaryNavigation.map((item) => <Link className={item.active ? "is-active" : undefined} href={item.href} aria-current={item.active ? "location" : undefined} key={item.href}>{item.label}</Link>)}
           </div>
         </nav>
       ) : null}
