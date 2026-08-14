@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 import { ScrollArea } from "./scroll-area";
+
+import { useActiveSection } from "@/hooks/use-active-section";
 
 interface DirectorySidebarItem {
   id: string;
@@ -11,43 +13,8 @@ interface DirectorySidebarItem {
 }
 
 export function DirectorySidebar({ title, items }: { title: string; items: DirectorySidebarItem[] }) {
-  const [activeId, setActiveId] = useState(items[0]?.id ?? "");
-
-  useEffect(() => {
-    let frame = 0;
-
-    function updateActiveItem() {
-      frame = 0;
-      const threshold = 112;
-      let current = items[0]?.id ?? "";
-      for (const item of items) {
-        const section = document.getElementById(item.id);
-        if (section && section.getBoundingClientRect().top <= threshold) {
-          current = item.id;
-        } else {
-          break;
-        }
-      }
-      setActiveId(current);
-    }
-
-    function scheduleUpdate() {
-      if (!frame) {
-        frame = window.requestAnimationFrame(updateActiveItem);
-      }
-    }
-
-    updateActiveItem();
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate);
-    window.addEventListener("hashchange", scheduleUpdate);
-    return () => {
-      if (frame) window.cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
-      window.removeEventListener("hashchange", scheduleUpdate);
-    };
-  }, [items]);
+  const sectionIds = useMemo(() => items.map((item) => item.id), [items]);
+  const activeId = useActiveSection(sectionIds);
 
   return (
     <aside className="module-sidebar directory-sidebar" aria-label={title}>

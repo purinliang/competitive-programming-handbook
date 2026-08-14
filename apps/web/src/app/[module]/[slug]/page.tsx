@@ -8,7 +8,7 @@ import { ArticleNavigationView } from "@/components/article-navigation-view";
 import { ArticleNeighbors } from "@/components/article-neighbors";
 import { ArticleNeighborsView } from "@/components/article-neighbors-view";
 import { ArticleSiteHeader } from "@/components/article-site-header";
-import { ScrollArea } from "@/components/scroll-area";
+import { ArticleTableOfContents } from "@/components/article-table-of-contents";
 import { SiteHeader } from "@/components/site-header";
 import { getArticle, getArticleLearningNavigation, getArticleLearningNeighbors, getArticleModuleNavigation, getArticleModuleNeighbors, getArticles } from "@/lib/content/catalog";
 import { renderArticle } from "@/lib/content/markdown";
@@ -69,14 +69,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </Suspense>
         </main>
 
-        <aside className="toc-sidebar" aria-label="本文目录">
-          <div className="sidebar-heading sidebar-heading-single"><h2>本文目录</h2></div>
-          <ScrollArea className="sidebar-scroll-area" viewportClassName="sidebar-scroll-viewport" refreshKey={article.articleKey}>
-            <nav className="toc-list">
-              {rendered.tableOfContents.map((item) => <a className={item.depth === 3 ? "toc-depth-3" : undefined} href={`#${item.id}`} key={item.id}>{item.title}</a>)}
-            </nav>
-          </ScrollArea>
-        </aside>
+        <ArticleTableOfContents articleKey={article.articleKey} items={rendered.tableOfContents} />
       </div>
     </>
   );
