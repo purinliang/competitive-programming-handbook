@@ -79,7 +79,7 @@ export function SearchExperience() {
       .map((record) => ({ record, score: rank(record, terms) }))
       .filter((item) => item.score >= 0)
       .sort((a, b) => b.score - a.score || a.record.title.localeCompare(b.record.title, "zh-CN"))
-      .slice(0, 60)
+      .slice(0, 20)
       .map((item) => item.record);
   }, [normalizedQuery, records, searchable]);
 
