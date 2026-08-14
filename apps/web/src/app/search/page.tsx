@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: "搜索" };
 export default function SearchPage() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader activeSection="search" />
       <main className="index-page page-frame search-page">
         <header className="page-intro">
           <p className="eyebrow">Search</p>
