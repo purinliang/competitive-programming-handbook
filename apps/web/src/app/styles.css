@@ -120,10 +120,16 @@ a:focus-visible {
   margin: 0 auto;
 }
 
-.landing-page,
 .index-page,
 .empty-page {
   padding: 72px 0 96px;
+}
+
+.landing-page {
+  display: flex;
+  align-items: center;
+  min-height: calc(100svh - 65px);
+  padding: 48px 0;
 }
 
 .eyebrow {
@@ -137,7 +143,7 @@ a:focus-visible {
 
 .hero-panel {
   max-width: 860px;
-  padding: 36px 0 52px;
+  padding: 0;
 }
 
 .hero-panel h1,
@@ -158,6 +164,18 @@ a:focus-visible {
   color: var(--secondary-text);
   font-size: 17px;
   line-height: 1.8;
+}
+
+.hero-tagline {
+  margin: 24px 0 0;
+  font-size: clamp(21px, 3vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+}
+
+.hero-tagline + .hero-description {
+  margin-top: 12px;
 }
 
 .hero-actions {
@@ -198,44 +216,6 @@ a:focus-visible {
 .secondary-button:hover {
   color: var(--primary-text);
   background: var(--secondary-hover-bg);
-}
-
-.summary-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin-bottom: 48px;
-  overflow: hidden;
-  border: 1px solid var(--strong-border);
-  border-radius: 12px;
-  background: var(--panel-bg);
-}
-
-.summary-item {
-  display: grid;
-  grid-template-columns: auto auto 1fr;
-  gap: 10px;
-  align-items: center;
-  min-height: 76px;
-  padding: 16px 20px;
-  border-right: 1px solid var(--divider-border);
-}
-
-.summary-item:last-child {
-  border-right: 0;
-}
-
-.summary-item svg {
-  width: 18px;
-  color: var(--primary-bg);
-}
-
-.summary-item strong {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.summary-item span {
-  color: var(--secondary-text);
 }
 
 .panel {
@@ -479,31 +459,21 @@ a.article-link:hover {
     width: min(100% - 28px, 1120px);
   }
 
-  .landing-page,
   .index-page,
   .empty-page {
     padding-top: 44px;
     padding-bottom: 88px;
   }
 
-  .summary-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .summary-item {
-    border-right: 0;
-    border-bottom: 1px solid var(--divider-border);
-  }
-
-  .summary-item:last-child {
-    border-bottom: 0;
-  }
-
   .panel-header {
     align-items: flex-start;
   }
 
-  .getting-started .panel-header a {
-    display: none;
+}
+
+@media (max-width: 900px) {
+  .landing-page {
+    min-height: auto;
+    padding: 52px 0 88px;
   }
 }

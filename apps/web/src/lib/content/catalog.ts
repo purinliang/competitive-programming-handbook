@@ -167,3 +167,32 @@ export function getArticleNeighbors(articleKey: string): { previous?: ArticleRec
     next: route[index + 1],
   };
 }
+
+export function getArticleNavigation(articleKey: string) {
+  const article = getArticle(articleKey);
+  if (!article) {
+    return undefined;
+  }
+
+  const module = getModules().find((item) => item.key === article.moduleKey);
+  const groups = new Map<string, ArticleRecord[]>();
+  for (const item of module?.articles ?? [article]) {
+    const separator = item.title.indexOf("：");
+    const groupTitle = separator >= 0 ? item.title.slice(0, separator) : item.title;
+    groups.set(groupTitle, [...(groups.get(groupTitle) ?? []), item]);
+  }
+
+  return {
+    label: "模块",
+    title: article.moduleTitle,
+    groups: [...groups].map(([title, articles]) => ({
+      title,
+      articles,
+      active: articles.some((item) => item.articleKey === articleKey),
+    })),
+    primaryRoute: `/catalog/#${article.moduleAnchor}`,
+    primaryLabel: "查看完整模块",
+    secondaryRoute: "/learn/",
+    secondaryLabel: "切换到学习路线",
+  };
+}

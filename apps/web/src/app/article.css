@@ -53,6 +53,86 @@
   display: none;
 }
 
+.sidebar-group {
+  border-bottom: 1px solid var(--divider-border);
+}
+
+.sidebar-group:last-child {
+  border-bottom: 0;
+}
+
+.sidebar-group > summary {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+  padding: 8px 12px;
+  color: var(--secondary-text);
+  font-size: 13px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.sidebar-group > summary::-webkit-details-marker {
+  display: none;
+}
+
+.sidebar-group > summary::before {
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 5px solid currentColor;
+  content: "";
+  transition: transform 120ms ease;
+}
+
+.sidebar-group[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.sidebar-group > summary span {
+  flex: 1;
+}
+
+.sidebar-group > summary small {
+  color: var(--faint-text);
+  font-size: 11px;
+}
+
+.sidebar-group > summary:hover {
+  color: var(--primary-text);
+  background: var(--panel-hover-bg);
+}
+
+.sidebar-group > div {
+  border-top: 1px solid var(--divider-border);
+}
+
+.sidebar-group > div .article-link {
+  padding-left: 28px;
+}
+
+.sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  border-top: 1px solid var(--strong-border);
+}
+
+.sidebar-footer a {
+  padding: 7px 8px;
+  border-radius: 7px;
+  color: var(--secondary-text);
+  font-size: 12px;
+}
+
+.sidebar-footer a:hover {
+  color: var(--primary-text);
+  background: var(--panel-hover-bg);
+}
+
 .article-column {
   min-width: 0;
 }
@@ -261,7 +341,8 @@
   border-top: 1px solid var(--strong-border);
 }
 
-.article-neighbors a {
+.article-neighbors a,
+.article-neighbor-disabled {
   display: flex;
   gap: 12px;
   align-items: center;
@@ -276,9 +357,16 @@
   background: var(--panel-hover-bg);
 }
 
-.article-neighbors a.next {
+.article-neighbors .next {
   justify-content: flex-end;
   text-align: right;
+}
+
+.article-neighbor-disabled {
+  border-color: var(--divider-border);
+  color: var(--faint-text);
+  background: var(--secondary-bg);
+  cursor: not-allowed;
 }
 
 .article-neighbors small {
