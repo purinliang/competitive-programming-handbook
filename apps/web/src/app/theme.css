@@ -1,0 +1,73 @@
+:root {
+  color-scheme: light;
+  --page-bg: #fcfcfd;
+  --panel-bg: #fafafc;
+  --panel-hover-bg: #f9f9fb;
+  --panel-header-bg: #f1f2f5;
+  --divider-border: #eff0f3;
+  --strong-border: #cdced7;
+  --primary-text: #1e1f24;
+  --secondary-text: #62636c;
+  --faint-text: #80828d;
+  --primary-bg: #1b46de;
+  --primary-hover-bg: #1033cc;
+  --primary-foreground: #fff;
+  --secondary-bg: #f9f9fb;
+  --secondary-hover-bg: #e7e8ec;
+  --code-bg: #f1f2f5;
+  --code-border: #e0e1e6;
+  --focus: #1b46de;
+  --shadow: 0 12px 36px rgba(23, 44, 100, 0.08);
+  --font-body: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+  --font-code: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --page-gap: 16px;
+  --section-gap: 20px;
+  --body-gap: 12px;
+  --control-gap: 8px;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page-bg: #111113;
+  --panel-bg: #171719;
+  --panel-hover-bg: #19191b;
+  --panel-header-bg: #202124;
+  --divider-border: #222325;
+  --strong-border: #46484f;
+  --primary-text: #eeeef0;
+  --secondary-text: #b2b3bd;
+  --faint-text: #797b86;
+  --primary-bg: #3664db;
+  --primary-hover-bg: #2e58c4;
+  --primary-foreground: #fff;
+  --secondary-bg: #19191b;
+  --secondary-hover-bg: #292a2e;
+  --code-bg: #19191b;
+  --code-border: #303136;
+  --focus: #8bb4ff;
+  --shadow: 0 16px 44px rgba(0, 0, 0, 0.22);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --page-bg: #111113;
+    --panel-bg: #171719;
+    --panel-hover-bg: #19191b;
+    --panel-header-bg: #202124;
+    --divider-border: #222325;
+    --strong-border: #46484f;
+    --primary-text: #eeeef0;
+    --secondary-text: #b2b3bd;
+    --faint-text: #797b86;
+    --primary-bg: #3664db;
+    --primary-hover-bg: #2e58c4;
+    --primary-foreground: #fff;
+    --secondary-bg: #19191b;
+    --secondary-hover-bg: #292a2e;
+    --code-bg: #19191b;
+    --code-border: #303136;
+    --focus: #8bb4ff;
+    --shadow: 0 16px 44px rgba(0, 0, 0, 0.22);
+  }
+}
