@@ -182,6 +182,27 @@ a:focus-visible {
   margin-top: 12px;
 }
 
+.route-convention {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 16px;
+  align-items: baseline;
+  margin-bottom: var(--section-gap);
+  padding: 0 0 16px;
+  border-bottom: 1px solid var(--divider-border);
+  color: var(--secondary-text);
+}
+
+.route-convention strong {
+  color: var(--primary-text);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.route-convention p {
+  margin: 0;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -478,6 +499,14 @@ a.article-link:hover {
 
   .panel-header {
     align-items: flex-start;
+  }
+
+  .route-convention {
+    display: block;
+  }
+
+  .route-convention p {
+    margin-top: 6px;
   }
 
 }
