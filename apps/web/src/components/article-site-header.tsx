@@ -4,17 +4,7 @@ import { useSearchParams } from "next/navigation";
 
 import { SiteHeader } from "./site-header";
 
-interface NavigationItem {
-  href: string;
-  label: string;
-  active?: boolean;
-}
-
-export function ArticleSiteHeader({ catalogNavigation, learningNavigation }: { catalogNavigation: NavigationItem[]; learningNavigation?: NavigationItem[] }) {
+export function ArticleSiteHeader() {
   const searchParams = useSearchParams();
-  const learningMode = searchParams.get("nav") === "learn" && learningNavigation;
-
-  return learningMode
-    ? <SiteHeader activeSection="learn" secondaryNavigation={learningNavigation} />
-    : <SiteHeader activeSection="catalog" secondaryNavigation={catalogNavigation} />;
+  return <SiteHeader activeSection={searchParams.get("nav") === "learn" ? "learn" : "catalog"} />;
 }

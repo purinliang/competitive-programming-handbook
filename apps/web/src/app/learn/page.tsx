@@ -11,10 +11,7 @@ export default function LearningPathPage() {
 
   return (
     <>
-      <SiteHeader
-        activeSection="learn"
-        secondaryNavigation={stages.map((stage, index) => ({ href: `#${stage.key}`, label: `${index + 1}. ${stage.title}` }))}
-      />
+      <SiteHeader activeSection="learn" />
       <main className="index-page page-frame">
         <header className="page-intro">
           <p className="eyebrow">Learning Path</p>

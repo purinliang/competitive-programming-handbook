@@ -10,7 +10,7 @@ import { ArticleNeighborsView } from "@/components/article-neighbors-view";
 import { ArticleSiteHeader } from "@/components/article-site-header";
 import { ScrollArea } from "@/components/scroll-area";
 import { SiteHeader } from "@/components/site-header";
-import { getArticle, getArticleLearningNavigation, getArticleLearningNeighbors, getArticleModuleNavigation, getArticleModuleNeighbors, getArticles, getLearningStages, getModules } from "@/lib/content/catalog";
+import { getArticle, getArticleLearningNavigation, getArticleLearningNeighbors, getArticleModuleNavigation, getArticleModuleNeighbors, getArticles } from "@/lib/content/catalog";
 import { renderArticle } from "@/lib/content/markdown";
 
 interface ArticlePageProps {
@@ -46,22 +46,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const learningNavigation = getArticleLearningNavigation(article.articleKey);
   const moduleNeighbors = getArticleModuleNeighbors(article.articleKey);
   const learningNeighbors = getArticleLearningNeighbors(article.articleKey);
-  const stage = getLearningStages().find((item) => item.articleKeys.includes(article.articleKey));
-  const catalogHeaderNavigation = getModules().map((item) => ({
-    href: `/catalog/#${item.anchor}`,
-    label: item.title,
-    active: item.key === article.moduleKey,
-  }));
-  const learningHeaderNavigation = stage ? getLearningStages().map((item, index) => ({
-    href: `/learn/#${item.key}`,
-    label: `${index + 1}. ${item.title}`,
-    active: item.key === stage.key,
-  })) : undefined;
 
   return (
     <>
-      <Suspense fallback={<SiteHeader activeSection="catalog" secondaryNavigation={catalogHeaderNavigation} />}>
-        <ArticleSiteHeader catalogNavigation={catalogHeaderNavigation} learningNavigation={learningHeaderNavigation} />
+      <Suspense fallback={<SiteHeader activeSection="catalog" />}>
+        <ArticleSiteHeader />
       </Suspense>
       <div className="docs-layout">
         <Suspense fallback={<ArticleNavigationView articleKey={article.articleKey} mode="catalog" navigation={moduleNavigation} />}>
@@ -81,7 +70,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </main>
 
         <aside className="toc-sidebar" aria-label="本文目录">
-          <div className="sidebar-heading"><span>文章</span><h2>本文目录</h2></div>
+          <div className="sidebar-heading sidebar-heading-single"><h2>本文目录</h2></div>
           <ScrollArea className="sidebar-scroll-area" viewportClassName="sidebar-scroll-viewport" refreshKey={article.articleKey}>
             <nav className="toc-list">
               {rendered.tableOfContents.map((item) => <a className={item.depth === 3 ? "toc-depth-3" : undefined} href={`#${item.id}`} key={item.id}>{item.title}</a>)}

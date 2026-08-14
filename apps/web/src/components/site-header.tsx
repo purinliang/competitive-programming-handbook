@@ -3,15 +3,13 @@ import Link from "next/link";
 
 type HeaderSection = "learn" | "catalog" | "search";
 
-interface SecondaryNavigationItem {
-  href: string;
-  label: string;
-  active?: boolean;
+interface SiteHeaderProps {
+  activeSection?: HeaderSection;
 }
 
-export function SiteHeader({ activeSection, secondaryNavigation }: { activeSection?: HeaderSection; secondaryNavigation?: SecondaryNavigationItem[] }) {
+export function SiteHeader({ activeSection }: SiteHeaderProps) {
   return (
-    <header className={`site-header${secondaryNavigation?.length ? " has-secondary-nav" : ""}`}>
+    <header className="site-header">
       <div className="site-header-inner">
         <Link className="brand" href="/">
           <BookOpen aria-hidden="true" size={20} />
@@ -23,13 +21,6 @@ export function SiteHeader({ activeSection, secondaryNavigation }: { activeSecti
           <Link className={activeSection === "search" ? "is-active" : undefined} href="/search/">搜索</Link>
         </nav>
       </div>
-      {secondaryNavigation?.length ? (
-        <nav className="secondary-nav" aria-label={activeSection === "learn" ? "学习阶段" : "知识模块"}>
-          <div className="secondary-nav-inner">
-            {secondaryNavigation.map((item) => <Link className={item.active ? "is-active" : undefined} href={item.href} aria-current={item.active ? "location" : undefined} key={item.href}>{item.label}</Link>)}
-          </div>
-        </nav>
-      ) : null}
     </header>
   );
 }

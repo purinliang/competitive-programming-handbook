@@ -11,10 +11,7 @@ export default function CatalogPage() {
 
   return (
     <>
-      <SiteHeader
-        activeSection="catalog"
-        secondaryNavigation={modules.map((module) => ({ href: `#${module.anchor}`, label: module.title }))}
-      />
+      <SiteHeader activeSection="catalog" />
       <main className="index-page page-frame">
         <header className="page-intro">
           <p className="eyebrow">Catalog</p>

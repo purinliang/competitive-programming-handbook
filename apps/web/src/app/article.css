@@ -45,6 +45,14 @@
   font-weight: 600;
 }
 
+.sidebar-heading-single {
+  padding-top: 12px;
+}
+
+.sidebar-heading-single h2 {
+  margin-top: 0;
+}
+
 .sidebar-scroll-area {
   flex: 1;
 }
