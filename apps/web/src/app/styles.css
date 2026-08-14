@@ -207,6 +207,12 @@ a:focus-visible {
   background: var(--primary-hover-bg);
 }
 
+.hero-primary-action {
+  min-height: 44px;
+  padding: 0 20px;
+  font-size: 15px;
+}
+
 .secondary-button {
   border-color: var(--strong-border);
   color: var(--secondary-text);

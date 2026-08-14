@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-import { ArticleLink } from "@/components/article-link";
+import { ArticleFamilyList } from "@/components/article-family-list";
 import { SiteHeader } from "@/components/site-header";
-import { getModules } from "@/lib/content/catalog";
+import { getModules, groupAdjacentArticles } from "@/lib/content/catalog";
 
 export const metadata: Metadata = { title: "模块目录" };
 
@@ -23,7 +23,7 @@ export default function CatalogPage() {
             <section className="panel" id={module.anchor} key={module.key}>
               <div className="panel-header"><h2>{module.title}</h2><span>{module.articles.length} 个知识点</span></div>
               <div className="article-list">
-                {module.articles.map((article) => <ArticleLink article={article} key={article.articleKey} />)}
+                <ArticleFamilyList groups={groupAdjacentArticles(module.articles)} navigation="catalog" />
               </div>
             </section>
           ))}

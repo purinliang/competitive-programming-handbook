@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-import { ArticleLink } from "@/components/article-link";
+import { ArticleFamilyList } from "@/components/article-family-list";
 import { SiteHeader } from "@/components/site-header";
-import { getArticle, getLearningStages } from "@/lib/content/catalog";
+import { getArticle, getLearningStages, groupAdjacentArticles } from "@/lib/content/catalog";
 
 export const metadata: Metadata = { title: "学习路线" };
 
@@ -25,17 +25,23 @@ export default function LearningPathPage() {
           </div>
         </section>
         <div className="section-stack">
-          {stages.map((stage, index) => (
-            <section className="panel" id={stage.key} key={stage.key}>
-              <div className="panel-header stage-header">
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h2>{stage.title}</h2>
-              </div>
-              <div className="article-list">
-                {stage.articleKeys.map(getArticle).map((article) => article && <ArticleLink article={article} key={article.articleKey} />)}
-              </div>
-            </section>
-          ))}
+          {stages.map((stage, index) => {
+            const articles = stage.articleKeys.flatMap((articleKey) => {
+              const article = getArticle(articleKey);
+              return article ? [article] : [];
+            });
+            return (
+              <section className="panel" id={stage.key} key={stage.key}>
+                <div className="panel-header stage-header">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <h2>{stage.title}</h2>
+                </div>
+                <div className="article-list">
+                  <ArticleFamilyList groups={groupAdjacentArticles(articles)} navigation="learn" />
+                </div>
+              </section>
+            );
+          })}
         </div>
       </main>
     </>

@@ -28,6 +28,23 @@ export interface LearningStage {
   articleKeys: string[];
 }
 
+export interface ArticleFamily {
+  title: string;
+  articles: ArticleRecord[];
+  grouped: boolean;
+  continued: boolean;
+}
+
+export interface ArticleNavigation {
+  label: string;
+  title: string;
+  groups: ArticleFamily[];
+  primaryRoute: string;
+  primaryLabel: string;
+  secondaryRoute: string;
+  secondaryLabel: string;
+}
+
 export interface TableOfContentsItem {
   depth: 2 | 3;
   id: string;

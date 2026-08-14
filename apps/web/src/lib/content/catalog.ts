@@ -5,7 +5,7 @@ import path from "node:path";
 
 import GithubSlugger from "github-slugger";
 
-import type { ArticleRecord, ArticleStatus, LearningStage, ModuleRecord } from "./types";
+import type { ArticleFamily, ArticleNavigation, ArticleRecord, ArticleStatus, LearningStage, ModuleRecord } from "./types";
 
 export const NOTES_ROOT = path.resolve(process.cwd(), "../../notes");
 
@@ -154,7 +154,7 @@ export function getLearningArticles(): ArticleRecord[] {
   );
 }
 
-export function getArticleNeighbors(articleKey: string): { previous?: ArticleRecord; next?: ArticleRecord } {
+export function getArticleLearningNeighbors(articleKey: string): { previous?: ArticleRecord; next?: ArticleRecord } {
   const route = getLearningArticles().filter((article) => article.exists && article.status !== "计划");
   const index = route.findIndex((article) => article.articleKey === articleKey);
 
@@ -168,31 +168,86 @@ export function getArticleNeighbors(articleKey: string): { previous?: ArticleRec
   };
 }
 
-export function getArticleNavigation(articleKey: string) {
+export function getArticleModuleNeighbors(articleKey: string): { previous?: ArticleRecord; next?: ArticleRecord } {
+  const article = getArticle(articleKey);
+  if (!article) {
+    return {};
+  }
+
+  const route = getArticles().filter(
+    (candidate) => candidate.moduleKey === article.moduleKey && candidate.exists && candidate.status !== "计划",
+  );
+  const index = route.findIndex((candidate) => candidate.articleKey === articleKey);
+  return index < 0 ? {} : { previous: route[index - 1], next: route[index + 1] };
+}
+
+export function groupAdjacentArticles(articles: ArticleRecord[]): ArticleFamily[] {
+  const groups: ArticleFamily[] = [];
+  const seenFamilies = new Set<string>();
+
+  for (const article of articles) {
+    const separator = article.title.indexOf("：");
+    if (separator < 0) {
+      groups.push({ title: article.title, articles: [article], grouped: false, continued: false });
+      continue;
+    }
+
+    const title = article.title.slice(0, separator);
+    const familyKey = `${article.moduleKey}:${title}`;
+    const previous = groups.at(-1);
+    if (previous?.grouped && previous.title === title && previous.articles[0].moduleKey === article.moduleKey) {
+      previous.articles.push(article);
+    } else {
+      groups.push({ title, articles: [article], grouped: true, continued: seenFamilies.has(familyKey) });
+      seenFamilies.add(familyKey);
+    }
+  }
+
+  return groups;
+}
+
+export function getArticleModuleNavigation(articleKey: string): ArticleNavigation | undefined {
   const article = getArticle(articleKey);
   if (!article) {
     return undefined;
   }
 
   const module = getModules().find((item) => item.key === article.moduleKey);
-  const groups = new Map<string, ArticleRecord[]>();
-  for (const item of module?.articles ?? [article]) {
-    const separator = item.title.indexOf("：");
-    const groupTitle = separator >= 0 ? item.title.slice(0, separator) : item.title;
-    groups.set(groupTitle, [...(groups.get(groupTitle) ?? []), item]);
-  }
+  const groups = groupAdjacentArticles(module?.articles ?? [article]);
 
   return {
     label: "模块",
     title: article.moduleTitle,
-    groups: [...groups].map(([title, articles]) => ({
-      title,
-      articles,
-      active: articles.some((item) => item.articleKey === articleKey),
-    })),
+    groups,
     primaryRoute: `/catalog/#${article.moduleAnchor}`,
     primaryLabel: "查看完整模块",
     secondaryRoute: "/learn/",
     secondaryLabel: "切换到学习路线",
+  };
+}
+
+export function getArticleLearningNavigation(articleKey: string): ArticleNavigation | undefined {
+  const article = getArticle(articleKey);
+  if (!article) {
+    return undefined;
+  }
+
+  const stage = getLearningStages().find((item) => item.articleKeys.includes(articleKey));
+  if (!stage) {
+    return undefined;
+  }
+
+  const articles = stage.articleKeys.flatMap((key) => {
+    const stageArticle = getArticle(key);
+    return stageArticle ? [stageArticle] : [];
+  });
+  return {
+    label: stage.key.replace("-", " "),
+    title: stage.title,
+    groups: groupAdjacentArticles(articles),
+    primaryRoute: `/learn/#${stage.key}`,
+    primaryLabel: "查看完整阶段",
+    secondaryRoute: `/catalog/#${article.moduleAnchor}`,
+    secondaryLabel: `切换到${article.moduleTitle}模块`,
   };
 }

@@ -1,11 +1,14 @@
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
-import { ArticleLink } from "@/components/article-link";
+import { ArticleNavigation } from "@/components/article-navigation";
+import { ArticleNavigationView } from "@/components/article-navigation-view";
+import { ArticleNeighbors } from "@/components/article-neighbors";
+import { ArticleNeighborsView } from "@/components/article-neighbors-view";
 import { SiteHeader } from "@/components/site-header";
-import { getArticle, getArticleNavigation, getArticleNeighbors, getArticles } from "@/lib/content/catalog";
+import { getArticle, getArticleLearningNavigation, getArticleLearningNeighbors, getArticleModuleNavigation, getArticleModuleNeighbors, getArticles } from "@/lib/content/catalog";
 import { renderArticle } from "@/lib/content/markdown";
 
 interface ArticlePageProps {
@@ -34,32 +37,21 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   }
 
   const rendered = await renderArticle(article);
-  const articleNavigation = getArticleNavigation(article.articleKey);
-  const neighbors = getArticleNeighbors(article.articleKey);
+  const moduleNavigation = getArticleModuleNavigation(article.articleKey);
+  if (!moduleNavigation) {
+    notFound();
+  }
+  const learningNavigation = getArticleLearningNavigation(article.articleKey);
+  const moduleNeighbors = getArticleModuleNeighbors(article.articleKey);
+  const learningNeighbors = getArticleLearningNeighbors(article.articleKey);
 
   return (
     <>
       <SiteHeader />
       <div className="docs-layout">
-        <aside className="module-sidebar" aria-label={`${article.moduleTitle}目录`}>
-          <div className="sidebar-heading"><span>{articleNavigation?.label}</span><h2>{articleNavigation?.title}</h2></div>
-          <nav className="sidebar-list">
-            {articleNavigation?.groups.map((group) => (
-              group.articles.length === 1 && group.articles[0].title === group.title
-                ? <ArticleLink article={group.articles[0]} active={group.active} key={group.title} />
-                : <details className="sidebar-group" open={group.active} key={group.title}>
-                <summary><span>{group.title}</span><small>{group.articles.length}</small></summary>
-                <div>
-                  {group.articles.map((item) => <ArticleLink article={item} active={item.articleKey === article.articleKey} label={item.title.slice(item.title.indexOf("：") + 1)} key={item.articleKey} />)}
-                </div>
-              </details>
-            ))}
-          </nav>
-          {articleNavigation ? <nav className="sidebar-footer" aria-label="更多导航">
-            <Link href={articleNavigation.primaryRoute}>{articleNavigation.primaryLabel}</Link>
-            <Link href={articleNavigation.secondaryRoute}>{articleNavigation.secondaryLabel}</Link>
-          </nav> : null}
-        </aside>
+        <Suspense fallback={<ArticleNavigationView articleKey={article.articleKey} mode="catalog" navigation={moduleNavigation} />}>
+          <ArticleNavigation articleKey={article.articleKey} moduleNavigation={moduleNavigation} learningNavigation={learningNavigation} />
+        </Suspense>
 
         <main className="article-column">
           <div className="article-context">
@@ -68,10 +60,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <span>{article.status}</span>
           </div>
           <article className="markdown-body" data-article-key={article.articleKey} data-content-revision={rendered.contentRevision} dangerouslySetInnerHTML={{ __html: rendered.html }} />
-          <nav className="article-neighbors" aria-label="学习路线中的相邻文章">
-            {neighbors.previous ? <Link href={neighbors.previous.route}><ArrowLeft aria-hidden="true" /><span><small>上一篇</small>{neighbors.previous.title}</span></Link> : <span className="article-neighbor-disabled" aria-disabled="true"><ArrowLeft aria-hidden="true" /><span><small>上一篇</small>没有更早的文章</span></span>}
-            {neighbors.next ? <Link className="next" href={neighbors.next.route}><span><small>下一篇</small>{neighbors.next.title}</span><ArrowRight aria-hidden="true" /></Link> : <span className="article-neighbor-disabled next" aria-disabled="true"><span><small>下一篇</small>已经到达路线末尾</span><ArrowRight aria-hidden="true" /></span>}
-          </nav>
+          <Suspense fallback={<ArticleNeighborsView mode="catalog" {...moduleNeighbors} />}>
+            <ArticleNeighbors catalog={moduleNeighbors} learn={learningNeighbors} />
+          </Suspense>
         </main>
 
         <aside className="toc-sidebar">
