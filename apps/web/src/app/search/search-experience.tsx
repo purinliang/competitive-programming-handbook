@@ -32,16 +32,47 @@ function rank(record: SearchRecord, terms: string[]): number {
 }
 
 export function SearchExperience() {
-  const [records, setRecords] = useState<SearchRecord[]>([]);
+  const [records, setRecords] = useState<SearchRecord[] | null>(null);
   const [query, setQuery] = useState("");
+  const [settledQuery, setSettledQuery] = useState("");
+  const [composing, setComposing] = useState(false);
+  const normalizedQuery = settledQuery.trim();
+  const containsChinese = /[\u3400-\u9fff]/u.test(normalizedQuery);
+  const asciiCharacterCount = normalizedQuery.match(/[a-z0-9]/giu)?.length ?? 0;
+  const searchable = normalizedQuery.length > 0 && (containsChinese || asciiCharacterCount >= 3);
 
   useEffect(() => {
-    void fetch("/search-index.json").then((response) => response.json()).then(setRecords);
-  }, []);
+    if (composing) {
+      return;
+    }
+    if (!query.trim()) {
+      setSettledQuery("");
+      return;
+    }
+
+    const timer = window.setTimeout(() => setSettledQuery(query), 250);
+    return () => window.clearTimeout(timer);
+  }, [composing, query]);
+
+  useEffect(() => {
+    if (!searchable || records) {
+      return;
+    }
+
+    let cancelled = false;
+    void fetch("/search-index.json")
+      .then((response) => response.json())
+      .then((result: SearchRecord[]) => {
+        if (!cancelled) setRecords(result);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [records, searchable]);
 
   const results = useMemo(() => {
-    const terms = query.trim().toLocaleLowerCase("zh-CN").split(/\s+/).filter(Boolean);
-    if (terms.length === 0) {
+    const terms = normalizedQuery.toLocaleLowerCase("zh-CN").split(/\s+/).filter(Boolean);
+    if (!searchable || !records || terms.length === 0) {
       return [];
     }
     return records
@@ -50,25 +81,42 @@ export function SearchExperience() {
       .sort((a, b) => b.score - a.score || a.record.title.localeCompare(b.record.title, "zh-CN"))
       .slice(0, 60)
       .map((item) => item.record);
-  }, [query, records]);
+  }, [normalizedQuery, records, searchable]);
+
+  const summary = searchable
+    ? records === null
+      ? "正在载入搜索索引"
+      : `${results.length} 个结果`
+    : "";
+  const hasResults = searchable && records !== null && results.length > 0;
 
   return (
     <div>
       <label className="search-box">
         <Search aria-hidden="true" size={19} />
-        <input autoFocus value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索标题、概念或代码名称" />
+        <input
+          autoFocus
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          onCompositionStart={() => setComposing(true)}
+          onCompositionEnd={(event) => {
+            setComposing(false);
+            setSettledQuery(event.currentTarget.value);
+          }}
+          placeholder="搜索标题、概念或代码名称"
+        />
       </label>
-      <div className="search-summary">
-        {query.trim() ? `${results.length} 个结果` : `已索引 ${records.length} 篇文章`}
-      </div>
-      <div className="panel search-results">
-        {query.trim() ? results.map((record) => (
+      <div className="search-summary">{summary}</div>
+      <div className={`panel search-results${hasResults ? "" : " is-empty"}`}>
+        {!searchable ? <p className="search-empty">请输入至少 1 个中文字符，或 3 个英文/数字字符。</p> : null}
+        {searchable && records === null ? <p className="search-empty">正在载入搜索索引。</p> : null}
+        {searchable && records ? results.map((record) => (
           <Link className="search-result" href={record.route} key={record.articleKey}>
             <div><strong>{record.title}</strong><p>{record.moduleTitle} · {record.status}</p></div>
             <span>{record.articleKey}</span>
           </Link>
-        )) : <p className="search-empty">输入一个知识点、算法名称或代码标识符开始搜索。</p>}
-        {query.trim() && results.length === 0 ? <p className="search-empty">没有找到同时包含这些关键词的文章。</p> : null}
+        )) : null}
+        {searchable && records && results.length === 0 ? <p className="search-empty">没有找到同时包含这些关键词的文章。</p> : null}
       </div>
     </div>
   );

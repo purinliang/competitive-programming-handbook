@@ -421,7 +421,12 @@ a.article-link:hover {
 }
 
 .search-results {
-  min-height: 112px;
+  min-height: 192px;
+}
+
+.search-results.is-empty {
+  display: grid;
+  place-items: center;
 }
 
 .search-result {
