@@ -1,0 +1,86 @@
+[
+  {
+    "id": "narrow-compilation",
+    "prompt": "狭义的编译主要接收和产生什么？",
+    "options": [
+      { "id": "a", "text": "预处理后的翻译单元与目标代码文件" },
+      { "id": "b", "text": "用户输入与标准输出" },
+      { "id": "c", "text": "数据库表与网页" },
+      { "id": "d", "text": "只有头文件名与注释" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "日常“编译”可泛指整套构建；定位阶段时应把翻译单元到目标文件单独看待。"
+  },
+  {
+    "id": "compiler-guarantee",
+    "prompt": "程序成功编译能证明什么？",
+    "options": [
+      { "id": "a", "text": "当前构建未发现阻止生成目标代码的语言错误" },
+      { "id": "b", "text": "算法对所有输入一定正确" },
+      { "id": "c", "text": "程序永远不会越界或超时" },
+      { "id": "d", "text": "输出一定符合题意" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "编译器检查语言规则和可见接口，题目正确性、边界与复杂度仍需单独验证。"
+  },
+  {
+    "id": "separate-translation",
+    "prompt": "main.cpp 调用 math.cpp 中的函数时，为什么仍需先看见函数声明？",
+    "options": [
+      { "id": "a", "text": "每个翻译单元独立编译，编译器不会自动猜另一个 cpp 的接口" },
+      { "id": "b", "text": "函数定义永远不能放在另一个文件" },
+      { "id": "c", "text": "声明会在运行时创建输入" },
+      { "id": "d", "text": "链接器不允许函数有参数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "声明提供当前编译所需的类型信息，定义则由某个参与链接的目标文件提供。"
+  },
+  {
+    "id": "object-file",
+    "prompt": "为什么单个目标文件通常不能直接作为完整程序运行？",
+    "options": [
+      { "id": "a", "text": "它可能仍有外部符号和地址需要链接器解析" },
+      { "id": "b", "text": "它一定只包含源代码注释" },
+      { "id": "c", "text": "目标文件不允许包含机器代码" },
+      { "id": "d", "text": "它只能保存图片" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "标准库或其他翻译单元中的实现尚未合并，最终地址也可能尚未确定。"
+  },
+  {
+    "id": "compiler-driver",
+    "prompt": "为什么一条 `g++ main.cpp -o main` 命令能产生可执行文件？",
+    "options": [
+      { "id": "a", "text": "g++ 作为驱动协调预处理、编译、汇编和链接" },
+      { "id": "b", "text": "C++ 程序不需要任何构建阶段" },
+      { "id": "c", "text": "main.cpp 本来就是机器码" },
+      { "id": "d", "text": "命令只是在重命名文本文件" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "命令行只调用一个工具入口，不表示内部没有多个阶段。"
+  },
+  {
+    "id": "optimization-boundary",
+    "prompt": "`-O2` 能否把错误的 O(n²) 解法自动变成正确的 O(n log n) 算法？",
+    "options": [
+      { "id": "a", "text": "不能，它优化合法程序的实现，不替代算法设计" },
+      { "id": "b", "text": "一定能" },
+      { "id": "c", "text": "只有数组从 1 开始时能" },
+      { "id": "d", "text": "它会自动阅读题解并重写代码" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "优化可改善常数和局部代码生成，也可以利用无未定义行为的前提，但不负责解题。"
+  },
+  {
+    "id": "failure-stage",
+    "prompt": "函数已有声明但参与构建的文件都没有提供定义，通常在哪一阶段报错？",
+    "options": [
+      { "id": "a", "text": "链接阶段" },
+      { "id": "b", "text": "读取标准输入阶段" },
+      { "id": "c", "text": "算法复杂度分析阶段" },
+      { "id": "d", "text": "预处理 include guard 阶段" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "当前翻译单元拥有足够声明完成调用编译，但链接器最终找不到对应符号实现。"
+  }
+]

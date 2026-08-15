@@ -131,6 +131,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 0176* | 预处理 | 待审阅 | [preprocessing.md](cpp/preprocessing.md) |
+| 0177* | 编译 | 待审阅 | [compilation.md](cpp/compilation.md) |
 | 0152* | #include | 待审阅 | [include.md](cpp/include.md) |
 | 0153* | 命名空间与 std | 待审阅 | [namespace-and-std.md](cpp/namespace-and-std.md) |
 | 0154* | inline | 待审阅 | [inline.md](cpp/inline.md) |
