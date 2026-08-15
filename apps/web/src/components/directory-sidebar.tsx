@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo } from "react";
 
+import { NavigationLink as Link } from "./navigation-link";
 import { ScrollArea } from "./scroll-area";
 
 import { useActiveSection } from "@/hooks/use-active-section";

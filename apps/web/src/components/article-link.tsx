@@ -1,7 +1,7 @@
-import Link from "next/link";
-
 import { getArticleStatusLabel } from "@/lib/content/status";
 import type { ArticleRecord } from "@/lib/content/types";
+
+import { NavigationLink as Link } from "./navigation-link";
 
 export type NavigationMode = "learn" | "catalog";
 

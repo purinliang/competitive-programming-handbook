@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 
+import { NavigationLink as Link } from "@/components/navigation-link";
 import { SiteHeader } from "@/components/site-header";
 
 export default function HomePage() {

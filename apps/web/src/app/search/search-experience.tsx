@@ -1,9 +1,9 @@
 "use client";
 
 import { Search } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
+import { NavigationLink as Link } from "@/components/navigation-link";
 import { getArticleStatusLabel } from "@/lib/content/status";
 
 interface SearchRecord {

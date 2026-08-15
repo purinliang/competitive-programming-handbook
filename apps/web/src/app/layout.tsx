@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { Suspense, type ReactNode } from "react";
-
-import { NavigationProgress } from "@/components/navigation-progress";
+import type { ReactNode } from "react";
 
 import "katex/dist/katex.min.css";
 import "./theme.css";
@@ -28,9 +26,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         />
       </head>
       <body>
-        <Suspense fallback={null}>
-          <NavigationProgress />
-        </Suspense>
         {children}
       </body>
     </html>

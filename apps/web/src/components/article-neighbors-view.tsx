@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import Link from "next/link";
 
 import type { NavigationMode } from "./article-link";
+import { NavigationLink as Link } from "./navigation-link";
 
 import type { ArticleRecord } from "@/lib/content/types";
 

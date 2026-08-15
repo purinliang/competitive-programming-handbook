@@ -46,6 +46,8 @@ a:focus-visible {
   height: 2px;
   overflow: hidden;
   pointer-events: none;
+  opacity: 0;
+  animation: navigation-progress-reveal 0s linear 350ms forwards;
 }
 
 .navigation-progress span {
@@ -64,6 +66,12 @@ a:focus-visible {
 
   to {
     transform: translateX(420%);
+  }
+}
+
+@keyframes navigation-progress-reveal {
+  to {
+    opacity: 1;
   }
 }
 
