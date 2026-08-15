@@ -130,7 +130,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 0152* | #include | 定稿 | [include.md](cpp/include.md) |
+| 0152* | #include | 待审阅 | [include.md](cpp/include.md) |
 | 0153* | 命名空间与 std | 定稿 | [namespace-and-std.md](cpp/namespace-and-std.md) |
 | 0154* | inline | 计划 | `cpp/inline.md` |
 | 0155* | volatile | 计划 | `cpp/volatile.md` |
