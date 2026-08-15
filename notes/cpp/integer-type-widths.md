@@ -1,8 +1,8 @@
-# 基本类型：整数的位宽与平台差异
+# 整数类型的位宽与平台差异
 
 > 状态：定稿
 
-[基本类型：整数](integer-types.md) 已经介绍竞赛中最常用的 `int`、`long long` 和 `unsigned int`。本篇保存 `short`、`long` 的平台差异、完整范围、固定位数类型和 `__int128`；这些内容不属于主线要求，不要求任何读者理解或记忆。
+[整数类型](integer-types.md) 已经介绍竞赛中最常用的 `int`、`long long` 和 `unsigned int`。本篇保存 `short`、`long` 的平台差异、完整范围、固定位数类型和 `__int128`；这些内容不属于主线要求，不要求任何读者理解或记忆。
 
 ## 类型位宽
 
@@ -99,4 +99,4 @@ GCC 和 Clang 还提供非标准扩展 `__int128` 与 `unsigned __int128`。它�
 
 ## 返回整数篇
 
-返回 [基本类型：整数](integer-types.md) 继续主学习路线。
+返回 [整数类型](integer-types.md) 继续主学习路线。

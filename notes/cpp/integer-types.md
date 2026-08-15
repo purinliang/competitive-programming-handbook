@@ -1,4 +1,4 @@
-# 基本类型：整数
+# 整数类型
 
 > 状态：定稿
 
@@ -44,7 +44,7 @@ int main() {
 
 > C++17 只保证一个字节由若干连续的位组成，具体位数由实现决定；`int` 也只保证至少能表示 16 位整数。一个字节等于 8 位、`int` 等于 4 字节，是现代桌面、服务器和主流竞赛环境中的事实标准，而不是所有 C++17 实现都必须遵守的规定。可以参见 [C++17 内存模型](https://timsong-cpp.github.io/cppwp/n4659/intro.memory) 与 [C++17 基本类型](https://timsong-cpp.github.io/cppwp/n4659/basic.fundamental)。
 
-位、字节、更大的存储单位以及网络带宽中的 `Mbps` 统一放在 [基础：位、字节与存储单位](bits-bytes-and-storage-units.md) 中。本篇只使用结论：主流竞赛环境中 1 字节等于 8 位。
+位、字节、更大的存储单位以及网络带宽中的 `Mbps` 统一放在 [位、字节与存储单位](bits-bytes-and-storage-units.md) 中。本篇只使用结论：主流竞赛环境中 1 字节等于 8 位。
 
 ### 整数字面量
 
@@ -60,7 +60,7 @@ int main() {
 下面四个变量保存的值完全相同：
 
 ```cpp
-int bin_value = 0B101010;
+int bin_value = 0b101010;
 int oct_value = 052;
 int dec_value = 42;
 int hex_value = 0x2a;
@@ -149,7 +149,7 @@ $$
 -2147483648 到 2147483647
 ```
 
-原码、反码、补码的位模式、转换与范围差异放在配套篇 [基本类型：整数的二进制表示](signed-integer-representations.md) 中。它们会在部分基础课程或考试中出现，但不是使用 `int` 解题的前置。
+原码、反码、补码的位模式、转换与范围差异放在配套篇 [整数的二进制表示](signed-integer-representations.md) 中。它们会在部分基础课程或考试中出现，但不是使用 `int` 解题的前置。
 
 ### 有符号整数溢出
 
@@ -245,7 +245,7 @@ $$
 
 ## 其他整数类型
 
-C++ 还提供 `short` 和 `long`，但它们在不同平台上的位宽并不完全相同。竞赛中通常不需要 `short`，需要大范围时则直接使用大小更稳定的 `long long`。各平台的典型大小、完整范围、`int16_t`、`int32_t`、`int64_t` 和 `__int128` 统一放在配套篇 [基本类型：整数的位宽与平台差异](integer-type-widths.md) 中。
+C++ 还提供 `short` 和 `long`，但它们在不同平台上的位宽并不完全相同。竞赛中通常不需要 `short`，需要大范围时则直接使用大小更稳定的 `long long`。各平台的典型大小、完整范围、`int16_t`、`int32_t`、`int64_t` 和 `__int128` 统一放在配套篇 [整数类型的位宽与平台差异](integer-type-widths.md) 中。
 
 ## 特殊整数类型
 
@@ -255,13 +255,13 @@ C++ 还提供 `short` 和 `long`，但它们在不同平台上的位宽并不完
 - `char` 主要保存字符，但底层仍使用整数值。它恰好占 1 字节；这个字节有多少位由 `CHAR_BIT` 决定。主流竞赛环境的 `CHAR_BIT` 为 8，所以 `char` 占 8 位。
 - `char`、`signed char` 和 `unsigned char` 是三个不同的类型。单独写 `char` 时，它是否能够表示负数由编译器和目标平台决定；程序不能依赖某一种默认结果。需要明确行为时直接写 `signed char` 或 `unsigned char`。
 
-后续的“基本类型：布尔”和“基本类型：字符”会分别解释它们的具体行为；当前只需知道它们属于整数家族，却不应该当作普通 `int` 的缩小版使用。
+后续的“布尔类型”和“字符类型”会分别解释它们的具体行为；当前只需知道它们属于整数家族，却不应该当作普通 `int` 的缩小版使用。
 
 ## 配套篇
 
-- [基础：位、字节与存储单位](bits-bytes-and-storage-units.md) 解释 `b`、`B`、KB 到 TB、KiB 到 TiB，以及 `Mbps` 和“兆”的单位歧义。
-- [基本类型：整数的二进制表示](signed-integer-representations.md) 解释原码、反码、补码及其转换。这些内容会在部分基础课程或考试中出现，掌握要求单独列在配套篇中。
-- [基本类型：整数的位宽与平台差异](integer-type-widths.md) 保存 `short`、`long`、固定位数整数和 `__int128` 等无需理解或记忆的参考内容。
+- [位、字节与存储单位](bits-bytes-and-storage-units.md) 解释 `b`、`B`、KB 到 TB、KiB 到 TiB，以及 `Mbps` 和“兆”的单位歧义。
+- [整数的二进制表示](signed-integer-representations.md) 解释原码、反码、补码及其转换。这些内容会在部分基础课程或考试中出现，掌握要求单独列在配套篇中。
+- [整数类型的位宽与平台差异](integer-type-widths.md) 保存 `short`、`long`、固定位数整数和 `__int128` 等无需理解或记忆的参考内容。
 
 ## 需要记住什么
 

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "int-width",
+    "prompt": "在主流竞赛环境中，`sizeof(int)` 通常是 `4`，`CHAR_BIT` 通常是 `8`。这说明 `int` 通常是多少位整数？",
+    "options": [
+      { "id": "a", "text": "4 位" },
+      { "id": "b", "text": "8 位" },
+      { "id": "c", "text": "16 位" },
+      { "id": "d", "text": "32 位" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "`sizeof` 的单位是字节；主流竞赛环境中 1 字节为 8 位，所以 4 字节共有 $4\\times8=32$ 位。"
+  },
+  {
+    "id": "integer-literals",
+    "prompt": "下面哪组 C++17 整数字面量都表示十进制的 `42`？",
+    "options": [
+      { "id": "a", "text": "`0b101010`、`052`、`42`、`0x2a`" },
+      { "id": "b", "text": "`0b101010`、`042`、`42`、`0x42`" },
+      { "id": "c", "text": "`101010`、`052`、`42`、`2a`" },
+      { "id": "d", "text": "`0b42`、`0o52`、`42`、`0x2a`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "二进制使用 `0b`，八进制使用前导 `0`，十六进制使用 `0x`；`0b101010`、`052`、`42` 和 `0x2a` 的值都是 42。"
+  },
+  {
+    "id": "signed-overflow",
+    "prompt": "程序让 32 位 `int` 的最大值再加 `1`。下面哪项结论符合 C++17？",
+    "options": [
+      { "id": "a", "text": "标准保证结果变成最小值" },
+      { "id": "b", "text": "标准保证结果保持最大值" },
+      { "id": "c", "text": "发生未定义行为，正确程序不能依赖观察到的结果" },
+      { "id": "d", "text": "编译器会自动把结果改用 `long long` 保存" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "有符号整数结果超出类型范围时，C++17 将其规定为未定义行为。主流硬件上常见的成环现象不是程序可以依赖的语言保证。"
+  },
+  {
+    "id": "unsigned-wrap",
+    "prompt": "在 32 位 `unsigned int` 环境中，`unsigned int x = 0; x = x - 1;` 得到什么？",
+    "options": [
+      { "id": "a", "text": "`-1`" },
+      { "id": "b", "text": "`0`" },
+      { "id": "c", "text": "`2147483647`" },
+      { "id": "d", "text": "`4294967295`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "无符号整数运算按照 $2^{32}$ 取模，`0 - 1` 会成环到 $2^{32}-1=4294967295$；这是标准保证的行为。"
+  },
+  {
+    "id": "choose-long-long",
+    "prompt": "两个数都不超过 $10^9$，程序需要保存它们的乘积。通常应选择哪种类型保存结果？",
+    "options": [
+      { "id": "a", "text": "`bool`" },
+      { "id": "b", "text": "`char`" },
+      { "id": "c", "text": "`int`" },
+      { "id": "d", "text": "`long long`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "$10^9\\times10^9=10^{18}$，超过常见 32 位 `int` 的范围，却能够放入常见 64 位 `long long`。"
+  },
+  {
+    "id": "special-integer-types",
+    "prompt": "关于 `bool` 和 `char`，下面哪项说法正确？",
+    "options": [
+      { "id": "a", "text": "它们在 C++ 中都不属于整数类型" },
+      { "id": "b", "text": "`bool` 可以写成 `unsigned bool`" },
+      { "id": "c", "text": "`char`、`signed char` 和 `unsigned char` 是三个不同类型" },
+      { "id": "d", "text": "单独写 `char` 时，标准保证它一定能表示负数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "三种字符类型彼此不同；普通 `char` 是否有符号由实现决定。`bool` 与 `char` 都属于整数类型，但 `bool` 没有 `unsigned` 变体。"
+  }
+]
