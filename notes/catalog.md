@@ -156,7 +156,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 0201 | 复杂度：时间与空间 | 待审阅 | [complexity.md](algorithm-basics/complexity.md) |
+| 0201 | 复杂度 | 待审阅 | [complexity.md](algorithm-basics/complexity.md) |
 | 0201e1 | 复杂度：渐近记号 | 计划 | `algorithm-basics/asymptotic-notation.md` |
 | 0202 | 递推 | 待审阅 | [recurrence.md](algorithm-basics/recurrence.md) |
 | 0203 | 排序：基础排序 | 待审阅 | [sorting.md](algorithm-basics/sorting.md) |
