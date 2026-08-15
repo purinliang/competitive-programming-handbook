@@ -1,0 +1,74 @@
+[
+  {
+    "id": "constant-is-variable",
+    "prompt": "关于 `const int MOD = 7;`，下面哪项说法最准确？",
+    "options": [
+      { "id": "a", "text": "`MOD` 不是变量，也不是对象" },
+      { "id": "b", "text": "`MOD` 是变量，也是一个 `const` 对象，日常称为常量" },
+      { "id": "c", "text": "`MOD` 是字面量" },
+      { "id": "d", "text": "`MOD` 是函数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "声明为对象引入了变量，`const` 限制它不能再被修改；竞赛交流中通常把它简称为常量。"
+  },
+  {
+    "id": "constant-and-literal",
+    "prompt": "在 `const int ANSWER = 42;` 中，哪个是整数字面量？",
+    "options": [
+      { "id": "a", "text": "`const`" },
+      { "id": "b", "text": "`int`" },
+      { "id": "c", "text": "`ANSWER`" },
+      { "id": "d", "text": "`42`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "`ANSWER` 是常量的名称，直接写在源码中的固定值 `42` 才是字面量。"
+  },
+  {
+    "id": "constant-initialization",
+    "prompt": "下面哪个 `const int` 声明是正确的？",
+    "options": [
+      { "id": "a", "text": "`const int MOD = 1000000007;`" },
+      { "id": "b", "text": "`const int MOD; MOD = 1000000007;`" },
+      { "id": "c", "text": "`int const;`" },
+      { "id": "d", "text": "`const MOD = 1000000007;`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "普通基本类型的 `const` 对象必须在声明时得到初值，后面不能再向它赋值。"
+  },
+  {
+    "id": "meaningful-constant",
+    "prompt": "为什么通常用 `const int BONUS = 5;` 代替在多处直接写 `5`？",
+    "options": [
+      { "id": "a", "text": "这样一定让程序运行速度翻倍" },
+      { "id": "b", "text": "名称能表达固定规则，编译器还能阻止意外修改" },
+      { "id": "c", "text": "整数只能通过 `const` 保存" },
+      { "id": "d", "text": "字面量不能参与加法" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "有含义的名称解释数值为何出现；`const` 又把“不应修改”变成编译器可以检查的限制。"
+  },
+  {
+    "id": "runtime-constant",
+    "prompt": "执行 `int n; cin >> n; const int size = n;` 后，关于 `size` 哪项正确？",
+    "options": [
+      { "id": "a", "text": "它可以继续被赋予新值" },
+      { "id": "b", "text": "它一定是编译期已知的值" },
+      { "id": "c", "text": "它初始化后只读，但值来自程序运行时" },
+      { "id": "d", "text": "这段代码无法通过编译" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`const` 保证初始化后不能修改，不保证初值一定在编译时已知。"
+  },
+  {
+    "id": "choose-modifiable-state",
+    "prompt": "下面哪个量通常不适合声明为 `const`？",
+    "options": [
+      { "id": "a", "text": "固定模数 `MOD`" },
+      { "id": "b", "text": "固定数组容量 `MAXN`" },
+      { "id": "c", "text": "需要在循环中不断增加的计数器" },
+      { "id": "d", "text": "固定奖励 `BONUS`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "计数器的含义就是随执行过程更新；`const` 应当只用于初始化后不再改变的对象。"
+  }
+]
