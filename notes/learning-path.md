@@ -152,15 +152,19 @@
 | 0207 | 前缀和 | 算法基础 | [algorithm-basics/prefix-sums.md](algorithm-basics/prefix-sums.md) |
 | 0221 | 差分 | 算法基础 | [algorithm-basics/difference-array.md](algorithm-basics/difference-array.md) |
 
-### 学习单元：基本算法设计方法
+### 学习单元：枚举与模拟
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0208 | 贪心：选择与证明 | 算法基础 | [algorithm-basics/greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
-| 0209 | 分治：基础 | 算法基础 | [algorithm-basics/divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
 | 0210 | 枚举 | 算法基础 | [algorithm-basics/enumeration.md](algorithm-basics/enumeration.md) |
 | 0211 | 枚举：子集与位掩码 | 算法基础 | [algorithm-basics/subset-bitmask-enumeration.md](algorithm-basics/subset-bitmask-enumeration.md) |
 | 0222 | 模拟 | 算法基础 | [algorithm-basics/simulation.md](algorithm-basics/simulation.md) |
+
+### 学习单元：分治
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0209 | 分治：基础 | 算法基础 | [algorithm-basics/divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
 
 本阶段交错安排基础算法、基础数据结构和当前真正需要的标准库接口。先把 `string`、`vector` 和 `sort` 当作可靠工具使用；学习复杂度以后，再从结构、操作成本和算法原理重新理解数组与排序。数组、链表、栈和队列解释抽象结构，相邻的标准库文章只解释 C++ 编码接口。
 
@@ -254,6 +258,14 @@
 | --- | --- | --- | --- |
 | 0227 | 二叉堆 | 算法基础 | [algorithm-basics/binary-heap.md](algorithm-basics/binary-heap.md) |
 | 0144 | priority_queue | C++ | [cpp/priority-queue.md](cpp/priority-queue.md) |
+
+### 学习单元：贪心
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0208 | 贪心：选择与证明 | 算法基础 | [algorithm-basics/greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
+| 0238 | 贪心证明：邻项交换 | 算法基础 | `algorithm-basics/greedy-adjacent-exchange.md` |
+| 0239 | 贪心：反悔 | 算法基础 | `algorithm-basics/greedy-regret.md` |
 
 ### 学习单元：关联容器
 
