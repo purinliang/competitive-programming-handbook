@@ -21,6 +21,10 @@ INSERT INTO discussion_threads (
     'orphan-thread', 'other-user', 'learning-path:cpp/a-plus-b-problem', 1,
     'section', 'removed-section', 'removed-revision', '已经删除的小节',
     '旧版引用', 'public', 0, 'open', 2, 2
+), (
+    'old-epoch-thread', 'other-user', 'learning-path:cpp/a-plus-b-problem', 0,
+    'article', 'article', 'old-content-revision', '全文',
+    NULL, 'public', 0, 'open', 1, 1
 );
 
 INSERT INTO discussion_comments (
@@ -29,4 +33,7 @@ INSERT INTO discussion_comments (
 ) VALUES (
     'orphan-comment', 'orphan-thread', 'other-user', NULL,
     '保留下来的历史讨论', 'visible', 2, 2, 0
+), (
+    'old-epoch-comment', 'old-epoch-thread', 'other-user', NULL,
+    '整篇换代前的历史讨论', 'visible', 1, 1, 0
 );

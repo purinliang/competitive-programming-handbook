@@ -95,7 +95,8 @@ discussionRoutes.get("/api/discussions", async (c) => {
   const includeHistory = targetKind === "article"
     && targetId === "article"
     && c.req.query("include_history") === "1";
-  if (!getDocument(documentKey) || !["article", "section"].includes(targetKind) || !targetId) {
+  const document = getDocument(documentKey);
+  if (!document || !["article", "section"].includes(targetKind) || !targetId) {
     throw new HTTPException(400, { message: "讨论目标无效" });
   }
 
@@ -117,13 +118,14 @@ discussionRoutes.get("/api/discussions", async (c) => {
       `SELECT t.*, u.name AS userName
        FROM discussion_threads t
        JOIN user u ON u.id = t.userId
-       WHERE t.documentKey = ? AND t.targetKind = ?
+       WHERE t.documentKey = ? AND t.documentEpoch = ? AND t.targetKind = ?
          AND t.targetId IN (${targetPlaceholders})
          AND t.status != 'deleted'
          AND (t.visibility = 'public' OR t.userId = ? OR ? = 1)
        ORDER BY t.createdAt ASC`,
     ).bind(
       documentKey,
+      document.documentEpoch,
       targetKind,
       ...targetIds,
       viewerId,
@@ -132,7 +134,6 @@ discussionRoutes.get("/api/discussions", async (c) => {
 
   const threads = [];
   for (const thread of threadResult.results) {
-    const document = getDocument(documentKey);
     const currentSection = thread.targetKind === "section"
       ? getSection(documentKey, thread.targetId)
       : undefined;

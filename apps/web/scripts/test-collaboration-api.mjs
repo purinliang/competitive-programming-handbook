@@ -49,6 +49,16 @@ async function request(path, {
   return { response, result };
 }
 
+const publicArticleResponse = await fetch(
+  `${baseUrl}/learning-path/cpp/a-plus-b-problem/`,
+);
+assert.equal(publicArticleResponse.status, 200);
+assert.match(
+  publicArticleResponse.headers.get("content-type") ?? "",
+  /text\/html/,
+);
+assert.match(await publicArticleResponse.text(), /A\s*\+\s*B Problem/i);
+
 const studentAccount = await request("/api/me", { user: "student" });
 assert.equal(studentAccount.result.user.role, "student");
 const adminAccount = await request("/api/me", { user: "admin" });
@@ -63,9 +73,16 @@ const articleHistoryView = await request(
   `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
     + "&target_kind=article&target_id=article&include_history=1",
 );
-assert.equal(articleHistoryView.result.threads[0].id, "orphan-thread");
-assert.equal(articleHistoryView.result.threads[0].targetTitle, "已经删除的小节");
-assert.equal(articleHistoryView.result.threads[0].versionCurrent, false);
+const orphanThread = articleHistoryView.result.threads.find(
+  (thread) => thread.id === "orphan-thread",
+);
+const oldEpochThread = articleHistoryView.result.threads.find(
+  (thread) => thread.id === "old-epoch-thread",
+);
+assert.equal(orphanThread.targetTitle, "已经删除的小节");
+assert.equal(orphanThread.versionCurrent, false);
+assert.equal(oldEpochThread.targetKind, "article");
+assert.equal(oldEpochThread.versionCurrent, false);
 
 const created = await request("/api/discussions", {
   body: {
@@ -101,6 +118,12 @@ const guessedReport = await request(`/api/comments/${commentId}/report`, {
   user: "other",
 });
 assert.equal(guessedReport.response.status, 404);
+const guessedReply = await request(`/api/discussions/${threadId}/comments`, {
+  body: { body: "猜测私密讨论 ID" },
+  method: "POST",
+  user: "other",
+});
+assert.equal(guessedReply.response.status, 404);
 
 const forbiddenAdmin = await request("/api/admin/discussions", { user: "student" });
 assert.equal(forbiddenAdmin.response.status, 404);
@@ -163,6 +186,61 @@ assert.equal(reported.response.status, 200);
 const reportedAdminView = await request("/api/admin/discussions", { user: "admin" });
 assert.equal(reportedAdminView.result.reports[0].commentId, commentId);
 assert.equal(reportedAdminView.result.reports[0].reason, "自动化测试举报");
+const reportId = reportedAdminView.result.reports[0].id;
+
+const hiddenComment = await request(
+  `/api/admin/comments/${anonymousReply.result.commentId}/moderate`,
+  {
+    body: { action: "hide", reason: "自动化测试" },
+    method: "POST",
+    user: "admin",
+  },
+);
+assert.equal(hiddenComment.result.status, "hidden");
+const hiddenPublicView = await request(
+  `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
+    + "&target_kind=article&target_id=article",
+);
+assert.equal(hiddenPublicView.result.threads[0].comments.length, 1);
+const hiddenAdminView = await request(
+  `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
+    + "&target_kind=article&target_id=article",
+  { user: "admin" },
+);
+assert.equal(hiddenAdminView.result.threads[0].comments.length, 2);
+const restoredComment = await request(
+  `/api/admin/comments/${anonymousReply.result.commentId}/moderate`,
+  {
+    body: { action: "restore" },
+    method: "POST",
+    user: "admin",
+  },
+);
+assert.equal(restoredComment.result.status, "visible");
+
+const resolvedReport = await request(`/api/admin/reports/${reportId}/resolve`, {
+  body: { action: "resolve", reason: "自动化测试" },
+  method: "POST",
+  user: "admin",
+});
+assert.equal(resolvedReport.result.status, "resolved");
+const resolvedAdminView = await request("/api/admin/discussions", { user: "admin" });
+assert.deepEqual(resolvedAdminView.result.reports, []);
+
+for (let attempt = 0; attempt < 8; attempt += 1) {
+  const repeatedReport = await request(`/api/comments/${commentId}/report`, {
+    body: { reason: `限流测试 ${attempt + 1}` },
+    method: "POST",
+    user: "other",
+  });
+  assert.equal(repeatedReport.response.status, 200);
+}
+const rateLimitedReport = await request(`/api/comments/${commentId}/report`, {
+  body: { reason: "超过限流" },
+  method: "POST",
+  user: "other",
+});
+assert.equal(rateLimitedReport.response.status, 429);
 
 const missingOrigin = await request("/api/learning/sections", {
   body: { documentKey, read: true, sectionId, sectionRevision },
