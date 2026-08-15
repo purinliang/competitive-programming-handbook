@@ -1,0 +1,74 @@
+[
+  {
+    "id": "character-literal",
+    "prompt": "下面哪项是可以赋给 `char` 的单个字符字面量？",
+    "options": [
+      { "id": "a", "text": "`'A'`" },
+      { "id": "b", "text": "`\"A\"`" },
+      { "id": "c", "text": "`'AB'`" },
+      { "id": "d", "text": "`\"\"`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "单个字符字面量使用单引号；双引号表示字符串，不能直接赋给一个 `char`。"
+  },
+  {
+    "id": "digit-to-value",
+    "prompt": "若 `char digit = '7';`，怎样得到整数 `7`？",
+    "options": [
+      { "id": "a", "text": "`digit + '0'`" },
+      { "id": "b", "text": "`digit - '0'`" },
+      { "id": "c", "text": "`digit - 7`" },
+      { "id": "d", "text": "`digit / '0'`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "数字字符连续排列；`digit - '0'` 计算它相对字符 `'0'` 的偏移，结果就是对应的整数。"
+  },
+  {
+    "id": "value-to-digit",
+    "prompt": "若 `int value = 6;`，怎样得到字符 `'6'`？",
+    "options": [
+      { "id": "a", "text": "`char digit = value;`" },
+      { "id": "b", "text": "`char digit = '0' - value;`" },
+      { "id": "c", "text": "`char digit = '0' + value;`" },
+      { "id": "d", "text": "`char digit = value - '0';`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "从数字字符序列的起点 `'0'` 向后移动 `value` 个位置，就能得到对应的一位数字字符。"
+  },
+  {
+    "id": "zero-forms",
+    "prompt": "关于 `'0'`、`'\\0'` 和 `0`，下面哪项说法正确？",
+    "options": [
+      { "id": "a", "text": "三者完全相同" },
+      { "id": "b", "text": "`'0'` 是数字字符，`'\\0'` 是空字符，`0` 是整数" },
+      { "id": "c", "text": "`'\\0'` 会在屏幕上显示数字 `0`" },
+      { "id": "d", "text": "`0` 是字符串" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`'0'` 是可见字符，`'\\0'` 是编号为零的空字符，`0` 则是整数值。"
+  },
+  {
+    "id": "formatted-character-input",
+    "prompt": "执行 `cin >> ch` 时，输入开头的空格和换行通常会怎样处理？",
+    "options": [
+      { "id": "a", "text": "先跳过空白，再读取下一个非空白字符" },
+      { "id": "b", "text": "把所有空白都存进同一个 `char`" },
+      { "id": "c", "text": "遇到空白立即结束程序" },
+      { "id": "d", "text": "把空白自动转换成数字 `0`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "格式化字符输入会跳过前导空格、换行和制表符，再读取一个非空白字符。"
+  },
+  {
+    "id": "utf8-character",
+    "prompt": "为什么普通 `char` 通常不能可靠保存一个 UTF-8 中文字符？",
+    "options": [
+      { "id": "a", "text": "中文字符只能保存在整数数组中" },
+      { "id": "b", "text": "中文字符不能被计算机编码" },
+      { "id": "c", "text": "一个 UTF-8 中文字符通常由多个字节组成" },
+      { "id": "d", "text": "`char` 只能保存数字字符" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`char` 只保存一个字节，而 UTF-8 中的一个中文字符通常由多个字节共同编码。"
+  }
+]
