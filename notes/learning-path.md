@@ -149,7 +149,7 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0201 | 复杂度 | 算法基础 | [algorithm-basics/complexity.md](algorithm-basics/complexity.md) |
-| 0254 | 从代码分析复杂度 | 算法基础 | `algorithm-basics/complexity-analysis.md` |
+| 0254 | 从代码分析复杂度 | 算法基础 | [algorithm-basics/complexity-analysis.md](algorithm-basics/complexity-analysis.md) |
 
 ### 学习单元：基础 STL
 
