@@ -52,6 +52,19 @@ assert.equal(studentAccount.result.user.role, "student");
 const adminAccount = await request("/api/me", { user: "admin" });
 assert.equal(adminAccount.result.user.role, "admin");
 
+const currentArticleView = await request(
+  `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
+    + "&target_kind=article&target_id=article",
+);
+assert.deepEqual(currentArticleView.result.threads, []);
+const articleHistoryView = await request(
+  `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
+    + "&target_kind=article&target_id=article&include_history=1",
+);
+assert.equal(articleHistoryView.result.threads[0].id, "orphan-thread");
+assert.equal(articleHistoryView.result.threads[0].targetTitle, "已经删除的小节");
+assert.equal(articleHistoryView.result.threads[0].versionCurrent, false);
+
 const created = await request("/api/discussions", {
   body: {
     anonymous: false,

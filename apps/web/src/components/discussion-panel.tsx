@@ -30,6 +30,8 @@ interface DiscussionThread {
   id: string;
   mine: boolean;
   status: string;
+  targetKind: "article" | "section";
+  targetTitle: string;
   versionCurrent: boolean;
   visibility: "private" | "public";
 }
@@ -72,6 +74,7 @@ export function DiscussionPanel({
       target_id: target.id,
       target_kind: target.kind,
     });
+    if (target.kind === "article") query.set("include_history", "1");
     try {
       const response = await fetch(`/api/discussions?${query}`, {
         credentials: "include",
@@ -223,8 +226,18 @@ export function DiscussionPanel({
         {threads.map((thread) => (
           <article className="discussion-thread" key={thread.id}>
             <div className="discussion-thread-meta">
-              <span>{thread.visibility === "private" ? <><Lock size={13} />仅自己与管理员</> : "公开讨论"}</span>
-              {!thread.versionCurrent ? <span>针对旧版本</span> : null}
+              <span>
+                {thread.visibility === "private"
+                  ? <><Lock size={13} />仅自己与管理员</>
+                  : "公开讨论"}
+              </span>
+              {!thread.versionCurrent ? (
+                <span>
+                  {thread.targetKind === "section"
+                    ? `历史小节：${thread.targetTitle}`
+                    : "针对旧版本"}
+                </span>
+              ) : null}
             </div>
             {thread.mine ? (
               <div className="discussion-thread-settings">

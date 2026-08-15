@@ -12,3 +12,21 @@ INSERT INTO session (id, expiresAt, token, createdAt, updatedAt, userId) VALUES
     ('student-session', 1999999999999, 'student-token', 1, 1, 'student-user'),
     ('other-session', 1999999999999, 'other-token', 1, 1, 'other-user'),
     ('admin-session', 1999999999999, 'admin-token', 1, 1, 'admin-user');
+
+INSERT INTO discussion_threads (
+    id, userId, documentKey, documentEpoch, targetKind, targetId,
+    targetRevision, targetTitle, quotedText, visibility, anonymous,
+    status, createdAt, updatedAt
+) VALUES (
+    'orphan-thread', 'other-user', 'learning-path:cpp/a-plus-b-problem', 1,
+    'section', 'removed-section', 'removed-revision', '已经删除的小节',
+    '旧版引用', 'public', 0, 'open', 2, 2
+);
+
+INSERT INTO discussion_comments (
+    id, threadId, userId, parentCommentId, body, status,
+    createdAt, updatedAt, anonymous
+) VALUES (
+    'orphan-comment', 'orphan-thread', 'other-user', NULL,
+    '保留下来的历史讨论', 'visible', 2, 2, 0
+);

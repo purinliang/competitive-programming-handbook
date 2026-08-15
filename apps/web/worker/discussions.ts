@@ -12,6 +12,7 @@ import type { AppEnv, Viewer } from "./types";
 interface ThreadRow {
   anonymous: number;
   createdAt: number;
+  documentEpoch: number;
   id: string;
   status: string;
   targetId: string;
@@ -88,6 +89,9 @@ discussionRoutes.get("/api/discussions", async (c) => {
   const documentKey = c.req.query("document_key") ?? "";
   const targetKind = c.req.query("target_kind") ?? "";
   const targetId = c.req.query("target_id") ?? "";
+  const includeHistory = targetKind === "article"
+    && targetId === "article"
+    && c.req.query("include_history") === "1";
   if (!getDocument(documentKey) || !["article", "section"].includes(targetKind) || !targetId) {
     throw new HTTPException(400, { message: "讨论目标无效" });
   }
@@ -95,18 +99,35 @@ discussionRoutes.get("/api/discussions", async (c) => {
   const viewer = await getOptionalViewer(c);
   const isAdmin = viewer?.role === "admin" ? 1 : 0;
   const viewerId = viewer?.id ?? "";
-  const threadResult = await c.env.DB.prepare(
-    `SELECT t.*, u.name AS userName
-     FROM discussion_threads t
-     JOIN user u ON u.id = t.userId
-     WHERE t.documentKey = ? AND t.targetKind = ? AND t.targetId = ?
-       AND t.status != 'deleted'
-       AND (t.visibility = 'public' OR t.userId = ? OR ? = 1)
-     ORDER BY t.createdAt ASC`,
-  ).bind(documentKey, targetKind, targetId, viewerId, isAdmin).all<ThreadRow>();
+  const threadResult = includeHistory
+    ? await c.env.DB.prepare(
+      `SELECT t.*, u.name AS userName
+       FROM discussion_threads t
+       JOIN user u ON u.id = t.userId
+       WHERE t.documentKey = ? AND t.status != 'deleted'
+         AND (t.visibility = 'public' OR t.userId = ? OR ? = 1)
+       ORDER BY t.createdAt ASC`,
+    ).bind(documentKey, viewerId, isAdmin).all<ThreadRow>()
+    : await c.env.DB.prepare(
+      `SELECT t.*, u.name AS userName
+       FROM discussion_threads t
+       JOIN user u ON u.id = t.userId
+       WHERE t.documentKey = ? AND t.targetKind = ? AND t.targetId = ?
+         AND t.status != 'deleted'
+         AND (t.visibility = 'public' OR t.userId = ? OR ? = 1)
+       ORDER BY t.createdAt ASC`,
+    ).bind(documentKey, targetKind, targetId, viewerId, isAdmin).all<ThreadRow>();
 
   const threads = [];
   for (const thread of threadResult.results) {
+    const document = getDocument(documentKey);
+    const currentSection = thread.targetKind === "section"
+      ? getSection(documentKey, thread.targetId)
+      : undefined;
+    if (includeHistory && thread.targetKind === "section"
+      && thread.documentEpoch === document?.documentEpoch && currentSection) {
+      continue;
+    }
     const commentResult = await c.env.DB.prepare(
       `SELECT c.*, u.name AS userName
        FROM discussion_comments c
@@ -136,10 +157,9 @@ discussionRoutes.get("/api/discussions", async (c) => {
         updatedAt: comment.updatedAt,
       }];
     });
-    const document = getDocument(documentKey);
     const currentRevision = thread.targetKind === "article"
       ? document?.contentRevision
-      : getSection(documentKey, thread.targetId)?.revision;
+      : currentSection?.revision;
     threads.push({
       anonymous: Boolean(thread.anonymous),
       authorName: visibleName(
@@ -153,6 +173,7 @@ discussionRoutes.get("/api/discussions", async (c) => {
       id: thread.id,
       mine: viewer?.id === thread.userId,
       status: thread.status,
+      targetKind: thread.targetKind,
       targetRevision: thread.targetRevision,
       targetTitle: thread.targetTitle,
       updatedAt: thread.updatedAt,
