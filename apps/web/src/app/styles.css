@@ -147,19 +147,6 @@ a:focus-visible {
   color: var(--accent-hover-text);
 }
 
-html[data-article-navigation="learn"] .site-nav a.article-navigation-learn,
-html[data-article-navigation="catalog"] .site-nav a.article-navigation-catalog,
-html:not([data-article-navigation]) .site-nav a.article-navigation-catalog {
-  color: var(--accent-text);
-  font-weight: 600;
-}
-
-html[data-article-navigation="learn"] .site-nav a.article-navigation-learn:hover,
-html[data-article-navigation="catalog"] .site-nav a.article-navigation-catalog:hover,
-html:not([data-article-navigation]) .site-nav a.article-navigation-catalog:hover {
-  color: var(--accent-hover-text);
-}
-
 .nav-placeholder {
   cursor: default;
   opacity: 0.5;

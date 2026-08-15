@@ -11,7 +11,8 @@ export interface ArticleRecord {
   moduleTitle: string;
   moduleAnchor: string;
   sourcePath: string;
-  route: string;
+  catalogRoute: string;
+  learningRoute: string;
   exists: boolean;
 }
 

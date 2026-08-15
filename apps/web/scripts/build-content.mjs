@@ -84,7 +84,8 @@ async function parseCatalog() {
       moduleTitle,
       moduleAnchor,
       sourcePath,
-      route: `/${articleKey}/`,
+      catalogRoute: `/catalog/${articleKey}/`,
+      learningRoute: `/learn/${articleKey}/`,
       exists: await fileExists(path.join(notesRoot, sourcePath)),
     });
   }
@@ -188,7 +189,7 @@ function rewriteUrl(url, sourcePath) {
     return `/content-assets/${resolved.slice("assets/".length)}${suffix}`;
   }
   if (resolved.endsWith(".md")) {
-    return `/${resolved.slice(0, -3)}/${suffix}`;
+    return `/catalog/${resolved.slice(0, -3)}/${suffix}`;
   }
 
   return url;
@@ -308,7 +309,7 @@ for (const article of publishedArticles) {
     articleKey: article.articleKey,
     title: article.title,
     moduleTitle: article.moduleTitle,
-    route: article.route,
+    route: article.catalogRoute,
     status: article.status,
     text: searchableText(markdown, articleTitles),
   });

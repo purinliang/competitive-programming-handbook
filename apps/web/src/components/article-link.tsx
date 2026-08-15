@@ -7,7 +7,7 @@ export type NavigationMode = "learn" | "catalog";
 
 export function ArticleLink({ article, active = false, label, navigation }: { article: ArticleRecord; active?: boolean; label?: string; navigation?: NavigationMode }) {
   const visibleTitle = label ?? article.title;
-  const href = navigation ? `${article.route}?nav=${navigation}` : article.route;
+  const href = navigation === "learn" ? article.learningRoute : article.catalogRoute;
   const unavailable = !article.exists || article.status === "计划";
   if (unavailable) {
     return (

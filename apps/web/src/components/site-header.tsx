@@ -2,7 +2,7 @@ import { Book } from "lucide-react";
 
 import { NavigationLink as Link } from "./navigation-link";
 
-type HeaderSection = "learn" | "catalog" | "search" | "article";
+type HeaderSection = "learn" | "catalog" | "search";
 
 interface SiteHeaderProps {
   activeSection?: HeaderSection;
@@ -12,9 +12,6 @@ export function SiteHeader({ activeSection }: SiteHeaderProps) {
   function linkClass(section: Exclude<HeaderSection, "article">) {
     if (activeSection === section) {
       return "is-active";
-    }
-    if (activeSection === "article" && (section === "learn" || section === "catalog")) {
-      return `article-navigation-${section}`;
     }
     return undefined;
   }

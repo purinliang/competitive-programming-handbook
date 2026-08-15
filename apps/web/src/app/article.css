@@ -15,16 +15,6 @@
   padding: 32px 40px 96px;
 }
 
-.article-navigation-variant {
-  display: none;
-}
-
-html[data-article-navigation="catalog"] .article-navigation-variant.is-catalog,
-html[data-article-navigation="learn"] .article-navigation-variant.is-learn,
-html:not([data-article-navigation]) .article-navigation-variant.is-catalog {
-  display: contents;
-}
-
 .toc-sidebar {
   --sidebar-top: 97px;
   position: sticky;
