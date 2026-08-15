@@ -1,0 +1,86 @@
+[
+  {
+    "id": "half-open-range",
+    "prompt": "`fill(first, last, value)` 会修改哪一段位置？",
+    "options": [
+      { "id": "a", "text": "只修改 last" },
+      { "id": "b", "text": "从 first 到 last，包含两端" },
+      { "id": "c", "text": "从 first 开始，到 last 以前为止" },
+      { "id": "d", "text": "只修改 first" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "fill 使用 STL 的左闭右开范围 [first, last)，last 是边界而不是被修改的元素。"
+  },
+  {
+    "id": "builtin-array",
+    "prompt": "内置数组 `a` 的逻辑长度是 `n`，哪项会填写原生下标 `0..n-1`？",
+    "options": [
+      { "id": "a", "text": "`fill(a, a + n, 0);`" },
+      { "id": "b", "text": "`fill(a + 1, a + n, 0);`" },
+      { "id": "c", "text": "`fill(a, a + n - 1, 0);`" },
+      { "id": "d", "text": "`fill(a + n, a, 0);`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "a 指向首元素，a+n 指向末元素之后，所以 [a, a+n) 恰好覆盖 n 个元素。"
+  },
+  {
+    "id": "one-based-closed-range",
+    "prompt": "1-based 数组中，要填写闭区间 `[l,r]`，哪一项正确？",
+    "options": [
+      { "id": "a", "text": "`fill(a.begin(), a.end(), value);`" },
+      { "id": "b", "text": "`fill(a.begin() + l, a.begin() + r + 1, value);`" },
+      { "id": "c", "text": "`fill(a.begin() + l + 1, a.begin() + r, value);`" },
+      { "id": "d", "text": "`fill(a.begin() + r, a.begin() + l, value);`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "自定义闭区间在 STL 接口边界转换为 [l, r+1)，最后一个被赋值的位置是 r。"
+  },
+  {
+    "id": "fill-complexity",
+    "prompt": "填写长度为 `n` 的范围时，`fill` 的时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(1)$" },
+      { "id": "b", "text": "$O(\\log n)$" },
+      { "id": "c", "text": "$O(n^2)$" },
+      { "id": "d", "text": "$O(n)$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "fill 需要依次给范围中的每个元素赋值，因此会执行 n 次赋值。"
+  },
+  {
+    "id": "memset-byte-pattern",
+    "prompt": "为什么 `memset(a, 1, sizeof a)` 通常不会把每个 `int` 设成数值 `1`？",
+    "options": [
+      { "id": "a", "text": "memset 只允许写浮点数" },
+      { "id": "b", "text": "memset 会跳过数组第一个元素" },
+      { "id": "c", "text": "memset 把每个字节写成 1，而不是逐个 int 赋值" },
+      { "id": "d", "text": "sizeof a 永远等于 1" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "多字节整数会得到重复的 01 字节模式；在常见 4 字节环境中对应 0x01010101。"
+  },
+  {
+    "id": "reserve-boundary",
+    "prompt": "空 `vector` 只调用 `reserve(100)` 后，能否填写前 100 个元素？",
+    "options": [
+      { "id": "a", "text": "不能，reserve 没有建立元素，size 仍是 0" },
+      { "id": "b", "text": "能，capacity 中的所有位置都是元素" },
+      { "id": "c", "text": "只有下标 100 可以填写" },
+      { "id": "d", "text": "只有使用 memset 才能填写" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "fill 只能处理有效元素范围；reserve 预留容量但不改变 size。"
+  },
+  {
+    "id": "reset-cost",
+    "prompt": "每组只访问 10 个位置，却反复清空一千万格数组，主要风险是什么？",
+    "options": [
+      { "id": "a", "text": "清空会改变数组下标起点" },
+      { "id": "b", "text": "每组仍需 O(V) 清空时间，可能成为瓶颈" },
+      { "id": "c", "text": "fill 会自动排序数组" },
+      { "id": "d", "text": "数组会永久变成只读" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "fill 的成本取决于实际填写范围；稀疏访问时可记录改动位置并只重置它们。"
+  }
+]
