@@ -5,28 +5,45 @@ import { useEffect, useMemo, useState } from "react";
 
 import type { LearningQuiz as LearningQuizData } from "@/lib/content/types";
 
-const STORAGE_KEY = "handbook.learning-progress.v1";
+const STORAGE_KEY = "handbook.learning-progress.v2";
+
+interface StoredAnswer {
+  optionId: string;
+  questionRevision: string;
+}
 
 interface StoredArticleProgress {
-  quizRevision: string;
-  answers: Record<string, string>;
+  answers: Record<string, StoredAnswer>;
 }
 
 type StoredProgress = Record<string, StoredArticleProgress>;
 
-function readProgress(articleKey: string, revision: string): Record<string, string> {
+function readProgress(articleKey: string, quiz: LearningQuizData): Record<string, string> {
   try {
     const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}") as StoredProgress;
-    return progress[articleKey]?.quizRevision === revision ? progress[articleKey].answers : {};
+    const storedAnswers = progress[articleKey]?.answers ?? {};
+    return Object.fromEntries(quiz.questions.flatMap((question) => {
+      const answer = storedAnswers[question.id];
+      return answer?.questionRevision === question.revision
+        ? [[question.id, answer.optionId]]
+        : [];
+    }));
   } catch {
     return {};
   }
 }
 
-function writeProgress(articleKey: string, revision: string, answers: Record<string, string>) {
+function writeProgress(articleKey: string, quiz: LearningQuizData, answers: Record<string, string>) {
   try {
     const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}") as StoredProgress;
-    progress[articleKey] = { quizRevision: revision, answers };
+    progress[articleKey] = {
+      answers: Object.fromEntries(quiz.questions.flatMap((question) => {
+        const optionId = answers[question.id];
+        return optionId
+          ? [[question.id, { optionId, questionRevision: question.revision }]]
+          : [];
+      })),
+    };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
   } catch {
     // 隐私模式或禁用存储时，题目仍可在当前页面正常作答。
@@ -48,10 +65,10 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
   );
 
   useEffect(() => {
-    const storedAnswers = readProgress(articleKey, quiz.revision);
+    const storedAnswers = readProgress(articleKey, quiz);
     setAnswers(storedAnswers);
     setSelections(storedAnswers);
-  }, [articleKey, quiz.revision]);
+  }, [articleKey, quiz]);
 
   useEffect(() => {
     setExplanationVisible(false);
@@ -64,7 +81,7 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
       const nextAnswers = { ...answers };
       delete nextAnswers[question.id];
       setAnswers(nextAnswers);
-      writeProgress(articleKey, quiz.revision, nextAnswers);
+      writeProgress(articleKey, quiz, nextAnswers);
     }
   }
 
@@ -74,7 +91,7 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
     }
     const nextAnswers = { ...answers, [question.id]: selection };
     setAnswers(nextAnswers);
-    writeProgress(articleKey, quiz.revision, nextAnswers);
+    writeProgress(articleKey, quiz, nextAnswers);
   }
 
   function moveTo(index: number) {
@@ -84,7 +101,7 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
   return (
     <section className="learning-quiz" aria-labelledby="learning-quiz-title">
       <header className="learning-quiz-header">
-        <h2 id="learning-quiz-title">练习题</h2>
+        <h2 id="learning-quiz-title">小测验</h2>
         <span>{correctCount} / {quiz.questions.length} 已答对</span>
       </header>
 

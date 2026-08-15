@@ -191,6 +191,60 @@ function walkTree(node, visitor, parent) {
   }
 }
 
+function hashRevision(value) {
+  return createHash("sha256").update(value).digest("hex").slice(0, 16);
+}
+
+function markdownText(node) {
+  if (typeof node.value === "string") {
+    return node.value;
+  }
+  return (node.children ?? []).map(markdownText).join("");
+}
+
+function extractArticleSections(markdown, sourcePath) {
+  const tree = unified().use(remarkParse).parse(markdown);
+  const headings = [];
+
+  for (let index = 0; index < tree.children.length; index += 1) {
+    const node = tree.children[index];
+    if (node.type !== "heading" || node.depth !== 2) {
+      continue;
+    }
+
+    const previous = tree.children[index - 1];
+    const explicitMatch = previous?.type === "html"
+      ? previous.value.match(/^<!--\s*section-id:\s*([a-z0-9]+(?:-[a-z0-9]+)*)\s*-->$/)
+      : undefined;
+    const title = markdownText(node).trim();
+    const derivedId = `section-${hashRevision(title)}`;
+    headings.push({
+      declarationStart: explicitMatch ? previous.position.start.offset : node.position.start.offset,
+      explicit: Boolean(explicitMatch),
+      headingStart: node.position.start.offset,
+      id: explicitMatch?.[1] ?? derivedId,
+      title,
+    });
+  }
+
+  const ids = new Set();
+  return headings.map((heading, index) => {
+    if (ids.has(heading.id)) {
+      throw new Error(`${sourcePath} 包含重复二级标题身份 ${heading.id}，请使用显式 section-id`);
+    }
+    ids.add(heading.id);
+    const end = headings[index + 1]?.declarationStart ?? markdown.length;
+    const source = markdown.slice(heading.headingStart, end).trim();
+    return {
+      explicit: heading.explicit,
+      id: heading.id,
+      revision: hashRevision(source),
+      title: heading.title,
+      quotedText: source.replace(/[`*_>#|$\\]/g, " ").replace(/\s+/g, " ").slice(0, 240).trim(),
+    };
+  });
+}
+
 function rewriteUrl(url, sourcePath) {
   if (/^(?:[a-z]+:|\/|#)/i.test(url)) {
     return url;
@@ -229,9 +283,11 @@ function remarkRewriteLinks(sourcePath) {
   };
 }
 
-function rehypeCollectMetadata(tableOfContents) {
+function rehypeCollectMetadata(tableOfContents, sections) {
   return () => (tree) => {
     let currentSection = "article";
+    let currentSectionId = "article";
+    let h2Index = 0;
     const occurrences = new Map();
 
     walkTree(tree, (node, parent) => {
@@ -244,7 +300,19 @@ function rehypeCollectMetadata(tableOfContents) {
         const id = String(node.properties.id ?? "");
         const title = toText(node);
         if (id) {
-          tableOfContents.push({ depth: node.tagName === "h2" ? 2 : 3, id, title });
+          const section = node.tagName === "h2" ? sections[h2Index++] : undefined;
+          if (section) {
+            currentSectionId = section.id;
+            node.properties["data-section-id"] = section.id;
+            node.properties["data-section-revision"] = section.revision;
+          }
+          tableOfContents.push({
+            depth: node.tagName === "h2" ? 2 : 3,
+            id,
+            sectionId: section?.id,
+            sectionRevision: section?.revision,
+            title,
+          });
           currentSection = id;
           node.properties["data-block-key"] = `heading:${id}`;
         }
@@ -268,6 +336,7 @@ function rehypeCollectMetadata(tableOfContents) {
       const occurrence = (occurrences.get(baseKey) ?? 0) + 1;
       occurrences.set(baseKey, occurrence);
       node.properties["data-block-key"] = occurrence === 1 ? baseKey : `${baseKey}:${occurrence}`;
+      node.properties["data-section-id"] = currentSectionId;
     });
   };
 }
@@ -287,6 +356,7 @@ function rehypeSetArticleTitle(title) {
 async function renderArticle(article, sourcePath, title) {
   const markdown = await readFile(path.join(notesRoot, sourcePath), "utf8");
   const tableOfContents = [];
+  const sections = extractArticleSections(markdown, sourcePath);
   const result = await unified()
     .use(remarkParse)
     .use(remarkGfm)
@@ -295,7 +365,7 @@ async function renderArticle(article, sourcePath, title) {
     .use(remarkRehype)
     .use(rehypeSlug)
     .use(rehypeSetArticleTitle(title))
-    .use(rehypeCollectMetadata(tableOfContents))
+    .use(rehypeCollectMetadata(tableOfContents, sections))
     .use(rehypeKatex)
     .use(rehypePrettyCode, {
       theme: {
@@ -309,7 +379,8 @@ async function renderArticle(article, sourcePath, title) {
 
   return {
     html: String(result),
-    contentRevision: createHash("sha256").update(markdown).digest("hex").slice(0, 16),
+    contentRevision: hashRevision(markdown),
+    sections,
     tableOfContents,
   };
 }
@@ -378,6 +449,13 @@ async function compileLearningQuiz(articleKey) {
       throw new Error(`${path.relative(notesRoot, sourcePath)} 的 ${question.id} 缺少解析`);
     }
 
+    question.revision = hashRevision(JSON.stringify({
+      correctOptionId: question.correctOptionId,
+      explanation: question.explanation,
+      id: question.id,
+      options: question.options,
+      prompt: question.prompt,
+    }));
     question.promptHtml = await renderQuizInline(question.prompt);
     question.explanationHtml = await renderQuizInline(question.explanation);
     for (const option of question.options) {
@@ -390,10 +468,12 @@ async function compileLearningQuiz(articleKey) {
 
   const outputPath = path.join(quizCacheRoot, `${articleKey}.json`);
   await mkdir(path.dirname(outputPath), { recursive: true });
-  await writeFile(outputPath, `${JSON.stringify({
-    revision: createHash("sha256").update(source).digest("hex").slice(0, 16),
+  const compiledQuiz = {
+    revision: hashRevision(questions.map((question) => `${question.id}:${question.revision}`).join("\n")),
     questions,
-  })}\n`);
+  };
+  await writeFile(outputPath, `${JSON.stringify(compiledQuiz)}\n`);
+  return compiledQuiz;
 }
 
 await rm(cacheRoot, { force: true, recursive: true });
@@ -422,6 +502,7 @@ const publishedArticles = articles.filter((article) => article.exists && article
 const learningArticleKeys = new Set(stages.flatMap((stage) => stage.articleKeys));
 const articleTitles = new Set(publishedArticles.map((article) => article.title));
 const searchRecords = [];
+const interactionDocuments = {};
 
 for (const article of publishedArticles) {
   const markdown = await readFile(path.join(notesRoot, article.sourcePath), "utf8");
@@ -437,6 +518,14 @@ for (const article of publishedArticles) {
   await mkdir(path.dirname(learningOutputPath), { recursive: true });
   await writeFile(catalogOutputPath, `${JSON.stringify(catalogRendered)}\n`);
   await writeFile(learningOutputPath, `${JSON.stringify(learningRendered)}\n`);
+  if (learningArticleKeys.has(article.articleKey)) {
+    interactionDocuments[`learning-path:${article.articleKey}`] = {
+      articleKey: article.articleKey,
+      contentRevision: learningRendered.contentRevision,
+      documentEpoch: 1,
+      sections: learningRendered.sections,
+    };
+  }
   searchRecords.push({
     articleKey: article.articleKey,
     title: article.title,
@@ -447,7 +536,22 @@ for (const article of publishedArticles) {
   });
 }
 
-await Promise.all([...learningArticleKeys].map((articleKey) => compileLearningQuiz(articleKey)));
+const compiledQuizzes = await Promise.all(
+  [...learningArticleKeys].map(async (articleKey) => [articleKey, await compileLearningQuiz(articleKey)]),
+);
+for (const [articleKey, quiz] of compiledQuizzes) {
+  if (quiz && interactionDocuments[`learning-path:${articleKey}`]) {
+    interactionDocuments[`learning-path:${articleKey}`].questions = quiz.questions.map((question) => ({
+      correctOptionId: question.correctOptionId,
+      id: question.id,
+      revision: question.revision,
+    }));
+  }
+}
+await writeFile(
+  path.join(cacheRoot, "interaction-manifest.json"),
+  `${JSON.stringify({ documents: interactionDocuments })}\n`,
+);
 
 await mkdir(path.dirname(searchIndexPath), { recursive: true });
 await writeFile(searchIndexPath, `${JSON.stringify(searchRecords)}\n`);

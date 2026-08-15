@@ -58,12 +58,23 @@ export interface ArticleNavigation {
 export interface TableOfContentsItem {
   depth: 2 | 3;
   id: string;
+  sectionId?: string;
+  sectionRevision?: string;
   title: string;
+}
+
+export interface ArticleSection {
+  explicit: boolean;
+  id: string;
+  revision: string;
+  title: string;
+  quotedText: string;
 }
 
 export interface RenderedArticle {
   html: string;
   contentRevision: string;
+  sections: ArticleSection[];
   tableOfContents: TableOfContentsItem[];
 }
 
@@ -75,6 +86,7 @@ export interface LearningQuestionOption {
 
 export interface LearningQuestion {
   id: string;
+  revision: string;
   prompt: string;
   promptHtml: string;
   options: LearningQuestionOption[];

@@ -37,7 +37,7 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
   const rendered = await getRenderedArticle(article, mode);
   const quiz = mode === "learning-path" ? await getLearningQuiz(article) : undefined;
   const tableOfContents = quiz
-    ? [...rendered.tableOfContents, { depth: 2 as const, id: "learning-quiz-title", title: "练习题" }]
+    ? [...rendered.tableOfContents, { depth: 2 as const, id: "learning-quiz-title", title: "小测验" }]
     : rendered.tableOfContents;
 
   return (
