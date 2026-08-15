@@ -55,6 +55,7 @@
 | 0166 | switch | C++ | [cpp/switch.md](cpp/switch.md) |
 | 0167 | while | C++ | [cpp/while.md](cpp/while.md) |
 | 0112 | for | C++ | [cpp/loops.md](cpp/loops.md) |
+| 0168 | do while | C++ | [cpp/do-while.md](cpp/do-while.md) |
 
 ### 学习单元：函数与程序交互
 

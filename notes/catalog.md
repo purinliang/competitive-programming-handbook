@@ -57,6 +57,7 @@
 | 0166 | switch | 待审阅 | [switch.md](cpp/switch.md) |
 | 0167 | while | 待审阅 | [while.md](cpp/while.md) |
 | 0112 | for | 待审阅 | [loops.md](cpp/loops.md) |
+| 0168 | do while | 待审阅 | [do-while.md](cpp/do-while.md) |
 
 ### 知识族：函数与输入输出
 

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "do-while-condition-timing",
+    "prompt": "`do while` 在什么时候检查继续条件？",
+    "options": [
+      { "id": "a", "text": "每轮循环体执行以后" },
+      { "id": "b", "text": "第一次循环体执行以前" },
+      { "id": "c", "text": "只在编译时" },
+      { "id": "d", "text": "从不检查" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`do while` 采用先执行、后判断的顺序；执行完循环体以后才检查是否进入下一轮。"
+  },
+  {
+    "id": "at-least-once",
+    "prompt": "即使条件从一开始就是 `false`，`do while` 的循环体也会执行几次？",
+    "options": [
+      { "id": "a", "text": "`0` 次" },
+      { "id": "b", "text": "至少 `1` 次" },
+      { "id": "c", "text": "至少 `2` 次" },
+      { "id": "d", "text": "无限次" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "第一次执行发生在首次条件检查以前，因此循环体无论如何都会先运行一次。"
+  },
+  {
+    "id": "trailing-semicolon",
+    "prompt": "下面哪项是正确的 `do while` 结尾？",
+    "options": [
+      { "id": "a", "text": "`} while (condition);`" },
+      { "id": "b", "text": "`} while condition`" },
+      { "id": "c", "text": "`} do (condition);`" },
+      { "id": "d", "text": "`} if (condition);`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "尾部的 `while (condition);` 属于同一条 `do while` 语句，右括号以后必须保留分号。"
+  },
+  {
+    "id": "do-while-continue",
+    "prompt": "`do while` 循环执行 `continue` 后会去哪里？",
+    "options": [
+      { "id": "a", "text": "先检查末尾的继续条件" },
+      { "id": "b", "text": "直接结束整个程序" },
+      { "id": "c", "text": "绕过条件并直接执行下一轮循环体" },
+      { "id": "d", "text": "重新执行变量声明之前的代码" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`continue` 放弃本轮剩余语句，但仍遵循 `do while` 的尾部条件检查。"
+  }
+]
