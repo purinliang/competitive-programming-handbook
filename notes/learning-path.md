@@ -123,7 +123,7 @@
 | 0152* | #include | C++ | [cpp/include.md](cpp/include.md) |
 | 0153* | 命名空间与 std | C++ | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
 | 0159* | #define 宏 | C++ | [cpp/define-macros.md](cpp/define-macros.md) |
-| 0160* | typedef 与 using 类型别名 | C++ | `cpp/type-aliases.md` |
+| 0160* | typedef 与 using 类型别名 | C++ | [cpp/type-aliases.md](cpp/type-aliases.md) |
 | 0121e2 | class | C++ | `cpp/class.md` |
 | 0121e3 | 类的成员 | C++ | `cpp/class-members.md` |
 | 0121e4 | 访问权限与 friend | C++ | `cpp/class-access-control.md` |
