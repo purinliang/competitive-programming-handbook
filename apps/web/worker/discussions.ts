@@ -131,6 +131,7 @@ discussionRoutes.get("/api/discussions", async (c) => {
         createdAt: comment.createdAt,
         deleted,
         id: comment.id,
+        mine: viewer?.id === comment.userId,
         parentCommentId: comment.parentCommentId,
         updatedAt: comment.updatedAt,
       }];

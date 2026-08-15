@@ -21,9 +21,11 @@ interface DiscussionComment {
   createdAt: number;
   deleted: boolean;
   id: string;
+  mine: boolean;
 }
 
 interface DiscussionThread {
+  anonymous: boolean;
   comments: DiscussionComment[];
   id: string;
   mine: boolean;
@@ -53,7 +55,11 @@ export function DiscussionPanel({
   const [loading, setLoading] = useState(true);
   const [privateVisible, setPrivateVisible] = useState(true);
   const [replyBody, setReplyBody] = useState("");
+  const [replyAnonymous, setReplyAnonymous] = useState(false);
   const [replyingTo, setReplyingTo] = useState<string>();
+  const [reportBody, setReportBody] = useState("");
+  const [reportingComment, setReportingComment] = useState<string>();
+  const [statusMessage, setStatusMessage] = useState("");
   const [threads, setThreads] = useState<DiscussionThread[]>([]);
   const [turnstileKey, setTurnstileKey] = useState(0);
   const [turnstileSiteKey, setTurnstileSiteKey] = useState<string>();
@@ -107,6 +113,7 @@ export function DiscussionPanel({
       return;
     }
     setError("");
+    setStatusMessage("");
     const response = await fetch("/api/discussions", {
       body: JSON.stringify({
         anonymous,
@@ -136,7 +143,7 @@ export function DiscussionPanel({
   async function reply(threadId: string) {
     if (!replyBody.trim()) return;
     const response = await fetch(`/api/discussions/${threadId}/comments`, {
-      body: JSON.stringify({ anonymous, body: replyBody }),
+      body: JSON.stringify({ anonymous: replyAnonymous, body: replyBody }),
       credentials: "include",
       headers: { "Content-Type": "application/json" },
       method: "POST",
@@ -147,8 +154,53 @@ export function DiscussionPanel({
       return;
     }
     setReplyBody("");
+    setReplyAnonymous(false);
     setReplyingTo(undefined);
     await loadThreads();
+  }
+
+  async function updateThread(
+    thread: DiscussionThread,
+    update: Partial<Pick<DiscussionThread, "anonymous" | "visibility">>,
+  ) {
+    setError("");
+    setStatusMessage("");
+    const response = await fetch(`/api/discussions/${thread.id}`, {
+      body: JSON.stringify({
+        anonymous: update.anonymous ?? thread.anonymous,
+        visibility: update.visibility ?? thread.visibility,
+      }),
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      method: "PATCH",
+    });
+    const result = await response.json();
+    if (!response.ok) {
+      setError(result.error ?? "讨论设置更新失败");
+      return;
+    }
+    setStatusMessage("讨论设置已更新");
+    await loadThreads();
+  }
+
+  async function reportComment(commentId: string) {
+    if (!reportBody.trim()) return;
+    setError("");
+    setStatusMessage("");
+    const response = await fetch(`/api/comments/${commentId}/report`, {
+      body: JSON.stringify({ reason: reportBody }),
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+    });
+    const result = await response.json();
+    if (!response.ok) {
+      setError(result.error ?? "举报提交失败");
+      return;
+    }
+    setReportBody("");
+    setReportingComment(undefined);
+    setStatusMessage("举报已提交给管理员");
   }
 
   return (
@@ -174,24 +226,114 @@ export function DiscussionPanel({
               <span>{thread.visibility === "private" ? <><Lock size={13} />仅自己与管理员</> : "公开讨论"}</span>
               {!thread.versionCurrent ? <span>针对旧版本</span> : null}
             </div>
+            {thread.mine ? (
+              <div className="discussion-thread-settings">
+                <button
+                  onClick={() => updateThread(thread, {
+                    visibility: thread.visibility === "private" ? "public" : "private",
+                  })}
+                  type="button"
+                >
+                  {thread.visibility === "private" ? "设为公开" : "设为私密"}
+                </button>
+                <button
+                  onClick={() => updateThread(thread, { anonymous: !thread.anonymous })}
+                  type="button"
+                >
+                  {thread.anonymous ? "改为署名" : "改为匿名"}
+                </button>
+              </div>
+            ) : null}
             {thread.comments.map((comment) => (
               <div className="discussion-comment" key={comment.id}>
                 <div><strong>{comment.authorName}</strong><time>{new Date(comment.createdAt).toLocaleString("zh-CN")}</time></div>
                 <DiscussionMarkdown>{comment.body}</DiscussionMarkdown>
+                {account?.user && !comment.deleted && !comment.mine ? (
+                  reportingComment === comment.id ? (
+                    <div className="discussion-report-form">
+                      <textarea
+                        maxLength={500}
+                        onChange={(event) => setReportBody(event.target.value)}
+                        placeholder="请简要说明举报原因"
+                        rows={2}
+                        value={reportBody}
+                      />
+                      <div>
+                        <button
+                          className="discussion-text-action"
+                          onClick={() => {
+                            setReportBody("");
+                            setReportingComment(undefined);
+                          }}
+                          type="button"
+                        >
+                          取消
+                        </button>
+                        <button
+                          className="discussion-primary-action"
+                          disabled={!reportBody.trim()}
+                          onClick={() => reportComment(comment.id)}
+                          type="button"
+                        >
+                          提交举报
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <button
+                      className="discussion-text-action"
+                      onClick={() => {
+                        setReportBody("");
+                        setReportingComment(comment.id);
+                      }}
+                      type="button"
+                    >
+                      举报
+                    </button>
+                  )
+                ) : null}
               </div>
             ))}
             {account?.user && thread.status !== "locked" ? (
               replyingTo === thread.id ? (
                 <div className="discussion-reply-form">
                   <textarea
+                    maxLength={4000}
                     onChange={(event) => setReplyBody(event.target.value)}
                     placeholder="写下回复，支持 Markdown 与 LaTeX"
                     rows={3}
                     value={replyBody}
                   />
+                  {thread.visibility === "public" ? (
+                    <label className="discussion-inline-option">
+                      <input
+                        checked={replyAnonymous}
+                        onChange={(event) => setReplyAnonymous(event.target.checked)}
+                        type="checkbox"
+                      />
+                      匿名回复
+                    </label>
+                  ) : null}
                   <div>
-                    <button className="discussion-text-action" onClick={() => setReplyingTo(undefined)} type="button">取消</button>
-                    <button className="discussion-primary-action" onClick={() => reply(thread.id)} type="button">回复</button>
+                    <button
+                      className="discussion-text-action"
+                      onClick={() => {
+                        setReplyAnonymous(false);
+                        setReplyBody("");
+                        setReplyingTo(undefined);
+                      }}
+                      type="button"
+                    >
+                      取消
+                    </button>
+                    <button
+                      className="discussion-primary-action"
+                      disabled={!replyBody.trim()}
+                      onClick={() => reply(thread.id)}
+                      type="button"
+                    >
+                      回复
+                    </button>
                   </div>
                 </div>
               ) : (
@@ -253,6 +395,7 @@ export function DiscussionPanel({
               </button>
             </>
           )}
+          {statusMessage ? <p className="discussion-status">{statusMessage}</p> : null}
           {error ? <p className="discussion-error">{error}</p> : null}
         </section>
       </div>

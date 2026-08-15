@@ -665,10 +665,15 @@
 }
 
 .discussion-hint,
+.discussion-status,
 .discussion-error {
   margin: 0 0 16px;
   color: var(--faint-text);
   font-size: 13px;
+}
+
+.discussion-status {
+  color: var(--success-text);
 }
 
 .discussion-error {
@@ -694,6 +699,25 @@
   display: inline-flex;
   gap: 4px;
   align-items: center;
+}
+
+.discussion-thread-settings {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.discussion-thread-settings button {
+  padding: 0;
+  border: 0;
+  color: var(--secondary-text);
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.discussion-thread-settings button:hover {
+  color: var(--primary-text);
 }
 
 .discussion-comment {
@@ -760,16 +784,32 @@
 }
 
 .discussion-reply-form,
+.discussion-report-form,
 .discussion-compose {
   display: grid;
   gap: 10px;
   margin-top: 14px;
 }
 
-.discussion-reply-form > div {
+.discussion-reply-form > div,
+.discussion-report-form > div {
   display: flex;
   gap: 10px;
   justify-content: flex-end;
+}
+
+.discussion-report-form {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.discussion-inline-option {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--secondary-text);
+  font-size: 12px;
 }
 
 .discussion-compose {
@@ -794,7 +834,8 @@
 }
 
 .discussion-compose textarea,
-.discussion-reply-form textarea {
+.discussion-reply-form textarea,
+.discussion-report-form textarea {
   width: 100%;
   padding: 10px 12px;
   resize: vertical;
@@ -806,7 +847,8 @@
 }
 
 .discussion-compose textarea:focus,
-.discussion-reply-form textarea:focus {
+.discussion-reply-form textarea:focus,
+.discussion-report-form textarea:focus {
   border-color: var(--primary-bg);
   outline: 0;
 }

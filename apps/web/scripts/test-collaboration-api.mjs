@@ -110,6 +110,39 @@ assert.equal(serializedAnonymousView.includes("student-user"), false);
 assert.equal(serializedAnonymousView.includes("Student User"), false);
 assert.equal(serializedAnonymousView.includes("student@example.com"), false);
 
+const forbiddenThreadUpdate = await request(`/api/discussions/${threadId}`, {
+  body: { anonymous: false, visibility: "private" },
+  method: "PATCH",
+  user: "other",
+});
+assert.equal(forbiddenThreadUpdate.response.status, 404);
+
+const anonymousReply = await request(`/api/discussions/${threadId}/comments`, {
+  body: { anonymous: true, body: "匿名回复" },
+  method: "POST",
+  user: "other",
+});
+assert.equal(anonymousReply.response.status, 201);
+const repliedView = await request(
+  `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
+    + "&target_kind=article&target_id=article",
+);
+const serializedRepliedView = JSON.stringify(repliedView.result);
+assert.equal(repliedView.result.threads[0].comments[1].authorName, "匿名同学");
+assert.equal(serializedRepliedView.includes("other-user"), false);
+assert.equal(serializedRepliedView.includes("Other Student"), false);
+assert.equal(serializedRepliedView.includes("other@example.com"), false);
+
+const reported = await request(`/api/comments/${commentId}/report`, {
+  body: { reason: "自动化测试举报" },
+  method: "POST",
+  user: "other",
+});
+assert.equal(reported.response.status, 200);
+const reportedAdminView = await request("/api/admin/discussions", { user: "admin" });
+assert.equal(reportedAdminView.result.reports[0].commentId, commentId);
+assert.equal(reportedAdminView.result.reports[0].reason, "自动化测试举报");
+
 const missingOrigin = await request("/api/learning/sections", {
   body: { documentKey, read: true, sectionId, sectionRevision },
   method: "POST",
