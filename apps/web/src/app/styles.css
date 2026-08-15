@@ -50,6 +50,11 @@ a:focus-visible {
   animation: navigation-progress-reveal 0s linear 350ms forwards;
 }
 
+.navigation-progress.is-immediate {
+  opacity: 1;
+  animation: none;
+}
+
 .navigation-progress span {
   display: block;
   width: 32%;
@@ -173,6 +178,13 @@ a:focus-visible {
   color: var(--secondary-text);
   background: transparent;
   cursor: pointer;
+}
+
+.account-avatar-placeholder {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--secondary-hover-bg);
 }
 
 .account-avatar-fallback,

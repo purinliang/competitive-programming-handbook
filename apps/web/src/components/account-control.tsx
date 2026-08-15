@@ -59,14 +59,23 @@ export function AccountControl() {
     };
   }, [menuOpen]);
 
-  if (!account?.authConfigured) {
+  if (!account) {
+    return (
+      <span className="account-control-slot" aria-hidden="true">
+        <LoadingBar active immediate />
+        <span className="account-avatar-placeholder" />
+      </span>
+    );
+  }
+
+  if (!account.authConfigured) {
     return <span className="account-control-slot" aria-hidden="true" />;
   }
 
   if (!account.user) {
     return (
       <div className="account-control-slot">
-        <LoadingBar active={pending} />
+        <LoadingBar active={pending} immediate />
         <button
           className="control-button account-login-button"
           disabled={pending}
@@ -94,7 +103,7 @@ export function AccountControl() {
 
   return (
     <div className="account-control-slot" ref={menuRef}>
-      <LoadingBar active={pending} />
+      <LoadingBar active={pending} immediate />
       <button
         aria-expanded={menuOpen}
         aria-haspopup="menu"
