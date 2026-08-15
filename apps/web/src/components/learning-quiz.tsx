@@ -1,7 +1,11 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+
+import {
+  getLearningState,
+  invalidateLearningState,
+} from "@/lib/collaboration-client";
 
 import type { LearningQuiz as LearningQuizData } from "@/lib/content/types";
 
@@ -15,14 +19,21 @@ interface StoredAnswer {
 
 interface StoredArticleProgress {
   answers: Record<string, StoredAnswer>;
+  documentEpoch?: number;
 }
 
 type StoredProgress = Record<string, StoredArticleProgress>;
 
-function readProgress(articleKey: string, quiz: LearningQuizData): Record<string, string> {
+function readProgress(
+  articleKey: string,
+  documentEpoch: number,
+  quiz: LearningQuizData,
+): Record<string, string> {
   try {
     const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}") as StoredProgress;
-    const storedAnswers = progress[articleKey]?.answers ?? {};
+    const articleProgress = progress[articleKey];
+    if ((articleProgress?.documentEpoch ?? 1) !== documentEpoch) return {};
+    const storedAnswers = articleProgress?.answers ?? {};
     return Object.fromEntries(quiz.questions.flatMap((question) => {
       const answer = storedAnswers[question.id];
       return answer?.questionRevision === question.revision
@@ -36,6 +47,7 @@ function readProgress(articleKey: string, quiz: LearningQuizData): Record<string
 
 function writeProgress(
   articleKey: string,
+  documentEpoch: number,
   quiz: LearningQuizData,
   answers: Record<string, string>,
 ) {
@@ -52,6 +64,7 @@ function writeProgress(
             }]]
           : [];
       })),
+      documentEpoch,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
   } catch {
@@ -59,7 +72,15 @@ function writeProgress(
   }
 }
 
-export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: LearningQuizData }) {
+export function LearningQuiz({
+  articleKey,
+  documentEpoch,
+  quiz,
+}: {
+  articleKey: string;
+  documentEpoch: number;
+  quiz: LearningQuizData;
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [selections, setSelections] = useState<Record<string, string>>({});
@@ -74,16 +95,13 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
   );
 
   useEffect(() => {
-    const storedAnswers = readProgress(articleKey, quiz);
+    const storedAnswers = readProgress(articleKey, documentEpoch, quiz);
     setAnswers(storedAnswers);
     setSelections(storedAnswers);
     const documentKey = `learning-path:${articleKey}`;
-    fetch(`/api/learning/state?document_key=${encodeURIComponent(documentKey)}`, {
-      credentials: "include",
-    })
-      .then((response) => response.ok ? response.json() : undefined)
+    getLearningState(documentKey)
       .then((state) => {
-        if (!state?.questions) return;
+        if (!state?.questions || state.documentEpoch !== documentEpoch) return;
         const questions = new Map(quiz.questions.map((item) => [item.id, item]));
         const cloudAnswers = Object.fromEntries(
           state.questions.flatMap((attempt: {
@@ -97,13 +115,18 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
               : [];
           }),
         );
-        const merged = { ...cloudAnswers, ...storedAnswers };
+        const currentStoredAnswers = readProgress(
+          articleKey,
+          documentEpoch,
+          quiz,
+        );
+        const merged = { ...cloudAnswers, ...currentStoredAnswers };
         setAnswers(merged);
         setSelections(merged);
-        writeProgress(articleKey, quiz, merged);
+        writeProgress(articleKey, documentEpoch, quiz, merged);
       })
       .catch(() => undefined);
-  }, [articleKey, quiz]);
+  }, [articleKey, documentEpoch, quiz]);
 
   useEffect(() => {
     setExplanationVisible(false);
@@ -116,7 +139,7 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
       const nextAnswers = { ...answers };
       delete nextAnswers[question.id];
       setAnswers(nextAnswers);
-      writeProgress(articleKey, quiz, nextAnswers);
+      writeProgress(articleKey, documentEpoch, quiz, nextAnswers);
     }
   }
 
@@ -126,7 +149,7 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
     }
     const nextAnswers = { ...answers, [question.id]: selection };
     setAnswers(nextAnswers);
-    writeProgress(articleKey, quiz, nextAnswers);
+    writeProgress(articleKey, documentEpoch, quiz, nextAnswers);
     fetch("/api/learning/questions/attempts", {
       body: JSON.stringify({
         documentKey: `learning-path:${articleKey}`,
@@ -137,7 +160,9 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
       credentials: "include",
       headers: { "Content-Type": "application/json" },
       method: "POST",
-    }).catch(() => undefined);
+    })
+      .then(() => invalidateLearningState(`learning-path:${articleKey}`))
+      .catch(() => undefined);
   }
 
   function moveTo(index: number) {
@@ -147,7 +172,7 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
   return (
     <section className="learning-quiz" aria-labelledby="learning-quiz-title">
       <header className="learning-quiz-header">
-        <h2 id="learning-quiz-title">小测验</h2>
+        <h2 id="learning-quiz-title">小测</h2>
         <span>{correctCount} / {quiz.questions.length} 已答对</span>
       </header>
 
@@ -172,7 +197,6 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
       </nav>
 
       <div className="quiz-question" key={question.id}>
-        <p className="quiz-question-number">第 {currentIndex + 1} 题</p>
         <h3
           className="quiz-rich-text"
           dangerouslySetInnerHTML={{ __html: question.promptHtml }}
@@ -204,28 +228,35 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
         </div>
 
         <div className="quiz-actions">
-          <button className="quiz-secondary-action" disabled={currentIndex === 0} onClick={() => moveTo(currentIndex - 1)} type="button">
-            <ChevronLeft aria-hidden="true" size={16} />上一题
-          </button>
-          <button className="quiz-submit" disabled={!selection || submittedOptionId !== undefined} onClick={submit} type="button">提交</button>
-          <button className="quiz-secondary-action" disabled={currentIndex === quiz.questions.length - 1} onClick={() => moveTo(currentIndex + 1)} type="button">
-            下一题<ChevronRight aria-hidden="true" size={16} />
-          </button>
-        </div>
-
-        <div className="quiz-feedback" aria-live="polite">
-          {submittedOptionId !== undefined ? (
-            <p className="quiz-result" data-state={submittedOptionId === question.correctOptionId ? "correct" : "incorrect"}>
-              {submittedOptionId === question.correctOptionId ? "回答正确" : "回答错误，可以重新选择后再次提交。"}
-            </p>
-          ) : <span />}
+          <div className="quiz-feedback" aria-live="polite">
+            {submittedOptionId !== undefined ? (
+              <p
+                className="quiz-result"
+                data-state={submittedOptionId === question.correctOptionId
+                  ? "correct"
+                  : "incorrect"}
+              >
+                {submittedOptionId === question.correctOptionId
+                  ? "回答正确"
+                  : "回答错误，可以重新选择后再次提交"}
+              </p>
+            ) : <span />}
+            <button
+              className="quiz-explanation-toggle"
+              disabled={submittedOptionId === undefined}
+              onClick={() => setExplanationVisible((visible) => !visible)}
+              type="button"
+            >
+              {explanationVisible ? "隐藏解析" : "查看解析"}
+            </button>
+          </div>
           <button
-            className="quiz-explanation-toggle"
-            disabled={submittedOptionId === undefined}
-            onClick={() => setExplanationVisible((visible) => !visible)}
+            className="quiz-submit"
+            disabled={!selection || submittedOptionId !== undefined}
+            onClick={submit}
             type="button"
           >
-            {explanationVisible ? "收起解析" : "查看解析"}
+            提交
           </button>
         </div>
         {explanationVisible ? (

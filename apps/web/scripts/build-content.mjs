@@ -306,6 +306,41 @@ function rehypeSetArticleTitle(title) {
   };
 }
 
+function rehypeAddSectionActionSlots() {
+  return () => (tree) => {
+    function wrapHeadings(node) {
+      if (!Array.isArray(node.children)) return;
+      node.children = node.children.map((child) => {
+        if (child.type === "element" && child.tagName === "h2") {
+          const sectionId = child.properties?.["data-section-id"];
+          if (sectionId) {
+            return {
+              type: "element",
+              tagName: "div",
+              properties: { className: ["section-heading-row"] },
+              children: [
+                child,
+                {
+                  type: "element",
+                  tagName: "div",
+                  properties: {
+                    className: ["section-collaboration-slot"],
+                    "data-section-action-slot": String(sectionId),
+                  },
+                  children: [],
+                },
+              ],
+            };
+          }
+        }
+        wrapHeadings(child);
+        return child;
+      });
+    }
+    wrapHeadings(tree);
+  };
+}
+
 async function renderArticle(article, sourcePath, title) {
   const markdown = await readFile(path.join(notesRoot, sourcePath), "utf8");
   const tableOfContents = [];
@@ -319,6 +354,7 @@ async function renderArticle(article, sourcePath, title) {
     .use(rehypeSlug)
     .use(rehypeSetArticleTitle(title))
     .use(rehypeCollectMetadata(tableOfContents, sections))
+    .use(rehypeAddSectionActionSlots())
     .use(rehypeKatex)
     .use(rehypePrettyCode, {
       theme: {

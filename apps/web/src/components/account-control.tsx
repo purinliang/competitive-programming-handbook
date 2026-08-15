@@ -4,18 +4,14 @@ import { LogIn, LogOut } from "lucide-react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { authClient } from "@/lib/auth-client";
+import {
+  getAccountState,
+  resetAccountState,
+} from "@/lib/collaboration-client";
 
 import { LoadingBar } from "./loading-bar";
 
-interface AccountState {
-  authConfigured: boolean;
-  user: null | {
-    email: string;
-    image?: string | null;
-    name: string;
-    role: "admin" | "student";
-  };
-}
+import type { AccountState } from "@/lib/collaboration-client";
 
 const ACCOUNT_SNAPSHOT_KEY = "handbook.account-snapshot.v1";
 
@@ -39,10 +35,9 @@ export function AccountControl() {
 
   useEffect(() => {
     let active = true;
-    fetch("/api/me", { credentials: "include" })
-      .then((response) => response.ok ? response.json() as Promise<AccountState> : undefined)
+    getAccountState()
       .then((result) => {
-        if (!active || !result) return;
+        if (!active) return;
 
         setAccount(result);
         if (result.authConfigured) {
@@ -152,6 +147,7 @@ export function AccountControl() {
               setPending(true);
               try {
                 await authClient.signOut();
+                resetAccountState();
                 localStorage.setItem(ACCOUNT_SNAPSHOT_KEY, JSON.stringify({
                   authConfigured: true,
                   user: null,

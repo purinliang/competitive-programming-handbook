@@ -60,6 +60,7 @@ export interface TableOfContentsItem {
   id: string;
   sectionId?: string;
   sectionRevision?: string;
+  supplement?: boolean;
   title: string;
 }
 

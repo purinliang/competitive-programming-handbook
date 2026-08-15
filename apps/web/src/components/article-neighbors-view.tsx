@@ -9,8 +9,8 @@ export function ArticleNeighborsView({ mode, previous, next }: { mode: Navigatio
   const titleFor = (article: ArticleRecord) => mode === "learning-path" ? article.learningTitle : article.title;
   return (
     <nav className="article-neighbors" aria-label={mode === "learning-path" ? "学习路线中的相邻文章" : "模块中的相邻文章"}>
-      {previous ? <Link href={routeFor(previous)}><ArrowLeft aria-hidden="true" /><span><small>上一篇</small>{titleFor(previous)}</span></Link> : <span className="article-neighbor-disabled" aria-disabled="true"><ArrowLeft aria-hidden="true" /><span><small>上一篇</small>没有更早的文章</span></span>}
-      {next ? <Link className="next" href={routeFor(next)}><span><small>下一篇</small>{titleFor(next)}</span><ArrowRight aria-hidden="true" /></Link> : <span className="article-neighbor-disabled next" aria-disabled="true"><span><small>下一篇</small>已经到达末尾</span><ArrowRight aria-hidden="true" /></span>}
+      {previous ? <Link href={routeFor(previous)}><ArrowLeft aria-hidden="true" size={18} /><span><small>上一篇</small>{titleFor(previous)}</span></Link> : <span className="article-neighbor-disabled" aria-disabled="true"><ArrowLeft aria-hidden="true" size={18} /><span><small>上一篇</small>没有更早的文章</span></span>}
+      {next ? <Link className="next" href={routeFor(next)}><span><small>下一篇</small>{titleFor(next)}</span><ArrowRight aria-hidden="true" size={18} /></Link> : <span className="article-neighbor-disabled next" aria-disabled="true"><span><small>下一篇</small>已经到达末尾</span><ArrowRight aria-hidden="true" size={18} /></span>}
     </nav>
   );
 }

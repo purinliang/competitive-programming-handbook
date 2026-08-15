@@ -15,6 +15,15 @@ export function DiscussionMarkdown({ children }: { children: string }) {
               {linkText}
             </a>
           ),
+          img: ({ alt, src }) => (
+            <a
+              href={typeof src === "string" ? src : undefined}
+              rel="nofollow ugc noopener noreferrer"
+              target="_blank"
+            >
+              {alt ? `外部图片：${alt}` : "外部图片"}
+            </a>
+          ),
         }}
         rehypePlugins={[rehypeKatex]}
         remarkPlugins={[remarkGfm, remarkMath]}

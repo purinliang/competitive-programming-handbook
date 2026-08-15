@@ -1,12 +1,25 @@
 "use client";
 
-import { Lock, X } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { X } from "lucide-react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react";
 
 import { authClient } from "@/lib/auth-client";
+import { getAccountState } from "@/lib/collaboration-client";
 
 import { DiscussionMarkdown } from "./discussion-markdown";
 import { TurnstileWidget } from "./turnstile-widget";
+
+import type { AccountState } from "@/lib/collaboration-client";
+
+const DISCUSSION_LOAD_ERROR = "评论暂时无法加载";
+const DISCUSSION_ERROR_CACHE_MS = 30_000;
+const DISCUSSION_LOADING_MINIMUM_MS = 300;
 
 export interface DiscussionTarget {
   id: string;
@@ -25,7 +38,6 @@ interface DiscussionComment {
 }
 
 interface DiscussionThread {
-  anonymous: boolean;
   comments: DiscussionComment[];
   id: string;
   mine: boolean;
@@ -37,67 +49,141 @@ interface DiscussionThread {
   visibility: "private" | "public";
 }
 
-interface AccountState {
-  authConfigured: boolean;
-  user: null | { name: string };
+const discussionCache = new Map<string, DiscussionThread[]>();
+const discussionErrorCache = new Map<string, number>();
+const discussionRequests = new Map<string, Promise<DiscussionThread[]>>();
+
+function hasFreshDiscussionError(cacheKey: string) {
+  const expiresAt = discussionErrorCache.get(cacheKey) ?? 0;
+  if (expiresAt > Date.now()) return true;
+  discussionErrorCache.delete(cacheKey);
+  return false;
+}
+
+async function readApiJson<T>(response: Response, fallbackMessage: string) {
+  if (!response.headers.get("content-type")?.includes("application/json")) {
+    throw new Error(fallbackMessage);
+  }
+  const result = await response.json() as T & { error?: string };
+  if (!response.ok) {
+    throw new Error(result.error ?? fallbackMessage);
+  }
+  return result;
 }
 
 export function DiscussionPanel({
   documentKey,
-  onClose,
+  inline = false,
+  onClose = () => undefined,
   target,
 }: {
   documentKey: string;
-  onClose: () => void;
+  inline?: boolean;
+  onClose?: () => void;
   target: DiscussionTarget;
 }) {
+  const cacheKey = [
+    documentKey,
+    target.kind,
+    target.id,
+    target.revision,
+    target.kind === "article" ? "history" : "current",
+  ].join(":");
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const onCloseRef = useRef(onClose);
+  const hasDraftRef = useRef(false);
+  const titleId = useId();
+  const headingId = inline ? "article-comments" : titleId;
   const [account, setAccount] = useState<AccountState>();
-  const [anonymous, setAnonymous] = useState(false);
+  const [actionError, setActionError] = useState("");
   const [body, setBody] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(
+    () => hasFreshDiscussionError(cacheKey) ? DISCUSSION_LOAD_ERROR : "",
+  );
+  const [loading, setLoading] = useState(
+    () => !discussionCache.has(cacheKey) && !hasFreshDiscussionError(cacheKey),
+  );
   const [privateVisible, setPrivateVisible] = useState(true);
-  const [replyBody, setReplyBody] = useState("");
-  const [replyAnonymous, setReplyAnonymous] = useState(false);
-  const [replyingTo, setReplyingTo] = useState<string>();
   const [reportBody, setReportBody] = useState("");
   const [reportingComment, setReportingComment] = useState<string>();
   const [statusMessage, setStatusMessage] = useState("");
-  const [threads, setThreads] = useState<DiscussionThread[]>([]);
+  const [threads, setThreads] = useState<DiscussionThread[]>(
+    () => discussionCache.get(cacheKey) ?? [],
+  );
   const [turnstileKey, setTurnstileKey] = useState(0);
   const [turnstileSiteKey, setTurnstileSiteKey] = useState<string>();
   const [turnstileToken, setTurnstileToken] = useState("");
+  const initializing = loading || account === undefined;
 
-  const loadThreads = useCallback(async () => {
-    setLoading(true);
-    const query = new URLSearchParams({
-      document_key: documentKey,
-      target_id: target.id,
-      target_kind: target.kind,
-    });
-    if (target.kind === "article") query.set("include_history", "1");
+  onCloseRef.current = onClose;
+  hasDraftRef.current = Boolean(body.trim() || reportBody.trim());
+
+  const loadThreads = useCallback(async (refresh = false) => {
+    if (!refresh && discussionCache.has(cacheKey)) {
+      setThreads(discussionCache.get(cacheKey) ?? []);
+      setLoadError("");
+      setLoading(false);
+      return;
+    }
+    if (!refresh && hasFreshDiscussionError(cacheKey)) {
+      setLoadError(DISCUSSION_LOAD_ERROR);
+      setLoading(false);
+      return;
+    }
+    const displayLoading = !discussionCache.has(cacheKey);
+    const startedAt = performance.now();
+    setLoading(displayLoading);
     try {
-      const response = await fetch(`/api/discussions?${query}`, {
-        credentials: "include",
-      });
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error ?? "讨论加载失败");
-      setThreads(result.threads);
-      setError("");
-    } catch (reason) {
-      setError(reason instanceof Error ? reason.message : "讨论加载失败");
+      let request = refresh ? undefined : discussionRequests.get(cacheKey);
+      if (!request) {
+        const query = new URLSearchParams({
+          document_key: documentKey,
+          target_id: target.id,
+          target_kind: target.kind,
+        });
+        if (target.kind === "article") query.set("include_history", "1");
+        request = fetch(`/api/discussions?${query}`, {
+          credentials: "include",
+        }).then(async (response) => {
+          const result = await readApiJson<{ threads: DiscussionThread[] }>(
+            response,
+            DISCUSSION_LOAD_ERROR,
+          );
+          return result.threads;
+        });
+        discussionRequests.set(cacheKey, request);
+      }
+      const result = await request;
+      discussionCache.set(cacheKey, result);
+      discussionErrorCache.delete(cacheKey);
+      setThreads(result);
+      setLoadError("");
+    } catch {
+      discussionErrorCache.set(
+        cacheKey,
+        Date.now() + DISCUSSION_ERROR_CACHE_MS,
+      );
+      setLoadError(DISCUSSION_LOAD_ERROR);
     } finally {
+      discussionRequests.delete(cacheKey);
+      const elapsed = performance.now() - startedAt;
+      if (displayLoading) {
+        const remaining = DISCUSSION_LOADING_MINIMUM_MS - elapsed;
+        if (remaining > 0) {
+          await new Promise((resolve) => window.setTimeout(resolve, remaining));
+        }
+      }
       setLoading(false);
     }
-  }, [documentKey, target.id, target.kind]);
+  }, [cacheKey, documentKey, target.id, target.kind]);
 
   useEffect(() => {
-    fetch("/api/me", { credentials: "include" })
-      .then((response) => response.ok ? response.json() : undefined)
+    getAccountState()
       .then((result) => {
-        if (result) setAccount(result);
+        setAccount(result);
       })
-      .catch(() => undefined);
+      .catch(() => setAccount({ authConfigured: false, user: null }));
     loadThreads();
   }, [loadThreads]);
 
@@ -110,314 +196,306 @@ export function DiscussionPanel({
       .catch(() => undefined);
   }, []);
 
+  useEffect(() => {
+    if (inline) return;
+    const previousFocus = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
+    closeButtonRef.current?.focus();
+
+    function handleKeyboard(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        if (!hasDraftRef.current) onCloseRef.current();
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+      const focusable = [...dialog.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), '
+          + 'textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      )].filter((element) => !element.hidden);
+      if (focusable.length === 0) {
+        event.preventDefault();
+        dialog.focus();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyboard);
+    return () => {
+      window.removeEventListener("keydown", handleKeyboard);
+      previousFocus?.focus();
+    };
+  }, [inline]);
+
   async function createThread() {
     if (!body.trim()) return;
     if (turnstileSiteKey && !turnstileToken) {
-      setError("请先完成人机验证");
+      setActionError("请先完成人机验证");
       return;
     }
-    setError("");
+    setActionError("");
     setStatusMessage("");
-    const response = await fetch("/api/discussions", {
-      body: JSON.stringify({
-        anonymous,
-        body,
-        documentKey,
-        targetId: target.id,
-        targetKind: target.kind,
-        targetRevision: target.revision,
-        turnstileToken,
-        visibility: privateVisible ? "private" : "public",
-      }),
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-    });
-    const result = await response.json();
-    if (!response.ok) {
-      setError(result.error ?? "留言失败");
-      return;
+    try {
+      const response = await fetch("/api/discussions", {
+        body: JSON.stringify({
+          body,
+          documentKey,
+          targetId: target.id,
+          targetKind: target.kind,
+          targetRevision: target.revision,
+          turnstileToken,
+          visibility: privateVisible ? "private" : "public",
+        }),
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+      });
+      await readApiJson(response, "评论提交失败");
+      setBody("");
+      setTurnstileToken("");
+      setTurnstileKey((value) => value + 1);
+      await loadThreads(true);
+    } catch (reason) {
+      setActionError(reason instanceof Error ? reason.message : "评论提交失败");
     }
-    setBody("");
-    setTurnstileToken("");
-    setTurnstileKey((value) => value + 1);
-    await loadThreads();
-  }
-
-  async function reply(threadId: string) {
-    if (!replyBody.trim()) return;
-    const response = await fetch(`/api/discussions/${threadId}/comments`, {
-      body: JSON.stringify({ anonymous: replyAnonymous, body: replyBody }),
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-    });
-    const result = await response.json();
-    if (!response.ok) {
-      setError(result.error ?? "回复失败");
-      return;
-    }
-    setReplyBody("");
-    setReplyAnonymous(false);
-    setReplyingTo(undefined);
-    await loadThreads();
-  }
-
-  async function updateThread(
-    thread: DiscussionThread,
-    update: Partial<Pick<DiscussionThread, "anonymous" | "visibility">>,
-  ) {
-    setError("");
-    setStatusMessage("");
-    const response = await fetch(`/api/discussions/${thread.id}`, {
-      body: JSON.stringify({
-        anonymous: update.anonymous ?? thread.anonymous,
-        visibility: update.visibility ?? thread.visibility,
-      }),
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      method: "PATCH",
-    });
-    const result = await response.json();
-    if (!response.ok) {
-      setError(result.error ?? "讨论设置更新失败");
-      return;
-    }
-    setStatusMessage("讨论设置已更新");
-    await loadThreads();
   }
 
   async function reportComment(commentId: string) {
     if (!reportBody.trim()) return;
-    setError("");
+    setActionError("");
     setStatusMessage("");
-    const response = await fetch(`/api/comments/${commentId}/report`, {
-      body: JSON.stringify({ reason: reportBody }),
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-    });
-    const result = await response.json();
-    if (!response.ok) {
-      setError(result.error ?? "举报提交失败");
-      return;
+    try {
+      const response = await fetch(`/api/comments/${commentId}/report`, {
+        body: JSON.stringify({ reason: reportBody }),
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+      });
+      await readApiJson(response, "举报提交失败");
+      setReportBody("");
+      setReportingComment(undefined);
+      setStatusMessage("举报已提交给管理员");
+    } catch (reason) {
+      setActionError(reason instanceof Error ? reason.message : "举报提交失败");
     }
-    setReportBody("");
-    setReportingComment(undefined);
-    setStatusMessage("举报已提交给管理员");
   }
 
   return (
-    <aside className="discussion-panel" aria-label={`${target.title}讨论`}>
-      <header>
-        <div>
-          <span>{target.kind === "article" ? "全文讨论" : "分节讨论"}</span>
-          <h2>{target.title}</h2>
-        </div>
-        <button aria-label="关闭讨论" className="icon-button" onClick={onClose} type="button">
-          <X aria-hidden="true" size={18} />
-        </button>
-      </header>
+    <div
+      className={inline ? "discussion-content-shell" : "discussion-dialog-backdrop"}
+      onMouseDown={(event) => {
+        if (!inline && event.target === event.currentTarget && !hasDraftRef.current) {
+          onClose();
+        }
+      }}
+    >
+      <div
+        aria-labelledby={headingId}
+        aria-modal={inline ? undefined : "true"}
+        className={inline ? "discussion-inline" : "discussion-panel"}
+        ref={dialogRef}
+        role={inline ? undefined : "dialog"}
+        tabIndex={inline ? undefined : -1}
+      >
+        <header className="discussion-content-header">
+          <div>
+            <h2 id={headingId}>{inline ? "评论区" : target.title}</h2>
+          </div>
+          {!inline ? (
+            <button
+              aria-label="关闭评论"
+              className="icon-button"
+              onClick={onClose}
+              ref={closeButtonRef}
+              type="button"
+            >
+              <X aria-hidden="true" size={18} />
+            </button>
+          ) : null}
+        </header>
 
       <div className="discussion-panel-body">
-        {loading ? <p className="discussion-hint">正在加载讨论……</p> : null}
-        {!loading && threads.length === 0 ? (
-          <p className="discussion-hint">这里还没有讨论。</p>
+        {initializing || threads.length === 0 ? (
+          <div className="discussion-state-slot">
+            {initializing ? (
+              <p className="discussion-state-message" role="status">
+                正在加载评论……
+              </p>
+            ) : null}
+            {!initializing && loadError ? (
+              <p className="discussion-state-message">{loadError}</p>
+            ) : null}
+            {!initializing && !loadError ? (
+              <p className="discussion-state-message">这里还没有评论</p>
+            ) : null}
+          </div>
         ) : null}
-        {threads.map((thread) => (
+        {!initializing && !loadError ? threads.map((thread) => (
           <article className="discussion-thread" key={thread.id}>
-            <div className="discussion-thread-meta">
-              <span>
-                {thread.visibility === "private"
-                  ? <><Lock size={13} />仅自己与管理员</>
-                  : "公开讨论"}
-              </span>
-              {!thread.versionCurrent ? (
-                <span>
-                  {thread.targetKind === "section"
-                    ? `历史小节：${thread.targetTitle}`
-                    : "针对旧版本"}
-                </span>
-              ) : null}
-            </div>
             {!thread.versionCurrent && thread.quotedText ? (
               <blockquote className="discussion-version-quote">
                 {thread.quotedText}
               </blockquote>
             ) : null}
-            {thread.mine ? (
-              <div className="discussion-thread-settings">
-                <button
-                  onClick={() => updateThread(thread, {
-                    visibility: thread.visibility === "private" ? "public" : "private",
-                  })}
-                  type="button"
-                >
-                  {thread.visibility === "private" ? "设为公开" : "设为私密"}
-                </button>
-                <button
-                  onClick={() => updateThread(thread, { anonymous: !thread.anonymous })}
-                  type="button"
-                >
-                  {thread.anonymous ? "改为署名" : "改为匿名"}
-                </button>
-              </div>
-            ) : null}
-            {thread.comments.map((comment) => (
+            {thread.comments.map((comment, index) => (
               <div className="discussion-comment" key={comment.id}>
-                <div><strong>{comment.authorName}</strong><time>{new Date(comment.createdAt).toLocaleString("zh-CN")}</time></div>
+                <div className="discussion-comment-header">
+                  <div className="discussion-comment-identity">
+                    <strong>{comment.authorName}</strong>
+                    <time dateTime={new Date(comment.createdAt).toISOString()}>
+                      {new Date(comment.createdAt).toLocaleString("zh-CN")}
+                    </time>
+                  </div>
+                </div>
                 <DiscussionMarkdown>{comment.body}</DiscussionMarkdown>
-                {account?.user && !comment.deleted && !comment.mine ? (
-                  reportingComment === comment.id ? (
-                    <div className="discussion-report-form">
-                      <textarea
-                        maxLength={500}
-                        onChange={(event) => setReportBody(event.target.value)}
-                        placeholder="请简要说明举报原因"
-                        rows={2}
-                        value={reportBody}
-                      />
-                      <div>
+                <div className="discussion-comment-footer">
+                  <div className="discussion-comment-context">
+                    {index === 0 && thread.visibility === "private" ? (
+                      <span>仅自己与管理员可见</span>
+                    ) : null}
+                    {index === 0 && !thread.versionCurrent ? (
+                      <span>
+                        {thread.targetKind === "section"
+                          ? `历史小节：${thread.targetTitle}`
+                          : "旧版本"}
+                      </span>
+                    ) : null}
+                  </div>
+                  <div className="discussion-comment-actions">
+                    {account?.user && !comment.deleted && !comment.mine
+                      && reportingComment !== comment.id ? (
                         <button
                           className="discussion-text-action"
                           onClick={() => {
                             setReportBody("");
-                            setReportingComment(undefined);
+                            setReportingComment(comment.id);
                           }}
                           type="button"
                         >
-                          取消
+                          举报
                         </button>
-                        <button
-                          className="discussion-primary-action"
-                          disabled={!reportBody.trim()}
-                          onClick={() => reportComment(comment.id)}
-                          type="button"
-                        >
-                          提交举报
-                        </button>
-                      </div>
+                      ) : null}
+                  </div>
+                </div>
+                {reportingComment === comment.id ? (
+                  <div className="discussion-report-form">
+                    <textarea
+                      maxLength={500}
+                      onChange={(event) => setReportBody(event.target.value)}
+                      placeholder="请简要说明举报原因"
+                      rows={2}
+                      value={reportBody}
+                    />
+                    <div>
+                      <button
+                        className="discussion-text-action"
+                        onClick={() => {
+                          setReportBody("");
+                          setReportingComment(undefined);
+                        }}
+                        type="button"
+                      >
+                        取消
+                      </button>
+                      <button
+                        className="discussion-primary-action"
+                        disabled={!reportBody.trim()}
+                        onClick={() => reportComment(comment.id)}
+                        type="button"
+                      >
+                        提交举报
+                      </button>
                     </div>
-                  ) : (
-                    <button
-                      className="discussion-text-action"
-                      onClick={() => {
-                        setReportBody("");
-                        setReportingComment(comment.id);
-                      }}
-                      type="button"
-                    >
-                      举报
-                    </button>
-                  )
+                  </div>
                 ) : null}
               </div>
             ))}
-            {account?.user && thread.status !== "locked" ? (
-              replyingTo === thread.id ? (
-                <div className="discussion-reply-form">
-                  <textarea
-                    maxLength={4000}
-                    onChange={(event) => setReplyBody(event.target.value)}
-                    placeholder="写下回复，支持 Markdown 与 LaTeX"
-                    rows={3}
-                    value={replyBody}
-                  />
-                  {thread.visibility === "public" ? (
-                    <label className="discussion-inline-option">
-                      <input
-                        checked={replyAnonymous}
-                        onChange={(event) => setReplyAnonymous(event.target.checked)}
-                        type="checkbox"
-                      />
-                      匿名回复
-                    </label>
-                  ) : null}
-                  <div>
-                    <button
-                      className="discussion-text-action"
-                      onClick={() => {
-                        setReplyAnonymous(false);
-                        setReplyBody("");
-                        setReplyingTo(undefined);
-                      }}
-                      type="button"
-                    >
-                      取消
-                    </button>
-                    <button
-                      className="discussion-primary-action"
-                      disabled={!replyBody.trim()}
-                      onClick={() => reply(thread.id)}
-                      type="button"
-                    >
-                      回复
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <button className="discussion-text-action" onClick={() => setReplyingTo(thread.id)} type="button">回复</button>
-              )
-            ) : null}
           </article>
-        ))}
+        )) : null}
 
-        <section className="discussion-compose">
-          <h3>发起讨论</h3>
-          {!account?.authConfigured ? (
-            <p className="discussion-hint">网站登录尚未启用。</p>
-          ) : !account.user ? (
-            <button
-              className="discussion-primary-action"
-              onClick={() => authClient.signIn.social({
-                callbackURL: window.location.href,
-                provider: "github",
-              })}
-              type="button"
-            >
-              登录后留言
-            </button>
-          ) : (
-            <>
+          {!reportingComment ? (
+            <section className="discussion-compose">
+              <h3>发表评论</h3>
               <textarea
+                disabled={initializing || Boolean(loadError) || !account?.user}
                 maxLength={4000}
                 onChange={(event) => setBody(event.target.value)}
-                placeholder="写下看不懂的地方、补充或建议；支持 Markdown 与 LaTeX"
+                placeholder={initializing
+                    ? "正在连接评论服务"
+                    : loadError
+                      ? "评论服务恢复后可以发表评论"
+                    : !account.authConfigured
+                      ? "当前预览未配置登录服务"
+                      : !account.user
+                        ? "登录后可以发表评论"
+                        : "写下看不懂的地方、补充或建议；支持 Markdown 与 LaTeX"}
                 rows={5}
                 value={body}
               />
-              <label>
-                <input
-                  checked={privateVisible}
-                  onChange={(event) => setPrivateVisible(event.target.checked)}
-                  type="checkbox"
-                />
-                讨论范围：仅自己与管理员可见
-              </label>
-              <label>
-                <input
-                  checked={anonymous}
-                  onChange={(event) => setAnonymous(event.target.checked)}
-                  type="checkbox"
-                />
-                作者身份：向其他读者匿名显示
-              </label>
-              {turnstileSiteKey ? (
+              {!initializing && account.user && !loadError && turnstileSiteKey ? (
                 <TurnstileWidget
                   key={turnstileKey}
                   onToken={setTurnstileToken}
                   siteKey={turnstileSiteKey}
                 />
               ) : null}
-              <button className="discussion-primary-action" disabled={!body.trim()} onClick={createThread} type="button">
-                提交讨论
-              </button>
-            </>
-          )}
-          {statusMessage ? <p className="discussion-status">{statusMessage}</p> : null}
-          {error ? <p className="discussion-error">{error}</p> : null}
-        </section>
+              <div className="discussion-compose-actions">
+                <label>
+                  <input
+                    checked={privateVisible}
+                    disabled={initializing || Boolean(loadError) || !account?.user}
+                    onChange={(event) => setPrivateVisible(event.target.checked)}
+                    type="checkbox"
+                  />
+                  仅自己与管理员可见
+                </label>
+                {!initializing && account.authConfigured
+                    && !account.user && !loadError ? (
+                  <button
+                    className="discussion-primary-action"
+                    onClick={() => authClient.signIn.social({
+                      callbackURL: window.location.href,
+                      provider: "github",
+                    })}
+                    type="button"
+                  >
+                    登录后评论
+                  </button>
+                ) : (
+                  <button
+                    className="discussion-primary-action"
+                    disabled={initializing || Boolean(loadError)
+                      || !account?.user || !body.trim()}
+                    onClick={createThread}
+                    type="button"
+                  >
+                    提交
+                  </button>
+                )}
+              </div>
+              {statusMessage ? (
+                <p className="discussion-status">{statusMessage}</p>
+              ) : null}
+              {actionError ? (
+                <p className="discussion-error">{actionError}</p>
+              ) : null}
+            </section>
+          ) : null}
+        </div>
       </div>
-    </aside>
+    </div>
   );
 }

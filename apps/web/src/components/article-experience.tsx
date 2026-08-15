@@ -38,8 +38,22 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
     : getArticleModuleNeighbors(article.articleKey);
   const rendered = await getRenderedArticle(article, mode);
   const quiz = mode === "learning-path" ? await getLearningQuiz(article) : undefined;
-  const tableOfContents = quiz
-    ? [...rendered.tableOfContents, { depth: 2 as const, id: "learning-quiz-title", title: "小测验" }]
+  const tableOfContents = mode === "learning-path"
+    ? [
+        ...rendered.tableOfContents,
+        ...(quiz ? [{
+          depth: 2 as const,
+          id: "learning-quiz-title",
+          supplement: true,
+          title: "小测",
+        }] : []),
+        {
+          depth: 2 as const,
+          id: "article-comments",
+          supplement: true,
+          title: "评论区",
+        },
+      ]
     : rendered.tableOfContents;
 
   return (
@@ -55,17 +69,25 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
             <>
               <LearningProgressSync
                 articleKey={article.articleKey}
+                documentEpoch={rendered.documentEpoch}
                 quiz={quiz}
-                sections={rendered.sections}
               />
-              <CollaborativeArticle
-                articleKey={article.articleKey}
-                contentRevision={rendered.contentRevision}
-                sections={rendered.sections}
-              />
+              <div className="article-learning-extras">
+                {quiz ? (
+                  <LearningQuiz
+                    articleKey={article.articleKey}
+                    documentEpoch={rendered.documentEpoch}
+                    quiz={quiz}
+                  />
+                ) : null}
+                <CollaborativeArticle
+                  articleKey={article.articleKey}
+                  contentRevision={rendered.contentRevision}
+                  sections={rendered.sections}
+                />
+              </div>
             </>
           ) : null}
-          {quiz ? <LearningQuiz articleKey={article.articleKey} quiz={quiz} /> : null}
           <ArticleNeighborsView mode={mode} {...neighbors} />
         </main>
 

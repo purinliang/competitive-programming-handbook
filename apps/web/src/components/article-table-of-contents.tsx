@@ -16,16 +16,26 @@ export function ArticleTableOfContents({ articleKey, items }: { articleKey: stri
       <div className="sidebar-heading sidebar-heading-single"><h2>本文目录</h2></div>
       <ScrollArea className="sidebar-scroll-area" viewportClassName="sidebar-scroll-viewport" refreshKey={articleKey}>
         <nav className="toc-list">
-          {items.map((item) => (
-            <a
-              className={`${item.depth === 3 ? "toc-depth-3" : ""}${item.id === activeId ? " is-active" : ""}`.trim()}
-              href={`#${item.id}`}
-              aria-current={item.id === activeId ? "location" : undefined}
-              key={item.id}
-            >
-              {item.title}
-            </a>
-          ))}
+          {items.map((item, index) => {
+            const className = [
+              item.depth === 3 ? "toc-depth-3" : "",
+              item.supplement ? "toc-supplement" : "",
+              item.supplement && !items[index - 1]?.supplement
+                ? "toc-supplement-start"
+                : "",
+              item.id === activeId ? "is-active" : "",
+            ].filter(Boolean).join(" ");
+            return (
+              <a
+                aria-current={item.id === activeId ? "location" : undefined}
+                className={className}
+                href={`#${item.id}`}
+                key={item.id}
+              >
+                {item.title}
+              </a>
+            );
+          })}
         </nav>
       </ScrollArea>
     </aside>

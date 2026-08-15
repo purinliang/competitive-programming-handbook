@@ -84,7 +84,7 @@ app.get("/api/learning/state", requireSession, async (c) => {
       `SELECT questionId, questionRevision, selectedOptionId, correct, createdAt
        FROM question_attempts
        WHERE userId = ? AND documentKey = ? AND documentEpoch = ?
-       ORDER BY createdAt DESC`,
+       ORDER BY createdAt DESC, rowid DESC`,
     ).bind(user.id, documentKey, document.documentEpoch).all(),
   ]);
 
@@ -120,7 +120,10 @@ app.post("/api/learning/sections", requireSession, async (c) => {
   const documentKey = typeof body.documentKey === "string" ? body.documentKey : "";
   const sectionId = typeof body.sectionId === "string" ? body.sectionId : "";
   const sectionRevision = typeof body.sectionRevision === "string" ? body.sectionRevision : "";
-  const read = body.read === true;
+  if (typeof body.read !== "boolean") {
+    throw new HTTPException(400, { message: "已阅状态无效" });
+  }
+  const read = body.read;
   const document = getDocument(documentKey);
   const section = getSection(documentKey, sectionId);
   if (!document || !section || section.revision !== sectionRevision) {
@@ -130,18 +133,35 @@ app.post("/api/learning/sections", requireSession, async (c) => {
   const user = c.get("user");
   const sectionIds = getSectionIds(documentKey, section.id);
   const placeholders = sectionIds.map(() => "?").join(", ");
+  const now = Date.now();
+  const archiveProgress = c.env.DB.prepare(
+    `INSERT INTO section_progress_history
+       (id, userId, documentKey, documentEpoch, sectionId,
+        sectionRevision, readAt, updatedAt, archivedAt)
+     SELECT lower(hex(randomblob(16))), userId, documentKey, documentEpoch,
+            sectionId, sectionRevision, readAt, updatedAt, ?
+     FROM section_progress
+     WHERE userId = ? AND documentKey = ? AND documentEpoch = ?
+       AND sectionId IN (${placeholders})`,
+  ).bind(
+    now,
+    user.id,
+    documentKey,
+    document.documentEpoch,
+    ...sectionIds,
+  );
   const deleteProgress = c.env.DB.prepare(
     `DELETE FROM section_progress
      WHERE userId = ? AND documentKey = ? AND documentEpoch = ?
        AND sectionId IN (${placeholders})`,
   ).bind(user.id, documentKey, document.documentEpoch, ...sectionIds);
   if (!read) {
-    await deleteProgress.run();
+    await c.env.DB.batch([archiveProgress, deleteProgress]);
     return c.json({ read: false });
   }
 
-  const now = Date.now();
   await c.env.DB.batch([
+    archiveProgress,
     deleteProgress,
     c.env.DB.prepare(
       `INSERT INTO section_progress

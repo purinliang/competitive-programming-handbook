@@ -21,7 +21,7 @@ export default function CatalogPage() {
           <header className="page-intro">
             <p className="eyebrow">Catalog</p>
             <h1>模块目录</h1>
-            <p>目录负责完整收录知识点；学习顺序请使用学习路线。</p>
+            <p>按知识领域组织核心与扩展专题，适合快速查找、集中复习某类知识。</p>
           </header>
           <IndexingConvention />
           <div className="section-stack">

@@ -95,20 +95,30 @@ adminRoutes.post("/api/admin/threads/:threadId/moderate", async (c) => {
   const body = await readObject(c.req.raw);
   const action = requiredString(body, "action", 16);
   const reason = optionalReason(body);
-  const state = {
+  const states = {
     delete: { deletedAt: Date.now(), status: "deleted" },
     lock: { deletedAt: null, status: "locked" },
     restore: { deletedAt: null, status: "open" },
     unlock: { deletedAt: null, status: "open" },
-  }[action];
+  } as const;
+  const state = states[action as keyof typeof states];
   if (!state) {
     throw new HTTPException(400, { message: "审核动作无效" });
   }
   const threadId = c.req.param("threadId");
   const thread = await c.env.DB.prepare(
-    "SELECT id FROM discussion_threads WHERE id = ?",
-  ).bind(threadId).first();
+    "SELECT id, status FROM discussion_threads WHERE id = ?",
+  ).bind(threadId).first<{ id: string; status: "deleted" | "locked" | "open" }>();
   if (!thread) throw new HTTPException(404, { message: "讨论不存在" });
+  const allowed = ({
+    delete: thread.status !== "deleted",
+    lock: thread.status === "open",
+    restore: thread.status === "deleted",
+    unlock: thread.status === "locked",
+  } as const)[action as keyof typeof states];
+  if (!allowed) {
+    throw new HTTPException(409, { message: "当前状态不能执行该操作" });
+  }
   await c.env.DB.batch([
     c.env.DB.prepare(
       "UPDATE discussion_threads SET status = ?, deletedAt = ?, updatedAt = ? WHERE id = ?",

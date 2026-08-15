@@ -33,6 +33,7 @@ interface CommentRow {
   id: string;
   parentCommentId: string | null;
   status: string;
+  threadId: string;
   updatedAt: number;
   userId: string;
   userName: string;
@@ -88,6 +89,49 @@ function validateTarget(
 
 export const discussionRoutes = new Hono<AppEnv>();
 
+discussionRoutes.get("/api/discussions/summary", async (c) => {
+  const documentKey = c.req.query("document_key") ?? "";
+  const document = getDocument(documentKey);
+  if (!document) {
+    throw new HTTPException(404, { message: "文章不存在" });
+  }
+  const result = await c.env.DB.prepare(
+    `SELECT t.id, t.anonymous, c.body, c.createdAt,
+            c.anonymous AS commentAnonymous, u.name AS userName
+     FROM discussion_threads t
+     JOIN discussion_comments c ON c.threadId = t.id
+       AND c.parentCommentId IS NULL AND c.status = 'visible'
+     JOIN user u ON u.id = c.userId
+     WHERE t.documentKey = ? AND t.documentEpoch = ?
+       AND t.targetKind = 'article' AND t.targetId = 'article'
+       AND t.targetRevision = ? AND t.visibility = 'public'
+       AND t.status != 'deleted'
+     ORDER BY t.updatedAt DESC
+     LIMIT 3`,
+  ).bind(
+    documentKey,
+    document.documentEpoch,
+    document.contentRevision,
+  ).all<{
+    anonymous: number;
+    body: string;
+    commentAnonymous: number;
+    createdAt: number;
+    id: string;
+    userName: string;
+  }>();
+  return c.json({
+    discussions: result.results.map((thread) => ({
+      authorName: thread.anonymous || thread.commentAnonymous
+        ? "匿名同学"
+        : thread.userName,
+      body: thread.body,
+      createdAt: thread.createdAt,
+      id: thread.id,
+    })),
+  });
+});
+
 discussionRoutes.get("/api/discussions", async (c) => {
   const documentKey = c.req.query("document_key") ?? "";
   const targetKind = c.req.query("target_kind") ?? "";
@@ -105,6 +149,10 @@ discussionRoutes.get("/api/discussions", async (c) => {
   const viewerId = viewer?.id ?? "";
   const targetIds = getSectionIds(documentKey, targetId);
   const targetPlaceholders = targetIds.map(() => "?").join(", ");
+  const currentSectionIds = document.sections.flatMap(
+    (section) => [section.id, ...section.legacyIds],
+  );
+  const currentSectionPlaceholders = currentSectionIds.map(() => "?").join(", ") || "''";
   const threadResult = includeHistory
     ? await c.env.DB.prepare(
       `SELECT t.*, u.name AS userName
@@ -112,8 +160,19 @@ discussionRoutes.get("/api/discussions", async (c) => {
        JOIN user u ON u.id = t.userId
        WHERE t.documentKey = ? AND t.status != 'deleted'
          AND (t.visibility = 'public' OR t.userId = ? OR ? = 1)
-       ORDER BY t.createdAt ASC`,
-    ).bind(documentKey, viewerId, isAdmin).all<ThreadRow>()
+         AND NOT (
+           t.documentEpoch = ? AND t.targetKind = 'section'
+           AND t.targetId IN (${currentSectionPlaceholders})
+         )
+       ORDER BY t.updatedAt DESC
+       LIMIT 100`,
+    ).bind(
+      documentKey,
+      viewerId,
+      isAdmin,
+      document.documentEpoch,
+      ...currentSectionIds,
+    ).all<ThreadRow>()
     : await c.env.DB.prepare(
       `SELECT t.*, u.name AS userName
        FROM discussion_threads t
@@ -122,7 +181,8 @@ discussionRoutes.get("/api/discussions", async (c) => {
          AND t.targetId IN (${targetPlaceholders})
          AND t.status != 'deleted'
          AND (t.visibility = 'public' OR t.userId = ? OR ? = 1)
-       ORDER BY t.createdAt ASC`,
+       ORDER BY t.updatedAt DESC
+       LIMIT 100`,
     ).bind(
       documentKey,
       document.documentEpoch,
@@ -132,23 +192,30 @@ discussionRoutes.get("/api/discussions", async (c) => {
       isAdmin,
     ).all<ThreadRow>();
 
+  const threadIds = threadResult.results.map((thread) => thread.id);
+  const commentsByThread = new Map<string, CommentRow[]>();
+  if (threadIds.length > 0) {
+    const commentPlaceholders = threadIds.map(() => "?").join(", ");
+    const commentResult = await c.env.DB.prepare(
+      `SELECT c.*, u.name AS userName
+       FROM discussion_comments c
+       JOIN user u ON u.id = c.userId
+       WHERE c.threadId IN (${commentPlaceholders})
+       ORDER BY c.createdAt ASC`,
+    ).bind(...threadIds).all<CommentRow>();
+    for (const comment of commentResult.results) {
+      const comments = commentsByThread.get(comment.threadId) ?? [];
+      comments.push(comment);
+      commentsByThread.set(comment.threadId, comments);
+    }
+  }
+
   const threads = [];
   for (const thread of threadResult.results) {
     const currentSection = thread.targetKind === "section"
       ? getSection(documentKey, thread.targetId)
       : undefined;
-    if (includeHistory && thread.targetKind === "section"
-      && thread.documentEpoch === document?.documentEpoch && currentSection) {
-      continue;
-    }
-    const commentResult = await c.env.DB.prepare(
-      `SELECT c.*, u.name AS userName
-       FROM discussion_comments c
-       JOIN user u ON u.id = c.userId
-       WHERE c.threadId = ?
-       ORDER BY c.createdAt ASC`,
-    ).bind(thread.id).all<CommentRow>();
-    const comments = commentResult.results.flatMap((comment) => {
+    const comments = (commentsByThread.get(thread.id) ?? []).flatMap((comment) => {
       if (comment.status === "hidden" && viewer?.role !== "admin") {
         return [];
       }
@@ -196,7 +263,7 @@ discussionRoutes.get("/api/discussions", async (c) => {
       visibility: thread.visibility,
     });
   }
-  return c.json({ threads });
+  return c.json({ threads, truncated: threadResult.results.length === 100 });
 });
 
 discussionRoutes.post("/api/discussions", requireSession, async (c) => {
@@ -209,6 +276,13 @@ discussionRoutes.post("/api/discussions", requireSession, async (c) => {
   const targetId = requiredString(body, "targetId", 96);
   const targetRevision = requiredString(body, "targetRevision", 32);
   const commentBody = requiredString(body, "body", 4000);
+  if (body.visibility !== undefined
+    && body.visibility !== "private" && body.visibility !== "public") {
+    throw new HTTPException(400, { message: "可见范围无效" });
+  }
+  if (body.anonymous !== undefined && typeof body.anonymous !== "boolean") {
+    throw new HTTPException(400, { message: "匿名设置无效" });
+  }
   const visibility = body.visibility === "public" ? "public" : "private";
   const anonymous = body.anonymous === true;
   const target = validateTarget(documentKey, targetKind, targetId, targetRevision);
@@ -258,6 +332,9 @@ discussionRoutes.post("/api/discussions/:threadId/comments", requireSession, asy
   const parentCommentId = typeof body.parentCommentId === "string"
     ? body.parentCommentId
     : null;
+  if (body.anonymous !== undefined && typeof body.anonymous !== "boolean") {
+    throw new HTTPException(400, { message: "匿名设置无效" });
+  }
   const anonymous = body.anonymous === true;
   const user = c.get("user");
   const thread = await c.env.DB.prepare(

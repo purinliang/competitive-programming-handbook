@@ -141,25 +141,6 @@ export function ModerationDashboard() {
             <p>{thread.authorEmail}</p>
             <p>{thread.commentCount} 条留言，{thread.openReportCount} 条待处理举报</p>
             <div className="moderation-actions">
-              {thread.status === "locked" ? (
-                <button
-                  disabled={Boolean(busy)}
-                  onClick={() => moderate(
-                    `/api/admin/threads/${thread.id}/moderate`,
-                    "unlock",
-                  )}
-                  type="button"
-                >解除锁定</button>
-              ) : (
-                <button
-                  disabled={Boolean(busy)}
-                  onClick={() => moderate(
-                    `/api/admin/threads/${thread.id}/moderate`,
-                    "lock",
-                  )}
-                  type="button"
-                >锁定</button>
-              )}
               {thread.status === "deleted" ? (
                 <button
                   disabled={Boolean(busy)}
@@ -170,14 +151,24 @@ export function ModerationDashboard() {
                   type="button"
                 >恢复</button>
               ) : (
-                <button
-                  disabled={Boolean(busy)}
-                  onClick={() => moderate(
-                    `/api/admin/threads/${thread.id}/moderate`,
-                    "delete",
-                  )}
-                  type="button"
-                >软删除</button>
+                <>
+                  <button
+                    disabled={Boolean(busy)}
+                    onClick={() => moderate(
+                      `/api/admin/threads/${thread.id}/moderate`,
+                      thread.status === "locked" ? "unlock" : "lock",
+                    )}
+                    type="button"
+                  >{thread.status === "locked" ? "解除锁定" : "锁定"}</button>
+                  <button
+                    disabled={Boolean(busy)}
+                    onClick={() => moderate(
+                      `/api/admin/threads/${thread.id}/moderate`,
+                      "delete",
+                    )}
+                    type="button"
+                  >软删除</button>
+                </>
               )}
             </div>
           </article>

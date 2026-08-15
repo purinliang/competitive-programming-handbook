@@ -38,7 +38,9 @@ async function request(path, {
 } = {}) {
   const headers = {};
   if (body !== undefined) headers["Content-Type"] = "application/json";
-  if (origin && method !== "GET") headers.Origin = baseUrl;
+  if (origin && method !== "GET") {
+    headers.Origin = typeof origin === "string" ? origin : baseUrl;
+  }
   if (user) headers.Cookie = users[user];
   const response = await fetch(`${baseUrl}${path}`, {
     body: body === undefined ? undefined : JSON.stringify(body),
@@ -84,6 +86,11 @@ assert.equal(orphanThread.versionCurrent, false);
 assert.equal(oldEpochThread.targetKind, "article");
 assert.equal(oldEpochThread.versionCurrent, false);
 
+const emptyDiscussionSummary = await request(
+  `/api/discussions/summary?document_key=${encodeURIComponent(documentKey)}`,
+);
+assert.deepEqual(emptyDiscussionSummary.result.discussions, []);
+
 const created = await request("/api/discussions", {
   body: {
     anonymous: false,
@@ -99,18 +106,63 @@ const created = await request("/api/discussions", {
 });
 assert.equal(created.response.status, 201);
 const { commentId, threadId } = created.result;
+const invalidDiscussionVisibility = await request("/api/discussions", {
+  body: {
+    body: "非法可见范围",
+    documentKey,
+    targetId: "article",
+    targetKind: "article",
+    targetRevision: contentRevision,
+    visibility: "friends",
+  },
+  method: "POST",
+  user: "student",
+});
+assert.equal(invalidDiscussionVisibility.response.status, 400);
+const invalidDiscussionAnonymity = await request("/api/discussions", {
+  body: {
+    anonymous: "yes",
+    body: "非法匿名设置",
+    documentKey,
+    targetId: "article",
+    targetKind: "article",
+    targetRevision: contentRevision,
+  },
+  method: "POST",
+  user: "student",
+});
+assert.equal(invalidDiscussionAnonymity.response.status, 400);
 
 const publicPrivateView = await request(
   `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
     + "&target_kind=article&target_id=article",
 );
 assert.deepEqual(publicPrivateView.result.threads, []);
+const ownerPrivateView = await request(
+  `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
+    + "&target_kind=article&target_id=article",
+  { user: "student" },
+);
+assert.equal(ownerPrivateView.result.threads[0].id, threadId);
 const otherPrivateView = await request(
   `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
     + "&target_kind=article&target_id=article",
   { user: "other" },
 );
 assert.deepEqual(otherPrivateView.result.threads, []);
+const otherPrivateHistoryView = await request(
+  `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
+    + "&target_kind=article&target_id=article&include_history=1",
+  { user: "other" },
+);
+assert.equal(
+  otherPrivateHistoryView.result.threads.some((thread) => thread.id === threadId),
+  false,
+);
+const privateDiscussionSummary = await request(
+  `/api/discussions/summary?document_key=${encodeURIComponent(documentKey)}`,
+);
+assert.deepEqual(privateDiscussionSummary.result.discussions, []);
 
 const guessedReport = await request(`/api/comments/${commentId}/report`, {
   body: { reason: "猜测私密评论 ID" },
@@ -153,6 +205,18 @@ assert.equal(anonymousView.result.threads[0].comments[0].authorName, "匿名同�
 assert.equal(serializedAnonymousView.includes("student-user"), false);
 assert.equal(serializedAnonymousView.includes("Student User"), false);
 assert.equal(serializedAnonymousView.includes("student@example.com"), false);
+const anonymousDiscussionSummary = await request(
+  `/api/discussions/summary?document_key=${encodeURIComponent(documentKey)}`,
+);
+assert.equal(anonymousDiscussionSummary.result.discussions.length, 1);
+assert.equal(
+  anonymousDiscussionSummary.result.discussions[0].authorName,
+  "匿名同学",
+);
+assert.match(
+  anonymousDiscussionSummary.result.discussions[0].body,
+  /私密问题/,
+);
 
 const forbiddenThreadUpdate = await request(`/api/discussions/${threadId}`, {
   body: { anonymous: false, visibility: "private" },
@@ -167,6 +231,15 @@ const anonymousReply = await request(`/api/discussions/${threadId}/comments`, {
   user: "other",
 });
 assert.equal(anonymousReply.response.status, 201);
+const invalidReplyAnonymity = await request(
+  `/api/discussions/${threadId}/comments`,
+  {
+    body: { anonymous: "yes", body: "非法匿名回复" },
+    method: "POST",
+    user: "other",
+  },
+);
+assert.equal(invalidReplyAnonymity.response.status, 400);
 const repliedView = await request(
   `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
     + "&target_kind=article&target_id=article",
@@ -176,6 +249,16 @@ assert.equal(repliedView.result.threads[0].comments[1].authorName, "匿名同学
 assert.equal(serializedRepliedView.includes("other-user"), false);
 assert.equal(serializedRepliedView.includes("Other Student"), false);
 assert.equal(serializedRepliedView.includes("other@example.com"), false);
+const anonymousAdminView = await request(
+  `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
+    + "&target_kind=article&target_id=article",
+  { user: "admin" },
+);
+assert.equal(anonymousAdminView.result.threads[0].authorName, "Student User");
+assert.equal(
+  anonymousAdminView.result.threads[0].comments[1].authorName,
+  "Other Student",
+);
 
 const reported = await request(`/api/comments/${commentId}/report`, {
   body: { reason: "自动化测试举报" },
@@ -249,6 +332,19 @@ const missingOrigin = await request("/api/learning/sections", {
   user: "student",
 });
 assert.equal(missingOrigin.response.status, 403);
+const foreignOrigin = await request("/api/learning/sections", {
+  body: { documentKey, read: true, sectionId, sectionRevision },
+  method: "POST",
+  origin: "https://example.com",
+  user: "student",
+});
+assert.equal(foreignOrigin.response.status, 403);
+const invalidReadState = await request("/api/learning/sections", {
+  body: { documentKey, read: "yes", sectionId, sectionRevision },
+  method: "POST",
+  user: "student",
+});
+assert.equal(invalidReadState.response.status, 400);
 const staleSection = await request("/api/learning/sections", {
   body: { documentKey, read: true, sectionId, sectionRevision: "stale" },
   method: "POST",
@@ -321,6 +417,12 @@ const locked = await request(`/api/admin/threads/${threadId}/moderate`, {
   user: "admin",
 });
 assert.equal(locked.result.status, "locked");
+const repeatedLock = await request(`/api/admin/threads/${threadId}/moderate`, {
+  body: { action: "lock" },
+  method: "POST",
+  user: "admin",
+});
+assert.equal(repeatedLock.response.status, 409);
 const auditView = await request("/api/admin/discussions", { user: "admin" });
 assert.equal(auditView.result.events[0].action, "lock");
 assert.equal(auditView.result.events[0].targetId, threadId);
@@ -343,10 +445,20 @@ await request(`/api/admin/threads/${threadId}/moderate`, {
   method: "POST",
   user: "admin",
 });
+const lockDeleted = await request(`/api/admin/threads/${threadId}/moderate`, {
+  body: { action: "lock" },
+  method: "POST",
+  user: "admin",
+});
+assert.equal(lockDeleted.response.status, 409);
 const deletedView = await request(
   `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
     + "&target_kind=article&target_id=article",
 );
 assert.deepEqual(deletedView.result.threads, []);
+const deletedDiscussionSummary = await request(
+  `/api/discussions/summary?document_key=${encodeURIComponent(documentKey)}`,
+);
+assert.deepEqual(deletedDiscussionSummary.result.discussions, []);
 
 console.log("协作学习 API 集成测试通过。");
