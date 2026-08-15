@@ -86,7 +86,6 @@
 | 0120 | C 字符串 | C++ | [cpp/c-strings.md](cpp/c-strings.md) |
 | 0137 | string | C++ | [cpp/string.md](cpp/string.md) |
 | 0173 | 整行输入 | C++ | [cpp/whole-line-input.md](cpp/whole-line-input.md) |
-| 0121 | struct | C++ | [cpp/struct.md](cpp/struct.md) |
 
 ### 学习单元：地址、别名与参数
 
@@ -97,6 +96,12 @@
 | 0126 | 引用 | C++ | [cpp/references.md](cpp/references.md) |
 | 0174 | 指针与引用中的 const | C++ | [cpp/const-pointers-and-references.md](cpp/const-pointers-and-references.md) |
 | 0127 | 参数传递 | C++ | [cpp/parameter-passing.md](cpp/parameter-passing.md) |
+
+### 学习单元：结构体
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0121 | struct | C++ | [cpp/struct.md](cpp/struct.md) |
 
 ### 学习单元：内存、调用栈与递归
 
