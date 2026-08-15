@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { ArticleFamilyList } from "@/components/article-family-list";
 import { DirectorySidebar } from "@/components/directory-sidebar";
+import { IndexingConvention } from "@/components/indexing-convention";
 import { SiteHeader } from "@/components/site-header";
 import { getModules, groupAdjacentArticles } from "@/lib/content/catalog";
 
@@ -21,6 +22,7 @@ export default function CatalogPage() {
             <h1>模块目录</h1>
             <p>目录负责完整收录知识点；学习顺序请使用学习路线。</p>
           </header>
+          <IndexingConvention />
           <div className="section-stack">
             {modules.map((module) => (
               <section className="panel" id={module.anchor} key={module.key}>

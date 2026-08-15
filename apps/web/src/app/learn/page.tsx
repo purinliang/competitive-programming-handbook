@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { ArticleFamilyList } from "@/components/article-family-list";
 import { DirectorySidebar } from "@/components/directory-sidebar";
+import { IndexingConvention } from "@/components/indexing-convention";
 import { SiteHeader } from "@/components/site-header";
 import { getLearningStages, getLearningUnitGroups } from "@/lib/content/catalog";
 
@@ -21,10 +22,7 @@ export default function LearningPathPage() {
             <h1>学习路线</h1>
             <p>从 C++ 基础出发，到高中竞赛进阶为止。灰色节点已经规划，但正文尚未完成。</p>
           </header>
-          <aside className="route-convention" aria-label="下标与区间约定">
-            <strong>下标与区间约定</strong>
-            <p>本书自定义的对象默认从 1 开始编号并使用闭区间；讲解 C++ 与 STL 接口时，保留其原生的从 0 开始编号和半开区间。</p>
-          </aside>
+          <IndexingConvention />
           <div className="section-stack">
             {stages.map((stage, index) => {
               return (
