@@ -1,0 +1,86 @@
+[
+  {
+    "id": "native-array-bounds",
+    "prompt": "`int a[5]` 声明的数组有哪些合法下标？",
+    "options": [
+      { "id": "a", "text": "`0` 到 `4`" },
+      { "id": "b", "text": "`1` 到 `5`" },
+      { "id": "c", "text": "`0` 到 `5`" },
+      { "id": "d", "text": "只有 `5`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "内置数组的容量是五个元素，C++ 原生下标从 `0` 开始，因此最后一个下标是 `4`。"
+  },
+  {
+    "id": "capacity-versus-length",
+    "prompt": "在 `int a[MAXN]` 与运行时读入的 `n` 中，二者分别表示什么？",
+    "options": [
+      { "id": "a", "text": "`MAXN` 是预留容量，`n` 是本次实际长度" },
+      { "id": "b", "text": "二者必须始终保存相同的值" },
+      { "id": "c", "text": "`MAXN` 是当前下标，`n` 是元素类型" },
+      { "id": "d", "text": "`MAXN` 只用于输出，`n` 只用于输入" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "静态数组按题目上限预留容量，实际参与本次数据的元素数量由运行时的 `n` 决定。"
+  },
+  {
+    "id": "one-based-capacity",
+    "prompt": "使用 1-based 下标保存长度为 `n` 的序列时，为什么至少要能访问 `a[n]`？",
+    "options": [
+      { "id": "a", "text": "第 `n` 个逻辑元素就保存在下标 `n`" },
+      { "id": "b", "text": "数组会自动把 `a[0]` 复制到 `a[n]`" },
+      { "id": "c", "text": "C++ 强制所有数组多保存一个答案" },
+      { "id": "d", "text": "下标 `n` 专门用于换行" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "1-based 表示直接让逻辑编号等于数组下标，因此最后一个元素使用 `a[n]`，`a[0]` 留空。"
+  },
+  {
+    "id": "variable-length-array",
+    "prompt": "为什么本书的 C++17 代码不写 `int a[n];`，其中 `n` 在运行时读入？",
+    "options": [
+      { "id": "a", "text": "运行时长度的内置数组不是标准 C++17" },
+      { "id": "b", "text": "数组容量必须永远等于 `5`" },
+      { "id": "c", "text": "变量 `n` 不能保存整数" },
+      { "id": "d", "text": "方括号只能用于输出" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "部分编译器把变长数组作为扩展，但可移植的 C++17 应使用编译期容量或 `vector`。"
+  },
+  {
+    "id": "array-initialization",
+    "prompt": "关于没有显式初值的数组，下面哪项正确？",
+    "options": [
+      { "id": "a", "text": "全局数组自动为零，普通局部数组不会自动清零" },
+      { "id": "b", "text": "所有数组都会自动填成 `1`" },
+      { "id": "c", "text": "局部数组自动为零，全局数组内容不确定" },
+      { "id": "d", "text": "数组元素永远不需要初始化" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "具有静态存储期的全局数组会零初始化；普通局部数组的元素在写入前不能读取。"
+  },
+  {
+    "id": "out-of-bounds",
+    "prompt": "对 `int a[5]` 写入 `a[5] = 10` 会怎样？",
+    "options": [
+      { "id": "a", "text": "发生越界写入，行为未定义" },
+      { "id": "b", "text": "数组自动扩容到六个元素" },
+      { "id": "c", "text": "等价于写入 `a[0]`" },
+      { "id": "d", "text": "编译器保证忽略这条语句" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "合法下标只有 `0` 到 `4`；内置数组不会检查或自动扩容，越界读写属于未定义行为。"
+  },
+  {
+    "id": "sizeof-element-count",
+    "prompt": "在 `int a[10]` 仍是完整数组的作用域中，怎样计算声明容量？",
+    "options": [
+      { "id": "a", "text": "`sizeof(a) / sizeof(a[0])`" },
+      { "id": "b", "text": "`sizeof(a[0]) / sizeof(a)`" },
+      { "id": "c", "text": "`sizeof(a) + sizeof(a[0])`" },
+      { "id": "d", "text": "`a / a[0]`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "整个数组的字节数除以单个元素的字节数，得到声明时的元素数量。"
+  }
+]

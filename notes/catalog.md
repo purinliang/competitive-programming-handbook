@@ -78,7 +78,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 0118 | 一维数组 | 定稿 | [one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
+| 0118 | 一维数组 | 待审阅 | [one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
 | 0119 | 多维数组 | 待审阅 | [multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
 | 0119e1 | 多维数组的布局与参数传递 | 待审阅 | [multidimensional-array-layout-and-parameters.md](cpp/multidimensional-array-layout-and-parameters.md) |
 | 0120 | C 字符串 | 待审阅 | [c-strings.md](cpp/c-strings.md) |
