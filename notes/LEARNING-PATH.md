@@ -182,7 +182,7 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0151 | 工具类型：bitset | C++ | `cpp/0151-bitset.md` |
+| 0151 | bitset | C++ | [cpp/bitset.md](cpp/bitset.md) |
 | 0227 | 二叉堆 | 基础算法 | `algorithm-basics/0227-binary-heap.md` |
 | 0304 | 线段树：基础 | 数据结构 | [data-structures/segment-tree.md](data-structures/segment-tree.md) |
 | 0306 | 树状数组：基础 | 数据结构 | [data-structures/fenwick-tree.md](data-structures/fenwick-tree.md) |
