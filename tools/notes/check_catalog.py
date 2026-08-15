@@ -316,12 +316,12 @@ class Checker:
 
         stages = list(dict.fromkeys(item.stage for item in route))
         expected_stages = [
-            "阶段 01：C++ 基础",
-            "阶段 02：算法基础",
-            "阶段 03：初中基础",
-            "阶段 04：初中进阶",
-            "阶段 05：高中基础",
-            "阶段 06：高中进阶",
+            "01 C++ 基础",
+            "02 算法基础",
+            "03 初中基础",
+            "04 初中进阶",
+            "05 高中基础",
+            "06 高中进阶",
         ]
         if stages != expected_stages:
             self.error(

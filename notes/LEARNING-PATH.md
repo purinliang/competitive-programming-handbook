@@ -2,11 +2,11 @@
 
 这条路线从 C++ 基础出发，到高中竞赛一等奖常见的知识主干为止。它给出 [模块目录](CATALOG.md) 中核心教程的大致教学顺序，不试图在正文尚未写完时维护一张精确的前置依赖图。
 
-路线会逐阶段整理成学习单元；目前先以阶段 01 的 C++ 基础作为样板，其余阶段仍保留原有顺序，等待对应正文和教学边界一起审查。单元表示一次相对完整的学习任务，文章仍然保持足够小且聚焦；同一单元可以把需要共同理解或反复对照的不同知识族放在一起。路线允许先学会最小用法、以后再回访底层规则，不承诺所有概念都能排成一条没有交叉的直线。
+路线会逐步整理成学习单元；目前先以 01 C++ 基础作为样板，其余部分仍保留原有顺序，等待对应正文和教学边界一起审查。单元表示一次相对完整的学习任务，文章仍然保持足够小且聚焦；同一单元可以把需要共同理解或反复对照的不同知识族放在一起。路线允许先学会最小用法、以后再回访底层规则，不承诺所有概念都能排成一条没有交叉的直线。
 
 标为代码路径的文章尚在计划中；可点击链接表示已经存在正文。高中进阶之后不再虚构统一的难度顺序，目录中的其余内容统一收录在文末的 [扩展阅读索引](#扩展阅读索引) 中。
 
-常见 XCPC 路线图中的“铜牌、银牌、金牌”描述的是达到相应竞赛能力时应覆盖的知识集合，不是严格的教学阶段：同一档会同时包含很早学习的基础技巧和依赖较多的专题。本路线把入门到铜牌知识进一步拆成阶段 01–05，再用阶段 06 收录高中进阶主干；扩展阅读覆盖金牌及更远专题。两套分级只能相互校准，不能逐项机械换算。
+常见 XCPC 路线图中的“铜牌、银牌、金牌”描述的是达到相应竞赛能力时应覆盖的知识集合，不是严格的教学阶段：同一档会同时包含很早学习的基础技巧和依赖较多的专题。本路线把入门到铜牌知识进一步拆成 01–05，再用 06 收录高中进阶主干；扩展阅读覆盖金牌及更远专题。两套分级只能相互校准，不能逐项机械换算。
 
 ## 下标与区间约定
 
@@ -14,7 +14,7 @@
 
 直接讲解或调用 C++ / STL 时保留原生规则，例如 `string`、`vector` 和内置数组的下标从 `0` 开始，迭代器区间通常左闭右开。正文会在接口边界明确转换，不会让同一个算法内部交替使用两套约定。
 
-## 阶段 01：C++ 基础
+## 01 C++ 基础
 
 ### 学习单元：第一个竞赛程序
 
@@ -85,7 +85,7 @@
 
 本阶段只讲从 C++ 视角写程序所需的语言知识和少量机器直觉，不代替计算机组成、体系结构、操作系统或编译原理课程。`include`、命名空间和对象生命周期等不影响入门主线的细节放在扩展阅读中。
 
-## 阶段 02：算法基础
+## 02 算法基础
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -120,7 +120,7 @@
 
 本阶段交错安排基础算法、基础数据结构和当前真正需要的标准库接口。先把 `string`、`vector` 和 `sort` 当作可靠工具使用；学习复杂度以后，再从结构、操作成本和算法原理重新理解数组与排序。数组、链表、栈和队列解释抽象结构，相邻的标准库文章只解释 C++ 编码接口。
 
-## 阶段 03：初中基础
+## 03 初中基础
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -159,7 +159,7 @@
 | 0801 | 字符串：比较与字典序 | 字符串 | [strings/comparison-and-lexicographic-order.md](strings/comparison-and-lexicographic-order.md) |
 | 0802 | 字符串：模式匹配与朴素算法 | 字符串 | [strings/naive-pattern-matching.md](strings/naive-pattern-matching.md) |
 
-## 阶段 04：初中进阶
+## 04 初中进阶
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -179,14 +179,14 @@
 | 0240 | 编码：哈夫曼编码 | 算法基础 | [algorithm-basics/huffman-coding.md](algorithm-basics/huffman-coding.md) |
 | 0241 | 编码：格雷码 | 算法基础 | [algorithm-basics/gray-code.md](algorithm-basics/gray-code.md) |
 
-## 阶段 05：高中基础
+## 05 高中基础
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0151 | bitset | C++ | [cpp/bitset.md](cpp/bitset.md) |
 | 0304 | 线段树：基础 | 数据结构 | [data-structures/segment-tree.md](data-structures/segment-tree.md) |
 | 0306 | 树状数组：基础 | 数据结构 | [data-structures/fenwick-tree.md](data-structures/fenwick-tree.md) |
-| 0307 | 并查集 | 数据结构 | [data-structures/disjoint-set-union.md](data-structures/disjoint-set-union.md) |
+| 0307 | 并查集：基础 | 数据结构 | [data-structures/disjoint-set-union.md](data-structures/disjoint-set-union.md) |
 | 0308 | 稀疏表 ST | 数据结构 | `data-structures/0308-sparse-table.md` |
 | 0229 | 单调栈 | 算法基础 | `algorithm-basics/0229-monotonic-stack.md` |
 | 0230 | 单调队列 | 算法基础 | `algorithm-basics/0230-monotonic-queue.md` |
@@ -233,14 +233,15 @@
 | 0601 | 坐标、点、向量与精度 | 计算几何 | `computational-geometry/0601-points-vectors-precision.md` |
 | 0602 | 点积、叉积与方向判断 | 计算几何 | `computational-geometry/0602-dot-cross-orientation.md` |
 
-## 阶段 06：高中进阶
+## 06 高中进阶
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0212 | 枚举：Meet-in-the-Middle | 算法基础 | `algorithm-basics/0212-meet-in-the-middle.md` |
 | 0213 | 离线算法 | 算法基础 | `algorithm-basics/0213-offline-algorithms.md` |
 | 0214 | 扫描线与事件排序 | 算法基础 | `algorithm-basics/0214-sweep-line.md` |
-| 0310 | 带权并查集 | 数据结构 | `data-structures/0310-weighted-disjoint-set.md` |
+| 0309 | 并查集：扩展域 | 数据结构 | `data-structures/extended-domain-disjoint-set.md` |
+| 0310 | 并查集：带权 | 数据结构 | `data-structures/weighted-disjoint-set.md` |
 | 0413 | 有向图：强连通分量 | 图论 | `graph-theory/0413-strongly-connected-components.md` |
 | 0414 | 无向图：割点与桥 | 图论 | `graph-theory/0414-articulation-points-bridges.md` |
 | 0419 | 树上数据结构：树链剖分 | 图论 | `graph-theory/0419-heavy-light-decomposition.md` |
@@ -256,11 +257,11 @@
 | 0710 | 动态规划：概率与期望 | 动态规划 | `dynamic-programming/0710-probability-expectation-dp.md` |
 | 0711 | 动态规划优化：单调队列 | 动态规划 | `dynamic-programming/0711-monotone-queue-optimization.md` |
 
-阶段 06 完成后，读者已经具备独立阅读题解、按题目补充专题和判断新算法依赖的能力。这里不把高中竞赛一等奖与大学竞赛奖牌、Codeforces rating 做机械换算。
+完成 06 高中进阶后，读者已经具备独立阅读题解、按题目补充专题和判断新算法依赖的能力。这里不把高中竞赛一等奖与大学竞赛奖牌、Codeforces rating 做机械换算。
 
 ## 扩展阅读索引
 
-以下内容不属于阶段 01–06 的必学顺序，其中一部分可能明显高于高中竞赛一等奖的常见范围。它们按模块和 ID 排列，便于查找；开始某篇之前可以回到 [模块目录](CATALOG.md) 查看状态和所属模块。
+以下内容不属于 01–06 的必学顺序，其中一部分可能明显高于高中竞赛一等奖的常见范围。它们按模块和 ID 排列，便于查找；开始某篇之前可以回到 [模块目录](CATALOG.md) 查看状态和所属模块。
 
 ### 01 C++
 

@@ -106,10 +106,11 @@ async function parseLearningStages() {
   let currentUnit;
 
   for (const line of learningPath.split("\n")) {
-    const stageMatch = line.match(/^##\s+(阶段\s+\d+)：(.+)$/);
+    const stageMatch = line.match(/^##\s+(\d{2})\s+(.+)$/);
     if (stageMatch) {
       currentStage = {
-        key: stageMatch[1].replace(/\s+/g, "-"),
+        key: `stage-${stageMatch[1]}`,
+        number: stageMatch[1],
         title: stageMatch[2].trim(),
         articleKeys: [],
         units: [],

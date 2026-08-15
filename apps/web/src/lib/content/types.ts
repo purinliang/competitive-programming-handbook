@@ -24,6 +24,7 @@ export interface ModuleRecord {
 
 export interface LearningStage {
   key: string;
+  number: string;
   title: string;
   articleKeys: string[];
   units: LearningUnit[];

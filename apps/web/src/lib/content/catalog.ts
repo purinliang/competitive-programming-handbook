@@ -153,8 +153,8 @@ export function getArticleLearningNavigation(articleKey: string): ArticleNavigat
   }
 
   return {
-    label: stage.key.replace("-", " "),
-    title: stage.title,
+    label: "学习路线",
+    title: `${stage.number} ${stage.title}`,
     groups: getLearningUnitGroups(stage),
   };
 }
