@@ -1,0 +1,62 @@
+[
+  {
+    "id": "class-and-object",
+    "prompt": "`Contestant alice;` 中，`Contestant` 与 `alice` 分别是什么？",
+    "options": [
+      { "id": "a", "text": "类类型与这种类型的对象" },
+      { "id": "b", "text": "对象与命名空间" },
+      { "id": "c", "text": "两个函数" },
+      { "id": "d", "text": "两个预处理宏" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "类描述共同的成员和操作，对象是程序中实际存在的一个该类型实例。"
+  },
+  {
+    "id": "standard-object-term",
+    "prompt": "关于 C++ 中的“对象”，哪项说法正确？",
+    "options": [
+      { "id": "a", "text": "普通整数和数组也是对象，不只类的实例是对象" },
+      { "id": "b", "text": "只有通过 `new` 建立的值才是对象" },
+      { "id": "c", "text": "函数一定是对象" },
+      { "id": "d", "text": "引用一定拥有独立对象存储" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "面向对象语境常把对象指向类实例，但 C++ 标准术语覆盖更广；函数与引用不是对象。"
+  },
+  {
+    "id": "struct-class-capabilities",
+    "prompt": "`struct` 与 `class` 的功能关系是什么？",
+    "options": [
+      { "id": "a", "text": "二者都能有成员函数、构造析构、继承与虚函数" },
+      { "id": "b", "text": "`struct` 永远只能保存整数" },
+      { "id": "c", "text": "`class` 不能拥有数据成员" },
+      { "id": "d", "text": "二者只能在不同语言标准中使用" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "它们都声明类类型；不能用“只有 class 才有行为”区分二者。"
+  },
+  {
+    "id": "default-member-access",
+    "prompt": "没有显式访问标签时，`struct` 与 `class` 的成员默认权限分别是什么？",
+    "options": [
+      { "id": "a", "text": "`struct` 为 `public`，`class` 为 `private`" },
+      { "id": "b", "text": "二者都为 `public`" },
+      { "id": "c", "text": "二者都为 `private`" },
+      { "id": "d", "text": "`struct` 为 `private`，`class` 为 `public`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "默认成员访问权限是二者最直接的语言差别之一；默认继承方式也相应不同。"
+  },
+  {
+    "id": "independent-objects",
+    "prompt": "修改 `alice.score` 后，另一个普通对象 `bob.score` 会怎样？",
+    "options": [
+      { "id": "a", "text": "不会自动改变，两个对象各有自己的非静态成员" },
+      { "id": "b", "text": "一定同步成相同值" },
+      { "id": "c", "text": "两个对象都会被销毁" },
+      { "id": "d", "text": "类定义会自动重写" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "类规定共同结构，每个对象保存自己的普通成员状态。"
+  }
+]

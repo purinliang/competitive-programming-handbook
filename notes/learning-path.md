@@ -124,7 +124,7 @@
 | 0153* | 命名空间与 std | C++ | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
 | 0159* | #define 宏 | C++ | [cpp/define-macros.md](cpp/define-macros.md) |
 | 0160* | typedef 与 using 类型别名 | C++ | [cpp/type-aliases.md](cpp/type-aliases.md) |
-| 0121e2 | class | C++ | `cpp/class.md` |
+| 0121e2 | class 与对象 | C++ | [cpp/class.md](cpp/class.md) |
 | 0121e3 | 类的成员 | C++ | `cpp/class-members.md` |
 | 0121e4 | 访问权限与 friend | C++ | `cpp/class-access-control.md` |
 | 0121e5 | 构造函数 | C++ | `cpp/constructors.md` |
@@ -604,7 +604,7 @@
 | 0157* | 对象生命周期 | `cpp/object-lifetime.md` |
 | 0159* | #define 宏 | `cpp/define-macros.md` |
 | 0160* | typedef 与 using 类型别名 | `cpp/type-aliases.md` |
-| 0121e2 | class | `cpp/class.md` |
+| 0121e2 | class 与对象 | [cpp/class.md](cpp/class.md) |
 | 0121e3 | 类的成员 | `cpp/class-members.md` |
 | 0121e4 | 访问权限与 friend | `cpp/class-access-control.md` |
 | 0121e5 | 构造函数 | `cpp/constructors.md` |
