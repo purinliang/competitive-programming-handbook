@@ -12,6 +12,7 @@
   --primary-bg: #1b46de;
   --primary-hover-bg: #1033cc;
   --primary-foreground: #fff;
+  --accent-text: #1b46de;
   --secondary-bg: #f9f9fb;
   --secondary-hover-bg: #e7e8ec;
   --code-bg: #f1f2f5;
@@ -40,6 +41,7 @@
   --primary-bg: #3664db;
   --primary-hover-bg: #2e58c4;
   --primary-foreground: #fff;
+  --accent-text: #8bb4ff;
   --secondary-bg: #19191b;
   --secondary-hover-bg: #292a2e;
   --code-bg: #19191b;
@@ -63,6 +65,7 @@
     --primary-bg: #3664db;
     --primary-hover-bg: #2e58c4;
     --primary-foreground: #fff;
+    --accent-text: #8bb4ff;
     --secondary-bg: #19191b;
     --secondary-hover-bg: #292a2e;
     --code-bg: #19191b;

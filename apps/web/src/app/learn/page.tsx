@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ArticleFamilyList } from "@/components/article-family-list";
 import { DirectorySidebar } from "@/components/directory-sidebar";
 import { IndexingConvention } from "@/components/indexing-convention";
+import { NumberedPanelHeader } from "@/components/numbered-panel-header";
 import { SiteHeader } from "@/components/site-header";
 import { getLearningStages, getLearningUnitGroups } from "@/lib/content/catalog";
 
@@ -27,10 +28,7 @@ export default function LearningPathPage() {
             {stages.map((stage) => {
               return (
                 <section className="panel" id={stage.key} key={stage.key}>
-                  <div className="panel-header stage-header">
-                    <span>{stage.number}</span>
-                    <h2>{stage.title}</h2>
-                  </div>
+                  <NumberedPanelHeader label={`${stage.number} ${stage.title}`} />
                   <div className="article-list">
                     <ArticleFamilyList groups={getLearningUnitGroups(stage)} navigation="learn" />
                   </div>

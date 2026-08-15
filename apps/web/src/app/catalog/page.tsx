@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ArticleFamilyList } from "@/components/article-family-list";
 import { DirectorySidebar } from "@/components/directory-sidebar";
 import { IndexingConvention } from "@/components/indexing-convention";
+import { NumberedPanelHeader } from "@/components/numbered-panel-header";
 import { SiteHeader } from "@/components/site-header";
 import { getModules, groupAdjacentArticles } from "@/lib/content/catalog";
 
@@ -26,7 +27,7 @@ export default function CatalogPage() {
           <div className="section-stack">
             {modules.map((module) => (
               <section className="panel" id={module.anchor} key={module.key}>
-                <div className="panel-header"><h2>{module.title}</h2><span>{module.articles.length} 个知识点</span></div>
+                <NumberedPanelHeader label={module.title} detail={`${module.articles.length} 个知识点`} />
                 <div className="article-list">
                   <ArticleFamilyList groups={groupAdjacentArticles(module.articles)} navigation="catalog" />
                 </div>

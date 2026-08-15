@@ -103,7 +103,7 @@ a:focus-visible {
 }
 
 .brand svg {
-  color: var(--primary-bg);
+  color: var(--accent-text);
 }
 
 .site-nav {
@@ -131,12 +131,12 @@ a:focus-visible {
 }
 
 .site-nav a.is-active {
-  color: var(--primary-bg);
+  color: var(--accent-text);
   font-weight: 600;
 }
 
 .site-nav a.is-active:hover {
-  color: var(--primary-hover-bg);
+  color: var(--primary-text);
 }
 
 .nav-placeholder {
@@ -180,7 +180,7 @@ a:focus-visible {
 
 .eyebrow {
   margin: 0 0 12px;
-  color: var(--primary-bg);
+  color: var(--accent-text);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.09em;
@@ -327,7 +327,7 @@ a:focus-visible {
 }
 
 .panel-header a:hover {
-  color: var(--primary-bg);
+  color: var(--accent-text);
 }
 
 .panel-body {
@@ -405,15 +405,27 @@ a.article-link.is-active:hover {
   margin-bottom: 20px;
 }
 
-.stage-header {
-  justify-content: flex-start;
+.numbered-panel-header {
+  gap: 8px;
 }
 
-.stage-header > span {
-  min-width: 28px;
-  color: var(--primary-bg);
+.numbered-panel-title {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  min-width: 0;
+}
+
+.numbered-panel-number {
+  flex: none;
+  color: var(--accent-text);
   font-family: var(--font-code);
+  font-size: 13px;
   font-weight: 600;
+}
+
+.numbered-panel-header > span {
+  margin-left: auto;
 }
 
 .empty-page {

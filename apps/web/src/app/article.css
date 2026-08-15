@@ -132,13 +132,13 @@
 
 .sidebar-list .article-link.is-active {
   border-color: var(--divider-border);
-  color: var(--primary-bg);
+  color: var(--accent-text);
   background: transparent;
   font-weight: 600;
 }
 
 .sidebar-list a.article-link.is-active:hover {
-  color: var(--primary-hover-bg);
+  color: var(--primary-text);
   background: var(--secondary-hover-bg);
 }
 
@@ -255,8 +255,12 @@
 }
 
 .directory-sidebar-list a.is-active {
-  color: var(--primary-bg);
+  color: var(--accent-text);
   font-weight: 600;
+}
+
+.directory-sidebar-list a.is-active:hover {
+  color: var(--primary-text);
 }
 
 .article-column {
@@ -283,8 +287,12 @@
 }
 
 .toc-list a.is-active {
-  color: var(--primary-bg);
+  color: var(--accent-text);
   font-weight: 600;
+}
+
+.toc-list a.is-active:hover {
+  color: var(--primary-text);
 }
 
 .toc-list a.toc-depth-3 {
@@ -295,6 +303,10 @@
   color: var(--primary-text);
   font-size: 16px;
   line-height: 1.85;
+}
+
+.markdown-body .katex {
+  font-size: 1.1em;
 }
 
 .markdown-body h1,
@@ -348,7 +360,7 @@
 }
 
 .markdown-body a {
-  color: var(--primary-bg);
+  color: var(--accent-text);
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, var(--primary-bg) 35%, transparent);
   text-underline-offset: 3px;
