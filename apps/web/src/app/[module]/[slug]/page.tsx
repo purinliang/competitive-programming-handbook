@@ -11,7 +11,7 @@ import { ArticleSiteHeader } from "@/components/article-site-header";
 import { ArticleTableOfContents } from "@/components/article-table-of-contents";
 import { SiteHeader } from "@/components/site-header";
 import { getArticle, getArticleLearningNavigation, getArticleLearningNeighbors, getArticleModuleNavigation, getArticleModuleNeighbors, getArticles } from "@/lib/content/catalog";
-import { renderArticle } from "@/lib/content/markdown";
+import { getRenderedArticle } from "@/lib/content/compiled";
 
 interface ArticlePageProps {
   params: Promise<{ module: string; slug: string }>;
@@ -38,7 +38,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
-  const rendered = await renderArticle(article);
+  const rendered = await getRenderedArticle(article);
   const moduleNavigation = getArticleModuleNavigation(article.articleKey);
   if (!moduleNavigation) {
     notFound();

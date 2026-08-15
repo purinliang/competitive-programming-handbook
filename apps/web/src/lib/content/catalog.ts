@@ -1,93 +1,24 @@
 import "server-only";
 
-import { existsSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import path from "node:path";
 
-import GithubSlugger from "github-slugger";
+import type { ArticleFamily, ArticleNavigation, ArticleRecord, LearningStage, ModuleRecord } from "./types";
 
-import type { ArticleFamily, ArticleNavigation, ArticleRecord, ArticleStatus, LearningStage, ModuleRecord } from "./types";
-
-export const NOTES_ROOT = path.resolve(process.cwd(), "../../notes");
-
-const ARTICLE_STATUSES = new Set<ArticleStatus>(["计划", "待审阅", "已审阅", "草稿", "定稿"]);
-
-let cachedArticles: ArticleRecord[] | undefined;
-let cachedStages: LearningStage[] | undefined;
-
-function extractMarkdownPath(cell: string): string | undefined {
-  return cell.match(/\]\(([^)]+\.md)(?:#[^)]+)?\)/)?.[1] ?? cell.match(/`([^`]+\.md)`/)?.[1];
+interface ContentManifest {
+  articles: ArticleRecord[];
+  stages: LearningStage[];
 }
 
-function toArticleKey(sourcePath: string): string {
-  return sourcePath.replace(/\\/g, "/").replace(/\.md$/, "");
+let cachedManifest: ContentManifest | undefined;
+
+function getManifest(): ContentManifest {
+  cachedManifest ??= JSON.parse(readFileSync(path.join(process.cwd(), ".content-cache/manifest.json"), "utf8")) as ContentManifest;
+  return cachedManifest;
 }
 
 export function getArticles(): ArticleRecord[] {
-  if (cachedArticles) {
-    return cachedArticles;
-  }
-
-  const catalog = readFileSync(path.join(NOTES_ROOT, "CATALOG.md"), "utf8");
-  const articles: ArticleRecord[] = [];
-  let moduleKey = "";
-  let moduleTitle = "";
-  let moduleAnchor = "";
-  const moduleSlugger = new GithubSlugger();
-
-  for (const line of catalog.split("\n")) {
-    const moduleMatch = line.match(/^##\s+(\d+\s+.+)$/);
-    if (moduleMatch) {
-      moduleTitle = moduleMatch[1].replace(/^\d+\s+/, "").trim();
-      moduleAnchor = moduleSlugger.slug(moduleMatch[1].trim());
-      moduleKey = "";
-      continue;
-    }
-
-    if (!/^\|\s*\d/.test(line)) {
-      continue;
-    }
-
-    const cells = line.split("|").slice(1, -1).map((cell) => cell.trim());
-    if (cells.length !== 4) {
-      continue;
-    }
-
-    const [catalogId, title, rawStatus, fileCell] = cells;
-    const sourcePath = extractMarkdownPath(fileCell);
-    if (!sourcePath || !ARTICLE_STATUSES.has(rawStatus as ArticleStatus)) {
-      continue;
-    }
-
-    const articleKey = toArticleKey(sourcePath);
-    const pathParts = articleKey.split("/");
-    moduleKey ||= pathParts[0];
-    const articleSlug = pathParts.at(-1) ?? articleKey;
-
-    articles.push({
-      articleKey,
-      articleSlug,
-      catalogId,
-      title,
-      status: rawStatus as ArticleStatus,
-      kind: catalogId.includes("*") || catalogId.includes("e") ? "extension" : "core",
-      moduleKey,
-      moduleTitle,
-      moduleAnchor,
-      sourcePath,
-      route: `/${articleKey}/`,
-      exists: existsSync(path.join(NOTES_ROOT, sourcePath)),
-    });
-  }
-
-  const duplicateKeys = articles.filter(
-    (article, index) => articles.findIndex((candidate) => candidate.articleKey === article.articleKey) !== index,
-  );
-  if (duplicateKeys.length > 0) {
-    throw new Error(`CATALOG.md 中存在重复 article_key：${duplicateKeys.map((item) => item.articleKey).join(", ")}`);
-  }
-
-  cachedArticles = articles;
-  return articles;
+  return getManifest().articles;
 }
 
 export function getModules(): ModuleRecord[] {
@@ -112,70 +43,7 @@ export function getArticle(articleKey: string): ArticleRecord | undefined {
 }
 
 export function getLearningStages(): LearningStage[] {
-  if (cachedStages) {
-    return cachedStages;
-  }
-
-  const learningPath = readFileSync(path.join(NOTES_ROOT, "LEARNING-PATH.md"), "utf8");
-  const stages: LearningStage[] = [];
-  let currentStage: LearningStage | undefined;
-  let currentUnit: LearningStage["units"][number] | undefined;
-
-  for (const line of learningPath.split("\n")) {
-    const stageMatch = line.match(/^##\s+(阶段\s+\d+)：(.+)$/);
-    if (stageMatch) {
-      currentStage = {
-        key: stageMatch[1].replace(/\s+/g, "-"),
-        title: stageMatch[2].trim(),
-        articleKeys: [],
-        units: [],
-      };
-      stages.push(currentStage);
-      currentUnit = undefined;
-      continue;
-    }
-
-    if (/^##\s+/.test(line)) {
-      currentStage = undefined;
-      currentUnit = undefined;
-      continue;
-    }
-
-    const unitMatch = line.match(/^###\s+学习单元：(.+)$/);
-    if (currentStage && unitMatch) {
-      currentUnit = { title: unitMatch[1].trim(), articleKeys: [] };
-      currentStage.units.push(currentUnit);
-      continue;
-    }
-
-    if (!currentStage || !/^\|\s*\d/.test(line)) {
-      continue;
-    }
-
-    const cells = line.split("|").slice(1, -1).map((cell) => cell.trim());
-    const sourcePath = cells.length === 4 ? extractMarkdownPath(cells[3]) : undefined;
-    if (sourcePath) {
-      const articleKey = toArticleKey(sourcePath);
-      currentStage.articleKeys.push(articleKey);
-      currentUnit?.articleKeys.push(articleKey);
-    }
-  }
-
-  for (const stage of stages) {
-    const emptyUnits = stage.units.filter((unit) => unit.articleKeys.length === 0);
-    if (emptyUnits.length > 0) {
-      throw new Error(`${stage.title} 中存在空学习单元：${emptyUnits.map((unit) => unit.title).join(", ")}`);
-    }
-    if (stage.units.length > 0) {
-      const unitArticleKeys = stage.units.flatMap((unit) => unit.articleKeys);
-      if (unitArticleKeys.join("\n") !== stage.articleKeys.join("\n")) {
-        throw new Error(`${stage.title} 的学习单元没有按顺序完整覆盖本阶段文章`);
-      }
-    }
-  }
-
-  cachedStages = stages;
-  return stages;
+  return getManifest().stages;
 }
 
 export function getLearningArticles(): ArticleRecord[] {

@@ -1,14 +1,9 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "competitive-programming-handbook",
-  "main": ".open-next/worker.js",
   "compatibility_date": "2026-08-15",
-  "compatibility_flags": ["nodejs_compat"],
   "assets": {
-    "directory": ".open-next/assets",
-    "binding": "ASSETS"
-  },
-  "observability": {
-    "enabled": true
+    "directory": "out",
+    "not_found_handling": "404-page"
   }
 }

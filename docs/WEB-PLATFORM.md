@@ -15,14 +15,15 @@
 
 网站统一部署在 Cloudflare：
 
-- Next.js App Router 通过 OpenNext 运行在 Cloudflare Workers。
-- 文章页面尽量在构建时生成，由 Workers Static Assets 分发。
+- 第一阶段使用 Next.js App Router 静态导出；Cloudflare Workers Static Assets 直接分发 HTML、RSC 数据、CSS、JavaScript、SVG 和搜索索引，不部署 Next.js 运行时 Worker。
+- Markdown、目录与 Shiki 只在构建期运行。正文增长只增加静态资源，不占用 Worker 脚本大小额度。
+- 需要用户数据后再增加只处理 `/api/*` 的 Worker；公开正文仍保持静态，不随请求重新渲染。
 - D1 保存用户、进度、作答和讨论等结构化数据。
 - R2 只在出现用户上传图片或附件时启用。
 - Turnstile 用于保护注册、登录、留言和试卷提交等公开入口。
 - Queues、Cron Triggers、KV 和 Durable Objects 只在出现相应需求时启用，不为了凑齐产品而提前引入。
 
-完整 Next.js 应用不部署到 Cloudflare Pages。Pages 适合纯静态导出，而本项目已经明确需要服务端判题、用户数据和讨论接口。选择 Workers 并不会牺牲静态资源分发；静态文章仍然通过 Cloudflare 网络提供。
+网站不部署到 Cloudflare Pages。第一阶段虽然是纯静态站，但仍使用 Workers Static Assets，使以后可以在同一个 Cloudflare Worker 项目中为 `/api/*` 增加动态逻辑；静态资源默认不会触发 Worker。动态功能上线前不为了未来需求提前携带 OpenNext 或完整 Next.js 服务端运行时。
 
 ## 内容与数据的边界
 
@@ -90,7 +91,7 @@ quoted_text
 
 第一阶段只建设无需用户数据也能完整工作的阅读站：
 
-1. Next.js App Router 与 OpenNext/Workers 部署骨架。
+1. Next.js App Router 静态导出与 Workers Static Assets 部署骨架。
 2. 从 `CATALOG.md` 和 `LEARNING-PATH.md` 构建统一内容索引。
 3. 渲染 Markdown、GFM 表格、LaTeX、代码块、相对链接和 SVG。
 4. 学习路线、模块目录、文章页、文章目录和上一篇/下一篇导航。
@@ -143,5 +144,5 @@ handbook 可以针对长文阅读提高正文行高、代码块密度和内容�
 - 先保持内容系统简单，再为已经出现的用户行为增加服务。
 - 优先使用 Cloudflare 原生能力，但不让产品设计依赖某个不必要的专有服务。
 - 本地构建和测试不得依赖线上 D1；动态能力使用 Wrangler 提供的本地绑定验证。
-- `next dev` 只能用于界面开发；提交前必须使用 OpenNext 的 Cloudflare 预览或构建检查验证实际 Workers 运行环境。
+- `next dev` 只能用于界面开发；提交前必须运行静态导出，并使用 Wrangler 本地预览或部署 dry-run 检查实际 Workers Static Assets 环境。
 - 每一阶段都必须可以独立部署、使用和回退，不能提交只有未来功能完成后才成立的中间态。
