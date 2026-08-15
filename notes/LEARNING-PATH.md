@@ -2,6 +2,8 @@
 
 这条路线从 C++ 基础出发，到高中竞赛一等奖常见的知识主干为止。它给出 [模块目录](CATALOG.md) 中核心教程的大致教学顺序，不试图在正文尚未写完时维护一张精确的前置依赖图。
 
+路线会逐阶段整理成学习单元；目前先以阶段 1 的 C++ 基础作为样板，其余阶段仍保留原有顺序，等待对应正文和教学边界一起审查。单元表示一次相对完整的学习任务，文章仍然保持足够小且聚焦；同一单元可以把需要共同理解或反复对照的不同知识族放在一起。路线允许先学会最小用法、以后再回访底层规则，不承诺所有概念都能排成一条没有交叉的直线。
+
 标为代码路径的文章尚在计划中；可点击链接表示已经存在正文。高中进阶之后不再虚构统一的难度顺序，目录中的其余内容统一收录在文末的 [扩展阅读索引](#扩展阅读索引) 中。
 
 ## 下标与区间约定
@@ -12,15 +14,27 @@
 
 ## 阶段 1：C++ 基础
 
+### 学习单元：第一个竞赛程序
+
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0101 | 入门：Hello World! | C++ | [cpp/hello-world.md](cpp/hello-world.md) |
 | 0158 | 入门：A+B Problem | C++ | [cpp/a-plus-b-problem.md](cpp/a-plus-b-problem.md) |
+
+### 学习单元：值、类型与变量
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0102 | 基本类型：整数 | C++ | [cpp/integer-types.md](cpp/integer-types.md) |
 | 0103 | 基本类型：浮点数 | C++ | [cpp/floating-point-types.md](cpp/floating-point-types.md) |
 | 0104 | 基本类型：字符 | C++ | [cpp/character-types.md](cpp/character-types.md) |
 | 0105 | 基本类型：布尔 | C++ | [cpp/boolean-type.md](cpp/boolean-type.md) |
 | 0106 | 变量：声明与初始化 | C++ | [cpp/variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
+
+### 学习单元：表达式与控制流
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0107 | 表达式：算术运算符 | C++ | [cpp/arithmetic-operators.md](cpp/arithmetic-operators.md) |
 | 0108 | 表达式：比较运算符 | C++ | [cpp/comparison-operators.md](cpp/comparison-operators.md) |
 | 0109 | 表达式：逻辑运算符 | C++ | [cpp/logical-operators.md](cpp/logical-operators.md) |
@@ -28,20 +42,40 @@
 | 0133 | 表达式：位运算符 | C++ | [cpp/bitwise-operators.md](cpp/bitwise-operators.md) |
 | 0111 | 控制流：条件分支 | C++ | [cpp/conditional-branches.md](cpp/conditional-branches.md) |
 | 0112 | 控制流：循环 | C++ | [cpp/loops.md](cpp/loops.md) |
+
+### 学习单元：函数与程序交互
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0113 | 函数：定义与调用 | C++ | [cpp/function-definition-and-calls.md](cpp/function-definition-and-calls.md) |
 | 0114 | 名称：作用域 | C++ | [cpp/scope.md](cpp/scope.md) |
 | 0115 | 输入输出：标准输入 | C++ | [cpp/standard-input.md](cpp/standard-input.md) |
 | 0116 | 输入输出：标准输出 | C++ | [cpp/standard-output.md](cpp/standard-output.md) |
 | 0117 | 输入输出：文件重定向 | C++ | [cpp/file-redirection.md](cpp/file-redirection.md) |
+
+### 学习单元：连续数据与记录
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0118 | 数组：一维数组 | C++ | [cpp/one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
 | 0119 | 数组：多维数组 | C++ | [cpp/multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
 | 0120 | 字符串：C 字符串 | C++ | [cpp/c-strings.md](cpp/c-strings.md) |
 | 0121 | 复合类型：struct | C++ | [cpp/struct.md](cpp/struct.md) |
+
+### 学习单元：地址、别名与参数
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0124 | 内存：字节寻址 | C++ | [cpp/byte-addressing.md](cpp/byte-addressing.md) |
 | 0125 | 内存与别名：指针 | C++ | [cpp/pointers.md](cpp/pointers.md) |
 | 0126 | 内存与别名：引用 | C++ | [cpp/references.md](cpp/references.md) |
 | 0127 | 函数：参数传递 | C++ | [cpp/parameter-passing.md](cpp/parameter-passing.md) |
 | 0128 | 修饰符：const | C++ | [cpp/const.md](cpp/const.md) |
+
+### 学习单元：存储期、调用栈与递归
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0129 | 变量：static 局部变量 | C++ | [cpp/static-local-variables.md](cpp/static-local-variables.md) |
 | 0130 | 内存：竞赛程序的常见分区 | C++ | [cpp/competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
 | 0131 | 函数：调用栈 | C++ | [cpp/function-call-stack.md](cpp/function-call-stack.md) |
