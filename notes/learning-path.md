@@ -85,6 +85,7 @@
 | 0119 | 多维数组 | C++ | [cpp/multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
 | 0120 | C 字符串 | C++ | [cpp/c-strings.md](cpp/c-strings.md) |
 | 0137 | string | C++ | [cpp/string.md](cpp/string.md) |
+| 0173 | 整行输入 | C++ | [cpp/whole-line-input.md](cpp/whole-line-input.md) |
 | 0121 | struct | C++ | [cpp/struct.md](cpp/struct.md) |
 
 ### 学习单元：地址、别名与参数

@@ -91,7 +91,9 @@ string line;
 getline(cin, line);
 ```
 
-这里只需要记住：全部输入按空白分隔时使用 `>>`；需要保留空格时使用 `getline`。更完整的输入边界见 [输入输出：标准输入](standard-input.md#整行输入)。同一个程序不要混用 `cin` / `cout` 与 `scanf` / `printf`。
+这里只需要记住：全部输入按空白分隔时使用 `>>`；需要保留空格时使用
+`getline`。前一次格式化读入留下换行等边界见 [整行输入](whole-line-input.md)。
+同一个程序不要混用 `cin` / `cout` 与 `scanf` / `printf`。
 
 ## 下标与遍历
 
