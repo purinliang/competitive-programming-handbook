@@ -1,0 +1,86 @@
+[
+  {
+    "id": "unfinished-calls",
+    "prompt": "调用栈为什么适合记录尚未结束的函数调用？",
+    "options": [
+      { "id": "a", "text": "最后进入的调用会最先返回，符合后进先出" },
+      { "id": "b", "text": "函数调用总是按字母排序" },
+      { "id": "c", "text": "每个函数只能调用一次" },
+      { "id": "d", "text": "调用栈只保存标准输出" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "被调用者结束后才恢复调用者，嵌套关系天然按照后进先出的顺序撤销。"
+  },
+  {
+    "id": "call-state",
+    "prompt": "一次函数调用通常需要保留哪些语义信息？",
+    "options": [
+      { "id": "a", "text": "参数、局部状态和返回后继续执行的位置" },
+      { "id": "b", "text": "源文件中的所有注释" },
+      { "id": "c", "text": "其他程序的变量名称" },
+      { "id": "d", "text": "OJ 的全部测试答案" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "调用返回时必须恢复调用者，因此每层需要保留本次调用的数据与返回位置。"
+  },
+  {
+    "id": "nested-order",
+    "prompt": "`main` 调用 `solve`，`solve` 再调用 `add`，正常返回顺序是什么？",
+    "options": [
+      { "id": "a", "text": "`add -> solve -> main`" },
+      { "id": "b", "text": "`main -> solve -> add`" },
+      { "id": "c", "text": "三个调用同时随机结束" },
+      { "id": "d", "text": "只有 `main` 会结束" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "最后进入的 `add` 位于栈顶，先返回给 `solve`，再由 `solve` 返回给 `main`。"
+  },
+  {
+    "id": "independent-calls",
+    "prompt": "两次调用同一个函数时，普通局部变量是什么关系？",
+    "options": [
+      { "id": "a", "text": "每次调用拥有自己独立的一份局部状态" },
+      { "id": "b", "text": "所有调用永久共享同一个局部变量" },
+      { "id": "c", "text": "第二次调用会删除第一次的返回值" },
+      { "id": "d", "text": "局部变量会自动变成全局变量" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "函数代码相同，但每次未结束的调用分别保存参数、局部对象和返回位置。"
+  },
+  {
+    "id": "return-local-address",
+    "prompt": "为什么不能返回普通局部变量的地址并在调用处继续解引用？",
+    "options": [
+      { "id": "a", "text": "函数返回后局部对象销毁，指针成为悬空指针" },
+      { "id": "b", "text": "局部变量没有地址" },
+      { "id": "c", "text": "指针只能指向全局字符串" },
+      { "id": "d", "text": "返回值必须始终等于零" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "地址值可能仍存在，但它不再指向一个生命周期内的合法局部对象。"
+  },
+  {
+    "id": "stack-overflow-causes",
+    "prompt": "下面哪两类情况容易导致调用栈溢出？",
+    "options": [
+      { "id": "a", "text": "单层过大的局部对象与过深的调用嵌套" },
+      { "id": "b", "text": "输出一个换行与读取一个整数" },
+      { "id": "c", "text": "使用短变量名与长变量名" },
+      { "id": "d", "text": "比较两个布尔值与整数相加" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "栈空间既受每层大小影响，也受同时存在的栈帧层数影响。"
+  },
+  {
+    "id": "frame-implementation",
+    "prompt": "为什么不应背诵所有平台通用的固定栈帧字节布局？",
+    "options": [
+      { "id": "a", "text": "寄存器、优化和调用约定会改变具体实现" },
+      { "id": "b", "text": "栈帧没有任何状态" },
+      { "id": "c", "text": "C++ 禁止调用函数" },
+      { "id": "d", "text": "每次调用都必须占一个字节" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "语义模型稳定，但参数和局部值具体放在栈还是寄存器属于实现细节。"
+  }
+]
