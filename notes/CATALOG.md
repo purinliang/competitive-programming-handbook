@@ -307,7 +307,7 @@
 | 0537 | 数论：欧几里得算法 | 定稿 | [euclidean-algorithm.md](math/euclidean-algorithm.md) |
 | 0538 | 数论：扩展中国剩余定理（exCRT） | 待审阅 | [extended-chinese-remainder-theorem.md](math/extended-chinese-remainder-theorem.md) |
 | 0539 | 数论：质因数分解 | 待审阅 | [prime-factorization.md](math/prime-factorization.md) |
-| 0540 | 数论：正因数个数 | 计划 | `math/0540-divisor-count.md` |
+| 0540 | 正因数个数 | 待审阅 | [divisor-count.md](math/divisor-count.md) |
 | 0541 | 数论：正因数和 | 计划 | `math/0541-divisor-sum.md` |
 | 0542 | 线性不定方程 | 待审阅 | [linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
 | 0543 | 线性同余方程 | 待审阅 | [linear-congruences.md](math/linear-congruences.md) |
