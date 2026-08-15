@@ -264,7 +264,7 @@
 | 0503 | 数论：扩展欧几里得算法 | 待审阅 | [extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
 | 0504 | 模运算 | 待审阅 | [modular-arithmetic.md](math/modular-arithmetic.md) |
 | 0504e1 | 模运算：modint | 待审阅 | [mod-int.md](math/mod-int.md) |
-| 0505 | 筛法与质因数预处理 | 计划 | `math/0505-sieve.md` |
+| 0505 | 筛法：埃氏筛 | 待审阅 | [sieve-of-eratosthenes.md](math/sieve-of-eratosthenes.md) |
 | 0505e1 | 杜教筛 | 计划 | `math/du-jiao-sieve.md` |
 | 0505e2 | Min_25 筛 | 计划 | `math/min-25-sieve.md` |
 | 0506 | 模逆元 | 待审阅 | [modular-inverse.md](math/modular-inverse.md) |
@@ -345,6 +345,8 @@
 | 0573* | 集合幂级数：FWT/FMT | 计划 | `math/fast-subset-transforms.md` |
 | 0574 | 快速幂 | 待审阅 | [fast-power.md](math/fast-power.md) |
 | 0575 | 费马小定理 | 待审阅 | [fermat-little-theorem.md](math/fermat-little-theorem.md) |
+| 0576 | 筛法：欧拉筛（线性筛） | 计划 | `math/euler-sieve.md` |
+| 0577* | 筛法：分段筛 | 计划 | `math/segmented-sieve.md` |
 
 ## 06 计算几何
 

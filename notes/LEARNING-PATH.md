@@ -198,7 +198,8 @@
 | 0542 | 线性不定方程 | 数学 | [math/linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
 | 0543 | 线性同余方程 | 数学 | [math/linear-congruences.md](math/linear-congruences.md) |
 | 0506 | 模逆元 | 数学 | [math/modular-inverse.md](math/modular-inverse.md) |
-| 0505 | 筛法与质因数预处理 | 数学 | `math/0505-sieve.md` |
+| 0505 | 筛法：埃氏筛 | 数学 | [math/sieve-of-eratosthenes.md](math/sieve-of-eratosthenes.md) |
+| 0576 | 筛法：欧拉筛（线性筛） | 数学 | `math/euler-sieve.md` |
 | 0540 | 数论：正因数个数 | 数学 | `math/0540-divisor-count.md` |
 | 0541 | 数论：正因数和 | 数学 | `math/0541-divisor-sum.md` |
 | 0507 | 组合数与基础计数 | 数学 | `math/0507-combinatorics.md` |
@@ -444,6 +445,7 @@
 | 0571* | 数值积分：Simpson 公式 | `math/simpson-rule.md` |
 | 0572* | 数值积分：自适应 Simpson | `math/adaptive-simpson.md` |
 | 0573* | 集合幂级数：FWT/FMT | `math/fast-subset-transforms.md` |
+| 0577* | 筛法：分段筛 | `math/segmented-sieve.md` |
 
 ### 06 计算几何
 
