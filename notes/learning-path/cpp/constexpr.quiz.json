@@ -1,0 +1,74 @@
+[
+  {
+    "id": "const-vs-constexpr",
+    "prompt": "`const` 与 `constexpr` 的核心区别是什么？",
+    "options": [
+      { "id": "a", "text": "const 只保证只读，constexpr 还要求能用于常量表达式" },
+      { "id": "b", "text": "const 只能修饰浮点数，constexpr 只能修饰整数" },
+      { "id": "c", "text": "const 一定更快，constexpr 一定更慢" },
+      { "id": "d", "text": "二者在所有情况下完全相同" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "运行时得到的值也可以初始化 const 对象；constexpr 变量的初值必须是常量表达式。"
+  },
+  {
+    "id": "runtime-const",
+    "prompt": "读取 `n` 后，哪项声明能够表达“此后不再修改 n 的副本”？",
+    "options": [
+      { "id": "a", "text": "`const int size = n;`" },
+      { "id": "b", "text": "`constexpr int size = n;`" },
+      { "id": "c", "text": "`#define size n;`" },
+      { "id": "d", "text": "`constexpr size = n;`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "输入在运行时才出现，不能初始化 constexpr 变量；const 仍可保证初始化后不再修改。"
+  },
+  {
+    "id": "constexpr-variable",
+    "prompt": "关于 `constexpr int MAXN = 200005;`，哪项正确？",
+    "options": [
+      { "id": "a", "text": "MAXN 可用于要求整型常量表达式的位置" },
+      { "id": "b", "text": "MAXN 必须在第一次使用后再赋值" },
+      { "id": "c", "text": "MAXN 可以随时修改" },
+      { "id": "d", "text": "MAXN 没有类型和作用域" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "constexpr 变量必须由常量表达式初始化，并隐含顶层 const。"
+  },
+  {
+    "id": "constant-expression-context",
+    "prompt": "下面哪一项通常要求编译期可用的整型常量表达式？",
+    "options": [
+      { "id": "a", "text": "内置数组的固定长度" },
+      { "id": "b", "text": "从 cin 读取的普通变量" },
+      { "id": "c", "text": "while 循环中每次更新的计数器" },
+      { "id": "d", "text": "运行时输入的图边权" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "内置数组长度、case 标签和部分模板实参等位置需要在编译期确定数值。"
+  },
+  {
+    "id": "constexpr-function-runtime",
+    "prompt": "`constexpr int square(int x)` 能否接收运行时输入？",
+    "options": [
+      { "id": "a", "text": "可以，此时该次调用在运行时计算" },
+      { "id": "b", "text": "不可以，constexpr 函数禁止运行时调用" },
+      { "id": "c", "text": "只有返回 void 时可以" },
+      { "id": "d", "text": "只有使用宏展开后可以" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "constexpr 表示函数可以在条件满足时参与常量求值，不要求每次调用都发生在编译期。"
+  },
+  {
+    "id": "macro-comparison",
+    "prompt": "固定整数通常为什么优先写成 constexpr 变量而不是宏？",
+    "options": [
+      { "id": "a", "text": "constexpr 变量有类型、作用域并参与类型检查" },
+      { "id": "b", "text": "宏无法表示任何数字" },
+      { "id": "c", "text": "constexpr 会自动改变算法复杂度" },
+      { "id": "d", "text": "宏只能在程序运行后展开" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "宏是预处理记号替换；C++ 常量保留语言本身的类型和作用域规则。"
+  }
+]
