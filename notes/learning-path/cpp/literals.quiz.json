@@ -1,0 +1,62 @@
+[
+  {
+    "id": "identify-literal",
+    "prompt": "在 `int score = 60;` 中，哪个部分是整数字面量？",
+    "options": [
+      { "id": "a", "text": "`int`" },
+      { "id": "b", "text": "`score`" },
+      { "id": "c", "text": "`=`" },
+      { "id": "d", "text": "`60`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "字面量是在源码中直接写出的固定值，因此这里的整数字面量是 `60`。"
+  },
+  {
+    "id": "literal-types",
+    "prompt": "下面哪组写法依次是整数、浮点、字符和布尔字面量？",
+    "options": [
+      { "id": "a", "text": "`42`、`3.14`、`'A'`、`true`" },
+      { "id": "b", "text": "`\"42\"`、`3`、`A`、`yes`" },
+      { "id": "c", "text": "`42.0`、`3`、`\"A\"`、`1.0`" },
+      { "id": "d", "text": "`int`、`double`、`char`、`bool`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`42` 是整数，`3.14` 是浮点数，`'A'` 是字符，`true` 是布尔字面量。"
+  },
+  {
+    "id": "character-or-string-literal",
+    "prompt": "`'A'` 和 `\"A\"` 的区别是什么？",
+    "options": [
+      { "id": "a", "text": "两者完全相同" },
+      { "id": "b", "text": "前者是字符字面量，后者是字符串字面量" },
+      { "id": "c", "text": "前者是字符串，后者是字符" },
+      { "id": "d", "text": "两者都是变量名" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "单引号写单个字符字面量，双引号写字符串字面量；它们的类型和用途不同。"
+  },
+  {
+    "id": "constant-and-literal",
+    "prompt": "关于 `const int MOD = 7;`，下面哪项正确？",
+    "options": [
+      { "id": "a", "text": "`MOD` 是常量的名称，`7` 是字面量" },
+      { "id": "b", "text": "`MOD` 是字面量，`7` 是变量" },
+      { "id": "c", "text": "`const` 是整数字面量" },
+      { "id": "d", "text": "整行代码没有字面量" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "声明给只读对象取名 `MOD`，并用源码中直接写出的整数字面量 `7` 初始化它。"
+  },
+  {
+    "id": "literal-or-expression",
+    "prompt": "关于 `2e5 + 5`，下面哪项说法正确？",
+    "options": [
+      { "id": "a", "text": "它是一个单独的整数字面量" },
+      { "id": "b", "text": "它是由两个字面量和加法运算符组成的表达式" },
+      { "id": "c", "text": "它是变量声明" },
+      { "id": "d", "text": "它是字符字面量" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`2e5` 与 `5` 各自是字面量，`+` 把它们组合成一个表达式；整个 `2e5 + 5` 不是单个字面量。"
+  }
+]
