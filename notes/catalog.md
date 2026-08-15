@@ -138,7 +138,7 @@
 | 0159* | #define 宏 | 待审阅 | [define-macros.md](cpp/define-macros.md) |
 | 0160* | typedef 与 using 类型别名 | 待审阅 | [type-aliases.md](cpp/type-aliases.md) |
 | 0121e2 | class 与对象 | 待审阅 | [class.md](cpp/class.md) |
-| 0121e3 | 类的成员 | 计划 | `cpp/class-members.md` |
+| 0121e3 | 类的成员 | 待审阅 | [class-members.md](cpp/class-members.md) |
 | 0121e4 | 访问权限与 friend | 计划 | `cpp/class-access-control.md` |
 | 0121e5 | 构造函数 | 计划 | `cpp/constructors.md` |
 | 0121e6 | 析构函数 | 计划 | `cpp/destructors.md` |
