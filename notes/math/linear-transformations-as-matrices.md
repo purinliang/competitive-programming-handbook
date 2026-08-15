@@ -456,4 +456,4 @@ $$
 
 下一篇 [矩阵快速幂](matrix-exponentiation.md) 会把一次状态转移写成矩阵，并用快速幂一次合成大量相同转移。
 
-齐次坐标与仿射变换属于 [扩展阅读（正文待写）](../CATALOG.md#05-数学)，不影响当前主路线。
+需要把平移也放进矩阵时，可以继续阅读 [线性变换：齐次坐标与仿射变换](homogeneous-coordinates-affine-transformations.md)。

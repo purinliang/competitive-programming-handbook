@@ -356,7 +356,7 @@
 | 0583 | 矩阵：加法与减法 | 待审阅 | [matrix-addition-subtraction.md](math/matrix-addition-subtraction.md) |
 | 0584 | 矩阵：乘法 | 待审阅 | [matrix-multiplication.md](math/matrix-multiplication.md) |
 | 0585 | 线性变换：矩阵表示 | 待审阅 | [linear-transformations-as-matrices.md](math/linear-transformations-as-matrices.md) |
-| 0585e1 | 线性变换：齐次坐标与仿射变换 | 计划 | `math/homogeneous-coordinates-affine-transformations.md` |
+| 0585e1 | 线性变换：齐次坐标与仿射变换 | 待审阅 | [homogeneous-coordinates-affine-transformations.md](math/homogeneous-coordinates-affine-transformations.md) |
 
 ## 06 计算几何
 

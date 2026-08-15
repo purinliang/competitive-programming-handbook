@@ -455,7 +455,7 @@
 | 0572* | 数值积分：自适应 Simpson | `math/adaptive-simpson.md` |
 | 0573* | 集合幂级数：FWT/FMT | `math/fast-subset-transforms.md` |
 | 0577* | 筛法：分段筛 | `math/segmented-sieve.md` |
-| 0585e1 | 线性变换：齐次坐标与仿射变换 | `math/homogeneous-coordinates-affine-transformations.md` |
+| 0585e1 | 线性变换：齐次坐标与仿射变换 | [math/homogeneous-coordinates-affine-transformations.md](math/homogeneous-coordinates-affine-transformations.md) |
 
 ### 06 计算几何
 
