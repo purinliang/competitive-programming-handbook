@@ -245,7 +245,3 @@ int main() {
 6. `const int& ref = x` 是否复制了 `x`？为什么仍然不能通过 `ref` 赋值？
 
 编译期常量表达式的完整形式化规则、`constexpr`、类的 `const` 成员函数、`mutable` 和 `const_cast` 都不是本篇的基础学习目标，不要求理解或记忆。
-
-## 下一篇
-
-下一篇 [变量：static 局部变量](static-local-variables.md) 会解释怎样让函数内的一个局部对象在多次调用之间保留状态。

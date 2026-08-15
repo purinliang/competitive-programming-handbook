@@ -455,7 +455,3 @@ int main() {
 10. 什么情况下应选择直接寻址 `vector`、`map` 或 `unordered_map`？
 
 `try_emplace`、提示插入、异构查找、局部桶迭代器、`max_load_factor`、手动 `rehash`、节点句柄、自定义相等函数和通用抗攻击哈希实现不属于基础竞赛接口，需要时查阅标准库资料即可，不要求记忆。
-
-## 下一篇
-
-下一篇 [高精度整数：加法、减法与乘法](../math/big-integer-addition-subtraction-multiplication.md) 会使用压位数组表示超出内置整数范围的非负整数，并实现三种基础运算。

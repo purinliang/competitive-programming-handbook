@@ -322,7 +322,3 @@ int main() {
 6. `break` 和 `continue` 分别跳到哪里？
 7. 为什么 `continue` 在 `while` 循环中可能跳过必要更新？
 8. 累加变量为什么必须在循环前初始化？
-
-## 下一篇
-
-下一篇 [函数：定义与调用](function-definition-and-calls.md) 会把一段具有明确输入、工作过程和结果的代码组织成可以重复调用的函数。

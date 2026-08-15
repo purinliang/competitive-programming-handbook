@@ -221,7 +221,7 @@ for (auto it = values.begin(); it != values.end(); it++) {
 }
 ```
 
-`*it` 表示当前位置的元素。普通遍历优先使用下标或范围 `for`；现在引入 `begin()` 和 `end()`，主要是因为下一篇的 `sort(values.begin(), values.end())` 会用它们准确表示排序范围。
+`*it` 表示当前位置的元素。普通遍历优先使用下标或范围 `for`；现在引入 `begin()` 和 `end()`，主要是因为 [STL 算法：排序](sorting.md) 中的 `sort(values.begin(), values.end())` 会用它们准确表示排序范围。
 
 ## 插入与删除
 
@@ -391,7 +391,3 @@ int main() {
 10. 为什么只读的 `vector` 函数参数通常使用 `const` 引用？
 
 `vector` 的增长倍率、内存分配器、异常保证和 `vector<bool>` 的特殊压位实现不属于本篇的竞赛基础用法，不要求理解或记忆。
-
-## 下一篇
-
-下一篇 [STL 算法：排序](sorting.md) 会使用 `begin()` 与 `end()` 指定范围，并让 `sort` 按需要的顺序排列元素。

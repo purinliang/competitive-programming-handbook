@@ -95,7 +95,7 @@ scanf("%d%lld%lf", &count, &total, &ratio);
 
 `double` 在 `scanf` 中使用 `%lf`，不是 `%f`。如果格式控制符与变量类型不对应，`scanf` 就可能按错误的大小和规则写入内存；这是未定义行为，不能依赖某一次运行看似正常。
 
-> `printf` 输出 `double` 时反而使用 `%f`。输入与输出的这个区别会在下一篇 [输入输出：标准输出](standard-output.md) 再对照。
+> `printf` 输出 `double` 时反而使用 `%f`。输入与输出的这个区别会在 [输入输出：标准输出](standard-output.md) 中再对照。
 
 ## 字符输入
 
@@ -301,7 +301,3 @@ int main() {
 9. 为什么 `cin >> n` 后直接调用 `cin.getline` 可能得到空字符串？
 
 匹配冒号等固定符号的格式不需要背诵，知道可以查阅即可。指针会完整解释 `scanf` 中 `&` 的意义。
-
-## 下一篇
-
-下一篇 [输入输出：标准输出](standard-output.md) 会说明 `cout` 与 `printf` 的输出规则、换行和常用格式控制。
