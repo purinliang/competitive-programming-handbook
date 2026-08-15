@@ -308,7 +308,7 @@
 | 0540 | 数论：正因数个数 | 计划 | `math/0540-divisor-count.md` |
 | 0541 | 数论：正因数和 | 计划 | `math/0541-divisor-sum.md` |
 | 0542 | 线性不定方程 | 待审阅 | [linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
-| 0543 | 数论：线性同余方程 | 计划 | `math/0543-linear-congruences.md` |
+| 0543 | 线性同余方程 | 待审阅 | [linear-congruences.md](math/linear-congruences.md) |
 | 0544 | 高精度整数：加法、减法与乘法 | 待审阅 | [big-integer-addition-subtraction-multiplication.md](math/big-integer-addition-subtraction-multiplication.md) |
 | 0544e1 | 高精度整数：除法与余数 | 计划 | `math/big-integer-division-remainder.md` |
 | 0544e2 | 高精度整数：负数 | 计划 | `math/big-integer-negative-numbers.md` |

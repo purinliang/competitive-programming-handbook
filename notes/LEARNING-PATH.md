@@ -195,7 +195,7 @@
 | 0574 | 快速幂 | 数学 | [math/fast-power.md](math/fast-power.md) |
 | 0503 | 数论：扩展欧几里得算法 | 数学 | [math/extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
 | 0542 | 线性不定方程 | 数学 | [math/linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
-| 0543 | 数论：线性同余方程 | 数学 | `math/0543-linear-congruences.md` |
+| 0543 | 线性同余方程 | 数学 | [math/linear-congruences.md](math/linear-congruences.md) |
 | 0506 | 模逆元 | 数学 | `math/0506-modular-inverse.md` |
 | 0505 | 筛法与质因数预处理 | 数学 | `math/0505-sieve.md` |
 | 0540 | 数论：正因数个数 | 数学 | `math/0540-divisor-count.md` |
