@@ -116,22 +116,15 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0201 | 复杂度：时间与空间 | 算法基础 | [algorithm-basics/complexity.md](algorithm-basics/complexity.md) |
+| 0254 | 从代码分析复杂度 | 算法基础 | `algorithm-basics/complexity-analysis.md` |
 
-### 学习单元：数组与 vector
+### 学习单元：基础 STL
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0223 | 线性结构：数组 | 算法基础 | [algorithm-basics/array.md](algorithm-basics/array.md) |
 | 0138 | vector | C++ | [cpp/vector.md](cpp/vector.md) |
-| 0163 | fill 与 memset | C++ | `cpp/fill-and-memset.md` |
-
-### 学习单元：排序接口与去重
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0134 | pair | C++ | [cpp/pair.md](cpp/pair.md) |
+| 0163 | fill | C++ | `cpp/fill.md` |
 | 0140 | sort | C++ | [cpp/sorting.md](cpp/sorting.md) |
-| 0161 | 自定义排序 | C++ | `cpp/custom-sorting.md` |
 | 0141 | unique | C++ | [cpp/deduplication.md](cpp/deduplication.md) |
 
 ### 学习单元：递归与递推
@@ -183,7 +176,7 @@
 | 0211 | 枚举：子集与位掩码 | 算法基础 | [algorithm-basics/subset-bitmask-enumeration.md](algorithm-basics/subset-bitmask-enumeration.md) |
 | 0222 | 模拟 | 算法基础 | [algorithm-basics/simulation.md](algorithm-basics/simulation.md) |
 
-本阶段交错安排基础算法、基础数据结构和当前真正需要的标准库接口。先理解复杂度，再把抽象数组与 `vector` 的操作成本对应起来；`pair`、`sort` 和 `unique` 只在排序与去重真正需要时出现。链表、栈、队列和双端队列连同对应标准库接口移入初中基础，不在这里预先背诵一整套容器。
+本阶段先独立建立复杂度，再学习后续代码马上需要的 `vector`、`sort` 和 `unique`。这里只学习基础 STL 的真实用途，不预先背诵全部容器。数组、链表、栈、队列和双端队列连同对应标准库接口放在初中基础；`pair` 等到图的带权邻接表以前再学习。
 
 ## 03 初中基础
 
@@ -191,6 +184,7 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
+| 0223 | 线性结构：数组 | 算法基础 | [algorithm-basics/array.md](algorithm-basics/array.md) |
 | 0224 | 链表 | 算法基础 | [algorithm-basics/linked-list.md](algorithm-basics/linked-list.md) |
 | 0225 | 栈 | 算法基础 | [algorithm-basics/stack.md](algorithm-basics/stack.md) |
 | 0142 | stack | C++ | [cpp/stack.md](cpp/stack.md) |
@@ -217,6 +211,12 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0228 | 哈希表 | 算法基础 | [algorithm-basics/hash-table.md](algorithm-basics/hash-table.md) |
+
+### 学习单元：pair
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0134 | pair | C++ | [cpp/pair.md](cpp/pair.md) |
 
 ### 学习单元：图的概念与存储
 
@@ -331,6 +331,13 @@
 | 0241 | 编码：格雷码 | 算法基础 | [algorithm-basics/gray-code.md](algorithm-basics/gray-code.md) |
 
 ## 05 高中基础
+
+### 学习单元：复杂度进阶
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0255 | 均摊复杂度 | 算法基础 | `algorithm-basics/amortized-complexity.md` |
+| 0256 | 均摊复杂度：势能法 | 算法基础 | `algorithm-basics/potential-method.md` |
 
 ### 学习单元：bitset
 
@@ -583,6 +590,7 @@
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
+| 0201e1 | 复杂度：渐近记号 | `algorithm-basics/asymptotic-notation.md` |
 | 0215* | 三分搜索 | `algorithm-basics/0215-ternary-search.md` |
 | 0216* | 随机化算法 | `algorithm-basics/0216-randomized-algorithms.md` |
 | 0217* | 整体二分与并行二分 | `algorithm-basics/0217-parallel-binary-search.md` |

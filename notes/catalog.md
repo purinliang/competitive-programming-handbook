@@ -93,10 +93,9 @@
 | 0138 | vector | 待审阅 | [vector.md](cpp/vector.md) |
 | 0139 | deque | 待审阅 | [deque.md](cpp/deque.md) |
 | 0140 | sort | 待审阅 | [sorting.md](cpp/sorting.md) |
-| 0161 | 自定义排序 | 计划 | `cpp/custom-sorting.md` |
 | 0141 | unique | 待审阅 | [deduplication.md](cpp/deduplication.md) |
 | 0162 | STL 二分查找 | 计划 | `cpp/stl-binary-search.md` |
-| 0163 | fill 与 memset | 计划 | `cpp/fill-and-memset.md` |
+| 0163 | fill | 计划 | `cpp/fill.md` |
 | 0142 | stack | 待审阅 | [stack.md](cpp/stack.md) |
 | 0143 | queue | 待审阅 | [queue.md](cpp/queue.md) |
 | 0144 | priority_queue | 待审阅 | [priority-queue.md](cpp/priority-queue.md) |
@@ -135,6 +134,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 0201 | 复杂度：时间与空间 | 待审阅 | [complexity.md](algorithm-basics/complexity.md) |
+| 0201e1 | 复杂度：渐近记号 | 计划 | `algorithm-basics/asymptotic-notation.md` |
 | 0202 | 递推 | 待审阅 | [recurrence.md](algorithm-basics/recurrence.md) |
 | 0203 | 排序：基础排序 | 待审阅 | [sorting.md](algorithm-basics/sorting.md) |
 | 0204 | 查找：二分查找 | 待审阅 | [binary-search.md](algorithm-basics/binary-search.md) |
@@ -187,6 +187,9 @@
 | 0251 | 二分边界 | 计划 | `algorithm-basics/binary-search-boundaries.md` |
 | 0252 | 浮点数二分 | 计划 | `algorithm-basics/floating-point-binary-search.md` |
 | 0253 | 双端队列 | 计划 | `algorithm-basics/deque.md` |
+| 0254 | 从代码分析复杂度 | 计划 | `algorithm-basics/complexity-analysis.md` |
+| 0255 | 均摊复杂度 | 计划 | `algorithm-basics/amortized-complexity.md` |
+| 0256 | 均摊复杂度：势能法 | 计划 | `algorithm-basics/potential-method.md` |
 
 ## 03 数据结构
 
