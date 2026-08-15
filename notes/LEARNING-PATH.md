@@ -202,7 +202,11 @@
 | 0576 | 筛法：欧拉筛（线性筛） | 数学 | [math/euler-sieve.md](math/euler-sieve.md) |
 | 0540 | 正因数个数 | 数学 | [math/divisor-count.md](math/divisor-count.md) |
 | 0541 | 正因数和 | 数学 | [math/divisor-sum.md](math/divisor-sum.md) |
-| 0507 | 组合数与基础计数 | 数学 | `math/0507-combinatorics.md` |
+| 0578 | 计数原理：加法原理 | 数学 | [math/addition-principle.md](math/addition-principle.md) |
+| 0579 | 计数原理：乘法原理 | 数学 | `math/multiplication-principle.md` |
+| 0580 | 排列数 | 数学 | `math/permutations-count.md` |
+| 0507 | 组合数：定义与递推 | 数学 | `math/binomial-coefficients.md` |
+| 0581 | 组合数：阶乘与逆元预处理 | 数学 | `math/binomial-coefficients-factorials.md` |
 | 0508 | 欧拉函数 | 数学 | `math/0508-euler-totient.md` |
 | 0509 | 矩阵运算与线性变换 | 数学 | `math/0509-matrix-operations.md` |
 | 0511 | 矩阵快速幂与递推加速 | 数学 | `math/0511-matrix-exponentiation.md` |
