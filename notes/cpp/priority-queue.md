@@ -234,7 +234,8 @@ priority_queue<pair<int, int>> values;
 若两个字段都要按从小到大的字典序取出，使用：
 
 ```cpp
-priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> values;
+priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>>
+    values;
 ```
 
 例如元素 `(distance, vertex)` 会先按较小的 `distance` 取出，距离相同时再按较小的 `vertex` 取出。后续的最短路算法就会使用这种写法。

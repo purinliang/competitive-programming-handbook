@@ -71,14 +71,17 @@ int main() {
         vector<ll> v = random_vector(input_size, rng);
         ll factor = (int)(rng() % 11) - 5;
 
-        vector<ll> left_add = apply_transformation(transformation, add(u, v, input_size));
-        vector<ll> right_add = add(apply_transformation(transformation, u),
-                                   apply_transformation(transformation, v), output_size);
+        vector<ll> left_add =
+            apply_transformation(transformation, add(u, v, input_size));
+        vector<ll> right_add =
+            add(apply_transformation(transformation, u),
+                apply_transformation(transformation, v), output_size);
         if (!equal(left_add, right_add, output_size)) {
             return 1;
         }
 
-        vector<ll> left_scale = apply_transformation(transformation, scale(u, input_size, factor));
+        vector<ll> left_scale =
+            apply_transformation(transformation, scale(u, input_size, factor));
         vector<ll> right_scale =
             scale(apply_transformation(transformation, u), output_size, factor);
         if (!equal(left_scale, right_scale, output_size)) {
@@ -94,8 +97,10 @@ int main() {
         Matrix second = random_matrix(output_size, middle_size, rng);
         vector<ll> input = random_vector(input_size, rng);
 
-        vector<ll> step_by_step = apply_transformation(second, apply_transformation(first, input));
-        vector<ll> combined = apply_transformation(multiply(second, first), input);
+        vector<ll> step_by_step =
+            apply_transformation(second, apply_transformation(first, input));
+        vector<ll> combined =
+            apply_transformation(multiply(second, first), input);
         if (!equal(step_by_step, combined, output_size)) {
             return 1;
         }

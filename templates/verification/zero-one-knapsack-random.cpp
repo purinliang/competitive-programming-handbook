@@ -4,7 +4,8 @@
 #include "../dynamic-programming/zero-one-knapsack.cpp"
 #undef main
 
-ll brute_force(const vector<int>& weight, const vector<ll>& value, int n, int capacity) {
+ll brute_force(const vector<int>& weight, const vector<ll>& value, int n,
+               int capacity) {
     ll answer = 0;
 
     for (int mask = 0; mask < (1 << n); mask++) {

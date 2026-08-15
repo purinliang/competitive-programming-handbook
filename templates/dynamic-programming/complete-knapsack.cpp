@@ -7,7 +7,8 @@ using namespace std;
 
 typedef long long ll;
 
-ll complete_knapsack(const vector<int>& weight, const vector<ll>& value, int n, int capacity) {
+ll complete_knapsack(const vector<int>& weight, const vector<ll>& value, int n,
+                     int capacity) {
     vector<ll> dp(capacity + 5, 0);
 
     for (int i = 1; i <= n; i++) {

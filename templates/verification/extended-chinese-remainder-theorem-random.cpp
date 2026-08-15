@@ -52,7 +52,8 @@ int main() {
             return 1;
         }
 
-        if (actual && (ans != brute || M != expected_mod || ans < 0 || ans >= M)) {
+        if (actual &&
+            (ans != brute || M != expected_mod || ans < 0 || ans >= M)) {
             printf("answer mismatch on test %d\n", test);
             return 1;
         }

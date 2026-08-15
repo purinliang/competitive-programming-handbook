@@ -86,7 +86,8 @@ int main() {
         printf("%d%c", answer.path[i], " \n"[i + 1 == (int)answer.path.size()]);
     }
     for (int i = 0; i < (int)answer.centers.size(); i++) {
-        printf("%d%c", answer.centers[i], " \n"[i + 1 == (int)answer.centers.size()]);
+        printf("%d%c", answer.centers[i],
+               " \n"[i + 1 == (int)answer.centers.size()]);
     }
     return 0;
 }

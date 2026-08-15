@@ -575,7 +575,8 @@ struct SegmentTree {
     vector<ll> tree;
     vector<ll> lazy;
 
-    SegmentTree(int n, const vector<ll>& a) : n(n), tree(4 * n + 5), lazy(4 * n + 5) {
+    SegmentTree(int n, const vector<ll>& a)
+        : n(n), tree(4 * n + 5), lazy(4 * n + 5) {
         build(1, 1, n, a);
     }
 

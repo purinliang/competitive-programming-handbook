@@ -34,8 +34,10 @@ bool dp_exists(const vector<vector<bool>>& connected) {
     return false;
 }
 
-bool valid_cycle(const vector<int>& cycle, const vector<vector<bool>>& connected) {
-    if (cycle.size() != static_cast<size_t>(n + 1) || cycle.front() != 1 || cycle.back() != 1) {
+bool valid_cycle(const vector<int>& cycle,
+                 const vector<vector<bool>>& connected) {
+    if (cycle.size() != static_cast<size_t>(n + 1) || cycle.front() != 1 ||
+        cycle.back() != 1) {
         return false;
     }
 
@@ -43,7 +45,8 @@ bool valid_cycle(const vector<int>& cycle, const vector<vector<bool>>& connected
     for (int i = 0; i < n; i++) {
         int u = cycle[i];
         int v = cycle[i + 1];
-        if (u < 1 || u > n || v < 1 || v > n || seen[u] || !connected[u - 1][v - 1]) {
+        if (u < 1 || u > n || v < 1 || v > n || seen[u] ||
+            !connected[u - 1][v - 1]) {
             return false;
         }
         seen[u] = true;

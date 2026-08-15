@@ -83,7 +83,8 @@ int main() {
 
         int left_exponent = rng() % 11;
         int right_exponent = rng() % 11;
-        Matrix combined = multiply(power(base, left_exponent), power(base, right_exponent));
+        Matrix combined =
+            multiply(power(base, left_exponent), power(base, right_exponent));
         if (!equal(combined, power(base, left_exponent + right_exponent))) {
             return 1;
         }

@@ -5,7 +5,8 @@
 
 using namespace std;
 
-pair<vector<int>, vector<int>> multi_source_bfs(int n, const vector<vector<int>>& g,
+pair<vector<int>, vector<int>> multi_source_bfs(int n,
+                                                const vector<vector<int>>& g,
                                                 const vector<int>& sources) {
     vector<int> dist(n + 5, -1);
     vector<int> nearest(n + 5, -1);

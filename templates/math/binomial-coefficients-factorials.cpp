@@ -26,7 +26,8 @@ struct Combinations {
     vector<ll> factorial;
     vector<ll> inverse_factorial;
 
-    Combinations(int max_n) : max_n(max_n), factorial(max_n + 5), inverse_factorial(max_n + 5) {
+    Combinations(int max_n)
+        : max_n(max_n), factorial(max_n + 5), inverse_factorial(max_n + 5) {
         init();
     }
 
@@ -47,7 +48,8 @@ struct Combinations {
             return 0;
         }
 
-        return factorial[n] * inverse_factorial[k] % MOD * inverse_factorial[n - k] % MOD;
+        return factorial[n] * inverse_factorial[k] % MOD *
+               inverse_factorial[n - k] % MOD;
     }
 };
 

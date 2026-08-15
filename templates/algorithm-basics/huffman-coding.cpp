@@ -18,8 +18,8 @@ struct HuffmanResult {
     vector<string> codes;
 };
 
-void build_codes(int u, int symbol_count, const vector<HuffmanNode>& nodes, string& code,
-                 vector<string>& codes) {
+void build_codes(int u, int symbol_count, const vector<HuffmanNode>& nodes,
+                 string& code, vector<string>& codes) {
     if (u <= symbol_count) {
         codes[u] = code;
         return;
@@ -36,7 +36,8 @@ void build_codes(int u, int symbol_count, const vector<HuffmanNode>& nodes, stri
 
 HuffmanResult huffman_coding(int n, const vector<ll>& frequency) {
     vector<HuffmanNode> nodes(2 * n + 5);
-    priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> q;
+    priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>>
+        q;
 
     for (int i = 1; i <= n; i++) {
         nodes[i] = {frequency[i], 0, 0};

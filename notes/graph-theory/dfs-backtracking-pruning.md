@@ -278,7 +278,8 @@ struct n_queens_solver {
             int difference_index = row - column + n;
             int sum_index = row + column;
 
-            if (used_column[column] || used_difference_diagonal[difference_index] ||
+            if (used_column[column] ||
+                used_difference_diagonal[difference_index] ||
                 used_sum_diagonal[sum_index]) {
                 continue;
             }

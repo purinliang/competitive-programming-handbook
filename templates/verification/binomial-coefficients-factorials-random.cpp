@@ -13,7 +13,8 @@ int main() {
         expected[n][0] = 1;
         expected[n][n] = 1;
         for (int k = 1; k < n; k++) {
-            expected[n][k] = (expected[n - 1][k] + expected[n - 1][k - 1]) % MOD;
+            expected[n][k] =
+                (expected[n - 1][k] + expected[n - 1][k - 1]) % MOD;
         }
     }
 

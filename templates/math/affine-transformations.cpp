@@ -35,7 +35,8 @@ Matrix multiply(const Matrix& a, const Matrix& b) {
     return answer;
 }
 
-vector<ll> apply_transformation(const Matrix& transformation, const vector<ll>& input) {
+vector<ll> apply_transformation(const Matrix& transformation,
+                                const vector<ll>& input) {
     vector<ll> output(DIMENSION + 5);
     for (int i = 1; i <= DIMENSION; i++) {
         for (int j = 1; j <= DIMENSION; j++) {

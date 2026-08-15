@@ -142,12 +142,12 @@ int main() {
     printf("int: %zu %zu\n", sizeof(int), alignof(int));
 
     printf("Sample: %zu %zu\n", sizeof(Sample), alignof(Sample));
-    printf("Sample offsets: %zu %zu %zu\n", offsetof(Sample, tag), offsetof(Sample, value),
-           offsetof(Sample, state));
+    printf("Sample offsets: %zu %zu %zu\n", offsetof(Sample, tag),
+           offsetof(Sample, value), offsetof(Sample, state));
 
     printf("Compact: %zu %zu\n", sizeof(Compact), alignof(Compact));
-    printf("Compact offsets: %zu %zu %zu\n", offsetof(Compact, value), offsetof(Compact, tag),
-           offsetof(Compact, state));
+    printf("Compact offsets: %zu %zu %zu\n", offsetof(Compact, value),
+           offsetof(Compact, tag), offsetof(Compact, state));
     return 0;
 }
 ```

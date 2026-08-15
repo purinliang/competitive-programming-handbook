@@ -13,7 +13,8 @@ struct CentroidFinder {
     vector<int> centroids;
 
     CentroidFinder(int node_count, const vector<vector<int>>& graph)
-        : n(node_count), g(graph), subtree_size(node_count + 5), best_balance(node_count) {}
+        : n(node_count), g(graph), subtree_size(node_count + 5),
+          best_balance(node_count) {}
 
     void dfs(int u, int p) {
         subtree_size[u] = 1;

@@ -151,7 +151,8 @@ struct Matrix {
     vector<vector<ll>> value;
 
     Matrix(int rows, int columns)
-        : rows(rows), columns(columns), value(rows + 5, vector<ll>(columns + 5)) {}
+        : rows(rows), columns(columns),
+          value(rows + 5, vector<ll>(columns + 5)) {}
 };
 ```
 
@@ -200,7 +201,8 @@ struct Matrix {
     vector<vector<ll>> value;
 
     Matrix(int rows, int columns)
-        : rows(rows), columns(columns), value(rows + 5, vector<ll>(columns + 5)) {}
+        : rows(rows), columns(columns),
+          value(rows + 5, vector<ll>(columns + 5)) {}
 };
 
 int main() {

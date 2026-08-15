@@ -51,7 +51,8 @@ int main() {
             combined = multiply(get_transformation(operations[i]), combined);
         }
 
-        pair<ll, ll> expected = {(int)(rng() % 21) - 10, (int)(rng() % 21) - 10};
+        pair<ll, ll> expected = {(int)(rng() % 21) - 10,
+                                 (int)(rng() % 21) - 10};
         vector<ll> point(DIMENSION + 5);
         point[1] = expected.first;
         point[2] = expected.second;
@@ -62,14 +63,16 @@ int main() {
         }
 
         vector<ll> actual = apply_transformation(combined, point);
-        if (actual[1] != expected.first || actual[2] != expected.second || actual[3] != 1) {
+        if (actual[1] != expected.first || actual[2] != expected.second ||
+            actual[3] != 1) {
             return 1;
         }
 
         vector<ll> direction(DIMENSION + 5);
         direction[1] = (int)(rng() % 21) - 10;
         direction[2] = (int)(rng() % 21) - 10;
-        vector<ll> translated = apply_transformation(translation(7, -4), direction);
+        vector<ll> translated =
+            apply_transformation(translation(7, -4), direction);
         if (translated != direction) {
             return 1;
         }

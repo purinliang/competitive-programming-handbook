@@ -233,7 +233,8 @@ struct Matrix {
     vector<vector<ll>> value;
 
     Matrix(int rows, int columns)
-        : rows(rows), columns(columns), value(rows + 5, vector<ll>(columns + 5)) {}
+        : rows(rows), columns(columns),
+          value(rows + 5, vector<ll>(columns + 5)) {}
 };
 
 Matrix multiply(const Matrix& a, const Matrix& b) {
@@ -241,8 +242,9 @@ Matrix multiply(const Matrix& a, const Matrix& b) {
     for (int i = 1; i <= a.rows; i++) {
         for (int k = 1; k <= a.columns; k++) {
             for (int j = 1; j <= b.columns; j++) {
-                answer.value[i][j] =
-                    (answer.value[i][j] + (__int128)a.value[i][k] * b.value[k][j]) % MOD;
+                answer.value[i][j] = (answer.value[i][j] +
+                                      (__int128)a.value[i][k] * b.value[k][j]) %
+                                     MOD;
             }
         }
     }
@@ -269,12 +271,14 @@ Matrix power(Matrix base, ll exponent) {
     return result;
 }
 
-vector<ll> apply_transformation(const Matrix& transformation, const vector<ll>& input) {
+vector<ll> apply_transformation(const Matrix& transformation,
+                                const vector<ll>& input) {
     vector<ll> output(transformation.rows + 5);
     for (int i = 1; i <= transformation.rows; i++) {
         for (int j = 1; j <= transformation.columns; j++) {
             output[i] =
-                (output[i] + (__int128)transformation.value[i][j] * input[j]) % MOD;
+                (output[i] + (__int128)transformation.value[i][j] * input[j]) %
+                MOD;
         }
     }
     return output;

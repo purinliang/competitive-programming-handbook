@@ -43,7 +43,8 @@ int main() {
     }
 
     for (int i = 0; i < static_cast<int>(order.size()); i++) {
-        printf("%d%c", order[i], " \n"[i + 1 == static_cast<int>(order.size())]);
+        printf("%d%c", order[i],
+               " \n"[i + 1 == static_cast<int>(order.size())]);
     }
     printf("%d\n", component_count);
     return 0;

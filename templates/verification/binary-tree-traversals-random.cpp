@@ -86,7 +86,8 @@ int main() {
         preorder(1);
         inorder(1);
         postorder(1);
-        if (preorder_order != iterative_preorder(1) || inorder_order != iterative_inorder(1) ||
+        if (preorder_order != iterative_preorder(1) ||
+            inorder_order != iterative_inorder(1) ||
             postorder_order != iterative_postorder(1)) {
             printf("test %d failed\n", test);
             return 1;

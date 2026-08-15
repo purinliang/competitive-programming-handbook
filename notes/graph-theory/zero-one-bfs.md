@@ -218,7 +218,8 @@ using namespace std;
 
 const int INF = 1e9;
 
-vector<int> zero_one_bfs(int n, const vector<vector<pair<int, int>>>& g, int start) {
+vector<int> zero_one_bfs(int n, const vector<vector<pair<int, int>>>& g,
+                         int start) {
     vector<int> dist(n + 5, INF);
     deque<pair<int, int>> q;
 

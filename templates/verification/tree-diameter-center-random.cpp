@@ -42,7 +42,8 @@ bool check_case(int n, const vector<vector<int>>& g) {
     }
 
     diameter_result result = find_diameter_and_center(n, g);
-    if (result.length != expected_diameter || (int)result.path.size() != result.length + 1) {
+    if (result.length != expected_diameter ||
+        (int)result.path.size() != result.length + 1) {
         return false;
     }
     for (int i = 1; i < (int)result.path.size(); i++) {
@@ -50,7 +51,8 @@ bool check_case(int n, const vector<vector<int>>& g) {
             return false;
         }
     }
-    if (all_dist[result.path.front()][result.path.back()] != expected_diameter) {
+    if (all_dist[result.path.front()][result.path.back()] !=
+        expected_diameter) {
         return false;
     }
 

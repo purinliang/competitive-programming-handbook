@@ -4,7 +4,10 @@ WORKSPACE ?= workspace
 BUILD_DIR ?= $(WORKSPACE)/.build
 TEMPLATE ?= templates/base.cpp
 
-ARGS := $(filter-out init run format notes-check notes-format notes-format-check,$(MAKECMDGOALS))
+CPP_FILES := $(shell rg --files -g '*.cpp')
+MARKDOWN_FILES := $(shell rg --files notes -g '*.md')
+
+ARGS := $(filter-out init run format lint notes-check notes-format notes-format-check,$(MAKECMDGOALS))
 TASK := $(firstword $(ARGS))
 SRC := $(if $(findstring /,$(TASK)),$(if $(filter %.cpp,$(TASK)),$(TASK),$(TASK).cpp),$(if $(filter %.cpp,$(TASK)),$(TASK),$(WORKSPACE)/$(TASK).cpp))
 WORKSPACE_SRC := $(WORKSPACE)/$(TASK).cpp
@@ -12,7 +15,11 @@ WORKSPACE_STEM := $(WORKSPACE)/$(TASK)
 STEM := $(basename $(SRC))
 BIN := $(BUILD_DIR)/$(notdir $(STEM))
 
-.PHONY: init run format notes-check notes-format notes-format-check $(ARGS)
+.PHONY: init run format lint notes-check notes-format notes-format-check $(ARGS)
+
+lint:
+	@clang-format --dry-run --Werror $(CPP_FILES)
+	@python tools/notes/format_cpp_blocks.py --check $(MARKDOWN_FILES)
 
 notes-check:
 	python tools/notes/check_catalog.py

@@ -11,7 +11,8 @@ bool check_case(int n, const vector<vector<int>>& g, const vector<int>& sources,
     for (int k = 1; k <= n; k++) {
         for (int u = 1; u <= n; u++) {
             for (int v = 1; v <= n; v++) {
-                expected[u][v] = min(expected[u][v], expected[u][k] + expected[k][v]);
+                expected[u][v] =
+                    min(expected[u][v], expected[u][k] + expected[k][v]);
             }
         }
     }

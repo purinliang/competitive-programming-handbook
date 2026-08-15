@@ -13,10 +13,12 @@ struct Matrix {
     vector<vector<ll>> value;
 
     Matrix(int rows, int columns)
-        : rows(rows), columns(columns), value(rows + 5, vector<ll>(columns + 5)) {}
+        : rows(rows), columns(columns),
+          value(rows + 5, vector<ll>(columns + 5)) {}
 };
 
-vector<ll> apply_transformation(const Matrix& transformation, const vector<ll>& input) {
+vector<ll> apply_transformation(const Matrix& transformation,
+                                const vector<ll>& input) {
     vector<ll> output(transformation.rows + 5);
     for (int i = 1; i <= transformation.rows; i++) {
         for (int j = 1; j <= transformation.columns; j++) {

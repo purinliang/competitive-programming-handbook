@@ -5,7 +5,8 @@
 
 using namespace std;
 
-vector<int> topological_sort(int n, const vector<vector<int>>& g, vector<int> indegree) {
+vector<int> topological_sort(int n, const vector<vector<int>>& g,
+                             vector<int> indegree) {
     queue<int> q;
     for (int u = 1; u <= n; u++) {
         if (indegree[u] == 0) {

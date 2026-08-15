@@ -25,8 +25,10 @@ int main() {
     }
 
     vector<pair<ll, bool>> fixed_cases = {
-        {-1, false}, {0, false},         {1, false},          {2, true},
-        {97, true},  {1000000007, true}, {1000000014, false}, {999983LL * 999983, false},
+        {-1, false},         {0, false},
+        {1, false},          {2, true},
+        {97, true},          {1000000007, true},
+        {1000000014, false}, {999983LL * 999983, false},
     };
     for (auto [n, answer] : fixed_cases) {
         if (is_prime(n) != answer) {

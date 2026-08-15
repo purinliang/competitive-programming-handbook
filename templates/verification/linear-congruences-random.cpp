@@ -29,7 +29,8 @@ int main() {
         if (!solution.exists) {
             continue;
         }
-        if (solution.count != (ll)expected.size() || solution.first != expected[0]) {
+        if (solution.count != (ll)expected.size() ||
+            solution.first != expected[0]) {
             return 1;
         }
         for (ll k = 0; k < solution.count; k++) {

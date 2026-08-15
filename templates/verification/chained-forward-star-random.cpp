@@ -38,8 +38,8 @@ int main() {
         for (int i = 0; i < m; i++) {
             int first = 2 * i;
             int second = first ^ 1;
-            if (e[first].v != input[i].v || e[second].v != input[i].u || e[first].w != input[i].w ||
-                e[second].w != input[i].w) {
+            if (e[first].v != input[i].v || e[second].v != input[i].u ||
+                e[first].w != input[i].w || e[second].w != input[i].w) {
                 printf("paired edge mismatch on test %d\n", test);
                 return 1;
             }
@@ -54,7 +54,8 @@ int main() {
                 }
                 seen[i] = true;
                 int edge_id = i / 2;
-                int expected_u = i % 2 == 0 ? input[edge_id].u : input[edge_id].v;
+                int expected_u =
+                    i % 2 == 0 ? input[edge_id].u : input[edge_id].v;
                 if (u != expected_u) {
                     printf("wrong head on test %d\n", test);
                     return 1;

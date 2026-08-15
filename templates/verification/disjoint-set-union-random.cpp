@@ -51,7 +51,8 @@ int main() {
                 }
             }
 
-            if (dsu.size(u) != expected_size || dsu.component_count() != expected_components) {
+            if (dsu.size(u) != expected_size ||
+                dsu.component_count() != expected_components) {
                 return 1;
             }
         }

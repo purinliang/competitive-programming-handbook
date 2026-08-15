@@ -288,7 +288,8 @@ $$
 用 1-based `vector<ll>` 保存输入和输出分量。变换矩阵有 `rows` 个输出、`columns` 个输入：
 
 ```cpp
-vector<ll> apply_transformation(const Matrix& transformation, const vector<ll>& input) {
+vector<ll> apply_transformation(const Matrix& transformation,
+                                const vector<ll>& input) {
     vector<ll> output(transformation.rows + 5);
     for (int i = 1; i <= transformation.rows; i++) {
         for (int j = 1; j <= transformation.columns; j++) {
@@ -320,10 +321,12 @@ struct Matrix {
     vector<vector<ll>> value;
 
     Matrix(int rows, int columns)
-        : rows(rows), columns(columns), value(rows + 5, vector<ll>(columns + 5)) {}
+        : rows(rows), columns(columns),
+          value(rows + 5, vector<ll>(columns + 5)) {}
 };
 
-vector<ll> apply_transformation(const Matrix& transformation, const vector<ll>& input) {
+vector<ll> apply_transformation(const Matrix& transformation,
+                                const vector<ll>& input) {
     vector<ll> output(transformation.rows + 5);
     for (int i = 1; i <= transformation.rows; i++) {
         for (int j = 1; j <= transformation.columns; j++) {

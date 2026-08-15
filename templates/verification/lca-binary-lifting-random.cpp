@@ -4,7 +4,8 @@
 #include "../graph-theory/lca-binary-lifting.cpp"
 #undef main
 
-int naive_lca(int u, int v, const vector<int>& parent, const vector<int>& expected_depth) {
+int naive_lca(int u, int v, const vector<int>& parent,
+              const vector<int>& expected_depth) {
     while (expected_depth[u] > expected_depth[v]) {
         u = parent[u];
     }

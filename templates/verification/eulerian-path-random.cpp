@@ -10,7 +10,8 @@ struct TestEdge {
     int v;
 };
 
-int brute_dfs(int u, int mask, const vector<TestEdge>& edges, vector<vector<int>>& memo) {
+int brute_dfs(int u, int mask, const vector<TestEdge>& edges,
+              vector<vector<int>>& memo) {
     if (mask == (1 << static_cast<int>(edges.size())) - 1) {
         return true;
     }

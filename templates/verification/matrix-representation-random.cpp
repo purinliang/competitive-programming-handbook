@@ -33,7 +33,8 @@ int main() {
         }
 
         Matrix copied = matrix;
-        if (copied.rows != rows || copied.columns != columns || copied.value != matrix.value) {
+        if (copied.rows != rows || copied.columns != columns ||
+            copied.value != matrix.value) {
             return 1;
         }
     }

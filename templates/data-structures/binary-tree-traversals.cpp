@@ -43,7 +43,8 @@ void postorder(int u) {
 
 void print(const vector<int>& order) {
     for (int i = 0; i < static_cast<int>(order.size()); i++) {
-        printf("%d%c", order[i], " \n"[i + 1 == static_cast<int>(order.size())]);
+        printf("%d%c", order[i],
+               " \n"[i + 1 == static_cast<int>(order.size())]);
     }
 }
 

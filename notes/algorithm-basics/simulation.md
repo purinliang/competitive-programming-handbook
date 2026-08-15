@@ -265,7 +265,8 @@ int main() {
     robot answer = simulate(commands, m);
     const char direction_name[4] = {'N', 'E', 'S', 'W'};
 
-    printf("%lld %lld %c\n", answer.x, answer.y, direction_name[answer.direction]);
+    printf("%lld %lld %c\n", answer.x, answer.y,
+           direction_name[answer.direction]);
     return 0;
 }
 ```

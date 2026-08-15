@@ -65,7 +65,8 @@ int oct_value = 052;
 int dec_value = 42;
 int hex_value = 0x2a;
 
-cout << bin_value << ' ' << oct_value << ' ' << dec_value << ' ' << hex_value << '\n';
+cout << bin_value << ' ' << oct_value << ' ' << dec_value << ' ' << hex_value
+     << '\n';
 ```
 
 这里没有直接使用 `oct`、`dec` 和 `hex` 作为变量名，因为它们已经是 `cin`、`cout` 的进制控制名称；统一增加 `_value` 可以避免遮蔽和混淆。前缀中的 `B`、`X` 以及十六进制数字 `A` 到 `F` 都可以大写或小写。

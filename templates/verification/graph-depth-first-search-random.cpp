@@ -62,7 +62,8 @@ int main() {
             }
             seen[u] = true;
         }
-        if (static_cast<int>(order.size()) != n || actual_components != expected_components) {
+        if (static_cast<int>(order.size()) != n ||
+            actual_components != expected_components) {
             printf("test %d failed\n", test);
             return 1;
         }

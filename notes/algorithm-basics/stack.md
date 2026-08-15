@@ -234,7 +234,8 @@ bool is_opening(char c) {
 }
 
 bool matches(char opening, char closing) {
-    return (opening == '(' && closing == ')') || (opening == '[' && closing == ']') ||
+    return (opening == '(' && closing == ')') ||
+           (opening == '[' && closing == ']') ||
            (opening == '{' && closing == '}');
 }
 

@@ -37,6 +37,7 @@ int main() {
         return 1;
     }
 
-    printf("all n <= 5000, 3000 random cases, and large boundary cases passed\n");
+    printf(
+        "all n <= 5000, 3000 random cases, and large boundary cases passed\n");
     return 0;
 }

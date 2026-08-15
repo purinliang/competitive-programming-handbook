@@ -180,8 +180,8 @@ encoded_bits += weight_sum;
 合并结束时，小根堆中唯一节点就是根。从根进行 DFS，向左加入字符 `'0'`，返回时撤销，再向右加入 `'1'`：
 
 ```cpp
-void build_codes(int u, int symbol_count, const vector<HuffmanNode>& nodes, string& code,
-                 vector<string>& codes) {
+void build_codes(int u, int symbol_count, const vector<HuffmanNode>& nodes,
+                 string& code, vector<string>& codes) {
     if (u <= symbol_count) {
         codes[u] = code;
         return;
@@ -272,8 +272,8 @@ struct HuffmanResult {
     vector<string> codes;
 };
 
-void build_codes(int u, int symbol_count, const vector<HuffmanNode>& nodes, string& code,
-                 vector<string>& codes) {
+void build_codes(int u, int symbol_count, const vector<HuffmanNode>& nodes,
+                 string& code, vector<string>& codes) {
     if (u <= symbol_count) {
         codes[u] = code;
         return;
@@ -290,7 +290,8 @@ void build_codes(int u, int symbol_count, const vector<HuffmanNode>& nodes, stri
 
 HuffmanResult huffman_coding(int n, const vector<ll>& frequency) {
     vector<HuffmanNode> nodes(2 * n + 5);
-    priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> q;
+    priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>>
+        q;
 
     for (int i = 1; i <= n; i++) {
         nodes[i] = {frequency[i], 0, 0};

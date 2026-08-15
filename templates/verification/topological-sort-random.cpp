@@ -4,7 +4,8 @@
 #include "../graph-theory/topological-sort.cpp"
 #undef main
 
-bool is_valid_order(int n, const vector<vector<int>>& g, const vector<int>& order) {
+bool is_valid_order(int n, const vector<vector<int>>& g,
+                    const vector<int>& order) {
     if ((int)order.size() != n) {
         return false;
     }

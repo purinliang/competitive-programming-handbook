@@ -38,6 +38,7 @@ int main() {
         return 1;
     }
 
-    printf("all coprime residues with n <= 500 and 20000 random cases passed\n");
+    printf(
+        "all coprime residues with n <= 500 and 20000 random cases passed\n");
     return 0;
 }

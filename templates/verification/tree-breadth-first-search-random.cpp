@@ -41,7 +41,8 @@ int main() {
                     return 1;
                 }
             } else if (depth[u] != depth[parent[u]] + 1 ||
-                       find(g[u].begin(), g[u].end(), parent[u]) == g[u].end()) {
+                       find(g[u].begin(), g[u].end(), parent[u]) ==
+                           g[u].end()) {
                 printf("invalid parent on test %d\n", test);
                 return 1;
             }

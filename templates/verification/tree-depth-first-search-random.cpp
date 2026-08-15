@@ -53,7 +53,8 @@ int main() {
             seen[u] = true;
         }
         for (int u = 1; u <= n; u++) {
-            if (parent[u] != expected_parent[u] || depth[u] != expected_depth[u]) {
+            if (parent[u] != expected_parent[u] ||
+                depth[u] != expected_depth[u]) {
                 printf("test %d vertex %d failed\n", test, u);
                 return 1;
             }

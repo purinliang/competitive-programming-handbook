@@ -4,8 +4,8 @@
 #include "../dynamic-programming/multiple-knapsack.cpp"
 #undef main
 
-ll brute_force(const vector<int>& weight, const vector<ll>& value, const vector<int>& quantity,
-               int n, int capacity) {
+ll brute_force(const vector<int>& weight, const vector<ll>& value,
+               const vector<int>& quantity, int n, int capacity) {
     vector<ll> previous(capacity + 5, 0);
 
     for (int i = 1; i <= n; i++) {
@@ -15,7 +15,8 @@ ll brute_force(const vector<int>& weight, const vector<ll>& value, const vector<
             int maximum_count = min(quantity[i], c / weight[i]);
 
             for (int count = 0; count <= maximum_count; count++) {
-                ll candidate = previous[c - count * weight[i]] + count * value[i];
+                ll candidate =
+                    previous[c - count * weight[i]] + count * value[i];
                 current[c] = max(current[c], candidate);
             }
         }
