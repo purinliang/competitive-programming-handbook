@@ -45,6 +45,7 @@ async function parseCatalog() {
   let moduleKey = "";
   let moduleTitle = "";
   let moduleAnchor = "";
+  let catalogFamilyTitle;
   const moduleSlugger = new GithubSlugger();
 
   for (const line of catalog.split("\n")) {
@@ -53,6 +54,13 @@ async function parseCatalog() {
       moduleTitle = moduleMatch[1].trim();
       moduleAnchor = moduleSlugger.slug(moduleMatch[1].trim());
       moduleKey = "";
+      catalogFamilyTitle = undefined;
+      continue;
+    }
+
+    const familyMatch = line.match(/^###\s+知识族：(.+)$/);
+    if (familyMatch) {
+      catalogFamilyTitle = familyMatch[1].trim();
       continue;
     }
 
@@ -79,6 +87,8 @@ async function parseCatalog() {
       articleSlug: pathParts.at(-1) ?? articleKey,
       catalogId,
       title,
+      learningTitle: title,
+      catalogFamilyTitle,
       status,
       kind: catalogId.includes("*") || catalogId.includes("e") ? "extension" : "core",
       moduleKey,
@@ -108,6 +118,7 @@ async function parseLearningStages() {
   let currentStage;
   let currentUnit;
   const sourcePaths = new Map();
+  const titles = new Map();
 
   for (const line of learningPath.split("\n")) {
     const stageMatch = line.match(/^##\s+(\d{2})\s+(.+)$/);
@@ -130,9 +141,13 @@ async function parseLearningStages() {
       continue;
     }
 
-    const unitMatch = line.match(/^###\s+学习单元：(.+)$/);
+    const unitMatch = line.match(/^###\s+(学习单元|扩展单元)：(.+)$/);
     if (currentStage && unitMatch) {
-      currentUnit = { title: unitMatch[1].trim(), articleKeys: [] };
+      currentUnit = {
+        title: unitMatch[2].trim(),
+        kind: unitMatch[1] === "扩展单元" ? "extension" : "core",
+        articleKeys: [],
+      };
       currentStage.units.push(currentUnit);
       continue;
     }
@@ -147,6 +162,7 @@ async function parseLearningStages() {
       const sourceKey = toArticleKey(sourcePath);
       const articleKey = sourceKey.startsWith("learning-path/") ? sourceKey.slice("learning-path/".length) : sourceKey;
       sourcePaths.set(articleKey, sourcePath);
+      titles.set(articleKey, cells[1]);
       currentStage.articleKeys.push(articleKey);
       currentUnit?.articleKeys.push(articleKey);
     }
@@ -165,7 +181,7 @@ async function parseLearningStages() {
     }
   }
 
-  return { sourcePaths, stages };
+  return { sourcePaths, stages, titles };
 }
 
 function walkTree(node, visitor, parent) {
@@ -194,6 +210,9 @@ function rewriteUrl(url, sourcePath) {
     return `/content-assets/${resolved.slice("assets/".length)}${suffix}`;
   }
   if (resolved.endsWith(".md")) {
+    if (sourcePath.startsWith("learning-path/") && resolved.startsWith("learning-path/")) {
+      return `/learning-path/${resolved.slice("learning-path/".length, -3)}/${suffix}`;
+    }
     return `/catalog/${resolved.slice(0, -3)}/${suffix}`;
   }
 
@@ -253,7 +272,19 @@ function rehypeCollectMetadata(tableOfContents) {
   };
 }
 
-async function renderArticle(article, sourcePath) {
+function rehypeSetArticleTitle(title) {
+  return () => (tree) => {
+    let replaced = false;
+    walkTree(tree, (node) => {
+      if (!replaced && node.type === "element" && node.tagName === "h1") {
+        node.children = [{ type: "text", value: title }];
+        replaced = true;
+      }
+    });
+  };
+}
+
+async function renderArticle(article, sourcePath, title) {
   const markdown = await readFile(path.join(notesRoot, sourcePath), "utf8");
   const tableOfContents = [];
   const result = await unified()
@@ -263,6 +294,7 @@ async function renderArticle(article, sourcePath) {
     .use(remarkRewriteLinks(sourcePath))
     .use(remarkRehype)
     .use(rehypeSlug)
+    .use(rehypeSetArticleTitle(title))
     .use(rehypeCollectMetadata(tableOfContents))
     .use(rehypeKatex)
     .use(rehypePrettyCode, {
@@ -343,7 +375,7 @@ await mkdir(articleCacheRoot, { recursive: true });
 await mkdir(quizCacheRoot, { recursive: true });
 
 const [articles, learningPath] = await Promise.all([parseCatalog(), parseLearningStages()]);
-const { sourcePaths: learningSourcePaths, stages } = learningPath;
+const { sourcePaths: learningSourcePaths, stages, titles: learningTitles } = learningPath;
 const articlesByKey = new Map(articles.map((article) => [article.articleKey, article]));
 for (const [articleKey, sourcePath] of learningSourcePaths) {
   const article = articlesByKey.get(articleKey);
@@ -356,6 +388,7 @@ for (const [articleKey, sourcePath] of learningSourcePaths) {
 }
 for (const article of articles) {
   article.learningSourcePath = learningSourcePaths.get(article.articleKey) ?? article.sourcePath;
+  article.learningTitle = learningTitles.get(article.articleKey) ?? article.title;
 }
 await writeFile(path.join(cacheRoot, "manifest.json"), `${JSON.stringify({ articles, stages })}\n`);
 
@@ -366,10 +399,12 @@ const searchRecords = [];
 
 for (const article of publishedArticles) {
   const markdown = await readFile(path.join(notesRoot, article.sourcePath), "utf8");
-  const catalogRendered = await renderArticle(article, article.sourcePath);
+  const catalogRendered = await renderArticle(article, article.sourcePath, article.title);
   const learningRendered = article.learningSourcePath === article.sourcePath
-    ? catalogRendered
-    : await renderArticle(article, article.learningSourcePath);
+    ? article.learningTitle === article.title
+      ? catalogRendered
+      : await renderArticle(article, article.learningSourcePath, article.learningTitle)
+    : await renderArticle(article, article.learningSourcePath, article.learningTitle);
   const catalogOutputPath = path.join(articleCacheRoot, "catalog", `${article.articleKey}.json`);
   const learningOutputPath = path.join(articleCacheRoot, "learning-path", `${article.articleKey}.json`);
   await mkdir(path.dirname(catalogOutputPath), { recursive: true });

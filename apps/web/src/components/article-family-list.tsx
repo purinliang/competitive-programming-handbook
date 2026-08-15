@@ -27,7 +27,7 @@ export function ArticleFamilyList({ groups, activeArticleKey, navigation }: Arti
             <ArticleLink
               article={article}
               active={article.articleKey === activeArticleKey}
-              label={article.title.slice(article.title.indexOf("：") + 1)}
+              label={group.stripTitlePrefix ? article.title.slice(article.title.indexOf("：") + 1) : undefined}
               navigation={navigation}
               key={article.articleKey}
             />

@@ -14,79 +14,118 @@
 
 ## 01 C++ 基础
 
+### 知识族：程序入门
+
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 0101 | 入门：Hello World! | 定稿 | [hello-world.md](cpp/hello-world.md) |
-| 0102 | 基本类型：整数 | 定稿 | [integer-types.md](cpp/integer-types.md) |
-| 0102e1 | 基础：位、字节与存储单位 | 定稿 | [bits-bytes-and-storage-units.md](cpp/bits-bytes-and-storage-units.md) |
-| 0102e2 | 基本类型：整数的二进制表示 | 定稿 | [signed-integer-representations.md](cpp/signed-integer-representations.md) |
-| 0102e3 | 基本类型：整数的位宽与平台差异 | 定稿 | [integer-type-widths.md](cpp/integer-type-widths.md) |
-| 0103 | 基本类型：浮点数 | 定稿 | [floating-point-types.md](cpp/floating-point-types.md) |
-| 0103e1 | 浮点数表示：IEEE 754 | 定稿 | [ieee-754.md](cpp/ieee-754.md) |
-| 0104 | 基本类型：字符 | 待审阅 | [character-types.md](cpp/character-types.md) |
-| 0105 | 基本类型：布尔 | 待审阅 | [boolean-type.md](cpp/boolean-type.md) |
-| 0106 | 变量：声明与初始化 | 待审阅 | [variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
-| 0107 | 表达式：算术运算符 | 定稿 | [arithmetic-operators.md](cpp/arithmetic-operators.md) |
-| 0108 | 表达式：比较运算符 | 待审阅 | [comparison-operators.md](cpp/comparison-operators.md) |
-| 0109 | 表达式：逻辑运算符 | 待审阅 | [logical-operators.md](cpp/logical-operators.md) |
-| 0110 | 表达式：类型转换 | 待审阅 | [type-conversions.md](cpp/type-conversions.md) |
-| 0111 | 控制流：条件分支 | 定稿 | [conditional-branches.md](cpp/conditional-branches.md) |
-| 0112 | 控制流：循环 | 待审阅 | [loops.md](cpp/loops.md) |
-| 0113 | 函数：定义与调用 | 定稿 | [function-definition-and-calls.md](cpp/function-definition-and-calls.md) |
-| 0114 | 名称：作用域 | 待审阅 | [scope.md](cpp/scope.md) |
-| 0115 | 输入输出：标准输入 | 待审阅 | [standard-input.md](cpp/standard-input.md) |
-| 0116 | 输入输出：标准输出 | 待审阅 | [standard-output.md](cpp/standard-output.md) |
-| 0117 | 输入输出：文件重定向 | 定稿 | [file-redirection.md](cpp/file-redirection.md) |
-| 0118 | 数组：一维数组 | 定稿 | [one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
-| 0119 | 数组：多维数组 | 待审阅 | [multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
-| 0119e1 | 数组：多维数组的布局与参数传递 | 待审阅 | [multidimensional-array-layout-and-parameters.md](cpp/multidimensional-array-layout-and-parameters.md) |
-| 0120 | 字符串：C 字符串 | 待审阅 | [c-strings.md](cpp/c-strings.md) |
-| 0121 | 复合类型：struct | 定稿 | [struct.md](cpp/struct.md) |
-| 0121e1 | 复合类型：struct 的内存布局 | 待审阅 | [struct-memory-layout.md](cpp/struct-memory-layout.md) |
-| 0121e2 | 复合类型：class | 计划 | `cpp/class.md` |
-| 0121e3 | 类：成员 | 计划 | `cpp/class-members.md` |
-| 0121e4 | 类：访问权限 | 计划 | `cpp/class-access-control.md` |
-| 0121e5 | 类：构造函数 | 计划 | `cpp/constructors.md` |
-| 0121e6 | 类：析构函数 | 计划 | `cpp/destructors.md` |
-| 0121e7 | 类：继承 | 计划 | `cpp/inheritance.md` |
-| 0121e8 | 类：多态 | 计划 | `cpp/polymorphism.md` |
-| 0122* | 复合类型：union | 待审阅 | [union.md](cpp/union.md) |
-| 0123* | 复合类型：enum | 待审阅 | [enum.md](cpp/enum.md) |
-| 0124 | 内存：字节寻址 | 待审阅 | [byte-addressing.md](cpp/byte-addressing.md) |
-| 0125 | 内存与别名：指针 | 定稿 | [pointers.md](cpp/pointers.md) |
-| 0126 | 内存与别名：引用 | 待审阅 | [references.md](cpp/references.md) |
-| 0127 | 函数：参数传递 | 待审阅 | [parameter-passing.md](cpp/parameter-passing.md) |
-| 0128 | 修饰符：const | 定稿 | [const.md](cpp/const.md) |
-| 0129 | 变量：static 局部变量 | 待审阅 | [static-local-variables.md](cpp/static-local-variables.md) |
-| 0130 | 内存：竞赛程序的常见分区 | 待审阅 | [competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
-| 0131 | 函数：调用栈 | 待审阅 | [function-call-stack.md](cpp/function-call-stack.md) |
-| 0132 | 函数：递归 | 待审阅 | [recursion.md](cpp/recursion.md) |
-| 0133 | 表达式：位运算符 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
-| 0134 | 工具类型：pair | 待审阅 | [pair.md](cpp/pair.md) |
-| 0135 | 工具类型：tuple | 待审阅 | [tuple.md](cpp/tuple.md) |
-| 0136 | 序列容器：array | 待审阅 | [array.md](cpp/array.md) |
-| 0137 | 字符串：string | 待审阅 | [string.md](cpp/string.md) |
-| 0138 | 序列容器：vector | 待审阅 | [vector.md](cpp/vector.md) |
-| 0139 | 序列容器：deque | 待审阅 | [deque.md](cpp/deque.md) |
-| 0140 | STL 算法：排序 | 待审阅 | [sorting.md](cpp/sorting.md) |
-| 0141 | STL 算法：去重 | 待审阅 | [deduplication.md](cpp/deduplication.md) |
-| 0142 | 容器适配器：stack | 待审阅 | [stack.md](cpp/stack.md) |
-| 0143 | 容器适配器：queue | 待审阅 | [queue.md](cpp/queue.md) |
-| 0144 | 容器适配器：priority_queue | 待审阅 | [priority-queue.md](cpp/priority-queue.md) |
-| 0145 | 有序关联容器：set | 待审阅 | [set.md](cpp/set.md) |
-| 0146 | 有序关联容器：multiset | 待审阅 | [multiset.md](cpp/multiset.md) |
-| 0147 | 有序关联容器：map | 待审阅 | [map.md](cpp/map.md) |
-| 0148 | 有序关联容器：multimap | 待审阅 | [multimap.md](cpp/multimap.md) |
-| 0149 | 无序关联容器：unordered_set | 待审阅 | [unordered-set.md](cpp/unordered-set.md) |
-| 0150 | 无序关联容器：unordered_map | 待审阅 | [unordered-map.md](cpp/unordered-map.md) |
+| 0101 | Hello World! | 定稿 | [hello-world.md](cpp/hello-world.md) |
+| 0158 | A+B Problem | 定稿 | [a-plus-b-problem.md](cpp/a-plus-b-problem.md) |
+
+### 知识族：基本类型与机器表示
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 0102 | 整数类型 | 定稿 | [integer-types.md](cpp/integer-types.md) |
+| 0102e1 | 位、字节与存储单位 | 定稿 | [bits-bytes-and-storage-units.md](cpp/bits-bytes-and-storage-units.md) |
+| 0102e2 | 整数的二进制表示 | 定稿 | [signed-integer-representations.md](cpp/signed-integer-representations.md) |
+| 0102e3 | 整数类型的位宽与平台差异 | 定稿 | [integer-type-widths.md](cpp/integer-type-widths.md) |
+| 0103 | 浮点类型 | 定稿 | [floating-point-types.md](cpp/floating-point-types.md) |
+| 0103e1 | IEEE 754 浮点数表示 | 定稿 | [ieee-754.md](cpp/ieee-754.md) |
+| 0104 | 字符类型 | 待审阅 | [character-types.md](cpp/character-types.md) |
+| 0105 | 布尔类型 | 待审阅 | [boolean-type.md](cpp/boolean-type.md) |
+
+### 知识族：变量、表达式与控制流
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 0106 | 变量的声明与初始化 | 待审阅 | [variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
+| 0107 | 算术运算符 | 定稿 | [arithmetic-operators.md](cpp/arithmetic-operators.md) |
+| 0108 | 比较运算符 | 待审阅 | [comparison-operators.md](cpp/comparison-operators.md) |
+| 0109 | 逻辑运算符 | 待审阅 | [logical-operators.md](cpp/logical-operators.md) |
+| 0110 | 类型转换 | 待审阅 | [type-conversions.md](cpp/type-conversions.md) |
+| 0133 | 位运算符 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
+| 0111 | 条件分支 | 定稿 | [conditional-branches.md](cpp/conditional-branches.md) |
+| 0112 | 循环 | 待审阅 | [loops.md](cpp/loops.md) |
+
+### 知识族：函数与输入输出
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 0113 | 函数的定义与调用 | 定稿 | [function-definition-and-calls.md](cpp/function-definition-and-calls.md) |
+| 0114 | 作用域 | 待审阅 | [scope.md](cpp/scope.md) |
+| 0115 | 标准输入 | 待审阅 | [standard-input.md](cpp/standard-input.md) |
+| 0116 | 标准输出 | 待审阅 | [standard-output.md](cpp/standard-output.md) |
+| 0117 | 文件重定向 | 定稿 | [file-redirection.md](cpp/file-redirection.md) |
+
+### 知识族：数组、字符串与记录
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 0118 | 一维数组 | 定稿 | [one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
+| 0119 | 多维数组 | 待审阅 | [multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
+| 0119e1 | 多维数组的布局与参数传递 | 待审阅 | [multidimensional-array-layout-and-parameters.md](cpp/multidimensional-array-layout-and-parameters.md) |
+| 0120 | C 字符串 | 待审阅 | [c-strings.md](cpp/c-strings.md) |
+| 0121 | struct | 定稿 | [struct.md](cpp/struct.md) |
+| 0121e1 | struct 的内存布局 | 待审阅 | [struct-memory-layout.md](cpp/struct-memory-layout.md) |
+
+### 知识族：内存、别名与递归
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 0124 | 字节寻址 | 待审阅 | [byte-addressing.md](cpp/byte-addressing.md) |
+| 0125 | 指针 | 定稿 | [pointers.md](cpp/pointers.md) |
+| 0126 | 引用 | 待审阅 | [references.md](cpp/references.md) |
+| 0127 | 参数传递 | 待审阅 | [parameter-passing.md](cpp/parameter-passing.md) |
+| 0128 | const | 定稿 | [const.md](cpp/const.md) |
+| 0129 | static 局部变量 | 待审阅 | [static-local-variables.md](cpp/static-local-variables.md) |
+| 0130 | 竞赛程序的常见内存分区 | 待审阅 | [competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
+| 0131 | 调用栈 | 待审阅 | [function-call-stack.md](cpp/function-call-stack.md) |
+| 0132 | 递归 | 待审阅 | [recursion.md](cpp/recursion.md) |
+
+### 知识族：STL 工具与容器
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 0134 | pair | 待审阅 | [pair.md](cpp/pair.md) |
+| 0135 | tuple | 待审阅 | [tuple.md](cpp/tuple.md) |
+| 0136 | array | 待审阅 | [array.md](cpp/array.md) |
+| 0137 | string | 待审阅 | [string.md](cpp/string.md) |
+| 0138 | vector | 待审阅 | [vector.md](cpp/vector.md) |
+| 0139 | deque | 待审阅 | [deque.md](cpp/deque.md) |
+| 0140 | sort | 待审阅 | [sorting.md](cpp/sorting.md) |
+| 0141 | unique | 待审阅 | [deduplication.md](cpp/deduplication.md) |
+| 0142 | stack | 待审阅 | [stack.md](cpp/stack.md) |
+| 0143 | queue | 待审阅 | [queue.md](cpp/queue.md) |
+| 0144 | priority_queue | 待审阅 | [priority-queue.md](cpp/priority-queue.md) |
+| 0145 | set | 待审阅 | [set.md](cpp/set.md) |
+| 0146 | multiset | 待审阅 | [multiset.md](cpp/multiset.md) |
+| 0147 | map | 待审阅 | [map.md](cpp/map.md) |
+| 0148 | multimap | 待审阅 | [multimap.md](cpp/multimap.md) |
+| 0149 | unordered_set | 待审阅 | [unordered-set.md](cpp/unordered-set.md) |
+| 0150 | unordered_map | 待审阅 | [unordered-map.md](cpp/unordered-map.md) |
 | 0151 | bitset | 待审阅 | [bitset.md](cpp/bitset.md) |
-| 0152* | 预处理：include | 定稿 | [include.md](cpp/include.md) |
-| 0153* | 名称：命名空间与 std | 定稿 | [namespace-and-std.md](cpp/namespace-and-std.md) |
-| 0154* | 修饰符：inline | 计划 | `cpp/0154-inline.md` |
-| 0155* | 修饰符：volatile | 计划 | `cpp/0155-volatile.md` |
-| 0156* | 扩展容器：order-statistics tree（GNU PBDS） | 计划 | `cpp/0156-gnu-pbds.md` |
-| 0157* | C++ 对象：生命周期 | 计划 | `cpp/0157-object-lifetime.md` |
-| 0158 | 入门：A+B Problem | 定稿 | [a-plus-b-problem.md](cpp/a-plus-b-problem.md) |
+| 0156* | order-statistics tree（GNU PBDS） | 计划 | `cpp/gnu-pbds.md` |
+
+### 知识族：C++ 扩展阅读
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 0152* | #include | 定稿 | [include.md](cpp/include.md) |
+| 0153* | 命名空间与 std | 定稿 | [namespace-and-std.md](cpp/namespace-and-std.md) |
+| 0154* | inline | 计划 | `cpp/inline.md` |
+| 0155* | volatile | 计划 | `cpp/volatile.md` |
+| 0157* | 对象生命周期 | 计划 | `cpp/object-lifetime.md` |
+| 0159* | #define 宏 | 计划 | `cpp/define-macros.md` |
+| 0160* | typedef 与 using 类型别名 | 计划 | `cpp/type-aliases.md` |
+| 0121e2 | class | 计划 | `cpp/class.md` |
+| 0121e3 | 类的成员 | 计划 | `cpp/class-members.md` |
+| 0121e4 | 访问权限与 friend | 计划 | `cpp/class-access-control.md` |
+| 0121e5 | 构造函数 | 计划 | `cpp/constructors.md` |
+| 0121e6 | 析构函数 | 计划 | `cpp/destructors.md` |
+| 0121e7 | 继承 | 计划 | `cpp/inheritance.md` |
+| 0121e8 | 多态 | 计划 | `cpp/polymorphism.md` |
+| 0122* | union | 待审阅 | [union.md](cpp/union.md) |
+| 0123* | enum | 待审阅 | [enum.md](cpp/enum.md) |
 
 ## 02 算法基础
 

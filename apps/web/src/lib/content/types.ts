@@ -6,6 +6,8 @@ export interface ArticleRecord {
   articleSlug: string;
   catalogId: string;
   title: string;
+  learningTitle: string;
+  catalogFamilyTitle?: string;
   status: ArticleStatus;
   kind: "core" | "extension";
   moduleKey: string;
@@ -35,6 +37,7 @@ export interface LearningStage {
 
 export interface LearningUnit {
   title: string;
+  kind: "core" | "extension";
   articleKeys: string[];
 }
 
@@ -43,6 +46,7 @@ export interface ArticleFamily {
   articles: ArticleRecord[];
   grouped: boolean;
   continued: boolean;
+  stripTitlePrefix: boolean;
 }
 
 export interface ArticleNavigation {

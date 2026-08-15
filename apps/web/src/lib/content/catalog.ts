@@ -53,8 +53,23 @@ export function getLearningArticles(): ArticleRecord[] {
   );
 }
 
+function getCoreLearningArticles(): ArticleRecord[] {
+  const articles = new Map(getArticles().map((article) => [article.articleKey, article]));
+  return getLearningStages().flatMap((stage) => {
+    const articleKeys = stage.units.length === 0
+      ? stage.articleKeys
+      : stage.units.filter((unit) => unit.kind === "core").flatMap((unit) => unit.articleKeys);
+    return articleKeys.map((articleKey) => articles.get(articleKey)).filter((article): article is ArticleRecord => Boolean(article));
+  });
+}
+
 export function getArticleLearningNeighbors(articleKey: string): { previous?: ArticleRecord; next?: ArticleRecord } {
-  const route = getLearningArticles().filter((article) => article.exists && article.status !== "计划");
+  const stage = getLearningStages().find((item) => item.articleKeys.includes(articleKey));
+  const unit = stage?.units.find((item) => item.articleKeys.includes(articleKey));
+  const articles = new Map(getArticles().map((article) => [article.articleKey, article]));
+  const route = unit?.kind === "extension"
+    ? unit.articleKeys.map((key) => articles.get(key)).filter((article): article is ArticleRecord => Boolean(article?.exists && article.status !== "计划"))
+    : getCoreLearningArticles().filter((article) => article.exists && article.status !== "计划");
   const index = route.findIndex((article) => article.articleKey === articleKey);
 
   if (index < 0) {
@@ -87,7 +102,7 @@ export function groupAdjacentArticles(articles: ArticleRecord[]): ArticleFamily[
   for (const article of articles) {
     const separator = article.title.indexOf("：");
     if (separator < 0) {
-      groups.push({ title: article.title, articles: [article], grouped: false, continued: false });
+      groups.push({ title: article.title, articles: [article], grouped: false, continued: false, stripTitlePrefix: false });
       continue;
     }
 
@@ -97,11 +112,29 @@ export function groupAdjacentArticles(articles: ArticleRecord[]): ArticleFamily[
     if (previous?.grouped && previous.title === title && previous.articles[0].moduleKey === article.moduleKey) {
       previous.articles.push(article);
     } else {
-      groups.push({ title, articles: [article], grouped: true, continued: seenFamilies.has(familyKey) });
+      groups.push({ title, articles: [article], grouped: true, continued: seenFamilies.has(familyKey), stripTitlePrefix: true });
       seenFamilies.add(familyKey);
     }
   }
 
+  return groups;
+}
+
+export function getCatalogGroups(articles: ArticleRecord[]): ArticleFamily[] {
+  if (!articles.some((article) => article.catalogFamilyTitle)) {
+    return groupAdjacentArticles(articles);
+  }
+
+  const groups: ArticleFamily[] = [];
+  for (const article of articles) {
+    const title = article.catalogFamilyTitle ?? "其他";
+    const previous = groups.at(-1);
+    if (previous?.title === title) {
+      previous.articles.push(article);
+      continue;
+    }
+    groups.push({ title, articles: [article], grouped: true, continued: false, stripTitlePrefix: false });
+  }
   return groups;
 }
 
@@ -122,6 +155,7 @@ export function getLearningUnitGroups(stage: LearningStage): ArticleFamily[] {
     }),
     grouped: true,
     continued: false,
+    stripTitlePrefix: false,
   }));
 }
 
@@ -132,7 +166,7 @@ export function getArticleModuleNavigation(articleKey: string): ArticleNavigatio
   }
 
   const module = getModules().find((item) => item.key === article.moduleKey);
-  const groups = groupAdjacentArticles(module?.articles ?? [article]);
+  const groups = getCatalogGroups(module?.articles ?? [article]);
 
   return {
     label: "模块",

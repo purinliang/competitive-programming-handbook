@@ -62,6 +62,7 @@ class RouteEntry:
     path: str
     linked: bool
     stage: str
+    section: str
 
 
 @dataclass(frozen=True)
@@ -153,6 +154,7 @@ class Checker:
                 continue
             if line.startswith("## "):
                 stage = line[3:].strip()
+                section = "(no section)"
                 continue
             if line.startswith("### "):
                 section = line[4:].strip()
@@ -191,7 +193,7 @@ class Checker:
             path, linked = self.parse_file_cell(
                 raw_file, f"learning-path.md:{line_number}"
             )
-            route.append(RouteEntry(article_id, title, module, path, linked, stage))
+            route.append(RouteEntry(article_id, title, module, path, linked, stage, section))
         if not route:
             self.error("learning-path.md: no learning-path entries found")
         if not extension_index:
@@ -221,7 +223,6 @@ class Checker:
 
     def check_catalog(self, entries: dict[str, Entry], legacy: set[str]) -> None:
         positions = {article_id: index for index, article_id in enumerate(entries)}
-        last_number = {module: 0 for module in MODULE_PREFIXES}
         for entry in entries.values():
             location = f"catalog.md ({entry.article_id})"
             if entry.status not in ALLOWED_STATUSES:
@@ -244,13 +245,6 @@ class Checker:
                     self.error(
                         f"{location}: companion base {base_id} must appear earlier"
                     )
-            elif int(entry.article_id[2:]) <= last_number[module]:
-                self.error(
-                    f"{location}: module IDs must increase; previous number is "
-                    f"{last_number[module]:02d}"
-                )
-            else:
-                last_number[module] = int(entry.article_id[2:])
             if entry.status == "计划" and entry.linked:
                 self.error(f"{location}: planned article must use a code path")
             if entry.status != "计划" and not entry.linked:
@@ -288,33 +282,33 @@ class Checker:
                 self.error(f"{location}: duplicate learning-path ID")
                 continue
             seen.add(item.article_id)
-            route_ids.append(item.article_id)
             entry = entries.get(item.article_id)
             if not entry:
                 self.error(f"{location}: ID is absent from catalog.md")
                 continue
-            if entry.kind != "核心教程":
-                self.error(f"{location}: extension articles must not enter the learning path")
-            if item.title != entry.title:
+            is_extension_unit = item.section.startswith("扩展单元：")
+            if is_extension_unit and entry.kind != "扩展专题":
+                self.error(f"{location}: core articles must not enter an extension unit")
+            if not is_extension_unit and entry.kind != "核心教程":
+                self.error(f"{location}: extension articles must not enter a core learning unit")
+            if not is_extension_unit:
+                route_ids.append(item.article_id)
+            logical_path = item.path.removeprefix("learning-path/")
+            if logical_path != entry.path:
                 self.error(
-                    f"{location}: title differs from catalog ({item.title!r} != {entry.title!r})"
+                    f"{location}: article key differs from catalog ({logical_path!r} != {entry.path!r})"
                 )
-            if item.path != entry.path:
-                self.error(
-                    f"{location}: path differs from catalog ({item.path!r} != {entry.path!r})"
-                )
-            if item.linked != entry.linked:
-                self.error(f"{location}: file link/code style differs from catalog status")
 
         core_ids = {key for key, entry in entries.items() if entry.kind == "核心教程"}
-        missing = sorted(core_ids - seen)
-        extra = sorted(seen - core_ids)
+        core_route_ids = set(route_ids)
+        missing = sorted(core_ids - core_route_ids)
+        extra = sorted(core_route_ids - core_ids)
         if missing:
             self.error("learning-path.md: missing core IDs: " + ", ".join(missing))
         if extra:
             self.error("learning-path.md: non-core IDs present: " + ", ".join(extra))
 
-        stages = list(dict.fromkeys(item.stage for item in route))
+        stages = list(dict.fromkeys(item.stage for item in route if not item.section.startswith("扩展单元：")))
         expected_stages = [
             "01 C++ 基础",
             "02 算法基础",
@@ -433,8 +427,8 @@ class Checker:
         status = legacy_status.group(1) if legacy_status else None
         if revision:
             status = "待审阅" if revision.group(2) == "未审阅" else "已审阅"
-        if not title or title.group(1) != entry.title:
-            self.error(f"{display}: article title differs from catalog")
+        if not title:
+            self.error(f"{display}: article title is missing")
         if not status:
             self.error(f"{display}: incomplete article information block")
             return

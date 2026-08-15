@@ -5,7 +5,7 @@ import { DirectorySidebar } from "@/components/directory-sidebar";
 import { IndexingConvention } from "@/components/indexing-convention";
 import { NumberedPanelHeader } from "@/components/numbered-panel-header";
 import { SiteHeader } from "@/components/site-header";
-import { getModules, groupAdjacentArticles } from "@/lib/content/catalog";
+import { getCatalogGroups, getModules } from "@/lib/content/catalog";
 
 export const metadata: Metadata = { title: "模块目录" };
 
@@ -29,7 +29,7 @@ export default function CatalogPage() {
               <section className="panel" id={module.anchor} key={module.key}>
                 <NumberedPanelHeader label={module.title} detail={`${module.articles.length} 个知识点`} />
                 <div className="article-list">
-                  <ArticleFamilyList groups={groupAdjacentArticles(module.articles)} navigation="catalog" />
+                  <ArticleFamilyList groups={getCatalogGroups(module.articles)} navigation="catalog" />
                 </div>
               </section>
             ))}

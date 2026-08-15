@@ -4,7 +4,7 @@ import type { ArticleRecord, NavigationMode } from "@/lib/content/types";
 import { NavigationLink as Link } from "./navigation-link";
 
 export function ArticleLink({ article, active = false, label, navigation }: { article: ArticleRecord; active?: boolean; label?: string; navigation?: NavigationMode }) {
-  const visibleTitle = label ?? article.title;
+  const visibleTitle = label ?? (navigation === "learning-path" ? article.learningTitle : article.title);
   const href = navigation === "learning-path" ? article.learningPathRoute : article.catalogRoute;
   const unavailable = !article.exists || article.status === "计划";
   if (unavailable) {
