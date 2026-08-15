@@ -392,7 +392,7 @@ export function DiscussionPanel({
                   onChange={(event) => setPrivateVisible(event.target.checked)}
                   type="checkbox"
                 />
-                仅自己和管理员可见
+                讨论范围：仅自己与管理员可见
               </label>
               <label>
                 <input
@@ -400,7 +400,7 @@ export function DiscussionPanel({
                   onChange={(event) => setAnonymous(event.target.checked)}
                   type="checkbox"
                 />
-                公开时匿名显示
+                作者身份：向其他读者匿名显示
               </label>
               {turnstileSiteKey ? (
                 <TurnstileWidget
