@@ -1,0 +1,98 @@
+[
+  {
+    "id": "null-terminator",
+    "prompt": "C 字符串使用哪个字符标记文本结束？",
+    "options": [
+      { "id": "a", "text": "`'\\0'`" },
+      { "id": "b", "text": "`'0'`" },
+      { "id": "c", "text": "`' '`" },
+      { "id": "d", "text": "`'\\n'`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "空字符 `'\\0'` 的编号是零，用作 C 字符串结尾；它不是可显示的数字字符 `'0'`。"
+  },
+  {
+    "id": "text-capacity",
+    "prompt": "保存长度为 `n` 的 C 字符串，字符数组至少需要多少个位置？",
+    "options": [
+      { "id": "a", "text": "`n + 1`" },
+      { "id": "b", "text": "`n`" },
+      { "id": "c", "text": "`n - 1`" },
+      { "id": "d", "text": "固定只能是 `256`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "除 `n` 个正文字符外，还必须给末尾空字符单独留一个位置。"
+  },
+  {
+    "id": "character-array-validity",
+    "prompt": "字符数组从某个起点开始满足什么条件时，才表示有效的 C 字符串？",
+    "options": [
+      { "id": "a", "text": "能在数组合法范围内找到末尾空字符" },
+      { "id": "b", "text": "所有字符必须都是数字" },
+      { "id": "c", "text": "数组容量必须等于 `3`" },
+      { "id": "d", "text": "第一个字符必须是空格" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "字符数组本身不保证字符串约定；C 字符串接口依赖合法范围内存在 `'\\0'`。"
+  },
+  {
+    "id": "sizeof-versus-strlen",
+    "prompt": "对完整字符数组 `s`，`sizeof(s)` 与 `strlen(s)` 分别表示什么？",
+    "options": [
+      { "id": "a", "text": "数组总字节数与空字符以前的文本长度" },
+      { "id": "b", "text": "文本长度与数组总字节数，顺序相反" },
+      { "id": "c", "text": "二者永远完全相同" },
+      { "id": "d", "text": "二者都只返回第一个字符" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`sizeof` 由数组声明决定；`strlen` 扫描内容直到第一个空字符。"
+  },
+  {
+    "id": "strlen-complexity",
+    "prompt": "为什么不应在遍历条件中反复调用 `strlen(s)`？",
+    "options": [
+      { "id": "a", "text": "每次调用都从开头扫描，可能把线性遍历变成平方复杂度" },
+      { "id": "b", "text": "`strlen` 会删除字符串" },
+      { "id": "c", "text": "`strlen` 只能调用一次，否则不能编译" },
+      { "id": "d", "text": "`strlen` 总是返回数组容量" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`strlen` 是线性扫描；字符串不变时先把长度保存下来即可。"
+  },
+  {
+    "id": "scanf-word-width",
+    "prompt": "数组能容纳 100000 个正文字符时，`scanf(\"%100000s\", s)` 中的字段宽度有什么作用？",
+    "options": [
+      { "id": "a", "text": "限制最多读取 100000 个非空白字符，随后还要写入空字符" },
+      { "id": "b", "text": "要求输入必须恰好有 100000 行" },
+      { "id": "c", "text": "自动读取包含空格的完整段落" },
+      { "id": "d", "text": "把所有字符重复 100000 次" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "字段宽度限制正文字符数量，目标数组仍需额外容纳结尾 `'\\0'`。"
+  },
+  {
+    "id": "c-string-equality",
+    "prompt": "怎样判断两个 C 字符串 `a` 和 `b` 的文本内容相同？",
+    "options": [
+      { "id": "a", "text": "`strcmp(a, b) == 0`" },
+      { "id": "b", "text": "`a == b`" },
+      { "id": "c", "text": "`sizeof(a) == sizeof(b)`" },
+      { "id": "d", "text": "`strlen(a) > strlen(b)`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`strcmp` 逐字符比较内容，返回零表示相同；字符数组不能用 `==` 完成内容比较。"
+  },
+  {
+    "id": "manual-append",
+    "prompt": "在长度为 `n` 的 C 字符串末尾追加 `'!'` 时，为什么至少需要 `n + 2` 的容量？",
+    "options": [
+      { "id": "a", "text": "一个位置保存新字符，另一个位置保存新的空字符" },
+      { "id": "b", "text": "每个字符必须保存两份" },
+      { "id": "c", "text": "下标必须从 `2` 开始" },
+      { "id": "d", "text": "`strlen` 会额外占用数组元素" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "原来的结尾位置写入新字符后，必须在下一位置重新放置 `'\\0'`。"
+  }
+]
