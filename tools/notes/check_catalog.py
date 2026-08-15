@@ -446,23 +446,32 @@ class Checker:
 
     def check_local_links(self, path: Path, text: str) -> None:
         display = path.relative_to(ROOT).as_posix()
-        for target in MARKDOWN_LINK.findall(text):
-            target = target.strip().split(maxsplit=1)[0]
-            if target.startswith(("http://", "https://", "mailto:", "#")):
+        in_fenced_code = False
+        for line in text.splitlines():
+            if line.lstrip().startswith("```"):
+                in_fenced_code = not in_fenced_code
                 continue
-            relative = target.split("#", 1)[0]
-            if not relative:
+            if in_fenced_code:
                 continue
-            destination = (path.parent / relative).resolve()
-            try:
-                destination.relative_to(ROOT.resolve())
-            except ValueError:
-                self.error(f"{display}: link leaves repository: {target}")
-                continue
-            if not destination.exists():
-                self.error(f"{display}: missing linked resource {target}")
-            if destination.suffix.lower() == ".png":
-                self.error(f"{display}: tutorial images must use SVG, not PNG: {target}")
+            for target in MARKDOWN_LINK.findall(line):
+                target = target.strip().split(maxsplit=1)[0]
+                if target.startswith(("http://", "https://", "mailto:", "#")):
+                    continue
+                relative = target.split("#", 1)[0]
+                if not relative:
+                    continue
+                destination = (path.parent / relative).resolve()
+                try:
+                    destination.relative_to(ROOT.resolve())
+                except ValueError:
+                    self.error(f"{display}: link leaves repository: {target}")
+                    continue
+                if not destination.exists():
+                    self.error(f"{display}: missing linked resource {target}")
+                if destination.suffix.lower() == ".png":
+                    self.error(
+                        f"{display}: tutorial images must use SVG, not PNG: {target}"
+                    )
 
     def check_latex_compatibility(self, path: Path, text: str) -> None:
         display = path.relative_to(ROOT).as_posix()
