@@ -1,0 +1,62 @@
+[
+  {
+    "id": "compound-addition",
+    "prompt": "对简单变量而言，`sum += value;` 可以怎样理解？",
+    "options": [
+      { "id": "a", "text": "`sum = sum + value;`" },
+      { "id": "b", "text": "`sum = value;`" },
+      { "id": "c", "text": "`value = sum + value;`" },
+      { "id": "d", "text": "`sum == value;`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`+=` 读取左侧旧值，与右侧相加，再把结果写回左侧变量。"
+  },
+  {
+    "id": "compound-sequence",
+    "prompt": "执行 `int x = 10; x -= 3; x *= 2;` 后，`x` 是多少？",
+    "options": [
+      { "id": "a", "text": "`4`" },
+      { "id": "b", "text": "`7`" },
+      { "id": "c", "text": "`14`" },
+      { "id": "d", "text": "`20`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "先从 `10` 中减去 `3` 得到 `7`，再乘以 `2`，最终得到 `14`。"
+  },
+  {
+    "id": "initialize-accumulator",
+    "prompt": "为什么 `int sum; sum += 5;` 是错误写法？",
+    "options": [
+      { "id": "a", "text": "`+=` 不能用于整数" },
+      { "id": "b", "text": "复合赋值读取了尚未初始化的 `sum`" },
+      { "id": "c", "text": "整数不能保存 `5`" },
+      { "id": "d", "text": "变量不能命名为 `sum`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "复合赋值需要旧值参与计算；局部变量在第一次读取以前必须先得到确定初值。"
+  },
+  {
+    "id": "sum-and-product-identities",
+    "prompt": "普通求和与求积累计常见的初值分别是什么？",
+    "options": [
+      { "id": "a", "text": "求和为 `0`，求积为 `1`" },
+      { "id": "b", "text": "求和为 `1`，求积为 `0`" },
+      { "id": "c", "text": "两者都必须为 `0`" },
+      { "id": "d", "text": "两者都必须为 `-1`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`0` 不改变加法结果，`1` 不改变乘法结果；具体题目仍应根据变量的真实含义选择初值。"
+  },
+  {
+    "id": "compound-arithmetic-rules",
+    "prompt": "关于 `x /= y`，下面哪项说法正确？",
+    "options": [
+      { "id": "a", "text": "整数 `x` 和 `y` 会自动改用浮点除法" },
+      { "id": "b", "text": "`y == 0` 时结果固定为 `0`" },
+      { "id": "c", "text": "它仍然遵循原本类型的除法和范围规则" },
+      { "id": "d", "text": "它不会修改 `x`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "复合赋值只表达运算后写回，不会改变整数除法、零除、类型转换或溢出规则。"
+  }
+]
