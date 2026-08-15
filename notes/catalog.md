@@ -72,7 +72,7 @@
 | 0116 | 标准输出 | 待审阅 | [standard-output.md](cpp/standard-output.md) |
 | 0172 | 输出格式控制 | 待审阅 | [output-formatting.md](cpp/output-formatting.md) |
 | 0173 | 整行输入 | 待审阅 | [whole-line-input.md](cpp/whole-line-input.md) |
-| 0117 | 文件重定向 | 定稿 | [file-redirection.md](cpp/file-redirection.md) |
+| 0117 | 文件重定向 | 待审阅 | [file-redirection.md](cpp/file-redirection.md) |
 
 ### 知识族：数组、字符串与结构体
 
