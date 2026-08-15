@@ -62,6 +62,7 @@
 | 0118 | 一维数组 | C++ | [cpp/one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
 | 0119 | 多维数组 | C++ | [cpp/multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
 | 0120 | C 字符串 | C++ | [cpp/c-strings.md](cpp/c-strings.md) |
+| 0137 | string | C++ | [cpp/string.md](cpp/string.md) |
 | 0121 | struct | C++ | [cpp/struct.md](cpp/struct.md) |
 
 ### 学习单元：地址、别名与参数
@@ -110,28 +111,28 @@
 
 ## 02 算法基础
 
-### 学习单元：常用序列与 STL 工具
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0138 | vector | C++ | [cpp/vector.md](cpp/vector.md) |
-| 0137 | string | C++ | [cpp/string.md](cpp/string.md) |
-| 0134 | pair | C++ | [cpp/pair.md](cpp/pair.md) |
-| 0135 | tuple | C++ | [cpp/tuple.md](cpp/tuple.md) |
-| 0136 | array | C++ | [cpp/array.md](cpp/array.md) |
-| 0140 | sort | C++ | [cpp/sorting.md](cpp/sorting.md) |
-| 0161 | 自定义排序 | C++ | `cpp/custom-sorting.md` |
-| 0141 | unique | C++ | [cpp/deduplication.md](cpp/deduplication.md) |
-
-### 学习单元：复杂度与线性结构
+### 学习单元：复杂度
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0201 | 复杂度：时间与空间 | 算法基础 | [algorithm-basics/complexity.md](algorithm-basics/complexity.md) |
+
+### 学习单元：数组与 vector
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0223 | 线性结构：数组 | 算法基础 | [algorithm-basics/array.md](algorithm-basics/array.md) |
-| 0224 | 链表 | 算法基础 | [algorithm-basics/linked-list.md](algorithm-basics/linked-list.md) |
-| 0225 | 栈 | 算法基础 | [algorithm-basics/stack.md](algorithm-basics/stack.md) |
-| 0226 | 队列 | 算法基础 | [algorithm-basics/queue.md](algorithm-basics/queue.md) |
+| 0138 | vector | C++ | [cpp/vector.md](cpp/vector.md) |
+| 0163 | fill 与 memset | C++ | `cpp/fill-and-memset.md` |
+
+### 学习单元：排序接口与去重
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0134 | pair | C++ | [cpp/pair.md](cpp/pair.md) |
+| 0140 | sort | C++ | [cpp/sorting.md](cpp/sorting.md) |
+| 0161 | 自定义排序 | C++ | `cpp/custom-sorting.md` |
+| 0141 | unique | C++ | [cpp/deduplication.md](cpp/deduplication.md) |
 
 ### 学习单元：递归与递推
 
@@ -182,17 +183,21 @@
 | 0211 | 枚举：子集与位掩码 | 算法基础 | [algorithm-basics/subset-bitmask-enumeration.md](algorithm-basics/subset-bitmask-enumeration.md) |
 | 0222 | 模拟 | 算法基础 | [algorithm-basics/simulation.md](algorithm-basics/simulation.md) |
 
-本阶段交错安排基础算法、基础数据结构和当前真正需要的标准库接口。先把 `string`、`vector` 和 `sort` 当作可靠工具使用；学习复杂度以后，再从结构、操作成本和算法原理重新理解数组与排序。数组、链表、栈和队列解释抽象结构，相邻的标准库文章只解释 C++ 编码接口。
+本阶段交错安排基础算法、基础数据结构和当前真正需要的标准库接口。先理解复杂度，再把抽象数组与 `vector` 的操作成本对应起来；`pair`、`sort` 和 `unique` 只在排序与去重真正需要时出现。链表、栈、队列和双端队列连同对应标准库接口移入初中基础，不在这里预先背诵一整套容器。
 
 ## 03 初中基础
 
-### 学习单元：栈、队列与表达式
+### 学习单元：线性结构与对应接口
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
+| 0224 | 链表 | 算法基础 | [algorithm-basics/linked-list.md](algorithm-basics/linked-list.md) |
+| 0225 | 栈 | 算法基础 | [algorithm-basics/stack.md](algorithm-basics/stack.md) |
 | 0142 | stack | C++ | [cpp/stack.md](cpp/stack.md) |
 | 0236 | 栈的应用：出栈序列判定 | 算法基础 | [algorithm-basics/stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
 | 0237 | 栈的应用：表达式求值 | 算法基础 | [algorithm-basics/expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
+| 0226 | 队列 | 算法基础 | [algorithm-basics/queue.md](algorithm-basics/queue.md) |
+| 0253 | 双端队列 | 算法基础 | `algorithm-basics/deque.md` |
 | 0139 | deque | C++ | [cpp/deque.md](cpp/deque.md) |
 | 0143 | queue | C++ | [cpp/queue.md](cpp/queue.md) |
 
@@ -554,6 +559,8 @@
 | 0103e1 | IEEE 754 浮点数表示 | [cpp/ieee-754.md](cpp/ieee-754.md) |
 | 0119e1 | 多维数组的布局与参数传递 | [cpp/multidimensional-array-layout-and-parameters.md](cpp/multidimensional-array-layout-and-parameters.md) |
 | 0121e1 | struct 的内存布局 | [cpp/struct-memory-layout.md](cpp/struct-memory-layout.md) |
+| 0135* | tuple | [cpp/tuple.md](cpp/tuple.md) |
+| 0136* | array | [cpp/array.md](cpp/array.md) |
 | 0156* | order-statistics tree（GNU PBDS） | `cpp/gnu-pbds.md` |
 | 0152* | #include | [cpp/include.md](cpp/include.md) |
 | 0153* | 命名空间与 std | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |

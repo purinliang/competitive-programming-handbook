@@ -87,8 +87,8 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 0134 | pair | 待审阅 | [pair.md](cpp/pair.md) |
-| 0135 | tuple | 待审阅 | [tuple.md](cpp/tuple.md) |
-| 0136 | array | 待审阅 | [array.md](cpp/array.md) |
+| 0135* | tuple | 待审阅 | [tuple.md](cpp/tuple.md) |
+| 0136* | array | 待审阅 | [array.md](cpp/array.md) |
 | 0137 | string | 待审阅 | [string.md](cpp/string.md) |
 | 0138 | vector | 待审阅 | [vector.md](cpp/vector.md) |
 | 0139 | deque | 待审阅 | [deque.md](cpp/deque.md) |
@@ -96,6 +96,7 @@
 | 0161 | 自定义排序 | 计划 | `cpp/custom-sorting.md` |
 | 0141 | unique | 待审阅 | [deduplication.md](cpp/deduplication.md) |
 | 0162 | STL 二分查找 | 计划 | `cpp/stl-binary-search.md` |
+| 0163 | fill 与 memset | 计划 | `cpp/fill-and-memset.md` |
 | 0142 | stack | 待审阅 | [stack.md](cpp/stack.md) |
 | 0143 | queue | 待审阅 | [queue.md](cpp/queue.md) |
 | 0144 | priority_queue | 待审阅 | [priority-queue.md](cpp/priority-queue.md) |
@@ -185,6 +186,7 @@
 | 0250 | 递归与问题分解 | 计划 | `algorithm-basics/recursive-problem-solving.md` |
 | 0251 | 二分边界 | 计划 | `algorithm-basics/binary-search-boundaries.md` |
 | 0252 | 浮点数二分 | 计划 | `algorithm-basics/floating-point-binary-search.md` |
+| 0253 | 双端队列 | 计划 | `algorithm-basics/deque.md` |
 
 ## 03 数据结构
 
