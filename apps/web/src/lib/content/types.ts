@@ -1,4 +1,5 @@
 export type ArticleStatus = "计划" | "待审阅" | "已审阅" | "草稿" | "定稿";
+export type NavigationMode = "learning-path" | "catalog";
 
 export interface ArticleRecord {
   articleKey: string;
@@ -11,8 +12,9 @@ export interface ArticleRecord {
   moduleTitle: string;
   moduleAnchor: string;
   sourcePath: string;
+  learningSourcePath: string;
   catalogRoute: string;
-  learningRoute: string;
+  learningPathRoute: string;
   exists: boolean;
 }
 
@@ -59,4 +61,22 @@ export interface RenderedArticle {
   html: string;
   contentRevision: string;
   tableOfContents: TableOfContentsItem[];
+}
+
+export interface LearningQuestionOption {
+  id: string;
+  text: string;
+}
+
+export interface LearningQuestion {
+  id: string;
+  prompt: string;
+  options: LearningQuestionOption[];
+  correctOptionId: string;
+  explanation: string;
+}
+
+export interface LearningQuiz {
+  revision: string;
+  questions: LearningQuestion[];
 }

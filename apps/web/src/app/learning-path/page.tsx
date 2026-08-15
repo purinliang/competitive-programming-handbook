@@ -14,7 +14,7 @@ export default function LearningPathPage() {
 
   return (
     <>
-      <SiteHeader activeSection="learn" />
+      <SiteHeader activeSection="learning-path" />
       <main className="directory-layout">
         <DirectorySidebar title="学习路线" items={stages.map((stage) => ({ id: stage.key, label: `${stage.number} ${stage.title}` }))} />
         <div className="index-page directory-content">
@@ -30,7 +30,7 @@ export default function LearningPathPage() {
                 <section className="panel" id={stage.key} key={stage.key}>
                   <NumberedPanelHeader label={`${stage.number} ${stage.title}`} />
                   <div className="article-list">
-                    <ArticleFamilyList groups={getLearningUnitGroups(stage)} navigation="learn" />
+                    <ArticleFamilyList groups={getLearningUnitGroups(stage)} navigation="learning-path" />
                   </div>
                 </section>
               );

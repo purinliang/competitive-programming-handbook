@@ -18,6 +18,7 @@ const appRoot = process.cwd();
 const notesRoot = path.resolve(appRoot, "../../notes");
 const cacheRoot = path.join(appRoot, ".content-cache");
 const articleCacheRoot = path.join(cacheRoot, "articles");
+const quizCacheRoot = path.join(cacheRoot, "quizzes");
 const searchIndexPath = path.join(appRoot, "public/search-index.json");
 const articleStatuses = new Set(["计划", "待审阅", "已审阅", "草稿", "定稿"]);
 
@@ -39,7 +40,7 @@ async function fileExists(filePath) {
 }
 
 async function parseCatalog() {
-  const catalog = await readFile(path.join(notesRoot, "CATALOG.md"), "utf8");
+  const catalog = await readFile(path.join(notesRoot, "catalog.md"), "utf8");
   const articles = [];
   let moduleKey = "";
   let moduleTitle = "";
@@ -84,8 +85,9 @@ async function parseCatalog() {
       moduleTitle,
       moduleAnchor,
       sourcePath,
+      learningSourcePath: sourcePath,
       catalogRoute: `/catalog/${articleKey}/`,
-      learningRoute: `/learn/${articleKey}/`,
+      learningPathRoute: `/learning-path/${articleKey}/`,
       exists: await fileExists(path.join(notesRoot, sourcePath)),
     });
   }
@@ -94,17 +96,18 @@ async function parseCatalog() {
     (article, index) => articles.findIndex((candidate) => candidate.articleKey === article.articleKey) !== index,
   );
   if (duplicateKeys.length > 0) {
-    throw new Error(`CATALOG.md 中存在重复 article_key：${duplicateKeys.map((item) => item.articleKey).join(", ")}`);
+    throw new Error(`catalog.md 中存在重复 article_key：${duplicateKeys.map((item) => item.articleKey).join(", ")}`);
   }
 
   return articles;
 }
 
 async function parseLearningStages() {
-  const learningPath = await readFile(path.join(notesRoot, "LEARNING-PATH.md"), "utf8");
+  const learningPath = await readFile(path.join(notesRoot, "learning-path.md"), "utf8");
   const stages = [];
   let currentStage;
   let currentUnit;
+  const sourcePaths = new Map();
 
   for (const line of learningPath.split("\n")) {
     const stageMatch = line.match(/^##\s+(\d{2})\s+(.+)$/);
@@ -141,7 +144,9 @@ async function parseLearningStages() {
     const cells = line.split("|").slice(1, -1).map((cell) => cell.trim());
     const sourcePath = cells.length === 4 ? extractMarkdownPath(cells[3]) : undefined;
     if (sourcePath) {
-      const articleKey = toArticleKey(sourcePath);
+      const sourceKey = toArticleKey(sourcePath);
+      const articleKey = sourceKey.startsWith("learning-path/") ? sourceKey.slice("learning-path/".length) : sourceKey;
+      sourcePaths.set(articleKey, sourcePath);
       currentStage.articleKeys.push(articleKey);
       currentUnit?.articleKeys.push(articleKey);
     }
@@ -160,7 +165,7 @@ async function parseLearningStages() {
     }
   }
 
-  return stages;
+  return { sourcePaths, stages };
 }
 
 function walkTree(node, visitor, parent) {
@@ -179,11 +184,11 @@ function rewriteUrl(url, sourcePath) {
   const resolved = path.posix.normalize(path.posix.join(path.posix.dirname(sourcePath), pathname));
   const suffix = hash ? `#${hash}` : "";
 
-  if (resolved === "CATALOG.md") {
+  if (resolved === "catalog.md") {
     return `/catalog/${suffix}`;
   }
-  if (resolved === "LEARNING-PATH.md") {
-    return hash === "扩展阅读索引" ? "/catalog/" : `/learn/${suffix}`;
+  if (resolved === "learning-path.md") {
+    return hash === "扩展阅读索引" ? "/catalog/" : `/learning-path/${suffix}`;
   }
   if (resolved.startsWith("assets/")) {
     return `/content-assets/${resolved.slice("assets/".length)}${suffix}`;
@@ -248,14 +253,14 @@ function rehypeCollectMetadata(tableOfContents) {
   };
 }
 
-async function renderArticle(article) {
-  const markdown = await readFile(path.join(notesRoot, article.sourcePath), "utf8");
+async function renderArticle(article, sourcePath) {
+  const markdown = await readFile(path.join(notesRoot, sourcePath), "utf8");
   const tableOfContents = [];
   const result = await unified()
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkMath)
-    .use(remarkRewriteLinks(article.sourcePath))
+    .use(remarkRewriteLinks(sourcePath))
     .use(remarkRehype)
     .use(rehypeSlug)
     .use(rehypeCollectMetadata(tableOfContents))
@@ -289,22 +294,88 @@ function searchableText(markdown, articleTitles) {
     .trim();
 }
 
+async function compileLearningQuiz(articleKey) {
+  const sourcePath = path.join(notesRoot, "learning-path", `${articleKey}.quiz.json`);
+  if (!(await fileExists(sourcePath))) {
+    return;
+  }
+
+  const source = await readFile(sourcePath, "utf8");
+  const questions = JSON.parse(source);
+  if (!Array.isArray(questions) || questions.length === 0) {
+    throw new Error(`${path.relative(notesRoot, sourcePath)} 必须包含至少一道题`);
+  }
+
+  const questionIds = new Set();
+  for (const question of questions) {
+    if (!question || typeof question.id !== "string" || !question.id || questionIds.has(question.id)) {
+      throw new Error(`${path.relative(notesRoot, sourcePath)} 包含缺失或重复的题目 id`);
+    }
+    questionIds.add(question.id);
+    if (typeof question.prompt !== "string" || !question.prompt.trim()) {
+      throw new Error(`${path.relative(notesRoot, sourcePath)} 的 ${question.id} 缺少题干`);
+    }
+    if (!Array.isArray(question.options) || question.options.length < 2) {
+      throw new Error(`${path.relative(notesRoot, sourcePath)} 的 ${question.id} 至少需要两个选项`);
+    }
+    const optionIds = new Set(question.options.map((option) => option?.id));
+    if (optionIds.size !== question.options.length || [...optionIds].some((id) => typeof id !== "string" || !id)) {
+      throw new Error(`${path.relative(notesRoot, sourcePath)} 的 ${question.id} 包含缺失或重复的选项 id`);
+    }
+    if (!optionIds.has(question.correctOptionId)) {
+      throw new Error(`${path.relative(notesRoot, sourcePath)} 的 ${question.id} 正确答案不在选项中`);
+    }
+    if (typeof question.explanation !== "string" || !question.explanation.trim()) {
+      throw new Error(`${path.relative(notesRoot, sourcePath)} 的 ${question.id} 缺少解析`);
+    }
+  }
+
+  const outputPath = path.join(quizCacheRoot, `${articleKey}.json`);
+  await mkdir(path.dirname(outputPath), { recursive: true });
+  await writeFile(outputPath, `${JSON.stringify({
+    revision: createHash("sha256").update(source).digest("hex").slice(0, 16),
+    questions,
+  })}\n`);
+}
+
 await rm(cacheRoot, { force: true, recursive: true });
 await mkdir(articleCacheRoot, { recursive: true });
+await mkdir(quizCacheRoot, { recursive: true });
 
-const [articles, stages] = await Promise.all([parseCatalog(), parseLearningStages()]);
+const [articles, learningPath] = await Promise.all([parseCatalog(), parseLearningStages()]);
+const { sourcePaths: learningSourcePaths, stages } = learningPath;
+const articlesByKey = new Map(articles.map((article) => [article.articleKey, article]));
+for (const [articleKey, sourcePath] of learningSourcePaths) {
+  const article = articlesByKey.get(articleKey);
+  if (!article) {
+    throw new Error(`learning-path.md 中的学习正文没有对应目录条目：${sourcePath}`);
+  }
+  if (article.status !== "计划" && !(await fileExists(path.join(notesRoot, sourcePath)))) {
+    throw new Error(`learning-path.md 中的学习正文不存在：${sourcePath}`);
+  }
+}
+for (const article of articles) {
+  article.learningSourcePath = learningSourcePaths.get(article.articleKey) ?? article.sourcePath;
+}
 await writeFile(path.join(cacheRoot, "manifest.json"), `${JSON.stringify({ articles, stages })}\n`);
 
 const publishedArticles = articles.filter((article) => article.exists && article.status !== "计划");
+const learningArticleKeys = new Set(stages.flatMap((stage) => stage.articleKeys));
 const articleTitles = new Set(publishedArticles.map((article) => article.title));
 const searchRecords = [];
 
 for (const article of publishedArticles) {
   const markdown = await readFile(path.join(notesRoot, article.sourcePath), "utf8");
-  const rendered = await renderArticle(article);
-  const outputPath = path.join(articleCacheRoot, `${article.articleKey}.json`);
-  await mkdir(path.dirname(outputPath), { recursive: true });
-  await writeFile(outputPath, `${JSON.stringify(rendered)}\n`);
+  const catalogRendered = await renderArticle(article, article.sourcePath);
+  const learningRendered = article.learningSourcePath === article.sourcePath
+    ? catalogRendered
+    : await renderArticle(article, article.learningSourcePath);
+  const catalogOutputPath = path.join(articleCacheRoot, "catalog", `${article.articleKey}.json`);
+  const learningOutputPath = path.join(articleCacheRoot, "learning-path", `${article.articleKey}.json`);
+  await mkdir(path.dirname(catalogOutputPath), { recursive: true });
+  await mkdir(path.dirname(learningOutputPath), { recursive: true });
+  await writeFile(catalogOutputPath, `${JSON.stringify(catalogRendered)}\n`);
+  await writeFile(learningOutputPath, `${JSON.stringify(learningRendered)}\n`);
   searchRecords.push({
     articleKey: article.articleKey,
     title: article.title,
@@ -314,6 +385,8 @@ for (const article of publishedArticles) {
     text: searchableText(markdown, articleTitles),
   });
 }
+
+await Promise.all([...learningArticleKeys].map((articleKey) => compileLearningQuiz(articleKey)));
 
 await mkdir(path.dirname(searchIndexPath), { recursive: true });
 await writeFile(searchIndexPath, `${JSON.stringify(searchRecords)}\n`);

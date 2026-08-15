@@ -116,7 +116,7 @@ takeaway 是低压力的理解检查，答案随静态资源发送到浏览器�
 第一阶段只建设无需用户数据也能完整工作的阅读站：
 
 1. Next.js App Router 静态导出与 Workers Static Assets 部署骨架。
-2. 从 `CATALOG.md` 和 `LEARNING-PATH.md` 构建统一内容索引。
+2. 从 `catalog.md` 和 `learning-path.md` 构建内容索引。
 3. 渲染 Markdown、GFM 表格、LaTeX、代码块、相对链接和 SVG。
 4. 学习路线、模块目录、文章页、文章目录和上一篇/下一篇导航。
 5. 全文搜索、响应式布局和深色模式。

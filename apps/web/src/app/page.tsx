@@ -16,7 +16,7 @@ export default function HomePage() {
             从 C++ 基础到高中竞赛进阶，沿着一条能真正读完的路线学习；也可以按模块查找算法、数据结构和可复制模板。
           </p>
           <div className="hero-actions">
-            <Link className="primary-button hero-primary-action" href="/learn/">
+            <Link className="primary-button hero-primary-action" href="/learning-path/">
               开始学习 <ArrowRight aria-hidden="true" size={17} />
             </Link>
           </div>

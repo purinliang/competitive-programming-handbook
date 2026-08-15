@@ -19,6 +19,12 @@
   --code-bg: #f1f2f5;
   --code-border: #e0e1e6;
   --focus: #1b46de;
+  --success-text: #18794e;
+  --success-bg: #e9f9ee;
+  --success-border: #8eceaa;
+  --danger-text: #ce2c31;
+  --danger-bg: #fff0f0;
+  --danger-border: #f3a6a8;
   --shadow: 0 12px 36px rgba(23, 44, 100, 0.08);
   --font-body: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
   --font-code: "SFMono-Regular", Consolas, "Liberation Mono", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace;
@@ -49,6 +55,12 @@
   --code-bg: #19191b;
   --code-border: #303136;
   --focus: #8bb4ff;
+  --success-text: #5bb98c;
+  --success-bg: #132d21;
+  --success-border: #28684a;
+  --danger-text: #ff6369;
+  --danger-bg: #3b181a;
+  --danger-border: #7f3034;
   --shadow: 0 16px 44px rgba(0, 0, 0, 0.22);
 }
 
@@ -74,6 +86,12 @@
     --code-bg: #19191b;
     --code-border: #303136;
     --focus: #8bb4ff;
+    --success-text: #5bb98c;
+    --success-bg: #132d21;
+    --success-border: #28684a;
+    --danger-text: #ff6369;
+    --danger-bg: #3b181a;
+    --danger-border: #7f3034;
     --shadow: 0 16px 44px rgba(0, 0, 0, 0.22);
   }
 }

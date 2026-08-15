@@ -1,7 +1,6 @@
 import { ArticleLink } from "./article-link";
-import type { NavigationMode } from "./article-link";
 
-import type { ArticleFamily } from "@/lib/content/types";
+import type { ArticleFamily, NavigationMode } from "@/lib/content/types";
 
 interface ArticleFamilyListProps {
   groups: ArticleFamily[];

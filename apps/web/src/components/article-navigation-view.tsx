@@ -1,8 +1,7 @@
 import { ArticleFamilyList } from "./article-family-list";
-import type { NavigationMode } from "./article-link";
 import { ScrollArea } from "./scroll-area";
 
-import type { ArticleNavigation } from "@/lib/content/types";
+import type { ArticleNavigation, NavigationMode } from "@/lib/content/types";
 
 export function ArticleNavigationView({ articleKey, mode, navigation }: { articleKey: string; mode: NavigationMode; navigation: ArticleNavigation }) {
   return (

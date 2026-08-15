@@ -23,5 +23,5 @@ export async function generateMetadata({ params }: LearningArticlePageProps): Pr
 
 export default async function LearningArticlePage({ params }: LearningArticlePageProps) {
   const { module, slug } = await params;
-  return <ArticleExperience articleKey={`${module}/${slug}`} mode="learn" />;
+  return <ArticleExperience articleKey={`${module}/${slug}`} mode="learning-path" />;
 }

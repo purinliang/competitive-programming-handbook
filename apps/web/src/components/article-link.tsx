@@ -1,13 +1,11 @@
 import { getArticleStatusLabel } from "@/lib/content/status";
-import type { ArticleRecord } from "@/lib/content/types";
+import type { ArticleRecord, NavigationMode } from "@/lib/content/types";
 
 import { NavigationLink as Link } from "./navigation-link";
 
-export type NavigationMode = "learn" | "catalog";
-
 export function ArticleLink({ article, active = false, label, navigation }: { article: ArticleRecord; active?: boolean; label?: string; navigation?: NavigationMode }) {
   const visibleTitle = label ?? article.title;
-  const href = navigation === "learn" ? article.learningRoute : article.catalogRoute;
+  const href = navigation === "learning-path" ? article.learningPathRoute : article.catalogRoute;
   const unavailable = !article.exists || article.status === "计划";
   if (unavailable) {
     return (

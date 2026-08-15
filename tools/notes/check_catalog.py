@@ -11,8 +11,8 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 NOTES = ROOT / "notes"
-CATALOG = NOTES / "CATALOG.md"
-LEARNING_PATH = NOTES / "LEARNING-PATH.md"
+CATALOG = NOTES / "catalog.md"
+LEARNING_PATH = NOTES / "learning-path.md"
 
 ALLOWED_STATUSES = {"计划", "待审阅", "已审阅", "草稿", "定稿"}
 MODULE_PREFIXES = {
@@ -116,14 +116,14 @@ class Checker:
                 else "核心教程"
             )
             path, linked = self.parse_file_cell(
-                raw_file, f"CATALOG.md:{line_number}"
+                raw_file, f"catalog.md:{line_number}"
             )
             if article_id in entries:
-                self.error(f"CATALOG.md:{line_number}: duplicate ID {article_id}")
+                self.error(f"catalog.md:{line_number}: duplicate ID {article_id}")
                 continue
             if path in paths:
                 self.error(
-                    f"CATALOG.md:{line_number}: path {path!r} is also used by {paths[path]}"
+                    f"catalog.md:{line_number}: path {path!r} is also used by {paths[path]}"
                 )
             paths[path] = article_id
             entries[article_id] = Entry(
@@ -135,7 +135,7 @@ class Checker:
                 linked,
             )
         if not entries:
-            self.error("CATALOG.md: no catalog entries found")
+            self.error("catalog.md: no catalog entries found")
         return entries
 
     def parse_learning_path(
@@ -168,10 +168,10 @@ class Checker:
                 link = FILE_LINK.fullmatch(raw_file)
                 if link and link.group(1) != link.group(2).split("#", 1)[0]:
                     self.error(
-                        f"LEARNING-PATH.md:{line_number}: link label must show the relative path"
+                        f"learning-path.md:{line_number}: link label must show the relative path"
                     )
                 path, linked = self.parse_file_cell(
-                    raw_file, f"LEARNING-PATH.md:{line_number}"
+                    raw_file, f"learning-path.md:{line_number}"
                 )
                 extension_index.append(
                     ExtensionIndexEntry(article_id, title, path, linked, section)
@@ -186,16 +186,16 @@ class Checker:
             link = FILE_LINK.fullmatch(raw_file)
             if link and link.group(1) != link.group(2).split("#", 1)[0]:
                 self.error(
-                    f"LEARNING-PATH.md:{line_number}: link label must show the relative path"
+                    f"learning-path.md:{line_number}: link label must show the relative path"
                 )
             path, linked = self.parse_file_cell(
-                raw_file, f"LEARNING-PATH.md:{line_number}"
+                raw_file, f"learning-path.md:{line_number}"
             )
             route.append(RouteEntry(article_id, title, module, path, linked, stage))
         if not route:
-            self.error("LEARNING-PATH.md: no learning-path entries found")
+            self.error("learning-path.md: no learning-path entries found")
         if not extension_index:
-            self.error("LEARNING-PATH.md: no extension-index entries found")
+            self.error("learning-path.md: no extension-index entries found")
         return route, extension_index
 
     def parse_file_cell(self, raw: str, location: str) -> tuple[str, bool]:
@@ -211,19 +211,19 @@ class Checker:
     def parse_legacy_drafts(self, text: str) -> set[str]:
         match = LEGACY_DRAFTS.search(text)
         if not match:
-            self.error("CATALOG.md: missing legacy-drafts marker")
+            self.error("catalog.md: missing legacy-drafts marker")
             return set()
         legacy = {item.strip() for item in match.group(1).split(",") if item.strip()}
         invalid = sorted(item for item in legacy if not re.fullmatch(r"\d{4}", item))
         if invalid:
-            self.error(f"CATALOG.md: invalid legacy draft IDs: {', '.join(invalid)}")
+            self.error(f"catalog.md: invalid legacy draft IDs: {', '.join(invalid)}")
         return legacy
 
     def check_catalog(self, entries: dict[str, Entry], legacy: set[str]) -> None:
         positions = {article_id: index for index, article_id in enumerate(entries)}
         last_number = {module: 0 for module in MODULE_PREFIXES}
         for entry in entries.values():
-            location = f"CATALOG.md ({entry.article_id})"
+            location = f"catalog.md ({entry.article_id})"
             if entry.status not in ALLOWED_STATUSES:
                 self.error(f"{location}: invalid status {entry.status!r}")
             if not ARTICLE_FILENAME.fullmatch(Path(entry.path).name):
@@ -258,13 +258,13 @@ class Checker:
         unknown_legacy = sorted(legacy - entries.keys())
         if unknown_legacy:
             self.error(
-                "CATALOG.md: legacy marker contains unknown IDs: "
+                "catalog.md: legacy marker contains unknown IDs: "
                 + ", ".join(unknown_legacy)
             )
         for article_id in sorted(legacy & entries.keys()):
             if entries[article_id].status != "草稿":
                 self.error(
-                    f"CATALOG.md ({article_id}): only draft articles may be marked legacy"
+                    f"catalog.md ({article_id}): only draft articles may be marked legacy"
                 )
 
     def check_module_headings(self, text: str) -> None:
@@ -272,7 +272,7 @@ class Checker:
         expected = list(MODULE_PREFIXES.values())
         if headings != expected:
             self.error(
-                "CATALOG.md: module headings must be ordered "
+                "catalog.md: module headings must be ordered "
                 + " -> ".join(expected)
                 + f"; got {' -> '.join(headings)}"
             )
@@ -283,7 +283,7 @@ class Checker:
         seen: set[str] = set()
         route_ids: list[str] = []
         for item in route:
-            location = f"LEARNING-PATH.md ({item.article_id}, {item.stage})"
+            location = f"learning-path.md ({item.article_id}, {item.stage})"
             if item.article_id in seen:
                 self.error(f"{location}: duplicate learning-path ID")
                 continue
@@ -291,7 +291,7 @@ class Checker:
             route_ids.append(item.article_id)
             entry = entries.get(item.article_id)
             if not entry:
-                self.error(f"{location}: ID is absent from CATALOG.md")
+                self.error(f"{location}: ID is absent from catalog.md")
                 continue
             if entry.kind != "核心教程":
                 self.error(f"{location}: extension articles must not enter the learning path")
@@ -310,9 +310,9 @@ class Checker:
         missing = sorted(core_ids - seen)
         extra = sorted(seen - core_ids)
         if missing:
-            self.error("LEARNING-PATH.md: missing core IDs: " + ", ".join(missing))
+            self.error("learning-path.md: missing core IDs: " + ", ".join(missing))
         if extra:
-            self.error("LEARNING-PATH.md: non-core IDs present: " + ", ".join(extra))
+            self.error("learning-path.md: non-core IDs present: " + ", ".join(extra))
 
         stages = list(dict.fromkeys(item.stage for item in route))
         expected_stages = [
@@ -325,7 +325,7 @@ class Checker:
         ]
         if stages != expected_stages:
             self.error(
-                "LEARNING-PATH.md: stages must be exactly "
+                "learning-path.md: stages must be exactly "
                 + " -> ".join(expected_stages)
             )
 
@@ -337,7 +337,7 @@ class Checker:
         actual_ids: list[str] = []
         seen: set[str] = set()
         for item in extension_index:
-            location = f"LEARNING-PATH.md ({item.article_id}, {item.section})"
+            location = f"learning-path.md ({item.article_id}, {item.section})"
             if item.article_id in seen:
                 self.error(f"{location}: duplicate extension-index ID")
                 continue
@@ -345,7 +345,7 @@ class Checker:
             actual_ids.append(item.article_id)
             entry = entries.get(item.article_id)
             if not entry:
-                self.error(f"{location}: ID is absent from CATALOG.md")
+                self.error(f"{location}: ID is absent from catalog.md")
                 continue
             if entry.kind != "扩展专题":
                 self.error(f"{location}: core article must stay in stages 1–6")
@@ -370,17 +370,17 @@ class Checker:
             extra = sorted(set(actual_ids) - set(expected_ids))
             if missing:
                 self.error(
-                    "LEARNING-PATH.md: extension index missing IDs: "
+                    "learning-path.md: extension index missing IDs: "
                     + ", ".join(missing)
                 )
             if extra:
                 self.error(
-                    "LEARNING-PATH.md: extension index has non-extension IDs: "
+                    "learning-path.md: extension index has non-extension IDs: "
                     + ", ".join(extra)
                 )
             if not missing and not extra:
                 self.error(
-                    "LEARNING-PATH.md: extension index must follow catalog module/ID order"
+                    "learning-path.md: extension index must follow catalog module/ID order"
                 )
 
     def check_article_files(
@@ -403,7 +403,7 @@ class Checker:
         for relative, entry in expected.items():
             path = NOTES / relative
             if not path.is_file():
-                self.error(f"CATALOG.md ({entry.article_id}): missing file notes/{relative}")
+                self.error(f"catalog.md ({entry.article_id}): missing file notes/{relative}")
         unregistered = sorted(actual - set(expected))
         if unregistered:
             self.error(

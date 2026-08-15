@@ -4,6 +4,7 @@ import { ArticleNavigationView } from "./article-navigation-view";
 import { ArticleNeighborsView } from "./article-neighbors-view";
 import { ArticleTableOfContents } from "./article-table-of-contents";
 import { CodeBlockEnhancements } from "./code-block-enhancements";
+import { LearningQuiz } from "./learning-quiz";
 import { SiteHeader } from "./site-header";
 
 import {
@@ -13,9 +14,9 @@ import {
   getArticleModuleNavigation,
   getArticleModuleNeighbors,
 } from "@/lib/content/catalog";
-import { getRenderedArticle } from "@/lib/content/compiled";
+import { getLearningQuiz, getRenderedArticle } from "@/lib/content/compiled";
 
-import type { NavigationMode } from "./article-link";
+import type { NavigationMode } from "@/lib/content/types";
 
 export async function ArticleExperience({ articleKey, mode }: { articleKey: string; mode: NavigationMode }) {
   const article = getArticle(articleKey);
@@ -23,17 +24,18 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
     notFound();
   }
 
-  const navigation = mode === "learn"
+  const navigation = mode === "learning-path"
     ? getArticleLearningNavigation(article.articleKey)
     : getArticleModuleNavigation(article.articleKey);
   if (!navigation) {
     notFound();
   }
 
-  const neighbors = mode === "learn"
+  const neighbors = mode === "learning-path"
     ? getArticleLearningNeighbors(article.articleKey)
     : getArticleModuleNeighbors(article.articleKey);
-  const rendered = await getRenderedArticle(article);
+  const rendered = await getRenderedArticle(article, mode);
+  const quiz = mode === "learning-path" ? await getLearningQuiz(article) : undefined;
 
   return (
     <>
@@ -44,6 +46,7 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
         <main className="article-column">
           <article className="markdown-body" data-article-key={article.articleKey} data-content-revision={rendered.contentRevision} dangerouslySetInnerHTML={{ __html: rendered.html }} />
           <CodeBlockEnhancements articleKey={article.articleKey} />
+          {quiz ? <LearningQuiz articleKey={article.articleKey} quiz={quiz} /> : null}
           <ArticleNeighborsView mode={mode} {...neighbors} />
         </main>
 
