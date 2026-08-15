@@ -140,7 +140,7 @@
 | 0121e2 | class 与对象 | 待审阅 | [class.md](cpp/class.md) |
 | 0121e3 | 类的成员 | 待审阅 | [class-members.md](cpp/class-members.md) |
 | 0121e4 | 访问权限与 friend | 待审阅 | [class-access-control.md](cpp/class-access-control.md) |
-| 0121e5 | 构造函数 | 计划 | `cpp/constructors.md` |
+| 0121e5 | 构造函数 | 待审阅 | [constructors.md](cpp/constructors.md) |
 | 0121e6 | 析构函数 | 计划 | `cpp/destructors.md` |
 | 0121e7 | 继承 | 计划 | `cpp/inheritance.md` |
 | 0121e8 | 多态 | 计划 | `cpp/polymorphism.md` |

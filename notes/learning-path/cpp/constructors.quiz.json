@@ -1,0 +1,86 @@
+[
+  {
+    "id": "constructor-purpose",
+    "prompt": "构造函数最主要的作用是什么？",
+    "options": [
+      { "id": "a", "text": "在对象建立时把成员初始化为有效状态" },
+      { "id": "b", "text": "在程序结束后删除源代码" },
+      { "id": "c", "text": "为所有函数添加返回类型" },
+      { "id": "d", "text": "把类改成命名空间" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "构造函数随对象建立自动执行，使对象不必先处于未初始化或无效状态。"
+  },
+  {
+    "id": "constructor-syntax",
+    "prompt": "构造函数的名称和返回类型应怎样写？",
+    "options": [
+      { "id": "a", "text": "与类同名，并且不写返回类型" },
+      { "id": "b", "text": "任意名称，返回 `void`" },
+      { "id": "c", "text": "与类同名，返回这个类" },
+      { "id": "d", "text": "必须命名为 `construct`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "连 `void` 也不能写；构造函数由对象初始化语法触发。"
+  },
+  {
+    "id": "implicit-default-constructor",
+    "prompt": "类已经声明 `Contestant(int, int)` 后，能否当然地继续写 `Contestant x;`？",
+    "options": [
+      { "id": "a", "text": "不能，除非类另外提供可无参调用的构造函数" },
+      { "id": "b", "text": "总能，编译器一定再补一个无参版本" },
+      { "id": "c", "text": "只能在循环中这样写" },
+      { "id": "d", "text": "只有把类改成宏才可以" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "用户声明构造函数后，不能依靠编译器为了某次调用自动生成另一个所需版本。"
+  },
+  {
+    "id": "member-initializer-list",
+    "prompt": "为什么 `const` 或引用数据成员需要成员初始化列表？",
+    "options": [
+      { "id": "a", "text": "它们必须在开始存在时获得目标，不能先默认建立再赋值" },
+      { "id": "b", "text": "构造函数体不能包含任何语句" },
+      { "id": "c", "text": "初始化列表会把它们改成静态成员" },
+      { "id": "d", "text": "只有列表能访问公开成员" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "初始化列表直接决定成员的初始化；函数体执行时，所有成员已经开始存在。"
+  },
+  {
+    "id": "member-initialization-order",
+    "prompt": "数据成员的实际初始化顺序由什么决定？",
+    "options": [
+      { "id": "a", "text": "它们在类中的声明顺序" },
+      { "id": "b", "text": "初始化列表中的书写顺序" },
+      { "id": "c", "text": "成员名字的字典序" },
+      { "id": "d", "text": "每次运行随机决定" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "列表最好也按声明顺序书写，避免表面顺序掩盖尚未初始化的依赖。"
+  },
+  {
+    "id": "explicit-constructor",
+    "prompt": "单参数构造函数前的 `explicit` 主要阻止什么？",
+    "options": [
+      { "id": "a", "text": "从参数类型到类类型的意外隐式转换" },
+      { "id": "b", "text": "明确写出的直接构造" },
+      { "id": "c", "text": "成员初始化列表" },
+      { "id": "d", "text": "对象调用公开成员函数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "写成 `Score score{95};` 的显式构造仍然允许，隐含转换则受到限制。"
+  },
+  {
+    "id": "most-vexing-parse",
+    "prompt": "`Contestant contestant();` 会被 C++ 解析成什么？",
+    "options": [
+      { "id": "a", "text": "返回 `Contestant` 的无参函数声明" },
+      { "id": "b", "text": "默认构造的对象" },
+      { "id": "c", "text": "动态数组" },
+      { "id": "d", "text": "析构函数调用" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "默认对象写 `Contestant contestant;` 或 `Contestant contestant{};`，不要保留空括号。"
+  }
+]

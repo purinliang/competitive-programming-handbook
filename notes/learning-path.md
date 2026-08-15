@@ -127,7 +127,7 @@
 | 0121e2 | class 与对象 | C++ | [cpp/class.md](cpp/class.md) |
 | 0121e3 | 类的成员 | C++ | [cpp/class-members.md](cpp/class-members.md) |
 | 0121e4 | 访问权限与 friend | C++ | [cpp/class-access-control.md](cpp/class-access-control.md) |
-| 0121e5 | 构造函数 | C++ | `cpp/constructors.md` |
+| 0121e5 | 构造函数 | C++ | [cpp/constructors.md](cpp/constructors.md) |
 | 0121e6 | 析构函数 | C++ | `cpp/destructors.md` |
 | 0121e7 | 继承 | C++ | `cpp/inheritance.md` |
 | 0121e8 | 多态 | C++ | `cpp/polymorphism.md` |
@@ -607,7 +607,7 @@
 | 0121e2 | class 与对象 | [cpp/class.md](cpp/class.md) |
 | 0121e3 | 类的成员 | [cpp/class-members.md](cpp/class-members.md) |
 | 0121e4 | 访问权限与 friend | [cpp/class-access-control.md](cpp/class-access-control.md) |
-| 0121e5 | 构造函数 | `cpp/constructors.md` |
+| 0121e5 | 构造函数 | [cpp/constructors.md](cpp/constructors.md) |
 | 0121e6 | 析构函数 | `cpp/destructors.md` |
 | 0121e7 | 继承 | `cpp/inheritance.md` |
 | 0121e8 | 多态 | `cpp/polymorphism.md` |
