@@ -102,6 +102,7 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0121 | struct | C++ | [cpp/struct.md](cpp/struct.md) |
+| 0175 | 结构体指针与箭头运算符 | C++ | [cpp/struct-pointers-and-arrow.md](cpp/struct-pointers-and-arrow.md) |
 
 ### 学习单元：内存、调用栈与递归
 

@@ -83,6 +83,7 @@
 | 0119e1 | 多维数组的布局与参数传递 | 待审阅 | [multidimensional-array-layout-and-parameters.md](cpp/multidimensional-array-layout-and-parameters.md) |
 | 0120 | C 字符串 | 待审阅 | [c-strings.md](cpp/c-strings.md) |
 | 0121 | struct | 待审阅 | [struct.md](cpp/struct.md) |
+| 0175 | 结构体指针与箭头运算符 | 待审阅 | [struct-pointers-and-arrow.md](cpp/struct-pointers-and-arrow.md) |
 | 0121e1 | struct 的内存布局 | 待审阅 | [struct-memory-layout.md](cpp/struct-memory-layout.md) |
 
 ### 知识族：内存、别名与递归
