@@ -1,0 +1,98 @@
+[
+  {
+    "id": "language-versus-implementation",
+    "prompt": "C++ 存储期与常见内存分区之间是什么关系？",
+    "options": [
+      { "id": "a", "text": "存储期是语言规则，代码区、栈和堆是常见实现模型" },
+      { "id": "b", "text": "两者是完全相同的 C++ 关键字" },
+      { "id": "c", "text": "内存分区决定所有变量名称" },
+      { "id": "d", "text": "C++ 标准固定了每个区域的绝对地址" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "语言规定对象何时存在，运行环境再用常见区域实现；不能把平台布局写成标准承诺。"
+  },
+  {
+    "id": "static-storage",
+    "prompt": "全局对象与 `static` 局部对象在存储期上有什么共同点？",
+    "options": [
+      { "id": "a", "text": "都具有静态存储期，在整个程序运行期间存在" },
+      { "id": "b", "text": "每次函数调用都会重新创建" },
+      { "id": "c", "text": "都只能保存在调用栈" },
+      { "id": "d", "text": "名称都在所有函数中可见" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "二者持续时间相近，但名称作用域不同；局部 `static` 的名称仍只在局部可见。"
+  },
+  {
+    "id": "bss-runtime-memory",
+    "prompt": "BSS 中的大型零初始化数组在程序运行时是否占用内存？",
+    "options": [
+      { "id": "a", "text": "占用，只是不必在可执行文件中逐个保存零" },
+      { "id": "b", "text": "完全不占任何内存" },
+      { "id": "c", "text": "只有元素非零时才占用" },
+      { "id": "d", "text": "会自动放入源代码注释" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "BSS 减少文件中的重复零数据，加载后仍需要真实的运行时存储。"
+  },
+  {
+    "id": "large-local-array",
+    "prompt": "为什么大型局部内置数组可能在总内存限制尚未用完时就运行时错误？",
+    "options": [
+      { "id": "a", "text": "调用栈通常有独立且较小的容量上限" },
+      { "id": "b", "text": "局部数组不能保存整数" },
+      { "id": "c", "text": "所有局部数组容量最多为十" },
+      { "id": "d", "text": "数组元素会自动变成函数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "栈空间可能先于进程总内存耗尽，大型局部对象和深递归都可能触发栈溢出。"
+  },
+  {
+    "id": "pointer-and-dynamic-object",
+    "prompt": "`int* p = new int(13);` 中，局部指针与动态整数是什么关系？",
+    "options": [
+      { "id": "a", "text": "`p` 是局部对象，指向另行申请的动态对象" },
+      { "id": "b", "text": "二者必定是同一个对象" },
+      { "id": "c", "text": "动态整数存放在指针变量名称中" },
+      { "id": "d", "text": "函数返回会自动释放所有 `new` 对象" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "指针和目标是两个对象；指针离开作用域不会自动释放手写 `new` 得到的存储。"
+  },
+  {
+    "id": "vector-storage",
+    "prompt": "为什么局部 `vector<int> a(2000005)` 通常不会把全部元素放进当前调用栈？",
+    "options": [
+      { "id": "a", "text": "局部 `vector` 对象管理另外申请的动态元素存储" },
+      { "id": "b", "text": "`vector` 不保存任何元素" },
+      { "id": "c", "text": "所有元素都变成全局变量名称" },
+      { "id": "d", "text": "整数会自动压缩成零字节" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "容器对象本身是局部的，但大块元素区域通常来自动态存储，并由容器自动释放。"
+  },
+  {
+    "id": "scope-and-storage",
+    "prompt": "为什么 `static` 局部变量可以同时“局部可见”和“整个程序期间存在”？",
+    "options": [
+      { "id": "a", "text": "作用域与存储期是两条独立规则" },
+      { "id": "b", "text": "局部与全局是同一个 C++ 关键字" },
+      { "id": "c", "text": "编译器会忽略所有 `static`" },
+      { "id": "d", "text": "变量存在时间由名称长度决定" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "作用域控制名称在哪里可见，存储期控制对象何时存在，二者可以有不同组合。"
+  },
+  {
+    "id": "fixed-layout-myth",
+    "prompt": "为什么不应背诵所有环境通用的“栈在高地址、堆在低地址”？",
+    "options": [
+      { "id": "a", "text": "具体地址顺序属于平台实现，不是 C++ 的统一保证" },
+      { "id": "b", "text": "高地址与低地址完全没有含义" },
+      { "id": "c", "text": "程序只能使用一个地址" },
+      { "id": "d", "text": "栈和堆一定占用同一个字节" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "常见示意图有助于理解，但运行环境可以采用不同布局，算法不能依赖固定绝对方向。"
+  }
+]
