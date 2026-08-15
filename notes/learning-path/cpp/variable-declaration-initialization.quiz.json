@@ -1,0 +1,74 @@
+[
+  {
+    "id": "declaration-parts",
+    "prompt": "在声明 `int score;` 中，`int` 和 `score` 分别是什么？",
+    "options": [
+      { "id": "a", "text": "初值和类型" },
+      { "id": "b", "text": "类型和变量名" },
+      { "id": "c", "text": "变量名和类型" },
+      { "id": "d", "text": "运算符和字面量" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`int` 指定变量的类型，`score` 是后续代码用来找到这个变量的名称。"
+  },
+  {
+    "id": "initialization-vs-assignment",
+    "prompt": "关于 `int score = 0;` 和后续的 `score = 10;`，哪项说法正确？",
+    "options": [
+      { "id": "a", "text": "两者都在重新声明变量" },
+      { "id": "b", "text": "前者是初始化，后者是赋值" },
+      { "id": "c", "text": "前者是比较，后者是初始化" },
+      { "id": "d", "text": "两者都不会修改 `score`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "初始化在对象创建时给出第一个值；变量已经存在以后，再写入新值属于赋值。"
+  },
+  {
+    "id": "update-from-old-value",
+    "prompt": "若 `score` 原来是 `25`，执行 `score = score + 5;` 后它是多少？",
+    "options": [
+      { "id": "a", "text": "`5`" },
+      { "id": "b", "text": "`25`" },
+      { "id": "c", "text": "`30`" },
+      { "id": "d", "text": "无法通过编译" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "程序先读取右侧旧值并计算 `25 + 5`，再把结果 `30` 写回左侧变量。"
+  },
+  {
+    "id": "uninitialized-read",
+    "prompt": "函数内执行 `int answer; cout << answer;` 有什么问题？",
+    "options": [
+      { "id": "a", "text": "`answer` 会由语言保证为 `0`" },
+      { "id": "b", "text": "读取了未初始化的局部整数，会导致未定义行为" },
+      { "id": "c", "text": "`cout` 不能输出整数" },
+      { "id": "d", "text": "变量必须命名为 `x`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "普通局部基本类型变量不会自动得到可依赖的零值；任何读取都必须发生在初始化或其他写入以后。"
+  },
+  {
+    "id": "input-before-read",
+    "prompt": "为什么 `int n; cin >> n; cout << n;` 在 OJ 保证输入合法时可以安全使用？",
+    "options": [
+      { "id": "a", "text": "声明会自动把 `n` 设为 `1`" },
+      { "id": "b", "text": "`cin` 在输出以前先给 `n` 写入了确定值" },
+      { "id": "c", "text": "未初始化变量只在数组中危险" },
+      { "id": "d", "text": "输出会忽略 `n` 的值" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "变量虽然没有在声明时初始化，但成功的输入操作先写入了它；后续输出没有读取未确定的值。"
+  },
+  {
+    "id": "redeclare-or-assign",
+    "prompt": "已经执行 `int score = 10;` 后，怎样把同一个变量改成 `20`？",
+    "options": [
+      { "id": "a", "text": "`int score = 20;`" },
+      { "id": "b", "text": "`score = 20;`" },
+      { "id": "c", "text": "`int = score 20;`" },
+      { "id": "d", "text": "`score == 20;`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "变量已经声明后，修改它只需赋值；再次写出 `int score` 会尝试在同一作用域重复声明同名变量。"
+  }
+]
