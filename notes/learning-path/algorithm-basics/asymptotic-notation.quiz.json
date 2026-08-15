@@ -1,0 +1,74 @@
+[
+  {
+    "id": "big-o-bound",
+    "prompt": "大 O 记号主要表达哪一种渐近关系？",
+    "options": [
+      { "id": "a", "text": "最终能被某个固定常数倍控制的上界" },
+      { "id": "b", "text": "与目标函数严格相等" },
+      { "id": "c", "text": "只适用于最好情况" },
+      { "id": "d", "text": "只比较程序的实际秒数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "存在固定 c 和 n0，使充分大的 n 都满足 f(n) 不超过 c g(n)，即可写成大 O 上界。"
+  },
+  {
+    "id": "big-omega-bound",
+    "prompt": "若 `f(n)` 最终不小于 `g(n)` 的某个固定正数倍，应使用哪个记号？",
+    "options": [
+      { "id": "a", "text": "大 Ω" },
+      { "id": "b", "text": "大 O" },
+      { "id": "c", "text": "小 o" },
+      { "id": "d", "text": "等号" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "大 Ω 给出渐近下界；它说明 f 的增长最终至少达到 g 的某个固定常数倍。"
+  },
+  {
+    "id": "theta-two-sided",
+    "prompt": "`f(n) = Θ(g(n))` 表示什么？",
+    "options": [
+      { "id": "a", "text": "f 同时具有 g 的渐近上界和下界" },
+      { "id": "b", "text": "f 一定逐点等于 g" },
+      { "id": "c", "text": "f 严格低阶于 g" },
+      { "id": "d", "text": "f 只在 n 很小时接近 g" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Θ 表示增长同阶，允许两者相差固定常数倍，而不要求每个 n 上数值相同。"
+  },
+  {
+    "id": "little-o-strict",
+    "prompt": "下面哪一个关系成立？",
+    "options": [
+      { "id": "a", "text": "$n=o(n^2)$" },
+      { "id": "b", "text": "$n=o(n)$" },
+      { "id": "c", "text": "$n^2=o(n)$" },
+      { "id": "d", "text": "$2^n=o(n^3)$" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "小 o 表示严格低阶。n 相对 n² 的比例趋近于 0，而 n 与自身不是严格低阶关系。"
+  },
+  {
+    "id": "loose-big-o",
+    "prompt": "为什么 `n = O(n²)` 成立，却通常不这样描述线性算法？",
+    "options": [
+      { "id": "a", "text": "它是正确但过宽松的上界，会丢失线性增长信息" },
+      { "id": "b", "text": "大 O 只允许完全相同的函数" },
+      { "id": "c", "text": "n² 永远小于 n" },
+      { "id": "d", "text": "线性算法不能使用渐近记号" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "大 O 允许宽松上界；实际交流通常选择足够紧的简单上界来保留有用信息。"
+  },
+  {
+    "id": "case-vs-bound",
+    "prompt": "关于“最坏情况”和“大 O”，哪项说法正确？",
+    "options": [
+      { "id": "a", "text": "先选定最坏代价函数，再用大 O 等记号描述它的增长" },
+      { "id": "b", "text": "大 O 在定义上就是最坏情况" },
+      { "id": "c", "text": "大 Ω 在定义上就是最好情况" },
+      { "id": "d", "text": "渐近记号不能描述平均代价函数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "情况分类选择分析哪个函数，上界、下界和同阶记号描述该函数；两组概念彼此独立。"
+  }
+]

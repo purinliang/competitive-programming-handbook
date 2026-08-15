@@ -628,7 +628,7 @@
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| 0201e1 | 复杂度：渐近记号 | `algorithm-basics/asymptotic-notation.md` |
+| 0201e1 | 复杂度：渐近记号 | [algorithm-basics/asymptotic-notation.md](algorithm-basics/asymptotic-notation.md) |
 | 0215* | 三分搜索 | `algorithm-basics/0215-ternary-search.md` |
 | 0216* | 随机化算法 | `algorithm-basics/0216-randomized-algorithms.md` |
 | 0217* | 整体二分与并行二分 | `algorithm-basics/0217-parallel-binary-search.md` |
