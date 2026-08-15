@@ -1,0 +1,86 @@
+[
+  {
+    "id": "explicit-separator",
+    "prompt": "执行 `cout << a << b;` 时，两个数之间会自动出现空格吗？",
+    "options": [
+      { "id": "a", "text": "不会，需要明确输出空格或换行" },
+      { "id": "b", "text": "会，`cout` 总会添加一个空格" },
+      { "id": "c", "text": "只有两个数相等时会" },
+      { "id": "d", "text": "只有 `a` 是负数时会" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "输出流只写出代码明确提供的值；分隔符也是输出内容的一部分。"
+  },
+  {
+    "id": "newline-choice",
+    "prompt": "普通竞赛输出为什么统一优先使用 `'\\n'` 而不是 `endl`？",
+    "options": [
+      { "id": "a", "text": "`endl` 还会刷新缓冲区，频繁使用可能更慢" },
+      { "id": "b", "text": "`endl` 不能产生换行" },
+      { "id": "c", "text": "`'\\n'` 会自动输出答案" },
+      { "id": "d", "text": "OJ 不支持任何英文名称" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两者都能换行，但 `endl` 还强制刷新；普通题没有每行立即刷新的需要。"
+  },
+  {
+    "id": "printf-long-long",
+    "prompt": "`printf` 输出 `long long` 通常使用哪个格式控制符？",
+    "options": [
+      { "id": "a", "text": "`%lld`" },
+      { "id": "b", "text": "`%d`" },
+      { "id": "c", "text": "`%lf`" },
+      { "id": "d", "text": "`%c`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "格式控制符必须匹配真实类型，`long long` 对应 `%lld`。"
+  },
+  {
+    "id": "printf-double",
+    "prompt": "`printf` 输出一个 `double` 时使用哪个基本格式控制符？",
+    "options": [
+      { "id": "a", "text": "`%f`" },
+      { "id": "b", "text": "`%lf`" },
+      { "id": "c", "text": "`%lld`" },
+      { "id": "d", "text": "`%u`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "输出 `double` 使用 `%f`；容易混淆的是 `scanf` 读入 `double` 使用 `%lf`。"
+  },
+  {
+    "id": "literal-percent",
+    "prompt": "使用 `printf` 输出文字 `100%` 时，格式字符串应怎样写？",
+    "options": [
+      { "id": "a", "text": "`\"100%%\"`" },
+      { "id": "b", "text": "`\"100%\"`" },
+      { "id": "c", "text": "`\"100%f\"`" },
+      { "id": "d", "text": "`\"%%100\"`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`%` 会开始格式控制符；写成 `%%` 才表示输出一个普通百分号。"
+  },
+  {
+    "id": "judge-output",
+    "prompt": "题目只要求输出 `a + b` 时，为什么不应额外输出 `The answer is`？",
+    "options": [
+      { "id": "a", "text": "OJ 比较实际输出文本，额外文字可能导致答案错误" },
+      { "id": "b", "text": "C++ 字符串不能包含空格" },
+      { "id": "c", "text": "加法结果只能由 `return` 提交" },
+      { "id": "d", "text": "英文文字会改变整数变量" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "竞赛输出不是交互提示，应严格按照题面构造需要比较的文本。"
+  },
+  {
+    "id": "io-family",
+    "prompt": "调用 `ios::sync_with_stdio(false)` 后，下面哪种习惯最稳妥？",
+    "options": [
+      { "id": "a", "text": "整份程序只使用 `cin` 与 `cout`，不再混用 C 接口" },
+      { "id": "b", "text": "每行交替使用 `cout` 和 `printf`" },
+      { "id": "c", "text": "只保留 `scanf`，同时继续关闭 C++ 流同步" },
+      { "id": "d", "text": "把所有换行改成 `endl`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "关闭同步后不要混用两套输入输出接口；一份程序选定一套即可。"
+  }
+]
