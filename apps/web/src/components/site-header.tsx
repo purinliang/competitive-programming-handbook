@@ -1,4 +1,4 @@
-import { BookOpen } from "lucide-react";
+import { Book } from "lucide-react";
 import Link from "next/link";
 
 type HeaderSection = "learn" | "catalog" | "search";
@@ -12,7 +12,7 @@ export function SiteHeader({ activeSection }: SiteHeaderProps) {
     <header className="site-header">
       <div className="site-header-inner">
         <Link className="brand" href="/">
-          <BookOpen aria-hidden="true" size={20} />
+          <Book aria-hidden="true" size={20} />
           <span>算法竞赛手册</span>
         </Link>
         <nav className="site-nav" aria-label="主导航">
