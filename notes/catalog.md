@@ -90,7 +90,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 0124 | 字节寻址 | 待审阅 | [byte-addressing.md](cpp/byte-addressing.md) |
-| 0125 | 指针 | 定稿 | [pointers.md](cpp/pointers.md) |
+| 0125 | 指针 | 待审阅 | [pointers.md](cpp/pointers.md) |
 | 0126 | 引用 | 待审阅 | [references.md](cpp/references.md) |
 | 0127 | 参数传递 | 待审阅 | [parameter-passing.md](cpp/parameter-passing.md) |
 | 0129 | static 局部变量 | 待审阅 | [static-local-variables.md](cpp/static-local-variables.md) |
