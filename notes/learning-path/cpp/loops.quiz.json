@@ -1,0 +1,98 @@
+[
+  {
+    "id": "for-three-parts",
+    "prompt": "`for (int i = 1; i <= n; i++)` 圆括号中的三部分依次是什么？",
+    "options": [
+      { "id": "a", "text": "初始化、继续条件、每轮结束后的更新" },
+      { "id": "b", "text": "输入、输出、返回值" },
+      { "id": "c", "text": "类型、函数名、参数" },
+      { "id": "d", "text": "条件、初始化、循环体" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两个分号把圆括号分成初始化、继续条件和更新；循环体写在后面的花括号中。"
+  },
+  {
+    "id": "for-execution-order",
+    "prompt": "`for` 完成一轮循环体后，下一步会做什么？",
+    "options": [
+      { "id": "a", "text": "重新执行初始化" },
+      { "id": "b", "text": "先执行第三部分的更新，再检查继续条件" },
+      { "id": "c", "text": "直接结束程序" },
+      { "id": "d", "text": "跳过更新并立刻再次执行循环体" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "循环体之后执行更新，再回到条件检查；初始化只在整个循环开始时执行一次。"
+  },
+  {
+    "id": "one-based-closed-loop",
+    "prompt": "怎样依次遍历整数 `1, 2, ..., n`？",
+    "options": [
+      { "id": "a", "text": "`for (int i = 1; i <= n; i++)`" },
+      { "id": "b", "text": "`for (int i = 1; i < n; i++)`" },
+      { "id": "c", "text": "`for (int i = 0; i <= n; i++)`" },
+      { "id": "d", "text": "`for (int i = n; i <= 1; i++)`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "起点是 1，终点 n 也要处理，因此继续条件使用 `i <= n`。"
+  },
+  {
+    "id": "zero-based-half-open-loop",
+    "prompt": "直接遍历 C++ 0-based 对象的 `n` 个位置时，常用哪段循环？",
+    "options": [
+      { "id": "a", "text": "`for (int i = 0; i < n; i++)`" },
+      { "id": "b", "text": "`for (int i = 0; i <= n; i++)`" },
+      { "id": "c", "text": "`for (int i = 1; i < n; i++)`" },
+      { "id": "d", "text": "`for (int i = n; i >= 0; i++)`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "原生位置从 0 到 `n - 1`，对应左闭右开区间 `[0, n)`，继续条件是 `i < n`。"
+  },
+  {
+    "id": "reverse-loop",
+    "prompt": "怎样倒序遍历 `n, n - 1, ..., 1`？",
+    "options": [
+      { "id": "a", "text": "`for (int i = n; i >= 1; i--)`" },
+      { "id": "b", "text": "`for (int i = n; i <= 1; i++)`" },
+      { "id": "c", "text": "`for (int i = 1; i <= n; i--)`" },
+      { "id": "d", "text": "`for (int i = 0; i < n; i++)`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "从 n 开始，在 `i >= 1` 时继续，并用 `i--` 每轮向终点 1 靠近。"
+  },
+  {
+    "id": "nested-loop-count",
+    "prompt": "外层循环执行 `n` 次，且每次都让内层完整执行 `m` 次，循环体共执行多少次？",
+    "options": [
+      { "id": "a", "text": "`n + m`" },
+      { "id": "b", "text": "`n - m`" },
+      { "id": "c", "text": "`n * m`" },
+      { "id": "d", "text": "`max(n, m)`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每个外层取值都对应 m 次内层执行，共有 n 组，因此总次数是 `n * m`。"
+  },
+  {
+    "id": "break-innermost-loop",
+    "prompt": "嵌套循环中执行普通 `break` 会怎样？",
+    "options": [
+      { "id": "a", "text": "只结束直接包围它的最内层循环" },
+      { "id": "b", "text": "结束所有外层循环和整个程序" },
+      { "id": "c", "text": "只跳过一条普通语句" },
+      { "id": "d", "text": "重新执行当前循环" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`break` 离开当前这一层循环；若还要结束外层，需要另外设计状态或控制流程。"
+  },
+  {
+    "id": "for-continue-update",
+    "prompt": "`for` 循环执行 `continue` 后，圆括号第三部分的更新会怎样？",
+    "options": [
+      { "id": "a", "text": "仍然执行，然后再检查下一轮条件" },
+      { "id": "b", "text": "永远跳过" },
+      { "id": "c", "text": "只在第一次执行" },
+      { "id": "d", "text": "会被改成初始化语句" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`continue` 跳过的是本轮循环体剩余部分；`for` 随后仍执行更新，再回到条件检查。"
+  }
+]

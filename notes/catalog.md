@@ -56,7 +56,7 @@
 | 0111 | if 与 else | 待审阅 | [conditional-branches.md](cpp/conditional-branches.md) |
 | 0166 | switch | 待审阅 | [switch.md](cpp/switch.md) |
 | 0167 | while | 待审阅 | [while.md](cpp/while.md) |
-| 0112 | 循环 | 待审阅 | [loops.md](cpp/loops.md) |
+| 0112 | for | 待审阅 | [loops.md](cpp/loops.md) |
 
 ### 知识族：函数与输入输出
 
