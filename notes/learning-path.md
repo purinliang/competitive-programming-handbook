@@ -51,7 +51,7 @@
 | 0164 | 自增与自减运算符 | C++ | [cpp/increment-decrement-operators.md](cpp/increment-decrement-operators.md) |
 | 0165 | 复合赋值运算符 | C++ | [cpp/compound-assignment-operators.md](cpp/compound-assignment-operators.md) |
 | 0133 | 位运算符 | C++ | [cpp/bitwise-operators.md](cpp/bitwise-operators.md) |
-| 0111 | 条件分支 | C++ | [cpp/conditional-branches.md](cpp/conditional-branches.md) |
+| 0111 | if 与 else | C++ | [cpp/conditional-branches.md](cpp/conditional-branches.md) |
 | 0112 | 循环 | C++ | [cpp/loops.md](cpp/loops.md) |
 
 ### 学习单元：函数与程序交互

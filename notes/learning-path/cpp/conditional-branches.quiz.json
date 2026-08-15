@@ -1,0 +1,86 @@
+[
+  {
+    "id": "if-condition-false",
+    "prompt": "`if` 条件为 `false` 时会怎样？",
+    "options": [
+      { "id": "a", "text": "执行 `if` 的代码块两次" },
+      { "id": "b", "text": "跳过 `if` 的代码块" },
+      { "id": "c", "text": "把条件自动改成 `true`" },
+      { "id": "d", "text": "程序一定结束" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`if` 只在条件为真时执行对应代码块；条件为假时，程序继续执行分支之后的内容。"
+  },
+  {
+    "id": "if-else-exclusive",
+    "prompt": "一条 `if / else` 语句会执行几个分支代码块？",
+    "options": [
+      { "id": "a", "text": "恰好一个" },
+      { "id": "b", "text": "总是两个" },
+      { "id": "c", "text": "总是零个" },
+      { "id": "d", "text": "由编译器随机选择" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "条件为真时执行 `if`，否则执行 `else`；两条路径互斥且覆盖所有情况。"
+  },
+  {
+    "id": "else-if-order",
+    "prompt": "`if / else if / else` 分支链怎样选择分支？",
+    "options": [
+      { "id": "a", "text": "从下到上执行最后一个成立条件" },
+      { "id": "b", "text": "从上到下执行第一个成立条件，然后跳过其余分支" },
+      { "id": "c", "text": "执行所有成立条件" },
+      { "id": "d", "text": "只执行 `else`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "分支链依次检查条件；一旦命中第一个成立条件，就执行对应代码块并结束整条链。"
+  },
+  {
+    "id": "ordered-thresholds",
+    "prompt": "按 `A >= 90`、`B >= 80`、`C >= 60` 划分成绩时，条件应怎样排列？",
+    "options": [
+      { "id": "a", "text": "从较严格的 `score >= 90` 开始" },
+      { "id": "b", "text": "从最宽的 `score >= 60` 开始" },
+      { "id": "c", "text": "顺序完全不影响结果" },
+      { "id": "d", "text": "只检查 `score == 90`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "分支链采用第一个成立条件；若先写 `score >= 60`，所有更高分数都会过早进入这一宽泛分支。"
+  },
+  {
+    "id": "always-use-braces",
+    "prompt": "为什么本书即使分支只有一条语句也保留花括号？",
+    "options": [
+      { "id": "a", "text": "没有花括号的程序永远无法编译" },
+      { "id": "b", "text": "明确代码块边界，避免后续加语句时误判所属分支" },
+      { "id": "c", "text": "花括号会让条件自动成立" },
+      { "id": "d", "text": "花括号能提高整数范围" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "统一保留花括号让分支范围和 `else` 的配对关系直接可见，也更安全地支持后续修改。"
+  },
+  {
+    "id": "integer-condition",
+    "prompt": "整数直接作为 `if` 条件时，哪个值会转换成 `false`？",
+    "options": [
+      { "id": "a", "text": "只有 `0`" },
+      { "id": "b", "text": "只有 `1`" },
+      { "id": "c", "text": "所有负数" },
+      { "id": "d", "text": "所有非零数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "整数零转换成 `false`，所有非零整数，包括负数，都转换成 `true`。"
+  },
+  {
+    "id": "if-for-ranges",
+    "prompt": "为什么连续分数区间通常使用 `if / else if`？",
+    "options": [
+      { "id": "a", "text": "它能直接表达大小关系和范围条件" },
+      { "id": "b", "text": "它只能比较字符" },
+      { "id": "c", "text": "它会自动列出 0 到 100" },
+      { "id": "d", "text": "它不需要任何条件" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "范围由 `<`、`>=` 等布尔条件自然描述，不需要为区间中的每个离散值分别列出分支。"
+  }
+]
