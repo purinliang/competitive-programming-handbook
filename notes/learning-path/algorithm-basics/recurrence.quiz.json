@@ -1,0 +1,98 @@
+[
+  {
+    "id": "initial-values-and-relation",
+    "prompt": "为什么递推数列通常必须同时给出初始值和递推关系？",
+    "options": [
+      { "id": "a", "text": "初始值决定起点，递推关系决定怎样产生后续项" },
+      { "id": "b", "text": "二者只是为了让代码更长" },
+      { "id": "c", "text": "有递推关系后所有初始值都相同" },
+      { "id": "d", "text": "初始值只决定输出格式" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "同一关系配上不同初始值可以产生不同数列；两部分共同才能唯一确定结果。"
+  },
+  {
+    "id": "dependency-order",
+    "prompt": "`f[i]` 依赖 `f[i-1]` 和 `f[i-2]` 时，为什么通常从小到大计算？",
+    "options": [
+      { "id": "a", "text": "因为较大下标永远不能存储" },
+      { "id": "b", "text": "计算当前项以前，两个较小下标必须已经得到" },
+      { "id": "c", "text": "从大到小会自动变成递归" },
+      { "id": "d", "text": "循环只能递增" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "递推顺序由依赖方向决定；本例的边从较大下标指向较小下标。"
+  },
+  {
+    "id": "meaningful-zero-index",
+    "prompt": "本篇为什么保留 `f[0]`，而没有强行从 `f[1]` 改写数列？",
+    "options": [
+      { "id": "a", "text": "vector 只能使用第 0 格" },
+      { "id": "b", "text": "所有竞赛数组都必须 0-based" },
+      { "id": "c", "text": "数学定义中的 F0 本身有明确含义，不是空哨兵" },
+      { "id": "d", "text": "为了取消尾部 +5 空间" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "1-based 是自定义对象的默认约定；知识本身已有自然的第 0 项时可以保留其语义。"
+  },
+  {
+    "id": "recursive-repetition",
+    "prompt": "循环递推相比朴素斐波那契递归，避免了什么工作？",
+    "options": [
+      { "id": "a", "text": "避免保存任何答案" },
+      { "id": "b", "text": "避免定义初始值" },
+      { "id": "c", "text": "避免整数加法" },
+      { "id": "d", "text": "避免在不同分支重复计算相同下标" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "递推数组让每个 f[i] 只计算一次，后续通过下标复用结果。"
+  },
+  {
+    "id": "inductive-correctness",
+    "prompt": "归纳证明 `f[i]` 正确时，当前步使用的假设是什么？",
+    "options": [
+      { "id": "a", "text": "较早的依赖项已经等于对应数列值" },
+      { "id": "b", "text": "所有未计算的较晚项都为 0" },
+      { "id": "c", "text": "循环不会执行" },
+      { "id": "d", "text": "n 一定小于 2" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "由正确的 f[i-1] 和 f[i-2] 按定义相加，就能推出当前 f[i] 正确。"
+  },
+  {
+    "id": "rolling-storage",
+    "prompt": "只要求最终 F_n 时，为什么可以用两个滚动变量？",
+    "options": [
+      { "id": "a", "text": "每个新值只依赖前两个旧值" },
+      { "id": "b", "text": "斐波那契数列没有中间项" },
+      { "id": "c", "text": "两个变量能保存任意长度数组" },
+      { "id": "d", "text": "滚动后时间复杂度变成 O(1)" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "旧项不再参与未来计算后即可丢弃；空间降为 O(1)，但仍需 O(n) 次更新。"
+  },
+  {
+    "id": "recurrence-vs-dp",
+    "prompt": "为什么一段循环递推不一定要称为动态规划？",
+    "options": [
+      { "id": "a", "text": "动态规划不能使用数组" },
+      { "id": "b", "text": "普通递推可能已直接给出唯一依赖，不涉及状态与决策设计" },
+      { "id": "c", "text": "动态规划只能处理图" },
+      { "id": "d", "text": "递推一定比动态规划困难" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "动态规划还要从问题中识别子问题、设计状态并合并决策；填数组只是可能的实现形式。"
+  },
+  {
+    "id": "integer-range",
+    "prompt": "斐波那契递推只有 O(n) 时间，为什么仍要限制 n？",
+    "options": [
+      { "id": "a", "text": "复杂度记号会修改整数位数" },
+      { "id": "b", "text": "循环超过一次就非法" },
+      { "id": "c", "text": "数值增长可能超过 64 位整数范围" },
+      { "id": "d", "text": "vector 最多保存 92 个元素" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "运算次数与数值大小是不同问题；F93 已超过常用 64 位整数上界。"
+  }
+]
