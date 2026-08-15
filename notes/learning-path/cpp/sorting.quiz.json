@@ -1,0 +1,146 @@
+[
+  {
+    "id": "in-place-sort",
+    "prompt": "调用 `sort(values.begin(), values.end())` 后，结果保存在哪里？",
+    "options": [
+      { "id": "a", "text": "sort 返回一个新的 vector" },
+      { "id": "b", "text": "原来的 values 被直接重新排列" },
+      { "id": "c", "text": "结果只保存在 end() 中" },
+      { "id": "d", "text": "原容器不变，结果输出到 cout" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "sort 返回 void，并在传入的迭代器范围内原地重新排列元素。"
+  },
+  {
+    "id": "closed-to-half-open",
+    "prompt": "1-based `vector` 中，要排序闭区间 `[l,r]`，应传入哪一段？",
+    "options": [
+      { "id": "a", "text": "`begin()+l` 到 `begin()+r+1`" },
+      { "id": "b", "text": "`begin()+l` 到 `begin()+r`" },
+      { "id": "c", "text": "`begin()` 到 `end()`，无法只排一段" },
+      { "id": "d", "text": "`begin()+r` 到 `begin()+l`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "STL 范围右端不包含；要包含逻辑位置 r，右迭代器必须指向 r+1。"
+  },
+  {
+    "id": "string-lexicographic",
+    "prompt": "两个字符串共同前缀完全相同，但一个更短时，默认字典序怎样判断？",
+    "options": [
+      { "id": "a", "text": "长度更长者更小" },
+      { "id": "b", "text": "二者永远相等" },
+      { "id": "c", "text": "较短者更小" },
+      { "id": "d", "text": "按内存地址决定" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "字典序先找第一处不同；若没有不同而一方先结束，则较短序列更小。"
+  },
+  {
+    "id": "mixed-direction",
+    "prompt": "为什么“分数降序、编号升序”不能靠默认升序后整体 `reverse` 得到？",
+    "options": [
+      { "id": "a", "text": "reverse 不能处理整数" },
+      { "id": "b", "text": "reverse 会删除相等元素" },
+      { "id": "c", "text": "sort 只能处理一个字段" },
+      { "id": "d", "text": "整体翻转会把两个关键字方向一起反转" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "混合方向必须在比较器中逐级表达，整体翻转无法只反转主关键字。"
+  },
+  {
+    "id": "comparator-meaning",
+    "prompt": "比较器 `compare(a,b)` 返回 `true` 应表示什么？",
+    "options": [
+      { "id": "a", "text": "a 与 b 相等" },
+      { "id": "b", "text": "a 应严格排在 b 前面" },
+      { "id": "c", "text": "a 不晚于 b，可以包含相等" },
+      { "id": "d", "text": "交换 a 与 b 的值" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "比较器描述严格先后；相等元素的两个比较方向都应返回 false。"
+  },
+  {
+    "id": "strict-comparison",
+    "prompt": "升序比较器为什么不能写成 `return a <= b;`？",
+    "options": [
+      { "id": "a", "text": "相等时两个方向都为 true，会破坏严格顺序" },
+      { "id": "b", "text": "小于等于只能比较字符串" },
+      { "id": "c", "text": "它会自动变成降序" },
+      { "id": "d", "text": "sort 不允许返回 bool" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "严格比较要求 compare(a,a) 为 false，也不能让两个元素互相都在对方之前。"
+  },
+  {
+    "id": "lambda-use",
+    "prompt": "一个很短的比较规则只在单个 sort 调用点使用时，哪种写法通常最贴近使用位置？",
+    "options": [
+      { "id": "a", "text": "修改全局输入数据" },
+      { "id": "b", "text": "使用随机数决定顺序" },
+      { "id": "c", "text": "lambda 比较器" },
+      { "id": "d", "text": "把 <= 当作严格比较" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "短小的一次性规则适合 lambda；复用或教学推导时，具名函数通常更清楚。"
+  },
+  {
+    "id": "function-object",
+    "prompt": "`greater<int>()` 在 sort 的第三个参数位置属于什么？",
+    "options": [
+      { "id": "a", "text": "新的 vector" },
+      { "id": "b", "text": "数组下标" },
+      { "id": "c", "text": "稳定排序开关" },
+      { "id": "d", "text": "能够像函数一样调用的比较对象" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "greater<int> 实现了函数调用运算符，它的对象可作为降序比较器。"
+  },
+  {
+    "id": "natural-order",
+    "prompt": "什么时候适合为自定义类型提供唯一的 `operator<` 自然顺序？",
+    "options": [
+      { "id": "a", "text": "类型在程序中只有一套会被反复复用的自然顺序" },
+      { "id": "b", "text": "每个调用点都要求不同的临时顺序" },
+      { "id": "c", "text": "需要让比较结果随机变化" },
+      { "id": "d", "text": "想让相等元素互相小于对方" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "多套临时顺序应显式传比较器；只有真正属于类型的统一顺序才适合成为默认小于关系。"
+  },
+  {
+    "id": "equivalent-under-comparator",
+    "prompt": "严格比较器下，哪项表示 `a` 与 `b` 在排序意义下等价？",
+    "options": [
+      { "id": "a", "text": "`compare(a,b) && compare(b,a)`" },
+      { "id": "b", "text": "`!compare(a,b) && !compare(b,a)`" },
+      { "id": "c", "text": "只检查 `compare(a,b)`" },
+      { "id": "d", "text": "比较两者内存地址" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "两个方向都不存在严格先后时，它们属于同一比较等价类，但不一定所有字段都相等。"
+  },
+  {
+    "id": "sort-stability",
+    "prompt": "只按分数比较，并且题目要求同分者保持输入顺序，应使用什么？",
+    "options": [
+      { "id": "a", "text": "普通 sort，并假设它稳定" },
+      { "id": "b", "text": "reverse" },
+      { "id": "c", "text": "stable_sort" },
+      { "id": "d", "text": "reserve" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "sort 不保证等价元素的原相对顺序；stable_sort 才提供稳定性。"
+  },
+  {
+    "id": "sort-complexity",
+    "prompt": "比较一次为 $O(1)$ 时，`sort` 排列 `n` 个元素的时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(n)$" },
+      { "id": "b", "text": "$O(n^2)$" },
+      { "id": "c", "text": "$O(2^n)$" },
+      { "id": "d", "text": "$O(n\\log n)$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "标准 sort 对 n 个元素进行 O(n log n) 次比较；总成本还要考虑单次比较的代价。"
+  }
+]
