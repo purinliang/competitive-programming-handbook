@@ -3,9 +3,11 @@
 import Link, { useLinkStatus } from "next/link";
 import type { ComponentProps } from "react";
 
+import { LoadingBar } from "./loading-bar";
+
 function NavigationPending() {
   const { pending } = useLinkStatus();
-  return pending ? <span className="navigation-progress" role="progressbar" aria-label="正在载入页面"><span /></span> : null;
+  return <LoadingBar active={pending} />;
 }
 
 export function NavigationLink({ children, ...props }: ComponentProps<typeof Link>) {

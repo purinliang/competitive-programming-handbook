@@ -45,7 +45,9 @@ app.get("/api/me", async (c) => {
   return c.json({
     authConfigured: true,
     user: {
+      email: session.user.email,
       id: session.user.id,
+      image: session.user.image,
       name: session.user.name,
       role: role?.role ?? "student",
     },

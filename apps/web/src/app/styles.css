@@ -120,42 +120,136 @@ a:focus-visible {
   align-items: center;
 }
 
-.account-control-placeholder,
-.account-control {
-  width: 84px;
+.account-control-slot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 36px;
   margin-left: auto;
 }
 
-.account-control-placeholder {
-  display: block;
-  height: 36px;
-}
-
-.account-control {
+.control-button {
   display: inline-flex;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
   justify-content: center;
+  border: 0;
+  cursor: pointer;
+}
+
+.control-button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.account-login-button {
   min-height: 36px;
   padding: 6px 10px;
   overflow: hidden;
-  border: 0;
   border-radius: 8px;
   color: var(--secondary-text);
   background: transparent;
-  cursor: pointer;
   font-size: 13px;
   white-space: nowrap;
 }
 
-.account-control:hover {
+.account-login-button:hover,
+.account-avatar-button:hover,
+.account-avatar-button[aria-expanded="true"] {
   color: var(--primary-text);
   background: var(--secondary-hover-bg);
 }
 
-.account-control span {
+.account-avatar-button {
+  position: relative;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  padding: 3px;
+  border: 0;
+  border-radius: 50%;
+  color: var(--secondary-text);
+  background: transparent;
+  cursor: pointer;
+}
+
+.account-avatar-fallback,
+.account-avatar-image {
+  grid-area: 1 / 1;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.account-avatar-fallback {
+  display: grid;
+  place-items: center;
+  color: var(--primary-foreground);
+  background: var(--primary-bg);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.account-avatar-image {
+  position: relative;
+  object-fit: cover;
+}
+
+.account-menu {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 224px;
+  padding: 6px;
+  border: 1px solid var(--divider-border);
+  border-radius: 8px;
+  background: var(--panel-bg);
+  box-shadow: 0 14px 36px rgb(0 0 0 / 28%);
+}
+
+.account-menu-identity {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+  padding: 8px 10px 10px;
+  border-bottom: 1px solid var(--divider-border);
+}
+
+.account-menu-identity strong,
+.account-menu-identity span {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-menu-identity strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.account-menu-identity span {
+  color: var(--secondary-text);
+  font-size: 12px;
+}
+
+.account-menu-item {
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 36px;
+  margin-top: 6px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  color: var(--secondary-text);
+  background: transparent;
+  text-align: left;
+}
+
+.account-menu-item:hover {
+  color: var(--primary-text);
+  background: var(--secondary-hover-bg);
 }
 
 .site-nav a,
@@ -368,10 +462,6 @@ a:focus-visible {
 
 .primary-button,
 .secondary-button {
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
   min-height: 40px;
   padding: 0 16px;
   border: 1px solid transparent;
