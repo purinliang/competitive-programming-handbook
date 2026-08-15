@@ -342,6 +342,7 @@
 | 0572* | 数值积分：自适应 Simpson | 计划 | `math/adaptive-simpson.md` |
 | 0573* | 集合幂级数：FWT/FMT | 计划 | `math/fast-subset-transforms.md` |
 | 0574 | 快速幂 | 待审阅 | [fast-power.md](math/fast-power.md) |
+| 0575 | 费马小定理 | 待审阅 | [fermat-little-theorem.md](math/fermat-little-theorem.md) |
 
 ## 06 计算几何
 
