@@ -64,6 +64,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 0113 | 函数的定义与调用 | 待审阅 | [function-definition-and-calls.md](cpp/function-definition-and-calls.md) |
+| 0169 | 函数的返回值 | 待审阅 | [function-return-values.md](cpp/function-return-values.md) |
 | 0114 | 作用域 | 待审阅 | [scope.md](cpp/scope.md) |
 | 0115 | 标准输入 | 待审阅 | [standard-input.md](cpp/standard-input.md) |
 | 0116 | 标准输出 | 待审阅 | [standard-output.md](cpp/standard-output.md) |

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "return-type",
+    "prompt": "在 `int read_sum() { ... }` 中，开头的 `int` 表示什么？",
+    "options": [
+      { "id": "a", "text": "函数调用会产生一个整数返回值" },
+      { "id": "b", "text": "函数只能读取一个整数" },
+      { "id": "c", "text": "函数体只能执行一次" },
+      { "id": "d", "text": "函数名是 `int`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "函数定义前的类型是返回类型，规定调用表达式产生的结果类型。"
+  },
+  {
+    "id": "return-is-not-output",
+    "prompt": "执行 `return answer;` 会自动把 `answer` 显示在题目输出中吗？",
+    "options": [
+      { "id": "a", "text": "不会，它只把值送回调用处" },
+      { "id": "b", "text": "会，等价于 `cout << answer`" },
+      { "id": "c", "text": "只在 `answer == 0` 时会" },
+      { "id": "d", "text": "只在 `void` 函数中会" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "返回值属于函数调用之间的数据传递；标准输出必须由调用处或函数中的输出语句明确完成。"
+  },
+  {
+    "id": "return-ends-call",
+    "prompt": "函数执行 `return value;` 后会怎样？",
+    "options": [
+      { "id": "a", "text": "立即结束当前调用，并把值送回调用处" },
+      { "id": "b", "text": "继续执行函数体后面的所有语句" },
+      { "id": "c", "text": "重新从函数开头执行" },
+      { "id": "d", "text": "一定结束整个程序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`return` 结束的是当前函数调用；调用者随后从调用位置继续执行。"
+  },
+  {
+    "id": "all-paths-return",
+    "prompt": "为什么非 `void` 的普通函数要检查所有执行路径？",
+    "options": [
+      { "id": "a", "text": "每种可能情况都应在到达末尾前提供返回值" },
+      { "id": "b", "text": "每条路径必须输出同一行文字" },
+      { "id": "c", "text": "函数只能包含一个 `if`" },
+      { "id": "d", "text": "返回类型会在每条路径改变" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "只在一个分支中返回并不能覆盖其他输入；调用者需要在所有合法执行路径上得到符合类型的结果。"
+  },
+  {
+    "id": "return-conversion",
+    "prompt": "返回类型为 `int` 的函数执行 `return 3.9;`，在值可表示时会返回什么？",
+    "options": [
+      { "id": "a", "text": "`3`" },
+      { "id": "b", "text": "`4`" },
+      { "id": "c", "text": "`3.9`" },
+      { "id": "d", "text": "字符串 `\"3.9\"`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "返回表达式转换为 `int`，浮点数向零截去小数部分；这不是四舍五入。"
+  },
+  {
+    "id": "void-early-return",
+    "prompt": "`void` 函数想提前结束时应怎样写？",
+    "options": [
+      { "id": "a", "text": "`return;`" },
+      { "id": "b", "text": "`return 0;`" },
+      { "id": "c", "text": "`break;`" },
+      { "id": "d", "text": "`continue;`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`void` 函数不返回数值，可以用空的 `return;` 立即结束当前调用。"
+  }
+]
