@@ -5,7 +5,8 @@
     "options": [
       { "id": "a", "text": "-1" },
       { "id": "b", "text": "0" },
-      { "id": "c", "text": "1" }
+      { "id": "c", "text": "1" },
+      { "id": "d", "text": "不存在" }
     ],
     "correctOptionId": "b",
     "explanation": "12 含有质因数平方 2^2，因此按照定义 mu(12)=0。"
@@ -16,7 +17,8 @@
     "options": [
       { "id": "a", "text": "-1" },
       { "id": "b", "text": "0" },
-      { "id": "c", "text": "1" }
+      { "id": "c", "text": "1" },
+      { "id": "d", "text": "不存在" }
     ],
     "correctOptionId": "a",
     "explanation": "没有平方因子时 mu(n)=(-1)^k；这里 k=3，所以函数值为 -1。"
@@ -27,7 +29,8 @@
     "options": [
       { "id": "a", "text": "-1" },
       { "id": "b", "text": "0" },
-      { "id": "c", "text": "1" }
+      { "id": "c", "text": "1" },
+      { "id": "d", "text": "不存在" }
     ],
     "correctOptionId": "b",
     "explanation": "不同质因数的选择会产生正负成对抵消，约数和等于 (1-1)^k=0。"
@@ -38,7 +41,8 @@
     "options": [
       { "id": "a", "text": "因为 i*p 一定是质数" },
       { "id": "b", "text": "因为 i*p 含有平方因子 p^2" },
-      { "id": "c", "text": "因为 i*p 有奇数个不同质因数" }
+      { "id": "c", "text": "因为 i*p 有奇数个不同质因数" },
+      { "id": "d", "text": "因为 i*p 一定超过筛法上界" }
     ],
     "correctOptionId": "b",
     "explanation": "p 已经整除 i，再乘一个 p 后，i*p 至少含有 p^2，所以莫比乌斯函数值为 0。"

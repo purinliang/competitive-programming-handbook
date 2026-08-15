@@ -19,7 +19,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 0101 | Hello World! | 定稿 | [hello-world.md](cpp/hello-world.md) |
-| 0158 | A+B Problem | 定稿 | [a-plus-b-problem.md](cpp/a-plus-b-problem.md) |
+| 0158 | A+B Problem | 待审阅 | [a-plus-b-problem.md](cpp/a-plus-b-problem.md) |
 
 ### 知识族：基本类型与机器表示
 
