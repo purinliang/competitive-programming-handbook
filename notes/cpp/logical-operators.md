@@ -1,6 +1,6 @@
-# 表达式：逻辑运算符
+# 逻辑运算符
 
-> 最近修订：2026-08-13 02:01 +10:00（未审阅）
+> 最近修订：2026-08-16 07:38 +10:00（未审阅）
 
 一次 [比较](comparison-operators.md) 只能回答一个关系是否成立，但题目经常同时提出多个要求：一个数既要不小于下界，又要不大于上界；选手满足年龄条件或持有特别许可即可报名；某个位置没有被禁止时才能使用。
 
@@ -215,7 +215,7 @@ bool outside = x < l || r < x;
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+void solve() {
     int x;
     cin >> x;
 
@@ -226,6 +226,10 @@ int main() {
     bool accepted = in_allowed_interval && !blocked;
 
     cout << boolalpha << accepted << '\n';
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```

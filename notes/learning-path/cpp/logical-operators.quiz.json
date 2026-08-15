@@ -1,0 +1,86 @@
+[
+  {
+    "id": "logical-operator-meanings",
+    "prompt": "`&&`、`||` 和 `!` 依次表示什么？",
+    "options": [
+      { "id": "a", "text": "并且、或者、不是" },
+      { "id": "b", "text": "加法、减法、乘法" },
+      { "id": "c", "text": "等于、不等于、小于" },
+      { "id": "d", "text": "按位与、按位或、按位异或" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "逻辑与 `&&` 要求两边都成立，逻辑或 `||` 要求至少一边成立，逻辑非 `!` 反转真假。"
+  },
+  {
+    "id": "closed-interval-condition",
+    "prompt": "怎样判断整数 `x` 属于闭区间 `[l, r]`？",
+    "options": [
+      { "id": "a", "text": "`l <= x && x <= r`" },
+      { "id": "b", "text": "`l <= x || x <= r`" },
+      { "id": "c", "text": "`l <= x <= r`" },
+      { "id": "d", "text": "`x < l && r < x`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`x` 必须同时不小于左端点且不大于右端点，所以要用两个比较和逻辑与连接。"
+  },
+  {
+    "id": "inclusive-or",
+    "prompt": "当 `a` 和 `b` 都是 `true` 时，`a || b` 的结果是什么？",
+    "options": [
+      { "id": "a", "text": "`false`" },
+      { "id": "b", "text": "`true`" },
+      { "id": "c", "text": "`0` 和 `1` 之间随机选择" },
+      { "id": "d", "text": "发生编译错误" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "逻辑或表示至少一个条件成立；两个条件都成立时当然也满足，而不是要求恰好一个成立。"
+  },
+  {
+    "id": "logical-negation",
+    "prompt": "若 `blocked` 是 `true`，表达式 `!blocked` 是什么？",
+    "options": [
+      { "id": "a", "text": "`true`" },
+      { "id": "b", "text": "`false`" },
+      { "id": "c", "text": "`-1`" },
+      { "id": "d", "text": "保持不变" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "逻辑非 `!` 会反转真假，因此 `true` 经过取反得到 `false`。"
+  },
+  {
+    "id": "short-circuit-and",
+    "prompt": "在 `a && b` 中，什么时候不会计算右侧的 `b`？",
+    "options": [
+      { "id": "a", "text": "`a` 已经是 `false` 时" },
+      { "id": "b", "text": "`a` 已经是 `true` 时" },
+      { "id": "c", "text": "`b` 是比较表达式时" },
+      { "id": "d", "text": "右侧永远都会计算" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "逻辑与只要左侧为假，整体就一定为假，因此短路并跳过右侧。"
+  },
+  {
+    "id": "safe-division-order",
+    "prompt": "哪段条件能在 `b == 0` 时避免执行整数除法？",
+    "options": [
+      { "id": "a", "text": "`a / b > 2 && b != 0`" },
+      { "id": "b", "text": "`b != 0 && a / b > 2`" },
+      { "id": "c", "text": "`b == 0 && a / b > 2`" },
+      { "id": "d", "text": "`a / b > 2 || b == 0`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "先检查 `b != 0`；检查失败时，逻辑与短路，依赖这个前提的除法不会执行。"
+  },
+  {
+    "id": "de-morgan-interval",
+    "prompt": "“`x` 不在闭区间 `[l, r]` 内”可以直接写成什么？",
+    "options": [
+      { "id": "a", "text": "`x < l || r < x`" },
+      { "id": "b", "text": "`l <= x && x <= r`" },
+      { "id": "c", "text": "`x < l && r < x`" },
+      { "id": "d", "text": "`l == x || x == r`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "否定“同时满足上下界”后，条件变成“低于左端点，或者高于右端点”。"
+  }
+]
