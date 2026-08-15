@@ -1,6 +1,6 @@
-# 函数：参数传递
+# 参数传递
 
-> 最近修订：2026-08-13 02:43 +10:00（未审阅）
+> 最近修订：2026-08-16 11:37 +10:00（未审阅）
 
 [函数的形参与实参](function-parameters-and-arguments.md) 已经说明了形参、实参和
 普通值参数的副本语义。学习指针与引用后，本篇再统一比较值、指针和引用三种
@@ -81,17 +81,13 @@ add_one(10);
 有时函数不应修改实参，却又不希望复制整个对象。`const` 引用把形参绑定到原对象，但只允许读取：
 
 ```cpp
-struct Contestant {
-    int id;
-    int score;
-};
-
-void print_contestant(const Contestant& contestant) {
-    printf("%d %d\n", contestant.id, contestant.score);
+void print_text(const string& text) {
+    cout << text << '\n';
 }
 ```
 
-这里没有复制 `Contestant`，函数也不能通过 `contestant` 修改成员。`const T&` 适合只读的大型结构体、`string`、`vector` 等对象。
+这里没有复制整段 `string`，函数也不能通过 `text` 修改原字符串。`const T&`
+适合只读且复制成本值得避免的 `string`、`vector` 和大型结构体等对象。
 
 对 `int`、`char` 等小型基础类型，值传递通常更简单：
 
@@ -103,7 +99,9 @@ int square(int x) {
 
 不要机械地把所有参数都写成引用。先问两个问题：函数是否需要修改调用处对象？复制这个类型是否值得避免？
 
-`const` 的系统规则会在 [修饰符：const](const.md) 中单独整理；当前把 `const T&` 理解为“不复制、只读取原对象”的参数即可。
+指针与引用中 `const` 的完整位置规则见
+[指针与引用中的 const](const-pointers-and-references.md)；当前把 `const T&`
+理解为“不复制、只读取原对象”的参数即可。
 
 ## 指针参数
 
@@ -227,8 +225,6 @@ divide(a, b, quotient, remainder);
 ```
 
 看到非 `const` 引用参数时，要检查它是输入、输出还是读写两者。准确的函数名与形参名应让这种关系尽量明确。
-
-若多个结果天然属于一个整体，也可以定义 `struct` 并按值返回。现代编译器通常能高效处理这种返回；不要只为了避免一个简单结构体返回值而制造许多输出参数。
 
 ## 选择方式
 

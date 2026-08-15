@@ -1,0 +1,98 @@
+[
+  {
+    "id": "value-parameter",
+    "prompt": "普通值参数 `int x` 与调用处实参是什么关系？",
+    "options": [
+      { "id": "a", "text": "`x` 是用实参值初始化的局部副本" },
+      { "id": "b", "text": "`x` 一定是实参对象的别名" },
+      { "id": "c", "text": "`x` 保存实参的文件名" },
+      { "id": "d", "text": "`x` 只能用于输出" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "值传递创建本次调用自己的形参对象，修改它不会修改调用处变量。"
+  },
+  {
+    "id": "reference-parameter",
+    "prompt": "什么时候常用非 `const` 引用参数 `T& value`？",
+    "options": [
+      { "id": "a", "text": "函数需要修改一个必须存在的实参对象" },
+      { "id": "b", "text": "函数必须允许没有目标" },
+      { "id": "c", "text": "只想得到完全独立的副本" },
+      { "id": "d", "text": "需要按字节输出地址" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "引用形参是实参对象的别名，写入形参会保留到调用处。"
+  },
+  {
+    "id": "const-reference-parameter",
+    "prompt": "`const string& text` 作为参数主要表达什么？",
+    "options": [
+      { "id": "a", "text": "不复制整段字符串，并且函数只通过该参数读取" },
+      { "id": "b", "text": "函数会清空原字符串" },
+      { "id": "c", "text": "字符串可能不存在" },
+      { "id": "d", "text": "函数得到一个可随意修改的副本" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`const` 引用绑定原对象、避免复制，同时禁止函数通过这个形参修改目标。"
+  },
+  {
+    "id": "pointer-parameter-copy",
+    "prompt": "指针参数 `int* p` 自身以什么方式传入？",
+    "options": [
+      { "id": "a", "text": "指针值仍按值复制，但副本指向同一个目标对象" },
+      { "id": "b", "text": "整个目标对象被自动复制" },
+      { "id": "c", "text": "指针一定按引用传递" },
+      { "id": "d", "text": "函数不能读取 `p`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "函数得到地址副本；重新给形参 `p` 赋值不影响调用处指针，但 `*p` 仍访问原对象。"
+  },
+  {
+    "id": "nullable-target",
+    "prompt": "参数语义允许“当前没有目标”时，引用与指针中通常选择哪一个？",
+    "options": [
+      { "id": "a", "text": "指针，因为可以使用 `nullptr`" },
+      { "id": "b", "text": "普通引用，因为它可以为空" },
+      { "id": "c", "text": "值参数，因为它保存地址" },
+      { "id": "d", "text": "数组容量常量" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "引用表达目标必须存在；指针具有明确的空状态，适合可选目标。"
+  },
+  {
+    "id": "array-parameter-adjustment",
+    "prompt": "内置数组写成函数参数 `int a[]` 后，会调整成什么？",
+    "options": [
+      { "id": "a", "text": "指向首元素的指针参数" },
+      { "id": "b", "text": "复制整个数组的值参数" },
+      { "id": "c", "text": "保存数组长度的整数" },
+      { "id": "d", "text": "自动扩容的 `vector`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "数组参数不会复制整个数组，也不会携带原容量；通常还要显式传入实际长度。"
+  },
+  {
+    "id": "sizeof-array-parameter",
+    "prompt": "为什么不能在 `void inspect(int a[])` 中用 `sizeof(a) / sizeof(a[0])` 恢复原数组长度？",
+    "options": [
+      { "id": "a", "text": "此处的 `a` 已经是指针参数，`sizeof(a)` 是指针大小" },
+      { "id": "b", "text": "`sizeof` 不能用于任何整数" },
+      { "id": "c", "text": "数组长度总是等于一" },
+      { "id": "d", "text": "函数参数不能使用方括号" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "函数参数位置的内置数组发生类型调整，原数组容量信息没有随指针自动传入。"
+  },
+  {
+    "id": "natural-result",
+    "prompt": "函数只产生一个自然结果时，通常优先使用什么接口？",
+    "options": [
+      { "id": "a", "text": "返回值" },
+      { "id": "b", "text": "三个未说明用途的输出指针" },
+      { "id": "c", "text": "隐藏的全局变量" },
+      { "id": "d", "text": "把答案只写进注释" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "返回值能直接参与初始化和表达式，最清楚地表达函数计算出的单一结果。"
+  }
+]
