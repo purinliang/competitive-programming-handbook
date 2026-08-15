@@ -136,7 +136,7 @@ a:focus-visible {
 }
 
 .site-nav a.is-active:hover {
-  color: var(--primary-text);
+  color: var(--accent-hover-text);
 }
 
 .nav-placeholder {
@@ -422,6 +422,10 @@ a.article-link.is-active:hover {
   font-family: var(--font-code);
   font-size: 13px;
   font-weight: 600;
+}
+
+.numbered-panel-header:hover .numbered-panel-number {
+  color: var(--accent-hover-text);
 }
 
 .numbered-panel-header > span {

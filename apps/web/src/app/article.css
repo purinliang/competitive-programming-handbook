@@ -138,7 +138,7 @@
 }
 
 .sidebar-list a.article-link.is-active:hover {
-  color: var(--primary-text);
+  color: var(--accent-hover-text);
   background: var(--secondary-hover-bg);
 }
 
@@ -260,7 +260,7 @@
 }
 
 .directory-sidebar-list a.is-active:hover {
-  color: var(--primary-text);
+  color: var(--accent-hover-text);
 }
 
 .article-column {
@@ -292,7 +292,7 @@
 }
 
 .toc-list a.is-active:hover {
-  color: var(--primary-text);
+  color: var(--accent-hover-text);
 }
 
 .toc-list a.toc-depth-3 {
@@ -306,7 +306,12 @@
 }
 
 .markdown-body .katex {
-  font-size: 1.1em;
+  font-size: 1.21em;
+}
+
+.markdown-body .katex .msupsub .katex-sizing.reset-size6.size3,
+.markdown-body .katex .msupsub .fontsize-ensurer.reset-size6.size3 {
+  font-size: 0.6em;
 }
 
 .markdown-body h1,
