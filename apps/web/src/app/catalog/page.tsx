@@ -14,11 +14,11 @@ export default function CatalogPage() {
     <>
       <SiteHeader activeSection="catalog" />
       <main className="directory-layout">
-        <DirectorySidebar title="知识模块" items={modules.map((module) => ({ id: module.anchor, label: module.title }))} />
+        <DirectorySidebar title="模块目录" items={modules.map((module) => ({ id: module.anchor, label: module.title }))} />
         <div className="index-page directory-content">
           <header className="page-intro">
             <p className="eyebrow">Catalog</p>
-            <h1>按模块浏览</h1>
+            <h1>模块目录</h1>
             <p>目录负责完整收录知识点；学习顺序请使用学习路线。</p>
           </header>
           <div className="section-stack">

@@ -14,7 +14,7 @@ export default function LearningPathPage() {
     <>
       <SiteHeader activeSection="learn" />
       <main className="directory-layout">
-        <DirectorySidebar title="学习阶段" items={stages.map((stage, index) => ({ id: stage.key, label: `${index + 1}. ${stage.title}` }))} />
+        <DirectorySidebar title="学习路线" items={stages.map((stage, index) => ({ id: stage.key, label: `${index + 1}. ${stage.title}` }))} />
         <div className="index-page directory-content">
           <header className="page-intro">
             <p className="eyebrow">Learning Path</p>

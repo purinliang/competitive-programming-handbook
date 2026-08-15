@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { ArticleFamilyList } from "./article-family-list";
 import type { NavigationMode } from "./article-link";
 import { ScrollArea } from "./scroll-area";
@@ -13,10 +11,6 @@ export function ArticleNavigationView({ articleKey, mode, navigation }: { articl
       <ScrollArea className="sidebar-scroll-area" viewportClassName="sidebar-scroll-viewport" refreshKey={`${mode}:${articleKey}`}>
         <nav className="sidebar-list">
           <ArticleFamilyList groups={navigation.groups} activeArticleKey={articleKey} navigation={mode} />
-        </nav>
-        <nav className="sidebar-footer" aria-label="更多导航">
-          <Link href={navigation.primaryRoute}>{navigation.primaryLabel}</Link>
-          <Link href={navigation.secondaryRoute}>{navigation.secondaryLabel}</Link>
         </nav>
       </ScrollArea>
     </aside>

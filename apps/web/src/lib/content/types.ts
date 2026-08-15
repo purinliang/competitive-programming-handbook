@@ -45,10 +45,6 @@ export interface ArticleNavigation {
   label: string;
   title: string;
   groups: ArticleFamily[];
-  primaryRoute: string;
-  primaryLabel: string;
-  secondaryRoute: string;
-  secondaryLabel: string;
 }
 
 export interface TableOfContentsItem {

@@ -138,10 +138,6 @@ export function getArticleModuleNavigation(articleKey: string): ArticleNavigatio
     label: "模块",
     title: article.moduleTitle,
     groups,
-    primaryRoute: `/catalog/#${article.moduleAnchor}`,
-    primaryLabel: "查看完整模块",
-    secondaryRoute: "/learn/",
-    secondaryLabel: "切换到学习路线",
   };
 }
 
@@ -160,9 +156,5 @@ export function getArticleLearningNavigation(articleKey: string): ArticleNavigat
     label: stage.key.replace("-", " "),
     title: stage.title,
     groups: getLearningUnitGroups(stage),
-    primaryRoute: `/learn/#${stage.key}`,
-    primaryLabel: "查看完整阶段",
-    secondaryRoute: `/catalog/#${article.moduleAnchor}`,
-    secondaryLabel: `切换到${article.moduleTitle}模块`,
   };
 }
