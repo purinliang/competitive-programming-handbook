@@ -10,6 +10,7 @@ interface ManifestSection {
 interface ManifestQuestion {
   correctOptionId: string;
   id: string;
+  optionIds: string[];
   revision: string;
 }
 

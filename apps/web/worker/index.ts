@@ -148,7 +148,7 @@ app.post("/api/learning/questions/attempts", requireSession, async (c) => {
   if (!document || !question || question.revision !== questionRevision) {
     throw new HTTPException(409, { message: "题目已经更新，请刷新页面" });
   }
-  if (!selectedOptionId || selectedOptionId.length > 32) {
+  if (!question.optionIds.includes(selectedOptionId)) {
     throw new HTTPException(400, { message: "选项无效" });
   }
 

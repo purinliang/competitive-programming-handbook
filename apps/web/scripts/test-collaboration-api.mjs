@@ -14,6 +14,8 @@ assert(document, `${documentKey} 不在交互清单中`);
 const contentRevision = document.contentRevision;
 const sectionId = document.sections[0].id;
 const sectionRevision = document.sections[0].revision;
+const question = document.questions[0];
+assert(question, `${documentKey} 没有可用于测试的题目`);
 
 function cookie(token) {
   const signature = createHmac("sha256", secret).update(token).digest("base64");
@@ -127,6 +129,41 @@ const currentSection = await request("/api/learning/sections", {
   user: "student",
 });
 assert.equal(currentSection.response.status, 200);
+
+const staleQuestion = await request("/api/learning/questions/attempts", {
+  body: {
+    documentKey,
+    questionId: question.id,
+    questionRevision: "stale",
+    selectedOptionId: question.optionIds[0],
+  },
+  method: "POST",
+  user: "student",
+});
+assert.equal(staleQuestion.response.status, 409);
+const forgedOption = await request("/api/learning/questions/attempts", {
+  body: {
+    documentKey,
+    questionId: question.id,
+    questionRevision: question.revision,
+    selectedOptionId: "forged-option",
+  },
+  method: "POST",
+  user: "student",
+});
+assert.equal(forgedOption.response.status, 400);
+const currentQuestion = await request("/api/learning/questions/attempts", {
+  body: {
+    documentKey,
+    questionId: question.id,
+    questionRevision: question.revision,
+    selectedOptionId: question.correctOptionId,
+  },
+  method: "POST",
+  user: "student",
+});
+assert.equal(currentQuestion.response.status, 200);
+assert.equal(currentQuestion.result.correct, true);
 
 const locked = await request(`/api/admin/threads/${threadId}/moderate`, {
   body: { action: "lock", reason: "自动化测试" },

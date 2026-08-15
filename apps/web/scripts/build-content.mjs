@@ -544,6 +544,7 @@ for (const [articleKey, quiz] of compiledQuizzes) {
     interactionDocuments[`learning-path:${articleKey}`].questions = quiz.questions.map((question) => ({
       correctOptionId: question.correctOptionId,
       id: question.id,
+      optionIds: question.options.map((option) => option.id),
       revision: question.revision,
     }));
   }
