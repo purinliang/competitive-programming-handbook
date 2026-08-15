@@ -134,7 +134,7 @@
 | 0153* | 命名空间与 std | 待审阅 | [namespace-and-std.md](cpp/namespace-and-std.md) |
 | 0154* | inline | 待审阅 | [inline.md](cpp/inline.md) |
 | 0155* | volatile | 待审阅 | [volatile.md](cpp/volatile.md) |
-| 0157* | 对象生命周期 | 计划 | `cpp/object-lifetime.md` |
+| 0157* | 对象生命周期 | 待审阅 | [object-lifetime.md](cpp/object-lifetime.md) |
 | 0159* | #define 宏 | 待审阅 | [define-macros.md](cpp/define-macros.md) |
 | 0160* | typedef 与 using 类型别名 | 待审阅 | [type-aliases.md](cpp/type-aliases.md) |
 | 0121e2 | class 与对象 | 待审阅 | [class.md](cpp/class.md) |

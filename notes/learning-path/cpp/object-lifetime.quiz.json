@@ -1,0 +1,86 @@
+[
+  {
+    "id": "scope-storage-lifetime",
+    "prompt": "作用域、存储期和生命周期分别主要描述什么？",
+    "options": [
+      { "id": "a", "text": "名称可见位置、存储维持时间与对象存在时间" },
+      { "id": "b", "text": "三个词完全等价" },
+      { "id": "c", "text": "只描述算法时间复杂度" },
+      { "id": "d", "text": "分别描述输入、输出和编译器版本" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "三套规则会互相影响，但不能用其中一个词代替另外两个。"
+  },
+  {
+    "id": "automatic-object",
+    "prompt": "普通块作用域局部对象通常何时销毁？",
+    "options": [
+      { "id": "a", "text": "执行离开其所在作用域时" },
+      { "id": "b", "text": "每次读取以后" },
+      { "id": "c", "text": "程序编译以前" },
+      { "id": "d", "text": "只有手动 delete 时" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每次进入声明会建立新的自动对象，离开对应作用域则结束这次对象的生命周期。"
+  },
+  {
+    "id": "static-local",
+    "prompt": "函数内 `static int id` 同时具有哪两项性质？",
+    "options": [
+      { "id": "a", "text": "名称为局部作用域，对象具有静态存储期" },
+      { "id": "b", "text": "名称和对象都只存在一行" },
+      { "id": "c", "text": "名称自动变成全局可见" },
+      { "id": "d", "text": "每次调用都建立独立对象" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "它只初始化一次并跨调用保留状态，但函数外不能通过该局部名称直接访问。"
+  },
+  {
+    "id": "dynamic-object-owner",
+    "prompt": "局部指针离开作用域时，它指向的 `new int` 会自动一起销毁吗？",
+    "options": [
+      { "id": "a", "text": "不会，动态对象需要拥有者负责释放" },
+      { "id": "b", "text": "会，指针名字就是动态对象本身" },
+      { "id": "c", "text": "只有整数会自动销毁" },
+      { "id": "d", "text": "编译器会把它改成 static" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "丢失最后一个原始地址会造成内存泄漏；竞赛中优先使用自动管理资源的标准容器。"
+  },
+  {
+    "id": "dangling-address",
+    "prompt": "指针仍保存一个非零地址，能否证明目标对象仍在生命周期内？",
+    "options": [
+      { "id": "a", "text": "不能，对象结束后旧地址仍可能留在悬空指针中" },
+      { "id": "b", "text": "能，地址存在就保证对象永久存在" },
+      { "id": "c", "text": "只有地址为偶数时能" },
+      { "id": "d", "text": "任何指针都会自动延长目标寿命" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "访问安全取决于目标对象是否仍活着，而不是指针变量中的数值是否尚未改变。"
+  },
+  {
+    "id": "local-reference-return",
+    "prompt": "为什么不能返回自动局部变量的引用？",
+    "options": [
+      { "id": "a", "text": "函数返回时目标对象销毁，引用随即悬空" },
+      { "id": "b", "text": "引用不能作为返回类型" },
+      { "id": "c", "text": "局部变量永远不会销毁" },
+      { "id": "d", "text": "返回引用会自动复制对象" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "需要拥有计算结果时直接返回值；引用本身不会普遍延长普通目标寿命。"
+  },
+  {
+    "id": "vector-reallocation",
+    "prompt": "`vector` 重新分配后，为什么旧元素指针不能继续使用？",
+    "options": [
+      { "id": "a", "text": "元素在新存储重建，旧位置中的对象生命周期已经结束" },
+      { "id": "b", "text": "vector 会把所有整数改成字符串" },
+      { "id": "c", "text": "指针只能指向全局变量" },
+      { "id": "d", "text": "重新分配只改变变量名称" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "可能扩容的操作以后应重新取得引用或下标，不能继续使用缓存的旧地址。"
+  }
+]
