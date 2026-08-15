@@ -1,0 +1,86 @@
+[
+  {
+    "id": "recursive-subproblem",
+    "prompt": "递归适合描述哪类问题关系？",
+    "options": [
+      { "id": "a", "text": "原问题能转化为规模更小的同类问题" },
+      { "id": "b", "text": "问题只能通过输出提示解决" },
+      { "id": "c", "text": "每一步都必须使用随机数" },
+      { "id": "d", "text": "输入中不能出现整数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "递归函数再次调用同一类函数，是因为子问题与原问题结构相同而规模更小。"
+  },
+  {
+    "id": "base-case",
+    "prompt": "`recursive_sum` 中 `n == 0` 时直接返回 `0` 的作用是什么？",
+    "options": [
+      { "id": "a", "text": "提供不再递归的终止条件" },
+      { "id": "b", "text": "让所有输入结果都变成零" },
+      { "id": "c", "text": "把函数改成循环" },
+      { "id": "d", "text": "申请动态内存" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "最小问题能直接得到答案，递归调用才能在有限层后开始返回。"
+  },
+  {
+    "id": "progress-measure",
+    "prompt": "只有终止条件还不够，递归参数还必须满足什么？",
+    "options": [
+      { "id": "a", "text": "存在一个量在每层严格缩小并必然到达终止条件" },
+      { "id": "b", "text": "每层都增加一个全局数组" },
+      { "id": "c", "text": "函数名必须越来越短" },
+      { "id": "d", "text": "每层都输出相同文本" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "若参数不向终点推进，即使代码写了 base case，也可能永远无法命中。"
+  },
+  {
+    "id": "independent-recursive-calls",
+    "prompt": "递归的多层调用是否共享同一份普通参数和局部变量？",
+    "options": [
+      { "id": "a", "text": "不共享，每次调用都有独立的调用状态" },
+      { "id": "b", "text": "共享，后一次一定覆盖前一次" },
+      { "id": "c", "text": "只有返回值共享" },
+      { "id": "d", "text": "递归函数不能有局部变量" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每一层调用都保留自己的参数、局部变量以及等待子问题返回后的操作。"
+  },
+  {
+    "id": "unwinding",
+    "prompt": "`recursive_sum(4)` 命中 `recursive_sum(0)` 后，答案怎样恢复？",
+    "options": [
+      { "id": "a", "text": "调用按后进先出逐层返回，每层加上自己的 `n`" },
+      { "id": "b", "text": "所有调用立刻丢弃返回值" },
+      { "id": "c", "text": "从 `4` 继续无限增加参数" },
+      { "id": "d", "text": "只执行最外层的加法" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "最底层先返回零，上一层完成等待的加法，再依次向外恢复原问题答案。"
+  },
+  {
+    "id": "recursion-complexity",
+    "prompt": "本篇线性求和的递归与循环在复杂度上有什么区别？",
+    "options": [
+      { "id": "a", "text": "时间都是 `O(n)`，递归栈空间是 `O(n)`，循环额外空间是 `O(1)`" },
+      { "id": "b", "text": "递归时间一定是 `O(1)`" },
+      { "id": "c", "text": "循环空间一定是 `O(n^2)`" },
+      { "id": "d", "text": "二者都不需要执行任何操作" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "递归没有减少加法次数，却让每层调用状态同时留在调用栈中。"
+  },
+  {
+    "id": "tail-call-assumption",
+    "prompt": "为什么不能依靠尾递归优化来保证深递归不会栈溢出？",
+    "options": [
+      { "id": "a", "text": "C++ 标准不保证编译器一定执行这种优化" },
+      { "id": "b", "text": "尾递归不是函数调用" },
+      { "id": "c", "text": "栈空间没有上限" },
+      { "id": "d", "text": "所有递归都会自动变成全局变量" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "优化属于编译器实现选择，算法正确性和空间安全不能依赖它必然发生。"
+  }
+]
