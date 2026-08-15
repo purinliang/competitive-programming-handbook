@@ -14,6 +14,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
+pnpm test:content-identity
 pnpm build
 pnpm exec wrangler d1 migrations apply handbook-learning \
     --local --persist-to "$TEST_STATE_DIR"

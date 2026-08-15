@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
 
-import { getDocument, getSection } from "./content-manifest";
+import { getDocument, getSection, getSectionIds } from "./content-manifest";
 import { assertSameOrigin, readObject, requiredString } from "./request";
 import { enforceRateLimit, verifyTurnstile } from "./security";
 import { requireSession } from "./session";
@@ -64,6 +64,7 @@ function validateTarget(
       throw new HTTPException(409, { message: "文章已经更新，请刷新页面" });
     }
     return {
+      canonicalTargetId: "article",
       document,
       quotedText: null,
       targetTitle: "全文",
@@ -77,6 +78,7 @@ function validateTarget(
     throw new HTTPException(409, { message: "本节已经更新，请刷新页面" });
   }
   return {
+    canonicalTargetId: section.id,
     document,
     quotedText: "quotedText" in section ? String(section.quotedText) : null,
     targetTitle: "title" in section ? String(section.title) : targetId,
@@ -99,6 +101,8 @@ discussionRoutes.get("/api/discussions", async (c) => {
   const viewer = await getOptionalViewer(c);
   const isAdmin = viewer?.role === "admin" ? 1 : 0;
   const viewerId = viewer?.id ?? "";
+  const targetIds = getSectionIds(documentKey, targetId);
+  const targetPlaceholders = targetIds.map(() => "?").join(", ");
   const threadResult = includeHistory
     ? await c.env.DB.prepare(
       `SELECT t.*, u.name AS userName
@@ -112,11 +116,18 @@ discussionRoutes.get("/api/discussions", async (c) => {
       `SELECT t.*, u.name AS userName
        FROM discussion_threads t
        JOIN user u ON u.id = t.userId
-       WHERE t.documentKey = ? AND t.targetKind = ? AND t.targetId = ?
+       WHERE t.documentKey = ? AND t.targetKind = ?
+         AND t.targetId IN (${targetPlaceholders})
          AND t.status != 'deleted'
          AND (t.visibility = 'public' OR t.userId = ? OR ? = 1)
        ORDER BY t.createdAt ASC`,
-    ).bind(documentKey, targetKind, targetId, viewerId, isAdmin).all<ThreadRow>();
+    ).bind(
+      documentKey,
+      targetKind,
+      ...targetIds,
+      viewerId,
+      isAdmin,
+    ).all<ThreadRow>();
 
   const threads = [];
   for (const thread of threadResult.results) {
@@ -215,7 +226,7 @@ discussionRoutes.post("/api/discussions", requireSession, async (c) => {
       documentKey,
       target.document.documentEpoch,
       targetKind,
-      targetId,
+      target.canonicalTargetId,
       targetRevision,
       target.targetTitle,
       target.quotedText,

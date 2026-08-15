@@ -16,6 +16,7 @@
     "db:migrate:local": "wrangler d1 migrations apply handbook-learning --local",
     "db:migrate:remote": "wrangler d1 migrations apply handbook-learning --remote",
     "test:collaboration": "bash scripts/test-collaboration.sh",
+    "test:content-identity": "node scripts/test-content-identity.mjs",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {

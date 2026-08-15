@@ -13,7 +13,9 @@ const document = manifest.documents[documentKey];
 assert(document, `${documentKey} 不在交互清单中`);
 const contentRevision = document.contentRevision;
 const sectionId = document.sections[0].id;
+const legacySectionId = document.sections[0].legacyIds[0];
 const sectionRevision = document.sections[0].revision;
+assert(legacySectionId, `${documentKey} 没有可用于兼容测试的旧小节身份`);
 const question = document.questions[0];
 assert(question, `${documentKey} 没有可用于测试的题目`);
 
@@ -175,6 +177,24 @@ const currentSection = await request("/api/learning/sections", {
   user: "student",
 });
 assert.equal(currentSection.response.status, 200);
+
+const legacySection = await request("/api/learning/sections", {
+  body: {
+    documentKey,
+    read: true,
+    sectionId: legacySectionId,
+    sectionRevision,
+  },
+  method: "POST",
+  user: "student",
+});
+assert.equal(legacySection.response.status, 200);
+assert.equal(legacySection.result.sectionId, sectionId);
+const canonicalState = await request(
+  `/api/learning/state?document_key=${encodeURIComponent(documentKey)}`,
+  { user: "student" },
+);
+assert.equal(canonicalState.result.sections[0].sectionId, sectionId);
 
 const staleQuestion = await request("/api/learning/questions/attempts", {
   body: {

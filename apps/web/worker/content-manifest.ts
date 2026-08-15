@@ -2,6 +2,7 @@ import manifest from "../.content-cache/interaction-manifest.json";
 
 interface ManifestSection {
   id: string;
+  legacyIds: string[];
   quotedText: string;
   revision: string;
   title: string;
@@ -28,7 +29,14 @@ export function getDocument(documentKey: string) {
 }
 
 export function getSection(documentKey: string, sectionId: string) {
-  return getDocument(documentKey)?.sections.find((section) => section.id === sectionId);
+  return getDocument(documentKey)?.sections.find(
+    (section) => section.id === sectionId || section.legacyIds.includes(sectionId),
+  );
+}
+
+export function getSectionIds(documentKey: string, sectionId: string) {
+  const section = getSection(documentKey, sectionId);
+  return section ? [section.id, ...section.legacyIds] : [sectionId];
 }
 
 export function getQuestion(documentKey: string, questionId: string) {

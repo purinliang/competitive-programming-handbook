@@ -3,7 +3,12 @@ import { HTTPException } from "hono/http-exception";
 
 import { adminRoutes } from "./admin";
 import { authIsConfigured, createAuth } from "./auth";
-import { getDocument, getQuestion, getSection } from "./content-manifest";
+import {
+  getDocument,
+  getQuestion,
+  getSection,
+  getSectionIds,
+} from "./content-manifest";
 import { discussionRoutes } from "./discussions";
 import { assertSameOrigin, readObject } from "./request";
 import { enforceRateLimit } from "./security";
@@ -12,6 +17,13 @@ import { requireSession } from "./session";
 import type { AppEnv } from "./types";
 
 const app = new Hono<AppEnv>();
+
+interface SectionProgressRow {
+  readAt: number;
+  sectionId: string;
+  sectionRevision: string;
+  updatedAt: number;
+}
 
 app.get("/api/health", (c) => c.json({
   authConfigured: authIsConfigured(c.env),
@@ -64,10 +76,10 @@ app.get("/api/learning/state", requireSession, async (c) => {
   const user = c.get("user");
   const [sections, attempts] = await Promise.all([
     c.env.DB.prepare(
-      `SELECT sectionId, sectionRevision, readAt
+      `SELECT sectionId, sectionRevision, readAt, updatedAt
        FROM section_progress
        WHERE userId = ? AND documentKey = ? AND documentEpoch = ?`,
-    ).bind(user.id, documentKey, document.documentEpoch).all(),
+    ).bind(user.id, documentKey, document.documentEpoch).all<SectionProgressRow>(),
     c.env.DB.prepare(
       `SELECT questionId, questionRevision, selectedOptionId, correct, createdAt
        FROM question_attempts
@@ -84,10 +96,20 @@ app.get("/api/learning/state", requireSession, async (c) => {
     }
   }
 
+  const currentSections = new Map<string, SectionProgressRow>();
+  for (const record of sections.results) {
+    const section = getSection(documentKey, record.sectionId);
+    if (!section) continue;
+    const current = currentSections.get(section.id);
+    if (!current || record.updatedAt > current.updatedAt) {
+      currentSections.set(section.id, { ...record, sectionId: section.id });
+    }
+  }
+
   return c.json({
     documentEpoch: document.documentEpoch,
     questions: [...currentAttempts.values()],
-    sections: sections.results,
+    sections: [...currentSections.values()],
   });
 });
 
@@ -106,33 +128,36 @@ app.post("/api/learning/sections", requireSession, async (c) => {
   }
 
   const user = c.get("user");
+  const sectionIds = getSectionIds(documentKey, section.id);
+  const placeholders = sectionIds.map(() => "?").join(", ");
+  const deleteProgress = c.env.DB.prepare(
+    `DELETE FROM section_progress
+     WHERE userId = ? AND documentKey = ? AND documentEpoch = ?
+       AND sectionId IN (${placeholders})`,
+  ).bind(user.id, documentKey, document.documentEpoch, ...sectionIds);
   if (!read) {
-    await c.env.DB.prepare(
-      `DELETE FROM section_progress
-       WHERE userId = ? AND documentKey = ? AND documentEpoch = ? AND sectionId = ?`,
-    ).bind(user.id, documentKey, document.documentEpoch, sectionId).run();
+    await deleteProgress.run();
     return c.json({ read: false });
   }
 
   const now = Date.now();
-  await c.env.DB.prepare(
-    `INSERT INTO section_progress
-       (userId, documentKey, documentEpoch, sectionId, sectionRevision, readAt, updatedAt)
-     VALUES (?, ?, ?, ?, ?, ?, ?)
-     ON CONFLICT (userId, documentKey, documentEpoch, sectionId)
-     DO UPDATE SET sectionRevision = excluded.sectionRevision,
-                   readAt = excluded.readAt,
-                   updatedAt = excluded.updatedAt`,
-  ).bind(
-    user.id,
-    documentKey,
-    document.documentEpoch,
-    sectionId,
-    sectionRevision,
-    now,
-    now,
-  ).run();
-  return c.json({ read: true, readAt: now });
+  await c.env.DB.batch([
+    deleteProgress,
+    c.env.DB.prepare(
+      `INSERT INTO section_progress
+         (userId, documentKey, documentEpoch, sectionId, sectionRevision, readAt, updatedAt)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    ).bind(
+      user.id,
+      documentKey,
+      document.documentEpoch,
+      section.id,
+      sectionRevision,
+      now,
+      now,
+    ),
+  ]);
+  return c.json({ read: true, readAt: now, sectionId: section.id });
 });
 
 app.post("/api/learning/questions/attempts", requireSession, async (c) => {

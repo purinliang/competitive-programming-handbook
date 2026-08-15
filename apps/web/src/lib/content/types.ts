@@ -66,6 +66,7 @@ export interface TableOfContentsItem {
 export interface ArticleSection {
   explicit: boolean;
   id: string;
+  legacyIds: string[];
   revision: string;
   title: string;
   quotedText: string;
@@ -74,6 +75,7 @@ export interface ArticleSection {
 export interface RenderedArticle {
   html: string;
   contentRevision: string;
+  documentEpoch: number;
   sections: ArticleSection[];
   tableOfContents: TableOfContentsItem[];
 }
