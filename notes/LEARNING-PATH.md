@@ -191,7 +191,8 @@
 | 0229 | 单调栈 | 算法基础 | [algorithm-basics/monotonic-stack.md](algorithm-basics/monotonic-stack.md) |
 | 0230 | 单调队列 | 算法基础 | [algorithm-basics/monotonic-queue.md](algorithm-basics/monotonic-queue.md) |
 | 0242 | 倍增：基础 | 算法基础 | [algorithm-basics/doubling.md](algorithm-basics/doubling.md) |
-| 0504 | 模运算与快速幂 | 数学 | `math/0504-modular-arithmetic-fast-power.md` |
+| 0504 | 模运算 | 数学 | [math/modular-arithmetic.md](math/modular-arithmetic.md) |
+| 0574 | 快速幂 | 数学 | `math/fast-power.md` |
 | 0503 | 数论：扩展欧几里得算法 | 数学 | [math/extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
 | 0542 | 数论：线性不定方程 | 数学 | `math/0542-linear-diophantine-equations.md` |
 | 0543 | 数论：线性同余方程 | 数学 | `math/0543-linear-congruences.md` |

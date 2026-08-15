@@ -262,7 +262,7 @@
 | 0501 | 数论：整除 | 定稿 | [divisibility.md](math/divisibility.md) |
 | 0502 | 数论：质数 | 定稿 | [prime-numbers.md](math/prime-numbers.md) |
 | 0503 | 数论：扩展欧几里得算法 | 待审阅 | [extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
-| 0504 | 模运算与快速幂 | 计划 | `math/0504-modular-arithmetic-fast-power.md` |
+| 0504 | 模运算 | 待审阅 | [modular-arithmetic.md](math/modular-arithmetic.md) |
 | 0504e1 | 模运算：modint | 待审阅 | [mod-int.md](math/mod-int.md) |
 | 0505 | 筛法与质因数预处理 | 计划 | `math/0505-sieve.md` |
 | 0505e1 | 杜教筛 | 计划 | `math/du-jiao-sieve.md` |
@@ -341,6 +341,7 @@
 | 0571* | 数值积分：Simpson 公式 | 计划 | `math/simpson-rule.md` |
 | 0572* | 数值积分：自适应 Simpson | 计划 | `math/adaptive-simpson.md` |
 | 0573* | 集合幂级数：FWT/FMT | 计划 | `math/fast-subset-transforms.md` |
+| 0574 | 快速幂 | 计划 | `math/fast-power.md` |
 
 ## 06 计算几何
 
