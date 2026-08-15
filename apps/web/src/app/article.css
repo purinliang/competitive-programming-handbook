@@ -244,7 +244,7 @@
 
 .directory-sidebar-list a {
   padding: 7px 10px;
-  border-radius: 7px;
+  border-radius: 0;
   color: var(--secondary-text);
   font-size: 13px;
 }
