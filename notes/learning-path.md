@@ -95,6 +95,7 @@
 | 0124 | 字节寻址 | C++ | [cpp/byte-addressing.md](cpp/byte-addressing.md) |
 | 0125 | 指针 | C++ | [cpp/pointers.md](cpp/pointers.md) |
 | 0126 | 引用 | C++ | [cpp/references.md](cpp/references.md) |
+| 0174 | 指针与引用中的 const | C++ | [cpp/const-pointers-and-references.md](cpp/const-pointers-and-references.md) |
 | 0127 | 参数传递 | C++ | [cpp/parameter-passing.md](cpp/parameter-passing.md) |
 
 ### 学习单元：内存、调用栈与递归

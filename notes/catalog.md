@@ -92,6 +92,7 @@
 | 0124 | 字节寻址 | 待审阅 | [byte-addressing.md](cpp/byte-addressing.md) |
 | 0125 | 指针 | 待审阅 | [pointers.md](cpp/pointers.md) |
 | 0126 | 引用 | 待审阅 | [references.md](cpp/references.md) |
+| 0174 | 指针与引用中的 const | 待审阅 | [const-pointers-and-references.md](cpp/const-pointers-and-references.md) |
 | 0127 | 参数传递 | 待审阅 | [parameter-passing.md](cpp/parameter-passing.md) |
 | 0129 | static 局部变量 | 待审阅 | [static-local-variables.md](cpp/static-local-variables.md) |
 | 0130 | 竞赛程序的常见内存分区 | 待审阅 | [competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |

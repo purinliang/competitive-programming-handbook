@@ -1,0 +1,86 @@
+[
+  {
+    "id": "pointer-to-const",
+    "prompt": "`const int* p` 主要限制什么？",
+    "options": [
+      { "id": "a", "text": "不能通过 `p` 修改它指向的整数" },
+      { "id": "b", "text": "`p` 不能改变为其他地址" },
+      { "id": "c", "text": "`p` 必须为空" },
+      { "id": "d", "text": "整数不能被任何名称读取" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "星号左侧的 `const` 属于目标类型，指针提供只读访问，但指针变量本身仍可改变指向。"
+  },
+  {
+    "id": "const-pointer",
+    "prompt": "`int* const p` 主要限制什么？",
+    "options": [
+      { "id": "a", "text": "`p` 初始化后不能改为保存另一个地址" },
+      { "id": "b", "text": "不能通过 `p` 修改目标整数" },
+      { "id": "c", "text": "`p` 不能被解引用" },
+      { "id": "d", "text": "目标一定是字符" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "星号右侧的 `const` 修饰指针变量本身；目标仍是可修改的 `int`。"
+  },
+  {
+    "id": "both-const",
+    "prompt": "哪种声明既不能通过指针修改目标，也不能改变指向？",
+    "options": [
+      { "id": "a", "text": "`const int* const p`" },
+      { "id": "b", "text": "`int* p`" },
+      { "id": "c", "text": "`const int* p`" },
+      { "id": "d", "text": "`int* const p`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "星号左右各有一层 `const`，分别限制目标写入和指针重新赋值。"
+  },
+  {
+    "id": "read-only-view",
+    "prompt": "`int x = 10; const int* p = &x;` 后，能否直接执行 `x = 20`？",
+    "options": [
+      { "id": "a", "text": "可以，`const` 只限制通过 `p` 的写入" },
+      { "id": "b", "text": "不可以，`x` 已永久变成常量" },
+      { "id": "c", "text": "只有把 `p` 设为空后才可以" },
+      { "id": "d", "text": "必须先删除 `x`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "原对象没有声明为 `const`，其他可写名称仍能修改它；`p` 会读到更新后的值。"
+  },
+  {
+    "id": "address-of-const-object",
+    "prompt": "`const int LIMIT = 100;` 的地址应保存到哪种指针？",
+    "options": [
+      { "id": "a", "text": "`const int*`" },
+      { "id": "b", "text": "`int*`" },
+      { "id": "c", "text": "`double*`" },
+      { "id": "d", "text": "`nullptr` 以外都不允许" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "指针类型必须保留目标的只读限制，不能通过普通 `int*` 获得写入权限。"
+  },
+  {
+    "id": "const-reference",
+    "prompt": "`const int& r = x` 表示什么？",
+    "options": [
+      { "id": "a", "text": "`r` 是 `x` 的只读别名" },
+      { "id": "b", "text": "`r` 是可重新绑定的指针" },
+      { "id": "c", "text": "`r` 是与 `x` 无关的副本" },
+      { "id": "d", "text": "`r` 会删除 `x`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "引用仍绑定原对象，只是不能通过这个引用进行修改。"
+  },
+  {
+    "id": "temporary-binding",
+    "prompt": "下面哪种引用可以直接绑定表达式 `2 + 3` 产生的临时值？",
+    "options": [
+      { "id": "a", "text": "`const int&`" },
+      { "id": "b", "text": "普通 `int&`" },
+      { "id": "c", "text": "未初始化的 `int&`" },
+      { "id": "d", "text": "只有 `int* const`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`const` 左值引用可以绑定临时结果，并将其生命周期延长到引用的作用域。"
+  }
+]
