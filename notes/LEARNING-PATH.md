@@ -211,7 +211,7 @@
 | 0582 | 欧拉定理 | 数学 | [math/euler-theorem.md](math/euler-theorem.md) |
 | 0509 | 矩阵：表示 | 数学 | [math/matrix-representation.md](math/matrix-representation.md) |
 | 0583 | 矩阵：加法与减法 | 数学 | [math/matrix-addition-subtraction.md](math/matrix-addition-subtraction.md) |
-| 0584 | 矩阵：乘法 | 数学 | `math/matrix-multiplication.md` |
+| 0584 | 矩阵：乘法 | 数学 | [math/matrix-multiplication.md](math/matrix-multiplication.md) |
 | 0585 | 线性变换：矩阵表示 | 数学 | `math/linear-transformations-as-matrices.md` |
 | 0511 | 矩阵快速幂与递推加速 | 数学 | `math/0511-matrix-exponentiation.md` |
 | 0512 | 概率与期望基础 | 数学 | `math/0512-probability-expectation.md` |

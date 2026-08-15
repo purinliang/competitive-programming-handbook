@@ -354,7 +354,7 @@
 | 0581 | 组合数：阶乘与逆元预处理 | 待审阅 | [binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
 | 0582 | 欧拉定理 | 待审阅 | [euler-theorem.md](math/euler-theorem.md) |
 | 0583 | 矩阵：加法与减法 | 待审阅 | [matrix-addition-subtraction.md](math/matrix-addition-subtraction.md) |
-| 0584 | 矩阵：乘法 | 计划 | `math/matrix-multiplication.md` |
+| 0584 | 矩阵：乘法 | 待审阅 | [matrix-multiplication.md](math/matrix-multiplication.md) |
 | 0585 | 线性变换：矩阵表示 | 计划 | `math/linear-transformations-as-matrices.md` |
 
 ## 06 计算几何
