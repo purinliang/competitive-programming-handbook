@@ -121,7 +121,7 @@
 | 0227 | 二叉堆 | 待审阅 | [binary-heap.md](algorithm-basics/binary-heap.md) |
 | 0228 | 哈希表 | 待审阅 | [hash-table.md](algorithm-basics/hash-table.md) |
 | 0229 | 单调栈 | 待审阅 | [monotonic-stack.md](algorithm-basics/monotonic-stack.md) |
-| 0230 | 单调队列 | 计划 | `algorithm-basics/0230-monotonic-queue.md` |
+| 0230 | 单调队列 | 待审阅 | [monotonic-queue.md](algorithm-basics/monotonic-queue.md) |
 | 0231 | 排序：快速排序 | 待审阅 | [quicksort.md](algorithm-basics/quicksort.md) |
 | 0232 | 排序：归并排序 | 待审阅 | [merge-sort.md](algorithm-basics/merge-sort.md) |
 | 0232e1 | 归并排序：逆序对计数 | 计划 | `algorithm-basics/merge-sort-inversion-count.md` |
