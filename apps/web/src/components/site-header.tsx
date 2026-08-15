@@ -1,5 +1,6 @@
 import { Book } from "lucide-react";
 
+import { AccountControl } from "./account-control";
 import { NavigationLink as Link } from "./navigation-link";
 
 type HeaderSection = "learning-path" | "catalog" | "search";
@@ -28,6 +29,7 @@ export function SiteHeader({ activeSection }: SiteHeaderProps) {
           <Link className={linkClass("catalog")} href="/catalog/">模块目录</Link>
           <Link className={linkClass("search")} href="/search/">搜索</Link>
         </nav>
+        <AccountControl />
       </div>
     </header>
   );

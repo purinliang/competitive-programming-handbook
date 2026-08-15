@@ -530,6 +530,206 @@
   overflow-y: hidden;
 }
 
+.section-collaboration-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin: -15px 0 16px;
+}
+
+.section-collaboration-actions button,
+.article-discussion-entry button,
+.discussion-text-action {
+  padding: 4px 2px;
+  border: 0;
+  color: var(--faint-text);
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.section-collaboration-actions button:hover,
+.article-discussion-entry button:hover,
+.discussion-text-action:hover {
+  color: var(--accent-hover-text);
+}
+
+.section-collaboration-actions button.is-read {
+  color: var(--success-text);
+}
+
+.article-discussion-entry {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--divider-border);
+}
+
+.article-discussion-entry button {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.discussion-panel {
+  position: fixed;
+  z-index: 40;
+  top: 64px;
+  right: 0;
+  display: flex;
+  width: min(420px, 100vw);
+  height: calc(100vh - 64px);
+  flex-direction: column;
+  border-left: 1px solid var(--strong-border);
+  background: var(--page-bg);
+  box-shadow: var(--shadow);
+}
+
+.discussion-panel > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+  padding: 12px 16px 12px 20px;
+  border-bottom: 1px solid var(--divider-border);
+}
+
+.discussion-panel > header span {
+  color: var(--faint-text);
+  font-size: 12px;
+}
+
+.discussion-panel > header h2 {
+  margin: 2px 0 0;
+  font-size: 17px;
+}
+
+.discussion-panel-body {
+  flex: 1;
+  padding: 18px 20px 40px;
+  overflow-y: auto;
+}
+
+.discussion-hint,
+.discussion-error {
+  margin: 0 0 16px;
+  color: var(--faint-text);
+  font-size: 13px;
+}
+
+.discussion-error {
+  color: var(--danger-text);
+}
+
+.discussion-thread {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--divider-border);
+}
+
+.discussion-thread-meta,
+.discussion-comment > div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--faint-text);
+  font-size: 11px;
+}
+
+.discussion-thread-meta span {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.discussion-comment {
+  margin-top: 14px;
+}
+
+.discussion-comment strong {
+  color: var(--secondary-text);
+  font-weight: 600;
+}
+
+.discussion-comment p {
+  margin: 5px 0 0;
+  color: var(--primary-text);
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.discussion-reply-form,
+.discussion-compose {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.discussion-reply-form > div {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.discussion-compose {
+  margin-top: 24px;
+}
+
+.discussion-compose h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.discussion-compose label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--secondary-text);
+  font-size: 13px;
+}
+
+.discussion-compose textarea,
+.discussion-reply-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  resize: vertical;
+  border: 1px solid var(--strong-border);
+  border-radius: 8px;
+  color: var(--primary-text);
+  background: var(--panel-bg);
+  line-height: 1.6;
+}
+
+.discussion-compose textarea:focus,
+.discussion-reply-form textarea:focus {
+  border-color: var(--primary-bg);
+  outline: 0;
+}
+
+.discussion-primary-action {
+  width: max-content;
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--primary-foreground);
+  background: var(--primary-bg);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.discussion-primary-action:hover {
+  background: var(--primary-hover-bg);
+}
+
+.discussion-primary-action:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .learning-quiz {
   margin-top: 56px;
   padding: 20px;
@@ -856,6 +1056,10 @@
 }
 
 @media (max-width: 820px) {
+  .discussion-panel {
+    width: 100vw;
+  }
+
   .docs-layout {
     display: block;
     width: min(100% - 32px, 780px);

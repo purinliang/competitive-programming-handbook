@@ -4,6 +4,7 @@ import { ArticleNavigationView } from "./article-navigation-view";
 import { ArticleNeighborsView } from "./article-neighbors-view";
 import { ArticleTableOfContents } from "./article-table-of-contents";
 import { CodeBlockEnhancements } from "./code-block-enhancements";
+import { CollaborativeArticle } from "./collaborative-article";
 import { LearningQuiz } from "./learning-quiz";
 import { SiteHeader } from "./site-header";
 
@@ -49,6 +50,13 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
         <main className="article-column">
           <article className="markdown-body" data-article-key={article.articleKey} data-content-revision={rendered.contentRevision} dangerouslySetInnerHTML={{ __html: rendered.html }} />
           <CodeBlockEnhancements articleKey={article.articleKey} />
+          {mode === "learning-path" ? (
+            <CollaborativeArticle
+              articleKey={article.articleKey}
+              contentRevision={rendered.contentRevision}
+              sections={rendered.sections}
+            />
+          ) : null}
           {quiz ? <LearningQuiz articleKey={article.articleKey} quiz={quiz} /> : null}
           <ArticleNeighborsView mode={mode} {...neighbors} />
         </main>

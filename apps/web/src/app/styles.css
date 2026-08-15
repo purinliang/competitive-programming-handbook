@@ -120,6 +120,44 @@ a:focus-visible {
   align-items: center;
 }
 
+.account-control-placeholder,
+.account-control {
+  width: 84px;
+  margin-left: auto;
+}
+
+.account-control-placeholder {
+  display: block;
+  height: 36px;
+}
+
+.account-control {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 6px 10px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 8px;
+  color: var(--secondary-text);
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.account-control:hover {
+  color: var(--primary-text);
+  background: var(--secondary-hover-bg);
+}
+
+.account-control span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .site-nav a,
 .nav-placeholder,
 .icon-button {

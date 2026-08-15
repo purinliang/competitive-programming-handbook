@@ -8,6 +8,7 @@ import type { LearningQuiz as LearningQuizData } from "@/lib/content/types";
 const STORAGE_KEY = "handbook.learning-progress.v2";
 
 interface StoredAnswer {
+  answeredAt: number;
   optionId: string;
   questionRevision: string;
 }
@@ -33,14 +34,22 @@ function readProgress(articleKey: string, quiz: LearningQuizData): Record<string
   }
 }
 
-function writeProgress(articleKey: string, quiz: LearningQuizData, answers: Record<string, string>) {
+function writeProgress(
+  articleKey: string,
+  quiz: LearningQuizData,
+  answers: Record<string, string>,
+) {
   try {
     const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}") as StoredProgress;
     progress[articleKey] = {
       answers: Object.fromEntries(quiz.questions.flatMap((question) => {
         const optionId = answers[question.id];
         return optionId
-          ? [[question.id, { optionId, questionRevision: question.revision }]]
+          ? [[question.id, {
+              answeredAt: Date.now(),
+              optionId,
+              questionRevision: question.revision,
+            }]]
           : [];
       })),
     };
@@ -68,6 +77,32 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
     const storedAnswers = readProgress(articleKey, quiz);
     setAnswers(storedAnswers);
     setSelections(storedAnswers);
+    const documentKey = `learning-path:${articleKey}`;
+    fetch(`/api/learning/state?document_key=${encodeURIComponent(documentKey)}`, {
+      credentials: "include",
+    })
+      .then((response) => response.ok ? response.json() : undefined)
+      .then((state) => {
+        if (!state?.questions) return;
+        const questions = new Map(quiz.questions.map((item) => [item.id, item]));
+        const cloudAnswers = Object.fromEntries(
+          state.questions.flatMap((attempt: {
+            questionId: string;
+            questionRevision: string;
+            selectedOptionId: string;
+          }) => {
+            const current = questions.get(attempt.questionId);
+            return current?.revision === attempt.questionRevision
+              ? [[attempt.questionId, attempt.selectedOptionId]]
+              : [];
+          }),
+        );
+        const merged = { ...cloudAnswers, ...storedAnswers };
+        setAnswers(merged);
+        setSelections(merged);
+        writeProgress(articleKey, quiz, merged);
+      })
+      .catch(() => undefined);
   }, [articleKey, quiz]);
 
   useEffect(() => {
@@ -92,6 +127,17 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
     const nextAnswers = { ...answers, [question.id]: selection };
     setAnswers(nextAnswers);
     writeProgress(articleKey, quiz, nextAnswers);
+    fetch("/api/learning/questions/attempts", {
+      body: JSON.stringify({
+        documentKey: `learning-path:${articleKey}`,
+        questionId: question.id,
+        questionRevision: question.revision,
+        selectedOptionId: selection,
+      }),
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+    }).catch(() => undefined);
   }
 
   function moveTo(index: number) {
