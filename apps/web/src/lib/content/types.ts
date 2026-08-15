@@ -26,6 +26,12 @@ export interface LearningStage {
   key: string;
   title: string;
   articleKeys: string[];
+  units: LearningUnit[];
+}
+
+export interface LearningUnit {
+  title: string;
+  articleKeys: string[];
 }
 
 export interface ArticleFamily {

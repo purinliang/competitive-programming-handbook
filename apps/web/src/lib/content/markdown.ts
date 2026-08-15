@@ -6,6 +6,7 @@ import path from "node:path";
 
 import { toText } from "hast-util-to-text";
 import rehypeKatex from "rehype-katex";
+import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
@@ -125,6 +126,13 @@ export async function renderArticle(article: ArticleRecord): Promise<RenderedArt
     .use(rehypeSlug)
     .use(rehypeCollectMetadata(tableOfContents))
     .use(rehypeKatex)
+    .use(rehypePrettyCode, {
+      theme: {
+        light: "github-light-default",
+        dark: "github-dark-default",
+      },
+      keepBackground: false,
+    })
     .use(rehypeStringify)
     .process(markdown);
 

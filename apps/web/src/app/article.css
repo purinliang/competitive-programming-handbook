@@ -383,7 +383,27 @@
 }
 
 .markdown-body pre code {
+  display: grid;
+  min-width: max-content;
   font: inherit;
+}
+
+.markdown-body [data-rehype-pretty-code-figure] {
+  margin: 0;
+}
+
+.markdown-body [data-rehype-pretty-code-figure] span {
+  color: var(--shiki-light) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .markdown-body [data-rehype-pretty-code-figure] span {
+    color: var(--shiki-dark) !important;
+  }
+}
+
+:root[data-theme="dark"] .markdown-body [data-rehype-pretty-code-figure] span {
+  color: var(--shiki-dark) !important;
 }
 
 .markdown-body blockquote {
@@ -472,7 +492,8 @@
 }
 
 .article-neighbors a:hover {
-  background: var(--panel-hover-bg);
+  border-color: color-mix(in srgb, var(--primary-bg) 42%, var(--strong-border));
+  background: var(--secondary-hover-bg);
 }
 
 .article-neighbors .next {

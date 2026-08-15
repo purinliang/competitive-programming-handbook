@@ -119,6 +119,7 @@ export function getLearningStages(): LearningStage[] {
   const learningPath = readFileSync(path.join(NOTES_ROOT, "LEARNING-PATH.md"), "utf8");
   const stages: LearningStage[] = [];
   let currentStage: LearningStage | undefined;
+  let currentUnit: LearningStage["units"][number] | undefined;
 
   for (const line of learningPath.split("\n")) {
     const stageMatch = line.match(/^##\s+(阶段\s+\d+)：(.+)$/);
@@ -127,8 +128,23 @@ export function getLearningStages(): LearningStage[] {
         key: stageMatch[1].replace(/\s+/g, "-"),
         title: stageMatch[2].trim(),
         articleKeys: [],
+        units: [],
       };
       stages.push(currentStage);
+      currentUnit = undefined;
+      continue;
+    }
+
+    if (/^##\s+/.test(line)) {
+      currentStage = undefined;
+      currentUnit = undefined;
+      continue;
+    }
+
+    const unitMatch = line.match(/^###\s+学习单元：(.+)$/);
+    if (currentStage && unitMatch) {
+      currentUnit = { title: unitMatch[1].trim(), articleKeys: [] };
+      currentStage.units.push(currentUnit);
       continue;
     }
 
@@ -139,7 +155,22 @@ export function getLearningStages(): LearningStage[] {
     const cells = line.split("|").slice(1, -1).map((cell) => cell.trim());
     const sourcePath = cells.length === 4 ? extractMarkdownPath(cells[3]) : undefined;
     if (sourcePath) {
-      currentStage.articleKeys.push(toArticleKey(sourcePath));
+      const articleKey = toArticleKey(sourcePath);
+      currentStage.articleKeys.push(articleKey);
+      currentUnit?.articleKeys.push(articleKey);
+    }
+  }
+
+  for (const stage of stages) {
+    const emptyUnits = stage.units.filter((unit) => unit.articleKeys.length === 0);
+    if (emptyUnits.length > 0) {
+      throw new Error(`${stage.title} 中存在空学习单元：${emptyUnits.map((unit) => unit.title).join(", ")}`);
+    }
+    if (stage.units.length > 0) {
+      const unitArticleKeys = stage.units.flatMap((unit) => unit.articleKeys);
+      if (unitArticleKeys.join("\n") !== stage.articleKeys.join("\n")) {
+        throw new Error(`${stage.title} 的学习单元没有按顺序完整覆盖本阶段文章`);
+      }
     }
   }
 
@@ -206,6 +237,26 @@ export function groupAdjacentArticles(articles: ArticleRecord[]): ArticleFamily[
   return groups;
 }
 
+export function getLearningUnitGroups(stage: LearningStage): ArticleFamily[] {
+  if (stage.units.length === 0) {
+    const articles = stage.articleKeys.flatMap((articleKey) => {
+      const article = getArticle(articleKey);
+      return article ? [article] : [];
+    });
+    return groupAdjacentArticles(articles);
+  }
+
+  return stage.units.map((unit) => ({
+    title: unit.title,
+    articles: unit.articleKeys.flatMap((articleKey) => {
+      const article = getArticle(articleKey);
+      return article ? [article] : [];
+    }),
+    grouped: true,
+    continued: false,
+  }));
+}
+
 export function getArticleModuleNavigation(articleKey: string): ArticleNavigation | undefined {
   const article = getArticle(articleKey);
   if (!article) {
@@ -237,14 +288,10 @@ export function getArticleLearningNavigation(articleKey: string): ArticleNavigat
     return undefined;
   }
 
-  const articles = stage.articleKeys.flatMap((key) => {
-    const stageArticle = getArticle(key);
-    return stageArticle ? [stageArticle] : [];
-  });
   return {
     label: stage.key.replace("-", " "),
     title: stage.title,
-    groups: groupAdjacentArticles(articles),
+    groups: getLearningUnitGroups(stage),
     primaryRoute: `/learn/#${stage.key}`,
     primaryLabel: "查看完整阶段",
     secondaryRoute: `/catalog/#${article.moduleAnchor}`,

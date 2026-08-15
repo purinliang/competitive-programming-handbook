@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ArticleFamilyList } from "@/components/article-family-list";
 import { DirectorySidebar } from "@/components/directory-sidebar";
 import { SiteHeader } from "@/components/site-header";
-import { getArticle, getLearningStages, groupAdjacentArticles } from "@/lib/content/catalog";
+import { getLearningStages, getLearningUnitGroups } from "@/lib/content/catalog";
 
 export const metadata: Metadata = { title: "学习路线" };
 
@@ -27,10 +27,6 @@ export default function LearningPathPage() {
           </aside>
           <div className="section-stack">
             {stages.map((stage, index) => {
-              const articles = stage.articleKeys.flatMap((articleKey) => {
-                const article = getArticle(articleKey);
-                return article ? [article] : [];
-              });
               return (
                 <section className="panel" id={stage.key} key={stage.key}>
                   <div className="panel-header stage-header">
@@ -38,7 +34,7 @@ export default function LearningPathPage() {
                     <h2>{stage.title}</h2>
                   </div>
                   <div className="article-list">
-                    <ArticleFamilyList groups={groupAdjacentArticles(articles)} navigation="learn" />
+                    <ArticleFamilyList groups={getLearningUnitGroups(stage)} navigation="learn" />
                   </div>
                 </section>
               );
