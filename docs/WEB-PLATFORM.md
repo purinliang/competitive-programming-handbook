@@ -17,7 +17,7 @@
 
 - 第一阶段使用 Next.js App Router 静态导出；Cloudflare Workers Static Assets 直接分发 HTML、RSC 数据、CSS、JavaScript、SVG 和搜索索引，不部署 Next.js 运行时 Worker。
 - Markdown、目录与 Shiki 只在构建期运行。正文增长只增加静态资源，不占用 Worker 脚本大小额度。
-- 需要用户数据后再增加只处理 `/api/*` 的 Worker；公开正文仍保持静态，不随请求重新渲染。
+- 用户数据由只处理 `/api/*` 的轻量 Worker 提供；公开正文仍保持静态，不随请求重新渲染。
 - D1 保存用户、进度、作答和讨论等结构化数据。
 - R2 只在出现用户上传图片或附件时启用。
 - Turnstile 用于保护注册、登录、留言和试卷提交等公开入口。
