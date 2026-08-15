@@ -3,45 +3,13 @@ import { HTTPException } from "hono/http-exception";
 
 import { authIsConfigured, createAuth } from "./auth";
 import { getDocument, getQuestion, getSection } from "./content-manifest";
+import { discussionRoutes } from "./discussions";
+import { assertSameOrigin, readObject } from "./request";
 import { requireSession } from "./session";
 
-import type { WorkerBindings } from "./env";
-
-type AppEnv = {
-  Bindings: WorkerBindings;
-  Variables: {
-    user: {
-      id: string;
-      name: string;
-    };
-  };
-};
+import type { AppEnv } from "./types";
 
 const app = new Hono<AppEnv>();
-
-function assertSameOrigin(request: Request) {
-  const origin = request.headers.get("Origin");
-  if (origin && origin !== new URL(request.url).origin) {
-    throw new HTTPException(403, { message: "请求来源无效" });
-  }
-}
-
-async function readObject(request: Request) {
-  const contentLength = Number(request.headers.get("Content-Length") ?? 0);
-  if (contentLength > 16 * 1024) {
-    throw new HTTPException(413, { message: "请求内容过大" });
-  }
-
-  try {
-    const value = await request.json();
-    if (!value || typeof value !== "object" || Array.isArray(value)) {
-      throw new Error();
-    }
-    return value as Record<string, unknown>;
-  } catch {
-    throw new HTTPException(400, { message: "请求格式无效" });
-  }
-}
 
 app.get("/api/health", (c) => c.json({
   authConfigured: authIsConfigured(c.env),
@@ -195,6 +163,8 @@ app.post("/api/learning/questions/attempts", requireSession, async (c) => {
   ).run();
   return c.json({ attemptId: id, correct, createdAt: now });
 });
+
+app.route("/", discussionRoutes);
 
 app.notFound((c) => c.json({ error: "API 不存在" }, 404));
 app.onError((error, c) => {

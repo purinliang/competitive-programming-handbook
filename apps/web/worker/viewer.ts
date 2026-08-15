@@ -1,32 +1,24 @@
-import { createMiddleware } from "hono/factory";
-import { HTTPException } from "hono/http-exception";
+import type { Context } from "hono";
 
 import { authIsConfigured, createAuth } from "./auth";
 
-import type { WorkerBindings } from "./env";
-import type { Viewer } from "./types";
+import type { AppEnv, Viewer } from "./types";
 
-export const requireSession = createMiddleware<{
-  Bindings: WorkerBindings;
-  Variables: { user: Viewer };
-}>(async (c, next) => {
+export async function getOptionalViewer(c: Context<AppEnv>): Promise<Viewer | null> {
   if (!authIsConfigured(c.env)) {
-    throw new HTTPException(503, { message: "登录尚未配置" });
+    return null;
   }
-
   const auth = createAuth(c.env, new URL(c.req.url).origin);
   const session = await auth.api.getSession({ headers: c.req.raw.headers });
   if (!session) {
-    throw new HTTPException(401, { message: "请先登录" });
+    return null;
   }
-
   const roleRecord = await c.env.DB.prepare(
     "SELECT role FROM user_roles WHERE userId = ?",
   ).bind(session.user.id).first<{ role: string }>();
-  c.set("user", {
+  return {
     id: session.user.id,
     name: session.user.name,
     role: roleRecord?.role === "admin" ? "admin" : "student",
-  });
-  await next();
-});
+  };
+}

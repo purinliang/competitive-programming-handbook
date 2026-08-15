@@ -2,7 +2,9 @@ import manifest from "../.content-cache/interaction-manifest.json";
 
 interface ManifestSection {
   id: string;
+  quotedText: string;
   revision: string;
+  title: string;
 }
 
 interface ManifestQuestion {
