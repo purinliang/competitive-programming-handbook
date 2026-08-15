@@ -407,10 +407,10 @@
   counter-reset: code-line;
 }
 
-.markdown-body pre[data-language]:not([data-language="text"]) code > [data-line] {
+.markdown-body pre code > [data-line] {
   display: inline-block;
   min-width: 100%;
-  padding-right: 48px;
+  padding-right: 64px;
 }
 
 .markdown-body pre[data-language]:not([data-language="text"]) code > [data-line]::before {
@@ -427,16 +427,16 @@
 .code-copy-button {
   position: absolute;
   z-index: 2;
-  top: 8px;
-  right: 8px;
-  padding: 4px 8px;
+  top: 14px;
+  right: 14px;
+  padding: 5px;
   border: 1px solid var(--code-border);
   border-radius: 5px;
   color: var(--secondary-text);
   background: color-mix(in srgb, var(--code-bg) 92%, var(--page-bg));
   cursor: pointer;
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 1;
   opacity: 0.58;
 }
 
@@ -566,6 +566,58 @@
   border-top: 1px solid var(--divider-border);
 }
 
+.learning-sync-prompt {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 30;
+  width: min(360px, calc(100vw - 48px));
+  padding: 18px;
+  border: 1px solid var(--strong-border);
+  border-radius: 10px;
+  background: var(--page-bg);
+  box-shadow: var(--shadow);
+  color: var(--primary-text);
+}
+
+.learning-sync-prompt > p {
+  margin: 6px 0 0;
+  color: var(--secondary-text);
+  font-size: 14px;
+}
+
+.learning-sync-prompt > div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.learning-sync-prompt button {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--strong-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--secondary-text);
+  cursor: pointer;
+}
+
+.learning-sync-prompt button:last-child {
+  border-color: var(--primary-bg);
+  background: var(--primary-bg);
+  color: var(--primary-foreground);
+}
+
+.learning-sync-prompt button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.learning-sync-prompt .learning-sync-error {
+  color: var(--danger-text);
+}
+
 .article-discussion-entry button {
   display: inline-flex;
   gap: 6px;
@@ -658,7 +710,53 @@
   color: var(--primary-text);
   font-size: 14px;
   line-height: 1.7;
-  white-space: pre-wrap;
+}
+
+.discussion-markdown > :first-child {
+  margin-top: 5px;
+}
+
+.discussion-markdown > :last-child {
+  margin-bottom: 0;
+}
+
+.discussion-markdown pre {
+  overflow-x: auto;
+  margin: 10px 0;
+  padding: 12px;
+  border: 1px solid var(--code-border);
+  border-radius: 8px;
+  background: var(--code-bg);
+}
+
+.discussion-markdown code {
+  font-family: var(--font-code);
+  font-size: 0.88em;
+}
+
+.discussion-markdown :not(pre) > code {
+  padding: 0.12em 0.32em;
+  border: 1px solid var(--code-border);
+  border-radius: 4px;
+  background: var(--code-bg);
+}
+
+.discussion-markdown blockquote {
+  margin: 10px 0;
+  padding-left: 12px;
+  border-left: 2px solid var(--strong-border);
+  color: var(--secondary-text);
+}
+
+.discussion-markdown ul,
+.discussion-markdown ol {
+  padding-left: 22px;
+}
+
+.discussion-markdown .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 3px 0;
 }
 
 .discussion-reply-form,
@@ -689,6 +787,10 @@
   align-items: center;
   color: var(--secondary-text);
   font-size: 13px;
+}
+
+.turnstile-widget {
+  min-height: 65px;
 }
 
 .discussion-compose textarea,

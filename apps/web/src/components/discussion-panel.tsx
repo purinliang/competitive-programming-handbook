@@ -5,6 +5,9 @@ import { useCallback, useEffect, useState } from "react";
 
 import { authClient } from "@/lib/auth-client";
 
+import { DiscussionMarkdown } from "./discussion-markdown";
+import { TurnstileWidget } from "./turnstile-widget";
+
 export interface DiscussionTarget {
   id: string;
   kind: "article" | "section";
@@ -52,6 +55,9 @@ export function DiscussionPanel({
   const [replyBody, setReplyBody] = useState("");
   const [replyingTo, setReplyingTo] = useState<string>();
   const [threads, setThreads] = useState<DiscussionThread[]>([]);
+  const [turnstileKey, setTurnstileKey] = useState(0);
+  const [turnstileSiteKey, setTurnstileSiteKey] = useState<string>();
+  const [turnstileToken, setTurnstileToken] = useState("");
 
   const loadThreads = useCallback(async () => {
     setLoading(true);
@@ -85,8 +91,21 @@ export function DiscussionPanel({
     loadThreads();
   }, [loadThreads]);
 
+  useEffect(() => {
+    fetch("/api/config")
+      .then((response) => response.ok ? response.json() : undefined)
+      .then((result) => {
+        if (result?.turnstileSiteKey) setTurnstileSiteKey(result.turnstileSiteKey);
+      })
+      .catch(() => undefined);
+  }, []);
+
   async function createThread() {
     if (!body.trim()) return;
+    if (turnstileSiteKey && !turnstileToken) {
+      setError("请先完成人机验证");
+      return;
+    }
     setError("");
     const response = await fetch("/api/discussions", {
       body: JSON.stringify({
@@ -96,6 +115,7 @@ export function DiscussionPanel({
         targetId: target.id,
         targetKind: target.kind,
         targetRevision: target.revision,
+        turnstileToken,
         visibility: privateVisible ? "private" : "public",
       }),
       credentials: "include",
@@ -108,6 +128,8 @@ export function DiscussionPanel({
       return;
     }
     setBody("");
+    setTurnstileToken("");
+    setTurnstileKey((value) => value + 1);
     await loadThreads();
   }
 
@@ -155,7 +177,7 @@ export function DiscussionPanel({
             {thread.comments.map((comment) => (
               <div className="discussion-comment" key={comment.id}>
                 <div><strong>{comment.authorName}</strong><time>{new Date(comment.createdAt).toLocaleString("zh-CN")}</time></div>
-                <p>{comment.body}</p>
+                <DiscussionMarkdown>{comment.body}</DiscussionMarkdown>
               </div>
             ))}
             {account?.user && thread.status !== "locked" ? (
@@ -163,7 +185,7 @@ export function DiscussionPanel({
                 <div className="discussion-reply-form">
                   <textarea
                     onChange={(event) => setReplyBody(event.target.value)}
-                    placeholder="写下回复"
+                    placeholder="写下回复，支持 Markdown 与 LaTeX"
                     rows={3}
                     value={replyBody}
                   />
@@ -199,7 +221,7 @@ export function DiscussionPanel({
               <textarea
                 maxLength={4000}
                 onChange={(event) => setBody(event.target.value)}
-                placeholder="写下看不懂的地方、补充或建议"
+                placeholder="写下看不懂的地方、补充或建议；支持 Markdown 与 LaTeX"
                 rows={5}
                 value={body}
               />
@@ -219,6 +241,13 @@ export function DiscussionPanel({
                 />
                 公开时匿名显示
               </label>
+              {turnstileSiteKey ? (
+                <TurnstileWidget
+                  key={turnstileKey}
+                  onToken={setTurnstileToken}
+                  siteKey={turnstileSiteKey}
+                />
+              ) : null}
               <button className="discussion-primary-action" disabled={!body.trim()} onClick={createThread} type="button">
                 提交讨论
               </button>

@@ -217,6 +217,74 @@ a:focus-visible {
   padding: 72px 0 96px;
 }
 
+.moderation-page {
+  padding-top: 72px;
+  padding-bottom: 80px;
+}
+
+.moderation-page > h1 {
+  margin: 4px 0 8px;
+  font-size: 38px;
+}
+
+.moderation-page > p:not(.eyebrow) {
+  color: var(--secondary-text);
+}
+
+.moderation-dashboard {
+  display: grid;
+  gap: 32px;
+  margin-top: 36px;
+}
+
+.moderation-dashboard section > h2 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--divider-border);
+}
+
+.moderation-dashboard article {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--divider-border);
+}
+
+.moderation-dashboard article h3,
+.moderation-dashboard article p,
+.moderation-dashboard article blockquote {
+  margin: 8px 0;
+}
+
+.moderation-meta,
+.moderation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.moderation-meta {
+  color: var(--faint-text);
+  font-size: 13px;
+}
+
+.moderation-actions button {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--strong-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--secondary-text);
+  cursor: pointer;
+}
+
+.moderation-actions button:hover {
+  border-color: var(--accent-text);
+  color: var(--accent-hover-text);
+}
+
+.moderation-message {
+  margin-top: 32px;
+  color: var(--secondary-text);
+}
+
 .landing-page {
   display: flex;
   align-items: center;

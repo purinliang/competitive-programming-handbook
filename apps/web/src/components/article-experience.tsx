@@ -6,6 +6,7 @@ import { ArticleTableOfContents } from "./article-table-of-contents";
 import { CodeBlockEnhancements } from "./code-block-enhancements";
 import { CollaborativeArticle } from "./collaborative-article";
 import { LearningQuiz } from "./learning-quiz";
+import { LearningProgressSync } from "./learning-progress-sync";
 import { SiteHeader } from "./site-header";
 
 import {
@@ -51,11 +52,18 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
           <article className="markdown-body" data-article-key={article.articleKey} data-content-revision={rendered.contentRevision} dangerouslySetInnerHTML={{ __html: rendered.html }} />
           <CodeBlockEnhancements articleKey={article.articleKey} />
           {mode === "learning-path" ? (
-            <CollaborativeArticle
-              articleKey={article.articleKey}
-              contentRevision={rendered.contentRevision}
-              sections={rendered.sections}
-            />
+            <>
+              <LearningProgressSync
+                articleKey={article.articleKey}
+                quiz={quiz}
+                sections={rendered.sections}
+              />
+              <CollaborativeArticle
+                articleKey={article.articleKey}
+                contentRevision={rendered.contentRevision}
+                sections={rendered.sections}
+              />
+            </>
           ) : null}
           {quiz ? <LearningQuiz articleKey={article.articleKey} quiz={quiz} /> : null}
           <ArticleNeighborsView mode={mode} {...neighbors} />
