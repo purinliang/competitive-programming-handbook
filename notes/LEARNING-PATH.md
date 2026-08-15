@@ -197,7 +197,7 @@
 | 0503 | 数论：扩展欧几里得算法 | 数学 | [math/extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
 | 0542 | 线性不定方程 | 数学 | [math/linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
 | 0543 | 线性同余方程 | 数学 | [math/linear-congruences.md](math/linear-congruences.md) |
-| 0506 | 模逆元 | 数学 | `math/0506-modular-inverse.md` |
+| 0506 | 模逆元 | 数学 | [math/modular-inverse.md](math/modular-inverse.md) |
 | 0505 | 筛法与质因数预处理 | 数学 | `math/0505-sieve.md` |
 | 0540 | 数论：正因数个数 | 数学 | `math/0540-divisor-count.md` |
 | 0541 | 数论：正因数和 | 数学 | `math/0541-divisor-sum.md` |
@@ -387,6 +387,8 @@
 | 0504e1 | 模运算：modint | [math/mod-int.md](math/mod-int.md) |
 | 0505e1 | 杜教筛 | `math/du-jiao-sieve.md` |
 | 0505e2 | Min_25 筛 | `math/min-25-sieve.md` |
+| 0506e1 | 模逆元：线性预处理 | `math/linear-modular-inverses.md` |
+| 0506e2 | 模逆元：批量求逆 | `math/batch-modular-inverses.md` |
 | 0507e1 | 组合数：Lucas 定理 | `math/lucas-theorem.md` |
 | 0507e2 | 组合数：扩展 Lucas 定理 | `math/extended-lucas-theorem.md` |
 | 0508e1 | 扩展欧拉定理 | `math/extended-euler-theorem.md` |

@@ -267,7 +267,9 @@
 | 0505 | 筛法与质因数预处理 | 计划 | `math/0505-sieve.md` |
 | 0505e1 | 杜教筛 | 计划 | `math/du-jiao-sieve.md` |
 | 0505e2 | Min_25 筛 | 计划 | `math/min-25-sieve.md` |
-| 0506 | 模逆元 | 计划 | `math/0506-modular-inverse.md` |
+| 0506 | 模逆元 | 待审阅 | [modular-inverse.md](math/modular-inverse.md) |
+| 0506e1 | 模逆元：线性预处理 | 计划 | `math/linear-modular-inverses.md` |
+| 0506e2 | 模逆元：批量求逆 | 计划 | `math/batch-modular-inverses.md` |
 | 0507 | 组合数与基础计数 | 计划 | `math/0507-combinatorics.md` |
 | 0507e1 | 组合数：Lucas 定理 | 计划 | `math/lucas-theorem.md` |
 | 0507e2 | 组合数：扩展 Lucas 定理 | 计划 | `math/extended-lucas-theorem.md` |
