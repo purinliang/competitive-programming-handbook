@@ -1,0 +1,86 @@
+[
+  {
+    "id": "binary-arithmetic-operators",
+    "prompt": "下面哪个运算符表示整数取余？",
+    "options": [
+      { "id": "a", "text": "`/`" },
+      { "id": "b", "text": "`%`" },
+      { "id": "c", "text": "`*`" },
+      { "id": "d", "text": "`//`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`%` 计算整数除法的余数；`/` 计算商，`*` 计算乘积，C++ 没有 `//` 取余运算符。"
+  },
+  {
+    "id": "integer-division-toward-zero",
+    "prompt": "在 C++17 中，表达式 `-7 / 3` 的结果是多少？",
+    "options": [
+      { "id": "a", "text": "`-3`" },
+      { "id": "b", "text": "`-2`" },
+      { "id": "c", "text": "`2`" },
+      { "id": "d", "text": "`2.333...`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "两个操作数都是整数，商的小数部分向零截去；$-2.333\\ldots$ 因而得到 `-2`。"
+  },
+  {
+    "id": "division-remainder-identity",
+    "prompt": "在运算结果都能表示且 `b != 0` 时，`a / b` 与 `a % b` 满足哪条关系？",
+    "options": [
+      { "id": "a", "text": "`a == (a / b) * b + a % b`" },
+      { "id": "b", "text": "`a == (a % b) * b`" },
+      { "id": "c", "text": "`a / b == a % b`" },
+      { "id": "d", "text": "`a + b == a % b`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "整数由完整的若干个 `b` 与余下部分组成，因此商和余数满足这条恒等式。"
+  },
+  {
+    "id": "negative-remainder",
+    "prompt": "表达式 `-7 % 3` 的结果是多少？",
+    "options": [
+      { "id": "a", "text": "`-2`" },
+      { "id": "b", "text": "`-1`" },
+      { "id": "c", "text": "`1`" },
+      { "id": "d", "text": "`2`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "整数商是 `-2`，所以 $-7=(-2)\\times3+(-1)$；非零余数的符号与被除数相同。"
+  },
+  {
+    "id": "division-by-zero",
+    "prompt": "对整数执行 `a / 0` 或 `a % 0` 会怎样？",
+    "options": [
+      { "id": "a", "text": "结果固定为 `0`" },
+      { "id": "b", "text": "结果固定为最大整数" },
+      { "id": "c", "text": "发生未定义行为" },
+      { "id": "d", "text": "自动改用浮点运算" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "整数除法和取余都要求右操作数非零；正确程序必须在需要时先排除零除数。"
+  },
+  {
+    "id": "unary-or-binary-minus",
+    "prompt": "在 `int opposite = -a;` 中，`-` 是什么运算符？",
+    "options": [
+      { "id": "a", "text": "二元减法" },
+      { "id": "b", "text": "一元取负" },
+      { "id": "c", "text": "比较运算" },
+      { "id": "d", "text": "赋值运算" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "这里的 `-` 只有一个操作数 `a`，因此是一元取负；`a - b` 中的同一符号才是二元减法。"
+  },
+  {
+    "id": "arithmetic-precedence",
+    "prompt": "表达式 `20 / 5 * 2` 的结果是多少？",
+    "options": [
+      { "id": "a", "text": "`2`" },
+      { "id": "b", "text": "`4`" },
+      { "id": "c", "text": "`8`" },
+      { "id": "d", "text": "`20`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`/` 与 `*` 优先级相同并从左到右结合，先算 `20 / 5 == 4`，再算 `4 * 2 == 8`。"
+  }
+]

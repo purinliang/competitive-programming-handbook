@@ -89,7 +89,7 @@ bool inside = index < n;
 
 ## 算术结果的比较
 
-[表达式：算术运算符](arithmetic-operators.md) 产生数值，比较运算符可以继续判断这个数值：
+[算术运算符](arithmetic-operators.md) 产生数值，比较运算符可以继续判断这个数值：
 
 ```cpp
 bool enough = a + b >= target;

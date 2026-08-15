@@ -47,7 +47,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 0107 | 算术运算符 | 定稿 | [arithmetic-operators.md](cpp/arithmetic-operators.md) |
+| 0107 | 算术运算符 | 待审阅 | [arithmetic-operators.md](cpp/arithmetic-operators.md) |
 | 0108 | 比较运算符 | 待审阅 | [comparison-operators.md](cpp/comparison-operators.md) |
 | 0109 | 逻辑运算符 | 待审阅 | [logical-operators.md](cpp/logical-operators.md) |
 | 0133 | 位运算符 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
