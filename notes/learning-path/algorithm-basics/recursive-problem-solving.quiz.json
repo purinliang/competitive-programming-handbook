@@ -1,0 +1,98 @@
+[
+  {
+    "id": "function-contract",
+    "prompt": "设计递归算法时，第一步最应该明确什么？",
+    "options": [
+      { "id": "a", "text": "递归函数接收什么问题并返回什么答案" },
+      { "id": "b", "text": "函数名必须最短" },
+      { "id": "c", "text": "调用次数必须是偶数" },
+      { "id": "d", "text": "先删除所有基本情况" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "准确的函数契约决定较小调用返回什么，也决定当前层该怎样组合答案。"
+  },
+  {
+    "id": "factorial-base-case",
+    "prompt": "计算非负整数阶乘时，哪一项是自然的基本情况？",
+    "options": [
+      { "id": "a", "text": "`factorial(n) = n` 对所有 n 成立" },
+      { "id": "b", "text": "`factorial(0) = 1`" },
+      { "id": "c", "text": "调用 `factorial(n)` 自身" },
+      { "id": "d", "text": "把 n 每次增加 1" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "0! 有无需继续递归的直接答案 1，它为缩小过程提供终点。"
+  },
+  {
+    "id": "smaller-subproblem",
+    "prompt": "由 $n!=n\\times(n-1)!$ 设计递归时，较小的同类问题是什么？",
+    "options": [
+      { "id": "a", "text": "计算 `factorial(n+1)`" },
+      { "id": "b", "text": "重新计算 `factorial(n)`" },
+      { "id": "c", "text": "计算 `factorial(n-1)`" },
+      { "id": "d", "text": "把 n 转成字符串" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "参数 n-1 严格更小，并且返回值正是当前层公式需要的 (n-1)!。"
+  },
+  {
+    "id": "inductive-combination",
+    "prompt": "假设 `factorial(n-1)` 已正确返回 `(n-1)!`，当前层应怎样得到 `n!`？",
+    "options": [
+      { "id": "a", "text": "把返回值丢弃" },
+      { "id": "b", "text": "返回 n-1" },
+      { "id": "c", "text": "再次调用相同参数 n" },
+      { "id": "d", "text": "把返回值乘以 n" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "当前层只负责把较小问题答案按定义组合成 n×(n-1)!。"
+  },
+  {
+    "id": "termination-measure",
+    "prompt": "证明阶乘递归终止的关键是什么？",
+    "options": [
+      { "id": "a", "text": "非负参数每次减 1，最终到达 0" },
+      { "id": "b", "text": "函数体中出现乘法" },
+      { "id": "c", "text": "返回类型是 long long" },
+      { "id": "d", "text": "函数写在 main 前面" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "规模量有下界并且每次严格减小，才能保证每条调用链到达基本情况。"
+  },
+  {
+    "id": "call-return-order",
+    "prompt": "计算 `factorial(4)` 时，为什么乘法结果从基本情况开始向外得到？",
+    "options": [
+      { "id": "a", "text": "外层调用会先被删除" },
+      { "id": "b", "text": "每层等待更小调用返回后才能完成自己的乘法" },
+      { "id": "c", "text": "递归调用不使用调用栈" },
+      { "id": "d", "text": "基本情况会重新读取输入" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "调用先向更小参数深入，返回时才依次恢复各层保存的 n 并完成组合。"
+  },
+  {
+    "id": "fibonacci-repetition",
+    "prompt": "朴素斐波那契递归的主要效率问题是什么？",
+    "options": [
+      { "id": "a", "text": "它无法表达斐波那契定义" },
+      { "id": "b", "text": "它只能返回浮点数" },
+      { "id": "c", "text": "相同参数的子问题会在不同分支重复计算" },
+      { "id": "d", "text": "它没有任何基本情况" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "函数正确且终止，但调用树含大量重复节点，时间随 n 指数增长。"
+  },
+  {
+    "id": "recursion-vs-recurrence",
+    "prompt": "递归与递推关系的区别是什么？",
+    "options": [
+      { "id": "a", "text": "二者只是同一个词的两种写法" },
+      { "id": "b", "text": "递归描述函数求值结构，递推描述各项数学依赖" },
+      { "id": "c", "text": "递推一定使用函数调用自身" },
+      { "id": "d", "text": "递归一定比循环更快" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "同一递推关系可以用递归自顶向下求值，也可以按依赖顺序循环计算。"
+  }
+]

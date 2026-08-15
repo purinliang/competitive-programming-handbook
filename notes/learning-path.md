@@ -164,7 +164,7 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0250 | 递归与问题分解 | 算法基础 | `algorithm-basics/recursive-problem-solving.md` |
+| 0250 | 递归与问题分解 | 算法基础 | [algorithm-basics/recursive-problem-solving.md](algorithm-basics/recursive-problem-solving.md) |
 | 0202 | 递推 | 算法基础 | [algorithm-basics/recurrence.md](algorithm-basics/recurrence.md) |
 
 ### 学习单元：排序
