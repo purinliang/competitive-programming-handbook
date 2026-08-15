@@ -142,7 +142,7 @@ print_separator();
 
 ## solve 函数
 
-从 [入门：Hello World!](hello-world.md) 开始，本书就把题目的主要逻辑放在 `solve()` 中。现在可以准确解释它的头部：
+从 [Hello World!](hello-world.md) 开始，本书就把题目的主要逻辑放在 `solve()` 中。现在可以准确解释它的头部：
 
 ```cpp
 void solve() {}

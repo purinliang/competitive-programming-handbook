@@ -1,4 +1,4 @@
-# 入门：Hello World!
+# Hello World!
 
 > 状态：定稿
 
