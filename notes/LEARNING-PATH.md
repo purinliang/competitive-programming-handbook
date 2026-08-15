@@ -163,6 +163,7 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
+| 0227 | 二叉堆 | 基础算法 | [algorithm-basics/binary-heap.md](algorithm-basics/binary-heap.md) |
 | 0144 | 容器适配器：priority_queue | C++ | [cpp/priority-queue.md](cpp/priority-queue.md) |
 | 0145 | 有序关联容器：set | C++ | [cpp/set.md](cpp/set.md) |
 | 0146 | 有序关联容器：multiset | C++ | [cpp/multiset.md](cpp/multiset.md) |
@@ -183,7 +184,6 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0151 | bitset | C++ | [cpp/bitset.md](cpp/bitset.md) |
-| 0227 | 二叉堆 | 基础算法 | `algorithm-basics/0227-binary-heap.md` |
 | 0304 | 线段树：基础 | 数据结构 | [data-structures/segment-tree.md](data-structures/segment-tree.md) |
 | 0306 | 树状数组：基础 | 数据结构 | [data-structures/fenwick-tree.md](data-structures/fenwick-tree.md) |
 | 0307 | 并查集 | 数据结构 | `data-structures/0307-disjoint-set-union.md` |
