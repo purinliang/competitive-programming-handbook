@@ -28,8 +28,19 @@ interface ReportRecord {
 }
 
 interface ModerationData {
+  events: ModerationEvent[];
   reports: ReportRecord[];
   threads: ThreadRecord[];
+}
+
+interface ModerationEvent {
+  action: string;
+  createdAt: number;
+  id: string;
+  moderatorName: string;
+  reason: string | null;
+  targetId: string;
+  targetKind: "comment" | "report" | "thread";
 }
 
 export function ModerationDashboard() {
@@ -169,6 +180,22 @@ export function ModerationDashboard() {
                 >软删除</button>
               )}
             </div>
+          </article>
+        ))}
+      </section>
+
+      <section>
+        <h2>审核记录</h2>
+        {data.events.length === 0 ? <p>还没有审核操作。</p> : data.events.map((event) => (
+          <article key={event.id}>
+            <div className="moderation-meta">
+              <span>{event.moderatorName}</span>
+              <span>{new Date(event.createdAt).toLocaleString("zh-CN")}</span>
+            </div>
+            <p>
+              {event.action} {event.targetKind}：{event.targetId}
+            </p>
+            {event.reason ? <p>原因：{event.reason}</p> : null}
           </article>
         ))}
       </section>

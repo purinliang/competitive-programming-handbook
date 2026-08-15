@@ -720,6 +720,15 @@
   color: var(--primary-text);
 }
 
+.discussion-version-quote {
+  margin: 10px 0 0;
+  padding-left: 10px;
+  border-left: 2px solid var(--strong-border);
+  color: var(--faint-text);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
 .discussion-comment {
   margin-top: 14px;
 }

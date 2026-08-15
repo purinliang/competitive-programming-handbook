@@ -29,6 +29,7 @@ interface DiscussionThread {
   comments: DiscussionComment[];
   id: string;
   mine: boolean;
+  quotedText: string | null;
   status: string;
   targetKind: "article" | "section";
   targetTitle: string;
@@ -239,6 +240,11 @@ export function DiscussionPanel({
                 </span>
               ) : null}
             </div>
+            {!thread.versionCurrent && thread.quotedText ? (
+              <blockquote className="discussion-version-quote">
+                {thread.quotedText}
+              </blockquote>
+            ) : null}
             {thread.mine ? (
               <div className="discussion-thread-settings">
                 <button

@@ -3,6 +3,7 @@ import { createMiddleware } from "hono/factory";
 import { HTTPException } from "hono/http-exception";
 
 import { assertSameOrigin, readObject, requiredString } from "./request";
+import { enforceRateLimit } from "./security";
 import { requireSession } from "./session";
 
 import type { AppEnv } from "./types";
@@ -73,11 +74,24 @@ adminRoutes.get("/api/admin/discussions", async (c) => {
      ORDER BY r.createdAt DESC
      LIMIT 100`,
   ).all();
-  return c.json({ reports: reportResult.results, threads: threadResult.results });
+  const eventResult = await c.env.DB.prepare(
+    `SELECT e.id, e.targetKind, e.targetId, e.action, e.reason, e.createdAt,
+            u.name AS moderatorName
+     FROM moderation_events e
+     JOIN user u ON u.id = e.moderatorUserId
+     ORDER BY e.createdAt DESC
+     LIMIT 100`,
+  ).all();
+  return c.json({
+    events: eventResult.results,
+    reports: reportResult.results,
+    threads: threadResult.results,
+  });
 });
 
 adminRoutes.post("/api/admin/threads/:threadId/moderate", async (c) => {
   assertSameOrigin(c.req.raw);
+  await enforceRateLimit(c, c.get("user").id, "admin-moderation", 120, 60_000);
   const body = await readObject(c.req.raw);
   const action = requiredString(body, "action", 16);
   const reason = optionalReason(body);
@@ -106,6 +120,7 @@ adminRoutes.post("/api/admin/threads/:threadId/moderate", async (c) => {
 
 adminRoutes.post("/api/admin/comments/:commentId/moderate", async (c) => {
   assertSameOrigin(c.req.raw);
+  await enforceRateLimit(c, c.get("user").id, "admin-moderation", 120, 60_000);
   const body = await readObject(c.req.raw);
   const action = requiredString(body, "action", 16);
   const reason = optionalReason(body);
@@ -135,6 +150,7 @@ adminRoutes.post("/api/admin/comments/:commentId/moderate", async (c) => {
 
 adminRoutes.post("/api/admin/reports/:reportId/resolve", async (c) => {
   assertSameOrigin(c.req.raw);
+  await enforceRateLimit(c, c.get("user").id, "admin-moderation", 120, 60_000);
   const body = await readObject(c.req.raw);
   const action = requiredString(body, "action", 16);
   const reason = optionalReason(body);

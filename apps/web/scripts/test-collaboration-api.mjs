@@ -114,6 +114,12 @@ const madeAnonymous = await request(`/api/discussions/${threadId}`, {
   user: "student",
 });
 assert.equal(madeAnonymous.response.status, 200);
+const emptyThreadUpdate = await request(`/api/discussions/${threadId}`, {
+  body: {},
+  method: "PATCH",
+  user: "student",
+});
+assert.equal(emptyThreadUpdate.response.status, 400);
 const anonymousView = await request(
   `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
     + "&target_kind=article&target_id=article",
@@ -237,6 +243,9 @@ const locked = await request(`/api/admin/threads/${threadId}/moderate`, {
   user: "admin",
 });
 assert.equal(locked.result.status, "locked");
+const auditView = await request("/api/admin/discussions", { user: "admin" });
+assert.equal(auditView.result.events[0].action, "lock");
+assert.equal(auditView.result.events[0].targetId, threadId);
 const lockedReply = await request(`/api/discussions/${threadId}/comments`, {
   body: { body: "锁定后的回复" },
   method: "POST",

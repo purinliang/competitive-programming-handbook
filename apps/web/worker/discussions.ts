@@ -14,6 +14,7 @@ interface ThreadRow {
   createdAt: number;
   documentEpoch: number;
   id: string;
+  quotedText: string | null;
   status: string;
   targetId: string;
   targetKind: "article" | "section";
@@ -187,8 +188,10 @@ discussionRoutes.get("/api/discussions", async (c) => {
       targetKind: thread.targetKind,
       targetRevision: thread.targetRevision,
       targetTitle: thread.targetTitle,
+      quotedText: thread.quotedText,
       updatedAt: thread.updatedAt,
-      versionCurrent: currentRevision === thread.targetRevision,
+      versionCurrent: thread.documentEpoch === document?.documentEpoch
+        && currentRevision === thread.targetRevision,
       visibility: thread.visibility,
     });
   }
@@ -314,13 +317,28 @@ discussionRoutes.patch("/api/discussions/:threadId", requireSession, async (c) =
   const body = await readObject(c.req.raw);
   const user = c.get("user");
   const thread = await c.env.DB.prepare(
-    "SELECT userId FROM discussion_threads WHERE id = ? AND status != 'deleted'",
-  ).bind(c.req.param("threadId")).first<{ userId: string }>();
+    `SELECT userId, visibility, anonymous
+     FROM discussion_threads WHERE id = ? AND status != 'deleted'`,
+  ).bind(c.req.param("threadId")).first<{
+    anonymous: number;
+    userId: string;
+    visibility: "private" | "public";
+  }>();
   if (!thread || (thread.userId !== user.id && user.role !== "admin")) {
     throw new HTTPException(404, { message: "讨论不存在" });
   }
-  const visibility = body.visibility === "public" ? "public" : "private";
-  const anonymous = body.anonymous === true;
+  if (body.visibility !== undefined
+    && body.visibility !== "private" && body.visibility !== "public") {
+    throw new HTTPException(400, { message: "可见范围无效" });
+  }
+  if (body.anonymous !== undefined && typeof body.anonymous !== "boolean") {
+    throw new HTTPException(400, { message: "匿名设置无效" });
+  }
+  if (body.visibility === undefined && body.anonymous === undefined) {
+    throw new HTTPException(400, { message: "没有需要更新的设置" });
+  }
+  const visibility = body.visibility ?? thread.visibility;
+  const anonymous = body.anonymous ?? Boolean(thread.anonymous);
   const now = Date.now();
   await c.env.DB.batch([
     c.env.DB.prepare(
