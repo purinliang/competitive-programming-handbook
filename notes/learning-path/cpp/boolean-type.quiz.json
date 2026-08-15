@@ -1,0 +1,74 @@
+[
+  {
+    "id": "boolean-values",
+    "prompt": "C++ 的 `bool` 可以保存哪两个值？",
+    "options": [
+      { "id": "a", "text": "`yes` 和 `no`" },
+      { "id": "b", "text": "`true` 和 `false`" },
+      { "id": "c", "text": "`positive` 和 `negative`" },
+      { "id": "d", "text": "任意两个整数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`bool` 专门表示二选一状态，只有布尔字面量 `true` 和 `false` 两种取值。"
+  },
+  {
+    "id": "choose-boolean-state",
+    "prompt": "下面哪个信息最适合使用 `bool` 保存？",
+    "options": [
+      { "id": "a", "text": "一个点是否访问过" },
+      { "id": "b", "text": "一个点被访问了多少次" },
+      { "id": "c", "text": "一条路径的总长度" },
+      { "id": "d", "text": "一个人的姓名" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "是否访问过只有真假两种状态；次数和长度需要整数，姓名则需要字符串。"
+  },
+  {
+    "id": "comparison-result",
+    "prompt": "表达式 `a == b` 的结果是什么类型？",
+    "options": [
+      { "id": "a", "text": "`char`" },
+      { "id": "b", "text": "`int`" },
+      { "id": "c", "text": "`bool`" },
+      { "id": "d", "text": "`double`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "相等关系要么成立、要么不成立，因此比较表达式产生 `true` 或 `false`，类型是 `bool`。"
+  },
+  {
+    "id": "integer-to-boolean",
+    "prompt": "把整数 `-7` 转换成 `bool`，结果是什么？",
+    "options": [
+      { "id": "a", "text": "`false`，因为它小于零" },
+      { "id": "b", "text": "`true`，因为它不是零" },
+      { "id": "c", "text": "`-1`" },
+      { "id": "d", "text": "发生编译错误" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "整数转换成 `bool` 时，只有零变成 `false`；所有非零整数，包括负数，都变成 `true`。"
+  },
+  {
+    "id": "default-boolean-output",
+    "prompt": "没有使用 `boolalpha` 时，`cout` 默认怎样输出 `false` 和 `true`？",
+    "options": [
+      { "id": "a", "text": "`false true`" },
+      { "id": "b", "text": "`no yes`" },
+      { "id": "c", "text": "`-1 1`" },
+      { "id": "d", "text": "`0 1`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "默认布尔输出使用整数形式：`false` 输出为 `0`，`true` 输出为 `1`。"
+  },
+  {
+    "id": "assignment-vs-equality",
+    "prompt": "若要判断 `a` 与 `b` 是否相等，应使用哪段表达式？",
+    "options": [
+      { "id": "a", "text": "`a = b`" },
+      { "id": "b", "text": "`a == b`" },
+      { "id": "c", "text": "`a := b`" },
+      { "id": "d", "text": "`a === b`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`==` 判断两个值是否相等；单个 `=` 是赋值，会修改左侧变量。"
+  }
+]
