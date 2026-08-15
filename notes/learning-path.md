@@ -53,6 +53,7 @@
 | 0133 | 位运算符 | C++ | [cpp/bitwise-operators.md](cpp/bitwise-operators.md) |
 | 0111 | if 与 else | C++ | [cpp/conditional-branches.md](cpp/conditional-branches.md) |
 | 0166 | switch | C++ | [cpp/switch.md](cpp/switch.md) |
+| 0167 | while | C++ | [cpp/while.md](cpp/while.md) |
 | 0112 | 循环 | C++ | [cpp/loops.md](cpp/loops.md) |
 
 ### 学习单元：函数与程序交互
