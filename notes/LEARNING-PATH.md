@@ -190,7 +190,7 @@
 | 0308 | 稀疏表 ST | 数据结构 | `data-structures/0308-sparse-table.md` |
 | 0229 | 单调栈 | 基础算法 | `algorithm-basics/0229-monotonic-stack.md` |
 | 0230 | 单调队列 | 基础算法 | `algorithm-basics/0230-monotonic-queue.md` |
-| 0242 | 倍增：基础 | 基础算法 | `algorithm-basics/doubling.md` |
+| 0242 | 倍增：基础 | 基础算法 | [algorithm-basics/doubling.md](algorithm-basics/doubling.md) |
 | 0504 | 模运算与快速幂 | 数学 | `math/0504-modular-arithmetic-fast-power.md` |
 | 0503 | 数论：扩展欧几里得算法 | 数学 | [math/extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
 | 0542 | 数论：线性不定方程 | 数学 | `math/0542-linear-diophantine-equations.md` |

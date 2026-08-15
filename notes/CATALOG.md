@@ -132,7 +132,7 @@
 | 0237 | 栈的应用：表达式求值 | 待审阅 | [expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
 | 0240 | 编码：哈夫曼编码 | 待审阅 | [huffman-coding.md](algorithm-basics/huffman-coding.md) |
 | 0241 | 编码：格雷码 | 待审阅 | [gray-code.md](algorithm-basics/gray-code.md) |
-| 0242 | 倍增：基础 | 计划 | `algorithm-basics/doubling.md` |
+| 0242 | 倍增：基础 | 待审阅 | [doubling.md](algorithm-basics/doubling.md) |
 | 0243* | 搜索：迭代加深 | 计划 | `algorithm-basics/iterative-deepening.md` |
 | 0244* | 搜索：A* | 计划 | `algorithm-basics/a-star.md` |
 | 0245* | 精确覆盖：Dancing Links（DLX） | 计划 | `algorithm-basics/dancing-links.md` |
