@@ -1,0 +1,46 @@
+[
+  {
+    "id": "fixed-values",
+    "prompt": "程序执行 int a = 3; int b = 5; cout << a + b << '\\n'; 时，输出结果是什么？",
+    "options": [
+      { "id": "a", "text": "3 5" },
+      { "id": "b", "text": "8" },
+      { "id": "c", "text": "a + b" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "a 和 b 分别保存 3 与 5，a + b 会先计算得到 8，再由 cout 输出。"
+  },
+  {
+    "id": "input-order",
+    "prompt": "cin >> a >> b; 会如何处理输入 3 5？",
+    "options": [
+      { "id": "a", "text": "把 3 放进 a，把 5 放进 b" },
+      { "id": "b", "text": "把 3 和 5 都放进 a" },
+      { "id": "c", "text": "直接输出 3 和 5" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "cin 按从左到右的顺序读取两个整数，依次写入 a 和 b。"
+  },
+  {
+    "id": "oj-output",
+    "prompt": "向 OJ 提交 A+B Problem 时，下面哪一种输出方式正确？",
+    "options": [
+      { "id": "a", "text": "先输出“请输入两个整数”，再输出答案" },
+      { "id": "b", "text": "只输出 a + b 的结果并换行" },
+      { "id": "c", "text": "同时输出样例输入和答案" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "OJ 会直接比较程序输出和标准答案；题目没有要求的提示文字会让答案不匹配。"
+  },
+  {
+    "id": "accepted",
+    "prompt": "评测结果 Accepted（AC）表示什么？",
+    "options": [
+      { "id": "a", "text": "代码成功通过了全部测试" },
+      { "id": "b", "text": "代码没有成功编译" },
+      { "id": "c", "text": "程序输出与标准答案不一致" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Accepted 表示提交通过全部测试；编译失败是 CE，答案错误通常是 WA。"
+  }
+]
