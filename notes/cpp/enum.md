@@ -1,6 +1,6 @@
-# 复合类型：enum
+# enum
 
-> 最近修订：2026-08-13 02:43 +10:00（未审阅）
+> 最近修订：2026-08-16 14:25 +10:00（未审阅）
 
 有些变量只允许有限的几种状态，例如一场比赛的结果只能是负、平、胜，一个方向只能是上、右、下、左。直接用整数 `0`、`1`、`2` 表示它们虽然能运行，却要求读者到处记忆每个数字的含义。
 
@@ -181,10 +181,10 @@ using namespace std;
 
 enum Result { LOSS, DRAW, WIN };
 
-int main() {
+void solve() {
     int a;
     int b;
-    scanf("%d%d", &a, &b);
+    cin >> a >> b;
 
     Result result;
     if (a < b) {
@@ -197,15 +197,19 @@ int main() {
 
     switch (result) {
     case LOSS:
-        printf("loss\n");
+        cout << "loss\n";
         break;
     case DRAW:
-        printf("draw\n");
+        cout << "draw\n";
         break;
     case WIN:
-        printf("win\n");
+        cout << "win\n";
         break;
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
