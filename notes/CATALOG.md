@@ -273,8 +273,9 @@
 | 0507 | 组合数：定义与递推 | 待审阅 | [binomial-coefficients.md](math/binomial-coefficients.md) |
 | 0507e1 | 组合数：Lucas 定理 | 计划 | `math/lucas-theorem.md` |
 | 0507e2 | 组合数：扩展 Lucas 定理 | 计划 | `math/extended-lucas-theorem.md` |
-| 0508 | 欧拉函数 | 计划 | `math/0508-euler-totient.md` |
+| 0508 | 欧拉函数 | 待审阅 | [euler-totient.md](math/euler-totient.md) |
 | 0508e1 | 扩展欧拉定理 | 计划 | `math/extended-euler-theorem.md` |
+| 0508e2 | 欧拉函数：筛法预处理 | 计划 | `math/euler-totient-sieve.md` |
 | 0509 | 矩阵运算与线性变换 | 计划 | `math/0509-matrix-operations.md` |
 | 0510 | 数论：中国剩余定理（CRT） | 待审阅 | [chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
 | 0511 | 矩阵快速幂与递推加速 | 计划 | `math/0511-matrix-exponentiation.md` |
@@ -351,6 +352,7 @@
 | 0579 | 计数原理：乘法原理 | 待审阅 | [multiplication-principle.md](math/multiplication-principle.md) |
 | 0580 | 排列数 | 待审阅 | [permutations-count.md](math/permutations-count.md) |
 | 0581 | 组合数：阶乘与逆元预处理 | 待审阅 | [binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
+| 0582 | 欧拉定理 | 计划 | `math/euler-theorem.md` |
 
 ## 06 计算几何
 
