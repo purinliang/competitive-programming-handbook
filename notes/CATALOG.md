@@ -93,7 +93,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 0201 | 复杂度：时间与空间 | 待审阅 | [complexity.md](algorithm-basics/complexity.md) |
-| 0202 | 递推 | 计划 | `algorithm-basics/recurrence.md` |
+| 0202 | 递推 | 待审阅 | [recurrence.md](algorithm-basics/recurrence.md) |
 | 0203 | 排序：基础排序 | 待审阅 | [sorting.md](algorithm-basics/sorting.md) |
 | 0204 | 查找：二分查找 | 待审阅 | [binary-search.md](algorithm-basics/binary-search.md) |
 | 0205 | 双指针 | 待审阅 | [two-pointers.md](algorithm-basics/two-pointers.md) |

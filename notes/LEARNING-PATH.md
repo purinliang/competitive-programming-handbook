@@ -97,7 +97,7 @@
 | 0140 | STL 算法：排序 | C++ | [cpp/sorting.md](cpp/sorting.md) |
 | 0141 | STL 算法：去重 | C++ | [cpp/deduplication.md](cpp/deduplication.md) |
 | 0201 | 复杂度：时间与空间 | 基础算法 | [algorithm-basics/complexity.md](algorithm-basics/complexity.md) |
-| 0202 | 递推 | 基础算法 | `algorithm-basics/recurrence.md` |
+| 0202 | 递推 | 基础算法 | [algorithm-basics/recurrence.md](algorithm-basics/recurrence.md) |
 | 0223 | 线性结构：数组 | 基础算法 | [algorithm-basics/array.md](algorithm-basics/array.md) |
 | 0224 | 链表 | 基础算法 | [algorithm-basics/linked-list.md](algorithm-basics/linked-list.md) |
 | 0225 | 栈 | 基础算法 | [algorithm-basics/stack.md](algorithm-basics/stack.md) |
