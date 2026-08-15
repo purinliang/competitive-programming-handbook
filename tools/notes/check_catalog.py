@@ -354,11 +354,20 @@ class Checker:
             if item.linked != entry.linked:
                 self.error(f"{location}: file link/code style differs from catalog status")
 
-        expected_ids = [
-            article_id
-            for article_id, entry in entries.items()
-            if entry.kind == "扩展专题"
-        ]
+        module_order = {
+            module: index for index, module in enumerate(MODULE_PREFIXES)
+        }
+        expected_ids = sorted(
+            (
+                article_id
+                for article_id, entry in entries.items()
+                if entry.kind == "扩展专题"
+            ),
+            key=lambda article_id: (
+                module_order[Path(entries[article_id].path).parts[0]],
+                article_id,
+            ),
+        )
         if actual_ids != expected_ids:
             missing = sorted(set(expected_ids) - set(actual_ids))
             extra = sorted(set(actual_ids) - set(expected_ids))
@@ -374,7 +383,7 @@ class Checker:
                 )
             if not missing and not extra:
                 self.error(
-                    "learning-path.md: extension index must follow catalog module/ID order"
+                    "learning-path.md: extension index must follow module and ID order"
                 )
 
     def check_article_files(
