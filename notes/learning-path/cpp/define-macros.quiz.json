@@ -1,0 +1,74 @@
+[
+  {
+    "id": "textual-replacement",
+    "prompt": "`#define MAXN 200005` 本质上做了什么？",
+    "options": [
+      { "id": "a", "text": "在预处理阶段按规则替换记号" },
+      { "id": "b", "text": "声明一个有类型的 C++ 对象" },
+      { "id": "c", "text": "在运行时申请数组" },
+      { "id": "d", "text": "定义一个命名空间" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "宏在编译器分析 C++ 类型以前生效，本身不是变量或常量对象。"
+  },
+  {
+    "id": "constant-preference",
+    "prompt": "本书表示固定数组容量时优先使用哪种写法？",
+    "options": [
+      { "id": "a", "text": "`const int MAXN = 200005;`" },
+      { "id": "b", "text": "`#define MAXN 200005`" },
+      { "id": "c", "text": "`#define int MAXN`" },
+      { "id": "d", "text": "`namespace MAXN 200005`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`const` 保留类型和名字，能由 C++ 语言规则检查；本书不使用宏压缩常量。"
+  },
+  {
+    "id": "macro-parentheses",
+    "prompt": "`#define BAD_SQUARE(x) x * x` 计算 `BAD_SQUARE(a + 1)` 为什么可能错误？",
+    "options": [
+      { "id": "a", "text": "展开后的加法与乘法会按原有优先级重新结合" },
+      { "id": "b", "text": "宏参数只能是浮点数" },
+      { "id": "c", "text": "乘法不能出现在预处理结果中" },
+      { "id": "d", "text": "宏会自动把 `a` 改成字符串" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "它展开为 `a + 1 * a + 1`；给参数和整体加括号只能修复这种优先级问题。"
+  },
+  {
+    "id": "repeated-evaluation",
+    "prompt": "即使写成 `#define SQUARE(x) ((x) * (x))`，仍有什么风险？",
+    "options": [
+      { "id": "a", "text": "传入表达式可能被求值多次" },
+      { "id": "b", "text": "任何参数都会自动变成零" },
+      { "id": "c", "text": "它只能在命名空间中调用" },
+      { "id": "d", "text": "它一定返回 `double`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "参数 `x` 在替换内容中出现两次；有副作用的实参可能因此产生错误或未定义行为。"
+  },
+  {
+    "id": "do-while-wrapper",
+    "prompt": "旧代码为什么常用 `do { ... } while (0)` 包装多语句宏？",
+    "options": [
+      { "id": "a", "text": "让展开结果像一条语句一样与外层控制流结合" },
+      { "id": "b", "text": "让宏永远重复执行" },
+      { "id": "c", "text": "把宏参数改成数组" },
+      { "id": "d", "text": "自动检测所有类型错误" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "条件为零使循环只执行一次，而语法外形能避免多条裸语句与 `if`、`else` 错误结合。"
+  },
+  {
+    "id": "undef-scope",
+    "prompt": "`#undef SQUARE` 的直接作用是什么？",
+    "options": [
+      { "id": "a", "text": "从该位置起取消这个宏定义" },
+      { "id": "b", "text": "撤销此前已经完成的替换" },
+      { "id": "c", "text": "删除同名函数" },
+      { "id": "d", "text": "释放所有动态内存" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "它只阻止后续继续使用该宏，不能倒转已经处理的代码，也不能消除宏定义区间内的陷阱。"
+  }
+]

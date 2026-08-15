@@ -135,7 +135,7 @@
 | 0154* | inline | 计划 | `cpp/inline.md` |
 | 0155* | volatile | 计划 | `cpp/volatile.md` |
 | 0157* | 对象生命周期 | 计划 | `cpp/object-lifetime.md` |
-| 0159* | #define 宏 | 计划 | `cpp/define-macros.md` |
+| 0159* | #define 宏 | 待审阅 | [define-macros.md](cpp/define-macros.md) |
 | 0160* | typedef 与 using 类型别名 | 计划 | `cpp/type-aliases.md` |
 | 0121e2 | class | 计划 | `cpp/class.md` |
 | 0121e3 | 类的成员 | 计划 | `cpp/class-members.md` |
