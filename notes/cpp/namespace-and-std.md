@@ -1,6 +1,6 @@
-# 名称：命名空间与 std
+# 命名空间与 std
 
-> 状态：定稿
+> 最近修订：2026-08-16 12:31 +10:00（未审阅）
 
 两个不同的库或代码模块完全可能都想使用 `value`、`Node` 或 `sort` 这样的名字。如果所有名字都必须放在同一层，它们会互相冲突，也无法从代码中看出一个名字属于哪个模块。
 
@@ -54,7 +54,8 @@ printf("%d\n", arithmetic::add(2, 3));
 
 ## std 命名空间
 
-[预处理：include](include.md) 让标准头提供的声明参与编译。C++ 标准库的绝大多数名字位于 `std` 命名空间中，因此完整限定名称写作：
+[#include](include.md) 让标准头提供的声明参与编译。C++ 标准库的绝大多数
+名字位于 `std` 命名空间中，因此完整限定名称写作：
 
 ```cpp
 std::scanf std::printf std::cin std::cout std::string std::vector std::sort
