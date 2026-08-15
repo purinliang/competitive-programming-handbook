@@ -6,6 +6,8 @@
 
 标为代码路径的文章尚在计划中；可点击链接表示已经存在正文。高中进阶之后不再虚构统一的难度顺序，目录中的其余内容统一收录在文末的 [扩展阅读索引](#扩展阅读索引) 中。
 
+常见 XCPC 路线图中的“铜牌、银牌、金牌”描述的是达到相应竞赛能力时应覆盖的知识集合，不是严格的教学阶段：同一档会同时包含很早学习的基础技巧和依赖较多的专题。本路线把入门到铜牌知识进一步拆成阶段 1–5，再用阶段 6 收录高中进阶主干；扩展阅读覆盖金牌及更远专题。两套分级只能相互校准，不能逐项机械换算。
+
 ## 下标与区间约定
 
 本书自己定义的数组、字符串、图、树和算法状态默认使用 1-based 下标：长度为 `n` 的对象使用 `1..n`，位置 `0` 留给空前缀、空节点、边界或哨兵。自定义区间默认是闭区间 `[l, r]`，长度为 `r - l + 1`；动态存储在逻辑容量之外统一保留 `+5` 余量，并单独保存真实长度。
@@ -95,6 +97,7 @@
 | 0140 | STL 算法：排序 | C++ | [cpp/sorting.md](cpp/sorting.md) |
 | 0141 | STL 算法：去重 | C++ | [cpp/deduplication.md](cpp/deduplication.md) |
 | 0201 | 复杂度：时间与空间 | 基础算法 | [algorithm-basics/complexity.md](algorithm-basics/complexity.md) |
+| 0202 | 递推 | 基础算法 | `algorithm-basics/recurrence.md` |
 | 0223 | 线性结构：数组 | 基础算法 | [algorithm-basics/array.md](algorithm-basics/array.md) |
 | 0224 | 链表 | 基础算法 | [algorithm-basics/linked-list.md](algorithm-basics/linked-list.md) |
 | 0225 | 栈 | 基础算法 | [algorithm-basics/stack.md](algorithm-basics/stack.md) |
@@ -168,12 +171,8 @@
 | 0149 | 无序关联容器：unordered_set | C++ | [cpp/unordered-set.md](cpp/unordered-set.md) |
 | 0150 | 无序关联容器：unordered_map | C++ | [cpp/unordered-map.md](cpp/unordered-map.md) |
 | 0544 | 高精度整数：加法、减法与乘法 | 数学 | [math/big-integer-addition-subtraction-multiplication.md](math/big-integer-addition-subtraction-multiplication.md) |
-| 0405 | 有向无环图：拓扑排序 | 图论 | [graph-theory/topological-sort.md](graph-theory/topological-sort.md) |
 | 0406 | 图的遍历：多源 BFS | 图论 | [graph-theory/multi-source-bfs.md](graph-theory/multi-source-bfs.md) |
-| 0444 | 最短路：0-1 BFS | 图论 | [graph-theory/zero-one-bfs.md](graph-theory/zero-one-bfs.md) |
 | 0411 | 二分图：判定 | 图论 | [graph-theory/bipartite-graph.md](graph-theory/bipartite-graph.md) |
-| 0417 | 树：直径与中心 | 图论 | [graph-theory/tree-diameter-center.md](graph-theory/tree-diameter-center.md) |
-| 0445 | 树：重心 | 图论 | [graph-theory/tree-centroid.md](graph-theory/tree-centroid.md) |
 | 0311 | 二叉树：结构与存储 | 数据结构 | [data-structures/binary-tree-structure-and-storage.md](data-structures/binary-tree-structure-and-storage.md) |
 | 0328 | 二叉树的遍历：前序、中序与后序 | 数据结构 | [data-structures/binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
 | 0240 | 编码：哈夫曼编码 | 基础算法 | [algorithm-basics/huffman-coding.md](algorithm-basics/huffman-coding.md) |
@@ -191,6 +190,7 @@
 | 0308 | 稀疏表 ST | 数据结构 | `data-structures/0308-sparse-table.md` |
 | 0229 | 单调栈 | 基础算法 | `algorithm-basics/0229-monotonic-stack.md` |
 | 0230 | 单调队列 | 基础算法 | `algorithm-basics/0230-monotonic-queue.md` |
+| 0242 | 倍增：基础 | 基础算法 | `algorithm-basics/doubling.md` |
 | 0504 | 模运算与快速幂 | 数学 | `math/0504-modular-arithmetic-fast-power.md` |
 | 0503 | 数论：扩展欧几里得算法 | 数学 | [math/extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
 | 0542 | 数论：线性不定方程 | 数学 | `math/0542-linear-diophantine-equations.md` |
@@ -202,21 +202,26 @@
 | 0507 | 组合数与基础计数 | 数学 | `math/0507-combinatorics.md` |
 | 0508 | 欧拉函数 | 数学 | `math/0508-euler-totient.md` |
 | 0509 | 矩阵运算与线性变换 | 数学 | `math/0509-matrix-operations.md` |
+| 0511 | 矩阵快速幂与递推加速 | 数学 | `math/0511-matrix-exponentiation.md` |
 | 0512 | 概率与期望基础 | 数学 | `math/0512-probability-expectation.md` |
 | 0518 | 莫比乌斯函数 | 数学 | `math/0518-mobius-function.md` |
-| 0403 | 树上查询：倍增 LCA | 图论 | [graph-theory/lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
 | 0441 | 图的存储：边集 | 图论 | [graph-theory/edge-list.md](graph-theory/edge-list.md) |
 | 0440 | 图的存储：邻接表（链式前向星实现） | 图论 | [graph-theory/chained-forward-star.md](graph-theory/chained-forward-star.md) |
+| 0405 | 有向无环图：拓扑排序 | 图论 | [graph-theory/topological-sort.md](graph-theory/topological-sort.md) |
 | 0407 | 最短路：Dijkstra | 图论 | `graph-theory/0407-dijkstra.md` |
 | 0408 | 最短路：Bellman–Ford 与负环 | 图论 | `graph-theory/0408-bellman-ford.md` |
 | 0409 | 最短路：Floyd–Warshall | 图论 | `graph-theory/0409-floyd-warshall.md` |
+| 0444 | 最短路：0-1 BFS | 图论 | [graph-theory/zero-one-bfs.md](graph-theory/zero-one-bfs.md) |
 | 0410 | 最小生成树：Kruskal | 图论 | `graph-theory/0410-kruskal.md` |
 | 0448 | 最小生成树：Prim | 图论 | `graph-theory/0448-prim.md` |
-| 0416 | 欧拉问题：路径、回路与图 | 图论 | [graph-theory/eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
-| 0438 | 哈密顿问题：路径、回路与图 | 图论 | [graph-theory/hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
+| 0417 | 树：直径与中心 | 图论 | [graph-theory/tree-diameter-center.md](graph-theory/tree-diameter-center.md) |
+| 0445 | 树：重心 | 图论 | [graph-theory/tree-centroid.md](graph-theory/tree-centroid.md) |
 | 0418 | 树的遍历：DFS 序与子树区间 | 图论 | `graph-theory/0418-tree-euler-tour.md` |
+| 0403 | 树上查询：倍增 LCA | 图论 | [graph-theory/lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
 | 0426 | 图：基环树 | 图论 | `graph-theory/0426-unicyclic-graph.md` |
 | 0447 | 图：函数图 | 图论 | `graph-theory/0447-functional-graph.md` |
+| 0416 | 欧拉问题：路径、回路与图 | 图论 | [graph-theory/eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
+| 0438 | 哈密顿问题：路径、回路与图 | 图论 | [graph-theory/hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
 | 0705 | 动态规划：区间 DP | 动态规划 | `dynamic-programming/0705-interval-dp.md` |
 | 0706 | 动态规划：DAG 上的 DP | 动态规划 | `dynamic-programming/0706-dag-dp.md` |
 | 0707 | 动态规划：树形 DP | 动态规划 | `dynamic-programming/0707-tree-dp.md` |
@@ -243,7 +248,6 @@
 | 0446 | 树上技巧：树上差分 | 图论 | `graph-theory/0446-tree-difference.md` |
 | 0510 | 数论：中国剩余定理（CRT） | 数学 | [math/chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
 | 0538 | 数论：扩展中国剩余定理（exCRT） | 数学 | [math/extended-chinese-remainder-theorem.md](math/extended-chinese-remainder-theorem.md) |
-| 0511 | 矩阵快速幂与递推加速 | 数学 | `math/0511-matrix-exponentiation.md` |
 | 0516 | 容斥原理 | 数学 | `math/0516-inclusion-exclusion.md` |
 | 0603 | 直线、线段与相交判定 | 计算几何 | `computational-geometry/0603-lines-segments-intersections.md` |
 | 0604 | 多边形面积与点的位置 | 计算几何 | `computational-geometry/0604-polygon-area-point-location.md` |
@@ -296,6 +300,12 @@
 | 0233* | 排序：堆排序 | `algorithm-basics/0233-heap-sort.md` |
 | 0234* | 排序：基数排序 | `algorithm-basics/0234-radix-sort.md` |
 | 0235* | 排序：桶排序 | `algorithm-basics/0235-bucket-sort.md` |
+| 0243* | 搜索：迭代加深 | `algorithm-basics/iterative-deepening.md` |
+| 0244* | 搜索：A* | `algorithm-basics/a-star.md` |
+| 0245* | 精确覆盖：Dancing Links（DLX） | `algorithm-basics/dancing-links.md` |
+| 0246* | 随机化：爬山法 | `algorithm-basics/hill-climbing.md` |
+| 0247* | 随机化：模拟退火 | `algorithm-basics/simulated-annealing.md` |
+| 0248* | 工程：对拍 | `algorithm-basics/stress-testing.md` |
 
 ### 03 数据结构
 
@@ -320,12 +330,24 @@
 | 0327* | 启发式合并（small-to-large） | `data-structures/0327-small-to-large-merging.md` |
 | 0330* | 斜堆 | `data-structures/0330-skew-heap.md` |
 | 0331* | 配对堆 | `data-structures/0331-pairing-heap.md` |
+| 0332* | 可持久化并查集 | `data-structures/persistent-disjoint-set-union.md` |
+| 0333* | 线段树：合并 | `data-structures/segment-tree-merging.md` |
+| 0334* | 树套树：线段树套线段树 | `data-structures/segment-tree-of-segment-trees.md` |
+| 0335* | 树套树：线段树套平衡树 | `data-structures/segment-tree-of-balanced-trees.md` |
+| 0336* | 可持久化平衡树 | `data-structures/persistent-balanced-tree.md` |
+| 0337* | 替罪羊树 | `data-structures/scapegoat-tree.md` |
+| 0338* | 动态树：Link-Cut Tree | `data-structures/link-cut-tree.md` |
+| 0339* | KD 树 | `data-structures/kd-tree.md` |
+| 0340* | 链上分块 | `data-structures/chain-block-decomposition.md` |
+| 0341* | 树上分块 | `data-structures/tree-block-decomposition.md` |
 
 ### 04 图论
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
 | 0412* | 二分图：最大匹配 | `graph-theory/0412-bipartite-matching.md` |
+| 0412e1 | 二分图最大匹配：Hopcroft–Karp | `graph-theory/hopcroft-karp.md` |
+| 0412e2 | 二分图最大权匹配：Kuhn–Munkres（KM） | `graph-theory/kuhn-munkres.md` |
 | 0415* | 无向图：双连通分量与圆方树 | `graph-theory/0415-biconnected-components-block-cut-tree.md` |
 | 0420* | 2-SAT | `graph-theory/0420-two-sat.md` |
 | 0421* | 网络流：Dinic | `graph-theory/0421-dinic-max-flow.md` |
@@ -337,17 +359,40 @@
 | 0428* | 差分约束 | `graph-theory/0428-difference-constraints.md` |
 | 0430* | 树哈希 | `graph-theory/0430-tree-hashing.md` |
 | 0438e1 | 哈密顿问题：小规模回溯 | [graph-theory/hamiltonian-backtracking.md](graph-theory/hamiltonian-backtracking.md) |
+| 0449* | 最短路：最短路树 | `graph-theory/shortest-path-tree.md` |
+| 0450* | 最小生成树：Borůvka | `graph-theory/boruvka.md` |
+| 0451* | 网络流：SAP | `graph-theory/sap-max-flow.md` |
+| 0452* | 网络流：可行流 | `graph-theory/feasible-flow.md` |
+| 0453* | 网络流：上下界 | `graph-theory/bounded-flow.md` |
+| 0454* | 竞赛图 | `graph-theory/tournament-graph.md` |
+| 0455* | Steiner 树 | `graph-theory/steiner-tree.md` |
+| 0456* | 仙人掌 | `graph-theory/cactus-graph.md` |
+| 0457* | 有向最小生成树：Chu–Liu/Edmonds | `graph-theory/directed-minimum-spanning-tree.md` |
+| 0458* | 一般图最大匹配 | `graph-theory/general-graph-matching.md` |
+| 0459* | 最短路：$k$ 短路 | `graph-theory/k-shortest-paths.md` |
+| 0460* | 支配树 | `graph-theory/dominator-tree.md` |
+| 0461* | 无向图：全局最小割 | `graph-theory/global-minimum-cut.md` |
+| 0462* | 弦图 | `graph-theory/chordal-graph.md` |
+| 0463* | 树分治：边分治 | `graph-theory/edge-decomposition.md` |
+| 0464* | 树分治：动态点分治 | `graph-theory/dynamic-centroid-decomposition.md` |
+| 0465* | 长链剖分 | `graph-theory/long-chain-decomposition.md` |
 
 ### 05 数学
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
 | 0504e1 | 模运算：modint | [math/mod-int.md](math/mod-int.md) |
+| 0505e1 | 杜教筛 | `math/du-jiao-sieve.md` |
+| 0505e2 | Min_25 筛 | `math/min-25-sieve.md` |
+| 0507e1 | 组合数：Lucas 定理 | `math/lucas-theorem.md` |
+| 0507e2 | 组合数：扩展 Lucas 定理 | `math/extended-lucas-theorem.md` |
+| 0508e1 | 扩展欧拉定理 | `math/extended-euler-theorem.md` |
 | 0513* | Nim、SG 函数与基础博弈论 | `math/0513-nim-sg-game-theory.md` |
 | 0514* | XOR 线性基 | `math/0514-xor-linear-basis.md` |
 | 0515* | 高斯消元 | `math/0515-gaussian-elimination.md` |
 | 0517* | 多项式：NTT | `math/0517-ntt.md` |
 | 0519* | BSGS 与离散对数 | `math/0519-discrete-logarithm.md` |
+| 0519e1 | 离散对数：Pohlig–Hellman | `math/pohlig-hellman.md` |
 | 0520* | 多项式：表示、加法与减法 | `math/0520-polynomial-representation-addition-subtraction.md` |
 | 0521* | 多项式：卷积与朴素乘法 | `math/0521-convolution-naive-multiplication.md` |
 | 0522* | 复数与单位根 | `math/0522-complex-numbers-roots-of-unity.md` |
@@ -365,6 +410,35 @@
 | 0534* | 莫比乌斯反演 | `math/0534-mobius-inversion.md` |
 | 0544e1 | 高精度整数：除法与余数 | `math/big-integer-division-remainder.md` |
 | 0544e2 | 高精度整数：负数 | `math/big-integer-negative-numbers.md` |
+| 0545* | 素性测试：Miller–Rabin | `math/miller-rabin.md` |
+| 0546* | 整数分解：Pollard–Rho | `math/pollard-rho.md` |
+| 0547* | 原根 | `math/primitive-roots.md` |
+| 0548* | 二次剩余与勒让德符号 | `math/quadratic-residues-legendre-symbol.md` |
+| 0549* | 二次剩余：Cipolla 算法 | `math/cipolla.md` |
+| 0550* | 佩尔方程 | `math/pell-equation.md` |
+| 0551* | 线性代数：行列式 | `math/determinant.md` |
+| 0552* | 线性递推：Berlekamp–Massey | `math/berlekamp-massey.md` |
+| 0553* | 图论计数：矩阵树定理 | `math/matrix-tree-theorem.md` |
+| 0554* | 欧拉回路计数：BEST 定理 | `math/best-theorem.md` |
+| 0555* | 树的编码：Prüfer 序列 | `math/prufer-sequence.md` |
+| 0556* | 路径计数：LGV 引理 | `math/lindstrom-gessel-viennot-lemma.md` |
+| 0557* | 生成函数：基础 | `math/generating-functions.md` |
+| 0558* | 群论：置换 | `math/permutations.md` |
+| 0559* | 群作用计数：Burnside 引理 | `math/burnside-lemma.md` |
+| 0560* | 群作用计数：Pólya 定理 | `math/polya-enumeration.md` |
+| 0561* | 线性规划 | `math/linear-programming.md` |
+| 0562* | 组合计数：抽屉原理 | `math/pigeonhole-principle.md` |
+| 0563* | 组合计数：最值容斥 | `math/min-max-inclusion-exclusion.md` |
+| 0564* | 组合计数：二项式反演 | `math/binomial-inversion.md` |
+| 0565* | 常见数列：错排数 | `math/derangement-numbers.md` |
+| 0566* | 常见数列：Catalan 数 | `math/catalan-numbers.md` |
+| 0567* | 常见数列：Stirling 数 | `math/stirling-numbers.md` |
+| 0568* | 常见数列：Bell 数 | `math/bell-numbers.md` |
+| 0569* | 常见数列：Bernoulli 数 | `math/bernoulli-numbers.md` |
+| 0570* | 组合计数：杨表 | `math/young-tableaux.md` |
+| 0571* | 数值积分：Simpson 公式 | `math/simpson-rule.md` |
+| 0572* | 数值积分：自适应 Simpson | `math/adaptive-simpson.md` |
+| 0573* | 集合幂级数：FWT/FMT | `math/fast-subset-transforms.md` |
 
 ### 06 计算几何
 
@@ -378,6 +452,15 @@
 | 0611* | 凸多边形：切线与极值查询 | `computational-geometry/0611-convex-polygon-tangents-extrema.md` |
 | 0612* | 半平面交 | `computational-geometry/0612-half-plane-intersection.md` |
 | 0613* | 闵可夫斯基和 | `computational-geometry/0613-minkowski-sum.md` |
+| 0614* | 极角排序 | `computational-geometry/polar-angle-sort.md` |
+| 0615* | 圆：切线 | `computational-geometry/circle-tangents.md` |
+| 0616* | 圆：面积交与面积并 | `computational-geometry/circle-area-intersection-union.md` |
+| 0617* | 三维计算几何 | `computational-geometry/three-dimensional-geometry.md` |
+| 0618* | 平面点定位 | `computational-geometry/point-location.md` |
+| 0619* | 最小圆覆盖 | `computational-geometry/minimum-enclosing-circle.md` |
+| 0620* | Voronoi 图 | `computational-geometry/voronoi-diagram.md` |
+| 0621* | 反演几何 | `computational-geometry/inversive-geometry.md` |
+| 0622* | Pick 定理 | `computational-geometry/pick-theorem.md` |
 
 ### 07 动态规划
 
@@ -387,6 +470,19 @@
 | 0712* | 动态规划优化：斜率 | `dynamic-programming/0712-convex-hull-trick.md` |
 | 0713* | 动态规划优化：分治 | `dynamic-programming/0713-divide-conquer-optimization.md` |
 | 0714* | 动态规划：Slope Trick | `dynamic-programming/0714-slope-trick.md` |
+| 0718* | 记忆化搜索 | `dynamic-programming/memoized-search.md` |
+| 0719* | 背包：分组背包 | `dynamic-programming/group-knapsack.md` |
+| 0720* | 背包：混合背包 | `dynamic-programming/mixed-knapsack.md` |
+| 0721* | 背包：多维背包 | `dynamic-programming/multidimensional-knapsack.md` |
+| 0722* | 背包：树上背包 | `dynamic-programming/tree-knapsack.md` |
+| 0723* | 状态压缩：轮廓线 DP | `dynamic-programming/profile-dp.md` |
+| 0724* | 状态压缩：插头 DP | `dynamic-programming/plug-dp.md` |
+| 0725* | 括号序列 DP | `dynamic-programming/bracket-sequence-dp.md` |
+| 0726* | 自动机 DP | `dynamic-programming/automaton-dp.md` |
+| 0727* | 划分 DP | `dynamic-programming/partition-dp.md` |
+| 0728* | 动态 DP | `dynamic-programming/dynamic-dp.md` |
+| 0729* | 动态规划优化：单调栈 | `dynamic-programming/monotone-stack-optimization.md` |
+| 0730* | 动态规划优化：四边形不等式 | `dynamic-programming/quadrangle-inequality-optimization.md` |
 
 ### 08 字符串
 
@@ -398,3 +494,5 @@
 | 0810* | 字符串：后缀自动机 | `strings/0810-suffix-automaton.md` |
 | 0811* | 字符串：回文树 | `strings/0811-palindromic-tree.md` |
 | 0812* | 字符串：后缀树 | `strings/0812-suffix-tree.md` |
+| 0813* | 最小表示法 | `strings/minimum-representation.md` |
+| 0814* | Lyndon 分解 | `strings/lyndon-factorization.md` |

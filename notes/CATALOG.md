@@ -8,6 +8,10 @@
 
 <!-- legacy-drafts: -->
 
+## 下标与区间约定
+
+本书自定义的对象默认从 1 开始编号并使用闭区间；讲解 C++ 与 STL 接口时，保留其原生的从 0 开始编号和半开区间。完整的容量、哨兵和接口转换规则见 [学习路线中的约定](LEARNING-PATH.md#下标与区间约定)。
+
 ## 01 C++ 基础
 
 | ID | 知识点 | 状态 | 文件 |
@@ -89,6 +93,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 0201 | 复杂度：时间与空间 | 待审阅 | [complexity.md](algorithm-basics/complexity.md) |
+| 0202 | 递推 | 计划 | `algorithm-basics/recurrence.md` |
 | 0203 | 排序：基础排序 | 待审阅 | [sorting.md](algorithm-basics/sorting.md) |
 | 0204 | 查找：二分查找 | 待审阅 | [binary-search.md](algorithm-basics/binary-search.md) |
 | 0205 | 双指针 | 待审阅 | [two-pointers.md](algorithm-basics/two-pointers.md) |
@@ -127,6 +132,13 @@
 | 0237 | 栈的应用：表达式求值 | 待审阅 | [expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
 | 0240 | 编码：哈夫曼编码 | 待审阅 | [huffman-coding.md](algorithm-basics/huffman-coding.md) |
 | 0241 | 编码：格雷码 | 待审阅 | [gray-code.md](algorithm-basics/gray-code.md) |
+| 0242 | 倍增：基础 | 计划 | `algorithm-basics/doubling.md` |
+| 0243* | 搜索：迭代加深 | 计划 | `algorithm-basics/iterative-deepening.md` |
+| 0244* | 搜索：A* | 计划 | `algorithm-basics/a-star.md` |
+| 0245* | 精确覆盖：Dancing Links（DLX） | 计划 | `algorithm-basics/dancing-links.md` |
+| 0246* | 随机化：爬山法 | 计划 | `algorithm-basics/hill-climbing.md` |
+| 0247* | 随机化：模拟退火 | 计划 | `algorithm-basics/simulated-annealing.md` |
+| 0248* | 工程：对拍 | 计划 | `algorithm-basics/stress-testing.md` |
 
 ## 03 数据结构
 
@@ -158,6 +170,16 @@
 | 0328 | 二叉树的遍历：前序、中序与后序 | 定稿 | [binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
 | 0330* | 斜堆 | 计划 | `data-structures/0330-skew-heap.md` |
 | 0331* | 配对堆 | 计划 | `data-structures/0331-pairing-heap.md` |
+| 0332* | 可持久化并查集 | 计划 | `data-structures/persistent-disjoint-set-union.md` |
+| 0333* | 线段树：合并 | 计划 | `data-structures/segment-tree-merging.md` |
+| 0334* | 树套树：线段树套线段树 | 计划 | `data-structures/segment-tree-of-segment-trees.md` |
+| 0335* | 树套树：线段树套平衡树 | 计划 | `data-structures/segment-tree-of-balanced-trees.md` |
+| 0336* | 可持久化平衡树 | 计划 | `data-structures/persistent-balanced-tree.md` |
+| 0337* | 替罪羊树 | 计划 | `data-structures/scapegoat-tree.md` |
+| 0338* | 动态树：Link-Cut Tree | 计划 | `data-structures/link-cut-tree.md` |
+| 0339* | KD 树 | 计划 | `data-structures/kd-tree.md` |
+| 0340* | 链上分块 | 计划 | `data-structures/chain-block-decomposition.md` |
+| 0341* | 树上分块 | 计划 | `data-structures/tree-block-decomposition.md` |
 
 ## 04 图论
 
@@ -175,6 +197,8 @@
 | 0410 | 最小生成树：Kruskal | 计划 | `graph-theory/0410-kruskal.md` |
 | 0411 | 二分图：判定 | 待审阅 | [bipartite-graph.md](graph-theory/bipartite-graph.md) |
 | 0412* | 二分图：最大匹配 | 计划 | `graph-theory/0412-bipartite-matching.md` |
+| 0412e1 | 二分图最大匹配：Hopcroft–Karp | 计划 | `graph-theory/hopcroft-karp.md` |
+| 0412e2 | 二分图最大权匹配：Kuhn–Munkres（KM） | 计划 | `graph-theory/kuhn-munkres.md` |
 | 0413 | 有向图：强连通分量 | 计划 | `graph-theory/0413-strongly-connected-components.md` |
 | 0414 | 无向图：割点与桥 | 计划 | `graph-theory/0414-articulation-points-bridges.md` |
 | 0415* | 无向图：双连通分量与圆方树 | 计划 | `graph-theory/0415-biconnected-components-block-cut-tree.md` |
@@ -212,6 +236,23 @@
 | 0446 | 树上技巧：树上差分 | 计划 | `graph-theory/0446-tree-difference.md` |
 | 0447 | 图：函数图 | 计划 | `graph-theory/0447-functional-graph.md` |
 | 0448 | 最小生成树：Prim | 计划 | `graph-theory/0448-prim.md` |
+| 0449* | 最短路：最短路树 | 计划 | `graph-theory/shortest-path-tree.md` |
+| 0450* | 最小生成树：Borůvka | 计划 | `graph-theory/boruvka.md` |
+| 0451* | 网络流：SAP | 计划 | `graph-theory/sap-max-flow.md` |
+| 0452* | 网络流：可行流 | 计划 | `graph-theory/feasible-flow.md` |
+| 0453* | 网络流：上下界 | 计划 | `graph-theory/bounded-flow.md` |
+| 0454* | 竞赛图 | 计划 | `graph-theory/tournament-graph.md` |
+| 0455* | Steiner 树 | 计划 | `graph-theory/steiner-tree.md` |
+| 0456* | 仙人掌 | 计划 | `graph-theory/cactus-graph.md` |
+| 0457* | 有向最小生成树：Chu–Liu/Edmonds | 计划 | `graph-theory/directed-minimum-spanning-tree.md` |
+| 0458* | 一般图最大匹配 | 计划 | `graph-theory/general-graph-matching.md` |
+| 0459* | 最短路：$k$ 短路 | 计划 | `graph-theory/k-shortest-paths.md` |
+| 0460* | 支配树 | 计划 | `graph-theory/dominator-tree.md` |
+| 0461* | 无向图：全局最小割 | 计划 | `graph-theory/global-minimum-cut.md` |
+| 0462* | 弦图 | 计划 | `graph-theory/chordal-graph.md` |
+| 0463* | 树分治：边分治 | 计划 | `graph-theory/edge-decomposition.md` |
+| 0464* | 树分治：动态点分治 | 计划 | `graph-theory/dynamic-centroid-decomposition.md` |
+| 0465* | 长链剖分 | 计划 | `graph-theory/long-chain-decomposition.md` |
 
 ## 05 数学
 
@@ -223,9 +264,14 @@
 | 0504 | 模运算与快速幂 | 计划 | `math/0504-modular-arithmetic-fast-power.md` |
 | 0504e1 | 模运算：modint | 待审阅 | [mod-int.md](math/mod-int.md) |
 | 0505 | 筛法与质因数预处理 | 计划 | `math/0505-sieve.md` |
+| 0505e1 | 杜教筛 | 计划 | `math/du-jiao-sieve.md` |
+| 0505e2 | Min_25 筛 | 计划 | `math/min-25-sieve.md` |
 | 0506 | 模逆元 | 计划 | `math/0506-modular-inverse.md` |
 | 0507 | 组合数与基础计数 | 计划 | `math/0507-combinatorics.md` |
+| 0507e1 | 组合数：Lucas 定理 | 计划 | `math/lucas-theorem.md` |
+| 0507e2 | 组合数：扩展 Lucas 定理 | 计划 | `math/extended-lucas-theorem.md` |
 | 0508 | 欧拉函数 | 计划 | `math/0508-euler-totient.md` |
+| 0508e1 | 扩展欧拉定理 | 计划 | `math/extended-euler-theorem.md` |
 | 0509 | 矩阵运算与线性变换 | 计划 | `math/0509-matrix-operations.md` |
 | 0510 | 数论：中国剩余定理（CRT） | 待审阅 | [chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
 | 0511 | 矩阵快速幂与递推加速 | 计划 | `math/0511-matrix-exponentiation.md` |
@@ -237,6 +283,7 @@
 | 0517* | 多项式：NTT | 计划 | `math/0517-ntt.md` |
 | 0518 | 莫比乌斯函数 | 计划 | `math/0518-mobius-function.md` |
 | 0519* | BSGS 与离散对数 | 计划 | `math/0519-discrete-logarithm.md` |
+| 0519e1 | 离散对数：Pohlig–Hellman | 计划 | `math/pohlig-hellman.md` |
 | 0520* | 多项式：表示、加法与减法 | 计划 | `math/0520-polynomial-representation-addition-subtraction.md` |
 | 0521* | 多项式：卷积与朴素乘法 | 计划 | `math/0521-convolution-naive-multiplication.md` |
 | 0522* | 复数与单位根 | 计划 | `math/0522-complex-numbers-roots-of-unity.md` |
@@ -264,6 +311,35 @@
 | 0544 | 高精度整数：加法、减法与乘法 | 待审阅 | [big-integer-addition-subtraction-multiplication.md](math/big-integer-addition-subtraction-multiplication.md) |
 | 0544e1 | 高精度整数：除法与余数 | 计划 | `math/big-integer-division-remainder.md` |
 | 0544e2 | 高精度整数：负数 | 计划 | `math/big-integer-negative-numbers.md` |
+| 0545* | 素性测试：Miller–Rabin | 计划 | `math/miller-rabin.md` |
+| 0546* | 整数分解：Pollard–Rho | 计划 | `math/pollard-rho.md` |
+| 0547* | 原根 | 计划 | `math/primitive-roots.md` |
+| 0548* | 二次剩余与勒让德符号 | 计划 | `math/quadratic-residues-legendre-symbol.md` |
+| 0549* | 二次剩余：Cipolla 算法 | 计划 | `math/cipolla.md` |
+| 0550* | 佩尔方程 | 计划 | `math/pell-equation.md` |
+| 0551* | 线性代数：行列式 | 计划 | `math/determinant.md` |
+| 0552* | 线性递推：Berlekamp–Massey | 计划 | `math/berlekamp-massey.md` |
+| 0553* | 图论计数：矩阵树定理 | 计划 | `math/matrix-tree-theorem.md` |
+| 0554* | 欧拉回路计数：BEST 定理 | 计划 | `math/best-theorem.md` |
+| 0555* | 树的编码：Prüfer 序列 | 计划 | `math/prufer-sequence.md` |
+| 0556* | 路径计数：LGV 引理 | 计划 | `math/lindstrom-gessel-viennot-lemma.md` |
+| 0557* | 生成函数：基础 | 计划 | `math/generating-functions.md` |
+| 0558* | 群论：置换 | 计划 | `math/permutations.md` |
+| 0559* | 群作用计数：Burnside 引理 | 计划 | `math/burnside-lemma.md` |
+| 0560* | 群作用计数：Pólya 定理 | 计划 | `math/polya-enumeration.md` |
+| 0561* | 线性规划 | 计划 | `math/linear-programming.md` |
+| 0562* | 组合计数：抽屉原理 | 计划 | `math/pigeonhole-principle.md` |
+| 0563* | 组合计数：最值容斥 | 计划 | `math/min-max-inclusion-exclusion.md` |
+| 0564* | 组合计数：二项式反演 | 计划 | `math/binomial-inversion.md` |
+| 0565* | 常见数列：错排数 | 计划 | `math/derangement-numbers.md` |
+| 0566* | 常见数列：Catalan 数 | 计划 | `math/catalan-numbers.md` |
+| 0567* | 常见数列：Stirling 数 | 计划 | `math/stirling-numbers.md` |
+| 0568* | 常见数列：Bell 数 | 计划 | `math/bell-numbers.md` |
+| 0569* | 常见数列：Bernoulli 数 | 计划 | `math/bernoulli-numbers.md` |
+| 0570* | 组合计数：杨表 | 计划 | `math/young-tableaux.md` |
+| 0571* | 数值积分：Simpson 公式 | 计划 | `math/simpson-rule.md` |
+| 0572* | 数值积分：自适应 Simpson | 计划 | `math/adaptive-simpson.md` |
+| 0573* | 集合幂级数：FWT/FMT | 计划 | `math/fast-subset-transforms.md` |
 
 ## 06 计算几何
 
@@ -282,6 +358,15 @@
 | 0611* | 凸多边形：切线与极值查询 | 计划 | `computational-geometry/0611-convex-polygon-tangents-extrema.md` |
 | 0612* | 半平面交 | 计划 | `computational-geometry/0612-half-plane-intersection.md` |
 | 0613* | 闵可夫斯基和 | 计划 | `computational-geometry/0613-minkowski-sum.md` |
+| 0614* | 极角排序 | 计划 | `computational-geometry/polar-angle-sort.md` |
+| 0615* | 圆：切线 | 计划 | `computational-geometry/circle-tangents.md` |
+| 0616* | 圆：面积交与面积并 | 计划 | `computational-geometry/circle-area-intersection-union.md` |
+| 0617* | 三维计算几何 | 计划 | `computational-geometry/three-dimensional-geometry.md` |
+| 0618* | 平面点定位 | 计划 | `computational-geometry/point-location.md` |
+| 0619* | 最小圆覆盖 | 计划 | `computational-geometry/minimum-enclosing-circle.md` |
+| 0620* | Voronoi 图 | 计划 | `computational-geometry/voronoi-diagram.md` |
+| 0621* | 反演几何 | 计划 | `computational-geometry/inversive-geometry.md` |
+| 0622* | Pick 定理 | 计划 | `computational-geometry/pick-theorem.md` |
 
 ## 07 动态规划
 
@@ -305,6 +390,19 @@
 | 0715 | 背包：完全背包 | 待审阅 | [complete-knapsack.md](dynamic-programming/complete-knapsack.md) |
 | 0716 | 背包：多重背包 | 待审阅 | [multiple-knapsack.md](dynamic-programming/multiple-knapsack.md) |
 | 0717 | 动态规划：状态机 DP | 待审阅 | [state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
+| 0718* | 记忆化搜索 | 计划 | `dynamic-programming/memoized-search.md` |
+| 0719* | 背包：分组背包 | 计划 | `dynamic-programming/group-knapsack.md` |
+| 0720* | 背包：混合背包 | 计划 | `dynamic-programming/mixed-knapsack.md` |
+| 0721* | 背包：多维背包 | 计划 | `dynamic-programming/multidimensional-knapsack.md` |
+| 0722* | 背包：树上背包 | 计划 | `dynamic-programming/tree-knapsack.md` |
+| 0723* | 状态压缩：轮廓线 DP | 计划 | `dynamic-programming/profile-dp.md` |
+| 0724* | 状态压缩：插头 DP | 计划 | `dynamic-programming/plug-dp.md` |
+| 0725* | 括号序列 DP | 计划 | `dynamic-programming/bracket-sequence-dp.md` |
+| 0726* | 自动机 DP | 计划 | `dynamic-programming/automaton-dp.md` |
+| 0727* | 划分 DP | 计划 | `dynamic-programming/partition-dp.md` |
+| 0728* | 动态 DP | 计划 | `dynamic-programming/dynamic-dp.md` |
+| 0729* | 动态规划优化：单调栈 | 计划 | `dynamic-programming/monotone-stack-optimization.md` |
+| 0730* | 动态规划优化：四边形不等式 | 计划 | `dynamic-programming/quadrangle-inequality-optimization.md` |
 
 ## 08 字符串
 
@@ -322,3 +420,5 @@
 | 0810* | 字符串：后缀自动机 | 计划 | `strings/0810-suffix-automaton.md` |
 | 0811* | 字符串：回文树 | 计划 | `strings/0811-palindromic-tree.md` |
 | 0812* | 字符串：后缀树 | 计划 | `strings/0812-suffix-tree.md` |
+| 0813* | 最小表示法 | 计划 | `strings/minimum-representation.md` |
+| 0814* | Lyndon 分解 | 计划 | `strings/lyndon-factorization.md` |
