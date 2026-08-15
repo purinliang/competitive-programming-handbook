@@ -1,0 +1,62 @@
+[
+  {
+    "id": "volatile-purpose",
+    "prompt": "`volatile` 主要用于表达什么访问需求？",
+    "options": [
+      { "id": "a", "text": "对象访问可能具有普通代码以外的可观察意义" },
+      { "id": "b", "text": "对象永远不能被修改" },
+      { "id": "c", "text": "所有操作必须在编译时完成" },
+      { "id": "d", "text": "变量一定存入寄存器" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "硬件映射地址等场景的读写本身可能有外部效果，不能按普通内存访问任意省略。"
+  },
+  {
+    "id": "not-atomic",
+    "prompt": "`volatile int counter; counter++;` 是否因此成为原子操作？",
+    "options": [
+      { "id": "a", "text": "不会，自增仍可能包含读取、计算和写回" },
+      { "id": "b", "text": "会，volatile 自动加锁" },
+      { "id": "c", "text": "只在 counter 为零时会" },
+      { "id": "d", "text": "会，而且不再需要内存" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "多个线程共享计数需要 atomic 或互斥保护，volatile 不提供原子性。"
+  },
+  {
+    "id": "not-thread-synchronization",
+    "prompt": "使用 volatile 标志能否建立 C++ 线程间的 happens-before 关系？",
+    "options": [
+      { "id": "a", "text": "不能，它不是线程同步操作" },
+      { "id": "b", "text": "能，它等同于互斥量" },
+      { "id": "c", "text": "能，它会顺序执行整个程序" },
+      { "id": "d", "text": "只有变量名为 ready 时能" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "它不消除数据竞争，也不保证其他普通内存操作按线程所需顺序可见。"
+  },
+  {
+    "id": "const-volatile",
+    "prompt": "`const volatile int status` 中两个限定符是否矛盾？",
+    "options": [
+      { "id": "a", "text": "不矛盾，const 限制修改，volatile 约束访问处理" },
+      { "id": "b", "text": "矛盾，C++ 禁止同时出现" },
+      { "id": "c", "text": "二者都会把对象改成函数" },
+      { "id": "d", "text": "只有动态数组中矛盾" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "例如程序只读但硬件可能改变的状态，在概念上可以同时需要两种限定。"
+  },
+  {
+    "id": "not-performance-hint",
+    "prompt": "给普通竞赛变量加 volatile 能否作为通用加速方式？",
+    "options": [
+      { "id": "a", "text": "不能，它往往限制部分优化并增加噪声" },
+      { "id": "b", "text": "能，所有程序都会变成 O(1)" },
+      { "id": "c", "text": "能，它会修复所有未定义行为" },
+      { "id": "d", "text": "能，它会自动选择更快算法" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "普通正确程序不需要靠 volatile 防止错误优化；本仓库模板不使用它。"
+  }
+]
