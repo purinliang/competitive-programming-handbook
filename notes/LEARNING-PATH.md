@@ -201,7 +201,7 @@
 | 0505 | 筛法：埃氏筛 | 数学 | [math/sieve-of-eratosthenes.md](math/sieve-of-eratosthenes.md) |
 | 0576 | 筛法：欧拉筛（线性筛） | 数学 | [math/euler-sieve.md](math/euler-sieve.md) |
 | 0540 | 正因数个数 | 数学 | [math/divisor-count.md](math/divisor-count.md) |
-| 0541 | 数论：正因数和 | 数学 | `math/0541-divisor-sum.md` |
+| 0541 | 正因数和 | 数学 | [math/divisor-sum.md](math/divisor-sum.md) |
 | 0507 | 组合数与基础计数 | 数学 | `math/0507-combinatorics.md` |
 | 0508 | 欧拉函数 | 数学 | `math/0508-euler-totient.md` |
 | 0509 | 矩阵运算与线性变换 | 数学 | `math/0509-matrix-operations.md` |
