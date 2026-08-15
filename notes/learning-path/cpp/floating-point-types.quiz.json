@@ -1,0 +1,74 @@
+[
+  {
+    "id": "floating-point-meaning",
+    "prompt": "“浮点数”中的“小数点可以浮动”主要由哪一部分实现？",
+    "options": [
+      { "id": "a", "text": "指数决定有效数字整体移动多少位" },
+      { "id": "b", "text": "符号位决定小数点的位置" },
+      { "id": "c", "text": "变量名的长度决定小数位数" },
+      { "id": "d", "text": "输出时自动删除末尾的零" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "浮点表示把有效数字与指数分开保存，指数负责缩放有效数字，也就决定小数点应该移动到哪里。"
+  },
+  {
+    "id": "reliable-digits",
+    "prompt": "在主流 IEEE 754 竞赛环境中，关于十进制有效数字的可靠保存，哪项说法更稳妥？",
+    "options": [
+      { "id": "a", "text": "`float` 可靠 7 位，`double` 可靠 16 位" },
+      { "id": "b", "text": "`float` 可靠 6 位，`double` 可靠 15 位" },
+      { "id": "c", "text": "`float` 和 `double` 都可靠 32 位" },
+      { "id": "d", "text": "可靠位数只取决于小数点后的位数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "约 7 位和约 16 位描述精度规模；任意十进制有效数字都能可靠保存的保守保证分别是 6 位和 15 位。"
+  },
+  {
+    "id": "prefer-double",
+    "prompt": "竞赛题需要普通浮点计算且没有特殊内存或性能要求时，通常优先使用什么类型？",
+    "options": [
+      { "id": "a", "text": "`bool`" },
+      { "id": "b", "text": "`int`" },
+      { "id": "c", "text": "`float`" },
+      { "id": "d", "text": "`double`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "`double` 是竞赛中默认的浮点选择，精度明显高于 `float`；`long double` 又存在更明显的平台差异。"
+  },
+  {
+    "id": "rounding-error",
+    "prompt": "为什么 `double x = 0.1 + 0.2;` 可能打印为 `0.30000000000000004`？",
+    "options": [
+      { "id": "a", "text": "十进制加法在 C++ 中没有定义" },
+      { "id": "b", "text": "`0.1` 和 `0.2` 不能用有限位二进制浮点数精确表示" },
+      { "id": "c", "text": "`double` 只能保存整数" },
+      { "id": "d", "text": "`cout` 会故意把正确答案加上误差" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "两个字面量先被舍入到附近可表示的二进制浮点值，相加后还会再次舍入；显示出的差异来自有限精度，不是加法规则失效。"
+  },
+  {
+    "id": "floating-literals",
+    "prompt": "下面哪项声明把 $3.5\\times10^{-4}$ 保存为 `float`？",
+    "options": [
+      { "id": "a", "text": "`float x = 3.5e-4f;`" },
+      { "id": "b", "text": "`float x = 3.5 * 10^-4;`" },
+      { "id": "c", "text": "`double x = 3.5e4f;`" },
+      { "id": "d", "text": "`int x = 3.5e-4;`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "科学计数法中的 `e-4` 表示乘以 $10^{-4}$，末尾的 `f` 让这个浮点字面量具有 `float` 类型。"
+  },
+  {
+    "id": "fixed-precision",
+    "prompt": "`cout << fixed << setprecision(2) << answer;` 中的 `2` 表示什么？",
+    "options": [
+      { "id": "a", "text": "总共只输出 2 个字符" },
+      { "id": "b", "text": "输出 2 位二进制数字" },
+      { "id": "c", "text": "输出小数点后的 2 位" },
+      { "id": "d", "text": "把 `answer` 的类型改成 `float`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "启用 `fixed` 后，`setprecision(2)` 控制小数点后的位数；输出会按当前舍入规则显示两位小数。"
+  }
+]

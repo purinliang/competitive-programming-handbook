@@ -137,7 +137,7 @@ double difference = abs(x - 0.3);
 bool close_enough = difference < 1e-9;
 ```
 
-`1e-9` 只是常见示例，不是所有题目的固定答案。容许误差应根据题目范围和误差要求选择。[基本类型：浮点数](floating-point-types.md) 已经解释了误差从哪里来。
+`1e-9` 只是常见示例，不是所有题目的固定答案。容许误差应根据题目范围和误差要求选择。[浮点类型](floating-point-types.md) 已经解释了误差从哪里来。
 
 整数和字符没有这种舍入误差；判断两个 `int` 是否完全相等时可以直接使用 `==`。
 
