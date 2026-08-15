@@ -134,7 +134,7 @@
 | 0121e9 | 多态 | C++ | [cpp/polymorphism.md](cpp/polymorphism.md) |
 | 0122* | union | C++ | [cpp/union.md](cpp/union.md) |
 | 0123* | enum | C++ | [cpp/enum.md](cpp/enum.md) |
-| 0154* | inline | C++ | `cpp/inline.md` |
+| 0154* | inline | C++ | [cpp/inline.md](cpp/inline.md) |
 | 0155* | volatile | C++ | `cpp/volatile.md` |
 | 0157* | 对象生命周期 | C++ | `cpp/object-lifetime.md` |
 
@@ -600,7 +600,7 @@
 | 0156* | order-statistics tree（GNU PBDS） | `cpp/gnu-pbds.md` |
 | 0152* | #include | [cpp/include.md](cpp/include.md) |
 | 0153* | 命名空间与 std | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
-| 0154* | inline | `cpp/inline.md` |
+| 0154* | inline | [cpp/inline.md](cpp/inline.md) |
 | 0155* | volatile | `cpp/volatile.md` |
 | 0157* | 对象生命周期 | `cpp/object-lifetime.md` |
 | 0159* | #define 宏 | `cpp/define-macros.md` |

@@ -132,7 +132,7 @@
 | --- | --- | --- | --- |
 | 0152* | #include | 待审阅 | [include.md](cpp/include.md) |
 | 0153* | 命名空间与 std | 待审阅 | [namespace-and-std.md](cpp/namespace-and-std.md) |
-| 0154* | inline | 计划 | `cpp/inline.md` |
+| 0154* | inline | 待审阅 | [inline.md](cpp/inline.md) |
 | 0155* | volatile | 计划 | `cpp/volatile.md` |
 | 0157* | 对象生命周期 | 计划 | `cpp/object-lifetime.md` |
 | 0159* | #define 宏 | 待审阅 | [define-macros.md](cpp/define-macros.md) |
