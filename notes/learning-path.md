@@ -132,13 +132,31 @@
 | 0225 | 栈 | 算法基础 | [algorithm-basics/stack.md](algorithm-basics/stack.md) |
 | 0226 | 队列 | 算法基础 | [algorithm-basics/queue.md](algorithm-basics/queue.md) |
 
-### 学习单元：排序与二分查找
+### 学习单元：递归与递推
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0250 | 递归与问题分解 | 算法基础 | `algorithm-basics/recursive-problem-solving.md` |
+| 0202 | 递推 | 算法基础 | [algorithm-basics/recurrence.md](algorithm-basics/recurrence.md) |
+
+### 学习单元：排序
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0203 | 排序：基础排序 | 算法基础 | [algorithm-basics/sorting.md](algorithm-basics/sorting.md) |
 | 0231 | 排序：快速排序 | 算法基础 | [algorithm-basics/quicksort.md](algorithm-basics/quicksort.md) |
 | 0232 | 排序：归并排序 | 算法基础 | [algorithm-basics/merge-sort.md](algorithm-basics/merge-sort.md) |
+
+### 学习单元：分治
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0209 | 分治：基础 | 算法基础 | [algorithm-basics/divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
+
+### 学习单元：二分
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0204 | 查找：二分查找 | 算法基础 | [algorithm-basics/binary-search.md](algorithm-basics/binary-search.md) |
 | 0219 | 二分答案 | 算法基础 | [algorithm-basics/binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |
 
@@ -159,12 +177,6 @@
 | 0210 | 枚举 | 算法基础 | [algorithm-basics/enumeration.md](algorithm-basics/enumeration.md) |
 | 0211 | 枚举：子集与位掩码 | 算法基础 | [algorithm-basics/subset-bitmask-enumeration.md](algorithm-basics/subset-bitmask-enumeration.md) |
 | 0222 | 模拟 | 算法基础 | [algorithm-basics/simulation.md](algorithm-basics/simulation.md) |
-
-### 学习单元：分治
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0209 | 分治：基础 | 算法基础 | [algorithm-basics/divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
 
 本阶段交错安排基础算法、基础数据结构和当前真正需要的标准库接口。先把 `string`、`vector` 和 `sort` 当作可靠工具使用；学习复杂度以后，再从结构、操作成本和算法原理重新理解数组与排序。数组、链表、栈和队列解释抽象结构，相邻的标准库文章只解释 C++ 编码接口。
 
@@ -225,11 +237,10 @@
 | 0434 | 树的遍历：深度优先搜索（DFS） | 图论 | [graph-theory/tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
 | 0435 | 树的遍历：广度优先搜索（BFS） | 图论 | [graph-theory/tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
 
-### 学习单元：递推与动态规划入门
+### 学习单元：动态规划入门
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0202 | 递推 | 算法基础 | [algorithm-basics/recurrence.md](algorithm-basics/recurrence.md) |
 | 0701 | 动态规划：状态与转移 | 动态规划 | [dynamic-programming/dp-state-transition.md](dynamic-programming/dp-state-transition.md) |
 | 0702 | 动态规划：线性 DP | 动态规划 | [dynamic-programming/linear-dp.md](dynamic-programming/linear-dp.md) |
 | 0704 | 动态规划：最长上升子序列 | 动态规划 | [dynamic-programming/longest-increasing-subsequence.md](dynamic-programming/longest-increasing-subsequence.md) |

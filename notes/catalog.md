@@ -180,6 +180,7 @@
 | 0246* | 随机化：爬山法 | 计划 | `algorithm-basics/hill-climbing.md` |
 | 0247* | 随机化：模拟退火 | 计划 | `algorithm-basics/simulated-annealing.md` |
 | 0248* | 工程：对拍 | 计划 | `algorithm-basics/stress-testing.md` |
+| 0250 | 递归与问题分解 | 计划 | `algorithm-basics/recursive-problem-solving.md` |
 
 ## 03 数据结构
 
