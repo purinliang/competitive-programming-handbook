@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
+
+import { NavigationProgress } from "@/components/navigation-progress";
 
 import "katex/dist/katex.min.css";
 import "./theme.css";
@@ -17,7 +19,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="zh-CN" data-scroll-behavior="smooth" suppressHydrationWarning>
-      <body>{children}</body>
+      <body>
+        <Suspense fallback={null}>
+          <NavigationProgress />
+        </Suspense>
+        {children}
+      </body>
     </html>
   );
 }

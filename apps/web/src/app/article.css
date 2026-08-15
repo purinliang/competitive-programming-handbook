@@ -3,28 +3,31 @@
   grid-template-columns: 248px minmax(0, 780px) 220px;
   gap: 32px;
   justify-content: center;
-  width: min(1480px, calc(100% - 64px));
+  width: 100%;
+  max-width: 1356px;
   margin: 0 auto;
-  padding: 32px 0 96px;
+  padding: 32px 40px 96px;
 }
 
 .toc-sidebar {
+  --sidebar-top: 97px;
   position: sticky;
-  top: 88px;
+  top: var(--sidebar-top);
   display: flex;
   flex-direction: column;
   align-self: start;
-  height: calc(100vh - 112px);
+  height: calc(100vh - var(--sidebar-top) - 24px);
   min-height: 0;
 }
 
 .module-sidebar {
+  --sidebar-top: 97px;
   position: sticky;
-  top: 88px;
+  top: var(--sidebar-top);
   display: flex;
   flex-direction: column;
   align-self: start;
-  height: calc(100vh - 112px);
+  height: calc(100vh - var(--sidebar-top) - 24px);
   min-height: 0;
 }
 
@@ -113,7 +116,7 @@
 }
 
 .sidebar-list .article-link {
-  align-items: flex-start;
+  align-items: center;
   min-height: 40px;
   padding: 8px 12px;
   font-size: 13px;
@@ -146,6 +149,7 @@
   padding: 8px 12px;
   color: var(--secondary-text);
   font-size: 13px;
+  line-height: 1.45;
   cursor: pointer;
   list-style: none;
 }
@@ -175,6 +179,7 @@
 .article-family > summary small {
   color: var(--faint-text);
   font-size: 11px;
+  line-height: 1.45;
 }
 
 .article-family > summary:hover {
@@ -194,7 +199,9 @@
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);
   gap: 48px;
-  width: min(1280px, calc(100% - 64px));
+  width: 100%;
+  max-width: 1344px;
+  padding-inline: 40px;
   margin: 0 auto;
 }
 
@@ -203,6 +210,7 @@
 }
 
 .directory-sidebar {
+  --sidebar-top: 137px;
   margin-top: 72px;
 }
 
@@ -231,18 +239,6 @@
 
 .article-column {
   min-width: 0;
-}
-
-.article-context {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-  color: var(--faint-text);
-  font-size: 13px;
-}
-
-.article-context a:hover {
-  color: var(--primary-bg);
 }
 
 .toc-list {
@@ -509,6 +505,7 @@
   .docs-layout {
     display: block;
     width: min(100% - 32px, 780px);
+    padding-inline: 0;
     padding-top: 28px;
   }
 
@@ -519,6 +516,7 @@
   .directory-layout {
     display: block;
     width: min(100% - 28px, 1120px);
+    padding-inline: 0;
   }
 
   .markdown-body {

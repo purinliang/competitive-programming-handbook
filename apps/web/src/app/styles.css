@@ -37,6 +37,43 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
+.navigation-progress {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.navigation-progress span {
+  display: block;
+  width: 32%;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--primary-bg);
+  animation: navigation-progress 900ms ease-in-out infinite;
+}
+
+@keyframes navigation-progress {
+  from {
+    transform: translateX(-110%);
+  }
+
+  to {
+    transform: translateX(420%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation-progress span {
+    width: 100%;
+    animation: none;
+  }
+}
+
 .site-header {
   position: sticky;
   z-index: 30;
@@ -53,7 +90,7 @@ a:focus-visible {
   width: min(1480px, 100%);
   height: 64px;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 40px;
 }
 
 .brand {
@@ -98,6 +135,9 @@ a:focus-visible {
   font-weight: 600;
 }
 
+.site-nav a.is-active:hover {
+  color: var(--primary-hover-bg);
+}
 
 .nav-placeholder {
   cursor: default;
@@ -120,7 +160,9 @@ a:focus-visible {
 }
 
 .page-frame {
-  width: min(1120px, calc(100% - 64px));
+  width: 100%;
+  max-width: 1184px;
+  padding-inline: 40px;
   margin: 0 auto;
 }
 
@@ -320,6 +362,10 @@ a.article-link:hover {
   background: var(--panel-hover-bg);
 }
 
+a.article-link.is-active:hover {
+  background: var(--primary-hover-bg);
+}
+
 .article-link small {
   flex: none;
   color: var(--faint-text);
@@ -495,6 +541,7 @@ a.article-link:hover {
 
   .page-frame {
     width: min(100% - 28px, 1120px);
+    padding-inline: 0;
   }
 
   .index-page,

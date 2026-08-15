@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
@@ -58,11 +57,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </Suspense>
 
         <main className="article-column">
-          <div className="article-context">
-            <Link href="/catalog/">{article.moduleTitle}</Link>
-            <span aria-hidden="true">/</span>
-            <span>{article.status}</span>
-          </div>
           <article className="markdown-body" data-article-key={article.articleKey} data-content-revision={rendered.contentRevision} dangerouslySetInnerHTML={{ __html: rendered.html }} />
           <Suspense fallback={<ArticleNeighborsView mode="catalog" {...moduleNeighbors} />}>
             <ArticleNeighbors catalog={moduleNeighbors} learn={learningNeighbors} />
