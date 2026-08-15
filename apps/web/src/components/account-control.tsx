@@ -1,7 +1,7 @@
 "use client";
 
 import { LogIn, LogOut } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { authClient } from "@/lib/auth-client";
 
@@ -17,18 +17,39 @@ interface AccountState {
   };
 }
 
+const ACCOUNT_SNAPSHOT_KEY = "handbook.account-snapshot.v1";
+
 export function AccountControl() {
-  const [account, setAccount] = useState<AccountState>();
+  const [account, setAccount] = useState<AccountState>({
+    authConfigured: true,
+    user: null,
+  });
   const [menuOpen, setMenuOpen] = useState(false);
   const [pending, setPending] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    try {
+      const snapshot = localStorage.getItem(ACCOUNT_SNAPSHOT_KEY);
+      if (snapshot) {
+        setAccount(JSON.parse(snapshot) as AccountState);
+      }
+    } catch {}
+  }, []);
 
   useEffect(() => {
     let active = true;
     fetch("/api/me", { credentials: "include" })
       .then((response) => response.ok ? response.json() as Promise<AccountState> : undefined)
       .then((result) => {
-        if (active && result) setAccount(result);
+        if (!active || !result) return;
+
+        setAccount(result);
+        if (result.authConfigured) {
+          localStorage.setItem(ACCOUNT_SNAPSHOT_KEY, JSON.stringify(result));
+        } else {
+          localStorage.removeItem(ACCOUNT_SNAPSHOT_KEY);
+        }
       })
       .catch(() => undefined);
     return () => {
@@ -58,15 +79,6 @@ export function AccountControl() {
       document.removeEventListener("keydown", dismissOnEscape);
     };
   }, [menuOpen]);
-
-  if (!account) {
-    return (
-      <span className="account-control-slot" aria-hidden="true">
-        <LoadingBar active immediate />
-        <span className="account-avatar-placeholder" />
-      </span>
-    );
-  }
 
   if (!account.authConfigured) {
     return <span className="account-control-slot" aria-hidden="true" />;
@@ -140,6 +152,10 @@ export function AccountControl() {
               setPending(true);
               try {
                 await authClient.signOut();
+                localStorage.setItem(ACCOUNT_SNAPSHOT_KEY, JSON.stringify({
+                  authConfigured: true,
+                  user: null,
+                } satisfies AccountState));
                 window.location.reload();
               } finally {
                 setPending(false);

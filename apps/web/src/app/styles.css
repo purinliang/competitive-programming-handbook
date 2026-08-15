@@ -129,8 +129,8 @@ a:focus-visible {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 72px;
+  justify-content: flex-end;
+  width: 36px;
   height: 36px;
   margin-left: auto;
 }
@@ -150,6 +150,7 @@ a:focus-visible {
 }
 
 .account-login-button {
+  flex: none;
   min-height: 36px;
   padding: 6px 10px;
   overflow: hidden;
@@ -178,13 +179,6 @@ a:focus-visible {
   color: var(--secondary-text);
   background: transparent;
   cursor: pointer;
-}
-
-.account-avatar-placeholder {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--secondary-hover-bg);
 }
 
 .account-avatar-fallback,
