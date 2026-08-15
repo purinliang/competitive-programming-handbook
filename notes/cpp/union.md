@@ -1,10 +1,11 @@
-# 复合类型：union
+# union
 
-> 最近修订：2026-08-13 02:30 +10:00（未审阅）
+> 最近修订：2026-08-16 14:18 +10:00（未审阅）
 
 一个 [结构体](struct.md) 的每个成员都同时存在：参赛者的编号和分数需要各自的存储空间。但有些数据只会处于若干形态中的一种，例如一个输入值要么是整数，要么是浮点数，从来不需要同时保存两份值。
 
-`union` 声明**联合体类型**。它的成员共用同一段存储空间，因此同一时刻只能把其中一个成员当作当前有效值。
+`union` 声明**联合体类型**。它的成员共用同一段存储空间，因此同一时刻通常
+只有一个**当前有效成员**（active member）。
 
 ## 声明联合体类型
 
@@ -63,9 +64,10 @@ number.decimal = 3.5;
 
 第二次赋值复用了同一段存储，原来的整数不再是当前有效值。此后应该读取 `number.decimal`，不能期待 `number.integer` 仍然保存 `42`。
 
-## 当前成员
+## 当前有效成员
 
-对本篇使用的 `int`、`double` 等简单类型，给某个成员赋值后，就把该成员当作当前成员：
+对本篇使用的 `int`、`double` 等简单类型，给某个成员赋值后，就把该成员当作
+当前有效成员：
 
 ```cpp
 Number number;
@@ -169,19 +171,23 @@ union Number {
     double decimal;
 };
 
-int main() {
+void solve() {
     char type;
-    scanf(" %c", &type);
+    cin >> type;
 
     Number number;
 
     if (type == 'i') {
-        scanf("%d", &number.integer);
-        printf("%d\n", number.integer);
+        cin >> number.integer;
+        cout << number.integer << '\n';
     } else if (type == 'd') {
-        scanf("%lf", &number.decimal);
-        printf("%.2f\n", number.decimal);
+        cin >> number.decimal;
+        cout << fixed << setprecision(2) << number.decimal << '\n';
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
