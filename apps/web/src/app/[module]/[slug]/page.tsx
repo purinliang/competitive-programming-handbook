@@ -6,6 +6,7 @@ import { ArticleNavigation } from "@/components/article-navigation";
 import { ArticleNavigationModeSync } from "@/components/article-navigation-mode-sync";
 import { ArticleNeighbors } from "@/components/article-neighbors";
 import { ArticleTableOfContents } from "@/components/article-table-of-contents";
+import { CodeBlockEnhancements } from "@/components/code-block-enhancements";
 import { SiteHeader } from "@/components/site-header";
 import { getArticle, getArticleLearningNavigation, getArticleLearningNeighbors, getArticleModuleNavigation, getArticleModuleNeighbors, getArticles } from "@/lib/content/catalog";
 import { getRenderedArticle } from "@/lib/content/compiled";
@@ -55,6 +56,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
         <main className="article-column">
           <article className="markdown-body" data-article-key={article.articleKey} data-content-revision={rendered.contentRevision} dangerouslySetInnerHTML={{ __html: rendered.html }} />
+          <CodeBlockEnhancements articleKey={article.articleKey} />
           <ArticleNeighbors catalog={moduleNeighbors} learn={learningNeighbors} />
         </main>
 

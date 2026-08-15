@@ -285,7 +285,6 @@ html:not([data-article-navigation]) .article-navigation-variant.is-catalog {
 
 .toc-list a {
   padding: 6px 10px;
-  border-radius: 6px;
   color: var(--secondary-text);
   font-size: 12px;
   line-height: 1.5;
@@ -317,11 +316,6 @@ html:not([data-article-navigation]) .article-navigation-variant.is-catalog {
 
 .markdown-body .katex {
   font-size: 1.21em;
-}
-
-.markdown-body .katex .msupsub .katex-sizing.reset-size6.size3,
-.markdown-body .katex .msupsub .fontsize-ensurer.reset-size6.size3 {
-  font-size: 0.6em;
 }
 
 .markdown-body h1,
@@ -396,7 +390,8 @@ html:not([data-article-navigation]) .article-navigation-variant.is-catalog {
 
 .markdown-body pre {
   max-width: 100%;
-  padding: 18px 20px;
+  margin-bottom: 16px;
+  padding: 14px 16px;
   overflow: auto;
   border: 1px solid var(--code-border);
   border-radius: 10px;
@@ -414,7 +409,56 @@ html:not([data-article-navigation]) .article-navigation-variant.is-catalog {
 }
 
 .markdown-body [data-rehype-pretty-code-figure] {
-  margin: 0;
+  position: relative;
+  margin: -4px 0 0;
+}
+
+.markdown-body pre[data-language]:not([data-language="text"]) code {
+  counter-reset: code-line;
+}
+
+.markdown-body pre[data-language]:not([data-language="text"]) code > [data-line] {
+  display: inline-block;
+  min-width: 100%;
+  padding-right: 48px;
+}
+
+.markdown-body pre[data-language]:not([data-language="text"]) code > [data-line]::before {
+  display: inline-block;
+  width: 3ch;
+  margin-right: 16px;
+  color: var(--faint-text);
+  content: counter(code-line);
+  counter-increment: code-line;
+  text-align: right;
+  user-select: none;
+}
+
+.code-copy-button {
+  position: absolute;
+  z-index: 2;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  border: 1px solid var(--code-border);
+  border-radius: 5px;
+  color: var(--secondary-text);
+  background: color-mix(in srgb, var(--code-bg) 92%, var(--page-bg));
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: 0.58;
+}
+
+.code-copy-button:hover,
+.code-copy-button:focus-visible,
+.code-copy-button[data-state] {
+  color: var(--primary-text);
+  opacity: 1;
+}
+
+.code-copy-button[data-state="copied"] {
+  color: var(--accent-text);
 }
 
 .markdown-body [data-rehype-pretty-code-figure] span {
@@ -491,6 +535,7 @@ html:not([data-article-navigation]) .article-navigation-variant.is-catalog {
 
 .katex-display {
   max-width: 100%;
+  padding-block: 0.3em;
   overflow-x: auto;
   overflow-y: hidden;
 }

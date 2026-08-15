@@ -21,7 +21,7 @@
   --focus: #1b46de;
   --shadow: 0 12px 36px rgba(23, 44, 100, 0.08);
   --font-body: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
-  --font-code: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --font-code: "SFMono-Regular", Consolas, "Liberation Mono", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace;
   --page-gap: 16px;
   --section-gap: 20px;
   --body-gap: 12px;
