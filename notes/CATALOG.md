@@ -88,7 +88,7 @@
 | 0157* | C++ 对象：生命周期 | 计划 | `cpp/0157-object-lifetime.md` |
 | 0158 | 入门：A+B Problem | 定稿 | [a-plus-b-problem.md](cpp/a-plus-b-problem.md) |
 
-## 02 基础算法
+## 02 算法基础
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |

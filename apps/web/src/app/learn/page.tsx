@@ -15,7 +15,7 @@ export default function LearningPathPage() {
     <>
       <SiteHeader activeSection="learn" />
       <main className="directory-layout">
-        <DirectorySidebar title="学习路线" items={stages.map((stage, index) => ({ id: stage.key, label: `${index + 1}. ${stage.title}` }))} />
+        <DirectorySidebar title="学习路线" items={stages.map((stage) => ({ id: stage.key, label: `${stage.key.replace("阶段-", "")} ${stage.title}` }))} />
         <div className="index-page directory-content">
           <header className="page-intro">
             <p className="eyebrow">Learning Path</p>
@@ -24,11 +24,11 @@ export default function LearningPathPage() {
           </header>
           <IndexingConvention />
           <div className="section-stack">
-            {stages.map((stage, index) => {
+            {stages.map((stage) => {
               return (
                 <section className="panel" id={stage.key} key={stage.key}>
                   <div className="panel-header stage-header">
-                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <span>{stage.key.replace("阶段-", "")}</span>
                     <h2>{stage.title}</h2>
                   </div>
                   <div className="article-list">

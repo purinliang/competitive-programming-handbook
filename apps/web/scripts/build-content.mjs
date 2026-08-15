@@ -49,7 +49,7 @@ async function parseCatalog() {
   for (const line of catalog.split("\n")) {
     const moduleMatch = line.match(/^##\s+(\d+\s+.+)$/);
     if (moduleMatch) {
-      moduleTitle = moduleMatch[1].replace(/^\d+\s+/, "").trim();
+      moduleTitle = moduleMatch[1].trim();
       moduleAnchor = moduleSlugger.slug(moduleMatch[1].trim());
       moduleKey = "";
       continue;
