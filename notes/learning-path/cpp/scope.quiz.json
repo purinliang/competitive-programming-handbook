@@ -1,0 +1,74 @@
+[
+  {
+    "id": "scope-question",
+    "prompt": "作用域主要回答下面哪个问题？",
+    "options": [
+      { "id": "a", "text": "在当前位置写下一个名称时，能否找到它以及它表示谁" },
+      { "id": "b", "text": "对象在内存中占用多少字节" },
+      { "id": "c", "text": "程序会运行多少秒" },
+      { "id": "d", "text": "整数使用什么二进制编码" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "作用域规定名称的可见范围与名称查找，不直接规定对象大小或程序运行时间。"
+  },
+  {
+    "id": "block-scope-end",
+    "prompt": "在 `if` 代码块中声明的局部变量，通常到哪里不再可见？",
+    "options": [
+      { "id": "a", "text": "声明它的代码块结束处" },
+      { "id": "b", "text": "整个源文件末尾" },
+      { "id": "c", "text": "下一条输出语句之后" },
+      { "id": "d", "text": "程序运行十秒以后" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "代码块中的局部名称从声明处开始可见，到对应代码块结束。"
+  },
+  {
+    "id": "declaration-before-use",
+    "prompt": "为什么不能先写 `cout << answer;`，再在下一行声明 `int answer = 42;`？",
+    "options": [
+      { "id": "a", "text": "名称在声明位置以前通常还不可见" },
+      { "id": "b", "text": "`cout` 只能输出字面量" },
+      { "id": "c", "text": "变量必须声明为全局变量" },
+      { "id": "d", "text": "整数只能在函数末尾声明" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "变量名称的作用域不会向声明位置以前延伸，应先声明再使用。"
+  },
+  {
+    "id": "separate-function-locals",
+    "prompt": "两个不同函数都声明局部变量 `result`，它们是什么关系？",
+    "options": [
+      { "id": "a", "text": "它们处于不同函数作用域，是不同变量" },
+      { "id": "b", "text": "它们自动共享同一个数值" },
+      { "id": "c", "text": "第二个函数一定不能编译" },
+      { "id": "d", "text": "它们都会成为全局变量" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "局部名称只在对应函数内可见，不同函数可以使用相同的局部名称。"
+  },
+  {
+    "id": "name-shadowing",
+    "prompt": "内层代码块重新声明与外层同名的变量时，会发生什么？",
+    "options": [
+      { "id": "a", "text": "内层名称暂时遮蔽外层名称" },
+      { "id": "b", "text": "两个变量自动相加" },
+      { "id": "c", "text": "外层变量立即被销毁" },
+      { "id": "d", "text": "所有同名变量都变成引用" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "名称查找从最内层开始，因此内层同名声明会遮住外层名称；离开内层后外层名称再次可见。"
+  },
+  {
+    "id": "scope-versus-lifetime",
+    "prompt": "为什么作用域不能与对象的生命周期视为同一个概念？",
+    "options": [
+      { "id": "a", "text": "作用域描述名称在哪里可见，生命周期描述对象何时存在" },
+      { "id": "b", "text": "作用域只适用于整数，生命周期只适用于字符" },
+      { "id": "c", "text": "作用域由输入决定，生命周期由输出决定" },
+      { "id": "d", "text": "两者只是大小写不同的同一个关键字" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "名称可见范围与运行时对象存在时间是两条不同规则，`static` 局部变量会清楚展示这种区别。"
+  }
+]
