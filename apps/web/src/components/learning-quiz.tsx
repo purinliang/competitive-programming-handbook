@@ -84,10 +84,7 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
   return (
     <section className="learning-quiz" aria-labelledby="learning-quiz-title">
       <header className="learning-quiz-header">
-        <div>
-          <p>Takeaway</p>
-          <h2 id="learning-quiz-title">知识检查</h2>
-        </div>
+        <h2 id="learning-quiz-title">练习题</h2>
         <span>{correctCount} / {quiz.questions.length} 已答对</span>
       </header>
 
@@ -113,17 +110,16 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
 
       <div className="quiz-question" key={question.id}>
         <p className="quiz-question-number">第 {currentIndex + 1} 题</p>
-        <h3>{question.prompt}</h3>
+        <h3
+          className="quiz-rich-text"
+          dangerouslySetInnerHTML={{ __html: question.promptHtml }}
+        />
         <div className="quiz-options">
           {question.options.map((option) => {
             const submitted = submittedOptionId !== undefined;
             const isSelected = selection === option.id;
-            const state = submitted
-              ? option.id === question.correctOptionId
-                ? "correct"
-                : isSelected
-                  ? "incorrect"
-                  : undefined
+            const state = submitted && isSelected
+              ? option.id === question.correctOptionId ? "correct" : "incorrect"
               : undefined;
             return (
               <button
@@ -135,7 +131,10 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
                 type="button"
               >
                 <span>{option.id.toUpperCase()}</span>
-                {option.text}
+                <span
+                  className="quiz-option-text quiz-rich-text"
+                  dangerouslySetInnerHTML={{ __html: option.textHtml }}
+                />
               </button>
             );
           })}
@@ -145,23 +144,36 @@ export function LearningQuiz({ articleKey, quiz }: { articleKey: string; quiz: L
           <button className="quiz-secondary-action" disabled={currentIndex === 0} onClick={() => moveTo(currentIndex - 1)} type="button">
             <ChevronLeft aria-hidden="true" size={16} />上一题
           </button>
-          <div>
-            <button className="quiz-secondary-action" disabled={submittedOptionId === undefined} onClick={() => setExplanationVisible((visible) => !visible)} type="button">
-              {explanationVisible ? "收起解析" : "查看解析"}
-            </button>
-            <button className="quiz-submit" disabled={!selection || submittedOptionId !== undefined} onClick={submit} type="button">提交</button>
-          </div>
+          <button className="quiz-submit" disabled={!selection || submittedOptionId !== undefined} onClick={submit} type="button">提交</button>
           <button className="quiz-secondary-action" disabled={currentIndex === quiz.questions.length - 1} onClick={() => moveTo(currentIndex + 1)} type="button">
             下一题<ChevronRight aria-hidden="true" size={16} />
           </button>
         </div>
 
-        {submittedOptionId !== undefined ? (
-          <p className="quiz-result" data-state={submittedOptionId === question.correctOptionId ? "correct" : "incorrect"}>
-            {submittedOptionId === question.correctOptionId ? "回答正确" : "回答错误，可以重新选择后再次提交。"}
-          </p>
+        <div className="quiz-feedback" aria-live="polite">
+          {submittedOptionId !== undefined ? (
+            <p className="quiz-result" data-state={submittedOptionId === question.correctOptionId ? "correct" : "incorrect"}>
+              {submittedOptionId === question.correctOptionId ? "回答正确" : "回答错误，可以重新选择后再次提交。"}
+            </p>
+          ) : <span />}
+          <button
+            className="quiz-explanation-toggle"
+            disabled={submittedOptionId === undefined}
+            onClick={() => setExplanationVisible((visible) => !visible)}
+            type="button"
+          >
+            {explanationVisible ? "收起解析" : "查看解析"}
+          </button>
+        </div>
+        {explanationVisible ? (
+          <div className="quiz-explanation">
+            <strong>解析</strong>
+            <p
+              className="quiz-rich-text"
+              dangerouslySetInnerHTML={{ __html: question.explanationHtml }}
+            />
+          </div>
         ) : null}
-        {explanationVisible ? <div className="quiz-explanation"><strong>解析</strong><p>{question.explanation}</p></div> : null}
       </div>
     </section>
   );

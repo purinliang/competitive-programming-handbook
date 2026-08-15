@@ -314,6 +314,23 @@ async function renderArticle(article, sourcePath, title) {
   };
 }
 
+async function renderQuizInline(markdown) {
+  const result = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkMath)
+    .use(remarkRehype)
+    .use(rehypeKatex)
+    .use(rehypeStringify)
+    .process(markdown);
+  const html = String(result).trim();
+  const paragraph = html.match(/^<p>([\s\S]*)<\/p>$/);
+  if (!paragraph) {
+    throw new Error(`选择题字段只允许使用行内 Markdown：${markdown}`);
+  }
+  return paragraph[1];
+}
+
 function searchableText(markdown, articleTitles) {
   return markdown
     .replace(/^>\s*(?:最近修订|状态)：.*$/gm, "")
@@ -347,8 +364,8 @@ async function compileLearningQuiz(articleKey) {
     if (typeof question.prompt !== "string" || !question.prompt.trim()) {
       throw new Error(`${path.relative(notesRoot, sourcePath)} 的 ${question.id} 缺少题干`);
     }
-    if (!Array.isArray(question.options) || question.options.length < 2) {
-      throw new Error(`${path.relative(notesRoot, sourcePath)} 的 ${question.id} 至少需要两个选项`);
+    if (!Array.isArray(question.options) || question.options.length !== 4) {
+      throw new Error(`${path.relative(notesRoot, sourcePath)} 的 ${question.id} 必须包含四个选项`);
     }
     const optionIds = new Set(question.options.map((option) => option?.id));
     if (optionIds.size !== question.options.length || [...optionIds].some((id) => typeof id !== "string" || !id)) {
@@ -359,6 +376,15 @@ async function compileLearningQuiz(articleKey) {
     }
     if (typeof question.explanation !== "string" || !question.explanation.trim()) {
       throw new Error(`${path.relative(notesRoot, sourcePath)} 的 ${question.id} 缺少解析`);
+    }
+
+    question.promptHtml = await renderQuizInline(question.prompt);
+    question.explanationHtml = await renderQuizInline(question.explanation);
+    for (const option of question.options) {
+      if (typeof option.text !== "string" || !option.text.trim()) {
+        throw new Error(`${path.relative(notesRoot, sourcePath)} 的 ${question.id} 包含空选项`);
+      }
+      option.textHtml = await renderQuizInline(option.text);
     }
   }
 

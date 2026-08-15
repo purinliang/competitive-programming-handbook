@@ -70,14 +70,17 @@ export interface RenderedArticle {
 export interface LearningQuestionOption {
   id: string;
   text: string;
+  textHtml: string;
 }
 
 export interface LearningQuestion {
   id: string;
   prompt: string;
+  promptHtml: string;
   options: LearningQuestionOption[];
   correctOptionId: string;
   explanation: string;
+  explanationHtml: string;
 }
 
 export interface LearningQuiz {

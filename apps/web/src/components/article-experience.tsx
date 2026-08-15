@@ -36,6 +36,9 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
     : getArticleModuleNeighbors(article.articleKey);
   const rendered = await getRenderedArticle(article, mode);
   const quiz = mode === "learning-path" ? await getLearningQuiz(article) : undefined;
+  const tableOfContents = quiz
+    ? [...rendered.tableOfContents, { depth: 2 as const, id: "learning-quiz-title", title: "练习题" }]
+    : rendered.tableOfContents;
 
   return (
     <>
@@ -50,7 +53,7 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
           <ArticleNeighborsView mode={mode} {...neighbors} />
         </main>
 
-        <ArticleTableOfContents articleKey={article.articleKey} items={rendered.tableOfContents} />
+        <ArticleTableOfContents articleKey={article.articleKey} items={tableOfContents} />
       </div>
     </>
   );
