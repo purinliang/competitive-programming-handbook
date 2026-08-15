@@ -203,7 +203,7 @@
 | 0540 | 正因数个数 | 数学 | [math/divisor-count.md](math/divisor-count.md) |
 | 0541 | 正因数和 | 数学 | [math/divisor-sum.md](math/divisor-sum.md) |
 | 0578 | 计数原理：加法原理 | 数学 | [math/addition-principle.md](math/addition-principle.md) |
-| 0579 | 计数原理：乘法原理 | 数学 | `math/multiplication-principle.md` |
+| 0579 | 计数原理：乘法原理 | 数学 | [math/multiplication-principle.md](math/multiplication-principle.md) |
 | 0580 | 排列数 | 数学 | `math/permutations-count.md` |
 | 0507 | 组合数：定义与递推 | 数学 | `math/binomial-coefficients.md` |
 | 0581 | 组合数：阶乘与逆元预处理 | 数学 | `math/binomial-coefficients-factorials.md` |
