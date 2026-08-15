@@ -1,0 +1,98 @@
+[
+  {
+    "id": "addressing-unit",
+    "prompt": "C++ 内存通常以什么作为基本存储与寻址单位？",
+    "options": [
+      { "id": "a", "text": "字节" },
+      { "id": "b", "text": "十进制数字" },
+      { "id": "c", "text": "整个源文件" },
+      { "id": "d", "text": "函数调用次数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "位是表示二进制信息的最小单位，字节是 C++ 内存的基本存储与寻址单位。"
+  },
+  {
+    "id": "adjacent-byte-addresses",
+    "prompt": "两个相邻字节的地址数值通常相差多少？",
+    "options": [
+      { "id": "a", "text": "1" },
+      { "id": "b", "text": "8" },
+      { "id": "c", "text": "`sizeof(int)`" },
+      { "id": "d", "text": "由变量名称长度决定" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "地址给字节编号，相邻字节的编号连续，因此相差一。"
+  },
+  {
+    "id": "value-versus-address",
+    "prompt": "若 `int x = 42;`，`x` 与 `&x` 分别表示什么？",
+    "options": [
+      { "id": "a", "text": "整数值与该整数对象的地址" },
+      { "id": "b", "text": "同一个整数值的两种拼写" },
+      { "id": "c", "text": "数组长度与数组容量" },
+      { "id": "d", "text": "高地址与低地址" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "对象表达式读取保存的值，取地址运算符则得到对象在内存中的位置。"
+  },
+  {
+    "id": "high-low-address",
+    "prompt": "高地址与低地址由什么决定？",
+    "options": [
+      { "id": "a", "text": "地址数值的大小" },
+      { "id": "b", "text": "内存图画在纸面的上下方向" },
+      { "id": "c", "text": "变量名首字母" },
+      { "id": "d", "text": "对象当前保存的数值" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "地址数值小的一侧是低地址，数值大的一侧是高地址；示意图可以采用不同方向。"
+  },
+  {
+    "id": "adjacent-array-elements",
+    "prompt": "若 `sizeof(int) == 4`，相邻 `int` 数组元素的起始地址通常相差多少字节？",
+    "options": [
+      { "id": "a", "text": "4" },
+      { "id": "b", "text": "1" },
+      { "id": "c", "text": "8" },
+      { "id": "d", "text": "数组长度" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "数组元素连续存放，下一个元素从前一个元素占用的全部四个字节之后开始。"
+  },
+  {
+    "id": "two-dimensional-offset",
+    "prompt": "0-based 的 `n` 行 `m` 列 `int` 数组中，`a[i][j]` 前面有多少个 `int`？",
+    "options": [
+      { "id": "a", "text": "`i * m + j`" },
+      { "id": "b", "text": "`i + j`" },
+      { "id": "c", "text": "`j * n + i`，任何布局都一样" },
+      { "id": "d", "text": "`i * j * n * m`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "行优先布局先放完整的 `i` 行，每行 `m` 个元素，再走到当前行的第 `j` 项。"
+  },
+  {
+    "id": "alignment-padding",
+    "prompt": "为什么结构体大小可能大于所有成员大小之和？",
+    "options": [
+      { "id": "a", "text": "编译器可能为满足对齐要求插入填充字节" },
+      { "id": "b", "text": "每个成员都会自动复制三份" },
+      { "id": "c", "text": "结构体必须保存源代码文本" },
+      { "id": "d", "text": "`sizeof` 会把成员数相乘" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "成员之间和对象末尾都可能有填充，使成员以及结构体数组中的下一个对象满足对齐。"
+  },
+  {
+    "id": "run-specific-address",
+    "prompt": "为什么不能把某次运行输出的局部变量地址硬编码进程序？",
+    "options": [
+      { "id": "a", "text": "具体地址可能随运行环境和每次执行发生变化" },
+      { "id": "b", "text": "地址只能包含十进制数字" },
+      { "id": "c", "text": "对象从来没有地址" },
+      { "id": "d", "text": "硬编码会把整数自动变成字符" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "操作系统、编译器和地址随机化都会影响具体位置，代码应在运行时从对象取得地址。"
+  }
+]
