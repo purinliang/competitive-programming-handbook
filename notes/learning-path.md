@@ -23,7 +23,7 @@
 | 0101 | Hello World! | C++ | [learning-path/cpp/hello-world.md](learning-path/cpp/hello-world.md) |
 | 0158 | A+B Problem | C++ | [learning-path/cpp/a-plus-b-problem.md](learning-path/cpp/a-plus-b-problem.md) |
 
-### 学习单元：值、类型与变量
+### 学习单元：基本类型
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -31,7 +31,15 @@
 | 0103 | 浮点类型 | C++ | [cpp/floating-point-types.md](cpp/floating-point-types.md) |
 | 0104 | 字符类型 | C++ | [cpp/character-types.md](cpp/character-types.md) |
 | 0105 | 布尔类型 | C++ | [cpp/boolean-type.md](cpp/boolean-type.md) |
-| 0106 | 变量的声明与初始化 | C++ | [cpp/variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
+| 0110 | 类型转换 | C++ | [cpp/type-conversions.md](cpp/type-conversions.md) |
+
+### 学习单元：变量、常量与字面量
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0106 | 变量 | C++ | [cpp/variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
+| 0128 | 常量 | C++ | [cpp/const.md](cpp/const.md) |
+| 0161 | 字面量 | C++ | [cpp/literals.md](cpp/literals.md) |
 
 ### 学习单元：表达式与控制流
 
@@ -40,7 +48,6 @@
 | 0107 | 算术运算符 | C++ | [cpp/arithmetic-operators.md](cpp/arithmetic-operators.md) |
 | 0108 | 比较运算符 | C++ | [cpp/comparison-operators.md](cpp/comparison-operators.md) |
 | 0109 | 逻辑运算符 | C++ | [cpp/logical-operators.md](cpp/logical-operators.md) |
-| 0110 | 类型转换 | C++ | [cpp/type-conversions.md](cpp/type-conversions.md) |
 | 0133 | 位运算符 | C++ | [cpp/bitwise-operators.md](cpp/bitwise-operators.md) |
 | 0111 | 条件分支 | C++ | [cpp/conditional-branches.md](cpp/conditional-branches.md) |
 | 0112 | 循环 | C++ | [cpp/loops.md](cpp/loops.md) |
@@ -73,7 +80,6 @@
 | 0125 | 指针 | C++ | [cpp/pointers.md](cpp/pointers.md) |
 | 0126 | 引用 | C++ | [cpp/references.md](cpp/references.md) |
 | 0127 | 参数传递 | C++ | [cpp/parameter-passing.md](cpp/parameter-passing.md) |
-| 0128 | const | C++ | [cpp/const.md](cpp/const.md) |
 
 ### 学习单元：存储期、调用栈与递归
 

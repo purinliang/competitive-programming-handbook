@@ -33,16 +33,23 @@
 | 0103e1 | IEEE 754 浮点数表示 | 定稿 | [ieee-754.md](cpp/ieee-754.md) |
 | 0104 | 字符类型 | 待审阅 | [character-types.md](cpp/character-types.md) |
 | 0105 | 布尔类型 | 待审阅 | [boolean-type.md](cpp/boolean-type.md) |
+| 0110 | 类型转换 | 待审阅 | [type-conversions.md](cpp/type-conversions.md) |
 
-### 知识族：变量、表达式与控制流
+### 知识族：变量、常量与字面量
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 0106 | 变量的声明与初始化 | 待审阅 | [variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
+| 0106 | 变量 | 待审阅 | [variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
+| 0128 | 常量 | 待审阅 | [const.md](cpp/const.md) |
+| 0161 | 字面量 | 待审阅 | [literals.md](cpp/literals.md) |
+
+### 知识族：表达式与控制流
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
 | 0107 | 算术运算符 | 定稿 | [arithmetic-operators.md](cpp/arithmetic-operators.md) |
 | 0108 | 比较运算符 | 待审阅 | [comparison-operators.md](cpp/comparison-operators.md) |
 | 0109 | 逻辑运算符 | 待审阅 | [logical-operators.md](cpp/logical-operators.md) |
-| 0110 | 类型转换 | 待审阅 | [type-conversions.md](cpp/type-conversions.md) |
 | 0133 | 位运算符 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
 | 0111 | 条件分支 | 定稿 | [conditional-branches.md](cpp/conditional-branches.md) |
 | 0112 | 循环 | 待审阅 | [loops.md](cpp/loops.md) |
@@ -76,7 +83,6 @@
 | 0125 | 指针 | 定稿 | [pointers.md](cpp/pointers.md) |
 | 0126 | 引用 | 待审阅 | [references.md](cpp/references.md) |
 | 0127 | 参数传递 | 待审阅 | [parameter-passing.md](cpp/parameter-passing.md) |
-| 0128 | const | 定稿 | [const.md](cpp/const.md) |
 | 0129 | static 局部变量 | 待审阅 | [static-local-variables.md](cpp/static-local-variables.md) |
 | 0130 | 竞赛程序的常见内存分区 | 待审阅 | [competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
 | 0131 | 调用栈 | 待审阅 | [function-call-stack.md](cpp/function-call-stack.md) |
