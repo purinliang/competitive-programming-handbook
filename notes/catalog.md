@@ -57,7 +57,7 @@
 | 0116 | 标准输出 | 待审阅 | [standard-output.md](cpp/standard-output.md) |
 | 0117 | 文件重定向 | 定稿 | [file-redirection.md](cpp/file-redirection.md) |
 
-### 知识族：数组、字符串与记录
+### 知识族：数组、字符串与结构体
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |

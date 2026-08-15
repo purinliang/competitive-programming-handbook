@@ -55,7 +55,7 @@
 | 0116 | 标准输出 | C++ | [cpp/standard-output.md](cpp/standard-output.md) |
 | 0117 | 文件重定向 | C++ | [cpp/file-redirection.md](cpp/file-redirection.md) |
 
-### 学习单元：连续数据与记录
+### 学习单元：数组、字符串与结构体
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -127,7 +127,6 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0201 | 复杂度：时间与空间 | 算法基础 | [algorithm-basics/complexity.md](algorithm-basics/complexity.md) |
-| 0202 | 递推 | 算法基础 | [algorithm-basics/recurrence.md](algorithm-basics/recurrence.md) |
 | 0223 | 线性结构：数组 | 算法基础 | [algorithm-basics/array.md](algorithm-basics/array.md) |
 | 0224 | 链表 | 算法基础 | [algorithm-basics/linked-list.md](algorithm-basics/linked-list.md) |
 | 0225 | 栈 | 算法基础 | [algorithm-basics/stack.md](algorithm-basics/stack.md) |
@@ -222,10 +221,11 @@
 | 0434 | 树的遍历：深度优先搜索（DFS） | 图论 | [graph-theory/tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
 | 0435 | 树的遍历：广度优先搜索（BFS） | 图论 | [graph-theory/tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
 
-### 学习单元：动态规划入门
+### 学习单元：递推与动态规划入门
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
+| 0202 | 递推 | 算法基础 | [algorithm-basics/recurrence.md](algorithm-basics/recurrence.md) |
 | 0701 | 动态规划：状态与转移 | 动态规划 | [dynamic-programming/dp-state-transition.md](dynamic-programming/dp-state-transition.md) |
 | 0702 | 动态规划：线性 DP | 动态规划 | [dynamic-programming/linear-dp.md](dynamic-programming/linear-dp.md) |
 | 0704 | 动态规划：最长上升子序列 | 动态规划 | [dynamic-programming/longest-increasing-subsequence.md](dynamic-programming/longest-increasing-subsequence.md) |
