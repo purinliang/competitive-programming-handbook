@@ -360,7 +360,7 @@
 | --- | --- | --- | --- |
 | 0508 | 欧拉函数 | 数学 | [math/euler-totient.md](math/euler-totient.md) |
 | 0582 | 欧拉定理 | 数学 | [math/euler-theorem.md](math/euler-theorem.md) |
-| 0518 | 莫比乌斯函数 | 数学 | `math/0518-mobius-function.md` |
+| 0518 | 莫比乌斯函数 | 数学 | [math/mobius-function.md](math/mobius-function.md) |
 
 ### 学习单元：矩阵与线性变换
 

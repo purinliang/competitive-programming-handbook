@@ -324,7 +324,7 @@
 | 0515* | 高斯消元 | 计划 | `math/0515-gaussian-elimination.md` |
 | 0516 | 容斥原理 | 计划 | `math/0516-inclusion-exclusion.md` |
 | 0517* | 多项式：NTT | 计划 | `math/0517-ntt.md` |
-| 0518 | 莫比乌斯函数 | 计划 | `math/0518-mobius-function.md` |
+| 0518 | 莫比乌斯函数 | 待审阅 | [mobius-function.md](math/mobius-function.md) |
 | 0519* | BSGS 与离散对数 | 计划 | `math/0519-discrete-logarithm.md` |
 | 0519e1 | 离散对数：Pohlig–Hellman | 计划 | `math/pohlig-hellman.md` |
 | 0520* | 多项式：表示、加法与减法 | 计划 | `math/0520-polynomial-representation-addition-subtraction.md` |
