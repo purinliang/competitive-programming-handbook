@@ -1,0 +1,86 @@
+[
+  {
+    "id": "comparison-result-type",
+    "prompt": "比较表达式 `a <= b` 的结果是什么类型？",
+    "options": [
+      { "id": "a", "text": "`int`" },
+      { "id": "b", "text": "`double`" },
+      { "id": "c", "text": "`bool`" },
+      { "id": "d", "text": "`char`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "比较关系只有成立和不成立两种结果，因此产生 `true` 或 `false`，类型为 `bool`。"
+  },
+  {
+    "id": "assignment-vs-comparison",
+    "prompt": "下面哪项只判断 `a` 与 `b` 是否相等，而不会修改它们？",
+    "options": [
+      { "id": "a", "text": "`a = b`" },
+      { "id": "b", "text": "`a == b`" },
+      { "id": "c", "text": "`a := b`" },
+      { "id": "d", "text": "`a => b`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`==` 产生相等关系的布尔结果；单个 `=` 会把右侧值赋给左侧变量。"
+  },
+  {
+    "id": "inclusive-boundary",
+    "prompt": "题目规定“分数至少为 60 才通过”，正确条件是什么？",
+    "options": [
+      { "id": "a", "text": "`score > 60`" },
+      { "id": "b", "text": "`score >= 60`" },
+      { "id": "c", "text": "`score < 60`" },
+      { "id": "d", "text": "`score == 0`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "“至少”包含恰好等于边界的情况，所以必须使用包含等号的 `>=`。"
+  },
+  {
+    "id": "arithmetic-before-comparison",
+    "prompt": "表达式 `a + b >= target` 会先计算哪一部分？",
+    "options": [
+      { "id": "a", "text": "先计算 `a + b`，再与 `target` 比较" },
+      { "id": "b", "text": "先计算 `b >= target`" },
+      { "id": "c", "text": "先把 `target` 赋给 `b`" },
+      { "id": "d", "text": "三部分同时计算，没有顺序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "算术运算的优先级高于比较，因此这段表达式等价于 `(a + b) >= target`。"
+  },
+  {
+    "id": "character-order",
+    "prompt": "在主流 ASCII 兼容竞赛环境中，下面哪个比较为 `true`？",
+    "options": [
+      { "id": "a", "text": "`'7' < '3'`" },
+      { "id": "b", "text": "`'c' < 'a'`" },
+      { "id": "c", "text": "`'A' < 'C'`" },
+      { "id": "d", "text": "`'9' == 9`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "同一类数字或字母字符按照自然顺序连续编码，因此 `'A'` 的编号小于 `'C'`。"
+  },
+  {
+    "id": "floating-equality",
+    "prompt": "为什么浮点计算结果通常不应机械地用 `==` 判断数学上的相等？",
+    "options": [
+      { "id": "a", "text": "`==` 只能比较整数" },
+      { "id": "b", "text": "许多小数只能近似保存，计算后可能带有舍入误差" },
+      { "id": "c", "text": "浮点数没有正负号" },
+      { "id": "d", "text": "比较会修改两个操作数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "有限位二进制浮点数无法精确表示许多十进制小数，计算结果可能与理想值存在很小差异。"
+  },
+  {
+    "id": "chained-comparison",
+    "prompt": "为什么 `0 <= x <= 10` 不能在 C++ 中正确检查闭区间？",
+    "options": [
+      { "id": "a", "text": "C++ 不支持小于等于运算符" },
+      { "id": "b", "text": "它先得到 `0 <= x` 的布尔值，再拿这个布尔值与 `10` 比较" },
+      { "id": "c", "text": "整数不能与字面量比较" },
+      { "id": "d", "text": "闭区间只能使用循环检查" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每个比较运算符只连接左右两个操作数；正确写法要拆成 `0 <= x` 与 `x <= 10` 两个条件。"
+  }
+]
