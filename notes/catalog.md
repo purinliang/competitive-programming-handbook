@@ -143,7 +143,7 @@
 | 0121e5 | 构造函数 | 待审阅 | [constructors.md](cpp/constructors.md) |
 | 0121e6 | 析构函数 | 待审阅 | [destructors.md](cpp/destructors.md) |
 | 0121e7 | 函数重载与运算符重载 | 待审阅 | [overloading.md](cpp/overloading.md) |
-| 0121e8 | 继承 | 计划 | `cpp/inheritance.md` |
+| 0121e8 | 继承 | 待审阅 | [inheritance.md](cpp/inheritance.md) |
 | 0121e9 | 多态 | 计划 | `cpp/polymorphism.md` |
 | 0122* | union | 待审阅 | [union.md](cpp/union.md) |
 | 0123* | enum | 待审阅 | [enum.md](cpp/enum.md) |

@@ -130,7 +130,7 @@
 | 0121e5 | 构造函数 | C++ | [cpp/constructors.md](cpp/constructors.md) |
 | 0121e6 | 析构函数 | C++ | [cpp/destructors.md](cpp/destructors.md) |
 | 0121e7 | 函数重载与运算符重载 | C++ | [cpp/overloading.md](cpp/overloading.md) |
-| 0121e8 | 继承 | C++ | `cpp/inheritance.md` |
+| 0121e8 | 继承 | C++ | [cpp/inheritance.md](cpp/inheritance.md) |
 | 0121e9 | 多态 | C++ | `cpp/polymorphism.md` |
 | 0122* | union | C++ | [cpp/union.md](cpp/union.md) |
 | 0123* | enum | C++ | [cpp/enum.md](cpp/enum.md) |
@@ -611,7 +611,7 @@
 | 0121e5 | 构造函数 | [cpp/constructors.md](cpp/constructors.md) |
 | 0121e6 | 析构函数 | [cpp/destructors.md](cpp/destructors.md) |
 | 0121e7 | 函数重载与运算符重载 | [cpp/overloading.md](cpp/overloading.md) |
-| 0121e8 | 继承 | `cpp/inheritance.md` |
+| 0121e8 | 继承 | [cpp/inheritance.md](cpp/inheritance.md) |
 | 0121e9 | 多态 | `cpp/polymorphism.md` |
 | 0122* | union | [cpp/union.md](cpp/union.md) |
 | 0123* | enum | [cpp/enum.md](cpp/enum.md) |
