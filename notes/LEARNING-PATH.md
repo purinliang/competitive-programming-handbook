@@ -187,7 +187,7 @@
 | 0304 | 线段树：基础 | 数据结构 | [data-structures/segment-tree.md](data-structures/segment-tree.md) |
 | 0306 | 树状数组：基础 | 数据结构 | [data-structures/fenwick-tree.md](data-structures/fenwick-tree.md) |
 | 0307 | 并查集：基础 | 数据结构 | [data-structures/disjoint-set-union.md](data-structures/disjoint-set-union.md) |
-| 0308 | 稀疏表 ST | 数据结构 | `data-structures/0308-sparse-table.md` |
+| 0308 | 稀疏表（ST 表） | 数据结构 | [data-structures/sparse-table.md](data-structures/sparse-table.md) |
 | 0229 | 单调栈 | 算法基础 | `algorithm-basics/0229-monotonic-stack.md` |
 | 0230 | 单调队列 | 算法基础 | `algorithm-basics/0230-monotonic-queue.md` |
 | 0242 | 倍增：基础 | 算法基础 | [algorithm-basics/doubling.md](algorithm-basics/doubling.md) |
