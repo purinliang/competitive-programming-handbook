@@ -130,17 +130,6 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 0176* | 预处理 | 待审阅 | [preprocessing.md](cpp/preprocessing.md) |
-| 0177* | 编译 | 待审阅 | [compilation.md](cpp/compilation.md) |
-| 0178* | 链接 | 待审阅 | [linking.md](cpp/linking.md) |
-| 0179* | constexpr | 待审阅 | [constexpr.md](cpp/constexpr.md) |
-| 0152* | #include | 待审阅 | [include.md](cpp/include.md) |
-| 0153* | 命名空间与 std | 待审阅 | [namespace-and-std.md](cpp/namespace-and-std.md) |
-| 0154* | inline | 待审阅 | [inline.md](cpp/inline.md) |
-| 0155* | volatile | 待审阅 | [volatile.md](cpp/volatile.md) |
-| 0157* | 对象生命周期 | 待审阅 | [object-lifetime.md](cpp/object-lifetime.md) |
-| 0159* | #define 宏 | 待审阅 | [define-macros.md](cpp/define-macros.md) |
-| 0160* | typedef 与 using 类型别名 | 待审阅 | [type-aliases.md](cpp/type-aliases.md) |
 | 0121e2 | class 与对象 | 待审阅 | [class.md](cpp/class.md) |
 | 0121e3 | 类的成员 | 待审阅 | [class-members.md](cpp/class-members.md) |
 | 0121e4 | 访问权限与 friend | 待审阅 | [class-access-control.md](cpp/class-access-control.md) |
@@ -151,6 +140,17 @@
 | 0121e9 | 多态 | 待审阅 | [polymorphism.md](cpp/polymorphism.md) |
 | 0122* | union | 待审阅 | [union.md](cpp/union.md) |
 | 0123* | enum | 待审阅 | [enum.md](cpp/enum.md) |
+| 0152* | #include | 待审阅 | [include.md](cpp/include.md) |
+| 0153* | 命名空间与 std | 待审阅 | [namespace-and-std.md](cpp/namespace-and-std.md) |
+| 0154* | inline | 待审阅 | [inline.md](cpp/inline.md) |
+| 0155* | volatile | 待审阅 | [volatile.md](cpp/volatile.md) |
+| 0157* | 对象生命周期 | 待审阅 | [object-lifetime.md](cpp/object-lifetime.md) |
+| 0159* | #define 宏 | 待审阅 | [define-macros.md](cpp/define-macros.md) |
+| 0160* | typedef 与 using 类型别名 | 待审阅 | [type-aliases.md](cpp/type-aliases.md) |
+| 0176* | 预处理 | 待审阅 | [preprocessing.md](cpp/preprocessing.md) |
+| 0177* | 编译 | 待审阅 | [compilation.md](cpp/compilation.md) |
+| 0178* | 链接 | 待审阅 | [linking.md](cpp/linking.md) |
+| 0179* | constexpr | 待审阅 | [constexpr.md](cpp/constexpr.md) |
 
 ## 02 算法基础
 

@@ -599,20 +599,6 @@
 | 0103e1 | IEEE 754 浮点数表示 | [cpp/ieee-754.md](cpp/ieee-754.md) |
 | 0119e1 | 多维数组的布局与参数传递 | [cpp/multidimensional-array-layout-and-parameters.md](cpp/multidimensional-array-layout-and-parameters.md) |
 | 0121e1 | struct 的内存布局 | [cpp/struct-memory-layout.md](cpp/struct-memory-layout.md) |
-| 0135* | tuple | [cpp/tuple.md](cpp/tuple.md) |
-| 0136* | array | [cpp/array.md](cpp/array.md) |
-| 0156* | order-statistics tree（GNU PBDS） | `cpp/gnu-pbds.md` |
-| 0152* | #include | [cpp/include.md](cpp/include.md) |
-| 0153* | 命名空间与 std | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
-| 0154* | inline | [cpp/inline.md](cpp/inline.md) |
-| 0155* | volatile | [cpp/volatile.md](cpp/volatile.md) |
-| 0157* | 对象生命周期 | [cpp/object-lifetime.md](cpp/object-lifetime.md) |
-| 0159* | #define 宏 | `cpp/define-macros.md` |
-| 0160* | typedef 与 using 类型别名 | `cpp/type-aliases.md` |
-| 0176* | 预处理 | [cpp/preprocessing.md](cpp/preprocessing.md) |
-| 0177* | 编译 | [cpp/compilation.md](cpp/compilation.md) |
-| 0178* | 链接 | [cpp/linking.md](cpp/linking.md) |
-| 0179* | constexpr | [cpp/constexpr.md](cpp/constexpr.md) |
 | 0121e2 | class 与对象 | [cpp/class.md](cpp/class.md) |
 | 0121e3 | 类的成员 | [cpp/class-members.md](cpp/class-members.md) |
 | 0121e4 | 访问权限与 friend | [cpp/class-access-control.md](cpp/class-access-control.md) |
@@ -623,6 +609,20 @@
 | 0121e9 | 多态 | [cpp/polymorphism.md](cpp/polymorphism.md) |
 | 0122* | union | [cpp/union.md](cpp/union.md) |
 | 0123* | enum | [cpp/enum.md](cpp/enum.md) |
+| 0135* | tuple | [cpp/tuple.md](cpp/tuple.md) |
+| 0136* | array | [cpp/array.md](cpp/array.md) |
+| 0152* | #include | [cpp/include.md](cpp/include.md) |
+| 0153* | 命名空间与 std | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
+| 0154* | inline | [cpp/inline.md](cpp/inline.md) |
+| 0155* | volatile | [cpp/volatile.md](cpp/volatile.md) |
+| 0156* | order-statistics tree（GNU PBDS） | `cpp/gnu-pbds.md` |
+| 0157* | 对象生命周期 | [cpp/object-lifetime.md](cpp/object-lifetime.md) |
+| 0159* | #define 宏 | [cpp/define-macros.md](cpp/define-macros.md) |
+| 0160* | typedef 与 using 类型别名 | [cpp/type-aliases.md](cpp/type-aliases.md) |
+| 0176* | 预处理 | [cpp/preprocessing.md](cpp/preprocessing.md) |
+| 0177* | 编译 | [cpp/compilation.md](cpp/compilation.md) |
+| 0178* | 链接 | [cpp/linking.md](cpp/linking.md) |
+| 0179* | constexpr | [cpp/constexpr.md](cpp/constexpr.md) |
 
 ### 02 算法基础
 
