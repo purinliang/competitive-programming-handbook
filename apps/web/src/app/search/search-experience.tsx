@@ -15,22 +15,61 @@ interface SearchRecord {
   text: string;
 }
 
-function rank(record: SearchRecord, terms: string[]): number {
+interface RankedSearchRecord {
+  record: SearchRecord;
+  sourceIndex: number;
+  exactTitle: boolean;
+  titleMatches: number;
+  titleOccurrences: number;
+  moduleMatches: number;
+  textOccurrences: number;
+}
+
+function countOccurrences(text: string, term: string): number {
+  let count = 0;
+  let start = 0;
+
+  while (true) {
+    const position = text.indexOf(term, start);
+    if (position === -1) {
+      return count;
+    }
+    count++;
+    start = position + term.length;
+  }
+}
+
+function rank(record: SearchRecord, terms: string[], sourceIndex: number): RankedSearchRecord | null {
   const title = record.title.toLocaleLowerCase("zh-CN");
   const moduleTitle = record.moduleTitle.toLocaleLowerCase("zh-CN");
   const text = record.text.toLocaleLowerCase("zh-CN");
-  let score = 0;
+  let titleMatches = 0;
+  let titleOccurrences = 0;
+  let moduleMatches = 0;
+  let textOccurrences = 0;
 
   for (const term of terms) {
-    if (!title.includes(term) && !moduleTitle.includes(term) && !text.includes(term)) {
-      return -1;
+    const titleCount = countOccurrences(title, term);
+    const moduleCount = countOccurrences(moduleTitle, term);
+    const textCount = countOccurrences(text, term);
+    if (titleCount === 0 && moduleCount === 0 && textCount === 0) {
+      return null;
     }
-    if (title === term) score += 80;
-    else if (title.includes(term)) score += 40;
-    if (moduleTitle.includes(term)) score += 12;
-    if (text.includes(term)) score += 4;
+    if (titleCount > 0) titleMatches++;
+    if (moduleCount > 0) moduleMatches++;
+    titleOccurrences += titleCount;
+    textOccurrences += textCount;
   }
-  return score;
+
+  return {
+    record,
+    sourceIndex,
+    exactTitle: title === terms.join(" "),
+    titleMatches,
+    titleOccurrences,
+    moduleMatches,
+    textOccurrences,
+  };
 }
 
 export function SearchExperience() {
@@ -72,23 +111,37 @@ export function SearchExperience() {
     };
   }, [records, searchable]);
 
-  const results = useMemo(() => {
+  const matches = useMemo(() => {
     const terms = normalizedQuery.toLocaleLowerCase("zh-CN").split(/\s+/).filter(Boolean);
     if (!searchable || !records || terms.length === 0) {
-      return [];
+      return { records: [], total: 0 };
     }
-    return records
-      .map((record) => ({ record, score: rank(record, terms) }))
-      .filter((item) => item.score >= 0)
-      .sort((a, b) => b.score - a.score || a.record.title.localeCompare(b.record.title, "zh-CN"))
-      .slice(0, 20)
-      .map((item) => item.record);
+    const ranked = records
+      .map((record, sourceIndex) => rank(record, terms, sourceIndex))
+      .filter((item): item is RankedSearchRecord => item !== null)
+      .sort((a, b) =>
+        Number(b.exactTitle) - Number(a.exactTitle)
+        || b.titleMatches - a.titleMatches
+        || b.titleOccurrences - a.titleOccurrences
+        || b.moduleMatches - a.moduleMatches
+        || b.textOccurrences - a.textOccurrences
+        || a.sourceIndex - b.sourceIndex
+      );
+
+    return {
+      records: ranked.slice(0, 20).map((item) => item.record),
+      total: ranked.length,
+    };
   }, [normalizedQuery, records, searchable]);
+
+  const results = matches.records;
 
   const summary = searchable
     ? records === null
       ? "正在载入搜索索引"
-      : `${results.length} 个结果`
+      : matches.total > 20
+        ? "超过 20 个结果"
+        : `${matches.total} 个结果`
     : "";
   const hasResults = searchable && records !== null && results.length > 0;
 

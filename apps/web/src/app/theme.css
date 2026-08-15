@@ -2,7 +2,7 @@
   color-scheme: light;
   --page-bg: #fcfcfd;
   --panel-bg: #fafafc;
-  --panel-hover-bg: #f9f9fb;
+  --panel-hover-bg: #f3f4f7;
   --panel-header-bg: #f1f2f5;
   --divider-border: #eff0f3;
   --strong-border: #cdced7;
@@ -32,7 +32,7 @@
   color-scheme: dark;
   --page-bg: #111113;
   --panel-bg: #171719;
-  --panel-hover-bg: #19191b;
+  --panel-hover-bg: #202124;
   --panel-header-bg: #202124;
   --divider-border: #222325;
   --strong-border: #46484f;
@@ -57,7 +57,7 @@
     color-scheme: dark;
     --page-bg: #111113;
     --panel-bg: #171719;
-    --panel-hover-bg: #19191b;
+    --panel-hover-bg: #202124;
     --panel-header-bg: #202124;
     --divider-border: #222325;
     --strong-border: #46484f;

@@ -424,10 +424,6 @@ a.article-link.is-active:hover {
   font-weight: 600;
 }
 
-.numbered-panel-header:hover .numbered-panel-number {
-  color: var(--accent-hover-text);
-}
-
 .numbered-panel-header > span {
   margin-left: auto;
 }
