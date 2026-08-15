@@ -1,0 +1,62 @@
+[
+  {
+    "id": "switch-selection",
+    "prompt": "`switch (op)` 怎样选择要执行的 `case`？",
+    "options": [
+      { "id": "a", "text": "寻找值与 `op` 相等的 `case`" },
+      { "id": "b", "text": "执行所有 `case`" },
+      { "id": "c", "text": "只执行第一个 `case`" },
+      { "id": "d", "text": "按照 `case` 名称的长度选择" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "程序先计算 `switch` 圆括号中的值，再跳到具有相等常量值的 `case`。"
+  },
+  {
+    "id": "default-branch",
+    "prompt": "没有任何 `case` 与选择值匹配时，可选的哪个分支会执行？",
+    "options": [
+      { "id": "a", "text": "`else`" },
+      { "id": "b", "text": "`default`" },
+      { "id": "c", "text": "`continue`" },
+      { "id": "d", "text": "`return`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`default` 负责处理所有未被已列 `case` 匹配的取值；如果不需要处理，也可以省略。"
+  },
+  {
+    "id": "switch-break",
+    "prompt": "一个非末尾 `case` 完成自己的独立操作后，通常为什么要写 `break`？",
+    "options": [
+      { "id": "a", "text": "结束当前 `switch`，避免继续贯穿后续 `case`" },
+      { "id": "b", "text": "让当前 `case` 再执行一次" },
+      { "id": "c", "text": "把选择值改成 `0`" },
+      { "id": "d", "text": "声明一个新变量" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "命中 `case` 后，执行会继续向下；`break` 明确离开整个 `switch`，防止无意贯穿。"
+  },
+  {
+    "id": "if-or-switch",
+    "prompt": "下面哪个问题更适合使用 `if / else if` 而不是 `switch`？",
+    "options": [
+      { "id": "a", "text": "判断分数是否位于若干连续区间" },
+      { "id": "b", "text": "根据字符 `'+'`、`'-'`、`'*'` 选择运算" },
+      { "id": "c", "text": "根据菜单编号 `1`、`2`、`3` 选择功能" },
+      { "id": "d", "text": "根据星期编号输出名称" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`switch` 匹配离散常量值，不能直接写 `score >= 60` 这样的范围条件；`if` 更适合连续区间。"
+  },
+  {
+    "id": "shared-case-body",
+    "prompt": "若 `case 6` 和 `case 7` 都要输出 `weekend`，哪种结构最清楚？",
+    "options": [
+      { "id": "a", "text": "连续写 `case 6:`、`case 7:`，再写共同代码和一次 `break`" },
+      { "id": "b", "text": "在 `switch` 中写 `case 6 || 7:`" },
+      { "id": "c", "text": "省略全部 `case`" },
+      { "id": "d", "text": "把两个值写成范围 `case 6..7:`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "连续的空 `case` 可以共同落入同一段代码，随后用一个 `break` 结束分支。"
+  }
+]
