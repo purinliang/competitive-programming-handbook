@@ -2,7 +2,7 @@ import { HTTPException } from "hono/http-exception";
 
 export function assertSameOrigin(request: Request) {
   const origin = request.headers.get("Origin");
-  if (origin && origin !== new URL(request.url).origin) {
+  if (!origin || origin !== new URL(request.url).origin) {
     throw new HTTPException(403, { message: "请求来源无效" });
   }
 }
@@ -14,12 +14,17 @@ export async function readObject(request: Request) {
   }
 
   try {
-    const value = await request.json();
+    const text = await request.text();
+    if (new TextEncoder().encode(text).byteLength > 16 * 1024) {
+      throw new HTTPException(413, { message: "请求内容过大" });
+    }
+    const value = JSON.parse(text);
     if (!value || typeof value !== "object" || Array.isArray(value)) {
       throw new Error();
     }
     return value as Record<string, unknown>;
-  } catch {
+  } catch (error) {
+    if (error instanceof HTTPException) throw error;
     throw new HTTPException(400, { message: "请求格式无效" });
   }
 }

@@ -14,7 +14,7 @@
     {
       "binding": "DB",
       "database_name": "handbook-learning",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "b7c18c04-76ec-49fc-857b-33d9a3eded25",
       "migrations_dir": "migrations"
     }
   ]

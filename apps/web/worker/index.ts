@@ -1,10 +1,12 @@
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
 
+import { adminRoutes } from "./admin";
 import { authIsConfigured, createAuth } from "./auth";
 import { getDocument, getQuestion, getSection } from "./content-manifest";
 import { discussionRoutes } from "./discussions";
 import { assertSameOrigin, readObject } from "./request";
+import { enforceRateLimit } from "./security";
 import { requireSession } from "./session";
 
 import type { AppEnv } from "./types";
@@ -14,6 +16,10 @@ const app = new Hono<AppEnv>();
 app.get("/api/health", (c) => c.json({
   authConfigured: authIsConfigured(c.env),
   ok: true,
+}));
+
+app.get("/api/config", (c) => c.json({
+  turnstileSiteKey: c.env.TURNSTILE_SITE_KEY ?? null,
 }));
 
 app.all("/api/auth/*", async (c) => {
@@ -85,6 +91,7 @@ app.get("/api/learning/state", requireSession, async (c) => {
 
 app.post("/api/learning/sections", requireSession, async (c) => {
   assertSameOrigin(c.req.raw);
+  await enforceRateLimit(c, c.get("user").id, "section-progress", 120, 60_000);
   const body = await readObject(c.req.raw);
   const documentKey = typeof body.documentKey === "string" ? body.documentKey : "";
   const sectionId = typeof body.sectionId === "string" ? body.sectionId : "";
@@ -128,6 +135,7 @@ app.post("/api/learning/sections", requireSession, async (c) => {
 
 app.post("/api/learning/questions/attempts", requireSession, async (c) => {
   assertSameOrigin(c.req.raw);
+  await enforceRateLimit(c, c.get("user").id, "question-attempt", 60, 60_000);
   const body = await readObject(c.req.raw);
   const documentKey = typeof body.documentKey === "string" ? body.documentKey : "";
   const questionId = typeof body.questionId === "string" ? body.questionId : "";
@@ -165,6 +173,7 @@ app.post("/api/learning/questions/attempts", requireSession, async (c) => {
 });
 
 app.route("/", discussionRoutes);
+app.route("/", adminRoutes);
 
 app.notFound((c) => c.json({ error: "API 不存在" }, 404));
 app.onError((error, c) => {

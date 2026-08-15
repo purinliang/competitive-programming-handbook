@@ -3,6 +3,7 @@ import { HTTPException } from "hono/http-exception";
 
 import { getDocument, getSection } from "./content-manifest";
 import { assertSameOrigin, readObject, requiredString } from "./request";
+import { enforceRateLimit, verifyTurnstile } from "./security";
 import { requireSession } from "./session";
 import { getOptionalViewer } from "./viewer";
 
@@ -164,6 +165,8 @@ discussionRoutes.get("/api/discussions", async (c) => {
 discussionRoutes.post("/api/discussions", requireSession, async (c) => {
   assertSameOrigin(c.req.raw);
   const body = await readObject(c.req.raw);
+  await enforceRateLimit(c, c.get("user").id, "create-discussion", 10, 60_000);
+  await verifyTurnstile(c, body.turnstileToken);
   const documentKey = requiredString(body, "documentKey", 240);
   const targetKind = requiredString(body, "targetKind", 16);
   const targetId = requiredString(body, "targetId", 96);
@@ -213,6 +216,7 @@ discussionRoutes.post("/api/discussions", requireSession, async (c) => {
 discussionRoutes.post("/api/discussions/:threadId/comments", requireSession, async (c) => {
   assertSameOrigin(c.req.raw);
   const body = await readObject(c.req.raw);
+  await enforceRateLimit(c, c.get("user").id, "reply-discussion", 20, 60_000);
   const commentBody = requiredString(body, "body", 4000);
   const parentCommentId = typeof body.parentCommentId === "string"
     ? body.parentCommentId
@@ -273,6 +277,7 @@ discussionRoutes.post("/api/discussions/:threadId/comments", requireSession, asy
 
 discussionRoutes.patch("/api/discussions/:threadId", requireSession, async (c) => {
   assertSameOrigin(c.req.raw);
+  await enforceRateLimit(c, c.get("user").id, "update-discussion", 20, 60_000);
   const body = await readObject(c.req.raw);
   const user = c.get("user");
   const thread = await c.env.DB.prepare(
@@ -283,21 +288,35 @@ discussionRoutes.patch("/api/discussions/:threadId", requireSession, async (c) =
   }
   const visibility = body.visibility === "public" ? "public" : "private";
   const anonymous = body.anonymous === true;
-  await c.env.DB.prepare(
-    `UPDATE discussion_threads
-     SET visibility = ?, anonymous = ?, updatedAt = ?
-     WHERE id = ?`,
-  ).bind(visibility, anonymous ? 1 : 0, Date.now(), c.req.param("threadId")).run();
+  const now = Date.now();
+  await c.env.DB.batch([
+    c.env.DB.prepare(
+      `UPDATE discussion_threads
+       SET visibility = ?, anonymous = ?, updatedAt = ?
+       WHERE id = ?`,
+    ).bind(visibility, anonymous ? 1 : 0, now, c.req.param("threadId")),
+    c.env.DB.prepare(
+      `UPDATE discussion_comments
+       SET anonymous = ?, updatedAt = ?
+       WHERE threadId = ? AND parentCommentId IS NULL`,
+    ).bind(anonymous ? 1 : 0, now, c.req.param("threadId")),
+  ]);
   return c.json({ anonymous, visibility });
 });
 
 discussionRoutes.post("/api/comments/:commentId/report", requireSession, async (c) => {
   assertSameOrigin(c.req.raw);
+  await enforceRateLimit(c, c.get("user").id, "report-comment", 10, 3_600_000);
   const body = await readObject(c.req.raw);
   const reason = requiredString(body, "reason", 500);
+  const user = c.get("user");
   const comment = await c.env.DB.prepare(
-    "SELECT id FROM discussion_comments WHERE id = ? AND status = 'visible'",
-  ).bind(c.req.param("commentId")).first();
+    `SELECT c.id
+     FROM discussion_comments c
+     JOIN discussion_threads t ON t.id = c.threadId
+     WHERE c.id = ? AND c.status = 'visible' AND t.status != 'deleted'
+       AND (t.visibility = 'public' OR t.userId = ? OR ? = 'admin')`,
+  ).bind(c.req.param("commentId"), user.id, user.role).first();
   if (!comment) {
     throw new HTTPException(404, { message: "留言不存在" });
   }
