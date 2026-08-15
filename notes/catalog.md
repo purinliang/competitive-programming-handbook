@@ -93,7 +93,9 @@
 | 0138 | vector | 待审阅 | [vector.md](cpp/vector.md) |
 | 0139 | deque | 待审阅 | [deque.md](cpp/deque.md) |
 | 0140 | sort | 待审阅 | [sorting.md](cpp/sorting.md) |
+| 0161 | 自定义排序 | 计划 | `cpp/custom-sorting.md` |
 | 0141 | unique | 待审阅 | [deduplication.md](cpp/deduplication.md) |
+| 0162 | STL 二分查找 | 计划 | `cpp/stl-binary-search.md` |
 | 0142 | stack | 待审阅 | [stack.md](cpp/stack.md) |
 | 0143 | queue | 待审阅 | [queue.md](cpp/queue.md) |
 | 0144 | priority_queue | 待审阅 | [priority-queue.md](cpp/priority-queue.md) |
@@ -181,6 +183,8 @@
 | 0247* | 随机化：模拟退火 | 计划 | `algorithm-basics/simulated-annealing.md` |
 | 0248* | 工程：对拍 | 计划 | `algorithm-basics/stress-testing.md` |
 | 0250 | 递归与问题分解 | 计划 | `algorithm-basics/recursive-problem-solving.md` |
+| 0251 | 二分边界 | 计划 | `algorithm-basics/binary-search-boundaries.md` |
+| 0252 | 浮点数二分 | 计划 | `algorithm-basics/floating-point-binary-search.md` |
 
 ## 03 数据结构
 
