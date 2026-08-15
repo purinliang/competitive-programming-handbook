@@ -1,10 +1,13 @@
-# 序列容器：vector
+# vector
 
-> 最近修订：2026-08-13 04:45 +10:00（未审阅）
+> 最近修订：2026-08-16 09:36 +10:00（未审阅）
 
-[序列容器：array](array.md) 可以整体复制并查询长度，但元素数量必须在编译时确定。普通内置数组也需要提前决定容量，并由另一个变量记录当前实际用了多少格。
+[一维数组](one-dimensional-arrays.md) 需要在声明时决定容量，并由另一个变量记录
+当前实际使用了多少格。题目的元素数量经常要到运行时才能读入；筛选、搜索和建图
+时，结果数量甚至要到处理过程中才逐渐确定。
 
-题目的元素数量经常要到运行时才能读入；筛选、搜索和建图时，结果数量甚至要到处理过程中才逐渐确定。`vector` 保存一段连续的同类型元素，并在需要时自动调整长度，因此是竞赛代码中最常用的序列容器。
+`vector` 保存一段连续的同类型元素，并在需要时自动调整长度。它保留数组按下标
+快速访问的能力，又不要求手动管理当前长度，因此是竞赛代码中最常用的序列容器。
 
 ## 元素类型
 
@@ -18,7 +21,6 @@ vector<int> values;
 
 ```cpp
 vector<string> names;
-vector<pair<int, int>> edges;
 ```
 
 同一个 `vector` 中的所有元素类型相同。它们在内存中连续存放，因此可以通过下标快速访问任意位置。
@@ -110,7 +112,10 @@ vector<vector<int>> grid(n, vector<int>(m, 0));
 
 外层包含 $n$ 个元素，每个元素又是一个包含 $m$ 个零的 `vector<int>`。因此 `grid[i][j]` 表示第 `i` 行第 `j` 列，两层都使用标准库原生的 0-based 下标。
 
-每一行都是独立的 `vector`，所以各行也可以具有不同长度。这很适合邻接表等本来就不规则的结构；普通矩形表格还可以根据空间和传参需要改用一维 `vector`。多种二维存储方式的区别见 [数组：多维数组的布局与参数传递](multidimensional-array-layout-and-parameters.md)。
+每一行都是独立的 `vector`，所以各行也可以具有不同长度。这很适合邻接表等本来
+就不规则的结构；普通矩形表格还可以根据空间和传参需要改用一维 `vector`。
+多种二维存储方式的区别见
+[多维数组的布局与参数传递](multidimensional-array-layout-and-parameters.md)。
 
 ## 在末尾增加与删除
 
@@ -211,7 +216,8 @@ begin                              end
 [ a[0], a[1], a[2], ..., a[n - 1] )
 ```
 
-这种位置对象称为迭代器。`[values.begin(), values.end())` 恰好覆盖全部元素，左端包含、右端不包含；`end()` 不指向元素，不能读取它。
+这种位置对象称为迭代器。`[values.begin(), values.end())` 恰好覆盖全部元素，
+左端包含、右端不包含；`end()` 不指向元素，不能读取它。
 
 可以像移动一个位置一样使用迭代器：
 
@@ -221,7 +227,9 @@ for (auto it = values.begin(); it != values.end(); it++) {
 }
 ```
 
-`*it` 表示当前位置的元素。普通遍历优先使用下标或范围 `for`；现在引入 `begin()` 和 `end()`，主要是因为 [STL 算法：排序](sorting.md) 中的 `sort(values.begin(), values.end())` 会用它们准确表示排序范围。
+`*it` 表示当前位置的元素。普通遍历优先使用下标或范围 `for`；现在引入
+`begin()` 和 `end()`，主要是因为 [sort](sorting.md) 中的
+`sort(values.begin(), values.end())` 会用它们准确表示排序范围。
 
 ## 插入与删除
 
@@ -310,7 +318,7 @@ void replace_negative_with_zero(vector<int>& values) {
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+void solve() {
     int n;
     scanf("%d", &n);
 
@@ -335,6 +343,10 @@ int main() {
         printf("%d", positive[i]);
     }
     printf("\n");
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -379,7 +391,7 @@ int main() {
 
 ## 需要记住什么
 
-1. `vector<T>` 解决了内置数组和 `array` 的什么长度限制？
+1. `vector<T>` 解决了内置数组的什么长度限制？
 2. `vector<int> a(n)`、`vector<int> a(n, -1)` 和 `vector<int> a = {n, -1}` 分别建立什么内容？
 3. `size()`、`capacity()`、`resize()` 和 `reserve()` 分别改变什么？
 4. `push_back()` 与 `pop_back()` 怎样改变末尾？为什么不能对空容器调用 `pop_back()`？

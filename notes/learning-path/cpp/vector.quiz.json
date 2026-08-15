@@ -1,0 +1,134 @@
+[
+  {
+    "id": "runtime-length",
+    "prompt": "与提前固定容量的内置数组相比，`vector` 最直接解决了什么问题？",
+    "options": [
+      { "id": "a", "text": "元素可以同时具有不同类型" },
+      { "id": "b", "text": "所有下标都会自动从 1 开始" },
+      { "id": "c", "text": "长度可以在运行时确定并自动调整" },
+      { "id": "d", "text": "中间插入永远是常数时间" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "vector 仍保存同一种元素并连续存放，但当前长度可以在运行时建立和改变。"
+  },
+  {
+    "id": "initialization-forms",
+    "prompt": "哪一项会建立五个值均为 `-1` 的元素？",
+    "options": [
+      { "id": "a", "text": "`vector<int> a = {5, -1};`" },
+      { "id": "b", "text": "`vector<int> a(5, -1);`" },
+      { "id": "c", "text": "`vector<int> a;`" },
+      { "id": "d", "text": "`vector<int> a(-1, 5);`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "圆括号中的两个参数是长度和统一初值；花括号会直接列出两个元素 5 与 -1。"
+  },
+  {
+    "id": "native-indexing",
+    "prompt": "长度为 `n` 的 `vector` 原生有效下标范围是什么？",
+    "options": [
+      { "id": "a", "text": "`0..n`" },
+      { "id": "b", "text": "`1..n`" },
+      { "id": "c", "text": "`1..n+5`" },
+      { "id": "d", "text": "`0..n-1`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "vector 是 STL 原生容器，使用 0-based 下标；本书自定义算法的 1-based 约定是在存储边界上另行建立的。"
+  },
+  {
+    "id": "one-based-storage",
+    "prompt": "用 `vector<int> a(n + 5)` 保存 1-based 题目数组时，逻辑元素是哪一段？",
+    "options": [
+      { "id": "a", "text": "`a[0]..a[n+4]` 全部" },
+      { "id": "b", "text": "`a[1]..a[n]`" },
+      { "id": "c", "text": "只有 `a[0]`" },
+      { "id": "d", "text": "`a[5]..a[n+5]`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "第 0 格和末尾余量是有意留空的存储位置，逻辑长度仍由 n 单独表示。"
+  },
+  {
+    "id": "push-pop-empty",
+    "prompt": "关于 `pop_back()`，哪项正确？",
+    "options": [
+      { "id": "a", "text": "它会删除全部元素" },
+      { "id": "b", "text": "它删除开头元素并返回被删值" },
+      { "id": "c", "text": "它删除末尾元素但不返回该元素，且不能用于空 vector" },
+      { "id": "d", "text": "它只减少 capacity，不改变 size" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "需要保留末尾值时，应先读取 back()，再在非空前提下调用 pop_back()。"
+  },
+  {
+    "id": "size-vs-capacity",
+    "prompt": "空 `vector` 调用 `reserve(1000)` 后，哪项成立？",
+    "options": [
+      { "id": "a", "text": "下标自动改成 1-based" },
+      { "id": "b", "text": "已经存在 1000 个可以访问的元素" },
+      { "id": "c", "text": "所有元素都被赋值为 1000" },
+      { "id": "d", "text": "capacity 至少足够，但 size 仍是 0" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "reserve 只预留存储空间；resize 才会真正改变元素数量。"
+  },
+  {
+    "id": "range-for-reference",
+    "prompt": "要在范围 `for` 中把原容器的每个整数翻倍，应怎样声明循环变量？",
+    "options": [
+      { "id": "a", "text": "`int value`" },
+      { "id": "b", "text": "`int& value`" },
+      { "id": "c", "text": "`const int& value`" },
+      { "id": "d", "text": "`void value`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "普通值是副本，const 引用不能修改；普通引用才是原元素的可修改别名。"
+  },
+  {
+    "id": "half-open-iterator-range",
+    "prompt": "`[values.begin(), values.end())` 为什么恰好覆盖全部元素？",
+    "options": [
+      { "id": "a", "text": "begin 和 end 都指向最后一个元素" },
+      { "id": "b", "text": "begin 和 end 都指向最后一个元素" },
+      { "id": "c", "text": "begin 指向首元素，end 指向末元素之后且右端不包含" },
+      { "id": "d", "text": "这个范围只包含偶数下标" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "STL 迭代器范围采用左闭右开形式，end 是边界位置而不是可读取元素。"
+  },
+  {
+    "id": "middle-erase-cost",
+    "prompt": "为什么 `vector` 在中间删除一个元素最坏需要 $O(n)$ 时间？",
+    "options": [
+      { "id": "a", "text": "下标访问本身是线性的" },
+      { "id": "b", "text": "vector 必须重新排序全部元素" },
+      { "id": "c", "text": "erase 会复制整个程序" },
+      { "id": "d", "text": "后面的连续元素需要向前移动" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "连续存储带来 O(1) 随机访问，也意味着中间出现空位时需要移动后缀。"
+  },
+  {
+    "id": "reallocation-invalidation",
+    "prompt": "`push_back()` 触发扩容后，为什么不能继续使用旧的元素指针或引用？",
+    "options": [
+      { "id": "a", "text": "所有元素的值一定会变成 0" },
+      { "id": "b", "text": "元素可能已经搬到新的连续内存" },
+      { "id": "c", "text": "vector 会变成链表" },
+      { "id": "d", "text": "扩容会结束程序" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "重新分配会改变元素地址，因此旧迭代器、指针和引用失效；需要位置时应重新取得。"
+  },
+  {
+    "id": "const-reference-parameter",
+    "prompt": "函数只读一个含有 `n` 个元素的 `vector` 时，为什么通常传 `const` 引用？",
+    "options": [
+      { "id": "a", "text": "允许函数删除 const 对象" },
+      { "id": "b", "text": "让 vector 自动从 1 开始" },
+      { "id": "c", "text": "避免 O(n) 整体复制，并阻止函数修改元素" },
+      { "id": "d", "text": "把所有操作变成编译期计算" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "按值传递会复制全部元素；const 引用提供只读别名，不产生这次复制。"
+  }
+]
