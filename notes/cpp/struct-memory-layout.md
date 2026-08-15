@@ -1,8 +1,9 @@
-# 复合类型：struct 的内存布局
+# struct 的内存布局
 
-> 最近修订：2026-08-13 02:45 +10:00（未审阅）
+> 最近修订：2026-08-16 15:14 +10:00（未审阅）
 
-[复合类型：struct](struct.md) 把多个成员组合成一个对象。成员在概念上按声明顺序出现，但它们在内存中不一定首尾紧贴；编译器还要满足每种类型的对齐要求。
+[struct](struct.md) 把多个成员组合成一个对象。成员按声明顺序排列，但它们在
+内存中不一定首尾紧贴；编译器还要满足每种类型的对齐要求。
 
 本篇解释成员间填充与尾部填充。竞赛中只有在估算大型结构体数组内存、观察底层布局或处理外部二进制格式时经常需要这些细节。
 
@@ -109,6 +110,39 @@ struct Compact {
 
 但不要为了理论上少几个字节就破坏成员的自然语义，也不能擅自改变必须与外部协议、文件格式或评测接口一致的布局。普通竞赛结构体先追求清楚；只有内存估算表明填充确实重要时，再根据实际 `sizeof` 调整顺序。
 
+## 数组成员
+
+数组作为一个完整成员嵌在结构体中。数组内部的元素保持连续，二维数组仍然按行
+优先排列；编译器不会在数组的相邻元素或相邻行之间加入结构体填充：
+
+```cpp
+struct Grid {
+    char tag;
+    int value[2][3];
+    char state;
+};
+```
+
+`value` 自身需要满足 `int` 的对齐，所以 `tag` 与 `value` 之间可能出现成员间
+填充。进入 `value` 以后，六个整数严格按照下面的顺序连续存放：
+
+```text
+value[0][0], value[0][1], value[0][2],
+value[1][0], value[1][1], value[1][2]
+```
+
+数组结束后接着安排 `state`，结构体末尾仍可能为整个 `Grid` 的对齐加入尾部
+填充。可以查询实际偏移：
+
+```cpp
+cout << offsetof(Grid, value) << '\n';
+cout << offsetof(Grid, state) << '\n';
+cout << sizeof(Grid) << '\n';
+```
+
+因此要分两层理解：数组类型保证自己的元素连续；结构体布局负责把整个数组成员
+放到合适的起始偏移，并在其他成员之间或对象末尾按需要填充。
+
 ## 填充字节不是成员
 
 填充字节没有成员名称，也不能通过普通成员访问。它们的内容不应被程序当成有效数据。
@@ -137,17 +171,21 @@ struct Compact {
     char state;
 };
 
+void solve() {
+    cout << "char: " << sizeof(char) << ' ' << alignof(char) << '\n';
+    cout << "int: " << sizeof(int) << ' ' << alignof(int) << '\n';
+
+    cout << "Sample: " << sizeof(Sample) << ' ' << alignof(Sample) << '\n';
+    cout << "Sample offsets: " << offsetof(Sample, tag) << ' '
+         << offsetof(Sample, value) << ' ' << offsetof(Sample, state) << '\n';
+
+    cout << "Compact: " << sizeof(Compact) << ' ' << alignof(Compact) << '\n';
+    cout << "Compact offsets: " << offsetof(Compact, value) << ' '
+         << offsetof(Compact, tag) << ' ' << offsetof(Compact, state) << '\n';
+}
+
 int main() {
-    printf("char: %zu %zu\n", sizeof(char), alignof(char));
-    printf("int: %zu %zu\n", sizeof(int), alignof(int));
-
-    printf("Sample: %zu %zu\n", sizeof(Sample), alignof(Sample));
-    printf("Sample offsets: %zu %zu %zu\n", offsetof(Sample, tag),
-           offsetof(Sample, value), offsetof(Sample, state));
-
-    printf("Compact: %zu %zu\n", sizeof(Compact), alignof(Compact));
-    printf("Compact offsets: %zu %zu %zu\n", offsetof(Compact, value),
-           offsetof(Compact, tag), offsetof(Compact, state));
+    solve();
     return 0;
 }
 ```
@@ -178,4 +216,4 @@ Compact offsets: 0 4 5
 
 ## 返回基础篇
 
-返回 [复合类型：struct](struct.md) 继续主学习路线。
+返回 [struct](struct.md) 继续主学习路线。

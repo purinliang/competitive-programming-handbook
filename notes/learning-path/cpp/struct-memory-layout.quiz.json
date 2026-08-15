@@ -1,0 +1,74 @@
+[
+  {
+    "id": "alignment-padding",
+    "prompt": "为什么 struct 的成员之间可能出现填充字节？",
+    "options": [
+      { "id": "a", "text": "让后续成员从满足其对齐要求的地址开始" },
+      { "id": "b", "text": "填充用于保存隐藏整数答案" },
+      { "id": "c", "text": "成员声明顺序会被任意打乱" },
+      { "id": "d", "text": "所有结构体都必须恰好占 16 字节" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "成员仍按规则保持声明顺序关系，编译器可在中间留空以满足类型对齐。"
+  },
+  {
+    "id": "tail-padding",
+    "prompt": "结构体末尾为什么可能有尾部填充？",
+    "options": [
+      { "id": "a", "text": "让结构体数组中下一个元素仍满足整体对齐" },
+      { "id": "b", "text": "让最后一个成员自动变成数组" },
+      { "id": "c", "text": "为了保存析构函数代码" },
+      { "id": "d", "text": "尾部填充会让 sizeof 变成成员大小之和" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "数组元素间距是 sizeof(struct)，因此总大小也要让每个后续元素正确对齐。"
+  },
+  {
+    "id": "layout-queries",
+    "prompt": "`alignof(T)` 与 `offsetof(T, member)` 分别查询什么？",
+    "options": [
+      { "id": "a", "text": "类型对齐要求与成员相对对象起点的字节偏移" },
+      { "id": "b", "text": "对象值与成员名称长度" },
+      { "id": "c", "text": "函数参数数量与返回类型" },
+      { "id": "d", "text": "算法时间与空间复杂度" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "offsetof 只应按其规则用于标准布局类型，具体数值仍依赖当前实现。"
+  },
+  {
+    "id": "member-order-size",
+    "prompt": "调整成员声明顺序为什么可能改变 sizeof(struct)？",
+    "options": [
+      { "id": "a", "text": "不同排列可能需要不同数量的对齐空隙" },
+      { "id": "b", "text": "成员类型会随顺序自动改变" },
+      { "id": "c", "text": "编译器会删除排在后面的成员" },
+      { "id": "d", "text": "sizeof 只计算第一个成员" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "先放对齐较大的成员经常减少空隙，但可读性和外部格式约束仍应优先考虑。"
+  },
+  {
+    "id": "array-member-layout",
+    "prompt": "二维数组作为 struct 成员时，数组内部能否在相邻行之间插入结构体填充？",
+    "options": [
+      { "id": "a", "text": "不能，数组元素连续，二维数组仍按行优先连续排列" },
+      { "id": "b", "text": "能，每一行后一定填充 8 字节" },
+      { "id": "c", "text": "只有第一行连续" },
+      { "id": "d", "text": "数组成员不占结构体空间" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "结构体可在整个数组成员以前或其他成员之间填充，但不能破坏数组自身的连续布局。"
+  },
+  {
+    "id": "padding-comparison",
+    "prompt": "为什么不能普遍用 `memcmp` 判断两个结构体的成员值是否相等？",
+    "options": [
+      { "id": "a", "text": "填充字节可能不同，而且不是有效成员值" },
+      { "id": "b", "text": "memcmp 只能比较浮点数" },
+      { "id": "c", "text": "结构体不能包含任何字节" },
+      { "id": "d", "text": "成员声明顺序每次运行都会变化" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "稳定比较应逐成员进行；原始对象布局也不应直接当作跨平台文件格式。"
+  }
+]
