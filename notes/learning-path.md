@@ -57,7 +57,7 @@
 | 0112 | for | C++ | [cpp/loops.md](cpp/loops.md) |
 | 0168 | do while | C++ | [cpp/do-while.md](cpp/do-while.md) |
 
-### 学习单元：函数与程序交互
+### 学习单元：函数与作用域
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -66,6 +66,12 @@
 | 0170 | 函数的形参与实参 | C++ | [cpp/function-parameters-and-arguments.md](cpp/function-parameters-and-arguments.md) |
 | 0171 | 关键字与标识符 | C++ | [cpp/keywords-and-identifiers.md](cpp/keywords-and-identifiers.md) |
 | 0114 | 作用域 | C++ | [cpp/scope.md](cpp/scope.md) |
+| 0129 | static 局部变量 | C++ | [cpp/static-local-variables.md](cpp/static-local-variables.md) |
+
+### 学习单元：输入输出
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0115 | 标准输入 | C++ | [cpp/standard-input.md](cpp/standard-input.md) |
 | 0116 | 标准输出 | C++ | [cpp/standard-output.md](cpp/standard-output.md) |
 | 0117 | 文件重定向 | C++ | [cpp/file-redirection.md](cpp/file-redirection.md) |
@@ -89,11 +95,10 @@
 | 0126 | 引用 | C++ | [cpp/references.md](cpp/references.md) |
 | 0127 | 参数传递 | C++ | [cpp/parameter-passing.md](cpp/parameter-passing.md) |
 
-### 学习单元：存储期、调用栈与递归
+### 学习单元：内存、调用栈与递归
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0129 | static 局部变量 | C++ | [cpp/static-local-variables.md](cpp/static-local-variables.md) |
 | 0130 | 竞赛程序的常见内存分区 | C++ | [cpp/competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
 | 0131 | 调用栈 | C++ | [cpp/function-call-stack.md](cpp/function-call-stack.md) |
 | 0132 | 递归 | C++ | [cpp/recursion.md](cpp/recursion.md) |
