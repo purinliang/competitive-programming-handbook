@@ -276,7 +276,7 @@
 | 0508 | 欧拉函数 | 待审阅 | [euler-totient.md](math/euler-totient.md) |
 | 0508e1 | 扩展欧拉定理 | 计划 | `math/extended-euler-theorem.md` |
 | 0508e2 | 欧拉函数：筛法预处理 | 计划 | `math/euler-totient-sieve.md` |
-| 0509 | 矩阵运算与线性变换 | 计划 | `math/0509-matrix-operations.md` |
+| 0509 | 矩阵：表示 | 待审阅 | [matrix-representation.md](math/matrix-representation.md) |
 | 0510 | 数论：中国剩余定理（CRT） | 待审阅 | [chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
 | 0511 | 矩阵快速幂与递推加速 | 计划 | `math/0511-matrix-exponentiation.md` |
 | 0512 | 概率与期望基础 | 计划 | `math/0512-probability-expectation.md` |
@@ -353,6 +353,9 @@
 | 0580 | 排列数 | 待审阅 | [permutations-count.md](math/permutations-count.md) |
 | 0581 | 组合数：阶乘与逆元预处理 | 待审阅 | [binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
 | 0582 | 欧拉定理 | 待审阅 | [euler-theorem.md](math/euler-theorem.md) |
+| 0583 | 矩阵：加法与减法 | 计划 | `math/matrix-addition-subtraction.md` |
+| 0584 | 矩阵：乘法 | 计划 | `math/matrix-multiplication.md` |
+| 0585 | 线性变换：矩阵表示 | 计划 | `math/linear-transformations-as-matrices.md` |
 
 ## 06 计算几何
 

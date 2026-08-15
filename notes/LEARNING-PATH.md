@@ -209,7 +209,10 @@
 | 0581 | 组合数：阶乘与逆元预处理 | 数学 | [math/binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
 | 0508 | 欧拉函数 | 数学 | [math/euler-totient.md](math/euler-totient.md) |
 | 0582 | 欧拉定理 | 数学 | [math/euler-theorem.md](math/euler-theorem.md) |
-| 0509 | 矩阵运算与线性变换 | 数学 | `math/0509-matrix-operations.md` |
+| 0509 | 矩阵：表示 | 数学 | [math/matrix-representation.md](math/matrix-representation.md) |
+| 0583 | 矩阵：加法与减法 | 数学 | `math/matrix-addition-subtraction.md` |
+| 0584 | 矩阵：乘法 | 数学 | `math/matrix-multiplication.md` |
+| 0585 | 线性变换：矩阵表示 | 数学 | `math/linear-transformations-as-matrices.md` |
 | 0511 | 矩阵快速幂与递推加速 | 数学 | `math/0511-matrix-exponentiation.md` |
 | 0512 | 概率与期望基础 | 数学 | `math/0512-probability-expectation.md` |
 | 0518 | 莫比乌斯函数 | 数学 | `math/0518-mobius-function.md` |
