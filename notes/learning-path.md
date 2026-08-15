@@ -64,6 +64,7 @@
 | 0113 | 函数的定义与调用 | C++ | [cpp/function-definition-and-calls.md](cpp/function-definition-and-calls.md) |
 | 0169 | 函数的返回值 | C++ | [cpp/function-return-values.md](cpp/function-return-values.md) |
 | 0170 | 函数的形参与实参 | C++ | [cpp/function-parameters-and-arguments.md](cpp/function-parameters-and-arguments.md) |
+| 0171 | 关键字与标识符 | C++ | [cpp/keywords-and-identifiers.md](cpp/keywords-and-identifiers.md) |
 | 0114 | 作用域 | C++ | [cpp/scope.md](cpp/scope.md) |
 | 0115 | 标准输入 | C++ | [cpp/standard-input.md](cpp/standard-input.md) |
 | 0116 | 标准输出 | C++ | [cpp/standard-output.md](cpp/standard-output.md) |

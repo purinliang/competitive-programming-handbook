@@ -1,0 +1,62 @@
+[
+  {
+    "id": "keyword-role",
+    "prompt": "C++ 关键字与普通标识符的主要区别是什么？",
+    "options": [
+      { "id": "a", "text": "关键字由语言保留并具有固定语法作用" },
+      { "id": "b", "text": "关键字一定比标识符更长" },
+      { "id": "c", "text": "关键字只能出现在 `main` 中" },
+      { "id": "d", "text": "关键字必须全部使用大写字母" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "关键字是语言语法的一部分，不能再用作自己创建的变量名、函数名或类型名。"
+  },
+  {
+    "id": "valid-identifier",
+    "prompt": "下面哪个名称可以作为普通竞赛代码中的 C++ 标识符？",
+    "options": [
+      { "id": "a", "text": "`player_score`" },
+      { "id": "b", "text": "`2nd_score`" },
+      { "id": "c", "text": "`player-score`" },
+      { "id": "d", "text": "`return`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`player_score` 只使用字母和下划线，并且不是关键字；其余名称分别以数字开头、包含减号或占用了关键字。"
+  },
+  {
+    "id": "case-sensitive",
+    "prompt": "`score` 与 `Score` 在 C++ 中是什么关系？",
+    "options": [
+      { "id": "a", "text": "它们是两个不同的标识符" },
+      { "id": "b", "text": "它们始终表示同一个变量" },
+      { "id": "c", "text": "只有 `Score` 合法" },
+      { "id": "d", "text": "只有 `score` 合法" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "C++ 区分标识符中的大小写，因此大小写不同就是不同名称。"
+  },
+  {
+    "id": "main-and-cout",
+    "prompt": "关于 `main` 和 `cout`，下面哪项正确？",
+    "options": [
+      { "id": "a", "text": "它们是常见标识符，但都不是 C++ 关键字" },
+      { "id": "b", "text": "它们都是控制流关键字" },
+      { "id": "c", "text": "只有 `cout` 是关键字" },
+      { "id": "d", "text": "只有 `main` 是关键字" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`main` 是入口函数的名称，`cout` 是标准库名称；关键字则由语言语法直接保留。"
+  },
+  {
+    "id": "meaningful-name",
+    "prompt": "一段代码需要同时保存两轮分数时，哪组名称通常最清楚？",
+    "options": [
+      { "id": "a", "text": "`first_score` 与 `second_score`" },
+      { "id": "b", "text": "`x` 与 `xx`" },
+      { "id": "c", "text": "`data` 与 `data2`" },
+      { "id": "d", "text": "`a1` 与 `a2`，并且不解释含义" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "当局部语境不能自然固定含义时，名称应直接说明对象保存的内容。"
+  }
+]
