@@ -1,0 +1,74 @@
+[
+  {
+    "id": "array-of-arrays",
+    "prompt": "`int a[2][3]` 的直接元素类型是什么？",
+    "options": [
+      { "id": "a", "text": "长度为 3 的 `int` 数组" },
+      { "id": "b", "text": "单个 `int*` 对象" },
+      { "id": "c", "text": "长度为 2 的字符串" },
+      { "id": "d", "text": "一个 `int**`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "外层数组长度为 2，每个外层元素都是完整的一行 `int[3]`。"
+  },
+  {
+    "id": "row-major-offset",
+    "prompt": "0-based 的 `int a[n][m]` 中，`a[i][j]` 前面有多少个 int？",
+    "options": [
+      { "id": "a", "text": "`i * m + j`" },
+      { "id": "b", "text": "`j * n + i`" },
+      { "id": "c", "text": "`i + j`" },
+      { "id": "d", "text": "`n * m`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "前面先有 i 个完整行，每行 m 个元素，再加当前行前面的 j 个元素。"
+  },
+  {
+    "id": "function-parameter-dimension",
+    "prompt": "二维内置数组作为参数时，为什么第二维通常不能省略？",
+    "options": [
+      { "id": "a", "text": "编译器需要知道一整行大小，才能计算跨行地址" },
+      { "id": "b", "text": "第二维只能等于一" },
+      { "id": "c", "text": "第一维会自动变成字符串" },
+      { "id": "d", "text": "函数不能接收二维数组" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "只调整最外层数组；参数实际指向一整行，而行类型必须包含后续维度。"
+  },
+  {
+    "id": "not-int-double-pointer",
+    "prompt": "为什么普通 `int a[MAXN][MAXM]` 不能作为 `int**` 传入？",
+    "options": [
+      { "id": "a", "text": "前者连续保存各行整数，后者要求当前位置保存行指针" },
+      { "id": "b", "text": "二维数组不能存整数" },
+      { "id": "c", "text": "`int**` 只能指向字符" },
+      { "id": "d", "text": "强制转换会自动重排全部内存" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "二者类型和布局都不同，强制转换不能凭空建立一张行指针表。"
+  },
+  {
+    "id": "vector-rows",
+    "prompt": "`vector<vector<int>>` 的各行是否保证拼成一整块连续矩形？",
+    "options": [
+      { "id": "a", "text": "不保证，每一行是独立 vector 并分别管理存储" },
+      { "id": "b", "text": "保证，而且所有行必须有相同长度" },
+      { "id": "c", "text": "只要使用引用就保证" },
+      { "id": "d", "text": "只有空矩阵才不连续" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "需要完整连续矩形时，可使用一维 vector 并用 stride 计算线性下标。"
+  },
+  {
+    "id": "custom-grid-indexing",
+    "prompt": "本书自定义 Grid 为什么分配 `+5` 余量并留空第 0 行、第 0 列？",
+    "options": [
+      { "id": "a", "text": "保持自定义对象统一的 1-based 语义并预留边界空间" },
+      { "id": "b", "text": "因为 vector 原生下标从 1 开始" },
+      { "id": "c", "text": "因为第 0 格无法存整数" },
+      { "id": "d", "text": "为了改变元素类型" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "底层仍是 0-based vector；逻辑对象主动忽略第 0 格，只在接口边界保留 STL 原生规则。"
+  }
+]

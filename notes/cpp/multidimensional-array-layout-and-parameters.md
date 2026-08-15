@@ -1,8 +1,10 @@
-# 数组：多维数组的布局与参数传递
+# 多维数组的布局与参数传递
 
-> 最近修订：2026-08-13 02:45 +10:00（未审阅）
+> 最近修订：2026-08-16 15:06 +10:00（未审阅）
 
-[数组：多维数组](multidimensional-arrays.md) 已经把二维数组理解成“由若干行组成的数组”。这个理解不仅适合下标访问，也准确决定了它在内存中的排列和作为函数参数时的类型。
+[多维数组](multidimensional-arrays.md) 已经把二维数组理解成“由若干行组成的
+数组”。这个理解不仅适合下标访问，也准确决定了它在内存中的排列和作为函数参数
+时的类型。
 
 本篇解释这些容易混淆的类型规则，并给出竞赛中的实际选择。它是配套扩展，不要求为了使用普通二维数组而提前记住所有指针声明。
 
@@ -151,14 +153,17 @@ int get_value(const vector<vector<int>>& a, int x, int y) {
 如果算法需要整个矩形严格连续，可以自己使用一维 `vector`：
 
 ```cpp
-vector<int> a(n* m);
+int stride = m + 5;
+vector<int> a((n + 5) * stride);
 
-int& at(vector<int>& a, int m, int i, int j) {
-    return a[i * m + j];
+int& at(vector<int>& a, int stride, int i, int j) {
+    return a[i * stride + j];
 }
 ```
 
-这里把二维地址公式直接变成下标公式。函数用引用返回对应元素，因此 `at(a, m, i, j) = value` 可以修改原容器。
+这里把二维地址公式直接变成下标公式，并把 `0` 行、`0` 列以及 `+5` 余量统一
+留空。函数用引用返回对应元素，因此 `at(a, stride, i, j) = value` 可以修改原
+容器。
 
 ### struct 中的 vector
 
@@ -168,12 +173,15 @@ int& at(vector<int>& a, int m, int i, int j) {
 struct Grid {
     int n;
     int m;
+    int stride;
     vector<int> value;
 
-    Grid(int n, int m) : n(n), m(m), value(n * m) {}
+    Grid(int n, int m)
+        : n(n), m(m), stride(m + 5), value((n + 5) * stride) {
+    }
 
     int& at(int i, int j) {
-        return value[i * m + j];
+        return value[i * stride + j];
     }
 };
 ```
@@ -194,15 +202,16 @@ void clear(array<int, 10>& a) {
 
 ## 下标与容器不是一回事
 
-`vector` 的第一个真实元素始终位于下标 `0`，但可以主动分配 `n + 1` 个元素并忽略第 `0` 格，让题目对象使用 `1..n`：
+`vector` 原生下标从 `0` 开始，但自定义题目对象可以主动分配 `n + 5` 个元素并
+忽略第 `0` 格，让逻辑下标使用 `1..n`：
 
 ```cpp
-vector<int> value(n + 1);
+vector<int> value(n + 5);
 ```
 
-这种浪费通常只有几个字节，却能让点编号、树节点编号、树状数组公式和题面保持一致。另一方面，字符串、普通列表和 CRT 中的同余式没有“节点 `0` 表示空”的语义，直接使用自然的 `0..n-1` 更简单。
-
-所以应当统一的是每个算法内部的语义，而不是强迫所有容器采用同一种起点。
+这点余量能让点编号、树节点编号、矩阵坐标和题面保持一致，也能给边界与哨兵留下
+稳定空间。本书自己定义的对象统一使用 1-based 下标和 `+5` 容量；只有直接调用
+`vector`、迭代器等 STL 原生接口时，才保留它们的 0-based 与左闭右开规则。
 
 ## 完整代码
 
@@ -221,24 +230,28 @@ void add_value(int a[][MAXM], int x, int y, int value) {
     a[x][y] += value;
 }
 
-int main() {
+void solve() {
     int n;
     int m;
-    scanf("%d%d", &n, &m);
+    cin >> n >> m;
 
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= m; j++) {
-            scanf("%d", &a[i][j]);
+            cin >> a[i][j];
         }
     }
 
     int x;
     int y;
     int value;
-    scanf("%d%d%d", &x, &y, &value);
+    cin >> x >> y >> value;
 
     add_value(a, x, y, value);
-    printf("%d\n", a[x][y]);
+    cout << a[x][y] << '\n';
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -259,4 +272,4 @@ int main() {
 
 ## 返回基础篇
 
-返回 [数组：多维数组](multidimensional-arrays.md) 继续主学习路线。
+返回 [多维数组](multidimensional-arrays.md) 继续主学习路线。
