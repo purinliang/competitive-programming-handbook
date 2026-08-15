@@ -282,7 +282,7 @@
 | 0238 | 贪心证明：邻项交换 | 算法基础 | `algorithm-basics/greedy-adjacent-exchange.md` |
 | 0239 | 贪心：反悔 | 算法基础 | `algorithm-basics/greedy-regret.md` |
 
-### 学习单元：关联容器
+### 学习单元：有序关联容器
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -290,6 +290,11 @@
 | 0146 | multiset | C++ | [cpp/multiset.md](cpp/multiset.md) |
 | 0147 | map | C++ | [cpp/map.md](cpp/map.md) |
 | 0148 | multimap | C++ | [cpp/multimap.md](cpp/multimap.md) |
+
+### 学习单元：哈希容器
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0149 | unordered_set | C++ | [cpp/unordered-set.md](cpp/unordered-set.md) |
 | 0150 | unordered_map | C++ | [cpp/unordered-map.md](cpp/unordered-map.md) |
 
