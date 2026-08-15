@@ -1,0 +1,86 @@
+[
+  {
+    "id": "implicit-conversion",
+    "prompt": "执行 `double x = 73;` 时发生了什么？",
+    "options": [
+      { "id": "a", "text": "整数 `73` 隐式转换成 `double` 后用于初始化 `x`" },
+      { "id": "b", "text": "`x` 的类型被改成 `int`" },
+      { "id": "c", "text": "整数除法会自动发生" },
+      { "id": "d", "text": "程序无法通过编译" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "目标变量是 `double`，所以右侧整数会自动转换成对应的浮点值；这种由语言规则完成的转换属于隐式转换。"
+  },
+  {
+    "id": "integer-division-before-conversion",
+    "prompt": "执行 `double x = 5 / 2;` 后，`x` 的值是多少？",
+    "options": [
+      { "id": "a", "text": "`2.0`" },
+      { "id": "b", "text": "`2.5`" },
+      { "id": "c", "text": "`3.0`" },
+      { "id": "d", "text": "无法确定" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两个操作数都是 `int`，所以先得到整数商 `2`，之后才把它转换成 `double`；已经丢失的小数不会恢复。"
+  },
+  {
+    "id": "floating-division",
+    "prompt": "若 `a` 和 `b` 都是 `int`，下面哪项会进行浮点除法？",
+    "options": [
+      { "id": "a", "text": "`a / b`" },
+      { "id": "b", "text": "`(a / b) * 1.0`" },
+      { "id": "c", "text": "`1.0 * a / b`" },
+      { "id": "d", "text": "`(int)a / b`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`1.0` 在除法以前参与计算，使左侧结果成为 `double`；选项 B 在乘以 `1.0` 以前已经完成整数除法。"
+  },
+  {
+    "id": "floating-to-integer",
+    "prompt": "`(int)3.9` 和 `(int)-3.9` 分别得到什么？",
+    "options": [
+      { "id": "a", "text": "`4` 和 `-4`" },
+      { "id": "b", "text": "`3` 和 `-3`" },
+      { "id": "c", "text": "`3` 和 `-4`" },
+      { "id": "d", "text": "`4` 和 `-3`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "浮点数转换成整数时向零截去小数部分，不是四舍五入、向下取整或向上取整。"
+  },
+  {
+    "id": "nonzero-to-boolean",
+    "prompt": "整数 `0`、`8` 和 `-8` 转换成 `bool` 后依次是什么？",
+    "options": [
+      { "id": "a", "text": "`false`、`true`、`true`" },
+      { "id": "b", "text": "`false`、`true`、`false`" },
+      { "id": "c", "text": "`false`、`false`、`false`" },
+      { "id": "d", "text": "`true`、`true`、`true`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "零转换成 `false`，任何非零整数都转换成 `true`，正负号不影响这条规则。"
+  },
+  {
+    "id": "narrowing-initialization",
+    "prompt": "为什么 `int x{3.9};` 无法通过编译？",
+    "options": [
+      { "id": "a", "text": "整数不能使用花括号初始化" },
+      { "id": "b", "text": "花括号初始化拒绝这次会丢失小数的窄化转换" },
+      { "id": "c", "text": "`3.9` 不是合法字面量" },
+      { "id": "d", "text": "`int` 不能保存正数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "把 `double` 转成 `int` 会丢失小数部分；花括号初始化会阻止许多这类明显的窄化转换。"
+  },
+  {
+    "id": "signed-unsigned-comparison",
+    "prompt": "为什么负数与无符号整数混合比较容易得到反直觉结果？",
+    "options": [
+      { "id": "a", "text": "比较运算会忽略负号" },
+      { "id": "b", "text": "负数可能先转换成一个很大的无符号数" },
+      { "id": "c", "text": "无符号整数不能参与比较" },
+      { "id": "d", "text": "比较结果不是 `bool`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "选择共同类型时，负的有符号值可能转换成无符号类型，并按照模运算对应为一个很大的正值。"
+  }
+]
