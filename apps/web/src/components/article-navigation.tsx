@@ -1,8 +1,3 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
-
-import type { NavigationMode } from "./article-link";
 import { ArticleNavigationView } from "./article-navigation-view";
 
 import type { ArticleNavigation as ArticleNavigationData } from "@/lib/content/types";
@@ -14,10 +9,18 @@ interface ArticleNavigationProps {
 }
 
 export function ArticleNavigation({ articleKey, moduleNavigation, learningNavigation }: ArticleNavigationProps) {
-  const searchParams = useSearchParams();
-  const requestedMode: NavigationMode = searchParams.get("nav") === "learn" ? "learn" : "catalog";
-  const mode: NavigationMode = requestedMode === "learn" && learningNavigation ? "learn" : "catalog";
-  const navigation = mode === "learn" && learningNavigation ? learningNavigation : moduleNavigation;
+  if (!learningNavigation) {
+    return <ArticleNavigationView articleKey={articleKey} mode="catalog" navigation={moduleNavigation} />;
+  }
 
-  return <ArticleNavigationView articleKey={articleKey} mode={mode} navigation={navigation} />;
+  return (
+    <>
+      <div className="article-navigation-variant is-catalog">
+        <ArticleNavigationView articleKey={articleKey} mode="catalog" navigation={moduleNavigation} />
+      </div>
+      <div className="article-navigation-variant is-learn">
+        <ArticleNavigationView articleKey={articleKey} mode="learn" navigation={learningNavigation} />
+      </div>
+    </>
+  );
 }

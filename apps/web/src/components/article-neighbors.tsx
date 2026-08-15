@@ -1,7 +1,3 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
-
 import { ArticleNeighborsView } from "./article-neighbors-view";
 
 import type { ArticleRecord } from "@/lib/content/types";
@@ -12,8 +8,14 @@ interface Neighbors {
 }
 
 export function ArticleNeighbors({ catalog, learn }: { catalog: Neighbors; learn: Neighbors }) {
-  const searchParams = useSearchParams();
-  const mode = searchParams.get("nav") === "learn" ? "learn" : "catalog";
-  const neighbors = mode === "learn" ? learn : catalog;
-  return <ArticleNeighborsView mode={mode} {...neighbors} />;
+  return (
+    <>
+      <div className="article-navigation-variant is-catalog">
+        <ArticleNeighborsView mode="catalog" {...catalog} />
+      </div>
+      <div className="article-navigation-variant is-learn">
+        <ArticleNeighborsView mode="learn" {...learn} />
+      </div>
+    </>
+  );
 }

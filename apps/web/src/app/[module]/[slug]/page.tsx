@@ -3,10 +3,8 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 import { ArticleNavigation } from "@/components/article-navigation";
-import { ArticleNavigationView } from "@/components/article-navigation-view";
+import { ArticleNavigationModeSync } from "@/components/article-navigation-mode-sync";
 import { ArticleNeighbors } from "@/components/article-neighbors";
-import { ArticleNeighborsView } from "@/components/article-neighbors-view";
-import { ArticleSiteHeader } from "@/components/article-site-header";
 import { ArticleTableOfContents } from "@/components/article-table-of-contents";
 import { SiteHeader } from "@/components/site-header";
 import { getArticle, getArticleLearningNavigation, getArticleLearningNeighbors, getArticleModuleNavigation, getArticleModuleNeighbors, getArticles } from "@/lib/content/catalog";
@@ -48,19 +46,16 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <>
-      <Suspense fallback={<SiteHeader activeSection="catalog" />}>
-        <ArticleSiteHeader />
+      <Suspense fallback={null}>
+        <ArticleNavigationModeSync />
       </Suspense>
+      <SiteHeader activeSection="article" />
       <div className="docs-layout">
-        <Suspense fallback={<ArticleNavigationView articleKey={article.articleKey} mode="catalog" navigation={moduleNavigation} />}>
-          <ArticleNavigation articleKey={article.articleKey} moduleNavigation={moduleNavigation} learningNavigation={learningNavigation} />
-        </Suspense>
+        <ArticleNavigation articleKey={article.articleKey} moduleNavigation={moduleNavigation} learningNavigation={learningNavigation} />
 
         <main className="article-column">
           <article className="markdown-body" data-article-key={article.articleKey} data-content-revision={rendered.contentRevision} dangerouslySetInnerHTML={{ __html: rendered.html }} />
-          <Suspense fallback={<ArticleNeighborsView mode="catalog" {...moduleNeighbors} />}>
-            <ArticleNeighbors catalog={moduleNeighbors} learn={learningNeighbors} />
-          </Suspense>
+          <ArticleNeighbors catalog={moduleNeighbors} learn={learningNeighbors} />
         </main>
 
         <ArticleTableOfContents articleKey={article.articleKey} items={rendered.tableOfContents} />

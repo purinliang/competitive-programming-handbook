@@ -19,6 +19,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="zh-CN" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        <script
+          id="article-navigation-mode"
+          dangerouslySetInnerHTML={{
+            __html: 'document.documentElement.dataset.articleNavigation=new URLSearchParams(location.search).get("nav")==="learn"?"learn":"catalog"',
+          }}
+        />
+      </head>
       <body>
         <Suspense fallback={null}>
           <NavigationProgress />

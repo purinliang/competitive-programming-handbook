@@ -1,13 +1,23 @@
 import { Book } from "lucide-react";
 import Link from "next/link";
 
-type HeaderSection = "learn" | "catalog" | "search";
+type HeaderSection = "learn" | "catalog" | "search" | "article";
 
 interface SiteHeaderProps {
   activeSection?: HeaderSection;
 }
 
 export function SiteHeader({ activeSection }: SiteHeaderProps) {
+  function linkClass(section: Exclude<HeaderSection, "article">) {
+    if (activeSection === section) {
+      return "is-active";
+    }
+    if (activeSection === "article" && (section === "learn" || section === "catalog")) {
+      return `article-navigation-${section}`;
+    }
+    return undefined;
+  }
+
   return (
     <header className="site-header">
       <div className="site-header-inner">
@@ -16,9 +26,9 @@ export function SiteHeader({ activeSection }: SiteHeaderProps) {
           <span>算法竞赛手册</span>
         </Link>
         <nav className="site-nav" aria-label="主导航">
-          <Link className={activeSection === "learn" ? "is-active" : undefined} href="/learn/">学习路线</Link>
-          <Link className={activeSection === "catalog" ? "is-active" : undefined} href="/catalog/">模块目录</Link>
-          <Link className={activeSection === "search" ? "is-active" : undefined} href="/search/">搜索</Link>
+          <Link className={linkClass("learn")} href="/learn/">学习路线</Link>
+          <Link className={linkClass("catalog")} href="/catalog/">模块目录</Link>
+          <Link className={linkClass("search")} href="/search/">搜索</Link>
         </nav>
       </div>
     </header>

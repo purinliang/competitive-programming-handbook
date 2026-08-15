@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 export function useActiveSection(sectionIds: string[], threshold = 112) {
-  const [activeId, setActiveId] = useState(sectionIds[0] ?? "");
+  const [activeId, setActiveId] = useState("");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let frame = 0;
 
     function updateActiveSection() {
