@@ -208,7 +208,7 @@
 | 0507 | 组合数：定义与递推 | 数学 | [math/binomial-coefficients.md](math/binomial-coefficients.md) |
 | 0581 | 组合数：阶乘与逆元预处理 | 数学 | [math/binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
 | 0508 | 欧拉函数 | 数学 | [math/euler-totient.md](math/euler-totient.md) |
-| 0582 | 欧拉定理 | 数学 | `math/euler-theorem.md` |
+| 0582 | 欧拉定理 | 数学 | [math/euler-theorem.md](math/euler-theorem.md) |
 | 0509 | 矩阵运算与线性变换 | 数学 | `math/0509-matrix-operations.md` |
 | 0511 | 矩阵快速幂与递推加速 | 数学 | `math/0511-matrix-exponentiation.md` |
 | 0512 | 概率与期望基础 | 数学 | `math/0512-probability-expectation.md` |

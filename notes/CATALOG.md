@@ -352,7 +352,7 @@
 | 0579 | 计数原理：乘法原理 | 待审阅 | [multiplication-principle.md](math/multiplication-principle.md) |
 | 0580 | 排列数 | 待审阅 | [permutations-count.md](math/permutations-count.md) |
 | 0581 | 组合数：阶乘与逆元预处理 | 待审阅 | [binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
-| 0582 | 欧拉定理 | 计划 | `math/euler-theorem.md` |
+| 0582 | 欧拉定理 | 待审阅 | [euler-theorem.md](math/euler-theorem.md) |
 
 ## 06 计算几何
 
