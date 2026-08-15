@@ -70,6 +70,7 @@
 | 0114 | 作用域 | 待审阅 | [scope.md](cpp/scope.md) |
 | 0115 | 标准输入 | 待审阅 | [standard-input.md](cpp/standard-input.md) |
 | 0116 | 标准输出 | 待审阅 | [standard-output.md](cpp/standard-output.md) |
+| 0172 | 输出格式控制 | 待审阅 | [output-formatting.md](cpp/output-formatting.md) |
 | 0117 | 文件重定向 | 定稿 | [file-redirection.md](cpp/file-redirection.md) |
 
 ### 知识族：数组、字符串与结构体

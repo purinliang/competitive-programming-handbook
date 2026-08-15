@@ -1,0 +1,86 @@
+[
+  {
+    "id": "printf-fixed-precision",
+    "prompt": "怎样用 `printf` 把 `double value` 输出为小数点后两位？",
+    "options": [
+      { "id": "a", "text": "`printf(\"%.2f\\n\", value);`" },
+      { "id": "b", "text": "`printf(\"%2d\\n\", value);`" },
+      { "id": "c", "text": "`printf(\"%lf.2\\n\", value);`" },
+      { "id": "d", "text": "`printf(\"%02c\\n\", value);`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`printf` 的 `%.2f` 表示以浮点定点形式输出，并在小数点后保留两位。"
+  },
+  {
+    "id": "cout-fixed-precision",
+    "prompt": "哪组 `cout` 控制项表示小数点后固定两位？",
+    "options": [
+      { "id": "a", "text": "`fixed << setprecision(2)`" },
+      { "id": "b", "text": "`setw(2) << scientific`" },
+      { "id": "c", "text": "`setfill('2')`" },
+      { "id": "d", "text": "`left << right`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`fixed` 选择定点形式，此时 `setprecision(2)` 控制小数点后的位数。"
+  },
+  {
+    "id": "default-precision-meaning",
+    "prompt": "没有使用 `fixed` 或 `scientific` 时，`setprecision(4)` 主要控制什么？",
+    "options": [
+      { "id": "a", "text": "有效数字总数" },
+      { "id": "b", "text": "整数部分必须四位" },
+      { "id": "c", "text": "输出四行" },
+      { "id": "d", "text": "变量占用四个字节" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "默认浮点形式中，`setprecision` 不是固定小数位，而是有效数字总数。"
+  },
+  {
+    "id": "format-does-not-mutate",
+    "prompt": "把 `value` 输出为 `0.33` 后，变量本身会自动变成精确的 `0.33` 吗？",
+    "options": [
+      { "id": "a", "text": "不会，格式控制只改变输出文本" },
+      { "id": "b", "text": "会，所有后续计算都只能使用两位小数" },
+      { "id": "c", "text": "只有使用 `cout` 时会" },
+      { "id": "d", "text": "只有使用 `printf` 时会" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "显示舍入不修改保存的值，因此以后可以用不同精度再次输出或继续计算。"
+  },
+  {
+    "id": "zero-padded-width",
+    "prompt": "`printf(\"%02d\", 8)` 会输出什么？",
+    "options": [
+      { "id": "a", "text": "`08`" },
+      { "id": "b", "text": "`8.00`" },
+      { "id": "c", "text": "`008`" },
+      { "id": "d", "text": "`2`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "最小宽度是两位，不足位置用 `0` 填充，因此 `8` 显示为 `08`。"
+  },
+  {
+    "id": "setw-duration",
+    "prompt": "`cout << setw(3) << a << b;` 中，`setw(3)` 影响哪些值？",
+    "options": [
+      { "id": "a", "text": "只影响紧跟着输出的 `a`" },
+      { "id": "b", "text": "同时永久影响 `a` 和 `b`" },
+      { "id": "c", "text": "只影响 `b`" },
+      { "id": "d", "text": "不会影响任何值" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`setw` 只对下一次格式化输出设置宽度，后续值需要重新设置。"
+  },
+  {
+    "id": "minimum-width",
+    "prompt": "把整数 `123` 按最小宽度两位输出时会怎样？",
+    "options": [
+      { "id": "a", "text": "仍然完整输出 `123`" },
+      { "id": "b", "text": "截断成 `23`" },
+      { "id": "c", "text": "截断成 `12`" },
+      { "id": "d", "text": "因为超宽而无法输出" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "宽度是最小值，只在内容较短时填充，不会截断更长的输出。"
+  }
+]

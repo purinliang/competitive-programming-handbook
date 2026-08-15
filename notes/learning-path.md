@@ -74,6 +74,7 @@
 | --- | --- | --- | --- |
 | 0115 | 标准输入 | C++ | [cpp/standard-input.md](cpp/standard-input.md) |
 | 0116 | 标准输出 | C++ | [cpp/standard-output.md](cpp/standard-output.md) |
+| 0172 | 输出格式控制 | C++ | [cpp/output-formatting.md](cpp/output-formatting.md) |
 | 0117 | 文件重定向 | C++ | [cpp/file-redirection.md](cpp/file-redirection.md) |
 
 ### 学习单元：数组、字符串与结构体
