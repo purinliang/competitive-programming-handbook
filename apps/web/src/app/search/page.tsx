@@ -10,13 +10,15 @@ export default function SearchPage() {
   return (
     <>
       <SiteHeader activeSection="search" />
-      <main className="index-page page-frame search-page">
-        <header className="page-intro">
-          <p className="eyebrow">Search</p>
-          <h1>搜索知识库</h1>
-          <p>搜索文章标题、正文、变量名和算法名称。</p>
-        </header>
-        <SearchExperience />
+      <main className="search-layout">
+        <div className="index-page search-page">
+          <header className="page-intro">
+            <p className="eyebrow">Search</p>
+            <h1>搜索</h1>
+            <p>搜索文章标题、正文、变量名和算法名称。</p>
+          </header>
+          <SearchExperience />
+        </div>
       </main>
     </>
   );

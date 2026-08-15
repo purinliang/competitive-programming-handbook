@@ -23,7 +23,7 @@ export default function LearningPathPage() {
           </header>
           <aside className="route-convention" aria-label="下标与区间约定">
             <strong>下标与区间约定</strong>
-            <p>本书自己定义的对象默认使用从 1 开始的下标和闭区间；直接讲解 C++ 与 STL 接口时保留它们原生的从 0 开始和半开区间规则。</p>
+            <p>本书自定义的对象默认从 1 开始编号并使用闭区间；讲解 C++ 与 STL 接口时，保留其原生的从 0 开始编号和半开区间。</p>
           </aside>
           <div className="section-stack">
             {stages.map((stage, index) => {

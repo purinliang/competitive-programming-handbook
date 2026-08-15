@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { getArticleStatusLabel } from "@/lib/content/status";
 import type { ArticleRecord } from "@/lib/content/types";
 
 export type NavigationMode = "learn" | "catalog";
@@ -20,7 +21,7 @@ export function ArticleLink({ article, active = false, label, navigation }: { ar
   return (
     <Link className={`article-link${active ? " is-active" : ""}`} href={href} aria-current={active ? "page" : undefined}>
       <span>{visibleTitle}</span>
-      <small>{article.status}</small>
+      <small>{getArticleStatusLabel(article.status)}</small>
     </Link>
   );
 }

@@ -4,6 +4,8 @@ import { Search } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
+import { getArticleStatusLabel } from "@/lib/content/status";
+
 interface SearchRecord {
   articleKey: string;
   title: string;
@@ -106,13 +108,13 @@ export function SearchExperience() {
           placeholder="搜索标题、概念或代码名称"
         />
       </label>
-      <div className="search-summary">{summary}</div>
+      <div className="search-summary" aria-live="polite">{summary}</div>
       <div className={`panel search-results${hasResults ? "" : " is-empty"}`}>
         {!searchable ? <p className="search-empty">请输入至少 1 个中文字符，或 3 个英文/数字字符。</p> : null}
         {searchable && records === null ? <p className="search-empty">正在载入搜索索引。</p> : null}
         {searchable && records ? results.map((record) => (
           <Link className="search-result" href={record.route} key={record.articleKey}>
-            <div><strong>{record.title}</strong><p>{record.moduleTitle} · {record.status}</p></div>
+            <div><strong>{record.title}</strong><p>{record.moduleTitle} · {getArticleStatusLabel(record.status)}</p></div>
             <span>{record.articleKey}</span>
           </Link>
         )) : null}

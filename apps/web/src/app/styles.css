@@ -425,7 +425,8 @@ a.article-link.is-active:hover {
 }
 
 .search-page {
-  max-width: 860px;
+  grid-column: 2;
+  min-width: 0;
 }
 
 .search-box {
@@ -461,9 +462,11 @@ a.article-link.is-active:hover {
 }
 
 .search-summary {
+  height: 20px;
   margin: 10px 2px 18px;
   color: var(--faint-text);
   font-size: 12px;
+  line-height: 20px;
 }
 
 .search-results {
