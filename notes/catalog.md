@@ -50,6 +50,7 @@
 | 0107 | 算术运算符 | 待审阅 | [arithmetic-operators.md](cpp/arithmetic-operators.md) |
 | 0108 | 比较运算符 | 待审阅 | [comparison-operators.md](cpp/comparison-operators.md) |
 | 0109 | 逻辑运算符 | 待审阅 | [logical-operators.md](cpp/logical-operators.md) |
+| 0164 | 自增与自减运算符 | 待审阅 | [increment-decrement-operators.md](cpp/increment-decrement-operators.md) |
 | 0133 | 位运算符 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
 | 0111 | 条件分支 | 定稿 | [conditional-branches.md](cpp/conditional-branches.md) |
 | 0112 | 循环 | 待审阅 | [loops.md](cpp/loops.md) |

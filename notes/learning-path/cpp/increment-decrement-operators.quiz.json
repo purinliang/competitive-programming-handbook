@@ -1,0 +1,62 @@
+[
+  {
+    "id": "standalone-increment",
+    "prompt": "若 `int i = 7;`，单独执行 `i++;` 后 `i` 是多少？",
+    "options": [
+      { "id": "a", "text": "`6`" },
+      { "id": "b", "text": "`7`" },
+      { "id": "c", "text": "`8`" },
+      { "id": "d", "text": "无法确定" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "自增会把变量原值增加 1 并写回，因此 `7` 更新为 `8`。"
+  },
+  {
+    "id": "standalone-prefix-postfix",
+    "prompt": "当它们各自单独作为一条语句时，`i++` 与 `++i` 有什么区别？",
+    "options": [
+      { "id": "a", "text": "前者加 1，后者加 2" },
+      { "id": "b", "text": "最终都让 `i` 加 1" },
+      { "id": "c", "text": "只有前者会修改 `i`" },
+      { "id": "d", "text": "只有后者能通过编译" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "不使用运算产生的值时，前缀和后缀的最终状态相同；区别只在更大表达式取得旧值还是新值。"
+  },
+  {
+    "id": "postfix-value",
+    "prompt": "执行 `int i = 5; int x = i++;` 后，`x` 和 `i` 分别是多少？",
+    "options": [
+      { "id": "a", "text": "`5` 和 `6`" },
+      { "id": "b", "text": "`6` 和 `6`" },
+      { "id": "c", "text": "`5` 和 `5`" },
+      { "id": "d", "text": "`6` 和 `5`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "后缀自增先产生旧值 `5` 供 `x` 初始化，再把 `i` 更新为 `6`。"
+  },
+  {
+    "id": "prefix-value",
+    "prompt": "执行 `int i = 5; int x = ++i;` 后，`x` 和 `i` 分别是多少？",
+    "options": [
+      { "id": "a", "text": "`5` 和 `6`" },
+      { "id": "b", "text": "`6` 和 `6`" },
+      { "id": "c", "text": "`5` 和 `5`" },
+      { "id": "d", "text": "`6` 和 `5`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "前缀自增先把 `i` 更新为 `6`，再产生这个新值供 `x` 初始化。"
+  },
+  {
+    "id": "increment-style",
+    "prompt": "基础竞赛代码为什么通常把 `i++` 单独写成一条语句？",
+    "options": [
+      { "id": "a", "text": "因为自增不能出现在表达式中" },
+      { "id": "b", "text": "这样无需依赖前后缀返回值和复杂求值顺序" },
+      { "id": "c", "text": "因为单独书写会扩大整数范围" },
+      { "id": "d", "text": "因为 `++i` 不会修改变量" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "更新独立成句时只关心变量最终加一，执行过程和意图都更容易检查。"
+  }
+]
