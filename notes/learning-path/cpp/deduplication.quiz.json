@@ -1,0 +1,98 @@
+[
+  {
+    "id": "adjacent-only",
+    "prompt": "直接对序列 `3 1 3 2 1` 调用 `unique`，为什么不能删除所有重复值？",
+    "options": [
+      { "id": "a", "text": "unique 只整理相邻的等价元素" },
+      { "id": "b", "text": "unique 只能处理字符串" },
+      { "id": "c", "text": "序列长度必须是偶数" },
+      { "id": "d", "text": "unique 会自动把元素全部删除" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "不相邻的相同值不会互相比较；一般无序去重需要先让同值元素相邻。"
+  },
+  {
+    "id": "logical-end",
+    "prompt": "`new_end = unique(begin, end)` 返回的 `new_end` 表示什么？",
+    "options": [
+      { "id": "a", "text": "原范围的第一个元素" },
+      { "id": "b", "text": "保留结果之后的位置" },
+      { "id": "c", "text": "被删除元素的数量" },
+      { "id": "d", "text": "一个新的 vector" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "[begin, new_end) 是逻辑去重结果；unique 本身不会改变容器 size。"
+  },
+  {
+    "id": "linear-compaction",
+    "prompt": "线性整理时，写入位置 `write` 在什么情况下增加？",
+    "options": [
+      { "id": "a", "text": "每次读取都无条件增加两次" },
+      { "id": "b", "text": "只有遇到与最后保留项不同的新值时" },
+      { "id": "c", "text": "只在读到负数时" },
+      { "id": "d", "text": "排序完成以前不会增加" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每个相邻等价段只保留第一项，新段开始时才扩大逻辑前缀。"
+  },
+  {
+    "id": "erase-remove-tail",
+    "prompt": "哪项会让 `vector` 的 `size()` 真正缩短到去重后的长度？",
+    "options": [
+      { "id": "a", "text": "只调用 `unique(begin, end)`" },
+      { "id": "b", "text": "只调用 `sort(begin, end)`" },
+      { "id": "c", "text": "`erase(unique(begin,end), end)`" },
+      { "id": "d", "text": "只读取 `capacity()`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "unique 返回逻辑末尾，erase 再删除该位置到原末尾的整个后缀。"
+  },
+  {
+    "id": "already-sorted-cost",
+    "prompt": "输入已经保证有序时，仅用 `unique` 和尾部 `erase` 去重的时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(n^2)$" },
+      { "id": "b", "text": "$O(2^n)$" },
+      { "id": "c", "text": "$O(\\log n)$" },
+      { "id": "d", "text": "$O(n)$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "同值已经相邻，不再需要 O(n log n) 排序；整理和删除后缀都至多线性。"
+  },
+  {
+    "id": "preserve-first-order",
+    "prompt": "题目要求保留每个值第一次出现的原顺序时，为什么不能直接排序去重？",
+    "options": [
+      { "id": "a", "text": "排序会改变元素原来的相对位置" },
+      { "id": "b", "text": "排序无法处理整数" },
+      { "id": "c", "text": "unique 会强制降序" },
+      { "id": "d", "text": "原顺序问题一定没有重复值" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "排序去重输出的是按排序规则排列的不同值，不再表达第一次出现顺序。"
+  },
+  {
+    "id": "custom-equivalence",
+    "prompt": "记录按 `value` 去重时，自定义 `same_value(a,b)` 应回答什么？",
+    "options": [
+      { "id": "a", "text": "a 是否严格排在 b 前" },
+      { "id": "b", "text": "a 与 b 的 value 是否属于同一类" },
+      { "id": "c", "text": "是否交换 a 与 b" },
+      { "id": "d", "text": "容器是否已经清空" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "unique 的二元函数描述等价关系，不是 sort 使用的严格先后关系。"
+  },
+  {
+    "id": "representative-selection",
+    "prompt": "同一 `value` 下希望保留最小 `id`，排序与去重应怎样配合？",
+    "options": [
+      { "id": "a", "text": "先让相同 value 相邻，并把较小 id 排在该段最前" },
+      { "id": "b", "text": "用随机顺序排序" },
+      { "id": "c", "text": "只按 id 去重而忽略 value" },
+      { "id": "d", "text": "让等价判断每次返回不同结果" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "unique 保留每个相邻等价段整理后的第一项，因此排序规则也决定代表元素。"
+  }
+]
