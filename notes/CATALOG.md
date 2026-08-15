@@ -270,7 +270,7 @@
 | 0506 | 模逆元 | 待审阅 | [modular-inverse.md](math/modular-inverse.md) |
 | 0506e1 | 模逆元：线性预处理 | 计划 | `math/linear-modular-inverses.md` |
 | 0506e2 | 模逆元：批量求逆 | 计划 | `math/batch-modular-inverses.md` |
-| 0507 | 组合数：定义与递推 | 计划 | `math/binomial-coefficients.md` |
+| 0507 | 组合数：定义与递推 | 待审阅 | [binomial-coefficients.md](math/binomial-coefficients.md) |
 | 0507e1 | 组合数：Lucas 定理 | 计划 | `math/lucas-theorem.md` |
 | 0507e2 | 组合数：扩展 Lucas 定理 | 计划 | `math/extended-lucas-theorem.md` |
 | 0508 | 欧拉函数 | 计划 | `math/0508-euler-totient.md` |

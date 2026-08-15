@@ -205,7 +205,7 @@
 | 0578 | 计数原理：加法原理 | 数学 | [math/addition-principle.md](math/addition-principle.md) |
 | 0579 | 计数原理：乘法原理 | 数学 | [math/multiplication-principle.md](math/multiplication-principle.md) |
 | 0580 | 排列数 | 数学 | [math/permutations-count.md](math/permutations-count.md) |
-| 0507 | 组合数：定义与递推 | 数学 | `math/binomial-coefficients.md` |
+| 0507 | 组合数：定义与递推 | 数学 | [math/binomial-coefficients.md](math/binomial-coefficients.md) |
 | 0581 | 组合数：阶乘与逆元预处理 | 数学 | `math/binomial-coefficients-factorials.md` |
 | 0508 | 欧拉函数 | 数学 | `math/0508-euler-totient.md` |
 | 0509 | 矩阵运算与线性变换 | 数学 | `math/0509-matrix-operations.md` |
