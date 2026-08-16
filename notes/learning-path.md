@@ -702,7 +702,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 080302 | 数论：扩展欧拉定理 | 数学 | [math/extended-euler-theorem.md](math/extended-euler-theorem.md) |
 | 080303 | 线性代数：异或线性基 | 数学 | [math/xor-linear-basis.md](math/xor-linear-basis.md) |
 | 080304 | 线性代数：高斯消元 | 数学 | [math/gaussian-elimination.md](math/gaussian-elimination.md) |
-| 080305 | 线性代数：行列式 | 数学 | `math/determinant.md` |
+| 080305 | 线性代数：行列式 | 数学 | [math/determinant.md](math/determinant.md) |
 | 080306 | Nim、SG 函数与基础博弈论 | 数学 | `math/nim-sg-game-theory.md` |
 | 080307 | 组合数学：错位排列 | 数学 | `math/derangement-numbers.md` |
 | 080308 | 组合数学：整数划分 | 数学 | `math/integer-partitions.md` |

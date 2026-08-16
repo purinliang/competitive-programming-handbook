@@ -1,0 +1,62 @@
+[
+  {
+    "id": "geometric-meaning",
+    "prompt": "行列式绝对值的一个直接几何意义是什么？",
+    "options": [
+      { "id": "a", "text": "线性变换对面积或体积的缩放倍数" },
+      { "id": "b", "text": "矩阵元素的个数" },
+      { "id": "c", "text": "所有行的长度之和" },
+      { "id": "d", "text": "矩阵的最大元素" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "行列式记录有向体积缩放；绝对值就是普通面积或体积倍数。"
+  },
+  {
+    "id": "row-swap",
+    "prompt": "交换矩阵的两行会怎样改变行列式？",
+    "options": [
+      { "id": "a", "text": "乘以 2" },
+      { "id": "b", "text": "变成倒数" },
+      { "id": "c", "text": "符号翻转" },
+      { "id": "d", "text": "完全不变" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "交换两个方向会反转有向体积的方向，因此行列式乘以 -1。"
+  },
+  {
+    "id": "row-addition",
+    "prompt": "把一行加上另一行的若干倍，行列式怎样变化？",
+    "options": [
+      { "id": "a", "text": "不变" },
+      { "id": "b", "text": "一定变成 0" },
+      { "id": "c", "text": "乘以这个倍数" },
+      { "id": "d", "text": "符号翻转" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "第三类基本行变换不改变行列式，这使普通消去可以直接保留答案。"
+  },
+  {
+    "id": "triangular-result",
+    "prompt": "矩阵消成上三角后，行列式怎样计算？",
+    "options": [
+      { "id": "a", "text": "相加全部元素" },
+      { "id": "b", "text": "主对角线元素乘积，再考虑换行符号" },
+      { "id": "c", "text": "只取右上角元素" },
+      { "id": "d", "text": "统计零元素数量" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "消元行减法不改行列式，上三角矩阵只剩主对角排列能贡献非零项。"
+  },
+  {
+    "id": "zero-pivot",
+    "prompt": "某一列在未处理行中找不到非零主元，方阵行列式为什么为 0？",
+    "options": [
+      { "id": "a", "text": "矩阵缺少一个独立方向，秩小于 n" },
+      { "id": "b", "text": "因为所有元素都必须为正" },
+      { "id": "c", "text": "因为矩阵一定不是方阵" },
+      { "id": "d", "text": "因为主元只能等于 1" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "无法为每一列找到独立主元意味着线性相关，变换把体积压到更低维。"
+  }
+]

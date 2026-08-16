@@ -931,7 +931,7 @@
 | 080303 | 异或线性基 | 待审阅 | [math/xor-linear-basis.md](math/xor-linear-basis.md) |
 | *080303e1 | 前缀线性基 | 推迟 | `math/prefix-xor-linear-basis.md` |
 | 080304 | 高斯消元 | 待审阅 | [math/gaussian-elimination.md](math/gaussian-elimination.md) |
-| 080305 | 线性代数：行列式 | 计划 | `math/determinant.md` |
+| 080305 | 线性代数：行列式 | 待审阅 | [math/determinant.md](math/determinant.md) |
 
 ### 概率与期望
 
