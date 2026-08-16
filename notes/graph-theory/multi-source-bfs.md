@@ -1,10 +1,10 @@
-# 图的遍历：多源 BFS
+# 多源 BFS
 
-> 最近修订：2026-08-14 00:42 +10:00（未审阅）
+> 最近修订：2026-08-16 15:08 +10:00（未审阅）
 
 一张无权道路图中有若干医院。对每座城市，我们希望知道它到最近医院至少要经过多少条道路；若还要安排服务区域，也可以记录一个最近医院的编号。
 
-[图的遍历：广度优先搜索（BFS）](graph-breadth-first-search.md) 已经能从一个起点求出到所有点的最少边数。假设有 $k$ 个医院，最直接的方法是分别从每个医院执行一次 BFS，再对每个点取最小距离。
+[图的广度优先搜索（BFS）](graph-breadth-first-search.md) 已经能从一个起点求出到所有点的最少边数。假设有 $k$ 个医院，最直接的方法是分别从每个医院执行一次 BFS，再对每个点取最小距离。
 
 单次 BFS 需要 $O(n+m)$ 时间，重复 $k$ 次会达到：
 
@@ -32,7 +32,8 @@ q.push(start);
 现在每个给定起点到起点集合的距离都等于 $0$，所以先把全部起点设置成第零层并加入同一个队列：
 
 ```cpp
-for (int source : sources) {
+for (int i = 1; i <= k; i++) {
+    int source = sources[i];
     dist[source] = 0;
     q.push(source);
 }
@@ -47,7 +48,7 @@ for (int source : sources) {
 建立距离数组并全部初始化成 `-1`：
 
 ```cpp
-vector<int> dist(n + 5, -1);
+dist.assign(n + 5, -1);
 ```
 
 含义与单源 BFS 一样：
@@ -58,7 +59,8 @@ vector<int> dist(n + 5, -1);
 初始化全部起点时立即设置距离。若输入中意外重复给出同一个起点，不能把它重复入队：
 
 ```cpp
-for (int source : sources) {
+for (int i = 1; i <= k; i++) {
+    int source = sources[i];
     if (dist[source] != -1) {
         continue;
     }
@@ -92,7 +94,7 @@ for (int v : g[u]) {
 若题目不仅询问距离，还要输出一个达到最短距离的起点，可以增加数组：
 
 ```cpp
-vector<int> nearest(n + 5, -1);
+nearest.assign(n + 5, -1);
 ```
 
 每个起点最初属于自己：
@@ -164,7 +166,7 @@ $$
 
 ## 与拓扑排序的区别
 
-[有向无环图：拓扑排序](topological-sort.md) 也会在开始时向一个队列加入多个点，但两种算法只共享队列外形，状态含义不同：
+[拓扑排序](topological-sort.md) 也会在开始时向一个队列加入多个点，但两种算法只共享队列外形，状态含义不同：
 
 | 算法 | 初始入队点 | 新点何时入队 | 核心状态 | 目标 |
 | --- | --- | --- | --- | --- |
@@ -185,20 +187,25 @@ m 条无向边 u v
 k 个起点
 ```
 
-`multi_source_bfs` 返回的两个 `vector` 共同组成一次搜索结果，因此直接使用 `pair` 返回，不用输出引用参数。函数中的状态都按实际点数分配 `n + 5` 个位置，真实点使用 `1..n`。
+点数、边数、起点、邻接表和最终结果都是题目级共享状态，因此声明为全局变量；`multi_source_bfs()` 只保留当前搜索使用的队列。读入规模后，所有自定义数组按 `n + 5` 或 `k + 5` 分配，真实点与真实起点分别使用 `1..n` 和 `1..k`。
 
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-pair<vector<int>, vector<int>> multi_source_bfs(int n,
-                                                const vector<vector<int>>& g,
-                                                const vector<int>& sources) {
-    vector<int> dist(n + 5, -1);
-    vector<int> nearest(n + 5, -1);
+int n, m, k;
+vector<vector<int>> g;
+vector<int> sources;
+vector<int> dist;
+vector<int> nearest;
+
+void multi_source_bfs() {
+    dist.assign(n + 5, -1);
+    nearest.assign(n + 5, -1);
     queue<int> q;
 
-    for (int source : sources) {
+    for (int i = 1; i <= k; i++) {
+        int source = sources[i];
         if (dist[source] != -1) {
             continue;
         }
@@ -220,15 +227,12 @@ pair<vector<int>, vector<int>> multi_source_bfs(int n,
             q.push(v);
         }
     }
-
-    return {dist, nearest};
 }
 
-int main() {
-    int n, m, k;
+void solve() {
     scanf("%d%d%d", &n, &m, &k);
 
-    vector<vector<int>> g(n + 5);
+    g.assign(n + 5, {});
     for (int i = 1; i <= m; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
@@ -236,21 +240,22 @@ int main() {
         g[v].push_back(u);
     }
 
-    vector<int> sources;
-    sources.reserve(k);
+    sources.assign(k + 5, 0);
     for (int i = 1; i <= k; i++) {
-        int source;
-        scanf("%d", &source);
-        sources.push_back(source);
+        scanf("%d", &sources[i]);
     }
 
-    auto [dist, nearest] = multi_source_bfs(n, g, sources);
+    multi_source_bfs();
     for (int u = 1; u <= n; u++) {
         printf("%d%c", dist[u], " \n"[u == n]);
     }
     for (int u = 1; u <= n; u++) {
         printf("%d%c", nearest[u], " \n"[u == n]);
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -365,7 +370,3 @@ $$
 8. 多源 BFS 与 Kahn 拓扑排序虽然都可能初始化多个队列元素，核心状态有什么区别？
 9. 没有任何起点可达的点最后保存什么？
 10. 多源 BFS 的时间和空间复杂度分别是什么？它对边权有什么要求？
-
-## 下一篇
-
-下一篇 [最短路：0-1 BFS](zero-one-bfs.md) 会允许边权为 `0` 或 `1`，并根据新距离是否增加一条单位代价决定从 `deque` 的哪一端加入状态。

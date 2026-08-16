@@ -1,0 +1,146 @@
+[
+  {
+    "id": "repeated-bfs-cost",
+    "prompt": "在含 n 个点、m 条边的图中，从 k 个起点分别执行一次 BFS 的时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "$O(n+m+k)$" },
+      { "id": "b", "text": "$O(k+\\log n)$" },
+      { "id": "c", "text": "$O(nm)$" },
+      { "id": "d", "text": "$O(k(n+m))$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每个起点都重新扫描可达的点和边，重复工作会把单次 BFS 代价放大 k 倍。"
+  },
+  {
+    "id": "initialization",
+    "prompt": "多源 BFS 开始正式扩展以前，应怎样初始化全部不同起点？",
+    "options": [
+      { "id": "a", "text": "把距离都设为 0，并全部加入同一个队列" },
+      { "id": "b", "text": "只把编号最小的起点入队" },
+      { "id": "c", "text": "把距离设为起点编号" },
+      { "id": "d", "text": "分别建立 k 个队列" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "全部起点共同组成第零层，后续就能由一次普通 BFS 自动取到最近距离。"
+  },
+  {
+    "id": "layer-order",
+    "prompt": "为什么同时加入多个距离为 0 的起点后，队列仍按最短距离分层？",
+    "options": [
+      { "id": "a", "text": "因为起点编号已经排序" },
+      { "id": "b", "text": "因为图一定是一棵树" },
+      { "id": "c", "text": "全部第零层先出队，它们产生第一层，第一层处理完才会产生更深层" },
+      { "id": "d", "text": "因为 queue 会自动比较距离" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "FIFO 队列保持 BFS 原有层次，只是第零层由一个点扩大成了一个集合。"
+  },
+  {
+    "id": "mark-on-push",
+    "prompt": "为什么必须在点第一次入队时立刻设置 `dist[v]`？",
+    "options": [
+      { "id": "a", "text": "为了把距离改成负数" },
+      { "id": "b", "text": "避免不同波前在它出队前把同一个点重复入队" },
+      { "id": "c", "text": "为了让所有起点归属唯一" },
+      { "id": "d", "text": "因为出队时不能访问数组" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "第一次发现已经给出最短距离，及时标记可保证每个点最多进入队列一次。"
+  },
+  {
+    "id": "duplicate-sources",
+    "prompt": "输入中同一个起点重复出现时，基础实现应怎样处理？",
+    "options": [
+      { "id": "a", "text": "发现它的 dist 已是 0 时跳过，避免重复入队" },
+      { "id": "b", "text": "把它的距离增加 1" },
+      { "id": "c", "text": "清空此前全部起点" },
+      { "id": "d", "text": "把重复次数作为边权" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "重复输入不代表两个不同波前，也不应改变到起点集合的距离。"
+  },
+  {
+    "id": "nearest-tie",
+    "prompt": "两个起点到点 u 的最短距离相同，而本文只记录第一次发现时，`nearest[u]` 有什么保证？",
+    "options": [
+      { "id": "a", "text": "一定是编号最小的起点" },
+      { "id": "b", "text": "一定是输入最后的起点" },
+      { "id": "c", "text": "结果无效，dist 也会错误" },
+      { "id": "d", "text": "是任意一个合法最近起点，可能受起点与邻接表顺序影响" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "等距归属不唯一；若题目要求固定编号或全部并列来源，需要额外处理。"
+  },
+  {
+    "id": "virtual-source",
+    "prompt": "用虚拟点 0 解释多源 BFS 时，应怎样连接真实起点？",
+    "options": [
+      { "id": "a", "text": "让每个真实点都连向 0" },
+      { "id": "b", "text": "只连接编号最小的起点" },
+      { "id": "c", "text": "从 0 向每个真实起点连接一条边" },
+      { "id": "d", "text": "把所有真实起点合并成同一个编号" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "虚拟 BFS 中真实起点组成第一层；直接把它们初始化为距离 0，相当于省掉虚拟边。"
+  },
+  {
+    "id": "topological-difference",
+    "prompt": "多源 BFS 与 Kahn 拓扑排序虽然都可能初始入队多个点，核心区别是什么？",
+    "options": [
+      { "id": "a", "text": "只有多源 BFS 使用队列" },
+      { "id": "b", "text": "前者维护到给定起点集合的距离；后者维护剩余入度和约束顺序" },
+      { "id": "c", "text": "二者的起点都必须入度为零" },
+      { "id": "d", "text": "二者都必须删除无向边" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "相同的队列外形不代表同一算法；初始点来源、状态和目标都不同。"
+  },
+  {
+    "id": "unreachable-component",
+    "prompt": "某个连通块中没有任何起点时，其中的点最终保存什么？",
+    "options": [
+      { "id": "a", "text": "`dist` 与 `nearest` 都保持 -1" },
+      { "id": "b", "text": "距离自动设为 0" },
+      { "id": "c", "text": "归属编号最大的起点" },
+      { "id": "d", "text": "距离等于连通块大小" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "没有来自起点集合的路径，就不会被任何波前发现。"
+  },
+  {
+    "id": "directed-graph",
+    "prompt": "把算法用于无权有向图时，距离表示什么？",
+    "options": [
+      { "id": "a", "text": "忽略方向后的最少边数" },
+      { "id": "b", "text": "任意点到最近起点的反向距离" },
+      { "id": "c", "text": "点的入度" },
+      { "id": "d", "text": "从某个给定起点沿有向边到达该点的最少边数" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "邻接表只保存 u 到 v 的方向，BFS 也只沿这些箭头扩展。"
+  },
+  {
+    "id": "overall-complexity",
+    "prompt": "扫描 k 个起点并在邻接表上执行一次多源 BFS 的总时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(k(n+m))$" },
+      { "id": "b", "text": "$O(nm)$" },
+      { "id": "c", "text": "$O(n+m+k)$" },
+      { "id": "d", "text": "$O(n\\log m)$" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每个点最多入队一次，每个邻接项最多扫描一次，另加初始化起点的 O(k)。"
+  },
+  {
+    "id": "edge-weight-limit",
+    "prompt": "本文普通队列多源 BFS 直接适用于哪类边权？",
+    "options": [
+      { "id": "a", "text": "任意负权" },
+      { "id": "b", "text": "所有边代价相同的无权最少边数问题" },
+      { "id": "c", "text": "任意非负权" },
+      { "id": "d", "text": "只有完全图" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "0-1 权需要 deque，任意非负权通常需要 Dijkstra；多源初始化思想仍可复用。"
+  }
+]
