@@ -149,18 +149,23 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *0186 | 继承 | C++ | [cpp/inheritance.md](cpp/inheritance.md) |
 | *0187 | 多态 | C++ | [cpp/polymorphism.md](cpp/polymorphism.md) |
 
-### 单元：编译
+### 单元：名称与作用域
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | *0106 | 变量 | C++ | [cpp/variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
 | *0128 | 常量 | C++ | [cpp/const.md](cpp/const.md) |
-| *0171 | 标识符 | C++ | [cpp/keywords-and-identifiers.md](cpp/keywords-and-identifiers.md) |
 | *0190 | 关键字 | C++ | [cpp/keywords.md](cpp/keywords.md) |
+| *0171 | 标识符 | C++ | [cpp/keywords-and-identifiers.md](cpp/keywords-and-identifiers.md) |
 | *0114 | 作用域 | C++ | [cpp/scope.md](cpp/scope.md) |
 | *0153 | 命名空间与 std | C++ | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
 | *0160 | typedef 类型别名 | C++ | [cpp/type-aliases.md](cpp/type-aliases.md) |
 | *0188 | using 类型别名 | C++ | [cpp/using-type-aliases.md](cpp/using-type-aliases.md) |
+
+### 单元：编译
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | *0176 | 预处理 | C++ | [cpp/preprocessing.md](cpp/preprocessing.md) |
 | *0152 | 预处理：#include | C++ | [cpp/include.md](cpp/include.md) |
 | *0159 | 预处理：#define | C++ | [cpp/define-macros.md](cpp/define-macros.md) |
@@ -178,7 +183,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 本章仍只从 C++ 竞赛代码的需要解释这些机制，不代替计算机组成、体系结构、操作
 系统或编译原理课程。联合体、枚举、字面量、`inline` 和 `volatile` 等独立扩展仍
-由模块目录和文末索引收录，不为了目录齐全强行塞进六个学习单元。
+由模块目录和文末索引收录，不为了目录齐全强行塞进七个学习单元。
 
 ## 03 算法入门
 
