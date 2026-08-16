@@ -1,0 +1,50 @@
+[
+  {
+    "id": "equation-integer-solution",
+    "prompt": "方程 `2x = 1` 在整数范围内有几个解？",
+    "options": [
+      { "id": "a", "text": "一个，`x = 0`" },
+      { "id": "b", "text": "一个，`x = 1/2`" },
+      { "id": "c", "text": "没有整数解" },
+      { "id": "d", "text": "无穷多个整数解" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`1/2` 是实数解和有理数解，但不属于整数。"
+  },
+  {
+    "id": "inequality-negative-multiply",
+    "prompt": "由 `-2x < 6` 解出 `x`，正确结果是什么？",
+    "options": [
+      { "id": "a", "text": "`x > -3`" },
+      { "id": "b", "text": "`x < -3`" },
+      { "id": "c", "text": "`x > 3`" },
+      { "id": "d", "text": "`x < 3`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两边除以负数 `-2` 时，不等号方向必须反转。"
+  },
+  {
+    "id": "inequality-closed-interval-code",
+    "prompt": "哪个 C++ 条件准确判断 `x` 属于闭区间 `[l,r]`？",
+    "options": [
+      { "id": "a", "text": "`l <= x || x <= r`" },
+      { "id": "b", "text": "`l <= x <= r`" },
+      { "id": "c", "text": "`x < l && r < x`" },
+      { "id": "d", "text": "`l <= x && x <= r`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "上下界必须分别形成完整比较，并用逻辑与表示同时满足。"
+  },
+  {
+    "id": "equation-divide-unknown",
+    "prompt": "把 `x(x - 1) = 0` 两边直接除以 `x` 会有什么问题？",
+    "options": [
+      { "id": "a", "text": "增加无穷多个解" },
+      { "id": "b", "text": "丢失合法解 `x = 0`" },
+      { "id": "c", "text": "把所有解变成负数" },
+      { "id": "d", "text": "没有任何影响" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "除以 `x` 隐含了 `x != 0`，而原方程恰好允许 `x = 0`。"
+  }
+]
