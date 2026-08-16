@@ -1,0 +1,98 @@
+[
+  {
+    "id": "three-representations",
+    "prompt": "图的三种基础存储方法是什么？",
+    "options": [
+      { "id": "a", "text": "栈、队列和双端队列" },
+      { "id": "b", "text": "边集、邻接矩阵和邻接表" },
+      { "id": "c", "text": "DFS、BFS 和二分" },
+      { "id": "d", "text": "点权、边权和度数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "三者分别按整条边、点对格子和每点出边列表组织边关系。"
+  },
+  {
+    "id": "edge-list-record",
+    "prompt": "一条带权有向边的边集记录至少需要哪些信息？",
+    "options": [
+      { "id": "a", "text": "起点 u、终点 v 和边权 w" },
+      { "id": "b", "text": "只需要边权 w" },
+      { "id": "c", "text": "只需要点数 n" },
+      { "id": "d", "text": "必须保存整张邻接矩阵" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "边集中的每条记录必须独立说明有向边从哪里到哪里，并在带权时保存权值。"
+  },
+  {
+    "id": "undirected-matrix",
+    "prompt": "把无向边 (u,v) 放入邻接矩阵时通常怎样更新？",
+    "options": [
+      { "id": "a", "text": "只写 g[u][u]" },
+      { "id": "b", "text": "只写 g[u][v]" },
+      { "id": "c", "text": "写 g[u][v] 和 g[v][u] 两个对称格子" },
+      { "id": "d", "text": "清空第 u、v 行" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "无向关系能从两个端点分别到达对方，因此矩阵中保存两个方向。"
+  },
+  {
+    "id": "matrix-no-edge",
+    "prompt": "带权邻接矩阵为什么不能总用 0 表示没有边？",
+    "options": [
+      { "id": "a", "text": "因为矩阵不能保存 0" },
+      { "id": "b", "text": "因为 0 可能是合法边权，会与不存在混淆" },
+      { "id": "c", "text": "因为所有边权必须为负数" },
+      { "id": "d", "text": "因为对角线必须全部为 1" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "表示不存在的哨兵值必须与合法边权区分；具体算法也可能需要专门初始化对角线。"
+  },
+  {
+    "id": "adjacency-item",
+    "prompt": "带权邻接表中，点 u 的一个邻接项通常只需保存什么？",
+    "options": [
+      { "id": "a", "text": "整张图的点数和边数" },
+      { "id": "b", "text": "起点 u、终点 v、边权 w 三者都重复保存" },
+      { "id": "c", "text": "只保存起点 u" },
+      { "id": "d", "text": "终点 v 和边权 w" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "起点已经由 g[u] 这张表的位置表达，邻接项只需要补充终点和权值。"
+  },
+  {
+    "id": "matrix-cost",
+    "prompt": "邻接矩阵的典型空间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "O(n^2)" },
+      { "id": "b", "text": "O(m)" },
+      { "id": "c", "text": "O(log n)" },
+      { "id": "d", "text": "O(1)" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "它为每一对点准备一个格子，与实际存在多少条边无关。"
+  },
+  {
+    "id": "dfs-representation",
+    "prompt": "DFS 需要反复枚举当前点的出边时，通常优先使用哪种存储？",
+    "options": [
+      { "id": "a", "text": "未经分组的普通边集" },
+      { "id": "b", "text": "邻接矩阵，无论点数多大" },
+      { "id": "c", "text": "邻接表" },
+      { "id": "d", "text": "只保存每个点的度数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "邻接表直接定位 g[u]，枚举成本与 u 的实际出度同阶，适合大多数图遍历。"
+  },
+  {
+    "id": "adjacency-implementations",
+    "prompt": "vector、前向星和链式前向星与邻接表是什么关系？",
+    "options": [
+      { "id": "a", "text": "它们分别是三种与邻接表无关的数学图" },
+      { "id": "b", "text": "只有链式前向星属于邻接表" },
+      { "id": "c", "text": "只有 vector 属于邻接表" },
+      { "id": "d", "text": "它们都是按点组织出边的邻接表实现" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "邻接表描述组织关系，不限制底层必须采用哪一种容器或链接方式。"
+  }
+]
