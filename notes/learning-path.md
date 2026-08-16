@@ -685,7 +685,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 080107 | 重链剖分 | 数据结构 | [graph-theory/heavy-light-decomposition.md](graph-theory/heavy-light-decomposition.md) |
 | 080108 | 笛卡尔树 | 数据结构 | [data-structures/cartesian-tree.md](data-structures/cartesian-tree.md) |
 | 080109 | Treap | 数据结构 | [data-structures/treap.md](data-structures/treap.md) |
-| 080110 | FHQ Treap | 数据结构 | `data-structures/fhq-treap.md` |
+| 080110 | FHQ Treap | 数据结构 | [data-structures/fhq-treap.md](data-structures/fhq-treap.md) |
 
 ### 单元 02：图论
 

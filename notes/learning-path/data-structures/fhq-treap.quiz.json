@@ -1,0 +1,62 @@
+[
+  {
+    "id": "implicit-position",
+    "prompt": "隐式 FHQ Treap 中，一个节点在序列中的位置主要由什么确定？",
+    "options": [
+      { "id": "a", "text": "节点保存的固定数组下标" },
+      { "id": "b", "text": "左子树大小与祖先关系" },
+      { "id": "c", "text": "随机优先级的数值本身" },
+      { "id": "d", "text": "节点的内存地址" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "中序遍历形成序列，左子树大小和祖先结构共同决定当前位置。"
+  },
+  {
+    "id": "split-meaning",
+    "prompt": "`split(root,k)` 的第一棵结果树包含什么？",
+    "options": [
+      { "id": "a", "text": "序列的前 k 个元素" },
+      { "id": "b", "text": "所有值小于 k 的元素" },
+      { "id": "c", "text": "随机优先级小于 k 的元素" },
+      { "id": "d", "text": "只包含第 k 个元素" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "本文按子树大小拆分，k 表示第一段的元素数量。"
+  },
+  {
+    "id": "merge-precondition",
+    "prompt": "调用 `merge(x,y)` 前必须满足什么顺序条件？",
+    "options": [
+      { "id": "a", "text": "x 与 y 的根值必须相等" },
+      { "id": "b", "text": "x 必须比 y 高" },
+      { "id": "c", "text": "x 中所有元素在序列中都位于 y 中元素之前" },
+      { "id": "d", "text": "两棵树都必须为空" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "merge 只负责拼接相邻序列，并用优先级决定新根，不能自行修正段落顺序。"
+  },
+  {
+    "id": "reverse-lazy",
+    "prompt": "给整棵子树打翻转标记时应执行哪两件事？",
+    "options": [
+      { "id": "a", "text": "删除根并重新排序全部值" },
+      { "id": "b", "text": "交换左右儿子，并翻转 reversed 标记" },
+      { "id": "c", "text": "只修改子树大小" },
+      { "id": "d", "text": "把优先级全部改成零" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "交换立即反映当前层次序，标记记录后代仍需延迟翻转。"
+  },
+  {
+    "id": "interval-splits",
+    "prompt": "要单独取出闭区间 `[l,r]`，两次拆分的长度分别是什么？",
+    "options": [
+      { "id": "a", "text": "先取前 l 个，再取 r 个" },
+      { "id": "b", "text": "先取前 r 个，再取 l 个" },
+      { "id": "c", "text": "先取前 l-1 个，再从剩余部分取 r-l+1 个" },
+      { "id": "d", "text": "两次都取 n 个" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "第一次分离区间前缀，第二次从剩余序列开头分离目标区间。"
+  }
+]
