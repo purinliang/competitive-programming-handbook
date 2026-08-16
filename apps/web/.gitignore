@@ -8,4 +8,5 @@ cloudflare-env.d.ts
 next-env.d.ts
 *.tsbuildinfo
 public/content-assets/
+public/learning-progress.json
 public/search-index.json

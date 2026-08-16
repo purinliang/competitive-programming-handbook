@@ -65,6 +65,12 @@ const studentAccount = await request("/api/me", { user: "student" });
 assert.equal(studentAccount.result.user.role, "student");
 const adminAccount = await request("/api/me", { user: "admin" });
 assert.equal(adminAccount.result.user.role, "admin");
+const anonymousProgress = await request("/api/learning/progress");
+assert.equal(anonymousProgress.response.status, 401);
+const emptyLearningProgress = await request("/api/learning/progress", {
+  user: "student",
+});
+assert.deepEqual(emptyLearningProgress.result.articles, []);
 
 const currentArticleView = await request(
   `/api/discussions?document_key=${encodeURIComponent(documentKey)}`
@@ -410,6 +416,19 @@ const currentQuestion = await request("/api/learning/questions/attempts", {
 });
 assert.equal(currentQuestion.response.status, 200);
 assert.equal(currentQuestion.result.correct, true);
+const learningProgress = await request("/api/learning/progress", {
+  user: "student",
+});
+const articleProgress = learningProgress.result.articles.find(
+  (article) => article.documentKey === documentKey,
+);
+assert.equal(articleProgress.documentEpoch, document.documentEpoch);
+assert.deepEqual(articleProgress.questions, [{
+  correct: true,
+  createdAt: currentQuestion.result.createdAt,
+  questionId: question.id,
+  questionRevision: question.revision,
+}]);
 
 const locked = await request(`/api/admin/threads/${threadId}/moderate`, {
   body: { action: "lock", reason: "自动化测试" },

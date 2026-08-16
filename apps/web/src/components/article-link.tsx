@@ -1,6 +1,6 @@
-import { getArticleStatusLabel } from "@/lib/content/status";
 import type { ArticleRecord, NavigationMode } from "@/lib/content/types";
 
+import { ArticleProgress } from "./article-progress";
 import { NavigationLink as Link } from "./navigation-link";
 
 interface ArticleLinkProps {
@@ -18,7 +18,9 @@ export function ArticleLink({
   label,
   navigation,
 }: ArticleLinkProps) {
-  const visibleTitle = label ?? (navigation === "learning-path" ? article.learningTitle : article.title);
+  const visibleTitle = label ?? (
+    navigation === "learning-path" ? article.learningTitle : article.title
+  );
   const title = `${article.kind === "extension" ? "*" : ""}${visibleTitle}`;
   const route = navigation === "learning-path" ? article.learningPathRoute : article.catalogRoute;
   const href = entryKey ? `${route}?entry=${encodeURIComponent(entryKey)}` : route;
@@ -33,9 +35,13 @@ export function ArticleLink({
   }
 
   return (
-    <Link className={`article-link${active ? " is-active" : ""}`} href={href} aria-current={active ? "page" : undefined}>
+    <Link
+      aria-current={active ? "page" : undefined}
+      className={`article-link${active ? " is-active" : ""}`}
+      href={href}
+    >
       <span>{title}</span>
-      <small>{getArticleStatusLabel(article.status)}</small>
+      <ArticleProgress articleKey={article.articleKey} />
     </Link>
   );
 }

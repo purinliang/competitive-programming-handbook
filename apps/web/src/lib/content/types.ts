@@ -26,6 +26,19 @@ export interface ArticleRecord {
   exists: boolean;
 }
 
+export interface LearningQuizProgressDefinition {
+  documentEpoch: number;
+  questions: Array<{
+    correctOptionId: string;
+    id: string;
+    revision: string;
+  }>;
+}
+
+export interface LearningProgressManifest {
+  articles: Record<string, LearningQuizProgressDefinition>;
+}
+
 export interface ModuleRecord {
   key: string;
   title: string;

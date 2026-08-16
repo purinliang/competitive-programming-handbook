@@ -588,6 +588,35 @@ a.article-link.is-active:hover {
   font-size: 12px;
 }
 
+.article-progress,
+.article-group-progress {
+  flex: none;
+  color: var(--faint-text);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.article-progress {
+  width: 4ch;
+}
+
+.article-progress::after {
+  display: block;
+  width: 18px;
+  height: 1px;
+  margin-left: auto;
+  background: transparent;
+  content: "";
+}
+
+.article-progress.is-complete::after {
+  background: var(--faint-text);
+}
+
+.article-group-progress {
+  width: 7ch;
+}
+
 .article-link.is-planned {
   color: var(--faint-text);
   cursor: not-allowed;
@@ -601,6 +630,10 @@ a.article-link.is-active:hover {
 
 .article-link.is-active small {
   color: color-mix(in srgb, var(--primary-foreground) 75%, transparent);
+}
+
+.article-link.is-active .article-progress.is-complete::after {
+  background: color-mix(in srgb, var(--primary-foreground) 45%, transparent);
 }
 
 .page-intro {

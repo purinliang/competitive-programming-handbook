@@ -28,6 +28,10 @@ export function getDocument(documentKey: string) {
   return documents[documentKey];
 }
 
+export function getDocuments() {
+  return documents;
+}
+
 export function getSection(documentKey: string, sectionId: string) {
   return getDocument(documentKey)?.sections.find(
     (section) => section.id === sectionId || section.legacyIds.includes(sectionId),

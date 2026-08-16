@@ -1,4 +1,5 @@
 import { ArticleLink } from "./article-link";
+import { ArticleGroupProgress } from "./article-progress";
 
 import type { ArticleFamily, NavigationMode } from "@/lib/content/types";
 
@@ -29,7 +30,7 @@ export function ArticleFamilyList({ groups, activeEntryKey, navigation }: Articl
       <details className="article-family" open={active} key={`${group.entryKeys[0]}:${index}`}>
         <summary>
           <span>{group.title}{group.continued ? "（继续）" : ""}</span>
-          <small>{group.articles.length}</small>
+          <ArticleGroupProgress articleKeys={group.articles.map((article) => article.articleKey)} />
         </summary>
         <div>
           {group.articles.map((article, articleIndex) => (
@@ -37,7 +38,9 @@ export function ArticleFamilyList({ groups, activeEntryKey, navigation }: Articl
               article={article}
               active={group.entryKeys[articleIndex] === activeEntryKey}
               entryKey={group.entryKeys[articleIndex]}
-              label={group.stripTitlePrefix ? article.title.slice(article.title.indexOf("：") + 1) : undefined}
+              label={group.stripTitlePrefix
+                ? article.title.slice(article.title.indexOf("：") + 1)
+                : undefined}
               navigation={navigation}
               key={group.entryKeys[articleIndex]}
             />

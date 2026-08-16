@@ -6,71 +6,12 @@ import {
   getLearningState,
   invalidateLearningState,
 } from "@/lib/collaboration-client";
+import {
+  readStoredAnswers,
+  writeStoredAnswers,
+} from "@/lib/learning-progress-storage";
 
 import type { LearningQuiz as LearningQuizData } from "@/lib/content/types";
-
-const STORAGE_KEY = "handbook.learning-progress.v2";
-
-interface StoredAnswer {
-  answeredAt: number;
-  optionId: string;
-  questionRevision: string;
-}
-
-interface StoredArticleProgress {
-  answers: Record<string, StoredAnswer>;
-  documentEpoch?: number;
-}
-
-type StoredProgress = Record<string, StoredArticleProgress>;
-
-function readProgress(
-  articleKey: string,
-  documentEpoch: number,
-  quiz: LearningQuizData,
-): Record<string, string> {
-  try {
-    const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}") as StoredProgress;
-    const articleProgress = progress[articleKey];
-    if ((articleProgress?.documentEpoch ?? 1) !== documentEpoch) return {};
-    const storedAnswers = articleProgress?.answers ?? {};
-    return Object.fromEntries(quiz.questions.flatMap((question) => {
-      const answer = storedAnswers[question.id];
-      return answer?.questionRevision === question.revision
-        ? [[question.id, answer.optionId]]
-        : [];
-    }));
-  } catch {
-    return {};
-  }
-}
-
-function writeProgress(
-  articleKey: string,
-  documentEpoch: number,
-  quiz: LearningQuizData,
-  answers: Record<string, string>,
-) {
-  try {
-    const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}") as StoredProgress;
-    progress[articleKey] = {
-      answers: Object.fromEntries(quiz.questions.flatMap((question) => {
-        const optionId = answers[question.id];
-        return optionId
-          ? [[question.id, {
-              answeredAt: Date.now(),
-              optionId,
-              questionRevision: question.revision,
-            }]]
-          : [];
-      })),
-      documentEpoch,
-    };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-  } catch {
-    // 隐私模式或禁用存储时，题目仍可在当前页面正常作答。
-  }
-}
 
 export function LearningQuiz({
   articleKey,
@@ -95,7 +36,7 @@ export function LearningQuiz({
   );
 
   useEffect(() => {
-    const storedAnswers = readProgress(articleKey, documentEpoch, quiz);
+    const storedAnswers = readStoredAnswers(articleKey, documentEpoch, quiz.questions);
     setAnswers(storedAnswers);
     setSelections(storedAnswers);
     const documentKey = `learning-path:${articleKey}`;
@@ -115,15 +56,15 @@ export function LearningQuiz({
               : [];
           }),
         );
-        const currentStoredAnswers = readProgress(
+        const currentStoredAnswers = readStoredAnswers(
           articleKey,
           documentEpoch,
-          quiz,
+          quiz.questions,
         );
         const merged = { ...cloudAnswers, ...currentStoredAnswers };
         setAnswers(merged);
         setSelections(merged);
-        writeProgress(articleKey, documentEpoch, quiz, merged);
+        writeStoredAnswers(articleKey, documentEpoch, quiz.questions, merged);
       })
       .catch(() => undefined);
   }, [articleKey, documentEpoch, quiz]);
@@ -139,7 +80,7 @@ export function LearningQuiz({
       const nextAnswers = { ...answers };
       delete nextAnswers[question.id];
       setAnswers(nextAnswers);
-      writeProgress(articleKey, documentEpoch, quiz, nextAnswers);
+      writeStoredAnswers(articleKey, documentEpoch, quiz.questions, nextAnswers);
     }
   }
 
@@ -149,7 +90,7 @@ export function LearningQuiz({
     }
     const nextAnswers = { ...answers, [question.id]: selection };
     setAnswers(nextAnswers);
-    writeProgress(articleKey, documentEpoch, quiz, nextAnswers);
+    writeStoredAnswers(articleKey, documentEpoch, quiz.questions, nextAnswers);
     fetch("/api/learning/questions/attempts", {
       body: JSON.stringify({
         documentKey: `learning-path:${articleKey}`,

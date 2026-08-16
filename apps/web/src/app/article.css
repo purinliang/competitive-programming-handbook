@@ -150,6 +150,10 @@
   display: none;
 }
 
+.sidebar-list .article-link .article-progress {
+  display: block;
+}
+
 .article-family {
   border-bottom: 1px solid var(--divider-border);
 }

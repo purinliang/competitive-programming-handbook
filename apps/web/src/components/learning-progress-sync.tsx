@@ -7,10 +7,10 @@ import {
   getLearningState,
   invalidateLearningState,
 } from "@/lib/collaboration-client";
+import { readStoredLearningProgress } from "@/lib/learning-progress-storage";
 
 import type { LearningQuiz } from "@/lib/content/types";
 
-const QUIZ_STORAGE_KEY = "handbook.learning-progress.v2";
 const DISMISSED_STORAGE_KEY = "handbook.learning-sync-dismissed.v1";
 
 interface LocalAnswer {
@@ -25,13 +25,7 @@ function readLocalAnswers(
   quiz: LearningQuiz | undefined,
 ): LocalAnswer[] {
   try {
-    const stored = JSON.parse(localStorage.getItem(QUIZ_STORAGE_KEY) ?? "{}") as Record<
-      string,
-      {
-        answers?: Record<string, { optionId?: string; questionRevision?: string }>;
-        documentEpoch?: number;
-      }
-    >;
+    const stored = readStoredLearningProgress();
     if ((stored[articleKey]?.documentEpoch ?? 1) !== documentEpoch) {
       return [];
     }

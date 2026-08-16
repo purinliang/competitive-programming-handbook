@@ -26,7 +26,21 @@ export interface LearningState {
   }>;
 }
 
+export interface LearningProgressSummary {
+  articles: Array<{
+    documentEpoch: number;
+    documentKey: string;
+    questions: Array<{
+      correct: boolean;
+      createdAt: number;
+      questionId: string;
+      questionRevision: string;
+    }>;
+  }>;
+}
+
 let accountRequest: Promise<AccountState> | undefined;
+let learningProgressRequest: Promise<LearningProgressSummary | undefined> | undefined;
 const learningStateRequests = new Map<string, Promise<LearningState | undefined>>();
 
 export function getAccountState() {
@@ -66,11 +80,32 @@ export function getLearningState(documentKey: string) {
   return request;
 }
 
+export function getLearningProgress() {
+  if (learningProgressRequest) return learningProgressRequest;
+
+  learningProgressRequest = getAccountState()
+    .then(async (account) => {
+      if (!account.user) return undefined;
+      const response = await fetch("/api/learning/progress", {
+        credentials: "include",
+      });
+      if (!response.ok) throw new Error("学习进度加载失败");
+      return await response.json() as LearningProgressSummary;
+    })
+    .catch((error) => {
+      learningProgressRequest = undefined;
+      throw error;
+    });
+  return learningProgressRequest;
+}
+
 export function invalidateLearningState(documentKey: string) {
   learningStateRequests.delete(documentKey);
+  learningProgressRequest = undefined;
 }
 
 export function resetAccountState() {
   accountRequest = undefined;
+  learningProgressRequest = undefined;
   learningStateRequests.clear();
 }

@@ -28,6 +28,7 @@ const articleCacheRoot = path.join(cacheRoot, "articles");
 const quizCacheRoot = path.join(cacheRoot, "quizzes");
 const buildStatePath = path.join(cacheRoot, "build-state.json");
 const searchIndexPath = path.join(appRoot, "public/search-index.json");
+const learningProgressPath = path.join(appRoot, "public/learning-progress.json");
 const articleStatuses = new Set(["计划", "待审阅", "已审阅", "草稿", "定稿"]);
 const arguments_ = new Set(process.argv.slice(2));
 const unknownArguments = [...arguments_].filter(
@@ -566,13 +567,12 @@ for (const article of articles) {
   article.learningSourcePath = learningSourcePaths.get(article.articleKey) ?? article.sourcePath;
   article.learningTitle = learningTitles.get(article.articleKey) ?? article.title;
 }
-await writeFile(path.join(cacheRoot, "manifest.json"), `${JSON.stringify({ articles, stages })}\n`);
-
 const publishedArticles = articles.filter((article) => article.exists && article.status !== "计划");
 const learningArticleKeys = new Set(stages.flatMap((stage) => stage.articleKeys));
 const articleTitles = new Set(publishedArticles.map((article) => article.title));
 const searchRecords = [];
 const interactionDocuments = {};
+const learningProgressArticles = {};
 const rebuiltArticles = new Set();
 let quizCount = 0;
 let rebuiltQuizCount = 0;
@@ -669,14 +669,28 @@ const compiledQuizzes = await Promise.all([...learningArticleKeys].map(async (ar
 }));
 for (const [articleKey, quiz] of compiledQuizzes) {
   if (quiz && interactionDocuments[`learning-path:${articleKey}`]) {
-    interactionDocuments[`learning-path:${articleKey}`].questions = quiz.questions.map((question) => ({
+    const progressQuestions = quiz.questions.map((question) => ({
       correctOptionId: question.correctOptionId,
       id: question.id,
       optionIds: question.options.map((option) => option.id),
       revision: question.revision,
     }));
+    interactionDocuments[`learning-path:${articleKey}`].questions = progressQuestions;
+    learningProgressArticles[articleKey] = {
+      documentEpoch: interactionDocuments[`learning-path:${articleKey}`].documentEpoch,
+      questions: progressQuestions.map(({ correctOptionId, id, revision }) => ({
+        correctOptionId,
+        id,
+        revision,
+      })),
+    };
   }
 }
+await writeFile(path.join(cacheRoot, "manifest.json"), `${JSON.stringify({ articles, stages })}\n`);
+await writeFile(
+  learningProgressPath,
+  `${JSON.stringify({ articles: learningProgressArticles })}\n`,
+);
 await writeFile(
   path.join(cacheRoot, "interaction-manifest.json"),
   `${JSON.stringify({ documents: interactionDocuments })}\n`,

@@ -5,6 +5,7 @@ import { adminRoutes } from "./admin";
 import { authIsConfigured, createAuth } from "./auth";
 import {
   getDocument,
+  getDocuments,
   getQuestion,
   getSection,
   getSectionIds,
@@ -23,6 +24,15 @@ interface SectionProgressRow {
   sectionId: string;
   sectionRevision: string;
   updatedAt: number;
+}
+
+interface LearningProgressRow {
+  correct: number;
+  createdAt: number;
+  documentEpoch: number;
+  documentKey: string;
+  questionId: string;
+  questionRevision: string;
 }
 
 app.get("/api/health", (c) => c.json({
@@ -111,6 +121,57 @@ app.get("/api/learning/state", requireSession, async (c) => {
     questions: [...currentAttempts.values()],
     sections: [...currentSections.values()],
   });
+});
+
+app.get("/api/learning/progress", requireSession, async (c) => {
+  const attempts = await c.env.DB.prepare(
+    `WITH latest AS (
+       SELECT documentKey, documentEpoch, questionId, questionRevision,
+              correct, createdAt,
+              ROW_NUMBER() OVER (
+                PARTITION BY documentKey, documentEpoch, questionId, questionRevision
+                ORDER BY createdAt DESC, rowid DESC
+              ) AS position
+       FROM question_attempts
+       WHERE userId = ? AND documentKey LIKE 'learning-path:%'
+     )
+     SELECT documentKey, documentEpoch, questionId, questionRevision,
+            correct, createdAt
+     FROM latest
+     WHERE position = 1`,
+  ).bind(c.get("user").id).all<LearningProgressRow>();
+
+  const documents = getDocuments();
+  const progress = new Map<string, {
+    documentEpoch: number;
+    documentKey: string;
+    questions: Array<{
+      correct: boolean;
+      createdAt: number;
+      questionId: string;
+      questionRevision: string;
+    }>;
+  }>();
+  for (const attempt of attempts.results) {
+    const document = documents[attempt.documentKey];
+    if (!document || document.documentEpoch !== attempt.documentEpoch) continue;
+    const question = document.questions?.find((item) => item.id === attempt.questionId);
+    if (!question || question.revision !== attempt.questionRevision) continue;
+    const record = progress.get(attempt.documentKey) ?? {
+      documentEpoch: document.documentEpoch,
+      documentKey: attempt.documentKey,
+      questions: [],
+    };
+    record.questions.push({
+      correct: Boolean(attempt.correct),
+      createdAt: attempt.createdAt,
+      questionId: attempt.questionId,
+      questionRevision: attempt.questionRevision,
+    });
+    progress.set(attempt.documentKey, record);
+  }
+
+  return c.json({ articles: [...progress.values()] });
 });
 
 app.post("/api/learning/sections", requireSession, async (c) => {
