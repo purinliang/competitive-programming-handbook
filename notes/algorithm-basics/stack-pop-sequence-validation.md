@@ -1,6 +1,6 @@
-# 栈的应用：出栈序列判定
+# 出栈序列判定
 
-> 最近修订：2026-08-13 21:39 +10:00（未审阅）
+> 最近修订：2026-08-16 11:05 +10:00（未审阅）
 
 [栈](stack.md) 已经说明后进先出，[stack](../cpp/stack.md) 已经给出标准库接口。现在研究第一个完整应用：入栈顺序固定时，一个目标排列能否成为出栈顺序。
 
@@ -249,7 +249,7 @@ bool is_valid_pop_sequence(const vector<int>& target, int n) {
     return true;
 }
 
-int main() {
+void solve() {
     int n;
     scanf("%d", &n);
 
@@ -259,6 +259,10 @@ int main() {
     }
 
     printf("%s\n", is_valid_pop_sequence(target, n) ? "Yes" : "No");
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -326,7 +330,3 @@ Yes
 9. 本算法依赖目标序列具有什么输入前置条件？
 
 本篇判断一条给定排列是否可行，不计数所有合法排列，也不生成第 $k$ 个出栈序列。后两类问题会引出组合计数等不同目标，不属于基础判定。
-
-## 下一篇
-
-下一篇 [栈的应用：表达式求值](expression-evaluation.md) 会把运算符与括号暂存在栈中，统一解释前缀、中缀、后缀表达式及其求值过程。

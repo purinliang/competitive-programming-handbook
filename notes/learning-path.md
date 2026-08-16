@@ -230,7 +230,7 @@
 | 0224 | 链表 | 算法基础 | [algorithm-basics/linked-list.md](algorithm-basics/linked-list.md) |
 | 0225 | 栈 | 算法基础 | [algorithm-basics/stack.md](algorithm-basics/stack.md) |
 | 0142 | stack | C++ | [cpp/stack.md](cpp/stack.md) |
-| 0236 | 栈的应用：出栈序列判定 | 算法基础 | [algorithm-basics/stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
+| 0236 | 出栈序列判定 | 算法基础 | [algorithm-basics/stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
 | 0237 | 栈的应用：表达式求值 | 算法基础 | [algorithm-basics/expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
 | 0226 | 队列 | 算法基础 | [algorithm-basics/queue.md](algorithm-basics/queue.md) |
 | 0253 | 双端队列 | 算法基础 | `algorithm-basics/deque.md` |

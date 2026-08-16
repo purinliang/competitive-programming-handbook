@@ -1,0 +1,170 @@
+[
+  {
+    "id": "forced-pop",
+    "prompt": "当前栈顶正好等于下一个目标出栈值时，为什么必须立即弹出？",
+    "options": [
+      {
+        "id": "a",
+        "text": "因为栈顶元素一定是最大值"
+      },
+      {
+        "id": "b",
+        "text": "因为继续压栈会覆盖并删除当前栈顶"
+      },
+      {
+        "id": "c",
+        "text": "继续压入的新值会挡住目标，而先弹新值又会破坏目标顺序"
+      },
+      {
+        "id": "d",
+        "text": "因为每个栈最多只能保存一个元素"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "栈顶已是当前唯一允许输出的值；任何额外压栈都会先产生错误输出。"
+  },
+  {
+    "id": "next-push-meaning",
+    "prompt": "变量 `next_push` 始终表示什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "按固定顺序尚未入栈的最小数字"
+      },
+      {
+        "id": "b",
+        "text": "当前栈顶的下标"
+      },
+      {
+        "id": "c",
+        "text": "已经输出的最后一个数字"
+      },
+      {
+        "id": "d",
+        "text": "目标排列中的最大值"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "入栈顺序固定为 1..n，每压入一次就将 next_push 增一。"
+  },
+  {
+    "id": "cannot-skip-input",
+    "prompt": "当前目标是 `desired` 且它尚未入栈时，为什么不能只压入 `desired`？",
+    "options": [
+      {
+        "id": "a",
+        "text": "desired 必须先出栈两次"
+      },
+      {
+        "id": "b",
+        "text": "stack 的 push 不接受变量"
+      },
+      {
+        "id": "c",
+        "text": "这样会使时间复杂度变成 O(n²)"
+      },
+      {
+        "id": "d",
+        "text": "固定入栈顺序要求先压入 next_push 到 desired 的所有数字"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "输入流不能跳项；较小而尚未入栈的数字会依次进入 desired 下方。"
+  },
+  {
+    "id": "buried-target",
+    "prompt": "`desired` 已经入栈但不在栈顶时，为什么可以立即判失败？",
+    "options": [
+      {
+        "id": "a",
+        "text": "所有已入栈元素都已经输出"
+      },
+      {
+        "id": "b",
+        "text": "弹出上方元素会输出错误值，继续压栈又不能移走遮挡"
+      },
+      {
+        "id": "c",
+        "text": "栈顶不允许保存整数"
+      },
+      {
+        "id": "d",
+        "text": "next_push 必须重新变回 1"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "此时没有任何合法操作能让 desired 成为下一项输出。"
+  },
+  {
+    "id": "simulation-invariant",
+    "prompt": "处理目标位置 i 以前，栈中保存的是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "所有尚未入栈的数字"
+      },
+      {
+        "id": "b",
+        "text": "target[i..n] 的完整副本"
+      },
+      {
+        "id": "c",
+        "text": "已经入栈但尚未按目标顺序输出的数字"
+      },
+      {
+        "id": "d",
+        "text": "只保存当前 desired"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "已输出前缀已离开；未来输入还未进入；两者之间的未输出项留在栈中。"
+  },
+  {
+    "id": "linear-complexity",
+    "prompt": "代码同时有 `for` 和 `while`，总时间为什么仍是 O(n)？",
+    "options": [
+      {
+        "id": "a",
+        "text": "每个数字在整个过程最多压栈一次、弹栈一次"
+      },
+      {
+        "id": "b",
+        "text": "while 实际上永远不执行"
+      },
+      {
+        "id": "c",
+        "text": "所有嵌套循环都是 O(n)"
+      },
+      {
+        "id": "d",
+        "text": "栈会自动跳过一半输入"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "next_push 全局单调增加，内层循环全部轮次合计只执行 n 次压栈。"
+  },
+  {
+    "id": "input-precondition",
+    "prompt": "本篇判定代码依赖目标序列满足什么前置条件？",
+    "options": [
+      {
+        "id": "a",
+        "text": "目标必须已经升序"
+      },
+      {
+        "id": "b",
+        "text": "目标中只允许出现偶数"
+      },
+      {
+        "id": "c",
+        "text": "目标长度必须小于栈容量的一半"
+      },
+      {
+        "id": "d",
+        "text": "目标是 1..n 的一个排列"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "唯一、完整且范围合法的目标值让 next_push 与“已经入栈”判断成立。"
+  }
+]
