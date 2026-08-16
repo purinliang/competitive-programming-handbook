@@ -1,0 +1,98 @@
+[
+  {
+    "id": "content-equality",
+    "prompt": "两个字符串内容相等需要同时满足什么？",
+    "options": [
+      { "id": "a", "text": "字符总和相同" },
+      { "id": "b", "text": "长度相同，并且每个对应位置的字符相同" },
+      { "id": "c", "text": "第一个字符相同" },
+      { "id": "d", "text": "包含的不同字符种类相同" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "长度或任意一个对应字符不同都会让两个字符串不相等。"
+  },
+  {
+    "id": "first-difference",
+    "prompt": "`apple` 与 `apply` 的字典序由什么决定？",
+    "options": [
+      { "id": "a", "text": "两个字符串的长度" },
+      { "id": "b", "text": "所有字符编号之和" },
+      { "id": "c", "text": "最后一个字符串的首字符" },
+      { "id": "d", "text": "第一个不同位置的 `'e'` 与 `'y'`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "共同前缀没有区分作用，第一个不同字符已经唯一决定顺序。"
+  },
+  {
+    "id": "prefix-order",
+    "prompt": "共同范围内字符全部相同时，`app` 与 `apple` 哪个字典序更小？",
+    "options": [
+      { "id": "a", "text": "`app`，因为它是另一个字符串的完整前缀" },
+      { "id": "b", "text": "`apple`，因为它包含更多字符" },
+      { "id": "c", "text": "二者相等" },
+      { "id": "d", "text": "无法比较" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "没有第一个不同字符时，较短的完整前缀排在较长字符串之前。"
+  },
+  {
+    "id": "length-not-first",
+    "prompt": "为什么不能一开始就用长度比较普通字符串？",
+    "options": [
+      { "id": "a", "text": "因为字符串没有长度" },
+      { "id": "b", "text": "因为较长字符串一定更小" },
+      { "id": "c", "text": "第一个不同字符可能先决定结果，例如 `z > aa`" },
+      { "id": "d", "text": "因为长度比较的复杂度是指数级" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "长度只在共同前缀覆盖较短字符串时参与决定字典序。"
+  },
+  {
+    "id": "numeric-string",
+    "prompt": "为什么字符串比较中 `\"10\" < \"2\"` 为真？",
+    "options": [
+      { "id": "a", "text": "因为整数 10 小于整数 2" },
+      { "id": "b", "text": "首先比较的字符 `'1'` 小于 `'2'`" },
+      { "id": "c", "text": "因为较长字符串总是更小" },
+      { "id": "d", "text": "因为引号会改变数值" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "普通 string 比较不会把文本转换成整数，而是直接执行逐字符字典序。"
+  },
+  {
+    "id": "sort-range",
+    "prompt": "逻辑数据保存在 `words[1..n]` 时，正确的排序调用是什么？",
+    "options": [
+      { "id": "a", "text": "`sort(words.begin(), words.end());`" },
+      { "id": "b", "text": "`sort(words.begin() + 1, words.begin() + n);`" },
+      { "id": "c", "text": "`sort(words[1], words[n]);`" },
+      { "id": "d", "text": "`sort(words.begin() + 1, words.begin() + n + 1);`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "STL 使用左闭右开迭代器区间，终点应指向最后一个真实元素之后。"
+  },
+  {
+    "id": "duplicates",
+    "prompt": "对 `vector<string>` 调用 `sort` 后，重复字符串会怎样？",
+    "options": [
+      { "id": "a", "text": "仍然保留，排序不会自动去重" },
+      { "id": "b", "text": "只保留第一次出现的字符串" },
+      { "id": "c", "text": "全部变成空字符串" },
+      { "id": "d", "text": "导致程序无法编译" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "排序只改变元素顺序；删除相邻重复项是另外的操作。"
+  },
+  {
+    "id": "comparison-complexity",
+    "prompt": "比较长度分别为 `a`、`b` 的两个字符串，最坏需要检查多少字符？",
+    "options": [
+      { "id": "a", "text": "$O(1)$" },
+      { "id": "b", "text": "$O(a+b)$ 次完整排序" },
+      { "id": "c", "text": "$O(\\min(a,b))$" },
+      { "id": "d", "text": "$O(2^{a+b})$" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "最坏需要扫描完整共同前缀，再进行一次长度判断。"
+  }
+]
