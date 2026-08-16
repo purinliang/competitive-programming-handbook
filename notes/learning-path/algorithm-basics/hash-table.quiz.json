@@ -1,0 +1,98 @@
+[
+  {
+    "id": "direct-address-limit",
+    "prompt": "为什么直接寻址数组不适合只保存少量、但键范围接近 10^18 的数据？",
+    "options": [
+      { "id": "a", "text": "数组不能保存整数值" },
+      { "id": "b", "text": "数组只能从下标 1 开始" },
+      { "id": "c", "text": "空间取决于完整键范围，而不是实际键数" },
+      { "id": "d", "text": "数组查询的时间复杂度是 O(n)" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "直接寻址需要为每个可能键预留位置，稀疏而巨大的键范围会造成无法接受的空间消耗。"
+  },
+  {
+    "id": "collision-meaning",
+    "prompt": "哈希冲突表示什么？",
+    "options": [
+      { "id": "a", "text": "两个不同键被映射到同一个桶" },
+      { "id": "b", "text": "同一个键被插入两次" },
+      { "id": "c", "text": "桶数一定是偶数" },
+      { "id": "d", "text": "哈希表已经没有内存" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "桶数小于可能键数时，不同键落入同一桶不可避免；实现必须保存并比较完整键。"
+  },
+  {
+    "id": "negative-key",
+    "prompt": "取模哈希处理负数键时，为什么可能需要给余数加上 bucket_count？",
+    "options": [
+      { "id": "a", "text": "让所有键互不冲突" },
+      { "id": "b", "text": "把负余数归一化到合法的 0-based 桶下标" },
+      { "id": "c", "text": "把平均复杂度改成最坏 O(1)" },
+      { "id": "d", "text": "让 bucket_count 自动成为质数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "C++ 的负数余数可能为负，不能直接作为 vector 下标；加一次正桶数可落回合法范围。"
+  },
+  {
+    "id": "chaining-stores-key",
+    "prompt": "拉链法的每条记录为什么必须保留原始键？",
+    "options": [
+      { "id": "a", "text": "为了按键自动升序遍历" },
+      { "id": "b", "text": "为了让桶数随键增加" },
+      { "id": "c", "text": "为了把值限制在非负范围" },
+      { "id": "d", "text": "为了在冲突桶中区分多个不同键" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "桶编号只缩小搜索范围；真正判断是否命中仍要比较 stored key 与查询键。"
+  },
+  {
+    "id": "update-size",
+    "prompt": "给一个已经存在的键设置新值时，元素数量应当怎样变化？",
+    "options": [
+      { "id": "a", "text": "增加 1" },
+      { "id": "b", "text": "减少 1" },
+      { "id": "c", "text": "保持不变，只更新对应值" },
+      { "id": "d", "text": "清空整个桶" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "同一个键仍只占一条映射；只有第一次插入新键时才增加 element_count。"
+  },
+  {
+    "id": "load-factor",
+    "prompt": "保存 n 个键、使用 B 个桶时，负载因子怎样定义？",
+    "options": [
+      { "id": "a", "text": "n / B" },
+      { "id": "b", "text": "B / n" },
+      { "id": "c", "text": "n + B" },
+      { "id": "d", "text": "n * B" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "负载因子表示平均每个桶承载多少元素，是分析平均桶长和扩容时机的核心量。"
+  },
+  {
+    "id": "average-worst-case",
+    "prompt": "为什么拉链哈希表通常平均 O(1)，最坏却可能 O(n)？",
+    "options": [
+      { "id": "a", "text": "因为 vector 每次查询都会重新分配" },
+      { "id": "b", "text": "因为普通输入大致均匀，但极端情况下全部键可能落入同一桶" },
+      { "id": "c", "text": "因为哈希函数只能处理一个键" },
+      { "id": "d", "text": "因为删除操作会排序全部键" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "平均分析依赖键分散；若目标桶包含所有 n 个元素，一次扫描就会退化为 O(n)。"
+  },
+  {
+    "id": "rehash-reason",
+    "prompt": "扩大桶数以后为什么必须重新哈希已有元素？",
+    "options": [
+      { "id": "a", "text": "因为所有 value 都要变成 0" },
+      { "id": "b", "text": "因为原始键已经丢失" },
+      { "id": "c", "text": "因为 vector 不允许调整大小" },
+      { "id": "d", "text": "因为键对应的桶编号会随 bucket_count 改变" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "使用 key%bucket_count 时，桶数是哈希结果的一部分；只扩容而不搬迁会让查询找不到旧元素。"
+  }
+]

@@ -1,6 +1,6 @@
 # 哈希表
 
-> 最近修订：2026-08-13 22:09 +10:00（未审阅）
+> 最近修订：2026-08-16 12:15 +10:00（未审阅）
 
 有些题目需要反复保存和查询“编号对应的数值”。编号可能是用户 ID、坐标、状态编码或其他整数，程序需要支持：
 
@@ -105,13 +105,18 @@ bucket[5]: (5, 50)  (30, 300)  (-20, 200)
 ...
 ```
 
-经典示意图常把同一桶的元素画成链表，因此中文称为拉链法。但这个策略只要求每个桶能保存多个元素，不强制底层真的使用链表。本篇用 `vector<pair<ll, ll>>` 保存一个桶：
+经典示意图常把同一桶的元素画成链表，因此中文称为拉链法。但这个策略只要求每个桶能保存多个元素，不强制底层真的使用链表。本篇为一个键值对定义字段明确的结构体：
 
 ```cpp
-vector<vector<pair<ll, ll>>> buckets;
+struct HashEntry {
+    ll key;
+    ll value;
+};
+
+vector<vector<HashEntry>> buckets;
 ```
 
-外层 `vector` 选择桶，内层 `vector` 保存该桶中的所有 `(key, value)`。连续存储的代码更短，遍历小桶时也很直接。
+外层 `vector` 选择桶，内层 `vector` 保存该桶中的所有 `HashEntry`。连续存储的代码更短，遍历小桶时也很直接。
 
 仅保存 `value` 不够。发生冲突以后，查询桶 `5` 仍需比较每个元素的 `key`，才能确定需要的是 `5`、`30` 还是 `-20`。
 
@@ -120,12 +125,12 @@ vector<vector<pair<ll, ll>>> buckets;
 桶、桶数和当前元素数共同组成一张哈希表的持续状态，各项操作必须维护同一组规则，因此使用 `struct` 封装：
 
 ```cpp
-struct hash_table {
-    vector<vector<pair<ll, ll>>> buckets;
+struct HashTable {
+    vector<vector<HashEntry>> buckets;
     int bucket_count;
     int element_count;
 
-    hash_table(int maximum_size) {
+    HashTable(int maximum_size) {
         bucket_count = 2 * maximum_size + 1;
         buckets.resize(bucket_count);
         element_count = 0;
@@ -144,9 +149,9 @@ struct hash_table {
 ```cpp
 void set_value(ll key, ll value) {
     int index = bucket_index(key);
-    for (auto& [stored_key, stored_value] : buckets[index]) {
-        if (stored_key == key) {
-            stored_value = value;
+    for (HashEntry& entry : buckets[index]) {
+        if (entry.key == key) {
+            entry.value = value;
             return;
         }
     }
@@ -165,18 +170,28 @@ void set_value(ll key, ll value) {
 
 ## 查询
 
+查询除了对应值，还要说明键是否存在。`QueryResult` 用具名字段保存这两部分：
+
+```cpp
+struct QueryResult {
+    bool found;
+    ll value;
+};
+```
+
 查询使用相同的哈希函数定位桶，再寻找完整键：
 
 ```cpp
-pair<bool, ll> get(ll key) const {
+QueryResult get(ll key) const {
     int index = bucket_index(key);
-    for (const auto& [stored_key, stored_value] : buckets[index]) {
-        if (stored_key == key) {
-            return {true, stored_value};
+    for (const HashEntry& entry : buckets[index]) {
+        if (entry.key == key) {
+            return {true, entry.value};
         }
     }
     return {false, 0};
 }
+```
 ```
 
 返回值同时包含：
@@ -187,9 +202,9 @@ pair<bool, ll> get(ll key) const {
 不能用 `-1` 或 `0` 单独表示不存在，因为所有 64 位整数都可能是合法值。`{false, 0}` 中的 `0` 只是没有找到时不会使用的占位值，调用者必须先检查布尔量：
 
 ```cpp
-auto [found, value] = table.get(key);
-if (found) {
-    printf("%lld\n", value);
+QueryResult result = table.get(key);
+if (result.found) {
+    printf("%lld\n", result.value);
 } else {
     printf("Not Found\n");
 }
@@ -202,11 +217,11 @@ if (found) {
 ```cpp
 bool erase(ll key) {
     int index = bucket_index(key);
-    vector<pair<ll, ll>>& bucket = buckets[index];
+    vector<HashEntry>& bucket = buckets[index];
 
     int n = bucket.size();
     for (int i = 0; i < n; i++) {
-        if (bucket[i].first == key) {
+        if (bucket[i].key == key) {
             bucket[i] = bucket.back();
             bucket.pop_back();
             element_count--;
@@ -275,12 +290,22 @@ using namespace std;
 
 typedef long long ll;
 
-struct hash_table {
-    vector<vector<pair<ll, ll>>> buckets;
+struct HashEntry {
+    ll key;
+    ll value;
+};
+
+struct QueryResult {
+    bool found;
+    ll value;
+};
+
+struct HashTable {
+    vector<vector<HashEntry>> buckets;
     int bucket_count;
     int element_count;
 
-    hash_table(int maximum_size) {
+    HashTable(int maximum_size) {
         bucket_count = 2 * maximum_size + 1;
         buckets.resize(bucket_count);
         element_count = 0;
@@ -296,9 +321,9 @@ struct hash_table {
 
     void set_value(ll key, ll value) {
         int index = bucket_index(key);
-        for (auto& [stored_key, stored_value] : buckets[index]) {
-            if (stored_key == key) {
-                stored_value = value;
+        for (HashEntry& entry : buckets[index]) {
+            if (entry.key == key) {
+                entry.value = value;
                 return;
             }
         }
@@ -307,11 +332,11 @@ struct hash_table {
         element_count++;
     }
 
-    pair<bool, ll> get(ll key) const {
+    QueryResult get(ll key) const {
         int index = bucket_index(key);
-        for (const auto& [stored_key, stored_value] : buckets[index]) {
-            if (stored_key == key) {
-                return {true, stored_value};
+        for (const HashEntry& entry : buckets[index]) {
+            if (entry.key == key) {
+                return {true, entry.value};
             }
         }
         return {false, 0};
@@ -319,11 +344,11 @@ struct hash_table {
 
     bool erase(ll key) {
         int index = bucket_index(key);
-        vector<pair<ll, ll>>& bucket = buckets[index];
+        vector<HashEntry>& bucket = buckets[index];
 
         int n = bucket.size();
         for (int i = 0; i < n; i++) {
-            if (bucket[i].first == key) {
+            if (bucket[i].key == key) {
                 bucket[i] = bucket.back();
                 bucket.pop_back();
                 element_count--;
@@ -338,11 +363,11 @@ struct hash_table {
     }
 };
 
-int main() {
+void solve() {
     int q;
     scanf("%d", &q);
 
-    hash_table table(q);
+    HashTable table(q);
     for (int i = 1; i <= q; i++) {
         int operation;
         scanf("%d", &operation);
@@ -355,9 +380,9 @@ int main() {
             ll key;
             scanf("%lld", &key);
 
-            auto [found, value] = table.get(key);
-            if (found) {
-                printf("%lld\n", value);
+            QueryResult result = table.get(key);
+            if (result.found) {
+                printf("%lld\n", result.value);
             } else {
                 printf("Not Found\n");
             }
@@ -369,6 +394,10 @@ int main() {
             printf("%d\n", table.size());
         }
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -466,6 +495,4 @@ C++ 的负数余数可能为负。把结果传给 `vector::operator[]` 会转换
 
 取模哈希的抗攻击改进、开放寻址的探测策略、删除标记、动态扩容的工程细节和标准库的具体实现不要求在本篇理解或记忆。当前需要掌握的是从键计算桶、在桶内处理冲突，以及平均复杂度成立所依赖的条件。
 
-## 下一篇
-
-下一篇 [图：点与边](../graph-theory/vertices-and-edges.md) 会把对象及其两两关系抽象成点和边，开始图论基础。
+[pair](../cpp/pair.md) 会学习 C++ 标准库中保存两个值的通用类型；带权图随后会用它保存邻接表中的终点和边权。
