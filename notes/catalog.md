@@ -25,9 +25,9 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 010201 | 整数类型 | 定稿 | [integer-types.md](cpp/integer-types.md) |
+| 010201 | 整数类型 | 待审阅 | [integer-types.md](cpp/integer-types.md) |
 | *010201e3 | 整数类型的位宽与平台差异 | 定稿 | [integer-type-widths.md](cpp/integer-type-widths.md) |
-| 010301 | 浮点类型 | 定稿 | [floating-point-types.md](cpp/floating-point-types.md) |
+| 010301 | 浮点类型 | 待审阅 | [floating-point-types.md](cpp/floating-point-types.md) |
 | *010301e1 | IEEE 754 浮点数表示 | 定稿 | [ieee-754.md](cpp/ieee-754.md) |
 | 010801 | 字符类型 | 待审阅 | [character-type.md](cpp/character-type.md) |
 | 010802 | 字符分类与转换 | 待审阅 | [character-classification-and-conversion.md](cpp/character-classification-and-conversion.md) |
@@ -58,7 +58,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 010202 | 算术运算符 | 待审阅 | [arithmetic-operators.md](cpp/arithmetic-operators.md) |
+| 010202 | 算术表达式 | 待审阅 | [arithmetic-expressions.md](cpp/arithmetic-expressions.md) |
 | 010501 | 比较运算符 | 待审阅 | [comparison-operators.md](cpp/comparison-operators.md) |
 | 010502 | 逻辑运算符 | 待审阅 | [logical-operators.md](cpp/logical-operators.md) |
 | 010603 | 自增与自减运算符 | 待审阅 | [increment-decrement-operators.md](cpp/increment-decrement-operators.md) |
@@ -71,7 +71,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 010202 | 算术运算符 | 待审阅 | [arithmetic-operators.md](cpp/arithmetic-operators.md) |
+| 010202 | 算术表达式 | 待审阅 | [arithmetic-expressions.md](cpp/arithmetic-expressions.md) |
 | 010203 | 复合赋值运算符 | 待审阅 | [compound-assignment-operators.md](cpp/compound-assignment-operators.md) |
 | 010302 | 类型转换 | 待审阅 | [type-conversions.md](cpp/type-conversions.md) |
 | 010303 | 数学函数 | 待审阅 | [cmath-functions.md](cpp/cmath-functions.md) |

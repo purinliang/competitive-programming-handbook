@@ -32,7 +32,7 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 010201 | 整数类型 | C++ | [cpp/integer-types.md](cpp/integer-types.md) |
-| 010202 | 算术运算符 | C++ | [cpp/arithmetic-operators.md](cpp/arithmetic-operators.md) |
+| 010202 | 算术表达式 | C++ | [cpp/arithmetic-expressions.md](cpp/arithmetic-expressions.md) |
 | 010203 | 复合赋值运算符 | C++ | [cpp/compound-assignment-operators.md](cpp/compound-assignment-operators.md) |
 
 ### 单元 03：浮点类型

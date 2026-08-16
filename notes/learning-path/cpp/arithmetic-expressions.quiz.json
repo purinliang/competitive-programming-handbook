@@ -1,6 +1,6 @@
 [
   {
-    "id": "binary-arithmetic-operators",
+    "id": "binary-arithmetic-expression",
     "prompt": "下面哪个运算符表示整数取余？",
     "options": [
       { "id": "a", "text": "`/`" },
