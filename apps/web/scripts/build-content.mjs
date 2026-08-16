@@ -88,6 +88,7 @@ const catalogModuleKeys = {
   "06": "computational-geometry",
   "07": "dynamic-programming",
   "08": "strings",
+  "09": "other",
 };
 
 async function fileExists(filePath) {
