@@ -1,6 +1,6 @@
 # 子集与位掩码枚举
 
-> 最近修订：2026-08-16 16:45 +10:00（未审阅）
+> 最近修订：2026-08-16 16:25 +10:00（未审阅）
 
 [枚举](enumeration.md) 中的一个候选由固定数量的下标组成，可以直接用固定层数的
 循环生成。现在让数组中的每个元素都可以独立选择或不选择，一个候选可能包含零个
@@ -157,10 +157,14 @@ if (sum == target) {
 }
 ```
 
-完整计数函数为：
+数组、长度和目标值都是这道题全局唯一，并且会被输入与枚举共同使用的状态，因此保存为全局变量。计数函数不再重复接收这些题目级状态：
 
 ```cpp
-ll count_subset_sum(const vector<ll>& a, int n, ll target) {
+int n;
+ll target;
+vector<ll> a;
+
+ll count_subset_sum() {
     int total_masks = 1 << n;
     ll answer = 0;
 
@@ -230,7 +234,7 @@ $$
 O(n2^n).
 $$
 
-数组由调用者提供。函数只保存掩码、循环下标、当前和和答案，额外空间复杂度是 $O(1)$。
+输入数组使用 $O(n)$ 空间。枚举过程只额外保存掩码、循环下标、当前和和答案，额外空间复杂度是 $O(1)$。
 
 虽然位掩码只用一个整数保存选择状态，但算法仍然明确访问了全部 $2^n$ 个子集。空间表示紧凑不等于时间复杂度降低。
 
@@ -246,7 +250,11 @@ using namespace std;
 
 typedef long long ll;
 
-ll count_subset_sum(const vector<ll>& a, int n, ll target) {
+int n;
+ll target;
+vector<ll> a;
+
+ll count_subset_sum() {
     int total_masks = 1 << n;
     ll answer = 0;
 
@@ -268,16 +276,14 @@ ll count_subset_sum(const vector<ll>& a, int n, ll target) {
 }
 
 void solve() {
-    int n;
-    ll target;
     cin >> n >> target;
 
-    vector<ll> a(n + 5);
+    a.assign(n + 5, 0);
     for (int i = 1; i <= n; i++) {
         cin >> a[i];
     }
 
-    cout << count_subset_sum(a, n, target) << '\n';
+    cout << count_subset_sum() << '\n';
 }
 
 int main() {
