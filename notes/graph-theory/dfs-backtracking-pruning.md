@@ -1,12 +1,10 @@
 # DFS、回溯与剪枝
 
-> 最近修订：2026-08-16 14:38 +10:00（未审阅）
+> 最近修订：2026-08-16 16:11 +10:00（未审阅）
 
-[图的遍历：深度优先搜索（DFS）](graph-depth-first-search.md) 已经沿一张明确给出的图访问所有可达点。但许多题目没有直接给出点和边，而是要求我们连续做出若干选择：选择第几个物品、下一步走向哪里、当前格子填什么数，最终找到一种方案或统计全部方案。
+[状态空间与隐式图](../algorithm-basics/state-space-and-implicit-graphs.md) 已经把部分方案看成点、把下一次选择看成边；[排列枚举](../algorithm-basics/permutation-enumeration.md) 又通过选择、递归和撤销维护了当前路径的占用状态。
 
-每个尚未完成的选择序列都可以看成一个状态，每一种后续选择都是一条出边。所有状态自然组成一棵看不见的搜索树。DFS 可以不把这棵树完整存下来，而是在递归过程中生成当前状态的下一层。
-
-本篇用 N 皇后问题推导这种搜索方式：先把所有选择枚举完整，再逐步加入“选择—递归—撤销”的回溯结构和列、对角线剪枝。
+本篇不再重新定义隐式搜索树，而是用 N 皇后回答两个新的问题：怎样判断当前部分方案已经不可能完成，以及为什么可以安全地跳过它的全部后代。这个过程把回溯从“避免重复选择”推进到一般的可行性剪枝。
 
 ## N 皇后问题
 
@@ -56,7 +54,7 @@ void dfs(int row) {
 - 从一个状态出发的每个分支表示当前行选择一个不同列号；
 - 深度为 $n$ 的叶子表示一个完整摆放。
 
-DFS 会先沿某一个列选择不断深入，完成或否定这条分支以后，再返回上一层尝试下一个列号。搜索树由选择规则即时产生，不需要邻接表，也不需要为每个状态分配点编号。
+这些性质直接复用上一篇的隐式图模型。这里新增的重点是：只有不与已有皇后冲突的列才会真正形成下一层状态。
 
 ## 终止条件
 
@@ -85,7 +83,13 @@ ll dfs(int row) {
 逐行放置已经保证任意两个皇后不在同一行。还需要知道某一列是否已经被前面的行使用：
 
 ```cpp
-vector<bool> used_column(n + 5, false);
+vector<bool> used_column;
+```
+
+读入 `n` 后再分配并清空：
+
+```cpp
+used_column.assign(n + 5, false);
 ```
 
 尝试 `column` 前先判断：
@@ -147,8 +151,11 @@ int sum_index = row + column;
 两个结果都能放入大小为 `2 * n + 5` 的标记数组：
 
 ```cpp
-vector<bool> used_difference_diagonal(2 * n + 5, false);
-vector<bool> used_sum_diagonal(2 * n + 5, false);
+vector<bool> used_difference_diagonal;
+vector<bool> used_sum_diagonal;
+
+used_difference_diagonal.assign(2 * n + 5, false);
+used_sum_diagonal.assign(2 * n + 5, false);
 ```
 
 名称直接说明下标来自差还是和，不依赖读者记住 `/` 与 `\` 分别对应哪一种坐标公式。
@@ -204,27 +211,26 @@ N 皇后中的 `used_column[column]` 表示“当前递归路径已经使用这�
 
 两种代码都使用 DFS 的递归形状，但状态含义不同。不能看见 `bool` 标记就机械决定是否撤销，必须先说清楚它描述“整次搜索历史”还是“当前分支”。
 
-## 状态封装
+## 题目共享状态
 
-棋盘大小和三组占用标记共同描述同一个求解过程，递归函数会反复读写它们，因此使用一个 `struct` 绑定这些状态：
+棋盘大小和三组占用标记是这道题全局唯一、并且会被 `solve` 与每层 `dfs` 共同维护的状态，因此按照本书的一次性竞赛题解风格使用全局变量：
 
 ```cpp
-struct NQueensSolver {
-    int n;
-    vector<bool> used_column;
-    vector<bool> used_difference_diagonal;
-    vector<bool> used_sum_diagonal;
-
-    NQueensSolver(int size) {
-        n = size;
-        used_column.resize(n + 5, false);
-        used_difference_diagonal.resize(2 * n + 5, false);
-        used_sum_diagonal.resize(2 * n + 5, false);
-    }
-};
+int n;
+vector<bool> used_column;
+vector<bool> used_difference_diagonal;
+vector<bool> used_sum_diagonal;
 ```
 
-三组标记在建立求解器时全部为 `false`，对应 `dfs(1)` 尚未放置任何皇后的初始状态。搜索结束后，每次设置都已经被对应撤销，求解器也恢复到同一个空棋盘状态。
+`solve` 读入 `n` 后使用 `assign` 同时分配并清空状态：
+
+```cpp
+used_column.assign(n + 5, false);
+used_difference_diagonal.assign(2 * n + 5, false);
+used_sum_diagonal.assign(2 * n + 5, false);
+```
+
+这样 `dfs(row)` 只接收当前过程真正变化的行号，不必在每层重复传递同一份棋盘状态；再次调用 `solve` 时，旧标记也会被完整重置。若以后需要在同一个程序中同时维护多个独立棋盘求解器，再把这些状态封装为 `struct`，而不是为了形式感提前增加对象接口。
 
 ## 递归不变量
 
@@ -255,59 +261,48 @@ using namespace std;
 
 typedef long long ll;
 
-struct NQueensSolver {
-    int n;
-    vector<bool> used_column;
-    vector<bool> used_difference_diagonal;
-    vector<bool> used_sum_diagonal;
+int n;
+vector<bool> used_column;
+vector<bool> used_difference_diagonal;
+vector<bool> used_sum_diagonal;
 
-    NQueensSolver(int size) {
-        n = size;
-        used_column.resize(n + 5, false);
-        used_difference_diagonal.resize(2 * n + 5, false);
-        used_sum_diagonal.resize(2 * n + 5, false);
+ll dfs(int row) {
+    if (row == n + 1) {
+        return 1;
     }
 
-    ll dfs(int row) {
-        if (row == n + 1) {
-            return 1;
+    ll ways = 0;
+    for (int column = 1; column <= n; column++) {
+        int difference_index = row - column + n;
+        int sum_index = row + column;
+
+        if (used_column[column] ||
+            used_difference_diagonal[difference_index] ||
+            used_sum_diagonal[sum_index]) {
+            continue;
         }
 
-        ll ways = 0;
-        for (int column = 1; column <= n; column++) {
-            int difference_index = row - column + n;
-            int sum_index = row + column;
+        used_column[column] = true;
+        used_difference_diagonal[difference_index] = true;
+        used_sum_diagonal[sum_index] = true;
 
-            if (used_column[column] ||
-                used_difference_diagonal[difference_index] ||
-                used_sum_diagonal[sum_index]) {
-                continue;
-            }
+        ways += dfs(row + 1);
 
-            used_column[column] = true;
-            used_difference_diagonal[difference_index] = true;
-            used_sum_diagonal[sum_index] = true;
-
-            ways += dfs(row + 1);
-
-            used_column[column] = false;
-            used_difference_diagonal[difference_index] = false;
-            used_sum_diagonal[sum_index] = false;
-        }
-        return ways;
+        used_column[column] = false;
+        used_difference_diagonal[difference_index] = false;
+        used_sum_diagonal[sum_index] = false;
     }
-
-    ll count_solutions() {
-        return dfs(1);
-    }
-};
+    return ways;
+}
 
 void solve() {
-    int n;
     scanf("%d", &n);
 
-    NQueensSolver solver(n);
-    printf("%lld\n", solver.count_solutions());
+    used_column.assign(n + 5, false);
+    used_difference_diagonal.assign(2 * n + 5, false);
+    used_sum_diagonal.assign(2 * n + 5, false);
+
+    printf("%lld\n", dfs(1));
 }
 
 int main() {
@@ -385,5 +380,3 @@ int main() {
 8. 加入剪枝以后，为什么仍不能把回溯算法视为多项式时间？
 
 本篇只讲可行性约束带来的基础剪枝。最优化搜索中的上下界估计、选择顺序启发式、记忆化搜索、迭代加深与双向搜索各自具有新的模型，应在对应专题中单独学习。
-
-[图的遍历：广度优先搜索（BFS）](graph-breadth-first-search.md) 会使用队列按距离层次展开一张显式图，并得到无权图的最少边数。
