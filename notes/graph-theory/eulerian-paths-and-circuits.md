@@ -301,6 +301,7 @@ int main() {
 - [OI Wiki：欧拉图](https://oi-wiki.org/graph/euler/) 给出了判定性质、证明和 Hierholzer 算法的另一种表述。
 - [Competitive Programmer's Handbook](https://usaco.guide/CPH.pdf) 的 Eulerian paths 一节用英文竞赛术语解释了有向、无向情形。
 
-## 下一篇
+## 相关概念
 
-下一篇将比较另一种“恰好一次”：[哈密顿问题：路径、回路与图](hamiltonian-paths-and-circuits.md)。
+[哈密顿问题：路径、回路与图](hamiltonian-paths-and-circuits.md) 关心的是“每个点恰好一次”，
+与欧拉问题的“每条边恰好一次”必须区分。
