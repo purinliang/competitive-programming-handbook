@@ -1,0 +1,50 @@
+[
+  {
+    "id": "state-components",
+    "prompt": "用矩阵表示 Fibonacci 转移时，为什么状态不能只保存当前一个数？",
+    "options": [
+      { "id": "a", "text": "下一项同时依赖前两项" },
+      { "id": "b", "text": "矩阵不能保存单个数" },
+      { "id": "c", "text": "Fibonacci 数一定是负数" },
+      { "id": "d", "text": "一个数会让复杂度变成 O(n^2)" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "状态必须包含完成下一次确定转移所需的全部信息。"
+  },
+  {
+    "id": "identity-result",
+    "prompt": "矩阵快速幂中的 `result` 为什么从单位矩阵开始？",
+    "options": [
+      { "id": "a", "text": "单位矩阵的元素最多" },
+      { "id": "b", "text": "单位矩阵是乘法单位元，也正确表示零次转移" },
+      { "id": "c", "text": "全零矩阵不能取模" },
+      { "id": "d", "text": "这样能让指数自动加一" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "快速幂累积尚未选择任何因子时，应保持原状态不变。"
+  },
+  {
+    "id": "transition-power",
+    "prompt": "若一次状态转移是 `S_next=A*S`，连续 n 次转移后是什么？",
+    "options": [
+      { "id": "a", "text": "`n*A+S0`" },
+      { "id": "b", "text": "`A+n*S0`" },
+      { "id": "c", "text": "`A^n*S0`" },
+      { "id": "d", "text": "`S0^n*A`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "同一个线性变换反复合成，对应转移矩阵连续相乘。"
+  },
+  {
+    "id": "time-complexity",
+    "prompt": "朴素 k*k 矩阵乘法下，矩阵快速幂的时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "`O(k+n)`" },
+      { "id": "b", "text": "`O(k^2*n)`" },
+      { "id": "c", "text": "`O(log k)`" },
+      { "id": "d", "text": "`O(k^3 log n)`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每次矩阵乘法 O(k^3)，二进制快速幂执行 O(log n) 次乘法。"
+  }
+]
