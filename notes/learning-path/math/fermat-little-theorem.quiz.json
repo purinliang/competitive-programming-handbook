@@ -1,0 +1,50 @@
+[
+  {
+    "id": "standard-form",
+    "prompt": "p 为质数且 p 不整除 a 时，费马小定理给出什么？",
+    "options": [
+      { "id": "a", "text": "`a^(p-1)≡1 (mod p)`" },
+      { "id": "b", "text": "`a^p≡1 (mod p)`" },
+      { "id": "c", "text": "`a^(p-1)≡0 (mod p)`" },
+      { "id": "d", "text": "`p^(a-1)≡a (mod p)`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "互质条件下，非零余数乘 a 只发生排列，从而得到周期 p-1。"
+  },
+  {
+    "id": "all-integers-form",
+    "prompt": "对任意整数 a 和质数 p，哪个形式始终成立？",
+    "options": [
+      { "id": "a", "text": "`a^(p-1)≡1`" },
+      { "id": "b", "text": "`a^p≡a (mod p)`" },
+      { "id": "c", "text": "`a^p≡1 (mod p)`" },
+      { "id": "d", "text": "`a^(p+1)≡0`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "a 是 p 的倍数时两边都为 0；否则由标准形式再乘一个 a。"
+  },
+  {
+    "id": "inverse",
+    "prompt": "质数模 p 下，a 不被 p 整除时，a 的模逆元可写成什么？",
+    "options": [
+      { "id": "a", "text": "`a^(p-1)`" },
+      { "id": "b", "text": "`p/a`" },
+      { "id": "c", "text": "`a^(p-2)`" },
+      { "id": "d", "text": "`a^p`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "a^(p-1)≡1，把其中一个 a 看作原数，剩余 a^(p-2) 就是逆元。"
+  },
+  {
+    "id": "invalid-use",
+    "prompt": "什么时候不能直接用指数模 p-1 的费马周期处理？",
+    "options": [
+      { "id": "a", "text": "指数大于 64 位" },
+      { "id": "b", "text": "底数小于 p" },
+      { "id": "c", "text": "答案要求取模" },
+      { "id": "d", "text": "模数不是质数，或底数与质数模不互质却使用互质形式" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "定理的质数模与互质条件不能因代码形式相似而省略。"
+  }
+]
