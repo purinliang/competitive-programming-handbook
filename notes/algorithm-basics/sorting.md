@@ -1,6 +1,6 @@
 # 冒泡排序
 
-> 最近修订：2026-08-16 10:15 +10:00（未审阅）
+> 最近修订：2026-08-16 17:57 +10:00（未审阅）
 
 [sort](../cpp/sorting.md) 已经能在实际解题中高效排列元素。亲自推导基础排序的意义
 不是替代标准库，而是练习怎样从局部操作建立不变量、证明结果并计算操作次数。
@@ -74,10 +74,14 @@ for (int end = n; end >= 2; end--) {
 ## 提前结束
 
 若一整轮没有发生交换，说明当前未确定前缀中不存在相邻逆序，因此它已经有序。
-可以用布尔变量记录本轮是否交换：
+可以用布尔变量记录本轮是否交换。`n` 和 `a` 是整道题共同使用的输入状态，放在
+全局；排序函数只负责这一份数组，不必在每次调用时重新传递它们：
 
 ```cpp
-void bubble_sort(vector<int>& a, int n) {
+int n;
+vector<int> a;
+
+void bubble_sort() {
     for (int end = n; end >= 2; end--) {
         bool swapped = false;
 
@@ -146,7 +150,10 @@ $O(n)$。不能据此把冒泡排序整体称为线性算法；未特别说明�
 #include <bits/stdc++.h>
 using namespace std;
 
-void bubble_sort(vector<int>& a, int n) {
+int n;
+vector<int> a;
+
+void bubble_sort() {
     for (int end = n; end >= 2; end--) {
         bool swapped = false;
 
@@ -164,23 +171,22 @@ void bubble_sort(vector<int>& a, int n) {
 }
 
 void solve() {
-    int n;
-    cin >> n;
+    scanf("%d", &n);
 
-    vector<int> a(n + 5);
+    a.assign(n + 5, 0);
     for (int i = 1; i <= n; i++) {
-        cin >> a[i];
+        scanf("%d", &a[i]);
     }
 
-    bubble_sort(a, n);
+    bubble_sort();
 
     for (int i = 1; i <= n; i++) {
         if (i > 1) {
-            cout << ' ';
+            printf(" ");
         }
-        cout << a[i];
+        printf("%d", a[i]);
     }
-    cout << '\n';
+    printf("\n");
 }
 
 int main() {
