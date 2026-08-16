@@ -522,15 +522,14 @@
 | --- | --- | --- | --- |
 | 040501 | 整除 | 待审阅 | [divisibility.md](math/divisibility.md) |
 | 040502 | 质数 | 待审阅 | [prime-numbers.md](math/prime-numbers.md) |
-| 060703 | 数论：扩展欧几里得算法 | 待审阅 | [extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
+| 040503 | 试除法：质数检测 | 计划 | `math/trial-division-primality-test.md` |
+| 060702 | 数论：扩展欧几里得算法 | 待审阅 | [extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
 | 060701 | 模运算 | 待审阅 | [modular-arithmetic.md](math/modular-arithmetic.md) |
 | *060701e1 | 模运算：modint | 待审阅 | [mod-int.md](math/mod-int.md) |
-| 060801 | 筛法：埃氏筛 | 待审阅 | [sieve-of-eratosthenes.md](math/sieve-of-eratosthenes.md) |
-| *060801e1 | 杜教筛 | 计划 | `math/du-jiao-sieve.md` |
-| *060801e2 | Min_25 筛 | 计划 | `math/min-25-sieve.md` |
-| 060707 | 模逆元 | 待审阅 | [modular-inverse.md](math/modular-inverse.md) |
-| *060707e1 | 模逆元：线性预处理 | 计划 | `math/linear-modular-inverses.md` |
-| *060707e2 | 模逆元：批量求逆 | 计划 | `math/batch-modular-inverses.md` |
+| 040506 | 埃拉托斯特尼筛法 | 待审阅 | [sieve-of-eratosthenes.md](math/sieve-of-eratosthenes.md) |
+| 060706 | 模逆元 | 待审阅 | [modular-inverse.md](math/modular-inverse.md) |
+| *060706e1 | 模逆元：线性预处理 | 计划 | `math/linear-modular-inverses.md` |
+| *060706e2 | 模逆元：批量求逆 | 计划 | `math/batch-modular-inverses.md` |
 | 060904 | 组合数：定义与递推 | 待审阅 | [binomial-coefficients.md](math/binomial-coefficients.md) |
 | *060904e1 | 组合数：Lucas 定理 | 计划 | `math/lucas-theorem.md` |
 | *060904e2 | 组合数：扩展 Lucas 定理 | 计划 | `math/extended-lucas-theorem.md` |
@@ -564,15 +563,15 @@
 | *990518 | 多项式：多点求值 | 计划 | `math/multipoint-evaluation.md` |
 | *990519 | 多项式：插值 | 计划 | `math/polynomial-interpolation.md` |
 | *990520 | 莫比乌斯反演 | 计划 | `math/mobius-inversion.md` |
-| 040503 | 算术基本定理 | 待审阅 | [fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
-| 040505 | 最大公约数与最小公倍数 | 待审阅 | [greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
-| 040506 | 欧几里得算法 | 待审阅 | [euclidean-algorithm.md](math/euclidean-algorithm.md) |
+| 040504 | 算术基本定理 | 待审阅 | [fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
+| 040507 | 最大公约数与最小公倍数 | 待审阅 | [greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
+| 040508 | 欧几里得算法 | 待审阅 | [euclidean-algorithm.md](math/euclidean-algorithm.md) |
 | 070702 | 数论：扩展中国剩余定理（exCRT） | 待审阅 | [extended-chinese-remainder-theorem.md](math/extended-chinese-remainder-theorem.md) |
-| 040504 | 质因数分解 | 待审阅 | [prime-factorization.md](math/prime-factorization.md) |
-| 060803 | 正因数个数 | 待审阅 | [divisor-count.md](math/divisor-count.md) |
-| 060804 | 正因数和 | 待审阅 | [divisor-sum.md](math/divisor-sum.md) |
-| 060704 | 线性不定方程 | 待审阅 | [linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
-| 060705 | 线性同余方程 | 待审阅 | [linear-congruences.md](math/linear-congruences.md) |
+| 040505 | 质因数分解 | 待审阅 | [prime-factorization.md](math/prime-factorization.md) |
+| 060802 | 正因数个数 | 待审阅 | [divisor-count.md](math/divisor-count.md) |
+| 060803 | 正因数和 | 待审阅 | [divisor-sum.md](math/divisor-sum.md) |
+| 060703 | 线性不定方程 | 待审阅 | [linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
+| 060704 | 线性同余方程 | 待审阅 | [linear-congruences.md](math/linear-congruences.md) |
 | 050501 | 高精度整数：加法、减法与乘法 | 待审阅 | [big-integer-addition-subtraction-multiplication.md](math/big-integer-addition-subtraction-multiplication.md) |
 | *050501e1 | 高精度整数：除法与余数 | 计划 | `math/big-integer-division-remainder.md` |
 | *050501e2 | 高精度整数：负数 | 计划 | `math/big-integer-negative-numbers.md` |
@@ -605,9 +604,11 @@
 | *990547 | 数值积分：Simpson 公式 | 计划 | `math/simpson-rule.md` |
 | *990548 | 数值积分：自适应 Simpson | 计划 | `math/adaptive-simpson.md` |
 | *990549 | 集合幂级数：FWT/FMT | 计划 | `math/fast-subset-transforms.md` |
-| 060702 | 快速幂 | 待审阅 | [fast-exponentiation.md](math/fast-exponentiation.md) |
-| 060706 | 费马小定理 | 待审阅 | [fermat-little-theorem.md](math/fermat-little-theorem.md) |
-| 060802 | 筛法：欧拉筛（线性筛） | 待审阅 | [euler-sieve.md](math/euler-sieve.md) |
+| 040509 | 快速幂 | 待审阅 | [fast-exponentiation.md](math/fast-exponentiation.md) |
+| 060705 | 费马小定理 | 待审阅 | [fermat-little-theorem.md](math/fermat-little-theorem.md) |
+| 060801 | 筛法：欧拉筛（线性筛） | 待审阅 | [euler-sieve.md](math/euler-sieve.md) |
+| *060801e1 | 杜教筛 | 计划 | `math/du-jiao-sieve.md` |
+| *060801e2 | Min_25 筛 | 计划 | `math/min-25-sieve.md` |
 | *990550 | 筛法：分段筛 | 计划 | `math/segmented-sieve.md` |
 | 060901 | 计数原理：加法原理 | 待审阅 | [addition-principle.md](math/addition-principle.md) |
 | 060902 | 计数原理：乘法原理 | 待审阅 | [multiplication-principle.md](math/multiplication-principle.md) |

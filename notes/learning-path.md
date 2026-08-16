@@ -332,10 +332,13 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | --- | --- | --- | --- |
 | 040501 | 整除 | 数学 | [math/divisibility.md](math/divisibility.md) |
 | 040502 | 质数 | 数学 | [math/prime-numbers.md](math/prime-numbers.md) |
-| 040503 | 算术基本定理 | 数学 | [math/fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
-| 040504 | 质因数分解 | 数学 | [math/prime-factorization.md](math/prime-factorization.md) |
-| 040505 | 最大公约数与最小公倍数 | 数学 | [math/greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
-| 040506 | 欧几里得算法 | 数学 | [math/euclidean-algorithm.md](math/euclidean-algorithm.md) |
+| 040503 | 试除法：质数检测 | 数学 | `math/trial-division-primality-test.md` |
+| 040504 | 算术基本定理 | 数学 | [math/fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
+| 040505 | 质因数分解 | 数学 | [math/prime-factorization.md](math/prime-factorization.md) |
+| 040506 | 埃拉托斯特尼筛法 | 数学 | [math/sieve-of-eratosthenes.md](math/sieve-of-eratosthenes.md) |
+| 040507 | 最大公约数与最小公倍数 | 数学 | [math/greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
+| 040508 | 欧几里得算法 | 数学 | [math/euclidean-algorithm.md](math/euclidean-algorithm.md) |
+| 040509 | 快速幂 | 数学 | [math/fast-exponentiation.md](math/fast-exponentiation.md) |
 
 ### 单元 06：图论：图的概念与存储
 
@@ -504,21 +507,19 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 060701 | 模运算 | 数学 | [math/modular-arithmetic.md](math/modular-arithmetic.md) |
-| 060702 | 快速幂 | 数学 | [math/fast-exponentiation.md](math/fast-exponentiation.md) |
-| 060703 | 数论：扩展欧几里得算法 | 数学 | [math/extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
-| 060704 | 线性不定方程 | 数学 | [math/linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
-| 060705 | 线性同余方程 | 数学 | [math/linear-congruences.md](math/linear-congruences.md) |
-| 060706 | 费马小定理 | 数学 | [math/fermat-little-theorem.md](math/fermat-little-theorem.md) |
-| 060707 | 模逆元 | 数学 | [math/modular-inverse.md](math/modular-inverse.md) |
+| 060702 | 数论：扩展欧几里得算法 | 数学 | [math/extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
+| 060703 | 线性不定方程 | 数学 | [math/linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
+| 060704 | 线性同余方程 | 数学 | [math/linear-congruences.md](math/linear-congruences.md) |
+| 060705 | 费马小定理 | 数学 | [math/fermat-little-theorem.md](math/fermat-little-theorem.md) |
+| 060706 | 模逆元 | 数学 | [math/modular-inverse.md](math/modular-inverse.md) |
 
 ### 单元 08：数学：筛法与因数函数
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 060801 | 筛法：埃氏筛 | 数学 | [math/sieve-of-eratosthenes.md](math/sieve-of-eratosthenes.md) |
-| 060802 | 筛法：欧拉筛（线性筛） | 数学 | [math/euler-sieve.md](math/euler-sieve.md) |
-| 060803 | 正因数个数 | 数学 | [math/divisor-count.md](math/divisor-count.md) |
-| 060804 | 正因数和 | 数学 | [math/divisor-sum.md](math/divisor-sum.md) |
+| 060801 | 筛法：欧拉筛（线性筛） | 数学 | [math/euler-sieve.md](math/euler-sieve.md) |
+| 060802 | 正因数个数 | 数学 | [math/divisor-count.md](math/divisor-count.md) |
+| 060803 | 正因数和 | 数学 | [math/divisor-sum.md](math/divisor-sum.md) |
 
 ### 单元 09：数学：计数原理与组合数
 
