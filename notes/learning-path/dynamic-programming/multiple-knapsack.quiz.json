@@ -1,0 +1,98 @@
+[
+  {
+    "id": "bounded-copies",
+    "prompt": "多重背包怎样限制第 `i` 种物品的选择次数？",
+    "options": [
+      { "id": "a", "text": "可以选择 `0..quantity[i]` 件" },
+      { "id": "b", "text": "只能选择 0 件或 1 件" },
+      { "id": "c", "text": "可以选择任意多件" },
+      { "id": "d", "text": "必须恰好选择 `quantity[i]` 件" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "多重背包的每种物品有有限副本数，位于 0-1 与完全背包之间。"
+  },
+  {
+    "id": "usable-quantity",
+    "prompt": "为什么数量可以先截断到 `capacity / weight[i]`？",
+    "options": [
+      { "id": "a", "text": "因为多出的物品价值必为 0" },
+      { "id": "b", "text": "因为输入数量一定小于容量" },
+      { "id": "c", "text": "容量内不可能装入更多同种物品" },
+      { "id": "d", "text": "为了把多重背包改成完全背包" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "重量为正时，超过这个件数的副本不会出现在任何可行方案中。"
+  },
+  {
+    "id": "binary-groups",
+    "prompt": "有效数量为 `13` 时，本文的二进制拆分结果是什么？",
+    "options": [
+      { "id": "a", "text": "`1, 2, 4, 8`" },
+      { "id": "b", "text": "`1, 2, 4, 6`" },
+      { "id": "c", "text": "`1, 3, 9`" },
+      { "id": "d", "text": "十三个大小为 1 的组" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "前三组使用 7 件，最后把剩余 6 件作为一组，使组大小总和恰为 13。"
+  },
+  {
+    "id": "continuous-coverage",
+    "prompt": "已有组能表示 `0..sum` 时，加入多大的新组仍能保证件数范围没有缺口？",
+    "options": [
+      { "id": "a", "text": "必须严格大于 `2 * sum`" },
+      { "id": "b", "text": "只能等于 `sum`" },
+      { "id": "c", "text": "任意正整数都可以" },
+      { "id": "d", "text": "不超过 `sum + 1`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "不选新组覆盖 0..sum，选择后覆盖 group..group+sum；该条件让两段相接或重叠。"
+  },
+  {
+    "id": "group-values",
+    "prompt": "包含 `take` 件原物品的组合物品，其重量和价值怎样计算？",
+    "options": [
+      { "id": "a", "text": "分别为 `take * weight[i]` 与 `take * value[i]`" },
+      { "id": "b", "text": "都直接等于 `take`" },
+      { "id": "c", "text": "重量不变，价值乘以 `take`" },
+      { "id": "d", "text": "重量乘以 `take`，价值不变" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "组合物品绑定了 take 个完全相同的副本，两种量都必须按件数累加。"
+  },
+  {
+    "id": "group-update",
+    "prompt": "为什么每个拆分组都按 0-1 背包倒序更新容量？",
+    "options": [
+      { "id": "a", "text": "因为组内每件物品都能无限使用" },
+      { "id": "b", "text": "因为倒序能自动增加数量上限" },
+      { "id": "c", "text": "每个组合物品只能选择一次，不能在同一轮重复使用整组" },
+      { "id": "d", "text": "因为容量必须恰好装满" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "正序会让一整个组合组被反复加入，可能超过原物品的数量限制。"
+  },
+  {
+    "id": "split-complexity",
+    "prompt": "二进制拆分主要优化了哪一部分？",
+    "options": [
+      { "id": "a", "text": "容量状态从一维降为零维" },
+      { "id": "b", "text": "把一种物品的有效数量压成对数个组合物品" },
+      { "id": "c", "text": "把所有价值改成布尔值" },
+      { "id": "d", "text": "消除对物品种类的枚举" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "第 i 种物品只产生 O(log(s_i + 1)) 个组，每组再做一次 0-1 更新。"
+  },
+  {
+    "id": "three-models",
+    "prompt": "哪项正确比较了三种基础背包的选择次数？",
+    "options": [
+      { "id": "a", "text": "三者都只能选择一次" },
+      { "id": "b", "text": "完全背包有限，多重背包无限" },
+      { "id": "c", "text": "0-1 背包无限，完全背包只能一次" },
+      { "id": "d", "text": "0-1 至多一次，完全任意多次，多重具有有限上限" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "三者共享容量模型，区别正是每件或每种物品的可用次数。"
+  }
+]

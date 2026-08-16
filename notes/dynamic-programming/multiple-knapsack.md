@@ -1,10 +1,10 @@
-# 背包：多重背包
+# 多重背包
 
-> 最近修订：2026-08-13 22:45 +10:00（未审阅）
+> 最近修订：2026-08-16 14:30 +10:00（未审阅）
 
 0-1 背包让每件物品至多选择一次，完全背包让每种物品选择任意多次。多重背包位于二者之间：第 `i` 种物品最多只有 `quantity[i]` 件，每件重量为 `weight[i]`、价值为 `value[i]`。
 
-要求选择的总重量不超过 `capacity`，并让总价值最大。本篇先写出枚举当前种类件数的基础转移，再用二进制拆分把有限件数变成若干个只能选择一次的组合物品，最终复用 [背包：0-1 背包](zero-one-knapsack.md) 的倒序更新。
+要求选择的总重量不超过 `capacity`，并让总价值最大。本篇先写出枚举当前种类件数的基础转移，再用二进制拆分把有限件数变成若干个只能选择一次的组合物品，最终复用 [0-1 背包](zero-one-knapsack.md) 的倒序更新。
 
 ## 有限数量
 
@@ -201,16 +201,22 @@ $$
 
 组合物品之间代表互不重叠的一批副本，所以每组可以选或不选；一组内部的 `take` 件被绑定在一起。由于组大小的子集能够表示所有合法件数，这种绑定不会遗漏原问题中的选择数量。
 
-## 函数接口
+## 题目级状态
 
-计算只依赖本次重量、价值、数量和容量，使用无状态函数：
+`n`、`capacity` 和三份物品信息由输入过程与背包算法共同使用，保存为题目级全局
+状态：
 
 ```cpp
-ll multiple_knapsack(const vector<int>& weight, const vector<ll>& value,
-                     const vector<int>& quantity, int n, int capacity)
+int n, capacity;
+vector<int> weight;
+vector<ll> value;
+vector<int> quantity;
 ```
 
 三份物品信息都使用 `1..n`，位置 `0` 留空。容量状态使用 `0..capacity`。
+
+`multiple_knapsack()` 生成的组合物品与一维 `dp` 只在本次计算中存在，因此保留为
+函数内部的局部状态。
 
 ## 完整代码
 
@@ -229,8 +235,12 @@ using namespace std;
 
 typedef long long ll;
 
-ll multiple_knapsack(const vector<int>& weight, const vector<ll>& value,
-                     const vector<int>& quantity, int n, int capacity) {
+int n, capacity;
+vector<int> weight;
+vector<ll> value;
+vector<int> quantity;
+
+ll multiple_knapsack() {
     vector<ll> dp(capacity + 5, 0);
 
     for (int i = 1; i <= n; i++) {
@@ -253,18 +263,22 @@ ll multiple_knapsack(const vector<int>& weight, const vector<ll>& value,
     return dp[capacity];
 }
 
-int main() {
-    int n, capacity;
+void solve() {
     scanf("%d%d", &n, &capacity);
 
-    vector<int> weight(n + 5);
-    vector<ll> value(n + 5);
-    vector<int> quantity(n + 5);
+    weight.assign(n + 5, 0);
+    value.assign(n + 5, 0);
+    quantity.assign(n + 5, 0);
+
     for (int i = 1; i <= n; i++) {
         scanf("%d%lld%d", &weight[i], &value[i], &quantity[i]);
     }
 
-    printf("%lld\n", multiple_knapsack(weight, value, quantity, n, capacity));
+    printf("%lld\n", multiple_knapsack());
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -364,7 +378,3 @@ $$
 9. 0-1、完全与多重背包的选择次数限制分别是什么？
 
 单调队列还能把某些多重背包实现优化到 $O(n\cdot capacity)$，但需要按重量余数拆分转移并维护滑动窗口最大值，不属于本篇基础版本。
-
-## 下一篇
-
-下一篇 [动态规划：状态机 DP](state-machine-dp.md) 会在同一输入位置保留若干种互斥状态，并根据允许的状态变化建立转移。
