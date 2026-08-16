@@ -1,0 +1,50 @@
+[
+  {
+    "id": "row-output",
+    "prompt": "为什么变换矩阵的每一行对应一个输出分量？",
+    "options": [
+      { "id": "a", "text": "该行系数与全部输入分量做线性组合，得到一个输出" },
+      { "id": "b", "text": "每行只能含一个非零数" },
+      { "id": "c", "text": "输入向量总是一行" },
+      { "id": "d", "text": "矩阵的列没有意义" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "矩阵乘列向量时，答案的第 i 个分量由第 i 行点乘输入得到。"
+  },
+  {
+    "id": "transformation-size",
+    "prompt": "线性变换有 c 个输入分量、r 个输出分量，矩阵大小是什么？",
+    "options": [
+      { "id": "a", "text": "`c*r`" },
+      { "id": "b", "text": "`r*c`" },
+      { "id": "c", "text": "`r*r`" },
+      { "id": "d", "text": "`c*c`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每个输出对应一行，每个输入对应一列。"
+  },
+  {
+    "id": "translation",
+    "prompt": "普通矩阵为什么不能直接表示 `x -> x+b` 这类非零平移？",
+    "options": [
+      { "id": "a", "text": "矩阵不能保存整数" },
+      { "id": "b", "text": "平移只能发生在三维空间" },
+      { "id": "c", "text": "线性变换必须把零向量映射到零向量" },
+      { "id": "d", "text": "矩阵只能表示旋转" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "非零平移把 0 变成 b，违反线性变换保持零向量的性质。"
+  },
+  {
+    "id": "composition-order",
+    "prompt": "对列向量先应用变换 B，再应用变换 A，合成矩阵是什么？",
+    "options": [
+      { "id": "a", "text": "B+A" },
+      { "id": "b", "text": "B*A" },
+      { "id": "c", "text": "A+B" },
+      { "id": "d", "text": "A*B" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "最终状态为 A(Bx)=(AB)x，右侧矩阵先作用。"
+  }
+]
