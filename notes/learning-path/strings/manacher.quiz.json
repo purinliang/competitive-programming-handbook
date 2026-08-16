@@ -1,0 +1,62 @@
+[
+  {
+    "id": "two-centers",
+    "prompt": "为什么 Manacher 需要分别处理奇数回文和偶数回文？",
+    "options": [
+      { "id": "a", "text": "它们使用不同字符集" },
+      { "id": "b", "text": "奇数回文中心在字符上，偶数回文中心在两个字符之间" },
+      { "id": "c", "text": "偶数回文不具有对称性" },
+      { "id": "d", "text": "奇数回文不能成为子串" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "两类中心位置不同，半径对应的左右边界公式也相差一格。"
+  },
+  {
+    "id": "odd-length",
+    "prompt": "若 `odd[i] = 4`，以 i 为中心的奇数回文长度是多少？",
+    "options": [
+      { "id": "a", "text": "7" },
+      { "id": "b", "text": "4" },
+      { "id": "c", "text": "8" },
+      { "id": "d", "text": "9" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "odd 半径包含中心，左右各有 radius-1 个字符，长度为 2*radius-1。"
+  },
+  {
+    "id": "mirror-limit",
+    "prompt": "复用镜像半径时为什么要与 `r-i+1` 取最小值？",
+    "options": [
+      { "id": "a", "text": "防止回文长度成为偶数" },
+      { "id": "b", "text": "保证镜像中心位于字符串左半部分" },
+      { "id": "c", "text": "超过 r 的字符尚未由当前回文区间验证" },
+      { "id": "d", "text": "让所有半径保持相等" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "对称性只保证 [l,r] 内的信息，越过已知右边界后必须重新比较。"
+  },
+  {
+    "id": "linear-time",
+    "prompt": "Manacher 的扩展循环为什么总共只需要线性时间？",
+    "options": [
+      { "id": "a", "text": "每个中心都只比较一次" },
+      { "id": "b", "text": "字符串中不会出现重复字符" },
+      { "id": "c", "text": "算法只处理一个中心" },
+      { "id": "d", "text": "成功扩展会推动最右端点 r，而 r 最多前进 n 次" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "镜像复用区间内部结果，新的成功比较与右端点单调右移对应。"
+  },
+  {
+    "id": "separator-version",
+    "prompt": "在字符之间插入分隔符的 Manacher 写法主要解决什么问题？",
+    "options": [
+      { "id": "a", "text": "把奇数和偶数回文统一成一种中心" },
+      { "id": "b", "text": "把时间复杂度从 O(n) 降到 O(log n)" },
+      { "id": "c", "text": "让原字符串自动按字典序排列" },
+      { "id": "d", "text": "避免保存任何半径数组" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "分隔符让原来的字符中心和字符间中心都落到变换串的实际位置上。"
+  }
+]
