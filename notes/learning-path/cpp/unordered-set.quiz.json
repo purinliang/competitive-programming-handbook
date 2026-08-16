@@ -1,0 +1,146 @@
+[
+  {
+    "id": "unique-key-semantics",
+    "prompt": "`set` 与 `unordered_set` 共有的核心保存语义是什么？",
+    "options": [
+      { "id": "a", "text": "都按插入顺序遍历" },
+      { "id": "b", "text": "每个等价键最多保存一份" },
+      { "id": "c", "text": "都支持快速前驱查询" },
+      { "id": "d", "text": "单键操作都有 O(1) 最坏保证" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "二者都表示唯一键集合；区别主要在是否维护顺序以及复杂度保证。"
+  },
+  {
+    "id": "iteration-order",
+    "prompt": "关于 `unordered_set` 的范围遍历顺序，哪项正确？",
+    "options": [
+      { "id": "a", "text": "一定按键升序" },
+      { "id": "b", "text": "一定按插入顺序" },
+      { "id": "c", "text": "同一程序中永远不会改变" },
+      { "id": "d", "text": "标准不承诺顺序，程序正确性不能依赖观察结果" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "遍历顺序受哈希、桶数、实现和重新哈希影响，需要确定输出时应复制并排序。"
+  },
+  {
+    "id": "no-bound-query",
+    "prompt": "为什么 `unordered_set` 不提供 `lower_bound`？",
+    "options": [
+      { "id": "a", "text": "它只按完整键哈希定位，不维护键的大小顺序" },
+      { "id": "b", "text": "它不能保存整数" },
+      { "id": "c", "text": "它只允许一个元素" },
+      { "id": "d", "text": "`lower_bound` 只适用于字符串" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "前驱、后继、最值和边界查询都依赖顺序；需要这些操作时应选择 set 或有序数组。"
+  },
+  {
+    "id": "average-worst",
+    "prompt": "`unordered_set` 常用单键操作的复杂度应怎样表述？",
+    "options": [
+      { "id": "a", "text": "平均与最坏都是 O(1)" },
+      { "id": "b", "text": "平均与最坏都是 O(log n)" },
+      { "id": "c", "text": "平均 O(1)，大量冲突时最坏 O(n)" },
+      { "id": "d", "text": "平均 O(n log n)，最坏 O(n²)" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "平均分析依赖键能较均匀地分散到桶；哈希冲突影响速度但不影响答案正确性。"
+  },
+  {
+    "id": "reserve-meaning",
+    "prompt": "`values.reserve(expected_size)` 的参数表示什么？",
+    "options": [
+      { "id": "a", "text": "必须固定使用的桶数量" },
+      { "id": "b", "text": "预计保存的元素数量" },
+      { "id": "c", "text": "允许发生的最大冲突次数" },
+      { "id": "d", "text": "元素键的最大值" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "容器据此准备容量以减少重新哈希；它只是常数优化，不能提供 O(1) 最坏保证。"
+  },
+  {
+    "id": "rehash-iterators",
+    "prompt": "插入触发重新哈希后，原有迭代器会怎样？",
+    "options": [
+      { "id": "a", "text": "只有 `begin()` 失效" },
+      { "id": "b", "text": "只有指向新键的迭代器失效" },
+      { "id": "c", "text": "全部迭代器仍然有效" },
+      { "id": "d", "text": "全部迭代器失效" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "所有键可能被搬到新桶，不能在可能扩容的插入后继续使用旧迭代器。"
+  },
+  {
+    "id": "erase-while-iterating",
+    "prompt": "不进行插入时，遍历中删除当前键应怎样更新迭代器？",
+    "options": [
+      { "id": "a", "text": "写成 `it = values.erase(it)`" },
+      { "id": "b", "text": "删除后继续对旧 it 执行 ++it" },
+      { "id": "c", "text": "每次删除后使用 lower_bound" },
+      { "id": "d", "text": "只能在范围 for 中删除" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "删除使当前迭代器失效；C++17 的 erase 返回当前内部遍历顺序中的后继。"
+  },
+  {
+    "id": "pair-hash-cpp17",
+    "prompt": "C++17 中直接声明 `unordered_set<pair<int, int>>` 通常有什么问题？",
+    "options": [
+      { "id": "a", "text": "pair 不能比较相等" },
+      { "id": "b", "text": "unordered_set 只能保存基本类型" },
+      { "id": "c", "text": "标准库没有为 pair 提供默认哈希，需要编码或自定义哈希" },
+      { "id": "d", "text": "pair 只能用于 map" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "常用整数和 string 可直接哈希；pair 在 C++17 中需要额外提供哈希办法。"
+  },
+  {
+    "id": "hash-equality-rule",
+    "prompt": "自定义哈希必须满足哪条正确性规则？",
+    "options": [
+      { "id": "a", "text": "所有不同键必须得到不同哈希值" },
+      { "id": "b", "text": "相等键必须得到相同哈希值，不同键允许冲突" },
+      { "id": "c", "text": "哈希值必须等于键本身" },
+      { "id": "d", "text": "每次调用都必须返回随机值" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "冲突由容器进一步使用相等判断处理；相等键若散列不同，查找就可能无法命中。"
+  },
+  {
+    "id": "begin-not-minimum",
+    "prompt": "非空 `unordered_set<int>` 的 `*begin()` 表示什么？",
+    "options": [
+      { "id": "a", "text": "数值最小的键" },
+      { "id": "b", "text": "最早插入的键" },
+      { "id": "c", "text": "数值最大的键" },
+      { "id": "d", "text": "内部遍历顺序中的某个起点，没有最值语义" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "哈希容器不维护大小顺序，`begin()` 不能替代最小值或最大值查询。"
+  },
+  {
+    "id": "immutable-key",
+    "prompt": "为什么不能通过 `unordered_set` 迭代器直接修改键？",
+    "options": [
+      { "id": "a", "text": "键的哈希值决定所在桶，直接修改会破坏容器结构" },
+      { "id": "b", "text": "因为键必须是编译期常量" },
+      { "id": "c", "text": "因为容器不允许删除" },
+      { "id": "d", "text": "因为迭代器不能读取元素" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "更换键时应先删除旧键，再按新键重新插入，让容器重新计算桶位置。"
+  },
+  {
+    "id": "structure-choice",
+    "prompt": "数据一次读入后不再更新，需要确定的升序遍历和二分查找，通常优先选择什么？",
+    "options": [
+      { "id": "a", "text": "unordered_set 并依赖其当前遍历顺序" },
+      { "id": "b", "text": "queue" },
+      { "id": "c", "text": "vector 配合 sort 和 unique" },
+      { "id": "d", "text": "priority_queue 并保留内部数组" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "静态数据不需要为动态更新付出容器开销；排序去重后的连续数组更适合有序遍历和二分。"
+  }
+]

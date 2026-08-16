@@ -1,10 +1,10 @@
-# 无序关联容器：unordered_set
+# `unordered_set`
 
 > 最近修订：2026-08-14 00:15 +10:00（未审阅）
 
 [哈希表](../algorithm-basics/hash-table.md) 已经从直接寻址推导了哈希函数、桶、冲突、负载因子和重新哈希。若问题只需要维护一组不重复键，可以直接使用标准库 `unordered_set`，不必自己编写桶和冲突处理。
 
-`unordered_set` 与 [有序关联容器：set](set.md) 都保证每个键最多存在一份，但交换了顺序和复杂度：
+`unordered_set` 与 [`set`](set.md) 都保证每个键最多存在一份，但交换了顺序和复杂度：
 
 - `set` 按键有序，常用单键操作是 $O(\log n)$ 最坏保证；
 - `unordered_set` 不承诺任何遍历顺序，常用单键操作平均是 $O(1)$，最坏是 $O(n)$。
