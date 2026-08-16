@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 import type { DirectoryReturnTarget } from "@/lib/content/types";
 
@@ -50,7 +50,7 @@ export function DirectoryEntryRestorer({
 }) {
   const searchParams = useSearchParams();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const entryKey = searchParams.get("entry");
     const groupKey = searchParams.get("group");
     const areaKey = searchParams.get("area");
@@ -72,21 +72,10 @@ export function DirectoryEntryRestorer({
     const visibleTarget = revealTarget(target);
     visibleTarget.classList.add("is-return-target");
 
-    let secondFrame = 0;
-    const firstFrame = requestAnimationFrame(() => {
-      secondFrame = requestAnimationFrame(() => {
-        const previousScrollBehavior = document.documentElement.style.scrollBehavior;
-        document.documentElement.style.scrollBehavior = "auto";
-        visibleTarget.scrollIntoView({ behavior: "auto", block: "center" });
-        requestAnimationFrame(() => {
-          document.documentElement.style.scrollBehavior = previousScrollBehavior;
-        });
-      });
-    });
-    return () => {
-      cancelAnimationFrame(firstFrame);
-      cancelAnimationFrame(secondFrame);
-    };
+    const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = "auto";
+    visibleTarget.scrollIntoView({ behavior: "auto", block: "center" });
+    document.documentElement.style.scrollBehavior = previousScrollBehavior;
   }, [fallbacks, searchParams]);
 
   return null;

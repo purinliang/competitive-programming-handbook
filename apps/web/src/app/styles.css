@@ -733,7 +733,6 @@ a.article-link.is-active:hover {
 .search-results {
   height: 256px;
   overflow-y: auto;
-  overscroll-behavior: contain;
   scrollbar-width: thin;
 }
 
