@@ -1,10 +1,10 @@
-# 序列容器：deque
+# deque
 
-> 最近修订：2026-08-13 21:52 +10:00（未审阅）
+> 最近修订：2026-08-16 11:16 +10:00（未审阅）
 
-`vector` 能在末尾高效增加和删除元素，但在开头插入或删除时，后面的元素通常需要整体移动。某些算法需要同时从序列两端加入、查看和删除，标准库 `deque` 正是为这组操作提供的序列容器。
+[双端队列](../algorithm-basics/deque.md) 已经说明两端操作的抽象语义与循环数组实现。[vector](vector.md) 能在末尾高效增加和删除元素，但在开头插入或删除时，后面的元素通常需要整体移动。某些算法需要同时从序列两端加入、查看和删除，标准库 `deque` 正是为这组操作提供的序列容器。
 
-`deque` 是 double-ended queue 的缩写，中文称为双端队列。它不是 [容器适配器：queue](queue.md) 的另一种写法：`deque` 可以遍历、随机访问并修改两端，`queue` 则是故意只暴露先进先出接口的容器适配器。
+`deque` 是 double-ended queue 的缩写，中文称为双端队列。它不是 [`queue`](queue.md) 的另一种写法：`deque` 可以遍历、随机访问并修改两端，`queue` 则是故意只暴露先进先出接口的容器适配器。
 
 ## 声明一个 deque
 
@@ -18,7 +18,7 @@ deque<int> values;
 
 ```cpp
 deque<char> characters;
-deque<pair<int, int>> positions;
+deque<string> messages;
 ```
 
 标准头文件是 `<deque>`。本仓库完整竞赛代码使用 `#include <bits/stdc++.h>`，不需要另外列出。
@@ -184,7 +184,7 @@ sort(values.begin(), values.end());
 &values[0]
 ```
 
-当成一个包含全部 `deque` 元素的连续数组起点，也没有与 `vector::data()` 对应的 `deque::data()` 接口。
+当成一个包含全部 `deque` 元素的连续数组起点。在本书使用的 C++17 中，也没有与 `vector::data()` 对应的 `deque::data()` 接口。
 
 需要向只接受连续内存的 C 接口传递数据，或常数性能主要来自连续扫描时，通常优先使用 `vector`。需要频繁操作两端时，`deque` 的接口更符合问题本身。
 
@@ -282,7 +282,7 @@ for (auto it = values.begin(); it != values.end();) {
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+void solve() {
     int q;
     scanf("%d", &q);
 
@@ -322,7 +322,10 @@ int main() {
             printf("%d\n", values.empty());
         }
     }
+}
 
+int main() {
+    solve();
     return 0;
 }
 ```

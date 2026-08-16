@@ -1,0 +1,218 @@
+[
+  {
+    "id": "deque-declaration",
+    "prompt": "哪一行声明了一个保存整数的空 `deque`？",
+    "options": [
+      {
+        "id": "a",
+        "text": "`deque<int> values;`"
+      },
+      {
+        "id": "b",
+        "text": "`deque values<int>;`"
+      },
+      {
+        "id": "c",
+        "text": "`int<deque> values;`"
+      },
+      {
+        "id": "d",
+        "text": "`queue<deque> values;`"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "deque 是类模板，元素类型 int 写在尖括号中。"
+  },
+  {
+    "id": "endpoint-insertion",
+    "prompt": "把元素分别加入 `deque` 的开头和末尾，应使用哪一组接口？",
+    "options": [
+      {
+        "id": "a",
+        "text": "`insert_left` 与 `insert_right`"
+      },
+      {
+        "id": "b",
+        "text": "`front` 与 `back`"
+      },
+      {
+        "id": "c",
+        "text": "`push_front` 与 `push_back`"
+      },
+      {
+        "id": "d",
+        "text": "`pop_front` 与 `pop_back`"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "push 系列负责加入；front 和 back 只访问，pop 系列只删除。"
+  },
+  {
+    "id": "pop-does-not-return",
+    "prompt": "需要保留并删除队尾值时，正确写法是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "`int value = values.pop_back();`"
+      },
+      {
+        "id": "b",
+        "text": "先复制 `values.back()`，再调用 `values.pop_back()`"
+      },
+      {
+        "id": "c",
+        "text": "只调用 `values.empty()`"
+      },
+      {
+        "id": "d",
+        "text": "先清空容器，再读取 `back()`"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "pop_back 不返回元素，删除后原队尾也不再存在。"
+  },
+  {
+    "id": "native-indexing",
+    "prompt": "直接使用标准库 `deque` 时，长度为 n 的有效下标是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "1..n"
+      },
+      {
+        "id": "b",
+        "text": "1..n+1"
+      },
+      {
+        "id": "c",
+        "text": "0..n"
+      },
+      {
+        "id": "d",
+        "text": "0..n-1"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "这是标准库原生接口，保留 0-based 下标。"
+  },
+  {
+    "id": "non-contiguous",
+    "prompt": "`deque` 支持 O(1) 下标访问，为什么仍不能当作一整段连续数组？",
+    "options": [
+      {
+        "id": "a",
+        "text": "标准不保证全部元素位于一段连续内存中"
+      },
+      {
+        "id": "b",
+        "text": "它不允许保存多个元素"
+      },
+      {
+        "id": "c",
+        "text": "它的下标必须是浮点数"
+      },
+      {
+        "id": "d",
+        "text": "所有随机访问容器都不连续"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "随机访问迭代器能够定位分块元素，并不推出跨元素地址连续。"
+  },
+  {
+    "id": "no-reserve",
+    "prompt": "为什么 `deque` 不提供与 `vector` 相同的 `reserve()`？",
+    "options": [
+      {
+        "id": "a",
+        "text": "因为 deque 永远不能增长"
+      },
+      {
+        "id": "b",
+        "text": "因为 reserve 只适用于字符"
+      },
+      {
+        "id": "c",
+        "text": "它不维护一段相同语义的连续预留容量"
+      },
+      {
+        "id": "d",
+        "text": "因为 size 已经等于最大内存"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "deque 的增长模型不是 vector 的单段连续容量，因此没有同样的 capacity/reserve 接口。"
+  },
+  {
+    "id": "middle-erase",
+    "prompt": "在 `deque` 中间执行一次 `erase` 的时间复杂度通常是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "O(1)"
+      },
+      {
+        "id": "b",
+        "text": "O(log n)"
+      },
+      {
+        "id": "c",
+        "text": "O(n log n)"
+      },
+      {
+        "id": "d",
+        "text": "O(n)"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "两端操作是核心优势；中间改变序列仍要移动靠近一端的一批元素。"
+  },
+  {
+    "id": "saved-position-safety",
+    "prompt": "基础竞赛代码修改 `deque` 后，怎样处理此前保存的迭代器、指针或引用最稳妥？",
+    "options": [
+      {
+        "id": "a",
+        "text": "无条件永久继续使用"
+      },
+      {
+        "id": "b",
+        "text": "按需要重新从容器取得位置或事先复制值"
+      },
+      {
+        "id": "c",
+        "text": "把它们都改成负数"
+      },
+      {
+        "id": "d",
+        "text": "只有 clear 之后才可能失效"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "这是比完整标准表更保守但可靠的基础规则，尤其不能使用已删除元素的引用。"
+  },
+  {
+    "id": "vector-versus-deque",
+    "prompt": "只在末尾增长、经常连续扫描且需要连续内存时，通常优先选择什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "`vector`"
+      },
+      {
+        "id": "b",
+        "text": "`deque`，因为接口更多"
+      },
+      {
+        "id": "c",
+        "text": "`stack`，因为能下标访问"
+      },
+      {
+        "id": "d",
+        "text": "任意选择，操作模式不重要"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "vector 保证连续内存；只有确实频繁操作开头或两端时才需要 deque。"
+  }
+]
