@@ -407,7 +407,7 @@ Karatsuba、Toom 或 FFT 等更快乘法，而不是无限扩大 `BASE`。
 
 ## 扩展阅读
 
-[高精度整数：除以高精度整数（正文待写）](../catalog.md#05-数学) 会说明十进制逐位
+[高精度整数：除以高精度整数](big-integer-division-remainder.md) 会说明十进制逐位
 试商，并进一步解释压位以后为什么需要二分试商或最高块估商。
 
 [OI Wiki：高精度计算](https://oi-wiki.org/math/bignum/) 对比了逐位高精度、压位
