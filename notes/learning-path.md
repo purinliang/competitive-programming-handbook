@@ -316,7 +316,7 @@
 | 0261 | 状态空间与隐式图 | 算法基础 | [algorithm-basics/state-space-and-implicit-graphs.md](algorithm-basics/state-space-and-implicit-graphs.md) |
 | 0211 | 子集与位掩码枚举 | 算法基础 | [algorithm-basics/subset-bitmask-enumeration.md](algorithm-basics/subset-bitmask-enumeration.md) |
 | 0262 | 排列枚举 | 算法基础 | [algorithm-basics/permutation-enumeration.md](algorithm-basics/permutation-enumeration.md) |
-| 0263 | 组合枚举 | 算法基础 | `algorithm-basics/combination-enumeration.md` |
+| 0263 | 组合枚举 | 算法基础 | [algorithm-basics/combination-enumeration.md](algorithm-basics/combination-enumeration.md) |
 | 0443 | DFS、回溯与剪枝 | 图论 | [graph-theory/dfs-backtracking-pruning.md](graph-theory/dfs-backtracking-pruning.md) |
 
 ### 单元：图论：广度优先搜索

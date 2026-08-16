@@ -1,0 +1,74 @@
+[
+  {
+    "id": "unique-representation",
+    "prompt": "组合枚举为什么要求选择序列严格递增？",
+    "options": [
+      { "id": "a", "text": "为每个无序集合规定唯一表示，避免不同顺序重复" },
+      { "id": "b", "text": "因为输入保证所有数字已经递减" },
+      { "id": "c", "text": "为了让每个数字可以重复选择" },
+      { "id": "d", "text": "因为递归不能处理相等比较" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "一个集合从小到大排列后只有一个序列，其他选择顺序不再生成。"
+  },
+  {
+    "id": "minimum-meaning",
+    "prompt": "进入 `dfs(position, minimum)` 时，`minimum` 表示什么？",
+    "options": [
+      { "id": "a", "text": "已经输出的最小组合数量" },
+      { "id": "b", "text": "当前位置允许选择的最小整数" },
+      { "id": "c", "text": "递归调用允许达到的最小深度" },
+      { "id": "d", "text": "整个输入中的最小值" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "它保证新值大于前一个选择，从而让整个组合保持严格递增。"
+  },
+  {
+    "id": "maximum-choice",
+    "prompt": "填写位置 `position` 时，为什么当前值最多是 `n - (k - position)`？",
+    "options": [
+      { "id": "a", "text": "为了让当前值一定等于位置编号" },
+      { "id": "b", "text": "为了把组合数量固定成 `n`" },
+      { "id": "c", "text": "必须为后面的 `k - position` 个位置留下足够大的整数" },
+      { "id": "d", "text": "因为 `n` 必须先减去全部已选数字之和" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "选择当前值以后还要填若干个更大的值，剩余整数数量不能少于剩余位置数量。"
+  },
+  {
+    "id": "no-used-array",
+    "prompt": "组合枚举为什么不需要排列枚举中的 `used` 数组？",
+    "options": [
+      { "id": "a", "text": "因为组合允许同一个数出现任意多次" },
+      { "id": "b", "text": "因为所有数组都会自动去重" },
+      { "id": "c", "text": "因为只输出第一个组合" },
+      { "id": "d", "text": "因为下一层只选择更大的数，已经选过的数不会再次进入候选" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "严格递增的下界已经同时保证不重复和唯一顺序。"
+  },
+  {
+    "id": "empty-combination",
+    "prompt": "当 `k = 0` 时，从 `n` 个元素中选择零个元素有多少种组合？",
+    "options": [
+      { "id": "a", "text": "1 种，即空集" },
+      { "id": "b", "text": "0 种" },
+      { "id": "c", "text": "n 种" },
+      { "id": "d", "text": "2^n 种" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "不选择任何元素本身就是唯一的空组合。"
+  },
+  {
+    "id": "combination-complexity",
+    "prompt": "输出每个组合的全部 `k` 个数时，总时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "`O(n!)`" },
+      { "id": "b", "text": "`O(k · C(n,k))`" },
+      { "id": "c", "text": "`O(log n)`" },
+      { "id": "d", "text": "始终是 `O(n)`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "共有 C(n,k) 个组合，每个答案需要输出 k 个元素。"
+  }
+]

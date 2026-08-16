@@ -220,7 +220,7 @@
 | 0260 | 排序方法比较 | 待审阅 | [sorting-comparison.md](algorithm-basics/sorting-comparison.md) |
 | 0261 | 状态空间与隐式图 | 待审阅 | [state-space-and-implicit-graphs.md](algorithm-basics/state-space-and-implicit-graphs.md) |
 | 0262 | 排列枚举 | 待审阅 | [permutation-enumeration.md](algorithm-basics/permutation-enumeration.md) |
-| 0263 | 组合枚举 | 计划 | `algorithm-basics/combination-enumeration.md` |
+| 0263 | 组合枚举 | 待审阅 | [combination-enumeration.md](algorithm-basics/combination-enumeration.md) |
 
 ## 03 数据结构
 
