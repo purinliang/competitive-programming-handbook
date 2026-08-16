@@ -43,7 +43,7 @@
 | 020103 | 整数的二进制表示 | 定稿 | [integer-binary-representation.md](cpp/integer-binary-representation.md) |
 | *010201e3 | 整数类型的位宽与平台差异 | 定稿 | [integer-type-widths.md](cpp/integer-type-widths.md) |
 | *010301e1 | IEEE 754 浮点数表示 | 定稿 | [ieee-754.md](cpp/ieee-754.md) |
-| 020104 | 进制转换 | 计划 | `cpp/base-conversion.md` |
+| 020104 | 进制转换 | 待审阅 | [base-conversion.md](cpp/base-conversion.md) |
 
 ### 专题：变量、常量与字面量
 

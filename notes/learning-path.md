@@ -121,7 +121,7 @@
 | 020101 | 位、字节与存储单位 | C++ | [cpp/bits-bytes-and-storage-units.md](cpp/bits-bytes-and-storage-units.md) |
 | 020102 | 进制表示 | C++ | [cpp/base-notation.md](cpp/base-notation.md) |
 | 020103 | 整数的二进制表示 | C++ | [cpp/integer-binary-representation.md](cpp/integer-binary-representation.md) |
-| 020104 | 进制转换 | C++ | `cpp/base-conversion.md` |
+| 020104 | 进制转换 | C++ | [cpp/base-conversion.md](cpp/base-conversion.md) |
 
 IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型的附属扩展，不占用核心
 上一篇、下一篇；本单元只把理解进制和完成转换程序所需的主干排入学习路线。

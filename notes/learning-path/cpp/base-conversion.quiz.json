@@ -1,0 +1,50 @@
+[
+  {
+    "id": "append-base-digit",
+    "prompt": "从左到右读一个 `base` 进制数时，已经得到前缀值 `value`，当前数字为 `digit`。下一步怎样更新？",
+    "options": [
+      { "id": "a", "text": "`value += base * digit;`" },
+      { "id": "b", "text": "`value = value + base + digit;`" },
+      { "id": "c", "text": "`value = value * base + digit;`" },
+      { "id": "d", "text": "`value = value / base + digit;`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "旧前缀整体向左增加一位，相当于乘以 `base`；再把当前数字放入最低位，所以更新式是 `value * base + digit`。"
+  },
+  {
+    "id": "remainder-order",
+    "prompt": "十进制整数不断除以目标进制时，余数按照什么顺序产生？",
+    "options": [
+      { "id": "a", "text": "从最低位到最高位" },
+      { "id": "b", "text": "从最高位到最低位" },
+      { "id": "c", "text": "总是从中间一位开始" },
+      { "id": "d", "text": "顺序完全随机" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "当前值除以目标进制的余数就是当前最低位；去掉这一位后才继续得到更高位，因此保存完要反转。"
+  },
+  {
+    "id": "zero-special-case",
+    "prompt": "为什么 `from_decimal` 要在循环前单独处理 `value == 0`？",
+    "options": [
+      { "id": "a", "text": "因为零只能使用二进制表示" },
+      { "id": "b", "text": "因为零不能参与取余" },
+      { "id": "c", "text": "因为零必须输出为空字符串" },
+      { "id": "d", "text": "因为 `while (value > 0)` 不会执行，不能自行产生数字字符 `'0'`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "循环只在还有非零部分时拆位；初值为零时一次也不执行，所以必须主动返回字符串 `\"0\"`。"
+  },
+  {
+    "id": "hexadecimal-letter-value",
+    "prompt": "按照本篇的数字规则，`digit_to_value('f')` 得到什么？",
+    "options": [
+      { "id": "a", "text": "`5`" },
+      { "id": "b", "text": "`15`" },
+      { "id": "c", "text": "`16`" },
+      { "id": "d", "text": "`-1`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "字母 `a` 到 `f` 分别表示 10 到 15，因此 `f` 表示 15。"
+  }
+]
