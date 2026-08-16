@@ -3,7 +3,7 @@
 import { usePathname, useSearchParams } from "next/navigation";
 import { useLayoutEffect } from "react";
 
-const RESTORE_SCROLL_DURATION_MS = 300;
+import { scrollToElement } from "@/lib/scroll-to-element";
 
 function findByDataAttribute(
   attribute: "areaKey" | "articleKey" | "entryKey" | "groupKey",
@@ -39,50 +39,6 @@ function findClosestModuleTarget(articleKey: string): HTMLElement | undefined {
   return article?.closest<HTMLElement>("[data-group-key], section") ?? undefined;
 }
 
-function scrollToTarget(target: HTMLElement): () => void {
-  const root = document.documentElement;
-  const previousScrollBehavior = root.style.scrollBehavior;
-  const start = window.scrollY;
-  const rectangle = target.getBoundingClientRect();
-  const maximum = Math.max(0, root.scrollHeight - window.innerHeight);
-  const destination = Math.min(
-    maximum,
-    Math.max(0, start + rectangle.top - (window.innerHeight - rectangle.height) / 2),
-  );
-  const distance = destination - start;
-  root.style.scrollBehavior = "auto";
-
-  if (
-    Math.abs(distance) < 2
-    || window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  ) {
-    window.scrollTo(0, destination);
-    root.style.scrollBehavior = previousScrollBehavior;
-    return () => {};
-  }
-
-  let frame = 0;
-  const startedAt = performance.now();
-  const step = (now: number) => {
-    const progress = Math.min(1, (now - startedAt) / RESTORE_SCROLL_DURATION_MS);
-    const eased = progress < 0.5
-      ? 4 * progress ** 3
-      : 1 - (-2 * progress + 2) ** 3 / 2;
-    window.scrollTo(0, start + distance * eased);
-    if (progress < 1) {
-      frame = requestAnimationFrame(step);
-    } else {
-      root.style.scrollBehavior = previousScrollBehavior;
-    }
-  };
-  frame = requestAnimationFrame(step);
-
-  return () => {
-    cancelAnimationFrame(frame);
-    root.style.scrollBehavior = previousScrollBehavior;
-  };
-}
-
 export function DirectoryEntryRestorer() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -110,7 +66,7 @@ export function DirectoryEntryRestorer() {
     if (!target) return;
     const visibleTarget = revealTarget(target);
     visibleTarget.classList.add("is-return-target");
-    return scrollToTarget(visibleTarget);
+    return scrollToElement(visibleTarget, { block: "center" });
   }, [pathname, searchParams]);
 
   return null;

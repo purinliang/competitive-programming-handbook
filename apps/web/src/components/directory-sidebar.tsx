@@ -6,6 +6,7 @@ import { useMemo } from "react";
 import { ScrollArea } from "./scroll-area";
 
 import { useActiveSection } from "@/hooks/use-active-section";
+import { scrollToElement } from "@/lib/scroll-to-element";
 
 interface DirectorySidebarItem {
   id: string;
@@ -25,10 +26,7 @@ export function DirectorySidebar({ title, items }: { title: string; items: Direc
     document.querySelectorAll(".is-return-target").forEach((element) => {
       element.classList.remove("is-return-target");
     });
-    const previousScrollBehavior = document.documentElement.style.scrollBehavior;
-    document.documentElement.style.scrollBehavior = "auto";
-    section.scrollIntoView({ behavior: "auto", block: "start" });
-    document.documentElement.style.scrollBehavior = previousScrollBehavior;
+    scrollToElement(section);
   }
 
   return (

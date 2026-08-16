@@ -6,6 +6,7 @@ import { ScrollArea } from "./scroll-area";
 
 import { useActiveSection } from "@/hooks/use-active-section";
 import type { TableOfContentsItem } from "@/lib/content/types";
+import { scrollToElement } from "@/lib/scroll-to-element";
 
 export function ArticleTableOfContents({ articleKey, items }: { articleKey: string; items: TableOfContentsItem[] }) {
   const sectionIds = useMemo(() => items.map((item) => item.id), [items]);
@@ -31,6 +32,22 @@ export function ArticleTableOfContents({ articleKey, items }: { articleKey: stri
                 className={className}
                 href={`#${item.id}`}
                 key={item.id}
+                onClick={(event) => {
+                  if (
+                    event.button !== 0
+                    || event.metaKey
+                    || event.ctrlKey
+                    || event.shiftKey
+                    || event.altKey
+                  ) {
+                    return;
+                  }
+                  const heading = document.getElementById(item.id);
+                  if (!heading) return;
+                  event.preventDefault();
+                  window.history.pushState(null, "", `#${item.id}`);
+                  scrollToElement(heading);
+                }}
               >
                 {item.title}
               </a>
