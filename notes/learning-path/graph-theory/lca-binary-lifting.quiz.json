@@ -1,0 +1,50 @@
+[
+  {
+    "id": "up-table",
+    "prompt": "倍增表 `up[u][k]` 表示什么？",
+    "options": [
+      { "id": "a", "text": "u 的第 k 个儿子" },
+      { "id": "b", "text": "u 向上 2^k 步的祖先" },
+      { "id": "c", "text": "u 到根的距离平方" },
+      { "id": "d", "text": "深度为 k 的所有节点" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "倍增把祖先距离按 1、2、4、8 等二的幂预处理。"
+  },
+  {
+    "id": "align-depth",
+    "prompt": "查询 LCA 时为什么先把两个节点提升到相同深度？",
+    "options": [
+      { "id": "a", "text": "公共祖先必须在二者向上相同距离后才能同步比较" },
+      { "id": "b", "text": "为了让节点编号相同" },
+      { "id": "c", "text": "为了删除较深节点" },
+      { "id": "d", "text": "因为倍增表只能查询同层节点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "先消除深度差，之后二者到 LCA 的剩余步数才相同。"
+  },
+  {
+    "id": "simultaneous-jump",
+    "prompt": "对齐深度后，为什么只在 `up[u][k] != up[v][k]` 时同时跳？",
+    "options": [
+      { "id": "a", "text": "相等时说明 u 与 v 没有公共祖先" },
+      { "id": "b", "text": "不相等时可以安全接近 LCA 而不越过它" },
+      { "id": "c", "text": "这样能让深度增加" },
+      { "id": "d", "text": "因为 k 只能取 0" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "若两个 2^k 祖先已经相同，跳过去可能越过最近公共祖先。"
+  },
+  {
+    "id": "complexity",
+    "prompt": "倍增 LCA 的单次查询时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "O(1)" },
+      { "id": "b", "text": "O(n)" },
+      { "id": "c", "text": "O(n log n)" },
+      { "id": "d", "text": "O(log n)" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "对齐深度和同步跳跃都只枚举 O(log n) 个二进制层级。"
+  }
+]
