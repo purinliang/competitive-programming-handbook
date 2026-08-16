@@ -1,8 +1,8 @@
 # 二分图：判定
 
-> 最近修订：2026-08-14 02:09 +10:00（未审阅）
+> 最近修订：2026-08-16 15:20 +10:00（未审阅）
 
-[图的遍历：广度优先搜索（BFS）](graph-breadth-first-search.md) 已经能够从一个起点访问所在连通分量。本篇考虑另一类常见要求：把无向图中的所有点分进两个集合，使每条边的两个端点一定属于不同集合。
+[图的广度优先搜索（BFS）](graph-breadth-first-search.md) 已经能够从一个起点访问所在连通分量。本篇考虑另一类常见要求：把无向图中的所有点分进两个集合，使每条边的两个端点一定属于不同集合。
 
 例如，需要把互相冲突的人分到两个小组、把相邻区域涂成两种颜色，或者判断一组“二者必须不同类”的限制能否同时满足。直接枚举每个点属于哪个集合有 $2^n$ 种方案；图上的一条边却会立即决定相邻点必须怎样选择。我们将从这条局部限制推导线性判定方法。
 
@@ -28,7 +28,7 @@ B = {2, 3, 6}
 把集合 $A$ 记作颜色 `1`，集合 $B$ 记作颜色 `-1`，尚未分类记作 `0`：
 
 ```cpp
-vector<int> color(n + 5, 0);
+color.assign(n + 5, 0);
 ```
 
 这里的“染色”只是给点保存一个类别编号，不要求真的使用彩色图形。
@@ -116,11 +116,13 @@ for (int start = 1; start <= n; start++) {
 
 ## 完整判定函数
 
+邻接表、点数与染色结果都是题目级共享状态，因此完整判定函数不再反复传递它们。
+
 把所有连通分量和冲突检查合在一起：
 
 ```cpp
-bool is_bipartite(int n, const vector<vector<int>>& g) {
-    vector<int> color(n + 5, 0);
+bool is_bipartite() {
+    color.assign(n + 5, 0);
 
     for (int start = 1; start <= n; start++) {
         if (color[start] != 0) {
@@ -172,11 +174,14 @@ bool is_bipartite(int n, const vector<vector<int>>& g) {
 
 ```cpp
 #include <bits/stdc++.h>
-
 using namespace std;
 
-bool is_bipartite(int n, const vector<vector<int>>& g) {
-    vector<int> color(n + 5, 0);
+int n, m;
+vector<vector<int>> g;
+vector<int> color;
+
+bool is_bipartite() {
+    color.assign(n + 5, 0);
 
     for (int start = 1; start <= n; start++) {
         if (color[start] != 0) {
@@ -205,11 +210,10 @@ bool is_bipartite(int n, const vector<vector<int>>& g) {
     return true;
 }
 
-int main() {
-    int n, m;
+void solve() {
     scanf("%d%d", &n, &m);
 
-    vector<vector<int>> g(n + 5);
+    g.assign(n + 5, {});
     for (int i = 1; i <= m; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
@@ -217,7 +221,11 @@ int main() {
         g[v].push_back(u);
     }
 
-    printf("%s\n", is_bipartite(n, g) ? "Yes" : "No");
+    printf("%s\n", is_bipartite() ? "Yes" : "No");
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -305,7 +313,3 @@ Yes
 ## 扩展阅读
 
 - [二分图：最大匹配（正文待写）](../catalog.md#04-图论) 会在二分图两侧的点之间选择尽量多条端点互不重复的边。
-
-## 下一篇
-
-下一篇 [树：直径与中心](tree-diameter-center.md) 会在树上寻找距离最远的两个节点，并从这条最长路径确定树的中心。

@@ -1,0 +1,146 @@
+[
+  {
+    "id": "definition",
+    "prompt": "一张无向图是二分图，需要满足什么？",
+    "options": [
+      { "id": "a", "text": "所有点度数相同" },
+      { "id": "b", "text": "点能分入两个集合，并且每条边的两个端点分属两侧" },
+      { "id": "c", "text": "任意两点之间都有边" },
+      { "id": "d", "text": "图必须连通" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "同一集合内部不能有边，但两侧之间不要求连接所有可能的点对。"
+  },
+  {
+    "id": "not-complete-bipartite",
+    "prompt": "二分图是否要求两个集合之间的任意一对点都有边？",
+    "options": [
+      { "id": "a", "text": "要求，否则不能二染色" },
+      { "id": "b", "text": "只在图连通时要求" },
+      { "id": "c", "text": "只在两个集合大小相同时要求" },
+      { "id": "d", "text": "不要求；那是完全二分图的额外条件" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "二分图定义只禁止同侧边，缺少跨集合的边不会造成冲突。"
+  },
+  {
+    "id": "three-color-states",
+    "prompt": "为什么 `color` 使用 `0, 1, -1` 三种状态？",
+    "options": [
+      { "id": "a", "text": "0 表示未染色，1 与 -1 表示两个集合" },
+      { "id": "b", "text": "分别表示点的三种度数" },
+      { "id": "c", "text": "因为二分图需要三种颜色" },
+      { "id": "d", "text": "为了记录 BFS 距离" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "除了两种分类，还必须区分尚未访问的点，才能决定是否需要继续传播颜色。"
+  },
+  {
+    "id": "forced-neighbor-color",
+    "prompt": "已经知道 `color[u]` 时，尚未染色的邻居 v 应怎样染色？",
+    "options": [
+      { "id": "a", "text": "`color[v] = color[u]`" },
+      { "id": "b", "text": "`color[v] = 0`" },
+      { "id": "c", "text": "`color[v] = -color[u]`" },
+      { "id": "d", "text": "随机选择 1 或 -1" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每条边要求两端属于不同集合，一端确定后另一端只有相反颜色这一种选择。"
+  },
+  {
+    "id": "component-start-color",
+    "prompt": "新连通分量的起点为什么可以任意染成 1？",
+    "options": [
+      { "id": "a", "text": "因为编号 1 的点必须属于集合 A" },
+      { "id": "b", "text": "合法方案整体交换两种颜色后仍然合法" },
+      { "id": "c", "text": "因为 BFS 只能处理颜色 1" },
+      { "id": "d", "text": "因为所有连通分量只有一个点" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "二分图两侧名称没有固定含义，给一个分量整体翻色不会改变任何边两端异色的事实。"
+  },
+  {
+    "id": "colored-neighbor-check",
+    "prompt": "遇到已经染色的邻居 v 时，为什么不能直接跳过？",
+    "options": [
+      { "id": "a", "text": "因为必须重新给 v 入队" },
+      { "id": "b", "text": "因为要重新计算 v 的度数" },
+      { "id": "c", "text": "因为 v 的颜色一定错误" },
+      { "id": "d", "text": "当前边可能连接同色点，必须检查是否产生冲突" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "奇环的最后一条限制通常连接两个已经染色的点，跳过它就会漏判。"
+  },
+  {
+    "id": "all-components",
+    "prompt": "为什么外层循环必须为每个未染色点启动新的 BFS？",
+    "options": [
+      { "id": "a", "text": "图可能不连通，其他分量仍可能包含奇环" },
+      { "id": "b", "text": "为了让每个点重复染色" },
+      { "id": "c", "text": "因为一个 BFS 最多处理一条边" },
+      { "id": "d", "text": "为了按编号排序点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "只检查点 1 所在分量不能证明整张图合法；孤立点也应形成一个独立合法分量。"
+  },
+  {
+    "id": "self-loop",
+    "prompt": "为什么含自环 `u - u` 的图一定不是二分图？",
+    "options": [
+      { "id": "a", "text": "因为自环让 u 的度数变成 0" },
+      { "id": "b", "text": "因为自环会删除 u" },
+      { "id": "c", "text": "边的两个端点是同一个点，不可能分属两个集合" },
+      { "id": "d", "text": "只有有向图允许自环" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "检查这条边时必然得到 `color[u] == color[u]`，立即产生同色冲突。"
+  },
+  {
+    "id": "odd-cycle",
+    "prompt": "二分图与奇环之间的关系是什么？",
+    "options": [
+      { "id": "a", "text": "二分图必须恰好包含一个奇环" },
+      { "id": "b", "text": "无向图是二分图，当且仅当它不含奇环" },
+      { "id": "c", "text": "只有完全图需要检查奇环" },
+      { "id": "d", "text": "偶环和奇环都会阻止二染色" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "沿偶环交替染色能回到原颜色；沿奇环交替后会要求起点同时具有相反颜色。"
+  },
+  {
+    "id": "directed-input",
+    "prompt": "题目给有向边，但限制只表示“两个端点必须不同组”时，应怎样建图？",
+    "options": [
+      { "id": "a", "text": "只保存入度较小的一端" },
+      { "id": "b", "text": "删除所有有向边" },
+      { "id": "c", "text": "必须使用拓扑排序" },
+      { "id": "d", "text": "方向与该限制无关，可按无向边加入两份邻接项" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "二染色约束只关心两个端点是否异色；若题目另有方向语义，则应服从题目定义。"
+  },
+  {
+    "id": "complexity",
+    "prompt": "使用邻接表对整张无向图二染色的时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(n+m)$" },
+      { "id": "b", "text": "$O(2^n)$" },
+      { "id": "c", "text": "$O(nm)$" },
+      { "id": "d", "text": "$O(m\\log n)$" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每个点至多入队一次，无向边的两个邻接项各检查一次。"
+  },
+  {
+    "id": "recover-partition",
+    "prompt": "判定成功后，怎样从 `color` 恢复两个集合？",
+    "options": [
+      { "id": "a", "text": "按点编号奇偶分组" },
+      { "id": "b", "text": "按点的度数分组" },
+      { "id": "c", "text": "颜色为 1 的点放一侧，颜色为 -1 的点放另一侧" },
+      { "id": "d", "text": "重新枚举全部 2^n 种分类" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "无冲突时每条边的两端颜色相反，现有 color 数组本身就是一组合法划分。"
+  }
+]
