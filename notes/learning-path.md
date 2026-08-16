@@ -597,7 +597,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 060702 | KMP 与前缀函数 | 字符串 | [strings/kmp-prefix-function.md](strings/kmp-prefix-function.md) |
 | *060703 | Z 函数 | 字符串 | [strings/z-function.md](strings/z-function.md) |
 | 060704 | Trie | 字符串 | [strings/trie.md](strings/trie.md) |
-| 060705 | 字符串构造 | 字符串 | `strings/string-construction.md` |
+| 060705 | 字符串构造 | 字符串 | [strings/string-construction.md](strings/string-construction.md) |
 
 ## 07 高中进阶
 

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "separator-condition",
+    "prompt": "在 `pattern#text` 中，分隔符必须满足什么条件？",
+    "options": [
+      { "id": "a", "text": "不会出现在模式串和文本串中" },
+      { "id": "b", "text": "必须是小写字母" },
+      { "id": "c", "text": "必须与模式串的首字符相同" },
+      { "id": "d", "text": "在文本串中至少出现一次" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "分隔符不在输入字符集中，才能保证匹配无法穿过两个字符串的边界。"
+  },
+  {
+    "id": "doubled-string",
+    "prompt": "为什么 `s+s` 可以用来判断长度相同的 `t` 是否为 `s` 的循环位移？",
+    "options": [
+      { "id": "a", "text": "复制会把字符自动排序" },
+      { "id": "b", "text": "每种切分后的循环位移都成为倍长串中一个长度为 `s.size()` 的子串" },
+      { "id": "c", "text": "倍长串一定是回文串" },
+      { "id": "d", "text": "任意字符串都会在倍长串中出现" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "把切分点放在倍长串的起点上，从该位置连续取原串长度的子串，就得到对应循环位移。"
+  },
+  {
+    "id": "reverse-interval",
+    "prompt": "长度为 `n` 的 0-based 字符串中，区间 `[l,r]` 在反转串中对应哪个区间？",
+    "options": [
+      { "id": "a", "text": "`[l,r]`" },
+      { "id": "b", "text": "`[n-l,n-r]`" },
+      { "id": "c", "text": "`[n-1-r,n-1-l]`" },
+      { "id": "d", "text": "`[r,l]`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "反转后位置 `i` 映射到 `n-1-i`，两个端点的左右顺序也会交换。"
+  },
+  {
+    "id": "construction-and-algorithm",
+    "prompt": "把循环位移问题构造成 `t#s+s` 以后，还需要什么才能高效完成判定？",
+    "options": [
+      { "id": "a", "text": "再复制无限多次" },
+      { "id": "b", "text": "忽略两个字符串的长度" },
+      { "id": "c", "text": "删除分隔符" },
+      { "id": "d", "text": "使用 KMP 或 Z 函数等满足复杂度要求的匹配算法" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "构造只负责把循环关系改写成子串关系；真正查找子串仍然需要匹配算法。"
+  }
+]

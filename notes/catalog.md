@@ -1134,7 +1134,7 @@
 | 060702 | KMP 与前缀函数 | 待审阅 | [kmp-prefix-function.md](strings/kmp-prefix-function.md) |
 | *060703 | Z 函数 | 待审阅 | [z-function.md](strings/z-function.md) |
 | 060704 | Trie | 待审阅 | [trie.md](strings/trie.md) |
-| 060705 | 字符串构造 | 计划 | `strings/string-construction.md` |
+| 060705 | 字符串构造 | 待审阅 | [strings/string-construction.md](strings/string-construction.md) |
 | 080401 | AC 自动机 | 计划 | `strings/aho-corasick.md` |
 | 080402 | Manacher | 计划 | `strings/manacher.md` |
 | 090101 | 后缀数组 | 推迟 | `strings/suffix-array.md` |
@@ -1151,7 +1151,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 060705 | 字符串构造 | 计划 | `strings/string-construction.md` |
+| 060705 | 字符串构造 | 待审阅 | [strings/string-construction.md](strings/string-construction.md) |
 
 ### 字符串哈希
 
