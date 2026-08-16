@@ -1,0 +1,50 @@
+[
+  {
+    "id": "sets-union",
+    "prompt": "若 `A = {1, 2, 3}`、`B = {2, 3, 4}`，`A ∪ B` 是什么？",
+    "options": [
+      { "id": "a", "text": "`{2, 3}`" },
+      { "id": "b", "text": "`{1, 4}`" },
+      { "id": "c", "text": "`{1, 2, 3, 4}`" },
+      { "id": "d", "text": "`{1, 2, 2, 3, 3, 4}`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "并集包含至少属于一个集合的元素，公共元素仍只出现一次。"
+  },
+  {
+    "id": "sets-empty-versus-zero",
+    "prompt": "空集 `∅` 与集合 `{0}` 有什么区别？",
+    "options": [
+      { "id": "a", "text": "空集没有元素，`{0}` 有一个元素 `0`" },
+      { "id": "b", "text": "两者完全相同" },
+      { "id": "c", "text": "空集有一个空元素" },
+      { "id": "d", "text": "`{0}` 没有元素" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "空集大小为 `0`，而 `{0}` 的大小为 `1`。"
+  },
+  {
+    "id": "sets-complement-universe",
+    "prompt": "为什么讨论集合 `A` 的补集时必须先指定全集 `U`？",
+    "options": [
+      { "id": "a", "text": "集合不能执行减法" },
+      { "id": "b", "text": "补集必须与 `A` 相等" },
+      { "id": "c", "text": "全集会决定 `A` 的元素顺序" },
+      { "id": "d", "text": "只有确定讨论范围，才能知道哪些不属于 `A` 的对象应被包含" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "补集是 `U \ A`；不同全集会得到不同结果。"
+  },
+  {
+    "id": "sets-inclusion-exclusion-two",
+    "prompt": "两个有限集合的并集大小怎样计算？",
+    "options": [
+      { "id": "a", "text": "`|A| + |B| + |A ∩ B|`" },
+      { "id": "b", "text": "`|A| + |B| - |A ∩ B|`" },
+      { "id": "c", "text": "`|A| - |B|`" },
+      { "id": "d", "text": "永远等于 `|A| + |B|`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "交集元素在前两项中被重复计算一次，因此需要减去交集大小。"
+  }
+]

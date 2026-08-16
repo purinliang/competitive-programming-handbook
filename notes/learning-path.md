@@ -440,7 +440,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | *041001 | 数系：自然数、整数、有理数与实数 | 数学 | [math/number-systems-review.md](math/number-systems-review.md) |
-| *041002 | 集合：基本概念与交、并、补 | 数学 | `math/sets-review.md` |
+| *041002 | 集合：基本概念与交、并、补 | 数学 | [math/sets-review.md](math/sets-review.md) |
 | *041003 | 代数：方程与不等式 | 数学 | `math/equations-and-inequalities-review.md` |
 | *041004 | 几何：平面几何基础 | 数学 | `math/plane-geometry-basics.md` |
 
@@ -899,7 +899,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
 | *041001 | 数系：自然数、整数、有理数与实数 | [math/number-systems-review.md](math/number-systems-review.md) |
-| *041002 | 集合：基本概念与交、并、补 | `math/sets-review.md` |
+| *041002 | 集合：基本概念与交、并、补 | [math/sets-review.md](math/sets-review.md) |
 | *041003 | 代数：方程与不等式 | `math/equations-and-inequalities-review.md` |
 | *041004 | 几何：平面几何基础 | `math/plane-geometry-basics.md` |
 | *990501 | Nim、SG 函数与基础博弈论 | `math/nim-sg-game-theory.md` |
