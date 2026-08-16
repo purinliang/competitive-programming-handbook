@@ -1,0 +1,170 @@
+[
+  {
+    "id": "stack-declaration",
+    "prompt": "哪一行声明了一个保存整数的空 `stack`？",
+    "options": [
+      {
+        "id": "a",
+        "text": "`stack<int> st;`"
+      },
+      {
+        "id": "b",
+        "text": "`stack st<int>;`"
+      },
+      {
+        "id": "c",
+        "text": "`int<stack> st;`"
+      },
+      {
+        "id": "d",
+        "text": "`stack() int st;`"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "stack 是类模板，元素类型 int 写在尖括号中。"
+  },
+  {
+    "id": "top-does-not-remove",
+    "prompt": "非空栈上执行 `int value = st.top();` 后，栈发生什么变化？",
+    "options": [
+      {
+        "id": "a",
+        "text": "栈被清空"
+      },
+      {
+        "id": "b",
+        "text": "栈顶被删除"
+      },
+      {
+        "id": "c",
+        "text": "栈不变，只把栈顶值复制给 value"
+      },
+      {
+        "id": "d",
+        "text": "栈顶自动变成 0"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "top 返回栈顶引用但不删除元素；赋给 int value 时复制出一份值。"
+  },
+  {
+    "id": "pop-return-type",
+    "prompt": "为什么不能写 `int value = st.pop();`？",
+    "options": [
+      {
+        "id": "a",
+        "text": "pop 只能删除栈底"
+      },
+      {
+        "id": "b",
+        "text": "pop 的返回类型是 void，只负责删除栈顶"
+      },
+      {
+        "id": "c",
+        "text": "value 必须是 string"
+      },
+      {
+        "id": "d",
+        "text": "stack 不允许删除元素"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "需要原栈顶时先用 top 保存，再调用不返回元素的 pop。"
+  },
+  {
+    "id": "empty-precondition",
+    "prompt": "题目不保证操作合法时，调用 `top()` 或 `pop()` 以前应先做什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "调用 `size()` 把栈扩大"
+      },
+      {
+        "id": "b",
+        "text": "重新声明一个同名栈"
+      },
+      {
+        "id": "c",
+        "text": "指定底层容器为 vector"
+      },
+      {
+        "id": "d",
+        "text": "用 `empty()` 确认栈非空"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "空栈没有合法栈顶；不满足非空前置条件就不能调用 top 或 pop。"
+  },
+  {
+    "id": "top-reference-lifetime",
+    "prompt": "下面代码中的引用 `value` 为什么不能在 `pop()` 后继续使用？\n\n`int& value = st.top();`\n`st.pop();`",
+    "options": [
+      {
+        "id": "a",
+        "text": "pop 销毁了该引用原来指向的栈顶对象"
+      },
+      {
+        "id": "b",
+        "text": "所有 int 引用只能读取一次"
+      },
+      {
+        "id": "c",
+        "text": "top 返回的从来不是引用"
+      },
+      {
+        "id": "d",
+        "text": "pop 会销毁整个程序"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "删除栈顶后，指向该对象的引用失效；需要保留值时应先复制。"
+  },
+  {
+    "id": "container-adaptor",
+    "prompt": "`stack` 被称为容器适配器，核心含义是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "它把所有容器自动转换成数组"
+      },
+      {
+        "id": "b",
+        "text": "它只能保存其他容器对象"
+      },
+      {
+        "id": "c",
+        "text": "它限制已有序列容器，只暴露栈所需的末端操作"
+      },
+      {
+        "id": "d",
+        "text": "它允许使用下标访问任意元素"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "stack 在底层容器之上提供受限的 push、top、pop 等 LIFO 接口。"
+  },
+  {
+    "id": "no-iteration",
+    "prompt": "算法需要反复随机访问并遍历全部元素时，为什么通常不应选择 `stack`？",
+    "options": [
+      {
+        "id": "a",
+        "text": "stack 只能保存字符"
+      },
+      {
+        "id": "b",
+        "text": "stack 不提供下标和普通迭代器，接口语义不匹配"
+      },
+      {
+        "id": "c",
+        "text": "stack 的 push 一定是 O(n²)"
+      },
+      {
+        "id": "d",
+        "text": "stack 不能判断是否为空"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "受限接口只适合后进先出；需要随机访问或保留式遍历应选择相应序列容器。"
+  }
+]

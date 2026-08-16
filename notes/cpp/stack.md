@@ -1,6 +1,6 @@
-# 容器适配器：stack
+# stack
 
-> 最近修订：2026-08-13 21:34 +10:00（未审阅）
+> 最近修订：2026-08-16 11:02 +10:00（未审阅）
 
 [栈](../algorithm-basics/stack.md) 已经解释后进先出（LIFO）、数组实现和 `push`、`top`、`pop`、`empty` 四个抽象操作。实际比赛通常不需要重新实现普通栈，标准库 `stack` 已经提供了完全对应的受限接口。
 
@@ -20,7 +20,7 @@ stack<int> st;
 
 ```cpp
 stack<char> brackets;
-stack<pair<int, int>> positions;
+stack<string> history;
 ```
 
 标准头文件是 `<stack>`。本仓库完整竞赛代码统一使用：
@@ -159,7 +159,7 @@ st.empty() == (st.size() == 0)
 底层末端删除     -> pop
 ```
 
-这种把已有容器接口改造成另一种受限行为的类型称为容器适配器（container adaptor）。`stack<int>` 默认使用 `deque<int>` 作为底层容器。
+这种把已有容器接口改造成另一种受限行为的类型称为容器适配器（container adaptor）。`stack<int>` 默认使用 `deque<int>` 作为底层容器。这里暂时只需知道 `deque` 能在末端提供这些操作，不需要提前学习它的完整接口。
 
 也可以显式指定 `vector`：
 
@@ -227,7 +227,7 @@ printf("%d\n", st.empty());
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+void solve() {
     int q;
     scanf("%d", &q);
 
@@ -253,7 +253,10 @@ int main() {
             printf("%d\n", st.empty());
         }
     }
+}
 
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -324,7 +327,7 @@ int main() {
 
 ## 需要记住什么
 
-1. 怎样声明保存 `int`、`char` 或 `pair<int, int>` 的 `stack`？
+1. 怎样声明保存 `int`、`char` 或 `string` 的 `stack`？
 2. `push`、`top`、`pop`、`empty`、`size` 分别做什么？
 3. 为什么取出并删除栈顶必须先 `top()` 再 `pop()`？
 4. 哪两个接口只能在非空栈上调用？前置条件应由什么保证？
