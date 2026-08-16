@@ -1,0 +1,74 @@
+[
+  {
+    "id": "line-segment-parameter",
+    "prompt": "`P(t)=A+t(B-A)` 中，怎样得到闭线段 `AB`？",
+    "options": [
+      { "id": "a", "text": "限制 `0 <= t <= 1`" },
+      { "id": "b", "text": "只允许 `t < 0`" },
+      { "id": "c", "text": "让 `t` 取任意实数" },
+      { "id": "d", "text": "固定 `t = 2`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "t 从 0 到 1 恰好从端点 A 移动到端点 B，并包含两端。"
+  },
+  {
+    "id": "point-on-segment",
+    "prompt": "判断点 `P` 在线段 `AB` 上需要哪些条件？",
+    "options": [
+      { "id": "a", "text": "只需三点共线" },
+      { "id": "b", "text": "只需横坐标位于端点之间" },
+      { "id": "c", "text": "三点共线，且 P 的坐标位于端点包围盒内" },
+      { "id": "d", "text": "`P` 到原点距离最小" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "共线点可能落在延长线上，包围盒进一步限制到有限线段。"
+  },
+  {
+    "id": "proper-intersection",
+    "prompt": "两线段规范相交需要什么？",
+    "options": [
+      { "id": "a", "text": "任意三个端点共线" },
+      { "id": "b", "text": "每条线段的端点严格分处另一条直线两侧" },
+      { "id": "c", "text": "两条线段长度相等" },
+      { "id": "d", "text": "两个左端点重合" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "两组方向值都严格异号时，线段内部互相穿过。"
+  },
+  {
+    "id": "boundary-cases",
+    "prompt": "为什么完整相交判定要额外检查 `orientation == 0` 的端点？",
+    "options": [
+      { "id": "a", "text": "为了计算线段长度" },
+      { "id": "b", "text": "为了把所有线段变成直线" },
+      { "id": "c", "text": "为了避免保存坐标" },
+      { "id": "d", "text": "严格异号会漏掉端点接触与共线重叠" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "边界相交至少有一个方向值为零，不满足严格异号。"
+  },
+  {
+    "id": "opposite-without-product",
+    "prompt": "为什么用符号分支判断异号，而不直接计算 `a*b < 0`？",
+    "options": [
+      { "id": "a", "text": "避免没有必要的乘法溢出" },
+      { "id": "b", "text": "因为负数不能相乘" },
+      { "id": "c", "text": "因为叉积只能是 0" },
+      { "id": "d", "text": "为了改变相交定义" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两个已在范围内的方向值相乘仍可能超出类型范围。"
+  },
+  {
+    "id": "line-intersection-denominator",
+    "prompt": "求两直线唯一交点前，为什么要检查方向向量叉积不为 0？",
+    "options": [
+      { "id": "a", "text": "它决定端点是否为整数" },
+      { "id": "b", "text": "叉积为 0 时直线平行或重合，没有唯一交点" },
+      { "id": "c", "text": "叉积为 0 时两线一定垂直" },
+      { "id": "d", "text": "为了让参数 `t` 等于 0" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "交点参数公式以方向叉积为分母，零分母对应无唯一解。"
+  }
+]
