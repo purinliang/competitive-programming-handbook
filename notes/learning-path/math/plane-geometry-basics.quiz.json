@@ -1,0 +1,50 @@
+[
+  {
+    "id": "geometry-angle-vertex",
+    "prompt": "角 `∠ABC` 的顶点是哪一个点？",
+    "options": [
+      { "id": "a", "text": "点 `A`" },
+      { "id": "b", "text": "点 `B`" },
+      { "id": "c", "text": "点 `C`" },
+      { "id": "d", "text": "无法确定" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "角记号的中间字母是顶点，两边是从该点出发的两条射线。"
+  },
+  {
+    "id": "geometry-triangle-existence",
+    "prompt": "三个正长度已经排序为 `a <= b <= c`，何时能组成非退化三角形？",
+    "options": [
+      { "id": "a", "text": "`a + b < c`" },
+      { "id": "b", "text": "`a + b == c`" },
+      { "id": "c", "text": "`a * b > c`" },
+      { "id": "d", "text": "`a + b > c`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "排序后三角形不等式只需检查最短两边之和严格大于最长边；等号是退化情况。"
+  },
+  {
+    "id": "geometry-pythagorean",
+    "prompt": "直角三角形两条直角边为 `a,b`，斜边为 `c`，满足什么？",
+    "options": [
+      { "id": "a", "text": "`a² + b² = c²`" },
+      { "id": "b", "text": "`a + b = c`" },
+      { "id": "c", "text": "`a² - b² = c²`" },
+      { "id": "d", "text": "`ab = c`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "勾股定理把两条直角边平方和与斜边平方联系起来。"
+  },
+  {
+    "id": "geometry-circle-area",
+    "prompt": "半径为 `r` 的圆面积是什么？",
+    "options": [
+      { "id": "a", "text": "`2πr`" },
+      { "id": "b", "text": "`πr`" },
+      { "id": "c", "text": "`πr²`" },
+      { "id": "d", "text": "`4πr²`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`2πr` 是圆周长，圆面积是 `πr²`。"
+  }
+]
