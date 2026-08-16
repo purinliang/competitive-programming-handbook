@@ -1,0 +1,50 @@
+[
+  {
+    "id": "linked-fields",
+    "prompt": "链式前向星中 `head[u]` 与 `edge[i].next` 分别表示什么？",
+    "options": [
+      { "id": "a", "text": "u 的第一条边下标，以及同起点下一条边下标" },
+      { "id": "b", "text": "u 的父节点，以及边 i 的终点" },
+      { "id": "c", "text": "u 的度数，以及边 i 的反向边" },
+      { "id": "d", "text": "两者都表示边权" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "数组下标把同一起点的邻接项串成链，head 是链表入口。"
+  },
+  {
+    "id": "head-insertion",
+    "prompt": "头插一条从 u 出发的新边时，正确顺序是什么？",
+    "options": [
+      { "id": "a", "text": "先清空全部旧边" },
+      { "id": "b", "text": "新边 next 指向旧 head[u]，再让 head[u] 指向新边" },
+      { "id": "c", "text": "让所有边的 next 都指向自己" },
+      { "id": "d", "text": "按终点排序后才能加入" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "这使每次插入为 O(1)，代价是枚举顺序与输入顺序相反。"
+  },
+  {
+    "id": "reverse-edge",
+    "prompt": "为什么成对边从编号 0 开始连续插入后，可用 `i^1` 找反向边？",
+    "options": [
+      { "id": "a", "text": "异或 1 会在偶数 2k 与奇数 2k+1 之间切换" },
+      { "id": "b", "text": "异或 1 会交换边的端点字段" },
+      { "id": "c", "text": "所有边编号都等于 1" },
+      { "id": "d", "text": "这是 vector 自动提供的接口" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "约定依赖编号奇偶配对，插入额外单边会破坏这种关系。"
+  },
+  {
+    "id": "use-case",
+    "prompt": "链式前向星相对 vector 邻接表最有价值的场景是什么？",
+    "options": [
+      { "id": "a", "text": "所有普通 BFS 都必须使用它" },
+      { "id": "b", "text": "只需要保存点权" },
+      { "id": "c", "text": "需要高频定位成对反向边，如欧拉图和网络流" },
+      { "id": "d", "text": "需要邻接矩阵的 O(1) 判边" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "普通图遍历优先使用更简单的 vector；反向边配对是这里的核心收益。"
+  }
+]
