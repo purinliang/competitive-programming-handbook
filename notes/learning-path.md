@@ -506,7 +506,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 050602 | 乘法原理 | 数学 | [math/multiplication-principle.md](math/multiplication-principle.md) |
 | 050603 | 排列数 | 数学 | [math/permutations-count.md](math/permutations-count.md) |
 | 050604 | 组合数与二项式系数 | 数学 | [math/binomial-coefficients.md](math/binomial-coefficients.md) |
-| 050605 | 二项式定理 | 数学 | `math/binomial-theorem.md` |
+| 050605 | 二项式定理 | 数学 | [math/binomial-theorem.md](math/binomial-theorem.md) |
 | 050606 | 杨辉三角 | 数学 | `math/pascal-triangle.md` |
 
 组合数与二项式系数是同一个数学对象的两种名称。杨辉三角从组合数递推式推导，并

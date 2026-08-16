@@ -1,0 +1,63 @@
+[
+  {
+    "id": "coefficient-source",
+    "prompt": "$(x+y)^n$ 中 $x^{n-k}y^k$ 的系数为什么是 $C(n,k)$？",
+    "options": [
+      { "id": "a", "text": "因为要从 n 个因式中选择恰好 k 个取 y" },
+      { "id": "b", "text": "因为 x 和 y 都只能出现一次" },
+      { "id": "c", "text": "因为所有项的系数都等于 n" },
+      { "id": "d", "text": "因为 k 个因式会被删除" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每个因式贡献 x 或 y；确定哪些 k 个因式贡献 y，就唯一确定了一次乘积来源。"
+  },
+  {
+    "id": "term-count",
+    "prompt": "合并同类项后，$(x+y)^n$ 的展开式共有多少项？",
+    "options": [
+      { "id": "a", "text": "n 项" },
+      { "id": "b", "text": "2n 项" },
+      { "id": "c", "text": "n+1 项" },
+      { "id": "d", "text": "2^n 项" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "y 的指数 k 可以取 0 到 n，共 n+1 种；2^n 是合并前的选择数和系数和。"
+  },
+  {
+    "id": "coefficient-sum",
+    "prompt": "为什么 $\sum_{k=0}^{n}C(n,k)=2^n$？",
+    "options": [
+      { "id": "a", "text": "因为每个组合数都等于 2" },
+      { "id": "b", "text": "因为 n! 恒等于 2^n" },
+      { "id": "c", "text": "因为展开式只有偶数项" },
+      { "id": "d", "text": "在二项式定理中令 x=y=1 即得到 (1+1)^n" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "代入后每个幂都变为 1，左侧只剩全部二项式系数之和。"
+  },
+  {
+    "id": "general-term",
+    "prompt": "二项展开式的第 `k+1` 项是什么？",
+    "options": [
+      { "id": "a", "text": "$C(n,k)x^ky^k$" },
+      { "id": "b", "text": "$C(n,k)x^{n-k}y^k$" },
+      { "id": "c", "text": "$C(k,n)x^{n+k}y$" },
+      { "id": "d", "text": "$n!x^{n-k}y^{n-k}$" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "选择 k 个因式取 y 后，剩余 n-k 个因式取 x；自然语言项号比 k 多 1。"
+  },
+  {
+    "id": "cpp-caret",
+    "prompt": "在 C++ 中，表达式 `x ^ 3` 表示什么？",
+    "options": [
+      { "id": "a", "text": "x 的三次方" },
+      { "id": "b", "text": "x 乘以 3" },
+      { "id": "c", "text": "x 与 3 的按位异或" },
+      { "id": "d", "text": "x 的平方根" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "C++ 没有通用乘方运算符；^ 是按位异或。"
+  }
+]
+
