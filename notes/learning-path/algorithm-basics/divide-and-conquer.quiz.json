@@ -1,0 +1,98 @@
+[
+  {
+    "id": "divide-three-steps",
+    "prompt": "分治的三个核心步骤是什么？",
+    "options": [
+      { "id": "a", "text": "输入、输出、结束" },
+      { "id": "b", "text": "划分、解决、合并" },
+      { "id": "c", "text": "排序、去重、二分" },
+      { "id": "d", "text": "压栈、出栈、清空" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "先形成更小的同类子问题，解决它们，再恢复原问题的答案。"
+  },
+  {
+    "id": "divide-not-middle-only",
+    "prompt": "为什么“从中间递归”本身还不能说明算法是正确的分治？",
+    "options": [
+      { "id": "a", "text": "还要定义子问题答案、保证缩小并完成正确合并" },
+      { "id": "b", "text": "中点在 C++ 中无法计算" },
+      { "id": "c", "text": "递归只能处理字符串" },
+      { "id": "d", "text": "分治不能使用数组" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "划分必须可终止，子问题返回值还必须足以覆盖原问题全部情况。"
+  },
+  {
+    "id": "maximum-subarray-cases",
+    "prompt": "最大子段相对中点被分成哪三类？",
+    "options": [
+      { "id": "a", "text": "正数、负数、零" },
+      { "id": "b", "text": "奇数长度、偶数长度、空段" },
+      { "id": "c", "text": "完全在左、完全在右、跨过分界" },
+      { "id": "d", "text": "升序、降序、随机" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "三类覆盖所有非空连续子段，前两类递归，第三类在当前层合并。"
+  },
+  {
+    "id": "crossing-subarray",
+    "prompt": "跨中点的连续子段为什么是“左后缀 + 右前缀”？",
+    "options": [
+      { "id": "a", "text": "因为它必须连续经过 mid 与 mid+1" },
+      { "id": "b", "text": "因为左右两边必须等长" },
+      { "id": "c", "text": "因为前缀和后缀一定为正" },
+      { "id": "d", "text": "因为只允许选择两个元素" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "若左侧不以 mid 结尾或右侧不以 mid+1 开始，中间就会出现空隙。"
+  },
+  {
+    "id": "nonempty-base-case",
+    "prompt": "本题为什么在 `l == r` 时返回 `a[l]` 而不是 `0`？",
+    "options": [
+      { "id": "a", "text": "为了把答案限制成偶数" },
+      { "id": "b", "text": "因为题目要求子段非空，全负数组也必须选元素" },
+      { "id": "c", "text": "因为 a[l] 永远为正" },
+      { "id": "d", "text": "因为 0 不能存入 long long" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "把 0 作为候选会让全负数组错误选择不存在的空子段。"
+  },
+  {
+    "id": "divide-recursion-shrinks",
+    "prompt": "为什么递归区间使用 `[l,mid]` 与 `[mid+1,r]`？",
+    "options": [
+      { "id": "a", "text": "它们都与原区间一样长" },
+      { "id": "b", "text": "它们重叠所有位置" },
+      { "id": "c", "text": "两个闭区间完整覆盖原区间且都严格更短" },
+      { "id": "d", "text": "这样会跳过中点" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "完整覆盖保证答案不漏，严格缩小保证每条调用链最终终止。"
+  },
+  {
+    "id": "divide-time",
+    "prompt": "本篇最大子段和分治为什么是 O(n log n)？",
+    "options": [
+      { "id": "a", "text": "递归树每层总扫描 O(n)，共有 O(log n) 层" },
+      { "id": "b", "text": "一共只有一次函数调用" },
+      { "id": "c", "text": "每个子段只包含一个元素" },
+      { "id": "d", "text": "所有递归算法都是 O(n log n)" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "均匀二分产生对数层，每层跨中点扫描的区间总长仍为 n。"
+  },
+  {
+    "id": "divide-vs-recursion",
+    "prompt": "分治与递归的关系是什么？",
+    "options": [
+      { "id": "a", "text": "两者是完全相同的定义" },
+      { "id": "b", "text": "分治是一种问题分解思路，递归是常见实现方式" },
+      { "id": "c", "text": "分治禁止函数调用自身" },
+      { "id": "d", "text": "递归必然包含两个子问题" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "递归描述程序调用结构；分治还要求划分子问题并正确合并答案。"
+  }
+]

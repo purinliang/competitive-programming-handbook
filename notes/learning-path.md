@@ -184,7 +184,7 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0209 | 分治：基础 | 算法基础 | [algorithm-basics/divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
+| 0209 | 分治 | 算法基础 | [algorithm-basics/divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
 
 ### 学习单元：二分
 
