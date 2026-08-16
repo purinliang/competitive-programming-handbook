@@ -1,0 +1,50 @@
+[
+  {
+    "id": "stored-state",
+    "prompt": "寻找右边第一个严格更大元素时，单调栈保存什么？",
+    "options": [
+      { "id": "a", "text": "已经找到答案的位置" },
+      { "id": "b", "text": "仍在等待答案的位置下标" },
+      { "id": "c", "text": "数组中所有不同数值" },
+      { "id": "d", "text": "当前位置右边的完整区间" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "下标既指出答案写回哪里，也保留相同数值元素各自的位置。"
+  },
+  {
+    "id": "first-greater",
+    "prompt": "新位置 i 弹出旧位置 u 时，为什么 i 是 u 右边第一个严格更大位置？",
+    "options": [
+      { "id": "a", "text": "若中间已有更大位置，u 当时就会被弹出" },
+      { "id": "b", "text": "因为 i 一定是数组最大值" },
+      { "id": "c", "text": "因为栈只保存相邻下标" },
+      { "id": "d", "text": "因为所有元素互不相同" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "扫描按位置前进，u 能留到 i 说明此前没有任何位置满足严格更大条件。"
+  },
+  {
+    "id": "strict-comparison",
+    "prompt": "寻找严格更大元素时，遇到相等数值应该怎样处理栈顶？",
+    "options": [
+      { "id": "a", "text": "弹出并把当前下标作为答案" },
+      { "id": "b", "text": "把两个下标合并" },
+      { "id": "c", "text": "不能因相等而弹出" },
+      { "id": "d", "text": "清空整个栈" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "相等不满足严格更大；使用 <= 弹出会改变问题定义。"
+  },
+  {
+    "id": "amortized-time",
+    "prompt": "代码含有内层 `while`，总时间为什么仍是 O(n)？",
+    "options": [
+      { "id": "a", "text": "while 最多执行一次" },
+      { "id": "b", "text": "编译器会删除 while" },
+      { "id": "c", "text": "栈的容量是常数" },
+      { "id": "d", "text": "每个下标只入栈一次、最多出栈一次" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "按元素的完整生命周期计数，全部弹栈次数之和不超过 n。"
+  }
+]
