@@ -1,0 +1,122 @@
+[
+  {
+    "id": "duplicate-size",
+    "prompt": "向 `multiset<int>` 依次插入 `5, 2, 5, 8` 后，`size()` 返回多少？",
+    "options": [
+      { "id": "a", "text": "3" },
+      { "id": "b", "text": "4" },
+      { "id": "c", "text": "2" },
+      { "id": "d", "text": "插入重复值会失败" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`multiset` 保留每次插入的副本，`size()` 统计全部元素而不是不同键数。"
+  },
+  {
+    "id": "insert-return",
+    "prompt": "`multiset::insert(value)` 返回什么？",
+    "options": [
+      { "id": "a", "text": "本次插入后的元素数量" },
+      { "id": "b", "text": "删除重复元素的数量" },
+      { "id": "c", "text": "迭代器与布尔量组成的 pair" },
+      { "id": "d", "text": "指向新插入副本的迭代器" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每次插入都会新增一个副本，因此不需要返回是否新增的布尔量。"
+  },
+  {
+    "id": "count-complexity",
+    "prompt": "含有 n 个元素、键 x 有 k 个副本时，`values.count(x)` 的复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(\\log n+k)$" },
+      { "id": "b", "text": "$O(1)$" },
+      { "id": "c", "text": "$O(\\log k)$" },
+      { "id": "d", "text": "$O(n\\log n)$" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "先定位等值区间，再移动迭代器数出其中 k 个元素；重复很多时不能忽略 k。"
+  },
+  {
+    "id": "erase-one",
+    "prompt": "若 x 存在，怎样只删除 `multiset` 中的一份 x？",
+    "options": [
+      { "id": "a", "text": "直接调用 `values.erase(x)`" },
+      { "id": "b", "text": "调用 `values.clear()` 后重新插入其他值" },
+      { "id": "c", "text": "先 `find(x)`，确认不是 `end()`，再 `erase(it)`" },
+      { "id": "d", "text": "调用 `values.count(x) - 1`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "按迭代器删除只移除该位置的一份；按键重载会删除全部等价键。"
+  },
+  {
+    "id": "erase-all",
+    "prompt": "`values.erase(x)` 在 `multiset` 中会怎样？",
+    "options": [
+      { "id": "a", "text": "只删除任意一份 x" },
+      { "id": "b", "text": "删除全部等价的 x，并返回删除数量" },
+      { "id": "c", "text": "返回指向第一份 x 的迭代器" },
+      { "id": "d", "text": "只有 x 恰好出现一次时才删除" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "按键删除覆盖完整等值区间；需要只删一份时必须使用合法迭代器重载。"
+  },
+  {
+    "id": "equal-range",
+    "prompt": "默认升序 `multiset` 的 `equal_range(x)` 表示哪个区间？",
+    "options": [
+      { "id": "a", "text": "从最小值到第一份 x" },
+      { "id": "b", "text": "全部小于等于 x 的元素" },
+      { "id": "c", "text": "全部大于等于 x 的元素" },
+      { "id": "d", "text": "`[lower_bound(x), upper_bound(x))`，恰好包含全部等价的 x" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "相等键在有序容器中连续；左边界是第一份 x，右边界是第一个严格大于 x 的位置。"
+  },
+  {
+    "id": "pop-one-minimum",
+    "prompt": "非空 `multiset` 中，怎样读取并只删除一份当前最小值？",
+    "options": [
+      { "id": "a", "text": "先读取 `*values.begin()`，再调用 `values.erase(values.begin())`" },
+      { "id": "b", "text": "读取后调用 `values.erase(minimum)`" },
+      { "id": "c", "text": "调用 `values.pop()`" },
+      { "id": "d", "text": "调用 `values.erase(values.end())`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`begin()` 指向一份最小值；按迭代器删除只移除该副本，按键删除会移除全部相同最小值。"
+  },
+  {
+    "id": "equivalent-keys",
+    "prompt": "自定义比较器下，`multiset` 怎样判断两个对象属于同一个等值区间？",
+    "options": [
+      { "id": "a", "text": "两个对象地址相同" },
+      { "id": "b", "text": "它们的全部成员逐字节相同" },
+      { "id": "c", "text": "两个比较方向都返回 false" },
+      { "id": "d", "text": "两个比较方向都返回 true" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "有序关联容器用严格顺序中的等价关系，不会另行依赖 `operator==`。"
+  },
+  {
+    "id": "frequent-counting",
+    "prompt": "某个值可能重复很多，题目又要高频查询次数时，只用 `multiset::count` 可能有什么问题？",
+    "options": [
+      { "id": "a", "text": "count 会删除全部副本" },
+      { "id": "b", "text": "每次查询都可能遍历整段等值元素，产生 O(k) 工作" },
+      { "id": "c", "text": "count 只能返回 0 或 1" },
+      { "id": "d", "text": "count 要求容器无序" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "高频计数更适合显式维护“键到次数”的映射，避免反复走过大量副本。"
+  },
+  {
+    "id": "find-complexity",
+    "prompt": "`multiset::find(x)` 为什么仍是 $O(\\log n)$，而不是 $O(\\log n+k)$？",
+    "options": [
+      { "id": "a", "text": "它只需定位任意一份等价元素，不需要数出全部 k 份" },
+      { "id": "b", "text": "它会先删除重复元素" },
+      { "id": "c", "text": "它只适用于没有重复键的容器" },
+      { "id": "d", "text": "它会把全部元素复制到数组" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "找到一个匹配位置即可返回；只有计数、遍历或删除完整等值区间时才需要处理 k 个副本。"
+  }
+]
