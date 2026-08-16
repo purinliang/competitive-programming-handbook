@@ -1,0 +1,86 @@
+[
+  {
+    "id": "lower-bound-definition",
+    "prompt": "下界 `lower_bound` 的准确含义是什么？",
+    "options": [
+      { "id": "a", "text": "第一个严格大于 target 的位置" },
+      { "id": "b", "text": "最后一个等于 target 的位置" },
+      { "id": "c", "text": "第一个不小于 target 的位置" },
+      { "id": "d", "text": "数组最小值的位置" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "不小于就是 >=；即使 target 不存在，下界也可能指向下一个更大值。"
+  },
+  {
+    "id": "upper-bound-definition",
+    "prompt": "上界 `upper_bound` 寻找什么？",
+    "options": [
+      { "id": "a", "text": "第一个严格大于 target 的位置" },
+      { "id": "b", "text": "第一个等于 target 的位置" },
+      { "id": "c", "text": "最后一个不大于 target 的位置" },
+      { "id": "d", "text": "任意一个较小值" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "它把所有小于或等于 target 的元素留在自己左侧。"
+  },
+  {
+    "id": "boundary-continue-left",
+    "prompt": "下界查找遇到 `a[mid] >= target` 时为什么还要向左？",
+    "options": [
+      { "id": "a", "text": "mid 一定不合法" },
+      { "id": "b", "text": "左边可能还有更早的可行位置" },
+      { "id": "c", "text": "数组一定是降序" },
+      { "id": "d", "text": "为了删除 target" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "mid 先保存为候选答案，边界问题还要证明它是否最早。"
+  },
+  {
+    "id": "boundary-sentinel",
+    "prompt": "本篇用 `n + 1` 表示什么？",
+    "options": [
+      { "id": "a", "text": "数组第一个元素" },
+      { "id": "b", "text": "目标出现次数" },
+      { "id": "c", "text": "最后一个合法下标" },
+      { "id": "d", "text": "不存在符合条件的位置" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "1-based 逻辑数组的合法范围是 1..n，紧随其后的 n+1 可作哨兵。"
+  },
+  {
+    "id": "boundary-count",
+    "prompt": "目标值的下界为 `lower`、上界为 `upper`，出现次数是多少？",
+    "options": [
+      { "id": "a", "text": "`upper - lower`" },
+      { "id": "b", "text": "`upper + lower`" },
+      { "id": "c", "text": "`upper - lower + 1`" },
+      { "id": "d", "text": "始终为 1" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "相等区间是 [lower,upper-1]，其闭区间长度为 upper-lower。"
+  },
+  {
+    "id": "last-not-greater",
+    "prompt": "最后一个不大于 target 的位置怎样得到？",
+    "options": [
+      { "id": "a", "text": "lower_bound + 1" },
+      { "id": "b", "text": "upper_bound - 1" },
+      { "id": "c", "text": "始终是 n" },
+      { "id": "d", "text": "binary_search 返回值乘 2" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "upper_bound 是第一个严格更大的位置，它前一格就是最后一个 <=。"
+  },
+  {
+    "id": "boundary-two-searches",
+    "prompt": "先求下界再求上界的总时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "O(1)" },
+      { "id": "b", "text": "O(n)" },
+      { "id": "c", "text": "O(log n)" },
+      { "id": "d", "text": "O(log² n)" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "两个 O(log n) 顺序相加仍是 O(log n)。"
+  }
+]
