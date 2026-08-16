@@ -516,7 +516,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 050701 | 区间 DP | 动态规划 | `dynamic-programming/interval-dp.md` |
+| 050701 | 区间 DP | 动态规划 | [dynamic-programming/interval-dp.md](dynamic-programming/interval-dp.md) |
 
 区间 DP 按区间长度从短到长推进：区间长度 `len` 是阶段，当前区间 `[l,r]` 是
 状态，分割点或最后一次操作是决策。代码通常直接保存 `f[l][r]`，而

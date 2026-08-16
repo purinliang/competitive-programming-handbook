@@ -690,7 +690,7 @@
 | 040801 | 0-1 背包 | 待审阅 | [zero-one-knapsack.md](dynamic-programming/zero-one-knapsack.md) |
 | 040704 | 最长上升子序列 | 待审阅 | [longest-increasing-subsequence.md](dynamic-programming/longest-increasing-subsequence.md) |
 | *040704e1 | 最长上升子序列：$O(n\log n)$ 优化 | 计划 | `dynamic-programming/lis-n-log-n.md` |
-| 050701 | 区间 DP | 计划 | `dynamic-programming/interval-dp.md` |
+| 050701 | 区间 DP | 待审阅 | [interval-dp.md](dynamic-programming/interval-dp.md) |
 | 061902 | 动态规划：DAG 上的 DP | 计划 | `dynamic-programming/dag-dp.md` |
 | 061903 | 动态规划：树形 DP | 计划 | `dynamic-programming/tree-dp.md` |
 | 061904 | 动态规划：状压 DP | 计划 | `dynamic-programming/bitmask-dp.md` |

@@ -1,0 +1,75 @@
+[
+  {
+    "id": "interval-state",
+    "prompt": "相邻石子合并中，`f[l][r]` 应表示什么？",
+    "options": [
+      { "id": "a", "text": "区间 [l,r] 的石子总数" },
+      { "id": "b", "text": "把原来的第 l..r 堆合并成一堆的最小代价" },
+      { "id": "c", "text": "只合并第 l 与第 r 堆的代价" },
+      { "id": "d", "text": "已经执行的合并次数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "状态必须完整描述一个可以递归分割的连续区间子问题。"
+  },
+  {
+    "id": "interval-stage",
+    "prompt": "基础区间 DP 中真正决定填表顺序的阶段是什么？",
+    "options": [
+      { "id": "a", "text": "区间长度 len" },
+      { "id": "b", "text": "只有左端点 l" },
+      { "id": "c", "text": "只有右端点 r" },
+      { "id": "d", "text": "石子的总重量" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "长区间依赖两个更短区间，因此必须从短到长推进。"
+  },
+  {
+    "id": "interval-decision",
+    "prompt": "石子合并转移中的分割点 `k` 表示什么决策？",
+    "options": [
+      { "id": "a", "text": "第一颗石子放在哪一堆" },
+      { "id": "b", "text": "删除哪一堆石子" },
+      { "id": "c", "text": "最后一次合并前左右两堆的分界" },
+      { "id": "d", "text": "前缀和数组的长度" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "最后一步把 [l,k] 与 [k+1,r] 两堆合并，枚举 k 就覆盖所有最后决策。"
+  },
+  {
+    "id": "interval-extra-cost",
+    "prompt": "为什么转移还要加上 `range_sum(l,r)`？",
+    "options": [
+      { "id": "a", "text": "为了初始化 f[i][i]" },
+      { "id": "b", "text": "为了计算区间长度" },
+      { "id": "c", "text": "为了让答案一定为正" },
+      { "id": "d", "text": "左右两侧各自合并后，最后把两堆合并还要付出整个区间的石子数" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "两个子状态只包含各自内部代价，并未计算连接它们的最后一次操作。"
+  },
+  {
+    "id": "interval-base",
+    "prompt": "石子合并中为什么 `f[i][i]=0`？",
+    "options": [
+      { "id": "a", "text": "单独一堆已经满足目标，不需要执行合并" },
+      { "id": "b", "text": "因为第 i 堆没有石子" },
+      { "id": "c", "text": "因为所有输入都等于 0" },
+      { "id": "d", "text": "因为前缀和无法处理单点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "状态值是合并代价，不是区间重量；没有操作就没有代价。"
+  },
+  {
+    "id": "interval-complexity",
+    "prompt": "基础石子合并区间 DP 的时间和空间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "时间 O(n)，空间 O(1)" },
+      { "id": "b", "text": "时间 O(n^2)，空间 O(n)" },
+      { "id": "c", "text": "时间 O(n^3)，空间 O(n^2)" },
+      { "id": "d", "text": "时间 O(2^n)，空间 O(n^3)" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "平方个区间各自枚举线性数量的分割点；状态表本身是二维。"
+  }
+]
+
