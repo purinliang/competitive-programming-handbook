@@ -1,194 +1,50 @@
 [
   {
-    "id": "node-fields",
-    "prompt": "最基础的单向链表节点至少需要保存什么？",
+    "id": "linked-list-node-fields",
+    "prompt": "最基础的单向链表节点至少要保存什么？",
     "options": [
-      {
-        "id": "a",
-        "text": "数组容量和逻辑长度"
-      },
-      {
-        "id": "b",
-        "text": "当前值和下一个节点的链接"
-      },
-      {
-        "id": "c",
-        "text": "前后所有节点的完整副本"
-      },
-      {
-        "id": "d",
-        "text": "排序后的下标"
-      }
-    ],
-    "correctOptionId": "b",
-    "explanation": "单向链表由节点值与 next 链接组成；沿 next 才能恢复逻辑顺序。"
-  },
-  {
-    "id": "index-versus-position",
-    "prompt": "为什么索引实现中的节点编号不等于链表中的逻辑位置？",
-    "options": [
-      {
-        "id": "a",
-        "text": "节点编号每次遍历都会随机改变"
-      },
-      {
-        "id": "b",
-        "text": "逻辑位置只能保存负数"
-      },
-      {
-        "id": "c",
-        "text": "插入只改链接，建立节点时得到的编号不会随顺序移动"
-      },
-      {
-        "id": "d",
-        "text": "链表不能保存整数编号"
-      }
-    ],
-    "correctOptionId": "c",
-    "explanation": "节点编号定位存储格，逻辑位置由从首节点沿 next 得到的先后顺序决定。"
-  },
-  {
-    "id": "insert-link-order",
-    "prompt": "把新节点 `v` 插到已知节点 `u` 后面时，为什么应先令 `v` 接住旧后继？",
-    "options": [
-      {
-        "id": "a",
-        "text": "这样才能改变 v 的值"
-      },
-      {
-        "id": "b",
-        "text": "这样能把查找复杂度变成 O(1)"
-      },
-      {
-        "id": "c",
-        "text": "C++ 要求赋值按节点编号递增"
-      },
-      {
-        "id": "d",
-        "text": "否则先覆盖 u 的 next 会丢失原来的后继"
-      }
-    ],
-    "correctOptionId": "d",
-    "explanation": "先保存旧链接，再改 u 的出口，才能保持后续链表仍然可达。"
-  },
-  {
-    "id": "dummy-head",
-    "prompt": "虚拟头节点主要解决什么问题？",
-    "options": [
-      {
-        "id": "a",
-        "text": "为首节点提供固定前驱，统一边界处的链接修改"
-      },
-      {
-        "id": "b",
-        "text": "让链表支持 O(1) 随机访问"
-      },
-      {
-        "id": "c",
-        "text": "让所有节点自动按值排序"
-      },
-      {
-        "id": "d",
-        "text": "把每个节点变成连续存储"
-      }
+      { "id": "a", "text": "当前值与下一个节点的链接" },
+      { "id": "b", "text": "前后所有节点的完整副本" },
+      { "id": "c", "text": "数组容量与排序结果" },
+      { "id": "d", "text": "所有节点之间的距离" }
     ],
     "correctOptionId": "a",
-    "explanation": "虚拟头节点消除首节点没有真实前驱的特殊分支，但不会减少按位置寻找前驱的时间。"
+    "explanation": "值保存数据，`next` 链接把节点组织成逻辑顺序。"
   },
   {
-    "id": "position-complexity",
-    "prompt": "只知道要操作第 k 个逻辑位置时，链表插入或删除为什么仍可能是 O(n)？",
+    "id": "linked-list-index-position",
+    "prompt": "为什么节点编号不一定等于链表中的逻辑位置？",
     "options": [
-      {
-        "id": "a",
-        "text": "每次修改 next 都需要 O(n)"
-      },
-      {
-        "id": "b",
-        "text": "必须先沿链接找到目标节点或它的前驱"
-      },
-      {
-        "id": "c",
-        "text": "必须移动目标后的全部节点"
-      },
-      {
-        "id": "d",
-        "text": "必须先建立邻接矩阵"
-      }
+      { "id": "a", "text": "节点编号只能使用负数" },
+      { "id": "b", "text": "逻辑顺序由链接决定，修改链接不要求节点重新编号" },
+      { "id": "c", "text": "链表不能保存整数" },
+      { "id": "d", "text": "每次读取都会随机改变编号" }
     ],
     "correctOptionId": "b",
-    "explanation": "链接修改是 O(1)，但从首节点逐项寻找第 k 个位置最坏需要 O(n)。"
+    "explanation": "编号定位存储位置；从 `head` 沿链接得到的先后关系才是逻辑位置。"
   },
   {
-    "id": "tail-limit",
-    "prompt": "单向链表额外保存 `tail` 后，哪项操作最坏仍是 O(n)？",
+    "id": "linked-list-random-access",
+    "prompt": "链表访问第 `k` 个逻辑元素最坏为什么需要 `O(n)` 时间？",
     "options": [
-      {
-        "id": "a",
-        "text": "在末尾追加节点"
-      },
-      {
-        "id": "b",
-        "text": "读取 tail 的节点编号"
-      },
-      {
-        "id": "c",
-        "text": "判断空链表"
-      },
-      {
-        "id": "d",
-        "text": "删除尾节点并找到它的前驱"
-      }
-    ],
-    "correctOptionId": "d",
-    "explanation": "单向链接不能从 tail 反向到前驱，因此删除末尾仍要从前面寻找。"
-  },
-  {
-    "id": "doubly-linked-list",
-    "prompt": "双向链表相对单向链表增加 `previous` 后，直接获得了什么能力？",
-    "options": [
-      {
-        "id": "a",
-        "text": "已知节点时能直接访问前驱并向两个方向遍历"
-      },
-      {
-        "id": "b",
-        "text": "按第 k 个逻辑位置访问变成 O(1)"
-      },
-      {
-        "id": "c",
-        "text": "所有节点不再占用空间"
-      },
-      {
-        "id": "d",
-        "text": "链表自动变成循环链表"
-      }
-    ],
-    "correctOptionId": "a",
-    "explanation": "previous 提供反向链接；随机按逻辑位置定位仍需逐项行走。"
-  },
-  {
-    "id": "circular-stop",
-    "prompt": "遍历非空循环链表时，为什么不能继续用“到达 0 就停止”的普通条件？",
-    "options": [
-      {
-        "id": "a",
-        "text": "循环链表不允许保存值"
-      },
-      {
-        "id": "b",
-        "text": "节点编号一定从负数开始"
-      },
-      {
-        "id": "c",
-        "text": "尾节点重新指向首节点，不会自然走到 0"
-      },
-      {
-        "id": "d",
-        "text": "循环链表只能反向遍历"
-      }
+      { "id": "a", "text": "每个节点都必须重新分配内存" },
+      { "id": "b", "text": "链表必须先排序" },
+      { "id": "c", "text": "需要从入口沿链接逐个经过前面的节点" },
+      { "id": "d", "text": "所有链接都必须同时修改" }
     ],
     "correctOptionId": "c",
-    "explanation": "循环结构没有普通尾端，遍历必须在重新回到起点等明确条件下结束。"
+    "explanation": "链表没有由逻辑位置直接计算节点地址的公式，只能沿链接前进。"
+  },
+  {
+    "id": "linked-list-insert-complexity",
+    "prompt": "说“链表插入是 `O(1)`”时，必须具备什么前提？",
+    "options": [
+      { "id": "a", "text": "链表中的值已经排序" },
+      { "id": "b", "text": "链表只能有一个节点" },
+      { "id": "c", "text": "所有节点在内存中连续" },
+      { "id": "d", "text": "插入位置所需的节点或前驱已经找到" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "修改固定数量的链接是 `O(1)`；若还要按第 `k` 个位置寻找前驱，总时间仍可能是 `O(n)`。"
   }
 ]
