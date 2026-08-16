@@ -1,0 +1,74 @@
+[
+  {
+    "id": "permutation-state",
+    "prompt": "进入 `dfs(position)` 时，`used[value]` 应表示什么？",
+    "options": [
+      { "id": "a", "text": "`value` 是否已经出现在当前排列前缀中" },
+      { "id": "b", "text": "`value` 是否曾在任意历史分支中出现" },
+      { "id": "c", "text": "`value` 是否大于 `position`" },
+      { "id": "d", "text": "`value` 是否已经输出到屏幕" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`used` 只描述当前递归路径已经选择的数字，用来保证一个排列内不重复。"
+  },
+  {
+    "id": "skip-used",
+    "prompt": "为什么当前位置可以跳过已经使用的数字？",
+    "options": [
+      { "id": "a", "text": "因为已经使用的数字一定比当前位置大" },
+      { "id": "b", "text": "因为重复一旦出现在前缀中，后续选择无法再消除它" },
+      { "id": "c", "text": "因为所有排列都必须递减" },
+      { "id": "d", "text": "因为递归不能处理相同整数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "排列要求每个数字只出现一次；当前前缀若重复，任何后缀都无法把它修复。"
+  },
+  {
+    "id": "undo-choice",
+    "prompt": "`dfs(position + 1)` 返回后为什么要执行 `used[value] = false`？",
+    "options": [
+      { "id": "a", "text": "为了删除已经输出的排列" },
+      { "id": "b", "text": "为了让递归深度减少两层" },
+      { "id": "c", "text": "为了恢复父状态，让同层其他选择不受当前分支影响" },
+      { "id": "d", "text": "为了把 `value` 永久禁止使用" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "占用只属于当前分支；处理完整棵子树后必须恢复进入这一层时的状态。"
+  },
+  {
+    "id": "no-clear-permutation",
+    "prompt": "为什么回溯时通常不必把 `permutation[position]` 清零？",
+    "options": [
+      { "id": "a", "text": "因为排列数组永远不会被读取" },
+      { "id": "b", "text": "因为零也是一个合法排列数字" },
+      { "id": "c", "text": "因为递归结束后程序立即退出" },
+      { "id": "d", "text": "因为下一次选择会先覆盖该位置，更浅层也不把它视为已确定前缀" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "需要恢复的是会影响合法选择的共享状态；当前位置的旧值在重新进入分支前会被覆盖。"
+  },
+  {
+    "id": "permutation-count",
+    "prompt": "`1..n` 的排列总数是多少？",
+    "options": [
+      { "id": "a", "text": "`n!`" },
+      { "id": "b", "text": "`2^n`" },
+      { "id": "c", "text": "`n^2`" },
+      { "id": "d", "text": "`log n`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "第一位有 n 种选择，后面依次有 n-1、n-2 直到 1 种，乘积是 n!。"
+  },
+  {
+    "id": "output-complexity",
+    "prompt": "输出每个排列的全部 `n` 个数字时，时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "`O(n)`" },
+      { "id": "b", "text": "`O(n · n!)`" },
+      { "id": "c", "text": "`O(2^n)`" },
+      { "id": "d", "text": "`O(log n)`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "共有 n! 个排列，每个答案需要输出 n 个数字。"
+  }
+]
