@@ -1,0 +1,98 @@
+[
+  {
+    "id": "implicit-search-tree",
+    "prompt": "没有显式给出图时，连续选择为什么仍能用 DFS 搜索？",
+    "options": [
+      { "id": "a", "text": "每个部分选择是状态，每个后续选择自然形成一条出边" },
+      { "id": "b", "text": "所有题目都已经暗中给出邻接矩阵" },
+      { "id": "c", "text": "DFS 只能处理数组下标" },
+      { "id": "d", "text": "选择顺序不会改变状态" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "选择序列形成隐式搜索树；递归只需按规则即时生成子状态，无需真的存下整棵树。"
+  },
+  {
+    "id": "row-state",
+    "prompt": "N 皇后中进入 dfs(row) 时，row 表示什么？",
+    "options": [
+      { "id": "a", "text": "已经找到的方案数" },
+      { "id": "b", "text": "当前准备放置皇后的行，前 row-1 行已经完成选择" },
+      { "id": "c", "text": "当前占用的列数" },
+      { "id": "d", "text": "棋盘中剩余的空格总数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "row 是搜索阶段；每次递归推进一行，使状态空间天然无环。"
+  },
+  {
+    "id": "terminal-contribution",
+    "prompt": "此前选择都合法时，row==n+1 为什么返回 1？",
+    "options": [
+      { "id": "a", "text": "因为每个棋盘只有一个格子" },
+      { "id": "b", "text": "因为还需要再放一个皇后" },
+      { "id": "c", "text": "因为当前完整选择本身贡献一种合法方案" },
+      { "id": "d", "text": "因为所有递归函数都必须返回 1" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "第 1..n 行已经各放一个不冲突皇后，这个叶子正好代表一个完整方案。"
+  },
+  {
+    "id": "backtracking-order",
+    "prompt": "回溯处理一次选择的正确顺序是什么？",
+    "options": [
+      { "id": "a", "text": "递归、选择、撤销" },
+      { "id": "b", "text": "撤销、递归、选择" },
+      { "id": "c", "text": "选择、撤销、递归" },
+      { "id": "d", "text": "选择、递归、撤销" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "下一层必须看见当前选择；返回后再恢复状态，兄弟分支才能从相同父状态出发。"
+  },
+  {
+    "id": "diagonal-invariants",
+    "prompt": "棋盘上两类对角线分别保持哪些坐标表达式不变？",
+    "options": [
+      { "id": "a", "text": "row-column 与 row+column" },
+      { "id": "b", "text": "row*column 与 row/column" },
+      { "id": "c", "text": "row 与 column 分别不变" },
+      { "id": "d", "text": "row%column 与 column%row" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "沿两个斜向移动时，坐标的差或和分别保持不变；差值加 n 后可安全作为下标。"
+  },
+  {
+    "id": "safe-pruning",
+    "prompt": "一个判断要成为安全剪枝，最重要的条件是什么？",
+    "options": [
+      { "id": "a", "text": "判断代码必须超过十行" },
+      { "id": "b", "text": "被跳过的状态一定不可能扩展成答案" },
+      { "id": "c", "text": "它必须删除一半分支" },
+      { "id": "d", "text": "它只能使用随机数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "不能证明必然无解的剪枝可能漏掉合法答案；同时判断本身还应比继续搜索更便宜。"
+  },
+  {
+    "id": "visited-vs-used",
+    "prompt": "为什么图 DFS 的 visited 通常保留，而 N 皇后的 used_column 要撤销？",
+    "options": [
+      { "id": "a", "text": "visited 只能保存整数" },
+      { "id": "b", "text": "used_column 与递归无关" },
+      { "id": "c", "text": "前者描述整次遍历历史，后者只描述当前递归路径" },
+      { "id": "d", "text": "所有图都没有环" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "返回上一层后，当前皇后不再属于新的候选方案；而已处理图点再次访问通常只是重复工作。"
+  },
+  {
+    "id": "pruned-complexity",
+    "prompt": "加入对角线剪枝后，为什么不能把 N 皇后算法视为多项式时间？",
+    "options": [
+      { "id": "a", "text": "因为 bool 数组访问不是 O(1)" },
+      { "id": "b", "text": "因为递归函数不能分析复杂度" },
+      { "id": "c", "text": "因为 n 最大只有 14" },
+      { "id": "d", "text": "剪枝减少实际分支，但最坏搜索空间仍是阶乘或指数级" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "常数时间冲突判断会删除许多无效子树，却没有把组合搜索的最坏增长降为多项式。"
+  }
+]

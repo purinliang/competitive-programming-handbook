@@ -1,6 +1,6 @@
-# 搜索：DFS、回溯与剪枝
+# DFS、回溯与剪枝
 
-> 最近修订：2026-08-13 22:15 +10:00（未审阅）
+> 最近修订：2026-08-16 14:38 +10:00（未审阅）
 
 [图的遍历：深度优先搜索（DFS）](graph-depth-first-search.md) 已经沿一张明确给出的图访问所有可达点。但许多题目没有直接给出点和边，而是要求我们连续做出若干选择：选择第几个物品、下一步走向哪里、当前格子填什么数，最终找到一种方案或统计全部方案。
 
@@ -209,13 +209,13 @@ N 皇后中的 `used_column[column]` 表示“当前递归路径已经使用这�
 棋盘大小和三组占用标记共同描述同一个求解过程，递归函数会反复读写它们，因此使用一个 `struct` 绑定这些状态：
 
 ```cpp
-struct n_queens_solver {
+struct NQueensSolver {
     int n;
     vector<bool> used_column;
     vector<bool> used_difference_diagonal;
     vector<bool> used_sum_diagonal;
 
-    n_queens_solver(int size) {
+    NQueensSolver(int size) {
         n = size;
         used_column.resize(n + 5, false);
         used_difference_diagonal.resize(2 * n + 5, false);
@@ -255,13 +255,13 @@ using namespace std;
 
 typedef long long ll;
 
-struct n_queens_solver {
+struct NQueensSolver {
     int n;
     vector<bool> used_column;
     vector<bool> used_difference_diagonal;
     vector<bool> used_sum_diagonal;
 
-    n_queens_solver(int size) {
+    NQueensSolver(int size) {
         n = size;
         used_column.resize(n + 5, false);
         used_difference_diagonal.resize(2 * n + 5, false);
@@ -302,12 +302,16 @@ struct n_queens_solver {
     }
 };
 
-int main() {
+void solve() {
     int n;
     scanf("%d", &n);
 
-    n_queens_solver solver(n);
+    NQueensSolver solver(n);
     printf("%lld\n", solver.count_solutions());
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -382,6 +386,4 @@ int main() {
 
 本篇只讲可行性约束带来的基础剪枝。最优化搜索中的上下界估计、选择顺序启发式、记忆化搜索、迭代加深与双向搜索各自具有新的模型，应在对应专题中单独学习。
 
-## 下一篇
-
-下一篇 [图的遍历：广度优先搜索（BFS）](graph-breadth-first-search.md) 会使用队列按距离层次展开一张显式图，并得到无权图的最少边数。
+[图的遍历：广度优先搜索（BFS）](graph-breadth-first-search.md) 会使用队列按距离层次展开一张显式图，并得到无权图的最少边数。

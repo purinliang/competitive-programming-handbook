@@ -309,7 +309,7 @@
 | 0440 | 图的存储：邻接表（链式前向星实现） | 定稿 | [chained-forward-star.md](graph-theory/chained-forward-star.md) |
 | 0441 | 图的存储：边集 | 定稿 | [edge-list.md](graph-theory/edge-list.md) |
 | 0442 | 树：有根树 | 定稿 | [rooted-trees.md](graph-theory/rooted-trees.md) |
-| 0443 | 搜索：DFS、回溯与剪枝 | 待审阅 | [dfs-backtracking-pruning.md](graph-theory/dfs-backtracking-pruning.md) |
+| 0443 | DFS、回溯与剪枝 | 待审阅 | [dfs-backtracking-pruning.md](graph-theory/dfs-backtracking-pruning.md) |
 | 0444 | 最短路：0-1 BFS | 待审阅 | [zero-one-bfs.md](graph-theory/zero-one-bfs.md) |
 | 0445 | 树：重心 | 待审阅 | [tree-centroid.md](graph-theory/tree-centroid.md) |
 | 0446 | 树上技巧：树上差分 | 计划 | `graph-theory/0446-tree-difference.md` |
