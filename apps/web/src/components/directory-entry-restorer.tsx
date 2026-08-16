@@ -1,9 +1,9 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useLayoutEffect } from "react";
 
-import type { DirectoryReturnTarget } from "@/lib/content/types";
+const RESTORE_SCROLL_DURATION_MS = 300;
 
 function findByDataAttribute(
   attribute: "areaKey" | "articleKey" | "entryKey" | "groupKey",
@@ -32,25 +32,64 @@ function revealTarget(target: HTMLElement): HTMLElement {
   return target;
 }
 
-function findFallbackTarget(
-  fallback: DirectoryReturnTarget | undefined,
-): HTMLElement | undefined {
-  if (!fallback) return undefined;
-  if (fallback.kind === "section") {
-    return document.getElementById(fallback.key) ?? undefined;
-  }
-  const attribute = fallback.kind === "area" ? "areaKey" : "groupKey";
-  return findByDataAttribute(attribute, fallback.key);
+function findClosestModuleTarget(articleKey: string): HTMLElement | undefined {
+  const moduleKey = articleKey.split("/")[0];
+  const article = [...document.querySelectorAll<HTMLElement>("[data-article-key]")]
+    .find((element) => element.dataset.articleKey?.startsWith(`${moduleKey}/`));
+  return article?.closest<HTMLElement>("[data-group-key], section") ?? undefined;
 }
 
-export function DirectoryEntryRestorer({
-  fallbacks = {},
-}: {
-  fallbacks?: Record<string, DirectoryReturnTarget>;
-}) {
+function scrollToTarget(target: HTMLElement): () => void {
+  const root = document.documentElement;
+  const previousScrollBehavior = root.style.scrollBehavior;
+  const start = window.scrollY;
+  const rectangle = target.getBoundingClientRect();
+  const maximum = Math.max(0, root.scrollHeight - window.innerHeight);
+  const destination = Math.min(
+    maximum,
+    Math.max(0, start + rectangle.top - (window.innerHeight - rectangle.height) / 2),
+  );
+  const distance = destination - start;
+  root.style.scrollBehavior = "auto";
+
+  if (
+    Math.abs(distance) < 2
+    || window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    window.scrollTo(0, destination);
+    root.style.scrollBehavior = previousScrollBehavior;
+    return () => {};
+  }
+
+  let frame = 0;
+  const startedAt = performance.now();
+  const step = (now: number) => {
+    const progress = Math.min(1, (now - startedAt) / RESTORE_SCROLL_DURATION_MS);
+    const eased = progress < 0.5
+      ? 4 * progress ** 3
+      : 1 - (-2 * progress + 2) ** 3 / 2;
+    window.scrollTo(0, start + distance * eased);
+    if (progress < 1) {
+      frame = requestAnimationFrame(step);
+    } else {
+      root.style.scrollBehavior = previousScrollBehavior;
+    }
+  };
+  frame = requestAnimationFrame(step);
+
+  return () => {
+    cancelAnimationFrame(frame);
+    root.style.scrollBehavior = previousScrollBehavior;
+  };
+}
+
+export function DirectoryEntryRestorer() {
+  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useLayoutEffect(() => {
+    if (!/^\/(?:learning-path|catalog)\/?$/u.test(pathname)) return;
+
     const entryKey = searchParams.get("entry");
     const groupKey = searchParams.get("group");
     const areaKey = searchParams.get("area");
@@ -59,24 +98,20 @@ export function DirectoryEntryRestorer({
     const target = (entryKey ? findByDataAttribute("entryKey", entryKey) : undefined)
       ?? (articleKey
         ? findByDataAttribute("articleKey", articleKey)
-          ?? findFallbackTarget(fallbacks[articleKey])
+          ?? findClosestModuleTarget(articleKey)
         : undefined)
       ?? (groupKey ? findByDataAttribute("groupKey", groupKey) : undefined)
       ?? (areaKey ? findByDataAttribute("areaKey", areaKey) : undefined)
       ?? (sectionKey ? document.getElementById(sectionKey) ?? undefined : undefined);
-    if (!target) return;
 
     document.querySelectorAll(".is-return-target").forEach((element) => {
       element.classList.remove("is-return-target");
     });
+    if (!target) return;
     const visibleTarget = revealTarget(target);
     visibleTarget.classList.add("is-return-target");
-
-    const previousScrollBehavior = document.documentElement.style.scrollBehavior;
-    document.documentElement.style.scrollBehavior = "auto";
-    visibleTarget.scrollIntoView({ behavior: "auto", block: "center" });
-    document.documentElement.style.scrollBehavior = previousScrollBehavior;
-  }, [fallbacks, searchParams]);
+    return scrollToTarget(visibleTarget);
+  }, [pathname, searchParams]);
 
   return null;
 }

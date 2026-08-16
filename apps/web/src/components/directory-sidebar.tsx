@@ -1,8 +1,8 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 
-import { NavigationLink as Link } from "./navigation-link";
 import { ScrollArea } from "./scroll-area";
 
 import { useActiveSection } from "@/hooks/use-active-section";
@@ -13,8 +13,23 @@ interface DirectorySidebarItem {
 }
 
 export function DirectorySidebar({ title, items }: { title: string; items: DirectorySidebarItem[] }) {
+  const pathname = usePathname();
   const sectionIds = useMemo(() => items.map((item) => item.id), [items]);
   const activeId = useActiveSection(sectionIds);
+
+  function navigateToSection(id: string) {
+    const section = document.getElementById(id);
+    if (!section) return;
+
+    window.history.replaceState(null, "", `${pathname}#${id}`);
+    document.querySelectorAll(".is-return-target").forEach((element) => {
+      element.classList.remove("is-return-target");
+    });
+    const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = "auto";
+    section.scrollIntoView({ behavior: "auto", block: "start" });
+    document.documentElement.style.scrollBehavior = previousScrollBehavior;
+  }
 
   return (
     <aside className="module-sidebar directory-sidebar" aria-label={title}>
@@ -22,9 +37,27 @@ export function DirectorySidebar({ title, items }: { title: string; items: Direc
       <ScrollArea className="sidebar-scroll-area" viewportClassName="sidebar-scroll-viewport" refreshKey={items.map((item) => item.id).join(":")}>
         <nav className="directory-sidebar-list">
           {items.map((item) => (
-            <Link className={item.id === activeId ? "is-active" : undefined} href={`#${item.id}`} aria-current={item.id === activeId ? "location" : undefined} key={item.id}>
+            <a
+              aria-current={item.id === activeId ? "location" : undefined}
+              className={item.id === activeId ? "is-active" : undefined}
+              href={`${pathname}#${item.id}`}
+              key={item.id}
+              onClick={(event) => {
+                if (
+                  event.button !== 0
+                  || event.metaKey
+                  || event.ctrlKey
+                  || event.shiftKey
+                  || event.altKey
+                ) {
+                  return;
+                }
+                event.preventDefault();
+                navigateToSection(item.id);
+              }}
+            >
               {item.label}
-            </Link>
+            </a>
           ))}
         </nav>
       </ScrollArea>

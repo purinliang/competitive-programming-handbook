@@ -3,7 +3,6 @@ import { Suspense } from "react";
 
 import { CatalogAreaList } from "@/components/catalog-area-list";
 import { ContextPreservingSiteHeader } from "@/components/context-preserving-site-header";
-import { DirectoryEntryRestorer } from "@/components/directory-entry-restorer";
 import { DirectorySidebar } from "@/components/directory-sidebar";
 import { IndexingConvention } from "@/components/indexing-convention";
 import { NumberedPanelHeader } from "@/components/numbered-panel-header";
@@ -21,9 +20,6 @@ export default function CatalogPage() {
         <ContextPreservingSiteHeader activeSection="catalog" />
       </Suspense>
       <main className="directory-layout">
-        <Suspense fallback={null}>
-          <DirectoryEntryRestorer />
-        </Suspense>
         <DirectorySidebar title="模块目录" items={modules.map((module) => ({ id: module.anchor, label: module.title }))} />
         <div className="index-page directory-content">
           <header className="page-intro">

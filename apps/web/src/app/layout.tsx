@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 
 import "katex/dist/katex.min.css";
 import "./theme.css";
@@ -7,6 +7,7 @@ import "./styles.css";
 import "./article.css";
 
 import { BrowserFocusReset } from "@/components/browser-focus-reset";
+import { DirectoryEntryRestorer } from "@/components/directory-entry-restorer";
 import { DisclosureSelectionGuard } from "@/components/disclosure-selection-guard";
 
 export const metadata: Metadata = {
@@ -22,6 +23,9 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="zh-CN" data-scroll-behavior="smooth">
       <body>
         <BrowserFocusReset />
+        <Suspense fallback={null}>
+          <DirectoryEntryRestorer />
+        </Suspense>
         <DisclosureSelectionGuard />
         {children}
       </body>

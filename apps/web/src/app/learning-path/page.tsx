@@ -3,14 +3,11 @@ import { Suspense } from "react";
 
 import { ArticleFamilyList } from "@/components/article-family-list";
 import { ContextPreservingSiteHeader } from "@/components/context-preserving-site-header";
-import { DirectoryEntryRestorer } from "@/components/directory-entry-restorer";
 import { DirectorySidebar } from "@/components/directory-sidebar";
 import { IndexingConvention } from "@/components/indexing-convention";
 import { NumberedPanelHeader } from "@/components/numbered-panel-header";
 import { SiteHeader } from "@/components/site-header";
 import {
-  getArticles,
-  getLearningDirectoryFallback,
   getLearningStages,
   getLearningUnitGroups,
 } from "@/lib/content/catalog";
@@ -19,10 +16,6 @@ export const metadata: Metadata = { title: "学习路线" };
 
 export default function LearningPathPage() {
   const stages = getLearningStages();
-  const fallbacks = Object.fromEntries(getArticles().flatMap((article) => {
-    const fallback = getLearningDirectoryFallback(article.articleKey);
-    return fallback ? [[article.articleKey, fallback]] : [];
-  }));
 
   return (
     <>
@@ -30,9 +23,6 @@ export default function LearningPathPage() {
         <ContextPreservingSiteHeader activeSection="learning-path" />
       </Suspense>
       <main className="directory-layout">
-        <Suspense fallback={null}>
-          <DirectoryEntryRestorer fallbacks={fallbacks} />
-        </Suspense>
         <DirectorySidebar title="学习路线" items={stages.map((stage) => ({ id: stage.key, label: `${stage.number} ${stage.title}` }))} />
         <div className="index-page directory-content">
           <header className="page-intro">
