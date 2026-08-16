@@ -1,0 +1,62 @@
+[
+  {
+    "id": "point-bit",
+    "prompt": "点编号使用 1..n 时，点 u 对应 `mask` 的哪一位？",
+    "options": [
+      { "id": "a", "text": "第 u-1 位" },
+      { "id": "b", "text": "第 u+1 位" },
+      { "id": "c", "text": "最高位" },
+      { "id": "d", "text": "永远是第 0 位" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "点编号是 1-based，而二进制位自然从 0 开始，因此集中转换为 u-1。"
+  },
+  {
+    "id": "state-meaning",
+    "prompt": "`f[mask][u]` 为什么要同时记录 u？",
+    "options": [
+      { "id": "a", "text": "为了统计 mask 的二进制位数" },
+      { "id": "b", "text": "因为同一访问集合停在不同终点时，后续代价不同" },
+      { "id": "c", "text": "为了让所有边权相同" },
+      { "id": "d", "text": "因为 u 表示集合大小" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "下一条边从当前终点出发，只知道访问集合不足以决定转移代价。"
+  },
+  {
+    "id": "add-vertex",
+    "prompt": "把未访问点 v 加入集合的正确写法是什么？",
+    "options": [
+      { "id": "a", "text": "`mask & (1 << (v-1))`" },
+      { "id": "b", "text": "`mask ^ 0`" },
+      { "id": "c", "text": "`mask | (1 << (v-1))`" },
+      { "id": "d", "text": "`mask >> v`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "按位或把对应位设为 1，并保留其他已经访问的点。"
+  },
+  {
+    "id": "complexity",
+    "prompt": "本篇 Hamilton 回路状压 DP 的时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(n+m)$" },
+      { "id": "b", "text": "$O(n^3)$" },
+      { "id": "c", "text": "$O(n!)$" },
+      { "id": "d", "text": "$O(2^n n^2)$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "共有 $O(2^n n)$ 个集合与终点状态，每个状态再枚举下一个点。"
+  },
+  {
+    "id": "initial-state",
+    "prompt": "从点 1 出发时，正确初始状态是哪一个？",
+    "options": [
+      { "id": "a", "text": "`f[0][0]=0`" },
+      { "id": "b", "text": "`f[1][1]=0`" },
+      { "id": "c", "text": "`f[full_mask][1]=0`" },
+      { "id": "d", "text": "所有状态都初始化为 0" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "二进制最低位代表点 1；开始时只访问点 1 并停在点 1。"
+  }
+]
