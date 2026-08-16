@@ -1,14 +1,14 @@
 # 二分查找
 
-> 最近修订：2026-08-16 13:00 +10:00（未审阅）
+> 最近修订：2026-08-16 18:31 +10:00（未审阅）
 
 在无序数组中寻找目标值，最直接的方法是从左到右逐个检查，最坏需要 $O(n)$
 时间。若数组已经按升序排列，一次比较不仅能判断中间元素是否等于目标，还能证明
 中点某一侧的全部位置都不可能是答案。
 
 二分查找反复检查候选区间中点，并在每轮排除至少一半位置，把查找时间降低到
-$O(\log n)$。本篇只解决“找到任意一个等于目标的位置”；重复值的左右边界留到
-下一篇单独推导。
+$O(\log n)$。本篇只解决“找到任意一个等于目标的位置”；重复值的左右边界会在
+[二分边界](binary-search-boundaries.md) 中单独推导。
 
 ## 有序是前提
 
@@ -100,7 +100,10 @@ r = mid - 1;
 ## 完整查找函数
 
 ```cpp
-int binary_search_index(const vector<int>& a, int n, int target) {
+int n;
+vector<int> a;
+
+int binary_search_index(int target) {
     int l = 1;
     int r = n;
 
@@ -172,7 +175,10 @@ $$
 #include <bits/stdc++.h>
 using namespace std;
 
-int binary_search_index(const vector<int>& a, int n, int target) {
+int n;
+vector<int> a;
+
+int binary_search_index(int target) {
     int l = 1;
     int r = n;
 
@@ -193,15 +199,15 @@ int binary_search_index(const vector<int>& a, int n, int target) {
 }
 
 void solve() {
-    int n, target;
-    cin >> n >> target;
+    int target;
+    scanf("%d%d", &n, &target);
 
-    vector<int> a(n + 5);
+    a.assign(n + 5, 0);
     for (int i = 1; i <= n; i++) {
-        cin >> a[i];
+        scanf("%d", &a[i]);
     }
 
-    cout << binary_search_index(a, n, target) << '\n';
+    printf("%d\n", binary_search_index(target));
 }
 
 int main() {
