@@ -1,6 +1,6 @@
 # 快速排序
 
-> 最近修订：2026-08-16 11:10 +10:00（未审阅）
+> 最近修订：2026-08-16 18:04 +10:00（未审阅）
 
 [冒泡排序](sorting.md)、[选择排序](selection-sort.md) 和
 [插入排序](insertion-sort.md) 的最坏时间复杂度都是 $O(n^2)$。要得到更快的
@@ -146,16 +146,19 @@ $$
 分区结束后，递归调用必须与分界定义完全一致：
 
 ```cpp
-quick_sort(a, l, j);
-quick_sort(a, j + 1, r);
+quick_sort(l, j);
+quick_sort(j + 1, r);
 ```
 
 不能把同一套分区循环随意改成 `[l,i-1]` 与 `[i,r]`，也不能漏掉或重复中间元素。分区方式、退出条件和递归边界是一整套约定。
 
-完整函数是：
+数组 `a` 是整道题共享的状态，放在全局；`l`、`r` 只描述当前递归调用负责的
+区间，因此继续作为参数。完整函数是：
 
 ```cpp
-void quick_sort(vector<int>& a, int l, int r) {
+vector<int> a;
+
+void quick_sort(int l, int r) {
     if (l >= r) {
         return;
     }
@@ -178,8 +181,8 @@ void quick_sort(vector<int>& a, int l, int r) {
         }
     }
 
-    quick_sort(a, l, j);
-    quick_sort(a, j + 1, r);
+    quick_sort(l, j);
+    quick_sort(j + 1, r);
 }
 ```
 
@@ -228,13 +231,16 @@ $$
 ## 完整代码
 
 下面的程序读入 $n$ 个整数并使用 1-based 闭区间快速排序。空数组调用
-`quick_sort(a, 1, 0)` 时会立即返回。
+`quick_sort(1, 0)` 时会立即返回。
 
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-void quick_sort(vector<int>& a, int l, int r) {
+int n;
+vector<int> a;
+
+void quick_sort(int l, int r) {
     if (l >= r) {
         return;
     }
@@ -257,28 +263,27 @@ void quick_sort(vector<int>& a, int l, int r) {
         }
     }
 
-    quick_sort(a, l, j);
-    quick_sort(a, j + 1, r);
+    quick_sort(l, j);
+    quick_sort(j + 1, r);
 }
 
 void solve() {
-    int n;
-    cin >> n;
+    scanf("%d", &n);
 
-    vector<int> a(n + 5);
+    a.assign(n + 5, 0);
     for (int i = 1; i <= n; i++) {
-        cin >> a[i];
+        scanf("%d", &a[i]);
     }
 
-    quick_sort(a, 1, n);
+    quick_sort(1, n);
 
     for (int i = 1; i <= n; i++) {
         if (i > 1) {
-            cout << ' ';
+            printf(" ");
         }
-        cout << a[i];
+        printf("%d", a[i]);
     }
-    cout << '\n';
+    printf("\n");
 }
 
 int main() {
