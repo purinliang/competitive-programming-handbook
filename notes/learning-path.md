@@ -98,7 +98,6 @@
 | --- | --- | --- | --- |
 | 0118 | 一维数组 | C++ | [cpp/one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
 | 0119 | 多维数组 | C++ | [cpp/multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
-| 0136* | array | C++ | [cpp/array.md](cpp/array.md) |
 
 ### 单元：字符串
 
@@ -185,6 +184,7 @@
 | 0163 | fill | C++ | [cpp/fill.md](cpp/fill.md) |
 | 0134 | pair | C++ | [cpp/pair.md](cpp/pair.md) |
 | 0135 | tuple | C++ | [cpp/tuple.md](cpp/tuple.md) |
+| 0136* | array | C++ | [cpp/array.md](cpp/array.md) |
 | 0140 | sort | C++ | [cpp/sorting.md](cpp/sorting.md) |
 | 0141 | unique | C++ | [cpp/deduplication.md](cpp/deduplication.md) |
 
