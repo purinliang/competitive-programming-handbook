@@ -1,0 +1,62 @@
+[
+  {
+    "id": "finite-root",
+    "prompt": "NTT 用什么替代 FFT 中的复数单位根？",
+    "options": [
+      { "id": "a", "text": "有限域中具有指定阶的模整数单位根" },
+      { "id": "b", "text": "任意浮点数" },
+      { "id": "c", "text": "数组下标本身" },
+      { "id": "d", "text": "矩阵行列式" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "原根的适当幂在模质数乘法群中提供与复数单位根相同的周期结构。"
+  },
+  {
+    "id": "friendly-modulus",
+    "prompt": "`998244353` 为什么适合长度为 2 的幂的 NTT？",
+    "options": [
+      { "id": "a", "text": "它等于 2 的幂" },
+      { "id": "b", "text": "`MOD-1` 含有因子 `2^23`，存在相应阶的单位根" },
+      { "id": "c", "text": "它小于所有输入系数" },
+      { "id": "d", "text": "它不需要原根" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "长度必须整除乘法群大小 MOD-1，2^23 因子提供逐层翻倍所需根。"
+  },
+  {
+    "id": "inverse-ntt",
+    "prompt": "逆 NTT 除了使用逆单位根，最后还要做什么？",
+    "options": [
+      { "id": "a", "text": "全部系数加 1" },
+      { "id": "b", "text": "反转输入多项式" },
+      { "id": "c", "text": "每个结果乘以变换长度 n 的模逆元" },
+      { "id": "d", "text": "使用浮点舍入" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "这对应逆 FFT 中统一除以 n，只是在有限域中改为乘模逆元。"
+  },
+  {
+    "id": "precision-meaning",
+    "prompt": "NTT 结果“精确”具体意味着什么？",
+    "options": [
+      { "id": "a", "text": "模指定 NTT 质数的卷积结果精确" },
+      { "id": "b", "text": "能直接表示任意大的整数系数" },
+      { "id": "c", "text": "不需要考虑变换长度" },
+      { "id": "d", "text": "任何模数都能使用同一原根" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "单个 NTT 只保留指定模数下的余数；超出模数的普通整数信息会丢失。"
+  },
+  {
+    "id": "arbitrary-modulus",
+    "prompt": "目标要求模 `1000000007` 的精确卷积时，为什么不能直接替换代码中的 MOD？",
+    "options": [
+      { "id": "a", "text": "它的 MOD-1 不含足够大的 2 的幂因子，缺少所需单位根" },
+      { "id": "b", "text": "它不是整数" },
+      { "id": "c", "text": "它小于 998244353" },
+      { "id": "d", "text": "NTT 只能处理负数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "NTT 可用长度由模乘法群结构决定，不能只修改模数常量而保留其他参数。"
+  }
+]
