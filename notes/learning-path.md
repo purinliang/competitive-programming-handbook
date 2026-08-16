@@ -343,7 +343,7 @@
 | 0731 | 数字三角形 | 动态规划 | [dynamic-programming/number-triangle.md](dynamic-programming/number-triangle.md) |
 | 0702 | 最大子段和 | 动态规划 | [dynamic-programming/linear-dp.md](dynamic-programming/linear-dp.md) |
 | 0704 | 最长上升子序列 | 动态规划 | [dynamic-programming/longest-increasing-subsequence.md](dynamic-programming/longest-increasing-subsequence.md) |
-| 0732 | 最长公共子序列 | 动态规划 | `dynamic-programming/longest-common-subsequence.md` |
+| 0732 | 最长公共子序列 | 动态规划 | [dynamic-programming/longest-common-subsequence.md](dynamic-programming/longest-common-subsequence.md) |
 
 ### 单元：动态规划：背包
 

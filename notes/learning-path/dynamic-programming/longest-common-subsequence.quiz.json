@@ -1,0 +1,98 @@
+[
+  {
+    "id": "subsequence-not-substring",
+    "prompt": "关于公共子序列，下面哪项描述正确？",
+    "options": [
+      { "id": "a", "text": "可以跳过字符，但两个字符串中被选字符的相对顺序都必须保持" },
+      { "id": "b", "text": "被选字符在两个字符串中都必须连续" },
+      { "id": "c", "text": "只能从第一个字符串中删除字符" },
+      { "id": "d", "text": "两个字符串必须具有相同长度" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "子序列允许删除任意字符而保留相对顺序；连续性属于子串。"
+  },
+  {
+    "id": "prefix-state",
+    "prompt": "`dp[i][j]` 为什么必须同时包含两个下标？",
+    "options": [
+      { "id": "a", "text": "为了把字符串下标改成 0-based" },
+      { "id": "b", "text": "两个字符串的可用前缀都会影响还能匹配哪些字符" },
+      { "id": "c", "text": "因为每个字符需要保存两次" },
+      { "id": "d", "text": "为了让答案一定等于 `i + j`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "状态需要同时明确 s[1..i] 和 t[1..j]，缺少任一边界都不能确定当前子问题。"
+  },
+  {
+    "id": "equal-last-characters",
+    "prompt": "当 `s[i] == t[j]` 时，基础 LCS 转移是什么？",
+    "options": [
+      { "id": "a", "text": "`dp[i][j] = dp[i - 1][j]`" },
+      { "id": "b", "text": "`dp[i][j] = dp[i][j - 1]`" },
+      { "id": "c", "text": "`dp[i][j] = dp[i - 1][j - 1] + 1`" },
+      { "id": "d", "text": "`dp[i][j] = 0`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "两个更短前缀的一条 LCS 可以同时接上这个共同末尾字符。"
+  },
+  {
+    "id": "different-last-characters",
+    "prompt": "当 `s[i] != t[j]` 时，为什么取 `max(dp[i - 1][j], dp[i][j - 1])`？",
+    "options": [
+      { "id": "a", "text": "因为两个状态必定相等" },
+      { "id": "b", "text": "因为不同字符都必须选入答案" },
+      { "id": "c", "text": "因为 LCS 只允许删除第一个字符串的字符" },
+      { "id": "d", "text": "任何答案至少跳过一个不同末尾字符，两种情况取较优者" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "不同字符不能同时成为同一公共子序列的末尾，因此至少有一个不被选择。"
+  },
+  {
+    "id": "empty-prefix",
+    "prompt": "`dp[0][j] = dp[i][0] = 0` 表示什么？",
+    "options": [
+      { "id": "a", "text": "任意字符串与空字符串的 LCS 长度为 0" },
+      { "id": "b", "text": "位置 0 保存第一个真实字符" },
+      { "id": "c", "text": "所有非空前缀都没有公共字符" },
+      { "id": "d", "text": "状态表不能保存负数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "空前缀没有字符可选，这些边界让第一行和第一列能够使用统一转移。"
+  },
+  {
+    "id": "table-order",
+    "prompt": "按行从左到右填表时，计算 `dp[i][j]` 以前哪些状态已经完成？",
+    "options": [
+      { "id": "a", "text": "只有右方和下方" },
+      { "id": "b", "text": "左上方、上方和左方" },
+      { "id": "c", "text": "只有 `dp[n][m]`" },
+      { "id": "d", "text": "所有更大下标状态" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "三种转移来源都位于已经处理的上一行或当前行左侧。"
+  },
+  {
+    "id": "restore-direction",
+    "prompt": "恢复方案时遇到 `s[i] == t[j]` 应怎样移动？",
+    "options": [
+      { "id": "a", "text": "只减小 `i`，不记录字符" },
+      { "id": "b", "text": "只减小 `j`，并删除答案" },
+      { "id": "c", "text": "记录共同字符，并同时减小 `i,j`" },
+      { "id": "d", "text": "同时增大 `i,j`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "共同末尾字符对应从左上方接入的一步，反向恢复时应撤回这一步。"
+  },
+  {
+    "id": "time-complexity",
+    "prompt": "基础 LCS 动态规划的时间复杂度为什么是 $O(nm)$？",
+    "options": [
+      { "id": "a", "text": "因为只比较相同字符" },
+      { "id": "b", "text": "因为恢复答案需要枚举全部子序列" },
+      { "id": "c", "text": "因为每个状态都需要重新扫描两个字符串" },
+      { "id": "d", "text": "状态表有 $O(nm)$ 个格子，每个格子进行常数次运算" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "动态规划把相同前缀问题合并，每对前缀长度只计算一次。"
+  }
+]

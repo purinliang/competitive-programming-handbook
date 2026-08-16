@@ -503,7 +503,7 @@
 | 0729* | 动态规划优化：单调栈 | 计划 | `dynamic-programming/monotone-stack-optimization.md` |
 | 0730* | 动态规划优化：四边形不等式 | 计划 | `dynamic-programming/quadrangle-inequality-optimization.md` |
 | 0731 | 数字三角形 | 待审阅 | [number-triangle.md](dynamic-programming/number-triangle.md) |
-| 0732 | 最长公共子序列 | 计划 | `dynamic-programming/longest-common-subsequence.md` |
+| 0732 | 最长公共子序列 | 待审阅 | [longest-common-subsequence.md](dynamic-programming/longest-common-subsequence.md) |
 
 ## 08 字符串
 
