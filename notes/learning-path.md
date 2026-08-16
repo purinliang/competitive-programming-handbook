@@ -64,17 +64,24 @@
 | 0112 | for | C++ | [cpp/loops.md](cpp/loops.md) |
 | 0168 | do while | C++ | [cpp/do-while.md](cpp/do-while.md) |
 
-### 单元：函数与作用域
+### 单元：函数
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0113 | 函数的定义与调用 | C++ | [cpp/function-definition-and-calls.md](cpp/function-definition-and-calls.md) |
 | 0169 | 函数的返回值 | C++ | [cpp/function-return-values.md](cpp/function-return-values.md) |
 | 0170 | 函数的形参与实参 | C++ | [cpp/function-parameters-and-arguments.md](cpp/function-parameters-and-arguments.md) |
+| 0154* | inline | C++ | [cpp/inline.md](cpp/inline.md) |
+
+### 单元：名称与作用域
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0171 | 关键字与标识符 | C++ | [cpp/keywords-and-identifiers.md](cpp/keywords-and-identifiers.md) |
 | 0114 | 作用域 | C++ | [cpp/scope.md](cpp/scope.md) |
-| 0129 | static 局部变量 | C++ | [cpp/static-local-variables.md](cpp/static-local-variables.md) |
-| 0154* | inline | C++ | [cpp/inline.md](cpp/inline.md) |
+| 0153* | 命名空间与 std | C++ | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
+| 0160* | typedef 类型别名 | C++ | [cpp/type-aliases.md](cpp/type-aliases.md) |
+| 0188* | using 类型别名 | C++ | [cpp/using-type-aliases.md](cpp/using-type-aliases.md) |
 
 ### 单元：输入输出
 
@@ -120,12 +127,18 @@
 | 0122* | 联合体 | C++ | [cpp/union.md](cpp/union.md) |
 | 0123* | 枚举 | C++ | [cpp/enum.md](cpp/enum.md) |
 
-### 单元：内存、调用栈与递归
+### 单元：内存与存储期
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0130 | 竞赛程序的常见内存分区 | C++ | [cpp/competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
+| 0129 | static 局部变量 | C++ | [cpp/static-local-variables.md](cpp/static-local-variables.md) |
 | 0157* | 对象生命周期 | C++ | [cpp/object-lifetime.md](cpp/object-lifetime.md) |
+
+### 单元：调用栈与递归
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0131 | 调用栈 | C++ | [cpp/function-call-stack.md](cpp/function-call-stack.md) |
 | 0132 | 递归 | C++ | [cpp/recursion.md](cpp/recursion.md) |
 
@@ -141,14 +154,6 @@
 | 0189* | 条件编译 | C++ | [cpp/conditional-compilation.md](cpp/conditional-compilation.md) |
 | 0177* | 编译 | C++ | [cpp/compilation.md](cpp/compilation.md) |
 | 0178* | 链接 | C++ | [cpp/linking.md](cpp/linking.md) |
-
-### 单元：命名空间与类型别名
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0153* | 命名空间与 std | C++ | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
-| 0160* | typedef 类型别名 | C++ | [cpp/type-aliases.md](cpp/type-aliases.md) |
-| 0188* | using 类型别名 | C++ | [cpp/using-type-aliases.md](cpp/using-type-aliases.md) |
 
 ### 单元：类与对象
 
