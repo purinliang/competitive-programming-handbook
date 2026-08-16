@@ -1,0 +1,98 @@
+[
+  {
+    "id": "compression-purpose",
+    "prompt": "离散化最适合解决什么情况？",
+    "options": [
+      { "id": "a", "text": "值域很大，但实际不同值较少，只关心相等和顺序" },
+      { "id": "b", "text": "必须保留所有原值差距" },
+      { "id": "c", "text": "元素无法比较也无法判断相等" },
+      { "id": "d", "text": "需要增加随机数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "离散化把稀疏原值映射到连续排名，同时保持相等关系和大小顺序。"
+  },
+  {
+    "id": "compression-preserves",
+    "prompt": "离散化一定保留哪一种关系？",
+    "options": [
+      { "id": "a", "text": "原值之间的差" },
+      { "id": "b", "text": "原值之间的比例" },
+      { "id": "c", "text": "相等关系与大小顺序" },
+      { "id": "d", "text": "十进制位数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "排名保持谁相等、谁更小，但编号差不能代替原值距离。"
+  },
+  {
+    "id": "copy-before-sort",
+    "prompt": "为什么要排序副本 `values`，而不是直接排序原数组 `a`？",
+    "options": [
+      { "id": "a", "text": "sort 只能接收名为 values 的变量" },
+      { "id": "b", "text": "后续仍要按输入位置取得每个原值的编号" },
+      { "id": "c", "text": "复制能把 O(n log n) 变成 O(1)" },
+      { "id": "d", "text": "原数组不能保存负数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "排序会改变位置；保留 a 才能按原顺序生成 compressed[i]。"
+  },
+  {
+    "id": "deduplicate-values",
+    "prompt": "排序后为什么还必须去重？",
+    "options": [
+      { "id": "a", "text": "让每个不同原值只占一个连续编号" },
+      { "id": "b", "text": "因为排序后不允许有负数" },
+      { "id": "c", "text": "为了恢复原值距离" },
+      { "id": "d", "text": "为了把数组改成链表" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "重复值若占多个位置，相同值的编号和连续排名都会失去定义。"
+  },
+  {
+    "id": "unique-logical-end",
+    "prompt": "调用 `unique` 后，为什么只能读取 `values[1..m]`？",
+    "options": [
+      { "id": "a", "text": "vector 的物理容量已经变成 m" },
+      { "id": "b", "text": "后面的元素会全部变成 0" },
+      { "id": "c", "text": "unique 只返回逻辑末尾，尾部旧内容不属于结果" },
+      { "id": "d", "text": "下标 m 以后都是负数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "unique 不会自行缩短 vector，本篇用 m 单独记录有效长度。"
+  },
+  {
+    "id": "reverse-mapping",
+    "prompt": "已知离散编号 `id`，怎样恢复它代表的原值？",
+    "options": [
+      { "id": "a", "text": "`values[id]`" },
+      { "id": "b", "text": "`id - n`" },
+      { "id": "c", "text": "无法在任何情况下恢复" },
+      { "id": "d", "text": "`compressed[values]`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "排序去重数组的第 id 项就是该连续排名所代表的原值。"
+  },
+  {
+    "id": "compression-offline",
+    "prompt": "普通离散化为什么通常要求提前收集所有值？",
+    "options": [
+      { "id": "a", "text": "新值可能插入已有顺序中，使后续编号整体变化" },
+      { "id": "b", "text": "输入以后不能再读取整数" },
+      { "id": "c", "text": "vector 只能建立一次" },
+      { "id": "d", "text": "二分查找要求数组无序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "编号由全部不同值的排序位置决定，遗漏未来值会让映射失效。"
+  },
+  {
+    "id": "compression-complexity",
+    "prompt": "排序、去重并逐个二分映射的总时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "O(1)" },
+      { "id": "b", "text": "O(log n)" },
+      { "id": "c", "text": "O(n²)" },
+      { "id": "d", "text": "O(n log n)" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "排序为 O(n log n)，n 次二分也是 O(n log n) 量级。"
+  }
+]
