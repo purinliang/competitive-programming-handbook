@@ -61,7 +61,7 @@
   },
   {
     "id": "parent-sentinel",
-    "prompt": "点从 1 开始编号时，为什么可以令 parent[root]=0？",
+    "prompt": "点从 1 开始编号时，为什么可以令 par[root]=0？",
     "options": [
       { "id": "a", "text": "0 不是真实节点，可无歧义表示根没有父节点" },
       { "id": "b", "text": "根节点编号必须是 0" },
@@ -73,7 +73,7 @@
   },
   {
     "id": "parent-array-limit",
-    "prompt": "只保存 parent[u] 时，哪种操作不能直接完成？",
+    "prompt": "只保存 par[u] 时，哪种操作不能直接完成？",
     "options": [
       { "id": "a", "text": "从 u 沿父链走向根" },
       { "id": "b", "text": "判断 u 是否为根" },
