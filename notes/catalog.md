@@ -214,7 +214,7 @@
 | 0255 | 均摊复杂度 | 计划 | `algorithm-basics/amortized-complexity.md` |
 | 0256 | 均摊复杂度：势能法 | 计划 | `algorithm-basics/potential-method.md` |
 | 0257 | 选择排序 | 待审阅 | [selection-sort.md](algorithm-basics/selection-sort.md) |
-| 0258 | 插入排序 | 计划 | `algorithm-basics/insertion-sort.md` |
+| 0258 | 插入排序 | 待审阅 | [insertion-sort.md](algorithm-basics/insertion-sort.md) |
 | 0259 | 计数排序 | 计划 | `algorithm-basics/counting-sort.md` |
 | 0260 | 排序方法比较 | 计划 | `algorithm-basics/sorting-comparison.md` |
 

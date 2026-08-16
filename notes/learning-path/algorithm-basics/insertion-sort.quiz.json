@@ -1,0 +1,74 @@
+[
+  {
+    "id": "insertion-prefix",
+    "prompt": "插入排序第 `i` 轮开始前，已知哪一部分有序？",
+    "options": [
+      { "id": "a", "text": "`a[1..i-1]`" },
+      { "id": "b", "text": "`a[i..n]`" },
+      { "id": "c", "text": "只有 `a[n]`" },
+      { "id": "d", "text": "整个数组" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "本轮把 a[i] 插入已有序前缀，使有序范围扩大到 a[1..i]。"
+  },
+  {
+    "id": "save-key",
+    "prompt": "为什么右移元素以前必须保存 `key = a[i]`？",
+    "options": [
+      { "id": "a", "text": "为了把数组改成 0-based" },
+      { "id": "b", "text": "右移可能覆盖原来的 a[i]" },
+      { "id": "c", "text": "为了让 key 永远等于最小值" },
+      { "id": "d", "text": "vector 不允许直接访问 a[i]" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "a[j+1] = a[j] 会占用原来待插入值所在的位置，必须先保留其值。"
+  },
+  {
+    "id": "shift-condition",
+    "prompt": "升序插入时，哪些前缀元素需要向右移动？",
+    "options": [
+      { "id": "a", "text": "所有小于 key 的元素" },
+      { "id": "b", "text": "所有等于 key 的元素" },
+      { "id": "c", "text": "所有大于 key 的连续后缀元素" },
+      { "id": "d", "text": "只有下标为偶数的元素" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "有序前缀中大于 key 的部分位于末尾，整体右移后为 key 腾出位置。"
+  },
+  {
+    "id": "short-circuit-boundary",
+    "prompt": "条件为什么写成 `j >= 1 && a[j] > key`？",
+    "options": [
+      { "id": "a", "text": "先确认下标合法，再利用 && 短路访问元素" },
+      { "id": "b", "text": "因为 && 会交换两个条件" },
+      { "id": "c", "text": "因为 a[0] 必定是最小值" },
+      { "id": "d", "text": "为了让循环至少执行一次" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "j 已越过左边界时，右侧数组访问不会再被求值。"
+  },
+  {
+    "id": "insertion-complexity",
+    "prompt": "插入排序在有序与逆序输入上的时间复杂度分别是什么？",
+    "options": [
+      { "id": "a", "text": "O(1) 与 O(n)" },
+      { "id": "b", "text": "O(n log n) 与 O(n log n)" },
+      { "id": "c", "text": "O(n²) 与 O(n)" },
+      { "id": "d", "text": "O(n) 与 O(n²)" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "有序时每轮立即停止；逆序时第 i 轮要移动 i-1 个元素。"
+  },
+  {
+    "id": "insertion-stability",
+    "prompt": "本篇实现保持稳定性的关键是什么？",
+    "options": [
+      { "id": "a", "text": "为每个元素分配不同下标" },
+      { "id": "b", "text": "使用额外 O(n) 空间" },
+      { "id": "c", "text": "只右移严格大于 key 的元素" },
+      { "id": "d", "text": "总是从右向左输出" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "已有的相等元素不会被跨过，新元素会留在它们后面。"
+  }
+]
