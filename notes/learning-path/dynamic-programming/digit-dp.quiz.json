@@ -1,0 +1,74 @@
+[
+  {
+    "id": "range-prefix",
+    "prompt": "闭区间 `[L,R]` 的数位计数怎样转成前缀计数？",
+    "options": [
+      { "id": "a", "text": "`F(R) - F(L - 1)`" },
+      { "id": "b", "text": "`F(R) + F(L)`" },
+      { "id": "c", "text": "`F(R - L)`" },
+      { "id": "d", "text": "`F(L) - F(R)`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "0..R 中减去 0..L-1，恰好留下 L..R。"
+  },
+  {
+    "id": "tight-meaning",
+    "prompt": "`tight = true` 表示什么？",
+    "options": [
+      { "id": "a", "text": "当前数位和已经达到目标" },
+      { "id": "b", "text": "已填前缀与上界对应前缀完全相同" },
+      { "id": "c", "text": "当前数字一定为 9" },
+      { "id": "d", "text": "后续不能再填任何数位" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "前缀仍相同时，当前位才受到上界对应位限制。"
+  },
+  {
+    "id": "next-tight",
+    "prompt": "下一位仍受上界限制的条件是什么？",
+    "options": [
+      { "id": "a", "text": "当前 `digit < digits[pos]`" },
+      { "id": "b", "text": "当前数位为 0" },
+      { "id": "c", "text": "原来 `tight` 为真且当前位等于上界对应位" },
+      { "id": "d", "text": "当前数位和为偶数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "任何一位选小后，整个前缀已严格小于上界。"
+  },
+  {
+    "id": "leading-zero",
+    "prompt": "本题为什么不需要 `started` 状态？",
+    "options": [
+      { "id": "a", "text": "前导零不改变数位和" },
+      { "id": "b", "text": "输入中不会出现数字 0" },
+      { "id": "c", "text": "所有整数位数相同" },
+      { "id": "d", "text": "`started` 只能用于字符串" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "较短数字补前导零后，其数位和与原表示相同。"
+  },
+  {
+    "id": "memo-state",
+    "prompt": "为什么 `tight = false` 时可以只按 `pos,current_sum` 记忆化？",
+    "options": [
+      { "id": "a", "text": "因为后续每位都固定为 0" },
+      { "id": "b", "text": "因为上界已经失效，后续选择只由位置和当前和决定" },
+      { "id": "c", "text": "因为这个状态只会出现一次" },
+      { "id": "d", "text": "因为答案一定为 1" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "前缀已严格更小后，后续各位统一可选 0..9。"
+  },
+  {
+    "id": "started-needed",
+    "prompt": "哪类性质通常需要额外记录 `started`？",
+    "options": [
+      { "id": "a", "text": "只计算数位和" },
+      { "id": "b", "text": "统计实际十进制表示中数字 0 的出现次数" },
+      { "id": "c", "text": "限制整数不超过 N" },
+      { "id": "d", "text": "把答案存进 64 位整数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "必须区分补在左侧的前导零和数字真正开始后的零。"
+  }
+]
