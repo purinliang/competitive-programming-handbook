@@ -1,0 +1,74 @@
+[
+  {
+    "id": "core-identity",
+    "prompt": "欧几里得算法反复使用的核心等式是什么？",
+    "options": [
+      { "id": "a", "text": "gcd(a,b)=gcd(b,a%b)" },
+      { "id": "b", "text": "gcd(a,b)=a*b" },
+      { "id": "c", "text": "gcd(a,b)=a%b" },
+      { "id": "d", "text": "gcd(a,b)=gcd(a-b,a+b)" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "把 a 写成 qb+r 后，两对数 (a,b) 与 (b,r) 具有完全相同的公约数。"
+  },
+  {
+    "id": "common-divisor-preserved",
+    "prompt": "若 d 同时整除 a 和 b，为什么 d 也整除 a%b？",
+    "options": [
+      { "id": "a", "text": "因为余数一定是质数" },
+      { "id": "b", "text": "因为 a%b 总是等于 1" },
+      { "id": "c", "text": "因为 a%b=a-qb，是 a、b 的整数线性组合" },
+      { "id": "d", "text": "因为 d 必须大于 b" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "共同整除 a、b 的整数也整除它们的任意整数线性组合。"
+  },
+  {
+    "id": "termination",
+    "prompt": "欧几里得算法为什么一定终止？",
+    "options": [
+      { "id": "a", "text": "因为每次都会交换两个相等的数" },
+      { "id": "b", "text": "因为新的非负余数严格小于当前除数" },
+      { "id": "c", "text": "因为最多只能计算一次余数" },
+      { "id": "d", "text": "因为输入一定互质" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "第二个参数形成严格递减的非负整数序列，最终只能到达 0。"
+  },
+  {
+    "id": "base-case",
+    "prompt": "递归实现中 b==0 时为什么返回 a？",
+    "options": [
+      { "id": "a", "text": "因为此时 a 一定等于 1" },
+      { "id": "b", "text": "因为 0 是所有数的倍数" },
+      { "id": "c", "text": "因为 a%b 无法计算" },
+      { "id": "d", "text": "因为约定 gcd(a,0)=|a|，本文输入为非负整数" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "在本文的非负输入约定下 |a|=a，因此 a 就是递归终点的最大公约数。"
+  },
+  {
+    "id": "iterative-update",
+    "prompt": "循环版为何要先保存 r=a%b，再依次执行 a=b、b=r？",
+    "options": [
+      { "id": "a", "text": "避免更新 a 后丢失计算余数需要的旧值" },
+      { "id": "b", "text": "让 r 永远等于 a" },
+      { "id": "c", "text": "避免使用 while 循环" },
+      { "id": "d", "text": "把时间复杂度从线性改成常数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "一次状态转移必须同时基于旧的 a、b；临时变量保存旧状态算出的余数。"
+  },
+  {
+    "id": "complexity",
+    "prompt": "对正整数 a、b，欧几里得算法的时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "O(a*b)" },
+      { "id": "b", "text": "O(sqrt(max(a,b)))" },
+      { "id": "c", "text": "O(log(min(a,b)))" },
+      { "id": "d", "text": "O(min(a,b))" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "余数会快速缩小；连续斐波那契数构成下降最慢的情况，步数仍为对数级。"
+  }
+]

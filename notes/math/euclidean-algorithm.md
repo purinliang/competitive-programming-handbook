@@ -1,6 +1,6 @@
-# 数论：欧几里得算法
+# 欧几里得算法
 
-> 状态：定稿
+> 最近修订：2026-08-16 12:02 +10:00（未审阅）
 
 [最大公约数与最小公倍数](greatest-common-divisor-and-least-common-multiple.md) 可以通过质因数分解求 `gcd`，但分解两个很大的整数通常比求它们的 `gcd` 困难得多。欧几里得算法（Euclidean algorithm，又称辗转相除法）不分解任何质因数，只反复做整除和取余。
 
@@ -137,10 +137,14 @@ ll gcd(ll a, ll b) {
     return gcd(b, a % b);
 }
 
-int main() {
+void solve() {
     ll a, b;
     scanf("%lld%lld", &a, &b);
     printf("%lld\n", gcd(a, b));
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -182,6 +186,4 @@ int main() {
 
 连续斐波那契数构成最慢情况的证明不要求理解或记忆。
 
-## 下一篇
-
-下一篇 [哈希表](../algorithm-basics/hash-table.md) 会把很大范围内的整数键映射到数量有限的桶中，并处理不同键落入同一个桶的冲突。
+[哈希表](../algorithm-basics/hash-table.md) 会把很大范围内的整数键映射到数量有限的桶中，并处理不同键落入同一个桶的冲突。

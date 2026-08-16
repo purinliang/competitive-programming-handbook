@@ -383,7 +383,7 @@
 | 0534* | 莫比乌斯反演 | 计划 | `math/0534-mobius-inversion.md` |
 | 0535 | 算术基本定理 | 待审阅 | [fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
 | 0536 | 最大公约数与最小公倍数 | 待审阅 | [greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
-| 0537 | 数论：欧几里得算法 | 定稿 | [euclidean-algorithm.md](math/euclidean-algorithm.md) |
+| 0537 | 欧几里得算法 | 待审阅 | [euclidean-algorithm.md](math/euclidean-algorithm.md) |
 | 0538 | 数论：扩展中国剩余定理（exCRT） | 待审阅 | [extended-chinese-remainder-theorem.md](math/extended-chinese-remainder-theorem.md) |
 | 0539 | 质因数分解 | 待审阅 | [prime-factorization.md](math/prime-factorization.md) |
 | 0540 | 正因数个数 | 待审阅 | [divisor-count.md](math/divisor-count.md) |
