@@ -514,12 +514,10 @@
 | *990328 | 链上分块 | 计划 | `data-structures/chain-block-decomposition.md` |
 | *990329 | 树上分块 | 计划 | `data-structures/tree-block-decomposition.md` |
 
-### 堆
+### 可并堆
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 050201 | 二叉堆 | 待审阅 | [binary-heap.md](algorithm-basics/binary-heap.md) |
-| 050202 | priority_queue | 待审阅 | [priority-queue.md](cpp/priority-queue.md) |
 | *990311 | 左偏树 | 计划 | `data-structures/leftist-tree.md` |
 | *990318 | 斜堆 | 计划 | `data-structures/skew-heap.md` |
 | *990319 | 配对堆 | 计划 | `data-structures/pairing-heap.md` |
@@ -796,7 +794,7 @@
 | 060602 | 模快速幂 | 待审阅 | [modular-exponentiation.md](math/modular-exponentiation.md) |
 | 060606 | 费马小定理 | 待审阅 | [fermat-little-theorem.md](math/fermat-little-theorem.md) |
 | 060902 | 欧拉定理 | 待审阅 | [euler-theorem.md](math/euler-theorem.md) |
-| *060901e1 | 扩展欧拉定理 | 计划 | `math/extended-euler-theorem.md` |
+| *060902e1 | 扩展欧拉定理 | 计划 | `math/extended-euler-theorem.md` |
 | 060605 | 线性同余方程 | 待审阅 | [linear-congruences.md](math/linear-congruences.md) |
 | 060607 | 模逆元 | 待审阅 | [modular-inverse.md](math/modular-inverse.md) |
 | *060607e1 | 模逆元：线性预处理 | 计划 | `math/linear-modular-inverses.md` |
@@ -1139,9 +1137,9 @@
 | 062004 | 字符串：Trie | 待审阅 | [trie.md](strings/trie.md) |
 | 062005 | 字符串构造 | 计划 | `strings/string-construction.md` |
 | 071101 | 字符串：AC 自动机 | 计划 | `strings/aho-corasick.md` |
-| 071201 | 字符串：Manacher | 计划 | `strings/manacher.md` |
-| 071301 | 字符串：后缀数组 | 计划 | `strings/suffix-array.md` |
-| 071302 | 字符串：后缀自动机 | 计划 | `strings/suffix-automaton.md` |
+| 071102 | 字符串：Manacher | 计划 | `strings/manacher.md` |
+| 071103 | 字符串：后缀数组 | 计划 | `strings/suffix-array.md` |
+| 071104 | 字符串：后缀自动机 | 计划 | `strings/suffix-automaton.md` |
 
 ### 字符串基础
 
@@ -1181,32 +1179,26 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 071201 | 字符串：Manacher | 计划 | `strings/manacher.md` |
-| 071202 | 字符串：回文树 | 计划 | `strings/palindromic-tree.md` |
+| 071102 | 字符串：Manacher | 计划 | `strings/manacher.md` |
+| 071105 | 字符串：回文树 | 计划 | `strings/palindromic-tree.md` |
 
 ### 后缀结构
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 071301 | 字符串：后缀数组 | 计划 | `strings/suffix-array.md` |
-| 071302 | 字符串：后缀自动机 | 计划 | `strings/suffix-automaton.md` |
+| 071103 | 字符串：后缀数组 | 计划 | `strings/suffix-array.md` |
+| 071104 | 字符串：后缀自动机 | 计划 | `strings/suffix-automaton.md` |
 | *990806 | 字符串：后缀树 | 计划 | `strings/suffix-tree.md` |
-
-### 结构之间的联系
-
-| ID | 知识点 | 状态 | 文件 |
-| --- | --- | --- | --- |
-| 071401 | 字符串结构中的后缀链接与长度 | 计划 | `strings/suffix-links-and-lengths.md` |
 
 ### 子串问题
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 071501 | 本质不同子串计数 | 计划 | `strings/distinct-substring-counting.md` |
-| 071502 | 字典序第 k 小子串 | 计划 | `strings/kth-lexicographic-substring.md` |
-| 071503 | 子串出现次数 | 计划 | `strings/substring-occurrence-counting.md` |
-| 071504 | 最长重复子串 | 计划 | `strings/longest-repeated-substring.md` |
-| 071505 | 最长公共子串 | 计划 | `strings/longest-common-substring.md` |
+| 071201 | 本质不同子串计数 | 计划 | `strings/distinct-substring-counting.md` |
+| 071202 | 字典序第 k 小子串 | 计划 | `strings/kth-lexicographic-substring.md` |
+| 071203 | 子串出现次数 | 计划 | `strings/substring-occurrence-counting.md` |
+| 071204 | 最长重复子串 | 计划 | `strings/longest-repeated-substring.md` |
+| 071205 | 最长公共子串 | 计划 | `strings/longest-common-substring.md` |
 
 ### 字符串表示与分解
 
@@ -1214,3 +1206,12 @@
 | --- | --- | --- | --- |
 | *990807 | 最小表示法 | 计划 | `strings/minimum-representation.md` |
 | *990808 | Lyndon 分解 | 计划 | `strings/lyndon-factorization.md` |
+
+## 09 其他
+
+### 编码
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *030204e1 | 格雷码 | 待审阅 | [gray-code.md](other/gray-code.md) |
+| 050203 | 哈夫曼编码 | 待审阅 | [huffman-coding.md](other/huffman-coding.md) |
