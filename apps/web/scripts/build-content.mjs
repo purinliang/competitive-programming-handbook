@@ -79,6 +79,17 @@ function navigationKey(...parts) {
   return createHash("sha256").update(parts.join("\0")).digest("hex").slice(0, 12);
 }
 
+const catalogModuleKeys = {
+  "01": "cpp",
+  "02": "algorithm-basics",
+  "03": "data-structures",
+  "04": "graph-theory",
+  "05": "math",
+  "06": "computational-geometry",
+  "07": "dynamic-programming",
+  "08": "strings",
+};
+
 async function fileExists(filePath) {
   try {
     await access(filePath);
@@ -105,7 +116,10 @@ async function parseCatalog() {
     if (moduleMatch) {
       moduleTitle = moduleMatch[1].trim();
       moduleAnchor = moduleSlugger.slug(moduleMatch[1].trim());
-      moduleKey = "";
+      moduleKey = catalogModuleKeys[moduleTitle.slice(0, 2)] ?? "";
+      if (!moduleKey) {
+        throw new Error(`catalog.md 中的模块 ${moduleTitle} 没有稳定路由键`);
+      }
       catalogAreaTitle = undefined;
       catalogTopicTitle = undefined;
       continue;
@@ -149,7 +163,6 @@ async function parseCatalog() {
 
     const articleKey = toArticleKey(sourcePath);
     const pathParts = articleKey.split("/");
-    moduleKey ||= pathParts[0];
     modules.set(moduleKey, {
       key: moduleKey,
       title: moduleTitle,
