@@ -1,0 +1,50 @@
+[
+  {
+    "id": "covered-interval",
+    "prompt": "树状数组中的 `tree[x]` 维护哪个区间的和？",
+    "options": [
+      { "id": "a", "text": "`[1,x]`" },
+      { "id": "b", "text": "`[x,n]`" },
+      { "id": "c", "text": "`[x-lowbit(x)+1,x]`" },
+      { "id": "d", "text": "`[x-lowbit(x),x-1]`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "lowbit 决定该节点向左覆盖的连续区间长度。"
+  },
+  {
+    "id": "one-based",
+    "prompt": "树状数组为什么不能从下标 0 开始执行 `add`？",
+    "options": [
+      { "id": "a", "text": "`lowbit(0)=0`，下标无法继续前进" },
+      { "id": "b", "text": "下标 0 只能保存负数" },
+      { "id": "c", "text": "vector 不允许访问下标 0" },
+      { "id": "d", "text": "区间和必须从下标 2 开始" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "更新式 x+=lowbit(x) 在 x=0 时永远不变，会形成死循环。"
+  },
+  {
+    "id": "range-sum",
+    "prompt": "怎样由前缀和得到闭区间 `[l,r]` 的区间和？",
+    "options": [
+      { "id": "a", "text": "`prefix_sum(r)+prefix_sum(l)`" },
+      { "id": "b", "text": "`prefix_sum(r)-prefix_sum(l-1)`" },
+      { "id": "c", "text": "`prefix_sum(r-l+1)`" },
+      { "id": "d", "text": "只能逐个元素相加" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "从 [1,r] 的和中减去 [1,l-1]，恰好留下 [l,r]。"
+  },
+  {
+    "id": "assignment",
+    "prompt": "已有位置 pos 的值为 old，要赋值为 value，应怎样调用基础 `add`？",
+    "options": [
+      { "id": "a", "text": "`add(pos,value)`" },
+      { "id": "b", "text": "`add(value,pos)`" },
+      { "id": "c", "text": "`add(pos,old)`" },
+      { "id": "d", "text": "`add(pos,value-old)`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "基础 add 接收的是变化量，赋值必须先转换成新值减旧值。"
+  }
+]
