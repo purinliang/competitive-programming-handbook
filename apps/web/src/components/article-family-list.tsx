@@ -4,32 +4,42 @@ import type { ArticleFamily, NavigationMode } from "@/lib/content/types";
 
 interface ArticleFamilyListProps {
   groups: ArticleFamily[];
-  activeArticleKey?: string;
+  activeEntryKey?: string;
   navigation?: NavigationMode;
 }
 
-export function ArticleFamilyList({ groups, activeArticleKey, navigation }: ArticleFamilyListProps) {
+export function ArticleFamilyList({ groups, activeEntryKey, navigation }: ArticleFamilyListProps) {
   return groups.map((group, index) => {
-    const active = group.articles.some((article) => article.articleKey === activeArticleKey);
+    const active = group.entryKeys.includes(activeEntryKey ?? "");
     if (!group.grouped) {
       const article = group.articles[0];
-      return <ArticleLink article={article} active={active} navigation={navigation} key={article.articleKey} />;
+      const entryKey = group.entryKeys[0];
+      return (
+        <ArticleLink
+          article={article}
+          active={active}
+          entryKey={entryKey}
+          navigation={navigation}
+          key={entryKey}
+        />
+      );
     }
 
     return (
-      <details className="article-family" open={active} key={`${group.articles[0].articleKey}:${index}`}>
+      <details className="article-family" open={active} key={`${group.entryKeys[0]}:${index}`}>
         <summary>
           <span>{group.title}{group.continued ? "（继续）" : ""}</span>
           <small>{group.articles.length}</small>
         </summary>
         <div>
-          {group.articles.map((article) => (
+          {group.articles.map((article, articleIndex) => (
             <ArticleLink
               article={article}
-              active={article.articleKey === activeArticleKey}
+              active={group.entryKeys[articleIndex] === activeEntryKey}
+              entryKey={group.entryKeys[articleIndex]}
               label={group.stripTitlePrefix ? article.title.slice(article.title.indexOf("：") + 1) : undefined}
               navigation={navigation}
-              key={article.articleKey}
+              key={group.entryKeys[articleIndex]}
             />
           ))}
         </div>

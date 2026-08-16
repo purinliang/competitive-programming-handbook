@@ -3,10 +3,25 @@ import type { ArticleRecord, NavigationMode } from "@/lib/content/types";
 
 import { NavigationLink as Link } from "./navigation-link";
 
-export function ArticleLink({ article, active = false, label, navigation }: { article: ArticleRecord; active?: boolean; label?: string; navigation?: NavigationMode }) {
+interface ArticleLinkProps {
+  article: ArticleRecord;
+  active?: boolean;
+  entryKey?: string;
+  label?: string;
+  navigation?: NavigationMode;
+}
+
+export function ArticleLink({
+  article,
+  active = false,
+  entryKey,
+  label,
+  navigation,
+}: ArticleLinkProps) {
   const visibleTitle = label ?? (navigation === "learning-path" ? article.learningTitle : article.title);
   const title = `${visibleTitle}${article.kind === "extension" ? "*" : ""}`;
-  const href = navigation === "learning-path" ? article.learningPathRoute : article.catalogRoute;
+  const route = navigation === "learning-path" ? article.learningPathRoute : article.catalogRoute;
+  const href = entryKey ? `${route}?entry=${encodeURIComponent(entryKey)}` : route;
   const unavailable = !article.exists || article.status === "计划";
   if (unavailable) {
     return (

@@ -1,20 +1,23 @@
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 import { ArticleNavigationView } from "./article-navigation-view";
 import { ArticleNeighborsView } from "./article-neighbors-view";
 import { ArticleTableOfContents } from "./article-table-of-contents";
 import { CodeBlockEnhancements } from "./code-block-enhancements";
 import { CollaborativeArticle } from "./collaborative-article";
+import {
+  ContextualArticleNavigation,
+  ContextualArticleNeighbors,
+} from "./contextual-article-navigation";
 import { LearningQuiz } from "./learning-quiz";
 import { LearningProgressSync } from "./learning-progress-sync";
 import { SiteHeader } from "./site-header";
 
 import {
   getArticle,
-  getArticleLearningNavigation,
-  getArticleLearningNeighbors,
-  getArticleModuleNavigation,
-  getArticleModuleNeighbors,
+  getArticleLearningNavigations,
+  getArticleModuleNavigations,
 } from "@/lib/content/catalog";
 import { getLearningQuiz, getRenderedArticle } from "@/lib/content/compiled";
 
@@ -26,16 +29,14 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
     notFound();
   }
 
-  const navigation = mode === "learning-path"
-    ? getArticleLearningNavigation(article.articleKey)
-    : getArticleModuleNavigation(article.articleKey);
-  if (!navigation) {
+  const navigations = mode === "learning-path"
+    ? getArticleLearningNavigations(article.articleKey)
+    : getArticleModuleNavigations(article.articleKey);
+  const defaultNavigation = navigations[0];
+  if (!defaultNavigation) {
     notFound();
   }
 
-  const neighbors = mode === "learning-path"
-    ? getArticleLearningNeighbors(article.articleKey)
-    : getArticleModuleNeighbors(article.articleKey);
   const rendered = await getRenderedArticle(article, mode);
   const quiz = mode === "learning-path" ? await getLearningQuiz(article) : undefined;
   const tableOfContents = mode === "learning-path"
@@ -60,7 +61,11 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
     <>
       <SiteHeader activeSection={mode} />
       <div className="docs-layout">
-        <ArticleNavigationView articleKey={article.articleKey} mode={mode} navigation={navigation} />
+        <Suspense
+          fallback={<ArticleNavigationView mode={mode} navigation={defaultNavigation} />}
+        >
+          <ContextualArticleNavigation mode={mode} navigations={navigations} />
+        </Suspense>
 
         <main className="article-column">
           <article className="markdown-body" data-article-key={article.articleKey} data-content-revision={rendered.contentRevision} dangerouslySetInnerHTML={{ __html: rendered.html }} />
@@ -88,7 +93,17 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
               </div>
             </>
           ) : null}
-          <ArticleNeighborsView mode={mode} {...neighbors} />
+          <Suspense
+            fallback={(
+              <ArticleNeighborsView
+                mode={mode}
+                previous={defaultNavigation.previous}
+                next={defaultNavigation.next}
+              />
+            )}
+          >
+            <ContextualArticleNeighbors mode={mode} navigations={navigations} />
+          </Suspense>
         </main>
 
         <ArticleTableOfContents articleKey={article.articleKey} items={tableOfContents} />

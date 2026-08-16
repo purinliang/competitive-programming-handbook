@@ -28,13 +28,13 @@ MODULE_PREFIXES = {
 }
 ARTICLE_ID_PATTERN = r"\d{4}(?:e\d+)?"
 CATALOG_ROW = re.compile(
-    rf"^\|\s*({ARTICLE_ID_PATTERN})(\*)?\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
+    rf"^\|\s*(\*)?({ARTICLE_ID_PATTERN})\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
 )
 PATH_ROW = re.compile(
-    rf"^\|\s*({ARTICLE_ID_PATTERN})(\*)?\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
+    rf"^\|\s*(\*)?({ARTICLE_ID_PATTERN})\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
 )
 EXTENSION_INDEX_ROW = re.compile(
-    rf"^\|\s*({ARTICLE_ID_PATTERN})(\*)?\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
+    rf"^\|\s*(\*)?({ARTICLE_ID_PATTERN})\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
 )
 MARKDOWN_LINK = re.compile(r"\[[^]]*\]\(([^)]+)\)")
 FILE_LINK = re.compile(r"^\[([^]]+)\]\(([^)]+)\)$")
@@ -109,7 +109,7 @@ class Checker:
             match = CATALOG_ROW.match(line)
             if not match:
                 continue
-            article_id, extension_marker, title, status, raw_file = match.groups()
+            extension_marker, article_id, title, status, raw_file = match.groups()
             article_id = article_id.strip()
             title = title.strip()
             status = status.strip()
@@ -123,9 +123,22 @@ class Checker:
                 raw_file, f"catalog.md:{line_number}"
             )
             if article_id in entries:
-                self.error(f"catalog.md:{line_number}: duplicate ID {article_id}")
+                previous = entries[article_id]
+                repeated = Entry(
+                    article_id,
+                    title,
+                    kind,
+                    status,
+                    path,
+                    linked,
+                )
+                if repeated != previous:
+                    self.error(
+                        f"catalog.md:{line_number}: repeated ID {article_id} "
+                        "must keep identical metadata"
+                    )
                 continue
-            if path in paths:
+            if path in paths and paths[path] != article_id:
                 self.error(
                     f"catalog.md:{line_number}: path {path!r} is also used by {paths[path]}"
                 )
@@ -166,7 +179,7 @@ class Checker:
                 extension_match = EXTENSION_INDEX_ROW.match(line)
                 if not extension_match:
                     continue
-                article_id, marker, title, raw_file = (
+                marker, article_id, title, raw_file = (
                     part.strip() if part else part
                     for part in extension_match.groups()
                 )
@@ -192,7 +205,7 @@ class Checker:
             match = PATH_ROW.match(line)
             if not match:
                 continue
-            article_id, marker, title, module, raw_file = (
+            marker, article_id, title, module, raw_file = (
                 part.strip() if part else part for part in match.groups()
             )
             link = FILE_LINK.fullmatch(raw_file)
@@ -295,14 +308,28 @@ class Checker:
     def check_learning_path(
         self, entries: dict[str, Entry], route: list[RouteEntry]
     ) -> None:
-        seen: set[str] = set()
+        seen_entrances: set[tuple[str, str, str]] = set()
+        repeated_metadata: dict[str, tuple[bool, str, str, str, bool]] = {}
         route_ids: list[str] = []
         for item in route:
             location = f"learning-path.md ({item.article_id}, {item.stage})"
-            if item.article_id in seen:
-                self.error(f"{location}: duplicate learning-path ID")
+            entrance = (item.stage, item.section, item.article_id)
+            if entrance in seen_entrances:
+                self.error(f"{location}: duplicate entrance in the same unit")
                 continue
-            seen.add(item.article_id)
+            seen_entrances.add(entrance)
+            metadata = (
+                item.extension_marker,
+                item.title,
+                item.module,
+                item.path,
+                item.linked,
+            )
+            previous_metadata = repeated_metadata.setdefault(item.article_id, metadata)
+            if previous_metadata != metadata:
+                self.error(
+                    f"{location}: repeated entrances must keep identical metadata"
+                )
             entry = entries.get(item.article_id)
             if not entry:
                 self.error(f"{location}: ID is absent from catalog.md")
@@ -331,11 +358,12 @@ class Checker:
         stages = list(dict.fromkeys(item.stage for item in route))
         expected_stages = [
             "01 C++ 基础",
-            "02 算法基础",
-            "03 初中基础",
-            "04 初中进阶",
-            "05 高中基础",
-            "06 高中进阶",
+            "02 C++ 进阶",
+            "03 算法入门",
+            "04 初中基础",
+            "05 初中进阶",
+            "06 高中基础",
+            "07 高中进阶",
         ]
         if stages != expected_stages:
             self.error(
@@ -362,7 +390,7 @@ class Checker:
                 self.error(f"{location}: ID is absent from catalog.md")
                 continue
             if entry.kind != "扩展专题":
-                self.error(f"{location}: core article must stay in stages 1–6")
+                self.error(f"{location}: core article must stay in stages 1–7")
             if not item.extension_marker:
                 self.error(f"{location}: extension index entries must use *")
             if re.fullmatch(r"\d{4}e\d+", item.article_id):

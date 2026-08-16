@@ -37,6 +37,10 @@ function toArticleKey(sourcePath) {
   return sourcePath.replace(/\\/g, "/").replace(/\.md$/, "");
 }
 
+function navigationKey(...parts) {
+  return createHash("sha256").update(parts.join("\0")).digest("hex").slice(0, 12);
+}
+
 async function fileExists(filePath) {
   try {
     await access(filePath);
@@ -48,11 +52,12 @@ async function fileExists(filePath) {
 
 async function parseCatalog() {
   const catalog = await readFile(path.join(notesRoot, "catalog.md"), "utf8");
-  const articles = [];
+  const articles = new Map();
   let moduleKey = "";
   let moduleTitle = "";
   let moduleAnchor = "";
-  let catalogFamilyTitle;
+  let catalogTopicTitle;
+  let catalogPosition = 0;
   const moduleSlugger = new GithubSlugger();
 
   for (const line of catalog.split("\n")) {
@@ -61,17 +66,17 @@ async function parseCatalog() {
       moduleTitle = moduleMatch[1].trim();
       moduleAnchor = moduleSlugger.slug(moduleMatch[1].trim());
       moduleKey = "";
-      catalogFamilyTitle = undefined;
+      catalogTopicTitle = undefined;
       continue;
     }
 
-    const familyMatch = line.match(/^###\s+知识族：(.+)$/);
-    if (familyMatch) {
-      catalogFamilyTitle = familyMatch[1].trim();
+    const topicMatch = line.match(/^###\s+专题：(.+)$/);
+    if (topicMatch) {
+      catalogTopicTitle = topicMatch[1].trim();
       continue;
     }
 
-    if (!/^\|\s*\d/.test(line)) {
+    if (!/^\|\s*\*?\d/.test(line)) {
       continue;
     }
 
@@ -80,7 +85,8 @@ async function parseCatalog() {
       continue;
     }
 
-    const [catalogId, title, status, fileCell] = cells;
+    const [rawCatalogId, title, status, fileCell] = cells;
+    const catalogId = rawCatalogId.replace(/^\*/, "");
     const sourcePath = extractMarkdownPath(fileCell);
     if (!sourcePath || !articleStatuses.has(status)) {
       continue;
@@ -89,15 +95,39 @@ async function parseCatalog() {
     const articleKey = toArticleKey(sourcePath);
     const pathParts = articleKey.split("/");
     moduleKey ||= pathParts[0];
-    articles.push({
+    const topic = catalogTopicTitle ? {
+      key: `catalog-${navigationKey(moduleKey, catalogTopicTitle)}`,
+      title: catalogTopicTitle,
+      position: catalogPosition,
+    } : undefined;
+    catalogPosition += 1;
+
+    const existing = articles.get(articleKey);
+    if (existing) {
+      if (
+        existing.catalogId !== catalogId
+        || existing.title !== title
+        || existing.status !== status
+        || existing.sourcePath !== sourcePath
+        || existing.moduleKey !== moduleKey
+      ) {
+        throw new Error(`catalog.md 中重复条目 ${articleKey} 的元数据不一致`);
+      }
+      if (topic && !existing.catalogTopics.some((item) => item.title === topic.title)) {
+        existing.catalogTopics.push(topic);
+      }
+      continue;
+    }
+
+    articles.set(articleKey, {
       articleKey,
       articleSlug: pathParts.at(-1) ?? articleKey,
       catalogId,
       title,
       learningTitle: title,
-      catalogFamilyTitle,
+      catalogTopics: topic ? [topic] : [],
       status,
-      kind: catalogId.includes("*") ? "extension" : "core",
+      kind: rawCatalogId.startsWith("*") ? "extension" : "core",
       moduleKey,
       moduleTitle,
       moduleAnchor,
@@ -109,14 +139,7 @@ async function parseCatalog() {
     });
   }
 
-  const duplicateKeys = articles.filter(
-    (article, index) => articles.findIndex((candidate) => candidate.articleKey === article.articleKey) !== index,
-  );
-  if (duplicateKeys.length > 0) {
-    throw new Error(`catalog.md 中存在重复 article_key：${duplicateKeys.map((item) => item.articleKey).join(", ")}`);
-  }
-
-  return articles;
+  return [...articles.values()];
 }
 
 async function parseLearningStages() {
@@ -135,6 +158,7 @@ async function parseLearningStages() {
         number: stageMatch[1],
         title: stageMatch[2].trim(),
         articleKeys: [],
+        entryKeys: [],
         units: [],
       };
       stages.push(currentStage);
@@ -150,15 +174,18 @@ async function parseLearningStages() {
 
     const unitMatch = line.match(/^###\s+(?:单元|学习单元|扩展单元)：(.+)$/);
     if (currentStage && unitMatch) {
+      const title = unitMatch[1].trim();
       currentUnit = {
-        title: unitMatch[1].trim(),
+        key: `learning-${navigationKey(currentStage.key, title)}`,
+        title,
         articleKeys: [],
+        entryKeys: [],
       };
       currentStage.units.push(currentUnit);
       continue;
     }
 
-    if (!currentStage || !/^\|\s*\d/.test(line)) {
+    if (!currentStage || !/^\|\s*\*?\d/.test(line)) {
       continue;
     }
 
@@ -167,10 +194,23 @@ async function parseLearningStages() {
     if (sourcePath) {
       const sourceKey = toArticleKey(sourcePath);
       const articleKey = sourceKey.startsWith("learning-path/") ? sourceKey.slice("learning-path/".length) : sourceKey;
+      const previousSourcePath = sourcePaths.get(articleKey);
+      const previousTitle = titles.get(articleKey);
+      if (previousSourcePath && previousSourcePath !== sourcePath) {
+        throw new Error(`learning-path.md 中 ${articleKey} 的多个入口使用了不同正文`);
+      }
+      if (previousTitle && previousTitle !== cells[1]) {
+        throw new Error(`learning-path.md 中 ${articleKey} 的多个入口使用了不同标题`);
+      }
       sourcePaths.set(articleKey, sourcePath);
       titles.set(articleKey, cells[1]);
+      const entryKey = currentUnit
+        ? `${currentUnit.key}-${navigationKey(articleKey)}`
+        : `learning-${navigationKey(currentStage.key, articleKey)}`;
       currentStage.articleKeys.push(articleKey);
+      currentStage.entryKeys.push(entryKey);
       currentUnit?.articleKeys.push(articleKey);
+      currentUnit?.entryKeys.push(entryKey);
     }
   }
 

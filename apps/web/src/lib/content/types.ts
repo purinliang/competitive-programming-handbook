@@ -1,13 +1,19 @@
 export type ArticleStatus = "计划" | "待审阅" | "已审阅" | "草稿" | "定稿";
 export type NavigationMode = "learning-path" | "catalog";
 
+export interface CatalogTopicMembership {
+  key: string;
+  title: string;
+  position: number;
+}
+
 export interface ArticleRecord {
   articleKey: string;
   articleSlug: string;
   catalogId: string;
   title: string;
   learningTitle: string;
-  catalogFamilyTitle?: string;
+  catalogTopics: CatalogTopicMembership[];
   status: ArticleStatus;
   kind: "core" | "extension";
   moduleKey: string;
@@ -32,26 +38,38 @@ export interface LearningStage {
   number: string;
   title: string;
   articleKeys: string[];
+  entryKeys: string[];
   units: LearningUnit[];
 }
 
 export interface LearningUnit {
+  key: string;
   title: string;
   articleKeys: string[];
+  entryKeys: string[];
 }
 
 export interface ArticleFamily {
   title: string;
   articles: ArticleRecord[];
+  entryKeys: string[];
   grouped: boolean;
   continued: boolean;
   stripTitlePrefix: boolean;
+}
+
+export interface ArticleNavigationTarget {
+  article: ArticleRecord;
+  entryKey: string;
 }
 
 export interface ArticleNavigation {
   label: string;
   title: string;
   groups: ArticleFamily[];
+  activeEntryKey: string;
+  previous?: ArticleNavigationTarget;
+  next?: ArticleNavigationTarget;
 }
 
 export interface TableOfContentsItem {

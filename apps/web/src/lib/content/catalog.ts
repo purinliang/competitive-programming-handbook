@@ -3,7 +3,14 @@ import "server-only";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
-import type { ArticleFamily, ArticleNavigation, ArticleRecord, LearningStage, ModuleRecord } from "./types";
+import type {
+  ArticleFamily,
+  ArticleNavigation,
+  ArticleNavigationTarget,
+  ArticleRecord,
+  LearningStage,
+  ModuleRecord,
+} from "./types";
 
 interface ContentManifest {
   articles: ArticleRecord[];
@@ -48,61 +55,119 @@ export function getLearningStages(): LearningStage[] {
 
 export function getLearningArticles(): ArticleRecord[] {
   const articles = new Map(getArticles().map((article) => [article.articleKey, article]));
-  return getLearningStages().flatMap((stage) =>
-    stage.articleKeys.map((articleKey) => articles.get(articleKey)).filter((article): article is ArticleRecord => Boolean(article)),
-  );
-}
-
-function getCoreLearningArticles(): ArticleRecord[] {
-  const articles = new Map(getArticles().map((article) => [article.articleKey, article]));
-  return getLearningStages().flatMap((stage) => stage.articleKeys
+  const route = getLearningStages().flatMap((stage) => stage.articleKeys
     .map((articleKey) => articles.get(articleKey))
-    .filter((article): article is ArticleRecord => article?.kind === "core"));
+    .filter((article): article is ArticleRecord => Boolean(article)));
+  return [...new Map(route.map((article) => [article.articleKey, article])).values()];
 }
 
-export function getArticleLearningNeighbors(articleKey: string): { previous?: ArticleRecord; next?: ArticleRecord } {
-  const stage = getLearningStages().find((item) => item.articleKeys.includes(articleKey));
-  const unit = stage?.units.find((item) => item.articleKeys.includes(articleKey));
+function getLearningEntries(stage: LearningStage): ArticleNavigationTarget[] {
   const articles = new Map(getArticles().map((article) => [article.articleKey, article]));
-  const current = articles.get(articleKey);
-  const route = current?.kind === "extension"
-    ? (unit?.articleKeys ?? []).map((key) => articles.get(key)).filter((article): article is ArticleRecord => Boolean(article?.exists && article.status !== "计划"))
-    : getCoreLearningArticles().filter((article) => article.exists && article.status !== "计划");
-  const index = route.findIndex((article) => article.articleKey === articleKey);
+  return stage.articleKeys.flatMap((articleKey, index) => {
+    const article = articles.get(articleKey);
+    const entryKey = stage.entryKeys[index];
+    return article && entryKey ? [{ article, entryKey }] : [];
+  });
+}
+
+function getCoreLearningEntries(): ArticleNavigationTarget[] {
+  return getLearningStages().flatMap(getLearningEntries)
+    .filter(({ article }) => article.kind === "core");
+}
+
+function findLearningPlacement(articleKey: string, requestedEntryKey?: string) {
+  for (const stage of getLearningStages()) {
+    const entries = getLearningEntries(stage);
+    const requested = requestedEntryKey
+      ? entries.find((entry) => entry.entryKey === requestedEntryKey && entry.article.articleKey === articleKey)
+      : undefined;
+    const current = requested ?? entries.find((entry) => entry.article.articleKey === articleKey);
+    if (!current) continue;
+    const unit = stage.units.find((item) => item.entryKeys.includes(current.entryKey));
+    return { current, stage, unit };
+  }
+  return undefined;
+}
+
+export function getArticleLearningNeighbors(
+  articleKey: string,
+  requestedEntryKey?: string,
+): { previous?: ArticleNavigationTarget; next?: ArticleNavigationTarget } {
+  const placement = findLearningPlacement(articleKey, requestedEntryKey);
+  if (!placement) return {};
+
+  const route = placement.current.article.kind === "extension"
+    ? (placement.unit?.articleKeys ?? []).flatMap((key, index) => {
+        const article = getArticle(key);
+        const entryKey = placement.unit?.entryKeys[index];
+        return article && entryKey ? [{ article, entryKey }] : [];
+      })
+    : getCoreLearningEntries();
+  const available = route.filter(({ article }) => article.exists && article.status !== "计划");
+  const index = available.findIndex((entry) => entry.entryKey === placement.current.entryKey);
 
   if (index < 0) {
     return {};
   }
 
   return {
-    previous: route[index - 1],
-    next: route[index + 1],
+    previous: available[index - 1],
+    next: available[index + 1],
   };
 }
 
-export function getArticleModuleNeighbors(articleKey: string): { previous?: ArticleRecord; next?: ArticleRecord } {
+export function getArticleModuleNeighbors(
+  articleKey: string,
+  requestedEntryKey?: string,
+): { previous?: ArticleNavigationTarget; next?: ArticleNavigationTarget } {
   const article = getArticle(articleKey);
   if (!article) {
     return {};
   }
 
-  const route = getArticles().filter(
-    (candidate) => candidate.moduleKey === article.moduleKey
-      && candidate.exists
-      && candidate.status !== "计划",
-  );
-  const index = route.findIndex((candidate) => candidate.articleKey === articleKey);
+  const module = getModules().find((item) => item.key === article.moduleKey);
+  const groups = getCatalogGroups(module?.articles ?? [article]);
+  const group = groups.find((item) => requestedEntryKey && item.entryKeys.includes(requestedEntryKey))
+    ?? groups.find((item) => item.articles.some((candidate) => candidate.articleKey === articleKey));
+  if (!group) return {};
+
+  const route = group.articles.flatMap((candidate, index) => {
+    const entryKey = group.entryKeys[index];
+    return candidate.exists && candidate.status !== "计划" && entryKey
+      ? [{ article: candidate, entryKey }]
+      : [];
+  });
+  const index = route.findIndex((entry) => (
+    requestedEntryKey
+      ? entry.entryKey === requestedEntryKey
+      : entry.article.articleKey === articleKey
+  ));
   return index < 0 ? {} : { previous: route[index - 1], next: route[index + 1] };
 }
 
-export function groupAdjacentArticles(articles: ArticleRecord[]): ArticleFamily[] {
+function fallbackEntryKey(article: ArticleRecord): string {
+  return `catalog-article:${article.articleKey}`;
+}
+
+export function groupAdjacentArticles(
+  articles: ArticleRecord[],
+  providedEntryKeys?: string[],
+): ArticleFamily[] {
   const groups: ArticleFamily[] = [];
   const seenFamilies = new Set<string>();
 
-  for (const article of articles) {
+  for (const [index, article] of articles.entries()) {
+    const entryKey = providedEntryKeys?.[index] ?? fallbackEntryKey(article);
     const separator = article.title.indexOf("：");
     if (separator < 0) {
-      groups.push({ title: article.title, articles: [article], grouped: false, continued: false, stripTitlePrefix: false });
+      groups.push({
+        title: article.title,
+        articles: [article],
+        entryKeys: [entryKey],
+        grouped: false,
+        continued: false,
+        stripTitlePrefix: false,
+      });
       continue;
     }
 
@@ -111,8 +176,16 @@ export function groupAdjacentArticles(articles: ArticleRecord[]): ArticleFamily[
     const previous = groups.at(-1);
     if (previous?.grouped && previous.title === title && previous.articles[0].moduleKey === article.moduleKey) {
       previous.articles.push(article);
+      previous.entryKeys.push(entryKey);
     } else {
-      groups.push({ title, articles: [article], grouped: true, continued: seenFamilies.has(familyKey), stripTitlePrefix: true });
+      groups.push({
+        title,
+        articles: [article],
+        entryKeys: [entryKey],
+        grouped: true,
+        continued: seenFamilies.has(familyKey),
+        stripTitlePrefix: true,
+      });
       seenFamilies.add(familyKey);
     }
   }
@@ -121,74 +194,121 @@ export function groupAdjacentArticles(articles: ArticleRecord[]): ArticleFamily[
 }
 
 export function getCatalogGroups(articles: ArticleRecord[]): ArticleFamily[] {
-  if (!articles.some((article) => article.catalogFamilyTitle)) {
+  if (!articles.some((article) => article.catalogTopics.length > 0)) {
     return groupAdjacentArticles(articles);
   }
 
-  const groups: ArticleFamily[] = [];
-  for (const article of articles) {
-    const title = article.catalogFamilyTitle ?? "其他";
-    const previous = groups.at(-1);
-    if (previous?.title === title) {
-      previous.articles.push(article);
-      continue;
+  const topics = new Map<
+    string,
+    {
+      title: string;
+      position: number;
+      articles: Array<{
+        article: ArticleRecord;
+        entryKey: string;
+        position: number;
+      }>;
     }
-    groups.push({ title, articles: [article], grouped: true, continued: false, stripTitlePrefix: false });
+  >();
+  for (const article of articles) {
+    for (const membership of article.catalogTopics) {
+      const topic = topics.get(membership.key) ?? {
+        title: membership.title,
+        position: membership.position,
+        articles: [],
+      };
+      topic.position = Math.min(topic.position, membership.position);
+      topic.articles.push({
+        article,
+        entryKey: `${membership.key}:${article.articleKey}`,
+        position: membership.position,
+      });
+      topics.set(membership.key, topic);
+    }
   }
-  return groups;
+
+  return [...topics.values()]
+    .sort((left, right) => left.position - right.position)
+    .map((topic) => {
+      const entries = topic.articles.sort((left, right) => left.position - right.position);
+      return {
+        title: topic.title,
+        articles: entries.map((item) => item.article),
+        entryKeys: entries.map((item) => item.entryKey),
+        grouped: true,
+        continued: false,
+        stripTitlePrefix: false,
+      };
+    });
 }
 
 export function getLearningUnitGroups(stage: LearningStage): ArticleFamily[] {
   if (stage.units.length === 0) {
-    const articles = stage.articleKeys.flatMap((articleKey) => {
+    const entries = stage.articleKeys.flatMap((articleKey, index) => {
       const article = getArticle(articleKey);
-      return article ? [article] : [];
+      const entryKey = stage.entryKeys[index];
+      return article && entryKey ? [{ article, entryKey }] : [];
     });
-    return groupAdjacentArticles(articles);
+    return groupAdjacentArticles(
+      entries.map((entry) => entry.article),
+      entries.map((entry) => entry.entryKey),
+    );
   }
 
-  return stage.units.map((unit) => ({
-    title: unit.title,
-    articles: unit.articleKeys.flatMap((articleKey) => {
+  return stage.units.map((unit) => {
+    const entries = unit.articleKeys.flatMap((articleKey, index) => {
       const article = getArticle(articleKey);
-      return article ? [article] : [];
-    }),
-    grouped: true,
-    continued: false,
-    stripTitlePrefix: false,
-  }));
+      const entryKey = unit.entryKeys[index];
+      return article && entryKey ? [{ article, entryKey }] : [];
+    });
+    return {
+      title: unit.title,
+      articles: entries.map((entry) => entry.article),
+      entryKeys: entries.map((entry) => entry.entryKey),
+      grouped: true,
+      continued: false,
+      stripTitlePrefix: false,
+    };
+  });
 }
 
-export function getArticleModuleNavigation(articleKey: string): ArticleNavigation | undefined {
+export function getArticleModuleNavigations(articleKey: string): ArticleNavigation[] {
   const article = getArticle(articleKey);
   if (!article) {
-    return undefined;
+    return [];
   }
 
   const module = getModules().find((item) => item.key === article.moduleKey);
   const groups = getCatalogGroups(module?.articles ?? [article]);
-
-  return {
-    label: "模块",
-    title: article.moduleTitle,
-    groups,
-  };
+  return groups.flatMap((group) => group.articles.flatMap((candidate, index) => {
+    const activeEntryKey = group.entryKeys[index];
+    if (candidate.articleKey !== articleKey || !activeEntryKey) {
+      return [];
+    }
+    const neighbors = getArticleModuleNeighbors(articleKey, activeEntryKey);
+    return [{
+      label: "模块",
+      title: article.moduleTitle,
+      groups,
+      activeEntryKey,
+      ...neighbors,
+    }];
+  }));
 }
 
-export function getArticleLearningNavigation(articleKey: string): ArticleNavigation | undefined {
+export function getArticleLearningNavigations(articleKey: string): ArticleNavigation[] {
   const article = getArticle(articleKey);
   if (!article) {
-    return undefined;
+    return [];
   }
 
-  const stage = getLearningStages().find((item) => item.articleKeys.includes(articleKey));
-  if (!stage) {
-    return undefined;
-  }
-
-  return {
-    label: "学习路线",
-    title: `${stage.number} ${stage.title}`,
-    groups: getLearningUnitGroups(stage),
-  };
+  return getLearningStages().flatMap((stage) => getLearningEntries(stage)
+    .filter((entry) => entry.article.articleKey === articleKey)
+    .map((entry) => ({
+      label: "学习路线",
+      title: `${stage.number} ${stage.title}`,
+      groups: getLearningUnitGroups(stage),
+      activeEntryKey: entry.entryKey,
+      ...getArticleLearningNeighbors(articleKey, entry.entryKey),
+    })));
 }
