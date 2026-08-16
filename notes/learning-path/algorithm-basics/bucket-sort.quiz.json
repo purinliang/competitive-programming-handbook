@@ -1,0 +1,50 @@
+[
+  {
+    "id": "bucket-versus-counting",
+    "prompt": "桶排序与计数排序最关键的区别是什么？",
+    "options": [
+      { "id": "a", "text": "桶排序只能处理一个元素" },
+      { "id": "b", "text": "计数排序一定使用浮点数" },
+      { "id": "c", "text": "桶对应一段值域并保存多个元素，计数位置对应一个具体整数值" },
+      { "id": "d", "text": "两者完全相同，只是名称不同" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "桶内可能有许多不同值并需要继续排序；计数排序直接记录每个整数值的出现次数。"
+  },
+  {
+    "id": "bucket-global-order",
+    "prompt": "按桶编号拼接后整体有序，需要满足什么？",
+    "options": [
+      { "id": "a", "text": "桶的值域有序且不交叉，并且每个桶内部有序" },
+      { "id": "b", "text": "所有元素必须进入同一个桶" },
+      { "id": "c", "text": "桶编号必须随机排列" },
+      { "id": "d", "text": "每个桶只能保存一个值" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "桶间顺序由范围保证，桶内顺序由内部排序保证，两者缺一不可。"
+  },
+  {
+    "id": "bucket-worst-distribution",
+    "prompt": "若所有元素都落入同一个桶，本篇使用 `sort` 的实现会怎样？",
+    "options": [
+      { "id": "a", "text": "一定保持 `O(n)`" },
+      { "id": "b", "text": "所有元素会自动消失" },
+      { "id": "c", "text": "无法得到正确顺序" },
+      { "id": "d", "text": "主要工作退化为对一个含 `n` 个元素的桶排序，达到 `O(n log n)`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "接近线性的期望依赖元素较均匀地分散；极端集中时就是一次普通比较排序。"
+  },
+  {
+    "id": "bucket-count-tradeoff",
+    "prompt": "桶数量太多时，最直接增加的成本是什么？",
+    "options": [
+      { "id": "a", "text": "整数会全部变成负数" },
+      { "id": "b", "text": "空桶的容器空间与扫描成本" },
+      { "id": "c", "text": "数组不再能够输出" },
+      { "id": "d", "text": "比较运算符失效" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "桶过多会建立并遍历大量空容器；桶过少则可能让桶内排序过重。"
+  }
+]

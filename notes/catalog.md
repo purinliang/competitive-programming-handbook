@@ -311,7 +311,7 @@
 | --- | --- | --- | --- |
 | *050204 | 堆排序 | 待审阅 | [heap-sort.md](algorithm-basics/heap-sort.md) |
 | *030608 | 基数排序 | 待审阅 | [radix-sort.md](algorithm-basics/radix-sort.md) |
-| *030609 | 桶排序 | 计划 | `algorithm-basics/bucket-sort.md` |
+| *030609 | 桶排序 | 待审阅 | [bucket-sort.md](algorithm-basics/bucket-sort.md) |
 
 ### 专题：二分与数值搜索
 

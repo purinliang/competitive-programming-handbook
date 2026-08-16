@@ -299,7 +299,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 030606 | 归并排序 | 算法基础 | [algorithm-basics/merge-sort.md](algorithm-basics/merge-sort.md) |
 | 030607 | 排序方法比较 | 算法基础 | [algorithm-basics/sorting-comparison.md](algorithm-basics/sorting-comparison.md) |
 | *030608 | 基数排序 | 算法基础 | [algorithm-basics/radix-sort.md](algorithm-basics/radix-sort.md) |
-| *030609 | 桶排序 | 算法基础 | `algorithm-basics/bucket-sort.md` |
+| *030609 | 桶排序 | 算法基础 | [algorithm-basics/bucket-sort.md](algorithm-basics/bucket-sort.md) |
 
 ### 单元 07：二分与倍增
 
@@ -814,7 +814,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
 | *030608 | 基数排序 | [algorithm-basics/radix-sort.md](algorithm-basics/radix-sort.md) |
-| *030609 | 桶排序 | `algorithm-basics/bucket-sort.md` |
+| *030609 | 桶排序 | [algorithm-basics/bucket-sort.md](algorithm-basics/bucket-sort.md) |
 | *050204 | 堆排序 | [algorithm-basics/heap-sort.md](algorithm-basics/heap-sort.md) |
 | *990201 | CDQ 分治 | `algorithm-basics/cdq-divide-and-conquer.md` |
 | *990202 | 三分搜索 | `algorithm-basics/ternary-search.md` |
