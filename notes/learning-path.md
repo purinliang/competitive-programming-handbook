@@ -112,8 +112,8 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 011101 | `scanf` 与 `printf` | C++ | [cpp/scanf-and-printf.md](cpp/scanf-and-printf.md) |
-| 011102 | `cin` 与 `cout` | C++ | [cpp/cin-and-cout.md](cpp/cin-and-cout.md) |
+| 011101 | scanf 与 printf | C++ | [cpp/scanf-and-printf.md](cpp/scanf-and-printf.md) |
+| 011102 | cin 与 cout | C++ | [cpp/cin-and-cout.md](cpp/cin-and-cout.md) |
 | 011103 | 输出格式控制 | C++ | [cpp/output-formatting.md](cpp/output-formatting.md) |
 | 011104 | 文件重定向 | C++ | [cpp/file-redirection.md](cpp/file-redirection.md) |
 
@@ -608,7 +608,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 061101 | 概率与期望基础 | 数学 | `math/probability-expectation.md` |
+| 061101 | 概率与期望基础 | 数学 | [math/probability-expectation.md](math/probability-expectation.md) |
 
 ### 单元 12：图论：图的存储实现
 
@@ -627,17 +627,17 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 061401 | 最短路：Dijkstra | 图论 | `graph-theory/dijkstra.md` |
-| 061402 | 最短路：Bellman–Ford 与负环 | 图论 | `graph-theory/bellman-ford.md` |
-| 061403 | 最短路：Floyd–Warshall | 图论 | `graph-theory/floyd-warshall.md` |
+| 061401 | 最短路：Dijkstra | 图论 | [graph-theory/dijkstra.md](graph-theory/dijkstra.md) |
+| 061402 | 最短路：Bellman–Ford 与负环 | 图论 | [graph-theory/bellman-ford.md](graph-theory/bellman-ford.md) |
+| 061403 | 最短路：Floyd–Warshall | 图论 | [graph-theory/floyd-warshall.md](graph-theory/floyd-warshall.md) |
 | 061404 | 最短路：0-1 BFS | 图论 | [graph-theory/zero-one-bfs.md](graph-theory/zero-one-bfs.md) |
 
 ### 单元 15：图论：最小生成树
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 061501 | 最小生成树：Kruskal | 图论 | `graph-theory/kruskal.md` |
-| 061502 | 最小生成树：Prim | 图论 | `graph-theory/prim.md` |
+| 061501 | 最小生成树：Kruskal | 图论 | [graph-theory/kruskal.md](graph-theory/kruskal.md) |
+| 061502 | 最小生成树：Prim | 图论 | [graph-theory/prim.md](graph-theory/prim.md) |
 
 ### 单元 16：图论：树上基础问题
 
@@ -645,15 +645,15 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | --- | --- | --- | --- |
 | 061601 | 树：直径与中心 | 图论 | [graph-theory/tree-diameter-center.md](graph-theory/tree-diameter-center.md) |
 | 061602 | 树：重心 | 图论 | [graph-theory/tree-centroid.md](graph-theory/tree-centroid.md) |
-| 061603 | 树的遍历：DFS 序与子树区间 | 图论 | `graph-theory/tree-euler-tour.md` |
+| 061603 | 树的遍历：DFS 序与子树区间 | 图论 | [graph-theory/tree-euler-tour.md](graph-theory/tree-euler-tour.md) |
 | 061604 | 树上查询：倍增 LCA | 图论 | [graph-theory/lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
 
 ### 单元 17：图论：特殊图结构
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 061701 | 图：基环树 | 图论 | `graph-theory/unicyclic-graph.md` |
-| 061702 | 图：函数图 | 图论 | `graph-theory/functional-graph.md` |
+| 061701 | 图：基环树 | 图论 | [graph-theory/unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
+| 061702 | 图：函数图 | 图论 | [graph-theory/functional-graph.md](graph-theory/functional-graph.md) |
 
 ### 单元 18：图论：欧拉与哈密顿问题
 
@@ -667,25 +667,25 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 061901 | 状态机 DP | 动态规划 | [dynamic-programming/state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
-| 061902 | DAG 上的 DP | 动态规划 | `dynamic-programming/dag-dp.md` |
-| 061903 | 树形 DP | 动态规划 | `dynamic-programming/tree-dp.md` |
-| 061904 | 状态压缩 DP | 动态规划 | `dynamic-programming/bitmask-dp.md` |
+| 061902 | DAG 上的 DP | 动态规划 | [dynamic-programming/dag-dp.md](dynamic-programming/dag-dp.md) |
+| 061903 | 树形 DP | 动态规划 | [dynamic-programming/tree-dp.md](dynamic-programming/tree-dp.md) |
+| 061904 | 状态压缩 DP | 动态规划 | [dynamic-programming/bitmask-dp.md](dynamic-programming/bitmask-dp.md) |
 
 ### 单元 20：字符串：经典算法
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 062001 | 字符串：哈希 | 字符串 | `strings/rolling-hash.md` |
-| 062002 | 字符串：KMP 与前缀函数 | 字符串 | `strings/kmp-prefix-function.md` |
-| 062003 | 字符串：Z 函数 | 字符串 | `strings/z-function.md` |
-| 062004 | 字符串：Trie | 字符串 | `strings/trie.md` |
+| 062001 | 字符串：哈希 | 字符串 | [strings/rolling-hash.md](strings/rolling-hash.md) |
+| 062002 | 字符串：KMP 与前缀函数 | 字符串 | [strings/kmp-prefix-function.md](strings/kmp-prefix-function.md) |
+| 062003 | 字符串：Z 函数 | 字符串 | [strings/z-function.md](strings/z-function.md) |
+| 062004 | 字符串：Trie | 字符串 | [strings/trie.md](strings/trie.md) |
 
 ### 单元 21：计算几何：基础
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 062101 | 坐标、点、向量与精度 | 计算几何 | `computational-geometry/points-vectors-precision.md` |
-| 062102 | 点积、叉积与方向判断 | 计算几何 | `computational-geometry/dot-cross-orientation.md` |
+| 062101 | 坐标、点、向量与精度 | 计算几何 | [computational-geometry/points-vectors-precision.md](computational-geometry/points-vectors-precision.md) |
+| 062102 | 点积、叉积与方向判断 | 计算几何 | [computational-geometry/dot-cross-orientation.md](computational-geometry/dot-cross-orientation.md) |
 
 ## 07 高中进阶
 
@@ -695,41 +695,42 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 070101 | 枚举：Meet-in-the-Middle | 算法基础 | `algorithm-basics/meet-in-the-middle.md` |
+| 070101 | 枚举：Meet-in-the-Middle | 算法基础 | [algorithm-basics/meet-in-the-middle.md](algorithm-basics/meet-in-the-middle.md) |
 
 ### 单元 02：算法基础：离线处理
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 070201 | 离线算法 | 算法基础 | `algorithm-basics/offline-algorithms.md` |
-| 070202 | 扫描线与事件排序 | 算法基础 | `algorithm-basics/sweep-line.md` |
+| 070201 | 离线算法 | 算法基础 | [algorithm-basics/offline-algorithms.md](algorithm-basics/offline-algorithms.md) |
+| 070202 | 扫描线与事件排序 | 算法基础 | [algorithm-basics/sweep-line.md](algorithm-basics/sweep-line.md) |
 
 ### 单元 03：数据结构：并查集扩展
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 070301 | 并查集：扩展域 | 数据结构 | `data-structures/extended-domain-disjoint-set.md` |
-| 070302 | 并查集：带权 | 数据结构 | `data-structures/weighted-disjoint-set.md` |
+| 070301 | 并查集：扩展域 | 数据结构 | [data-structures/extended-domain-disjoint-set.md](data-structures/extended-domain-disjoint-set.md) |
+| 070302 | 并查集：带权 | 数据结构 | [data-structures/weighted-disjoint-set.md](data-structures/weighted-disjoint-set.md) |
 
 ### 单元 04：图论：连通性
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 070401 | 有向图：强连通分量 | 图论 | `graph-theory/strongly-connected-components.md` |
-| 070402 | 无向图：割点与桥 | 图论 | `graph-theory/articulation-points-bridges.md` |
+| 070401 | 有向图：强连通分量 | 图论 | [graph-theory/strongly-connected-components.md](graph-theory/strongly-connected-components.md) |
+| 070402 | 无向图：割点与桥 | 图论 | [graph-theory/articulation-points-bridges.md](graph-theory/articulation-points-bridges.md) |
 
 ### 单元 05：图论：树上数据结构
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 070501 | 树上数据结构：树链剖分 | 图论 | `graph-theory/heavy-light-decomposition.md` |
-| 070502 | 树上技巧：树上差分 | 图论 | `graph-theory/tree-difference.md` |
+| 070501 | 树上数据结构：树链剖分 | 图论 | [graph-theory/heavy-light-decomposition.md](graph-theory/heavy-light-decomposition.md) |
+| 070502 | 树上技巧：树上差分 | 图论 | [graph-theory/tree-difference.md](graph-theory/tree-difference.md) |
+| 070503 | DSU on Tree | 图论 | `graph-theory/dsu-on-tree.md` |
 
 ### 单元 06：图论：状态图最短路
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 070601 | 最短路：分层图与状态图 | 图论 | `graph-theory/layered-state-shortest-path.md` |
+| 070601 | 最短路：分层图与状态图 | 图论 | [graph-theory/layered-state-shortest-path.md](graph-theory/layered-state-shortest-path.md) |
 
 ### 单元 07：数学：中国剩余定理
 
@@ -742,23 +743,25 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 070801 | 容斥原理 | 数学 | `math/inclusion-exclusion.md` |
+| 070801 | 容斥原理 | 数学 | [math/inclusion-exclusion.md](math/inclusion-exclusion.md) |
 
 ### 单元 09：计算几何：平面几何算法
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 070901 | 直线、线段与相交判定 | 计算几何 | `computational-geometry/lines-segments-intersections.md` |
-| 070902 | 多边形面积与点的位置 | 计算几何 | `computational-geometry/polygon-area-point-location.md` |
-| 070903 | 凸包 | 计算几何 | `computational-geometry/convex-hull.md` |
+| 070901 | 直线、线段与相交判定 | 计算几何 | [computational-geometry/lines-segments-intersections.md](computational-geometry/lines-segments-intersections.md) |
+| 070902 | 多边形面积与点的位置 | 计算几何 | [computational-geometry/polygon-area-point-location.md](computational-geometry/polygon-area-point-location.md) |
+| 070903 | 凸包 | 计算几何 | [computational-geometry/convex-hull.md](computational-geometry/convex-hull.md) |
 
 ### 单元 10：动态规划：进阶
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 071001 | 数位 DP | 动态规划 | `dynamic-programming/digit-dp.md` |
-| 071002 | 概率与期望 DP | 动态规划 | `dynamic-programming/probability-expectation-dp.md` |
-| 071003 | 单调队列优化 | 动态规划 | `dynamic-programming/monotone-queue-optimization.md` |
+| 071001 | 数位 DP | 动态规划 | [dynamic-programming/digit-dp.md](dynamic-programming/digit-dp.md) |
+| 071002 | 概率与期望 DP | 动态规划 | [dynamic-programming/probability-expectation-dp.md](dynamic-programming/probability-expectation-dp.md) |
+| 071003 | 单调队列优化 | 动态规划 | [dynamic-programming/monotone-queue-optimization.md](dynamic-programming/monotone-queue-optimization.md) |
+| 071004 | 单调栈优化 | 动态规划 | `dynamic-programming/monotone-stack-optimization.md` |
+| 071005 | 斜率优化 | 动态规划 | `dynamic-programming/convex-hull-trick.md` |
 
 完成 06 高中进阶后，读者已经具备独立阅读题解、按题目补充专题和判断新算法依赖的能力。这里不把高中竞赛一等奖与大学竞赛奖牌、Codeforces rating 做机械换算。
 
@@ -874,7 +877,6 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990406 | 虚树 | `graph-theory/virtual-tree.md` |
 | *990407 | 点分治 | `graph-theory/centroid-decomposition.md` |
 | *990408 | SPFA 与队列优化最短路 | `graph-theory/spfa.md` |
-| *990409 | DSU on Tree | `graph-theory/dsu-on-tree.md` |
 | *990410 | 差分约束 | `graph-theory/difference-constraints.md` |
 | *990411 | 树哈希 | `graph-theory/tree-hashing.md` |
 | *990412 | 最短路：最短路树 | `graph-theory/shortest-path-tree.md` |
@@ -980,7 +982,6 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| *990701 | 斜率优化 | `dynamic-programming/convex-hull-trick.md` |
 | *990702 | 分治优化 | `dynamic-programming/divide-conquer-optimization.md` |
 | *990703 | 分段线性凸函数维护 | `dynamic-programming/slope-trick.md` |
 | *990704 | 记忆化搜索 | `dynamic-programming/memoized-search.md` |
@@ -994,7 +995,6 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990712 | 自动机 DP | `dynamic-programming/automaton-dp.md` |
 | *990713 | 划分 DP | `dynamic-programming/partition-dp.md` |
 | *990714 | 动态 DP | `dynamic-programming/dynamic-dp.md` |
-| *990715 | 单调栈优化 | `dynamic-programming/monotone-stack-optimization.md` |
 | *990716 | 四边形不等式优化 | `dynamic-programming/quadrangle-inequality-optimization.md` |
 
 ### 08 字符串
