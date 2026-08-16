@@ -1,0 +1,74 @@
+[
+  {
+    "id": "offline-definition",
+    "prompt": "离线算法最关键的特征是什么？",
+    "options": [
+      { "id": "a", "text": "不能读取全部输入" },
+      { "id": "b", "text": "获得全部操作后，可以按更有利的顺序处理再恢复答案顺序" },
+      { "id": "c", "text": "每个询问必须立即回答" },
+      { "id": "d", "text": "只能处理没有询问的问题" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "离线算法利用完整输入重排工作，但最终仍要按题目要求输出。"
+  },
+  {
+    "id": "activation-invariant",
+    "prompt": "处理阈值为 `x` 的询问时，树状数组中的 1 代表什么？",
+    "options": [
+      { "id": "a", "text": "对应原数组位置的值不超过 `x`" },
+      { "id": "b", "text": "对应位置一定在所有查询区间内" },
+      { "id": "c", "text": "对应数组值等于位置编号" },
+      { "id": "d", "text": "该位置尚未读入" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "元素按值激活，树状数组再按原位置统计区间数量。"
+  },
+  {
+    "id": "monotone-threshold",
+    "prompt": "为什么把询问按 `x` 从小到大排序？",
+    "options": [
+      { "id": "a", "text": "让查询区间长度相同" },
+      { "id": "b", "text": "让原数组自动有序" },
+      { "id": "c", "text": "让满足条件的激活集合只扩大，不必撤销" },
+      { "id": "d", "text": "让所有答案相同" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "阈值单调增加时，已满足 value <= x 的元素以后仍然满足。"
+  },
+  {
+    "id": "query-id",
+    "prompt": "每个离线询问为什么要保存原始 `id`？",
+    "options": [
+      { "id": "a", "text": "用于修改数组元素" },
+      { "id": "b", "text": "用于计算树状数组 lowbit" },
+      { "id": "c", "text": "用于改变询问阈值" },
+      { "id": "d", "text": "处理顺序改变后仍能恢复原输出顺序" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "答案写回 answer[id]，最后按输入编号输出。"
+  },
+  {
+    "id": "original-position",
+    "prompt": "激活一个排序后的元素时，应向树状数组加入哪个下标？",
+    "options": [
+      { "id": "a", "text": "它在原数组中的位置" },
+      { "id": "b", "text": "它在排序数组中的位置" },
+      { "id": "c", "text": "当前询问编号" },
+      { "id": "d", "text": "元素值本身" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "询问区间属于原数组坐标，排序只用于确定激活先后。"
+  },
+  {
+    "id": "not-freely-offline",
+    "prompt": "下列哪种情况不能把询问按阈值随意重排？",
+    "options": [
+      { "id": "a", "text": "所有询问在输入前已经知道" },
+      { "id": "b", "text": "后一个操作由前一个答案解密得到" },
+      { "id": "c", "text": "答案需要按原编号输出" },
+      { "id": "d", "text": "数组中存在负数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "后续输入依赖先前答案时，必须先按时间顺序得到前一结果。"
+  }
+]
