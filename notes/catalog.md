@@ -1,6 +1,6 @@
 # 按模块浏览
 
-这里是教程正文的唯一知识注册表。六位文章 ID 编码权威学习入口，核心教程的推荐顺序见 [learning-path.md](learning-path.md)。目录使用“模块 → 领域 → 可选专题 → 文章”：`###` 表示领域，只有确实形成文章家族时才用 `#### 专题：名称` 增加一层。同一篇文章可以同时属于多个领域、专题乃至模块；不同入口仍指向同一个稳定正文和阅读状态。
+这里是教程正文的唯一知识注册表。六位文章 ID 编码权威学习入口，核心教程的推荐顺序见 [learning-path.md](learning-path.md)。每个模块可以先列“常用”入口，再按稳定专题收录全部内容；只有数论、组合数学、图论等确实形成多个文章家族的大专题，才用 `#### 专题：名称` 增加一层。同一篇文章可以同时属于多个专题乃至模块；不同入口仍指向同一个稳定正文和阅读状态。
 
 六位 `CCUUPP` ID 表示核心教程的章、单元和篇序。`*` 前缀表示扩展阅读，难度通常更高或使用频率更低，暂时不学也不影响后续主线。不进入学习路线的独立扩展使用 `*99MMPP`；直接配套基础篇的附属扩展共享六位编号并追加 `e1`、`e2` 等后缀，例如 `*010201e1`。完整规则见 [文章编号与语义路径](../docs/article-identity.md)。`计划` 节点尚未创建文件，文件列只显示预定路径；已有正文的节点使用可点击链接。
 
@@ -13,6 +13,25 @@
 本书自定义的对象默认从 1 开始编号并使用闭区间；讲解 C++ 与 STL 接口时，保留其原生的从 0 开始编号和左闭右开区间。完整的容量、哨兵和接口转换规则见 [learning-path.md](learning-path.md#下标与区间约定)。
 
 ## 01 C++
+
+### 常用
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 010102 | A+B Problem | 待审阅 | [a-plus-b-problem.md](cpp/a-plus-b-problem.md) |
+| 010201 | 整数类型 | 待审阅 | [integer-types.md](cpp/integer-types.md) |
+| 010504 | if 与 else | 待审阅 | [if-and-else.md](cpp/if-and-else.md) |
+| 010602 | for | 待审阅 | [for.md](cpp/for.md) |
+| 010702 | 一维数组 | 待审阅 | [one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
+| 010902 | string | 待审阅 | [string.md](cpp/string.md) |
+| 011001 | 函数的定义与调用 | 待审阅 | [function-definition-and-calls.md](cpp/function-definition-and-calls.md) |
+| 011102 | `cin` 与 `cout` | 待审阅 | [cin-and-cout.md](cpp/cin-and-cout.md) |
+| 030301 | vector | 待审阅 | [vector.md](cpp/vector.md) |
+| 030303 | pair | 待审阅 | [pair.md](cpp/pair.md) |
+| 030307 | sort | 待审阅 | [sort.md](cpp/sort.md) |
+| 050202 | priority_queue | 待审阅 | [priority-queue.md](cpp/priority-queue.md) |
+| 050401 | set | 待审阅 | [set.md](cpp/set.md) |
+| 050402 | map | 待审阅 | [map.md](cpp/map.md) |
 
 ### 程序入门
 
@@ -244,6 +263,24 @@
 | *020608 | 运算符重载 | 待审阅 | [operator-overloading.md](cpp/operator-overloading.md) |
 
 ## 02 算法基础
+
+### 常用
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 030101 | 复杂度 | 待审阅 | [complexity.md](algorithm-basics/complexity.md) |
+| 030201 | 枚举 | 待审阅 | [enumeration.md](algorithm-basics/enumeration.md) |
+| 030202 | 模拟 | 待审阅 | [simulation.md](algorithm-basics/simulation.md) |
+| 030203 | 贪心选择与正确性证明 | 待审阅 | [greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
+| 030501 | 前缀和 | 定稿 | [prefix-sums.md](algorithm-basics/prefix-sums.md) |
+| 030502 | 差分 | 待审阅 | [difference-array.md](algorithm-basics/difference-array.md) |
+| 030605 | 快速排序 | 待审阅 | [quicksort.md](algorithm-basics/quicksort.md) |
+| 030606 | 归并排序 | 待审阅 | [merge-sort.md](algorithm-basics/merge-sort.md) |
+| 030701 | 二分查找 | 待审阅 | [binary-search.md](algorithm-basics/binary-search.md) |
+| 030704 | 二分答案 | 待审阅 | [binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |
+| 030801 | 离散化 | 待审阅 | [coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
+| 030901 | 双指针 | 待审阅 | [two-pointers.md](algorithm-basics/two-pointers.md) |
+| 030902 | 滑动窗口 | 待审阅 | [sliding-window.md](algorithm-basics/sliding-window.md) |
 
 ### 复杂度
 
