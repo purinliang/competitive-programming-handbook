@@ -889,7 +889,7 @@
 | --- | --- | --- | --- |
 | 080307 | 错位排列 | 待审阅 | [math/derangement-numbers.md](math/derangement-numbers.md) |
 | 080308 | 整数划分 | 待审阅 | [math/integer-partitions.md](math/integer-partitions.md) |
-| 080309 | Catalan 数 | 计划 | `math/catalan-numbers.md` |
+| 080309 | Catalan 数 | 待审阅 | [math/catalan-numbers.md](math/catalan-numbers.md) |
 | 080310 | Stirling 数 | 计划 | `math/stirling-numbers.md` |
 | *990544 | 常见数列：Bell 数 | 计划 | `math/bell-numbers.md` |
 | *990545 | 常见数列：Bernoulli 数 | 计划 | `math/bernoulli-numbers.md` |

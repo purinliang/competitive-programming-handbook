@@ -1,0 +1,62 @@
+[
+  {
+    "id": "first-pair-split",
+    "prompt": "合法括号序列按第一枚左括号的匹配位置怎样唯一拆分？",
+    "options": [
+      { "id": "a", "text": "`(A)B`，其中 A 与 B 都是合法括号序列" },
+      { "id": "b", "text": "任意拆成两个等长字符串" },
+      { "id": "c", "text": "只保留第一枚括号" },
+      { "id": "d", "text": "按字符排序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "第一枚左括号的唯一匹配右括号确定内部 A 与后续 B 两个独立合法结构。"
+  },
+  {
+    "id": "recurrence",
+    "prompt": "Catalan 数的基础卷积递推是什么？",
+    "options": [
+      { "id": "a", "text": "`C[n] = n * C[n-1]`" },
+      { "id": "b", "text": "`C[n] = sum(C[k] * C[n-1-k])`" },
+      { "id": "c", "text": "`C[n] = C[n-1] + 1`" },
+      { "id": "d", "text": "`C[n] = 2^n`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "根或最外层括号占一个单位，剩余规模分给两个独立部分。"
+  },
+  {
+    "id": "empty-structure",
+    "prompt": "为什么定义 `C[0] = 1`？",
+    "options": [
+      { "id": "a", "text": "空括号串或空子树是一种合法空结构" },
+      { "id": "b", "text": "因为所有 Catalan 数都为 1" },
+      { "id": "c", "text": "因为 n 必须大于 0" },
+      { "id": "d", "text": "为了让模数为质数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "空结构让某一侧规模为零时仍有一种选择，是递归构造的单位元。"
+  },
+  {
+    "id": "closed-form",
+    "prompt": "下面哪个是 Catalan 数的闭式？",
+    "options": [
+      { "id": "a", "text": "`n!`" },
+      { "id": "b", "text": "`2^n - 1`" },
+      { "id": "c", "text": "`binom(2n,n) / (n+1)`" },
+      { "id": "d", "text": "`n(n-1)/2`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "Catalan 数等于中心组合数除以 n+1，也等于两个相邻组合数之差。"
+  },
+  {
+    "id": "extra-constraints",
+    "prompt": "为什么出现二叉树或括号不一定能直接套 Catalan 数？",
+    "options": [
+      { "id": "a", "text": "额外标号、权值或高度限制可能破坏标准一一对应" },
+      { "id": "b", "text": "Catalan 数只能用于字符串" },
+      { "id": "c", "text": "二叉树没有左右儿子" },
+      { "id": "d", "text": "括号序列永远不合法" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "必须确认题目对象与标准 Catalan 结构之间存在无遗漏、无重复的一一对应。"
+  }
+]
