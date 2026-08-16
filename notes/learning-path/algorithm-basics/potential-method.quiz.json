@@ -1,0 +1,98 @@
+[
+  {
+    "id": "potential-meaning",
+    "prompt": "势能 $\\Phi(D)$ 在均摊分析中表示什么？",
+    "options": [
+      { "id": "a", "text": "当前状态中为未来工作积累的分析余额总量" },
+      { "id": "b", "text": "程序实际占用的内存字节数" },
+      { "id": "c", "text": "下一次操作必定执行的指令数" },
+      { "id": "d", "text": "随机输入出现当前状态的概率" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "势能是由数据结构状态决定的证明函数，用来汇总已经为未来昂贵操作积累的余额；它不是程序必须保存的物理量。"
+  },
+  {
+    "id": "telescoping-sum",
+    "prompt": "把 $q$ 次均摊代价相加以后，所有势能变化之和是什么？",
+    "options": [
+      { "id": "a", "text": "$\\Phi(D_0)+\\Phi(D_q)$" },
+      { "id": "b", "text": "$\\Phi(D_q)-\\Phi(D_0)$" },
+      { "id": "c", "text": "$q\\Phi(D_q)$" },
+      { "id": "d", "text": "一定为 $0$" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "相邻操作中的 $+\\Phi(D_i)$ 与 $-\\Phi(D_i)$ 两两抵消，只留下最终势能减初始势能。"
+  },
+  {
+    "id": "nonnegative-bound",
+    "prompt": "若 $\\Phi(D_0)=0$ 且所有可达状态的势能非负，可以得到什么结论？",
+    "options": [
+      { "id": "a", "text": "每次实际代价都等于势能" },
+      { "id": "b", "text": "所有操作都不会改变状态" },
+      { "id": "c", "text": "总实际代价不超过总均摊代价" },
+      { "id": "d", "text": "最终势能必须回到 $0$" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "总实际代价等于总均摊代价减最终势能；最终势能非负，所以总均摊代价能够覆盖实际成本。"
+  },
+  {
+    "id": "stack-potential",
+    "prompt": "为什么支持 `multipop` 的栈适合用当前元素个数作为势能？",
+    "options": [
+      { "id": "a", "text": "栈中的元素会自动排序" },
+      { "id": "b", "text": "栈大小永远不超过 $1$" },
+      { "id": "c", "text": "每次压栈都不需要实际工作" },
+      { "id": "d", "text": "每个仍在栈中的元素代表未来至多一次尚未支付的弹出" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每次压入使势能增加一；以后弹出该元素时势能减少一，正好抵消这次弹出的实际代价。"
+  },
+  {
+    "id": "full-array-potential",
+    "prompt": "两倍扩容模型中，数组填满且 $s=m$ 时，势能 $2s-m$ 等于多少？",
+    "options": [
+      { "id": "a", "text": "$m$" },
+      { "id": "b", "text": "$0$" },
+      { "id": "c", "text": "$2m$" },
+      { "id": "d", "text": "$m+1$" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "代入得到 $2m-m=m$；填满时积累的势能与下一次需要复制的旧元素数量同阶。"
+  },
+  {
+    "id": "expansion-amortized-cost",
+    "prompt": "容量为 $m$ 的满数组扩容并追加一次时，使用 $\\Phi=2s-m$ 得到的均摊代价是多少？",
+    "options": [
+      { "id": "a", "text": "$m+1$" },
+      { "id": "b", "text": "$3$" },
+      { "id": "c", "text": "$2m$" },
+      { "id": "d", "text": "$0$" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "实际代价为 $m+1$，势能从 $m$ 降到 $2$，所以均摊代价为 $(m+1)+(2-m)=3$。"
+  },
+  {
+    "id": "candidate-potential-check",
+    "prompt": "为一个新数据结构设计势能函数时，下面哪一步必不可少？",
+    "options": [
+      { "id": "a", "text": "只检查一个样例的最后状态" },
+      { "id": "b", "text": "让势能等于代码行数" },
+      { "id": "c", "text": "覆盖每种合法操作，并证明势能具有所需下界" },
+      { "id": "d", "text": "保证每次实际代价完全相同" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "逐项均摊代价和势能下界共同保证总成本；某个样例成立不能证明任意操作序列。"
+  },
+  {
+    "id": "analysis-only-state",
+    "prompt": "已经用势能法证明数据结构复杂度以后，通常应怎样处理势能？",
+    "options": [
+      { "id": "a", "text": "把它写入每个节点才能保证算法正确" },
+      { "id": "b", "text": "把它输出给在线评测系统" },
+      { "id": "c", "text": "用它替代数据结构的真实状态" },
+      { "id": "d", "text": "只把它保留在证明中，真实实现不需要维护" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "势能是分析工具；除非题目本身需要同名状态，否则它不会成为实现的一部分。"
+  }
+]

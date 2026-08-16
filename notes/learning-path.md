@@ -425,7 +425,7 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0255 | 均摊复杂度 | 算法基础 | [algorithm-basics/amortized-complexity.md](algorithm-basics/amortized-complexity.md) |
-| 0256 | 均摊复杂度：势能法 | 算法基础 | `algorithm-basics/potential-method.md` |
+| 0256 | 均摊复杂度：势能法 | 算法基础 | [algorithm-basics/potential-method.md](algorithm-basics/potential-method.md) |
 
 ### 单元：标准库：位集合
 
