@@ -1,0 +1,74 @@
+[
+  {
+    "id": "event-conversion",
+    "prompt": "区间覆盖查询中，一个闭区间通常转换成哪些事件？",
+    "options": [
+      { "id": "a", "text": "只建立左端点事件" },
+      { "id": "b", "text": "左端点开始事件和右端点结束事件" },
+      { "id": "c", "text": "为区间内每个整数建立事件" },
+      { "id": "d", "text": "只建立区间中点事件" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "状态只在区间开始和结束时变化，不必遍历中间坐标。"
+  },
+  {
+    "id": "closed-tie-order",
+    "prompt": "闭区间覆盖中，同一坐标的正确事件顺序是什么？",
+    "options": [
+      { "id": "a", "text": "结束、查询、开始" },
+      { "id": "b", "text": "查询、结束、开始" },
+      { "id": "c", "text": "开始、查询、结束" },
+      { "id": "d", "text": "顺序任意" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "查询点等于左右端点时都应计入闭区间。"
+  },
+  {
+    "id": "active-invariant",
+    "prompt": "处理查询点 `x` 时，`active` 表示什么？",
+    "options": [
+      { "id": "a", "text": "所有满足 `l <= x <= r` 的区间数量" },
+      { "id": "b", "text": "所有已经输出的查询数量" },
+      { "id": "c", "text": "坐标小于 `x` 的端点总数" },
+      { "id": "d", "text": "当前事件编号" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "开始但尚未结束的区间恰好覆盖当前查询点。"
+  },
+  {
+    "id": "half-open-order",
+    "prompt": "若区间改成左闭右开 `[l,r)`，同坐标的 `r` 与查询事件应怎样处理？",
+    "options": [
+      { "id": "a", "text": "查询必须早于结束" },
+      { "id": "b", "text": "两者同时忽略" },
+      { "id": "c", "text": "把 `r` 改成 `l`" },
+      { "id": "d", "text": "结束必须早于查询" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "右端点不属于 [l,r)，查询 x=r 时该区间必须已经移除。"
+  },
+  {
+    "id": "not-continuous",
+    "prompt": "扫描线为什么不需要在每个坐标上移动一步？",
+    "options": [
+      { "id": "a", "text": "因为状态只在有限个事件坐标发生变化" },
+      { "id": "b", "text": "因为所有坐标都相同" },
+      { "id": "c", "text": "因为扫描线不需要排序" },
+      { "id": "d", "text": "因为区间不能重叠" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "事件之间没有对象开始、结束或查询，状态无需更新。"
+  },
+  {
+    "id": "two-dimensional-role",
+    "prompt": "复杂二维扫描线中，数据结构通常负责什么？",
+    "options": [
+      { "id": "a", "text": "替代所有事件坐标" },
+      { "id": "b", "text": "维护扫描线当前相交对象在另一维上的状态" },
+      { "id": "c", "text": "保证输入已经按答案排序" },
+      { "id": "d", "text": "把二维坐标全部删除" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "事件排序推进一个维度，数据结构维护另一个维度的集合或统计量。"
+  }
+]
