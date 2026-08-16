@@ -107,7 +107,7 @@ $$
 \left|\bigcap_{i\in S}A_i\right|
 =
 \left\lfloor
-\frac{n}{\operatorname{lcm}(a_i:i\in S)}
+\frac{n}{\mathrm{lcm}\{a_i\mid i\in S\}}
 \right\rfloor.
 $$
 
@@ -144,7 +144,7 @@ if (selected % 2 == 1) {
 逐个合并：
 
 $$
-\operatorname{lcm}(x,y)
+\mathrm{lcm}(x,y)
 =\frac{x}{\gcd(x,y)}y.
 $$
 
@@ -267,4 +267,3 @@ int main() {
 - 多个整除条件的交集为什么由 LCM 描述？
 - 怎样在不使用更宽整数的情况下判断 LCM 已经超过 `n`？
 - 容斥适合“条件少、对象范围大”的原因是什么？
-
