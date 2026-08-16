@@ -1,0 +1,50 @@
+[
+  {
+    "id": "store-index",
+    "prompt": "滑动窗口最大值的单调队列为什么保存下标？",
+    "options": [
+      { "id": "a", "text": "需要判断候选何时离开窗口，并能读取它的数值" },
+      { "id": "b", "text": "deque 不能保存数值" },
+      { "id": "c", "text": "下标一定比数值小" },
+      { "id": "d", "text": "这样能把空间降为 O(1)" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "窗口边界由位置决定，只保存数值会丢失过期时间。"
+  },
+  {
+    "id": "expired-boundary",
+    "prompt": "扫描到右端点 i、窗口长度为 k 时，哪些下标已经过期？",
+    "options": [
+      { "id": "a", "text": "`u < i-k`" },
+      { "id": "b", "text": "`u <= i-k`" },
+      { "id": "c", "text": "`u >= i-k+1`" },
+      { "id": "d", "text": "只有 `u=0`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "当前窗口是 [i-k+1,i]，所以不大于 i-k 的位置都在窗口外。"
+  },
+  {
+    "id": "dominated-candidate",
+    "prompt": "求窗口最大值时，新值不小于队尾值，为什么可以删除旧队尾？",
+    "options": [
+      { "id": "a", "text": "旧队尾已经过期" },
+      { "id": "b", "text": "新位置数值更优或相同，而且更晚离开窗口" },
+      { "id": "c", "text": "队列只能保留奇数下标" },
+      { "id": "d", "text": "删除后窗口长度会变小" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "新候选在数值和有效期两方面都不差，旧候选不可能再成为未来答案。"
+  },
+  {
+    "id": "two-ends",
+    "prompt": "单调队列的队首和队尾分别负责什么？",
+    "options": [
+      { "id": "a", "text": "队首维护数值，队尾维护输入" },
+      { "id": "b", "text": "两端都只删除过期元素" },
+      { "id": "c", "text": "队首删除被支配候选，队尾删除过期下标" },
+      { "id": "d", "text": "队首删除过期下标，队尾删除被新值支配的候选" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "时间最早的下标位于队首，数值单调性被破坏的连续候选位于队尾。"
+  }
+]
