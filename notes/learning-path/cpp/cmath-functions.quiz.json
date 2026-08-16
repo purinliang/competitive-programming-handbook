@@ -1,0 +1,74 @@
+[
+  {
+    "id": "caret-is-not-power",
+    "prompt": "在 C++ 中，表达式 `2 ^ 10` 执行的是什么运算？",
+    "options": [
+      { "id": "a", "text": "计算 $2^{10}$" },
+      { "id": "b", "text": "按位异或" },
+      { "id": "c", "text": "平方根" },
+      { "id": "d", "text": "向上取整" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`^` 是按位异或运算符，不是乘方；乘方可以使用 `pow`，精确整数幂则应使用整数算法。"
+  },
+  {
+    "id": "square-root-domain",
+    "prompt": "在本篇讨论的实数范围内，调用 `sqrt(x)` 前应保证什么？",
+    "options": [
+      { "id": "a", "text": "`x` 必须是整数" },
+      { "id": "b", "text": "`x` 必须大于 `1`" },
+      { "id": "c", "text": "`x >= 0`" },
+      { "id": "d", "text": "`x` 必须是完全平方数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "非负实数都有实数平方根；负数不在本篇的实数定义域内，通常会产生 NaN。"
+  },
+  {
+    "id": "negative-floor-and-ceil",
+    "prompt": "`floor(-2.7)` 和 `ceil(-2.7)` 的结果分别是什么？",
+    "options": [
+      { "id": "a", "text": "`-2.0` 和 `-3.0`" },
+      { "id": "b", "text": "`-2.0` 和 `-2.0`" },
+      { "id": "c", "text": "`-3.0` 和 `-3.0`" },
+      { "id": "d", "text": "`-3.0` 和 `-2.0`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "`floor` 向数轴负方向取整，得到 `-3.0`；`ceil` 向数轴正方向取整，得到 `-2.0`。"
+  },
+  {
+    "id": "round-half-away-from-zero",
+    "prompt": "C++ 的 `round(-2.5)` 得到什么？",
+    "options": [
+      { "id": "a", "text": "`-3.0`" },
+      { "id": "b", "text": "`-2.0`" },
+      { "id": "c", "text": "`2.0`" },
+      { "id": "d", "text": "`3.0`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`round` 在正好位于两个整数中间时向远离零的方向取整，所以 `-2.5` 得到 `-3.0`。"
+  },
+  {
+    "id": "safe-positive-ceiling-division",
+    "prompt": "若 `a >= 0` 且 `b > 0`，下面哪项能避免计算 `a + b - 1`，并得到向上整除结果？",
+    "options": [
+      { "id": "a", "text": "`a / b`" },
+      { "id": "b", "text": "`a % b`" },
+      { "id": "c", "text": "`a / b + (a % b != 0)`" },
+      { "id": "d", "text": "`a / b - (a % b != 0)`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "整数商给出完整组数；只要余数非零，就还需要一组，因此再加 `1`。"
+  },
+  {
+    "id": "integer-power-precision",
+    "prompt": "题目要求得到精确整数幂时，为什么不能直接把 `pow` 当作通用整数模板？",
+    "options": [
+      { "id": "a", "text": "`pow` 只能计算平方" },
+      { "id": "b", "text": "`pow` 按浮点语义工作，结果可能有舍入误差" },
+      { "id": "c", "text": "`pow` 不能接收正数" },
+      { "id": "d", "text": "`pow` 会修改底数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "浮点运算无法精确表示所有整数结果；需要精确整数幂时应使用整数连乘或后续的快速幂，并另行检查溢出。"
+  }
+]

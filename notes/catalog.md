@@ -73,7 +73,7 @@
 | 0107 | 算术运算符 | 待审阅 | [arithmetic-operators.md](cpp/arithmetic-operators.md) |
 | 0165 | 复合赋值运算符 | 待审阅 | [compound-assignment-operators.md](cpp/compound-assignment-operators.md) |
 | 0110 | 类型转换 | 待审阅 | [type-conversions.md](cpp/type-conversions.md) |
-| 0194 | 数学函数 | 计划 | `cpp/cmath-functions.md` |
+| 0194 | 数学函数 | 待审阅 | [cmath-functions.md](cpp/cmath-functions.md) |
 
 ### 专题：控制流
 

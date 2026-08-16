@@ -37,7 +37,7 @@
 | 0107 | 算术运算符 | C++ | [cpp/arithmetic-operators.md](cpp/arithmetic-operators.md) |
 | 0165 | 复合赋值运算符 | C++ | [cpp/compound-assignment-operators.md](cpp/compound-assignment-operators.md) |
 | 0110 | 类型转换 | C++ | [cpp/type-conversions.md](cpp/type-conversions.md) |
-| 0194 | 数学函数 | C++ | `cpp/cmath-functions.md` |
+| 0194 | 数学函数 | C++ | [cpp/cmath-functions.md](cpp/cmath-functions.md) |
 
 ### 单元：条件语句
 
