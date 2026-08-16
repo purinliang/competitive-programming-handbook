@@ -1,0 +1,51 @@
+name: 部署网站
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: 检查并部署
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: apps/web
+
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v6
+
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.7.0
+
+      - name: 安装 Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: apps/web/pnpm-lock.yaml
+
+      - name: 安装依赖
+        run: pnpm install --frozen-lockfile
+
+      - name: 检查内容身份
+        run: pnpm test:content-identity
+
+      - name: 部署到 Cloudflare
+        run: pnpm deploy
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

@@ -57,6 +57,22 @@ pnpm deploy
 
 部署后至少检查公开文章、`/api/health`、GitHub 登录、已阅同步、私密讨论和匿名公开讨论。
 
+## GitHub 自动部署
+
+仓库中的 [部署工作流](../.github/workflows/deploy.yml) 会在 `main` 分支收到新提交后
+检查内容身份、完整构建网站并部署到 Cloudflare。同一时间只保留最新的一次部署，
+旧提交仍在构建时会被自动取消；也可以在 GitHub Actions 页面手动触发。
+
+GitHub Actions 不能复用开发电脑上由 `wrangler login` 保存的 OAuth 登录状态。需要在
+仓库的 `Settings > Secrets and variables > Actions` 中建立两个 Repository Secret：
+
+- `CLOUDFLARE_ACCOUNT_ID`：目标 Cloudflare 账户的 Account ID；
+- `CLOUDFLARE_API_TOKEN`：使用 “Edit Cloudflare Workers” 模板创建，并且只授权目标
+  账户的 API Token。
+
+API Token 不得写入工作流、普通变量、Git、`.env` 或聊天记录。D1 迁移不会随普通正文
+提交自动执行；只有确实新增数据库迁移时，才单独审核并执行 `pnpm db:migrate:remote`。
+
 ## 授予管理员角色
 
 用户至少登录一次后，使用其邮箱在 D1 中授予管理员角色：
