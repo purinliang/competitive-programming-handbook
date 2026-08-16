@@ -1,0 +1,86 @@
+[
+  {
+    "id": "root-effect",
+    "prompt": "给一棵无根树指定根以后，什么发生了变化？",
+    "options": [
+      { "id": "a", "text": "原来的边全部消失" },
+      { "id": "b", "text": "两点之间的唯一路径改变" },
+      { "id": "c", "text": "产生父子、祖先、深度和子树等层级关系" },
+      { "id": "d", "text": "树中必然新增一个节点" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "根改变观察方向和层级，不改变原树的节点、边与无向路径。"
+  },
+  {
+    "id": "parent-definition",
+    "prompt": "非根节点 u 的父节点怎样确定？",
+    "options": [
+      { "id": "a", "text": "通往根的唯一路径上与 u 直接相邻的下一个节点" },
+      { "id": "b", "text": "编号小于 u 的任意邻居" },
+      { "id": "c", "text": "度数最大的节点" },
+      { "id": "d", "text": "绘图中位于 u 左边的节点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "树中通往根的路径唯一，因此每个非根节点的父节点也唯一。"
+  },
+  {
+    "id": "rooted-leaf",
+    "prompt": "有根树中怎样判断叶节点？",
+    "options": [
+      { "id": "a", "text": "没有父节点" },
+      { "id": "b", "text": "没有子节点" },
+      { "id": "c", "text": "深度一定为 1" },
+      { "id": "d", "text": "编号一定最大" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "叶节点是层级向下没有子节点的节点；单节点树的根也符合该定义。"
+  },
+  {
+    "id": "strict-ancestor",
+    "prompt": "本篇默认的严格祖先定义是否把节点 u 自己算作 u 的祖先？",
+    "options": [
+      { "id": "a", "text": "总是算" },
+      { "id": "b", "text": "只在 u 是根时算" },
+      { "id": "c", "text": "只在 u 是叶节点时算" },
+      { "id": "d", "text": "不算；其他算法若采用包含自身的约定会另行说明" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "术语存在不同约定，本篇采用严格祖先；最近公共祖先等专题会明确自己的约定。"
+  },
+  {
+    "id": "depth-definition",
+    "prompt": "根深度为 0 时，节点 u 的深度是什么？",
+    "options": [
+      { "id": "a", "text": "u 的子节点数量" },
+      { "id": "b", "text": "u 的度数" },
+      { "id": "c", "text": "u 到根的路径所含边数" },
+      { "id": "d", "text": "u 所在子树的节点数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每沿父节点向上一次经过一条边，因此深度也等于到根需要走的父边次数。"
+  },
+  {
+    "id": "parent-sentinel",
+    "prompt": "点从 1 开始编号时，为什么可以令 parent[root]=0？",
+    "options": [
+      { "id": "a", "text": "0 不是真实节点，可无歧义表示根没有父节点" },
+      { "id": "b", "text": "根节点编号必须是 0" },
+      { "id": "c", "text": "所有叶节点的父节点也是 0" },
+      { "id": "d", "text": "这样能自动给边排序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "预留的 0 是哨兵位置；真实父子关系仍只使用 1..n。"
+  },
+  {
+    "id": "parent-array-limit",
+    "prompt": "只保存 parent[u] 时，哪种操作不能直接完成？",
+    "options": [
+      { "id": "a", "text": "从 u 沿父链走向根" },
+      { "id": "b", "text": "判断 u 是否为根" },
+      { "id": "c", "text": "读取 u 的唯一父节点" },
+      { "id": "d", "text": "枚举 u 的全部子节点" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "父数组按子节点索引，只支持向上；向下枚举需要无向邻接表或额外 children 表。"
+  }
+]
