@@ -1,0 +1,50 @@
+[
+  {
+    "id": "flood-fill-model",
+    "prompt": "泛洪算法（Flood Fill）的本质是什么？",
+    "options": [
+      { "id": "a", "text": "一种只对数组排序的方法" },
+      { "id": "b", "text": "把网格视为隐式图，再用 DFS 或 BFS 处理连通区域" },
+      { "id": "c", "text": "一种新的整数类型" },
+      { "id": "d", "text": "与 DFS、BFS 并列的第三种图遍历" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Flood Fill 是网格连通区域的问题模型，具体搜索仍由 DFS 或 BFS 完成。"
+  },
+  {
+    "id": "flood-fill-boundary-order",
+    "prompt": "为什么读取 `grid[next_row][next_column]` 以前要先检查坐标边界？",
+    "options": [
+      { "id": "a", "text": "边界检查会自动计算面积" },
+      { "id": "b", "text": "越界格子一定是起点" },
+      { "id": "c", "text": "这样能把四方向变成八方向" },
+      { "id": "d", "text": "否则可能已经访问非法数组位置" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "必须在任何下标读取之前证明坐标合法，不能先越界访问再判断。"
+  },
+  {
+    "id": "flood-fill-four-eight",
+    "prompt": "同一网格使用四方向和八方向相邻，什么可能发生变化？",
+    "options": [
+      { "id": "a", "text": "哪些格子属于同一个连通区域" },
+      { "id": "b", "text": "网格的行数一定翻倍" },
+      { "id": "c", "text": "字符编码发生变化" },
+      { "id": "d", "text": "时间复杂度必然变成指数级" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "八方向允许对角相连，可能把四方向下分离的区域连接起来。"
+  },
+  {
+    "id": "flood-fill-all-components",
+    "prompt": "怎样统计网格中全部可通行连通区域？",
+    "options": [
+      { "id": "a", "text": "只从固定左上角搜索一次" },
+      { "id": "b", "text": "删除所有障碍后输出格子数" },
+      { "id": "c", "text": "扫描全部格子，每遇到一个未访问可通行格就开始一次 Flood Fill" },
+      { "id": "d", "text": "只比较每行第一个字符" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每次新搜索标记一个完整区域，外层扫描负责发现此前搜索无法到达的新区域。"
+  }
+]

@@ -478,7 +478,7 @@
 | 061604 | 树上查询：倍增 LCA | 定稿 | [lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
 | 040309 | 连通分量 | 待审阅 | [connected-components.md](graph-theory/connected-components.md) |
 | 061301 | 有向无环图：拓扑排序 | 待审阅 | [topological-sort.md](graph-theory/topological-sort.md) |
-| 040310 | 泛洪算法（Flood Fill） | 计划 | `graph-theory/flood-fill.md` |
+| 040310 | 泛洪算法（Flood Fill） | 待审阅 | [flood-fill.md](graph-theory/flood-fill.md) |
 | 040311 | 多源 BFS | 待审阅 | [multi-source-bfs.md](graph-theory/multi-source-bfs.md) |
 | 061401 | 最短路：Dijkstra | 计划 | `graph-theory/dijkstra.md` |
 | 061402 | 最短路：Bellman–Ford 与负环 | 计划 | `graph-theory/bellman-ford.md` |

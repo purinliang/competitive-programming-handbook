@@ -379,7 +379,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 040307 | 图的遍历：深度优先搜索（DFS） | 图论 | [graph-theory/graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
 | 040308 | 图的遍历：广度优先搜索（BFS） | 图论 | [graph-theory/graph-breadth-first-search.md](graph-theory/graph-breadth-first-search.md) |
 | 040309 | 连通分量 | 图论 | [graph-theory/connected-components.md](graph-theory/connected-components.md) |
-| 040310 | 泛洪算法（Flood Fill） | 图论 | `graph-theory/flood-fill.md` |
+| 040310 | 泛洪算法（Flood Fill） | 图论 | [graph-theory/flood-fill.md](graph-theory/flood-fill.md) |
 | 040311 | 多源 BFS | 图论 | [graph-theory/multi-source-bfs.md](graph-theory/multi-source-bfs.md) |
 | 040312 | 二分图：判定 | 图论 | [graph-theory/bipartite-graph.md](graph-theory/bipartite-graph.md) |
 
