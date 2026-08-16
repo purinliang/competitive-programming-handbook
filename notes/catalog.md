@@ -545,7 +545,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 080105 | 启发式合并 | 计划 | `data-structures/small-to-large-merging.md` |
+| 080105 | 启发式合并 | 待审阅 | [data-structures/small-to-large-merging.md](data-structures/small-to-large-merging.md) |
 | 080106 | 树上启发式合并 | 计划 | `graph-theory/dsu-on-tree.md` |
 | 080107 | 重链剖分 | 待审阅 | [heavy-light-decomposition.md](graph-theory/heavy-light-decomposition.md) |
 | *990428 | 长链剖分 | 推迟 | `graph-theory/long-chain-decomposition.md` |
