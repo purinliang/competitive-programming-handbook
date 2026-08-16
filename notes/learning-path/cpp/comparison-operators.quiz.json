@@ -28,11 +28,11 @@
     "prompt": "题目规定“分数至少为 60 才通过”，正确条件是什么？",
     "options": [
       { "id": "a", "text": "`score > 60`" },
-      { "id": "b", "text": "`score >= 60`" },
-      { "id": "c", "text": "`score < 60`" },
-      { "id": "d", "text": "`score == 0`" }
+      { "id": "b", "text": "`score < 60`" },
+      { "id": "c", "text": "`score == 0`" },
+      { "id": "d", "text": "`score >= 60`" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "d",
     "explanation": "“至少”包含恰好等于边界的情况，所以必须使用包含等号的 `>=`。"
   },
   {
@@ -46,18 +46,6 @@
     ],
     "correctOptionId": "a",
     "explanation": "算术运算的优先级高于比较，因此这段表达式等价于 `(a + b) >= target`。"
-  },
-  {
-    "id": "character-order",
-    "prompt": "在主流 ASCII 兼容竞赛环境中，下面哪个比较为 `true`？",
-    "options": [
-      { "id": "a", "text": "`'7' < '3'`" },
-      { "id": "b", "text": "`'c' < 'a'`" },
-      { "id": "c", "text": "`'A' < 'C'`" },
-      { "id": "d", "text": "`'9' == 9`" }
-    ],
-    "correctOptionId": "c",
-    "explanation": "同一类数字或字母字符按照自然顺序连续编码，因此 `'A'` 的编号小于 `'C'`。"
   },
   {
     "id": "floating-equality",
@@ -76,11 +64,11 @@
     "prompt": "为什么 `0 <= x <= 10` 不能在 C++ 中正确检查闭区间？",
     "options": [
       { "id": "a", "text": "C++ 不支持小于等于运算符" },
-      { "id": "b", "text": "它先得到 `0 <= x` 的布尔值，再拿这个布尔值与 `10` 比较" },
-      { "id": "c", "text": "整数不能与字面量比较" },
-      { "id": "d", "text": "闭区间只能使用循环检查" }
+      { "id": "b", "text": "整数不能与字面量比较" },
+      { "id": "c", "text": "闭区间只能使用循环检查" },
+      { "id": "d", "text": "它先得到 `0 <= x` 的布尔值，再拿这个布尔值与 `10` 比较" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "d",
     "explanation": "每个比较运算符只连接左右两个操作数；正确写法要拆成 `0 <= x` 与 `x <= 10` 两个条件。"
   }
 ]

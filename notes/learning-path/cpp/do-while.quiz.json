@@ -27,24 +27,24 @@
     "id": "trailing-semicolon",
     "prompt": "下面哪项是正确的 `do while` 结尾？",
     "options": [
-      { "id": "a", "text": "`} while (condition);`" },
-      { "id": "b", "text": "`} while condition`" },
-      { "id": "c", "text": "`} do (condition);`" },
+      { "id": "a", "text": "`} while condition`" },
+      { "id": "b", "text": "`} do (condition);`" },
+      { "id": "c", "text": "`} while (condition);`" },
       { "id": "d", "text": "`} if (condition);`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "尾部的 `while (condition);` 属于同一条 `do while` 语句，右括号以后必须保留分号。"
   },
   {
     "id": "do-while-continue",
     "prompt": "`do while` 循环执行 `continue` 后会去哪里？",
     "options": [
-      { "id": "a", "text": "先检查末尾的继续条件" },
-      { "id": "b", "text": "直接结束整个程序" },
-      { "id": "c", "text": "绕过条件并直接执行下一轮循环体" },
-      { "id": "d", "text": "重新执行变量声明之前的代码" }
+      { "id": "a", "text": "直接结束整个程序" },
+      { "id": "b", "text": "绕过条件并直接执行下一轮循环体" },
+      { "id": "c", "text": "重新执行变量声明之前的代码" },
+      { "id": "d", "text": "先检查末尾的继续条件" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "`continue` 放弃本轮剩余语句，但仍遵循 `do while` 的尾部条件检查。"
   }
 ]

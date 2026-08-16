@@ -15,36 +15,36 @@
     "id": "zero-iterations",
     "prompt": "若 `while` 的条件第一次检查就是 `false`，循环体会执行几次？",
     "options": [
-      { "id": "a", "text": "`0` 次" },
-      { "id": "b", "text": "`1` 次" },
+      { "id": "a", "text": "`1` 次" },
+      { "id": "b", "text": "`0` 次" },
       { "id": "c", "text": "`2` 次" },
       { "id": "d", "text": "无限次" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "由于条件在循环体以前检查，第一次就为假时会直接跳过整个循环。"
   },
   {
     "id": "loop-state-update",
     "prompt": "在 `int i = 1; while (i <= n) { cout << i; i++; }` 中，`i++` 的作用是什么？",
     "options": [
-      { "id": "a", "text": "让状态前进到下一项，并使循环最终可能结束" },
-      { "id": "b", "text": "把 `n` 改成 `0`" },
-      { "id": "c", "text": "重新声明 `i`" },
+      { "id": "a", "text": "把 `n` 改成 `0`" },
+      { "id": "b", "text": "重新声明 `i`" },
+      { "id": "c", "text": "让状态前进到下一项，并使循环最终可能结束" },
       { "id": "d", "text": "跳过第一次条件检查" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "条件依赖 `i`；每轮更新它才能处理下一个值，并在超过 `n` 后让条件变为假。"
   },
   {
     "id": "unknown-iteration-count",
     "prompt": "下面哪个过程特别适合使用 `while`？",
     "options": [
-      { "id": "a", "text": "不断读数，直到遇到结束标记 `0`" },
-      { "id": "b", "text": "只执行一次固定输出" },
-      { "id": "c", "text": "声明一个常量" },
-      { "id": "d", "text": "比较两个字符一次" }
+      { "id": "a", "text": "只执行一次固定输出" },
+      { "id": "b", "text": "声明一个常量" },
+      { "id": "c", "text": "比较两个字符一次" },
+      { "id": "d", "text": "不断读数，直到遇到结束标记 `0`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "停止时机由运行期间读到的值决定，重复次数预先未知，正适合用条件持续控制的 `while`。"
   },
   {
@@ -63,12 +63,12 @@
     "id": "continue-skips-update",
     "prompt": "为什么 `while` 中的 `continue` 可能造成死循环？",
     "options": [
-      { "id": "a", "text": "它可能跳过让继续条件发生变化的必要更新" },
-      { "id": "b", "text": "它会自动把条件设为 `true`" },
+      { "id": "a", "text": "它会自动把条件设为 `true`" },
+      { "id": "b", "text": "它可能跳过让继续条件发生变化的必要更新" },
       { "id": "c", "text": "它只能用于浮点数" },
       { "id": "d", "text": "它会删除循环体" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "若必要更新位于 `continue` 后面，本轮会直接跳过它，下一轮可能仍检查完全相同的状态。"
   }
 ]

@@ -27,24 +27,24 @@
     "id": "switch-break",
     "prompt": "一个非末尾 `case` 完成自己的独立操作后，通常为什么要写 `break`？",
     "options": [
-      { "id": "a", "text": "结束当前 `switch`，避免继续贯穿后续 `case`" },
-      { "id": "b", "text": "让当前 `case` 再执行一次" },
-      { "id": "c", "text": "把选择值改成 `0`" },
+      { "id": "a", "text": "让当前 `case` 再执行一次" },
+      { "id": "b", "text": "把选择值改成 `0`" },
+      { "id": "c", "text": "结束当前 `switch`，避免继续贯穿后续 `case`" },
       { "id": "d", "text": "声明一个新变量" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "命中 `case` 后，执行会继续向下；`break` 明确离开整个 `switch`，防止无意贯穿。"
   },
   {
     "id": "if-or-switch",
     "prompt": "下面哪个问题更适合使用 `if / else if` 而不是 `switch`？",
     "options": [
-      { "id": "a", "text": "判断分数是否位于若干连续区间" },
-      { "id": "b", "text": "根据字符 `'+'`、`'-'`、`'*'` 选择运算" },
-      { "id": "c", "text": "根据菜单编号 `1`、`2`、`3` 选择功能" },
-      { "id": "d", "text": "根据星期编号输出名称" }
+      { "id": "a", "text": "根据字符 `'+'`、`'-'`、`'*'` 选择运算" },
+      { "id": "b", "text": "根据菜单编号 `1`、`2`、`3` 选择功能" },
+      { "id": "c", "text": "根据星期编号输出名称" },
+      { "id": "d", "text": "判断分数是否位于若干连续区间" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "`switch` 匹配离散常量值，不能直接写 `score >= 60` 这样的范围条件；`if` 更适合连续区间。"
   },
   {
