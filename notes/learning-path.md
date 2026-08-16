@@ -272,7 +272,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 030402 | array | C++ | [cpp/array.md](cpp/array.md) |
 | 030403 | 链表的基本概念 | 算法基础 | [algorithm-basics/linked-list.md](algorithm-basics/linked-list.md) |
 | 030404 | 单向链表 | 算法基础 | [algorithm-basics/singly-linked-list.md](algorithm-basics/singly-linked-list.md) |
-| 030405 | 双向链表 | 算法基础 | `algorithm-basics/doubly-linked-list.md` |
+| 030405 | 双向链表 | 算法基础 | [algorithm-basics/doubly-linked-list.md](algorithm-basics/doubly-linked-list.md) |
 | 030406 | 循环链表 | 算法基础 | `algorithm-basics/circular-linked-list.md` |
 | 030407 | list | C++ | `cpp/list.md` |
 

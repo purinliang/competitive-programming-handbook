@@ -1,0 +1,50 @@
+[
+  {
+    "id": "doubly-node-links",
+    "prompt": "双向链表节点相对单向链表节点新增了什么？",
+    "options": [
+      { "id": "a", "text": "全部节点的副本" },
+      { "id": "b", "text": "数组下标公式" },
+      { "id": "c", "text": "自动排序标记" },
+      { "id": "d", "text": "指向前驱的链接" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "双向节点同时保存 `previous` 和 `next`，因此能直接访问两侧。"
+  },
+  {
+    "id": "doubly-known-node-delete",
+    "prompt": "为什么已知节点 `u` 时，双向链表能在 `O(1)` 时间删除它？",
+    "options": [
+      { "id": "a", "text": "删除前会自动把链表排序" },
+      { "id": "b", "text": "可以直接通过 `u` 找到前驱和后继，再修改固定数量的链接" },
+      { "id": "c", "text": "所有节点都连续存储" },
+      { "id": "d", "text": "不需要修改任何链接" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`previous` 与 `next` 直接给出两侧节点，不必从入口重新寻找前驱。"
+  },
+  {
+    "id": "doubly-both-directions",
+    "prompt": "插入节点时若只更新 `next` 而忘记更新 `previous`，可能发生什么？",
+    "options": [
+      { "id": "a", "text": "正向和反向链接不一致，反向遍历可能错误" },
+      { "id": "b", "text": "链表自动退化成数组" },
+      { "id": "c", "text": "所有值都会变成零" },
+      { "id": "d", "text": "编译器一定自动补全链接" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "双向链表的两个方向必须描述同一组相邻关系，任何一边遗漏都会破坏结构。"
+  },
+  {
+    "id": "doubly-random-access",
+    "prompt": "双向链表访问第 `k` 个逻辑位置最坏需要多少时间？",
+    "options": [
+      { "id": "a", "text": "`O(1)`，因为有两个链接" },
+      { "id": "b", "text": "`O(log n)`，因为可以二分" },
+      { "id": "c", "text": "`O(n)`，仍要从头或尾沿链接寻找" },
+      { "id": "d", "text": "`O(n^2)`，必须遍历两遍" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "双向链接允许两个遍历方向，但不能根据逻辑位置直接计算节点地址。"
+  }
+]

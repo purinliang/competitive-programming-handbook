@@ -341,7 +341,7 @@
 | 030401 | 数组 | 待审阅 | [array.md](algorithm-basics/array.md) |
 | 030403 | 链表的基本概念 | 待审阅 | [linked-list.md](algorithm-basics/linked-list.md) |
 | 030404 | 单向链表 | 待审阅 | [singly-linked-list.md](algorithm-basics/singly-linked-list.md) |
-| 030405 | 双向链表 | 计划 | `algorithm-basics/doubly-linked-list.md` |
+| 030405 | 双向链表 | 待审阅 | [doubly-linked-list.md](algorithm-basics/doubly-linked-list.md) |
 | 030406 | 循环链表 | 计划 | `algorithm-basics/circular-linked-list.md` |
 | 030407 | list | 计划 | `cpp/list.md` |
 
