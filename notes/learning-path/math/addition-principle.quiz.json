@@ -1,0 +1,63 @@
+[
+  {
+    "id": "addition-condition",
+    "prompt": "若要直接把若干情形的方案数相加，这些情形必须满足什么？",
+    "options": [
+      { "id": "a", "text": "数量完全相同" },
+      { "id": "b", "text": "互斥并且完整覆盖全部合法方案" },
+      { "id": "c", "text": "每种情形至少包含两个步骤" },
+      { "id": "d", "text": "所有方案都同时属于每种情形" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "互斥防止重复，完整覆盖防止遗漏；每个合法方案应恰好属于一个情形。"
+  },
+  {
+    "id": "addition-overlap",
+    "prompt": "统计能被 2 或 3 整除的整数时，为什么不能直接相加两类数量？",
+    "options": [
+      { "id": "a", "text": "同时能被 2 和 3 整除的数会被重复统计" },
+      { "id": "b", "text": "整数不能进行加法" },
+      { "id": "c", "text": "两类一定没有任何元素" },
+      { "id": "d", "text": "只能使用乘法原理" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "交集中的 6 的倍数同时属于两类，直接相加会各计算两次。"
+  },
+  {
+    "id": "addition-first-difference",
+    "prompt": "按“第一个非零数字的位置”分类为什么容易得到互斥情形？",
+    "options": [
+      { "id": "a", "text": "每个字符串可以有许多个不同的第一个位置" },
+      { "id": "b", "text": "这种分类会删除所有零" },
+      { "id": "c", "text": "一个具体字符串的第一个非零位置是唯一的" },
+      { "id": "d", "text": "位置数量永远为一" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "唯一的分类依据让同一方案不可能同时落入两个不同位置的情形。"
+  },
+  {
+    "id": "addition-versus-product",
+    "prompt": "哪一种描述更适合使用加法原理？",
+    "options": [
+      { "id": "a", "text": "先选上衣，再选裤子" },
+      { "id": "b", "text": "字符串的每一位都选择一个字符" },
+      { "id": "c", "text": "先选起点，再选终点" },
+      { "id": "d", "text": "选择方法 A 完成，或者选择方法 B 完成" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "加法原理在若干互斥的完整方法中选择一种；连续必需步骤通常相乘。"
+  },
+  {
+    "id": "addition-modulo",
+    "prompt": "把每个情形的数量取模后相加，能否修复重复分类？",
+    "options": [
+      { "id": "a", "text": "能，取模会自动删除交集" },
+      { "id": "b", "text": "不能，重复和遗漏仍然存在，只是数值被取模" },
+      { "id": "c", "text": "只有模数为偶数时能" },
+      { "id": "d", "text": "只有答案为零时能" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "取模是数值运算，不会改变方案被重复或遗漏的计数结构。"
+  }
+]
+
