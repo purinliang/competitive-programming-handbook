@@ -27,24 +27,24 @@
     "id": "recursive-arguments",
     "prompt": "当前位于 `u`，准备进入邻居 `v` 时，递归调用应当怎样写？",
     "options": [
-      { "id": "a", "text": "`dfs(v, u)`" },
+      { "id": "a", "text": "`dfs(v, v)`" },
       { "id": "b", "text": "`dfs(u, v)`" },
-      { "id": "c", "text": "`dfs(p, v)`" },
-      { "id": "d", "text": "`dfs(v, v)`" }
+      { "id": "c", "text": "`dfs(v, u)`" },
+      { "id": "d", "text": "`dfs(p, v)`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "进入后 `v` 成为当前节点，原来的当前节点 `u` 成为它的父节点。"
   },
   {
     "id": "depth-update",
     "prompt": "从节点 `u` 进入其子节点 `v` 前，应怎样计算 `dep[v]`？",
     "options": [
-      { "id": "a", "text": "`dep[v] = dep[u] + 1`" },
+      { "id": "a", "text": "`dep[v] = v`" },
       { "id": "b", "text": "`dep[v] = dep[u] - 1`" },
       { "id": "c", "text": "`dep[v] = siz[u]`" },
-      { "id": "d", "text": "`dep[v] = v`" }
+      { "id": "d", "text": "`dep[v] = dep[u] + 1`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "子节点到根的唯一路径比父节点多经过一条边。"
   },
   {
@@ -63,24 +63,24 @@
     "id": "adjacency-order",
     "prompt": "只交换同一节点邻接表中两个子节点的顺序，哪项可能改变？",
     "options": [
-      { "id": "a", "text": "DFS 的进入顺序" },
-      { "id": "b", "text": "树的节点数量" },
+      { "id": "a", "text": "树的节点数量" },
+      { "id": "b", "text": "DFS 的进入顺序" },
       { "id": "c", "text": "每个节点的子树大小" },
       { "id": "d", "text": "任意两节点之间是否连通" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "DFS 按邻接项顺序选择下一棵子树；树的结构与由固定根决定的层级关系不变。"
   },
   {
     "id": "tree-dfs-complexity",
     "prompt": "使用邻接表 DFS 一棵有 n 个节点的树，时间复杂度是多少？",
     "options": [
-      { "id": "a", "text": "`O(n)`" },
+      { "id": "a", "text": "`O(2^n)`" },
       { "id": "b", "text": "`O(n^2)`" },
-      { "id": "c", "text": "`O(log n)`" },
-      { "id": "d", "text": "`O(2^n)`" }
+      { "id": "c", "text": "`O(n)`" },
+      { "id": "d", "text": "`O(log n)`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "每个节点进入一次，每条无向边对应的两个邻接项各检查一次。"
   }
 ]
