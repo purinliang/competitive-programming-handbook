@@ -1,0 +1,50 @@
+[
+  {
+    "id": "count-formula",
+    "prompt": "若 `n` 的质因数分解为 `prod(p_i^a_i)`，正因数个数是多少？",
+    "options": [
+      { "id": "a", "text": "`sum(a_i)`" },
+      { "id": "b", "text": "`prod(a_i+1)`" },
+      { "id": "c", "text": "`prod(p_i)`" },
+      { "id": "d", "text": "`sum(p_i^a_i)`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每个质因数的指数可从 0 到 a_i 独立选择，共 a_i+1 种。"
+  },
+  {
+    "id": "multiply-choices",
+    "prompt": "不同质因数的指数选择数为什么相乘？",
+    "options": [
+      { "id": "a", "text": "每组指数选择彼此独立，并唯一确定一个正因数" },
+      { "id": "b", "text": "所有质因数都必须选择相同指数" },
+      { "id": "c", "text": "乘法可以删除重复质因数" },
+      { "id": "d", "text": "因为正因数只能是质数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "乘法原理把每个质因数的一次局部选择组合成一个完整因数。"
+  },
+  {
+    "id": "number-one",
+    "prompt": "数字 1 有多少个正因数？",
+    "options": [
+      { "id": "a", "text": "0 个" },
+      { "id": "b", "text": "2 个" },
+      { "id": "c", "text": "1 个" },
+      { "id": "d", "text": "无穷多个" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "1 的质因数分解为空乘积，唯一正因数是 1 本身。"
+  },
+  {
+    "id": "remaining-prime",
+    "prompt": "试除结束后 `remaining>1`，正因数个数为什么还要乘 2？",
+    "options": [
+      { "id": "a", "text": "remaining 一定出现两次" },
+      { "id": "b", "text": "答案必须是偶数" },
+      { "id": "c", "text": "要补偿一次除法误差" },
+      { "id": "d", "text": "剩余部分是指数为 1 的质因数，可选指数 0 或 1" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "试除到平方根后仍大于 1 的剩余数只能是一个质数。"
+  }
+]
