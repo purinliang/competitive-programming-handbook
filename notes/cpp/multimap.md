@@ -101,7 +101,7 @@ if (it != contestants.end()) {
 - `lower_bound(key)` 返回键不小于 `key` 的第一条记录；
 - `upper_bound(key)` 返回键大于 `key` 的第一条记录。
 
-所有等价键在有序容器中必然连续，因此它们恰好位于 STL 半开区间：
+所有等价键在有序容器中必然连续，因此它们恰好位于 STL 左闭右开区间：
 
 ```text
 [lower_bound(key), upper_bound(key))
@@ -425,7 +425,7 @@ int main() {
 2. `multimap::insert` 返回什么？为什么没有是否插入的布尔值？
 3. `multimap` 为什么没有 `operator[]` 和 `at`？
 4. `find(key)` 能否用来遍历该键的全部记录？应当使用什么？
-5. `equal_range(key)` 返回哪个半开区间？
+5. `equal_range(key)` 返回哪个左闭右开区间？
 6. 怎样只删除一条指定的 `key:value` 记录？最坏复杂度是什么？
 7. `erase(key)` 会删除哪些记录，并返回什么？
 8. 同键记录的遍历顺序是什么？映射值是否参与排序？
