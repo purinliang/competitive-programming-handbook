@@ -1,0 +1,74 @@
+[
+  {
+    "id": "weight-definition",
+    "prompt": "本篇中 `dist[u]` 的定义是什么？",
+    "options": [
+      { "id": "a", "text": "`value[parent[u]] - value[u]`" },
+      { "id": "b", "text": "`value[u] - value[parent[u]]`" },
+      { "id": "c", "text": "`u` 所在集合的节点数" },
+      { "id": "d", "text": "`u` 到图中起点的最短路" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "所有路径压缩和合并公式都建立在这个固定方向上。"
+  },
+  {
+    "id": "compression-update",
+    "prompt": "带权路径压缩为什么要执行 `dist[u] += dist[original_parent]`？",
+    "options": [
+      { "id": "a", "text": "把 u 到原父亲、原父亲到根的差值相加" },
+      { "id": "b", "text": "统计集合大小" },
+      { "id": "c", "text": "让所有差值归零" },
+      { "id": "d", "text": "撤销父节点修改" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "父节点改成根以后，dist[u] 也必须同步变成 u 到根的差值。"
+  },
+  {
+    "id": "root-delta",
+    "prompt": "约束 `value[v]-value[u]=w` 下，`value[root_v]-value[root_u]` 等于什么？",
+    "options": [
+      { "id": "a", "text": "`w - dist[u] + dist[v]`" },
+      { "id": "b", "text": "`dist[u] + dist[v]`" },
+      { "id": "c", "text": "`w + dist[u] - dist[v]`" },
+      { "id": "d", "text": "`w`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "把 u、v 分别写成根的值加上到根差值，再整理等式即可。"
+  },
+  {
+    "id": "reverse-attachment",
+    "prompt": "若原计划让 `root_v` 接到 `root_u`，后来反向挂接，会怎样处理根间差值？",
+    "options": [
+      { "id": "a", "text": "保持完全不变" },
+      { "id": "b", "text": "乘以自身" },
+      { "id": "c", "text": "改成集合大小" },
+      { "id": "d", "text": "交换方向并取相反数" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "value[root_u]-value[root_v] 是原差值的相反数。"
+  },
+  {
+    "id": "same-root-consistency",
+    "prompt": "`u,v` 已在同一集合时，新约束合法的条件是什么？",
+    "options": [
+      { "id": "a", "text": "`dist[v]-dist[u] == w`" },
+      { "id": "b", "text": "`dist[u]+dist[v] == w`" },
+      { "id": "c", "text": "`u == v`" },
+      { "id": "d", "text": "`w == 0`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两点到共同根的差值之差就是已经确定的 value[v]-value[u]。"
+  },
+  {
+    "id": "unknown-query",
+    "prompt": "为什么查询接口返回 `pair<bool, ll>` 而不只返回一个特殊整数？",
+    "options": [
+      { "id": "a", "text": "因为差值不能是整数" },
+      { "id": "b", "text": "未知状态需要与任何合法差值明确区分" },
+      { "id": "c", "text": "因为并查集只能返回两个值" },
+      { "id": "d", "text": "为了改变查询方向" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "任意特殊数值都可能本身是合法差值，布尔值单独表达是否已知。"
+  }
+]
