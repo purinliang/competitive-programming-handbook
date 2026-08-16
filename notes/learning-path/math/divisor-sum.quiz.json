@@ -1,0 +1,50 @@
+[
+  {
+    "id": "prime-power-contribution",
+    "prompt": "质因数幂 `p^a` 对正因数和贡献哪个局部因子？",
+    "options": [
+      { "id": "a", "text": "`1+p+p^2+...+p^a`" },
+      { "id": "b", "text": "`a+1`" },
+      { "id": "c", "text": "`p*a`" },
+      { "id": "d", "text": "只有 `p^a`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "一个正因数可以为该质因数选择指数 0 到 a，对应这些幂的总和。"
+  },
+  {
+    "id": "product-of-sums",
+    "prompt": "多个质因数的局部等比和为什么要相乘？",
+    "options": [
+      { "id": "a", "text": "因为所有正因数大小相同" },
+      { "id": "b", "text": "展开乘积会恰好生成每组指数选择对应的正因数" },
+      { "id": "c", "text": "因为加法不允许处理质数" },
+      { "id": "d", "text": "为了把答案强制变成质数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "分配律将每个质因数的一项选择相乘，且每个正因数恰好出现一次。"
+  },
+  {
+    "id": "remaining-factor",
+    "prompt": "试除结束后剩余一个指数为 1 的质因数 p，它对正因数和贡献什么？",
+    "options": [
+      { "id": "a", "text": "p" },
+      { "id": "b", "text": "2p" },
+      { "id": "c", "text": "1+p" },
+      { "id": "d", "text": "p^2" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "该质因数的指数可以选 0 或 1，对应 1 与 p。"
+  },
+  {
+    "id": "modular-division",
+    "prompt": "按模数计算正因数和时，为什么不宜直接套等比数列除法公式？",
+    "options": [
+      { "id": "a", "text": "等比数列没有首项" },
+      { "id": "b", "text": "模数只能是偶数" },
+      { "id": "c", "text": "乘法在模意义下不可用" },
+      { "id": "d", "text": "分母在模意义下未必可逆，普通整数除法也不等于模除法" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "逐次生成各次幂并求和不依赖除法，对任意正模数都更直接。"
+  }
+]
