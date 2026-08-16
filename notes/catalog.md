@@ -943,7 +943,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 080306 | Nim、SG 函数与基础博弈论 | 计划 | `math/nim-sg-game-theory.md` |
+| 080306 | Nim、SG 函数与基础博弈论 | 待审阅 | [math/nim-sg-game-theory.md](math/nim-sg-game-theory.md) |
 
 ### 多项式与形式幂级数
 

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "losing-state",
+    "prompt": "公平组合游戏中的败态满足什么递推性质？",
+    "options": [
+      { "id": "a", "text": "至少能走到一个败态" },
+      { "id": "b", "text": "所有合法后继都是胜态" },
+      { "id": "c", "text": "拥有最多合法操作" },
+      { "id": "d", "text": "状态编号必须为偶数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "败态无法把败态留给对手；无论怎样行动，都会进入对手的胜态。"
+  },
+  {
+    "id": "nim-result",
+    "prompt": "标准 Nim 游戏中，当前所有石子堆大小的异或和为 0 时，状态是什么？",
+    "options": [
+      { "id": "a", "text": "先手必胜" },
+      { "id": "b", "text": "胜负随机" },
+      { "id": "c", "text": "后手必胜" },
+      { "id": "d", "text": "游戏规则无效" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "任何合法一步都会把异或和变成非零，对手再能恢复到零。"
+  },
+  {
+    "id": "nim-move",
+    "prompt": "Nim 和为 X 非零时，怎样在合适的一堆 a[i] 中构造目标大小？",
+    "options": [
+      { "id": "a", "text": "`a[i] + X`" },
+      { "id": "b", "text": "`a[i] ^ X`，并选择结果小于原堆的一堆" },
+      { "id": "c", "text": "始终改成 X" },
+      { "id": "d", "text": "把整堆数量翻倍" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "在 X 的最高位为 1 的石子堆中，a[i]^X 会变小，并使新总异或为 0。"
+  },
+  {
+    "id": "mex-definition",
+    "prompt": "`mex({0,1,3})` 等于多少？",
+    "options": [
+      { "id": "a", "text": "0" },
+      { "id": "b", "text": "1" },
+      { "id": "c", "text": "2" },
+      { "id": "d", "text": "3" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "mex 是没有出现在集合中的最小非负整数，0 和 1 已出现，2 未出现。"
+  },
+  {
+    "id": "sg-sum",
+    "prompt": "若完整游戏由若干互不影响的子游戏组成，完整状态的 SG 值怎样计算？",
+    "options": [
+      { "id": "a", "text": "各子游戏 SG 值按位异或" },
+      { "id": "b", "text": "只取第一个子游戏" },
+      { "id": "c", "text": "各 SG 值普通相乘" },
+      { "id": "d", "text": "始终等于子游戏数量" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Sprague–Grundy 定理把每个子游戏等价为一堆 Nim 石子，组合运算是异或。"
+  }
+]
