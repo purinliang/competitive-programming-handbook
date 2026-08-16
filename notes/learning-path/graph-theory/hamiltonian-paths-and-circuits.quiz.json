@@ -1,0 +1,50 @@
+[
+  {
+    "id": "vertex-condition",
+    "prompt": "哈密顿路径要求什么？",
+    "options": [
+      { "id": "a", "text": "图中每条边恰好经过一次" },
+      { "id": "b", "text": "每个点恰好经过一次" },
+      { "id": "c", "text": "所有点度数为偶数" },
+      { "id": "d", "text": "路径必须使用最小边权" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "哈密顿问题限制点，未被路径使用的边可以任意存在。"
+  },
+  {
+    "id": "edge-count",
+    "prompt": "一张有 n 个点的图中，哈密顿路径包含多少条路径边？",
+    "options": [
+      { "id": "a", "text": "n-1 条" },
+      { "id": "b", "text": "n 条" },
+      { "id": "c", "text": "2n 条" },
+      { "id": "d", "text": "取决于图的总边数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "依次连接 n 个互不重复的点需要 n-1 条边。"
+  },
+  {
+    "id": "hamiltonian-graph",
+    "prompt": "什么样的图称为哈密顿图？",
+    "options": [
+      { "id": "a", "text": "存在哈密顿回路的图" },
+      { "id": "b", "text": "存在欧拉路径的图" },
+      { "id": "c", "text": "任意有向无环图" },
+      { "id": "d", "text": "只有一个点的图" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "哈密顿图的定义要求存在经过每个点恰好一次并回到起点的回路。"
+  },
+  {
+    "id": "euler-comparison",
+    "prompt": "欧拉问题与哈密顿问题的核心区别是什么？",
+    "options": [
+      { "id": "a", "text": "欧拉只用于有向图" },
+      { "id": "b", "text": "哈密顿只用于树" },
+      { "id": "c", "text": "欧拉限制每条边，哈密顿限制每个点" },
+      { "id": "d", "text": "二者完全相同" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "对象不同，因此判定性质、存储需求和算法难度都不能互相照搬。"
+  }
+]
