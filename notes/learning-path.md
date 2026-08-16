@@ -679,6 +679,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 062002 | 字符串：KMP 与前缀函数 | 字符串 | [strings/kmp-prefix-function.md](strings/kmp-prefix-function.md) |
 | 062003 | 字符串：Z 函数 | 字符串 | [strings/z-function.md](strings/z-function.md) |
 | 062004 | 字符串：Trie | 字符串 | [strings/trie.md](strings/trie.md) |
+| 062005 | 字符串构造 | 字符串 | `strings/string-construction.md` |
 
 ### 单元 21：计算几何：基础
 
@@ -880,7 +881,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990410 | 差分约束 | `graph-theory/difference-constraints.md` |
 | *990411 | 树哈希 | `graph-theory/tree-hashing.md` |
 | *990412 | 最短路：最短路树 | `graph-theory/shortest-path-tree.md` |
-| *990413 | 最小生成树：Borůvka | `graph-theory/boruvka.md` |
+| *990413 | 最小生成树：Boruvka | `graph-theory/boruvka.md` |
 | *990414 | 网络流：SAP | `graph-theory/sap-max-flow.md` |
 | *990415 | 网络流：可行流 | `graph-theory/feasible-flow.md` |
 | *990416 | 网络流：上下界 | `graph-theory/bounded-flow.md` |
@@ -935,12 +936,12 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990528 | 线性递推：Berlekamp–Massey | `math/berlekamp-massey.md` |
 | *990529 | 图论计数：矩阵树定理 | `math/matrix-tree-theorem.md` |
 | *990530 | 欧拉回路计数：BEST 定理 | `math/best-theorem.md` |
-| *990531 | 树的编码：Prüfer 序列 | `math/prufer-sequence.md` |
+| *990531 | 树的编码：Prufer 序列 | `math/prufer-sequence.md` |
 | *990532 | 路径计数：LGV 引理 | `math/lindstrom-gessel-viennot-lemma.md` |
 | *990533 | 生成函数：基础 | `math/generating-functions.md` |
 | *990534 | 群论：置换 | `math/permutations.md` |
 | *990535 | 群作用计数：Burnside 引理 | `math/burnside-lemma.md` |
-| *990536 | 群作用计数：Pólya 定理 | `math/polya-enumeration.md` |
+| *990536 | 群作用计数：Polya 定理 | `math/polya-enumeration.md` |
 | *990537 | 线性规划 | `math/linear-programming.md` |
 | *990538 | 组合计数：抽屉原理 | `math/pigeonhole-principle.md` |
 | *990539 | 组合计数：最值容斥 | `math/min-max-inclusion-exclusion.md` |
@@ -1009,9 +1010,6 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990806 | 字符串：后缀树 | `strings/suffix-tree.md` |
 | *990807 | 最小表示法 | `strings/minimum-representation.md` |
 | *990808 | Lyndon 分解 | `strings/lyndon-factorization.md` |
-| *990809 | 拼接字符串与分隔符 | `strings/concatenation-and-separators.md` |
-| *990810 | 倍长串与循环移位 | `strings/doubled-string-and-cyclic-shifts.md` |
-| *990811 | 反转串与回文转换 | `strings/reversed-string-palindrome-transformations.md` |
 | *990812 | 本质不同子串计数 | `strings/distinct-substring-counting.md` |
 | *990813 | 字典序第 k 小子串 | `strings/kth-lexicographic-substring.md` |
 | *990814 | 子串出现次数 | `strings/substring-occurrence-counting.md` |

@@ -647,7 +647,7 @@
 | --- | --- | --- | --- |
 | 061501 | 最小生成树：Kruskal | 待审阅 | [kruskal.md](graph-theory/kruskal.md) |
 | 061502 | 最小生成树：Prim | 待审阅 | [prim.md](graph-theory/prim.md) |
-| *990413 | 最小生成树：Borůvka | 计划 | `graph-theory/boruvka.md` |
+| *990413 | 最小生成树：Boruvka | 计划 | `graph-theory/boruvka.md` |
 | *990420 | 有向最小生成树：Chu–Liu/Edmonds | 计划 | `graph-theory/directed-minimum-spanning-tree.md` |
 
 ### 二分图与匹配
@@ -900,7 +900,7 @@
 | --- | --- | --- | --- |
 | *990534 | 群论：置换 | 计划 | `math/permutations.md` |
 | *990535 | 群作用计数：Burnside 引理 | 计划 | `math/burnside-lemma.md` |
-| *990536 | 群作用计数：Pólya 定理 | 计划 | `math/polya-enumeration.md` |
+| *990536 | 群作用计数：Polya 定理 | 计划 | `math/polya-enumeration.md` |
 
 #### 专题：图与路径计数
 
@@ -908,7 +908,7 @@
 | --- | --- | --- | --- |
 | *990529 | 图论计数：矩阵树定理 | 计划 | `math/matrix-tree-theorem.md` |
 | *990530 | 欧拉回路计数：BEST 定理 | 计划 | `math/best-theorem.md` |
-| *990531 | 树的编码：Prüfer 序列 | 计划 | `math/prufer-sequence.md` |
+| *990531 | 树的编码：Prufer 序列 | 计划 | `math/prufer-sequence.md` |
 | *990532 | 路径计数：LGV 引理 | 计划 | `math/lindstrom-gessel-viennot-lemma.md` |
 | *990546 | 组合计数：杨表 | 计划 | `math/young-tableaux.md` |
 
@@ -1137,7 +1137,7 @@
 | 062002 | 字符串：KMP 与前缀函数 | 待审阅 | [kmp-prefix-function.md](strings/kmp-prefix-function.md) |
 | 062003 | 字符串：Z 函数 | 待审阅 | [z-function.md](strings/z-function.md) |
 | 062004 | 字符串：Trie | 待审阅 | [trie.md](strings/trie.md) |
-| *990809 | 拼接字符串与分隔符 | 计划 | `strings/concatenation-and-separators.md` |
+| 062005 | 字符串构造 | 计划 | `strings/string-construction.md` |
 
 ### 字符串基础
 
@@ -1150,9 +1150,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| *990809 | 拼接字符串与分隔符 | 计划 | `strings/concatenation-and-separators.md` |
-| *990810 | 倍长串与循环移位 | 计划 | `strings/doubled-string-and-cyclic-shifts.md` |
-| *990811 | 反转串与回文转换 | 计划 | `strings/reversed-string-palindrome-transformations.md` |
+| 062005 | 字符串构造 | 计划 | `strings/string-construction.md` |
 
 ### 字符串哈希
 
@@ -1182,7 +1180,6 @@
 | --- | --- | --- | --- |
 | *990802 | 字符串：Manacher | 计划 | `strings/manacher.md` |
 | *990805 | 字符串：回文树 | 计划 | `strings/palindromic-tree.md` |
-| *990811 | 反转串与回文转换 | 计划 | `strings/reversed-string-palindrome-transformations.md` |
 | *990817 | 字符串结构中的后缀链接与长度 | 计划 | `strings/suffix-links-and-lengths.md` |
 
 ### 后缀结构
