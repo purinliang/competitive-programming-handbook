@@ -1,0 +1,146 @@
+[
+  {
+    "id": "purpose",
+    "prompt": "格雷码主要解决普通二进制相邻状态切换时的什么问题？",
+    "options": [
+      { "id": "a", "text": "码字长度不固定" },
+      { "id": "b", "text": "一次进位可能同时改变多个二进制位" },
+      { "id": "c", "text": "无法表示负数" },
+      { "id": "d", "text": "不能进行压缩" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "格雷码把固定宽度状态重新排列，使相邻状态只改变一位，降低切换瞬间读到错误组合的风险。"
+  },
+  {
+    "id": "hamming-distance",
+    "prompt": "标准格雷码序列中，相邻两个码字的汉明距离是多少？",
+    "options": [
+      { "id": "a", "text": "0" },
+      { "id": "b", "text": "2" },
+      { "id": "c", "text": "等于码字长度" },
+      { "id": "d", "text": "1" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "汉明距离计算对应位置中不同位的数量，格雷码相邻项恰好只有一位不同。"
+  },
+  {
+    "id": "reflection-construction",
+    "prompt": "从 $n-1$ 位二进制反射格雷码构造 $n$ 位版本时，正确做法是什么？",
+    "options": [
+      { "id": "a", "text": "原序列前缀 0，再把逆序副本前缀 1 并接到后面" },
+      { "id": "b", "text": "每个码字末尾都添加 0" },
+      { "id": "c", "text": "把原序列重复两次" },
+      { "id": "d", "text": "按普通二进制递增排列" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两种前缀区分两半，反向复制保证两半连接处也只改变新增的一位。"
+  },
+  {
+    "id": "why-reverse",
+    "prompt": "反射构造的第二份序列为什么必须倒序？",
+    "options": [
+      { "id": "a", "text": "为了让格雷码按数值递减" },
+      { "id": "b", "text": "为了缩短码字" },
+      { "id": "c", "text": "让两半连接处使用同一个旧码字，只改变新加的前缀位" },
+      { "id": "d", "text": "为了删除重复码字" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "前半最后项和后半第一项来自同一个旧码字，只有前缀从 0 变为 1。"
+  },
+  {
+    "id": "forward-formula",
+    "prompt": "非负整数 `value` 对应的二进制反射格雷码怎样计算？",
+    "options": [
+      { "id": "a", "text": "`value + (value >> 1)`" },
+      { "id": "b", "text": "`value ^ (value >> 1)`" },
+      { "id": "c", "text": "`value & (value >> 1)`" },
+      { "id": "d", "text": "`value | (value << 1)`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "右移让每个二进制高位与其右侧相邻位对齐，异或得到对应格雷位。"
+  },
+  {
+    "id": "adjacent-values",
+    "prompt": "为什么 `gray_code(value)` 与 `gray_code(value + 1)` 只差一位？",
+    "options": [
+      { "id": "a", "text": "因为普通二进制相邻值也只差一位" },
+      { "id": "b", "text": "因为异或会清空所有位" },
+      { "id": "c", "text": "因为右移不会改变数值" },
+      { "id": "d", "text": "二进制进位改变的连续后缀在相邻位异或后相互抵消，只留下一个变化边界" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "连续 1 变 0 的内部相邻关系保持相同，只有进位边界上方对应的格雷位发生变化。"
+  },
+  {
+    "id": "zero-based-values",
+    "prompt": "本文枚举 `value = 0..2^n-1` 是否违背本书自定义对象默认 1-based 的约定？",
+    "options": [
+      { "id": "a", "text": "不违背；value 是被编码的整数值，不是自定义数组下标" },
+      { "id": "b", "text": "违背，必须把所有 value 加 1" },
+      { "id": "c", "text": "只有 n 为偶数时不违背" },
+      { "id": "d", "text": "必须改成左闭右开区间才能不违背" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "格雷码需要表示包含 0 的全部 n 位非负整数；编号约定和整数取值范围是两件事。"
+  },
+  {
+    "id": "inverse-conversion",
+    "prompt": "从格雷码恢复普通二进制值时，核心过程是什么？",
+    "options": [
+      { "id": "a", "text": "把格雷码乘以 2" },
+      { "id": "b", "text": "把每一位取反" },
+      { "id": "c", "text": "不断把格雷码右移，并把各次结果异或进答案" },
+      { "id": "d", "text": "直接把格雷码当十进制字符串读取" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "这个累积异或过程等价于从最高位开始，用已经恢复的高位逐位还原低位。"
+  },
+  {
+    "id": "leading-zeroes",
+    "prompt": "为什么输出固定宽度格雷码时要显式构造字符串？",
+    "options": [
+      { "id": "a", "text": "整数不能保存任何 0" },
+      { "id": "b", "text": "直接输出整数不会保留前导零" },
+      { "id": "c", "text": "字符串才能进行异或" },
+      { "id": "d", "text": "格雷码只能由字符计算" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "数值 1 直接输出是 1，而三位码字应显示为 001；宽度属于展示信息。"
+  },
+  {
+    "id": "full-sequence-complexity",
+    "prompt": "输出完整的 $n$ 位格雷码序列，时间复杂度为什么是 $O(n2^n)$？",
+    "options": [
+      { "id": "a", "text": "因为每项要进行 n 次排序" },
+      { "id": "b", "text": "因为必须枚举全部子集两次" },
+      { "id": "c", "text": "因为逆转换需要指数时间" },
+      { "id": "d", "text": "共有 $2^n$ 个码字，每个码字必须输出 n 个字符" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "即使单个数值到格雷码的转换是常数时间，完整输出本身已有 $n2^n$ 个字符。"
+  },
+  {
+    "id": "not-binary-arithmetic",
+    "prompt": "为什么不能直接把格雷码比特串当普通二进制整数做算术？",
+    "options": [
+      { "id": "a", "text": "格雷码序列位置与码字的普通二进制数值顺序不同" },
+      { "id": "b", "text": "格雷码中不允许出现 0" },
+      { "id": "c", "text": "格雷码没有固定宽度" },
+      { "id": "d", "text": "格雷码只能表示字符" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "需要原始数值时应先逆转换；例如格雷码 110 对应的普通整数是 4，而不是 6。"
+  },
+  {
+    "id": "cyclic-property",
+    "prompt": "标准二进制反射格雷码的最后一项与第一项有什么关系？",
+    "options": [
+      { "id": "a", "text": "完全相同" },
+      { "id": "b", "text": "所有位都不同" },
+      { "id": "c", "text": "也恰好只差一位，可以首尾相接" },
+      { "id": "d", "text": "只有一位格雷码满足关系" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "反射构造同时保留首尾相邻性质，因此标准序列形成一个循环。"
+  }
+]

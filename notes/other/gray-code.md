@@ -1,6 +1,6 @@
 # 格雷码
 
-> 最近修订：2026-08-14 02:33 +10:00（未审阅）
+> 最近修订：2026-08-16 15:33 +10:00（未审阅）
 
 普通二进制整数相邻的两个值可能同时改变很多位。例如从 `3` 增加到 `4`：
 
@@ -241,7 +241,7 @@ string binary_string(unsigned long long value, int width) {
     return bits;
 }
 
-int main() {
+void solve() {
     int n;
     scanf("%d", &n);
 
@@ -250,6 +250,10 @@ int main() {
         string code = binary_string(gray_code(value), n);
         printf("%s\n", code.c_str());
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -336,7 +340,3 @@ int main() {
 8. 为什么格雷码不能直接当作普通二进制整数做算术？
 9. 怎样保留输出中的前导零？
 10. 生成完整序列为什么必然需要指数级输出时间？
-
-## 下一步
-
-至此，[学习路线](../learning-path.md) 阶段 1–4 中列出的核心文章都已经具有正文。接下来可以按路线逐篇审阅、修订，也可以继续进入阶段 5 的高中基础内容。
