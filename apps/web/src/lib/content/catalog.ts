@@ -262,7 +262,7 @@ export function getLearningUnitGroups(stage: LearningStage): ArticleFamily[] {
       return article && entryKey ? [{ article, entryKey }] : [];
     });
     return {
-      title: `${unit.number} ${unit.title}`,
+      title: unit.title,
       articles: entries.map((entry) => entry.article),
       entryKeys: entries.map((entry) => entry.entryKey),
       grouped: true,
