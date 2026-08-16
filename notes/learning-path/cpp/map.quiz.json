@@ -1,0 +1,146 @@
+[
+  {
+    "id": "template-parameters",
+    "prompt": "声明 `map<Key, Value>` 时，前两个模板参数依次表示什么？",
+    "options": [
+      { "id": "a", "text": "映射值类型、键类型" },
+      { "id": "b", "text": "元素数量、桶数量" },
+      { "id": "c", "text": "键类型、映射值类型" },
+      { "id": "d", "text": "比较器类型、键类型" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`map` 保存从键到映射值的关系，类型参数先写键，再写它对应的值。"
+  },
+  {
+    "id": "ordered-by-key",
+    "prompt": "默认 `map<string, int>` 的遍历顺序由什么决定？",
+    "options": [
+      { "id": "a", "text": "字符串键的字典序" },
+      { "id": "b", "text": "整数映射值的大小" },
+      { "id": "c", "text": "键值对的插入时间" },
+      { "id": "d", "text": "每次遍历时随机决定" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "有序关联容器按照键的比较规则排列，映射值不影响元素位置。"
+  },
+  {
+    "id": "missing-subscript",
+    "prompt": "对不存在的键执行 `frequency[x]` 会发生什么？",
+    "options": [
+      { "id": "a", "text": "返回一个不会进入容器的临时值" },
+      { "id": "b", "text": "永远抛出异常" },
+      { "id": "c", "text": "返回 `end()`" },
+      { "id": "d", "text": "插入该键，并对映射值进行值初始化" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "例如映射值是 int 时会先建立 x -> 0，所以 `frequency[x]++` 可以直接完成首次计数。"
+  },
+  {
+    "id": "read-without-insert",
+    "prompt": "只想查询键是否存在，并且不允许改变容器时，通常应使用什么？",
+    "options": [
+      { "id": "a", "text": "`map[key]`" },
+      { "id": "b", "text": "`find` 或 `count`" },
+      { "id": "c", "text": "`insert`" },
+      { "id": "d", "text": "`clear`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "方括号可能自动插入缺失键；`find` 和 `count` 不会产生这种副作用。"
+  },
+  {
+    "id": "iterator-fields",
+    "prompt": "通过 `map` 迭代器访问一个键值对时，哪一项可以直接修改？",
+    "options": [
+      { "id": "a", "text": "只能修改 `it->first`" },
+      { "id": "b", "text": "`first` 与 `second` 都可修改" },
+      { "id": "c", "text": "两个字段都不能修改" },
+      { "id": "d", "text": "可以修改 `it->second`，不能修改决定顺序的 `it->first`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "键必须保持不变以维持排列位置，映射值不参与排序，可以通过迭代器修改。"
+  },
+  {
+    "id": "insert-existing",
+    "prompt": "键 3 已映射到 95，再执行 `score.insert({3, 100})` 后会怎样？",
+    "options": [
+      { "id": "a", "text": "插入失败，键 3 的值仍是 95" },
+      { "id": "b", "text": "键 3 的值变成 100" },
+      { "id": "c", "text": "容器中出现两个键 3" },
+      { "id": "d", "text": "整个 map 被清空" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`insert` 只在键不存在时加入，不覆盖已有映射值。"
+  },
+  {
+    "id": "insert-or-assign",
+    "prompt": "`insert_or_assign(key, value)` 在键已经存在时做什么？",
+    "options": [
+      { "id": "a", "text": "保持原值并返回 true" },
+      { "id": "b", "text": "删除这个键" },
+      { "id": "c", "text": "覆盖映射值，并让返回的 inserted 为 false" },
+      { "id": "d", "text": "新增第二份相同键" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "它统一处理插入与覆盖；布尔量只说明是否新增了键。"
+  },
+  {
+    "id": "erase-by-key",
+    "prompt": "`map` 的 `erase(key)` 返回值是什么？",
+    "options": [
+      { "id": "a", "text": "删除后的映射值" },
+      { "id": "b", "text": "实际删除的键值对数量，只可能是 0 或 1" },
+      { "id": "c", "text": "被删除元素的后继迭代器" },
+      { "id": "d", "text": "当前不同键数量" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`map` 的键唯一，存在时删一项并返回 1，不存在时返回 0。"
+  },
+  {
+    "id": "map-lower-bound",
+    "prompt": "默认升序 `map` 的成员 `lower_bound(x)` 返回什么？",
+    "options": [
+      { "id": "a", "text": "键不小于 x 的第一个键值对" },
+      { "id": "b", "text": "映射值不小于 x 的第一个键值对" },
+      { "id": "c", "text": "键严格小于 x 的最后一个键值对" },
+      { "id": "d", "text": "第 x 个键值对" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "边界查询仍按键的比较规则进行，返回迭代器后可同时读取键和映射值。"
+  },
+  {
+    "id": "zero-frequency",
+    "prompt": "用 `map<int, int>` 维护正出现次数时，为什么次数归零后应删除该键？",
+    "options": [
+      { "id": "a", "text": "否则程序无法再插入其他键" },
+      { "id": "b", "text": "因为 map 不允许保存数值 0" },
+      { "id": "c", "text": "为了让所有映射值严格递增" },
+      { "id": "d", "text": "否则 size、遍历和边界查询仍会把它视为存在" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "“只保存正次数键”是频次表的不变量，所有更新都必须维护它。"
+  },
+  {
+    "id": "single-key-complexity",
+    "prompt": "`map` 的常用单键查找、插入、删除和边界查询通常需要多少时间？",
+    "options": [
+      { "id": "a", "text": "$O(1)$ 最坏时间" },
+      { "id": "b", "text": "$O(n)$" },
+      { "id": "c", "text": "$O(\\log n)$" },
+      { "id": "d", "text": "$O(n\\log n)$" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "有序关联容器在动态维护顺序的同时，为常用单键操作提供对数复杂度。"
+  },
+  {
+    "id": "frequency-map-vs-multiset",
+    "prompt": "只关心每个数值的出现次数时，`map<value, count>` 相比 `multiset` 的主要优势是什么？",
+    "options": [
+      { "id": "a", "text": "能够让键自动无序" },
+      { "id": "b", "text": "每个不同键只存一项，查询次数不必遍历全部重复副本" },
+      { "id": "c", "text": "所有操作都变成 O(1)" },
+      { "id": "d", "text": "可以通过位置下标访问第 k 个键" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "总元素很多但不同键较少时，显式计数可节省存储，并把一次次数查询保持为 O(log n)。"
+  }
+]
