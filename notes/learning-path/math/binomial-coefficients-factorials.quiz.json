@@ -1,0 +1,50 @@
+[
+  {
+    "id": "modular-formula",
+    "prompt": "质数模下怎样用阶乘和逆阶乘计算 `C(n,k)`？",
+    "options": [
+      { "id": "a", "text": "`factorial[n]+factorial[k]`" },
+      { "id": "b", "text": "`factorial[n]*inverse_factorial[k]*inverse_factorial[n-k]`" },
+      { "id": "c", "text": "`factorial[n-k]/factorial[n]`" },
+      { "id": "d", "text": "`inverse_factorial[n]`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "普通公式中的两个阶乘除法，在模意义下改成乘对应逆阶乘。"
+  },
+  {
+    "id": "max-condition",
+    "prompt": "本篇方法为什么要求 `max_n<MOD`？",
+    "options": [
+      { "id": "a", "text": "否则阶乘中含 MOD 因子，取模为 0 且没有逆元" },
+      { "id": "b", "text": "否则组合数不存在" },
+      { "id": "c", "text": "否则 n-k 一定为负" },
+      { "id": "d", "text": "否则 vector 不能分配" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "逆阶乘存在依赖阶乘在质数模下非零。"
+  },
+  {
+    "id": "reverse-precompute",
+    "prompt": "已知 `inverse_factorial[i]`，怎样得到 `inverse_factorial[i-1]`？",
+    "options": [
+      { "id": "a", "text": "除以 i" },
+      { "id": "b", "text": "加 i" },
+      { "id": "c", "text": "乘 i 并取模" },
+      { "id": "d", "text": "再做一次快速幂" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "i!=i*(i-1)!，两边取逆后得到 (i-1)! 的逆元等于 i! 的逆元乘 i。"
+  },
+  {
+    "id": "power-count",
+    "prompt": "预处理整张逆阶乘表通常需要多少次快速幂？",
+    "options": [
+      { "id": "a", "text": "每个位置两次" },
+      { "id": "b", "text": "O(max_n) 次" },
+      { "id": "c", "text": "不需要任何逆元" },
+      { "id": "d", "text": "只对最大阶乘做一次，其余倒推" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "先求 inverse_factorial[max_n]，再在线性时间内逐项向下计算。"
+  }
+]
