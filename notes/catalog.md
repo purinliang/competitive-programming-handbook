@@ -80,7 +80,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 010503 | 条件运算符 | 计划 | `cpp/conditional-operator.md` |
+| 010503 | 条件运算符 | 待审阅 | [conditional-operator.md](cpp/conditional-operator.md) |
 | 010504 | if 与 else | 待审阅 | [if-and-else.md](cpp/if-and-else.md) |
 | 010505 | switch | 待审阅 | [switch.md](cpp/switch.md) |
 | 010601 | while | 待审阅 | [while.md](cpp/while.md) |

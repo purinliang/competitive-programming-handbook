@@ -1,0 +1,50 @@
+[
+  {
+    "id": "conditional-operator-order",
+    "prompt": "若 `x` 是 `-4`，执行 `int result = x >= 0 ? x : -x;` 后，`result` 是多少？",
+    "options": [
+      { "id": "a", "text": "`-4`" },
+      { "id": "b", "text": "`4`" },
+      { "id": "c", "text": "`0`" },
+      { "id": "d", "text": "`1`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`x >= 0` 为假，所以条件运算符选择冒号后的 `-x`，即 `4`。"
+  },
+  {
+    "id": "conditional-equivalent-if",
+    "prompt": "哪段 `if / else` 与 `int value = condition ? a : b;` 等价？",
+    "options": [
+      { "id": "a", "text": "条件成立和不成立时都令 `value = a`" },
+      { "id": "b", "text": "条件成立时令 `value = b`，否则令 `value = a`" },
+      { "id": "c", "text": "条件成立时令 `value = a`，否则令 `value = b`" },
+      { "id": "d", "text": "只在条件不成立时声明 `value`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "问号后的表达式对应条件为真，冒号后的表达式对应条件为假。"
+  },
+  {
+    "id": "conditional-selected-branch",
+    "prompt": "计算 `condition ? first : second` 时，`first` 和 `second` 会怎样计算？",
+    "options": [
+      { "id": "a", "text": "只计算条件选中的一个表达式" },
+      { "id": "b", "text": "总是先计算两个表达式" },
+      { "id": "c", "text": "只计算 `first`" },
+      { "id": "d", "text": "只计算 `second`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "条件为真时只计算 `first`，为假时只计算 `second`，未选中的表达式不会求值。"
+  },
+  {
+    "id": "conditional-or-if",
+    "prompt": "哪种情况更适合使用 `if / else`，而不是条件运算符？",
+    "options": [
+      { "id": "a", "text": "在两个整数中选择较大值" },
+      { "id": "b", "text": "根据正负选择 `x` 或 `-x`" },
+      { "id": "c", "text": "根据条件选择 `0` 或 `1`" },
+      { "id": "d", "text": "两个分支分别需要执行多条语句" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "条件运算符适合简单地选择一个值；分支包含多条操作时，`if / else` 的边界和意图更清楚。"
+  }
+]
