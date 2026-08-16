@@ -1,0 +1,74 @@
+[
+  {
+    "id": "strong-connectivity",
+    "prompt": "有向图中，`u` 与 `v` 强连通需要满足什么？",
+    "options": [
+      { "id": "a", "text": "只存在 `u` 到 `v` 的路径" },
+      { "id": "b", "text": "二者入度相同" },
+      { "id": "c", "text": "`u` 能到 `v` 且 `v` 能到 `u`" },
+      { "id": "d", "text": "二者之间必须有直接双向边" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "强连通要求两个方向都可达，但路径可以经过其他点。"
+  },
+  {
+    "id": "condensation-dag",
+    "prompt": "为什么 SCC 缩点图一定是 DAG？",
+    "options": [
+      { "id": "a", "text": "若分量间仍有环，环上分量本应合并成更大的 SCC" },
+      { "id": "b", "text": "因为缩点会删除全部边" },
+      { "id": "c", "text": "因为每个 SCC 只有一个点" },
+      { "id": "d", "text": "因为所有有向图本来都无环" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "分量环意味着环上任意分量彼此可达，与最大划分矛盾。"
+  },
+  {
+    "id": "stack-role",
+    "prompt": "Tarjan SCC 中，栈内点的共同特征是什么？",
+    "options": [
+      { "id": "a", "text": "它们都尚未访问" },
+      { "id": "b", "text": "它们已经访问，但尚未归入确定的 SCC" },
+      { "id": "c", "text": "它们的出度都为 0" },
+      { "id": "d", "text": "它们一定属于同一个 SCC" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "栈保存当前仍可能与后续 DFS 点合并的候选区域。"
+  },
+  {
+    "id": "finished-neighbor",
+    "prompt": "有向边指向一个已经出栈的点时，为什么不更新当前 `low`？",
+    "options": [
+      { "id": "a", "text": "因为该边不存在" },
+      { "id": "b", "text": "因为出栈点一定没有编号" },
+      { "id": "c", "text": "因为 `low` 只能增加" },
+      { "id": "d", "text": "该点已属于封闭 SCC，不会再与当前候选区域合并" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "跨向已完成分量的单向边不能证明当前点能从那里返回。"
+  },
+  {
+    "id": "scc-root",
+    "prompt": "`dfn[u] == low[u]` 时应执行什么？",
+    "options": [
+      { "id": "a", "text": "从栈顶弹出到 `u`，组成一个 SCC" },
+      { "id": "b", "text": "删除图中所有边" },
+      { "id": "c", "text": "把 `u` 的所有邻点重新访问" },
+      { "id": "d", "text": "只把 `low[u]` 清零" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "u 是当前 SCC 中最早被访问的点，栈顶到 u 构成完整分量。"
+  },
+  {
+    "id": "disconnected-digraph",
+    "prompt": "为什么主程序要对所有未访问点启动 Tarjan？",
+    "options": [
+      { "id": "a", "text": "为了让每个点重复入栈" },
+      { "id": "b", "text": "有向图可能无法从一个起点访问全部顶点" },
+      { "id": "c", "text": "因为一次 DFS 不能访问边" },
+      { "id": "d", "text": "为了把所有点分到同一 SCC" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "需要覆盖 DFS 森林中的每棵树，才能处理全部点。"
+  }
+]
