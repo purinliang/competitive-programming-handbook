@@ -13,7 +13,7 @@
 - 正数、零与负数；
 - 完整有符号比较；
 - 加法、减法与朴素乘法；
-- 高精度整数除以 64 位整数，同时返回商与余数。
+- 高精度整数除以低精度整数，同时返回商与余数。
 
 更基础的竖式推导见 [高精度整数：加法、减法与乘法](big-integer-addition-subtraction-multiplication.md)
 和 [高精度整数：除以低精度整数](big-integer-division-by-small-integer.md)。本篇只解释
@@ -187,7 +187,7 @@ for (int i = 1; i <= a.n; i++) {
 
 非零结果的符号是两个操作数符号的乘积。
 
-## 除以 64 位整数
+## 除以低精度整数
 
 竖式从最高块向最低块处理：
 
@@ -197,12 +197,18 @@ current = remainder * BASE + 当前块
 remainder = current % |divisor|
 ```
 
-如果除数也允许占满 64 位整数，`remainder * BASE` 可能超过 64 位整数范围，
-`LLONG_MIN` 也不能在 64 位整数中直接取绝对值。模板因此用 `__int128` 保存正除数、
-`current` 和非负余数。
+模板让低精度除数使用 `int`。进入每一步以前都有
+`remainder<|divisor|`，所以：
+
+$$
+current<|divisor|\times BASE<2.15\times 10^{18},
+$$
+
+能够放入 64 位整数。即使除数是 `INT_MIN`，先把它转换成 64 位整数再取绝对值也
+不会溢出。
 
 返回语义与 C++ 整数除法一致：商向零取整，余数与被除数同号。商可能仍是高精度
-整数，余数的绝对值严格小于低精度除数的绝对值，所以最终能返回为 64 位整数。
+整数，余数的绝对值严格小于低精度除数的绝对值，所以最终能返回为 `int`。
 
 ## 完整模板
 
@@ -403,28 +409,25 @@ bigint multiply(const bigint& a, const bigint& b) {
     return c;
 }
 
-pair<bigint, ll> divide(const bigint& a, ll divisor) {
+pair<bigint, int> divide(const bigint& a, int divisor) {
     assert(divisor != 0);
 
-    __int128 positive_divisor = divisor;
-    if (positive_divisor < 0) {
-        positive_divisor = -positive_divisor;
-    }
+    ll positive_divisor = abs((ll)divisor);
 
     bigint quotient;
     quotient.sign = a.sign * (divisor < 0 ? -1 : 1);
     quotient.n = a.n;
     quotient.d.assign(quotient.n + 5, 0);
 
-    __int128 remainder = 0;
+    ll remainder = 0;
     for (int i = a.n; i >= 1; i--) {
-        __int128 current = remainder * BASE + a.d[i];
+        ll current = remainder * BASE + a.d[i];
         quotient.d[i] = current / positive_divisor;
         remainder = current % positive_divisor;
     }
     quotient.normalize();
 
-    ll signed_remainder = remainder;
+    int signed_remainder = remainder;
     if (a.sign < 0) {
         signed_remainder = -signed_remainder;
     }
@@ -433,7 +436,7 @@ pair<bigint, ll> divide(const bigint& a, ll divisor) {
 
 int main() {
     string sa, sb;
-    ll divisor;
+    int divisor;
     cin >> sa >> sb >> divisor;
 
     bigint a(sa);
@@ -499,7 +502,7 @@ int main() {
 2. 为什么立即进位的朴素乘法可以安全使用 `BASE=10^9`？
 3. 为什么统一累加卷积不能沿用同一个中间值证明？
 4. 三态 `sign` 怎样消除负零？
-5. 为什么除以 64 位整数时使用 `__int128`？
+5. 为什么 `int` 除数配合 64 位中间变量不会溢出？
 6. 商和余数分别采用什么符号？
 
 ## 配套深入篇
