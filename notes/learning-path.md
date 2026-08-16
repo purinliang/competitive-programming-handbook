@@ -496,7 +496,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 050501 | 高精度整数：加法、减法与乘法 | 数学 | [math/big-integer-addition-subtraction-multiplication.md](math/big-integer-addition-subtraction-multiplication.md) |
-| 050502 | 高精度整数：除以低精度整数 | 数学 | `math/big-integer-division-by-small-integer.md` |
+| 050502 | 高精度整数：除以低精度整数 | 数学 | [math/big-integer-division-by-small-integer.md](math/big-integer-division-by-small-integer.md) |
 
 ### 单元 06：数学：组合数学
 

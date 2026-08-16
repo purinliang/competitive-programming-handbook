@@ -1,0 +1,63 @@
+[
+  {
+    "id": "division-direction",
+    "prompt": "高精度除以低精度整数时，为什么要从最高数字块向最低数字块处理？",
+    "options": [
+      { "id": "a", "text": "因为低位数字块不能做除法" },
+      { "id": "b", "text": "下一块需要使用更高块留下的余数" },
+      { "id": "c", "text": "因为 vector 只能反向遍历" },
+      { "id": "d", "text": "这样才能把时间复杂度降为 O(1)" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "竖式除法必须先确定更高位的商和余数，再把下一块放下来。"
+  },
+  {
+    "id": "current-dividend",
+    "prompt": "处理数字块 `d[i]` 时，临时被除数应怎样计算？",
+    "options": [
+      { "id": "a", "text": "remainder + d[i]" },
+      { "id": "b", "text": "remainder / BASE + d[i]" },
+      { "id": "c", "text": "remainder * BASE + d[i]" },
+      { "id": "d", "text": "d[i] * divisor" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "把一个以 BASE 为基数的数字块放下来，相当于旧余数左移一块后再加当前块。"
+  },
+  {
+    "id": "result-types",
+    "prompt": "高精度非负整数除以正的 `int` 后，商和余数分别适合使用什么类型？",
+    "options": [
+      { "id": "a", "text": "商用 bigint，余数用 int" },
+      { "id": "b", "text": "商和余数都只能用 bigint" },
+      { "id": "c", "text": "商用 int，余数用 bigint" },
+      { "id": "d", "text": "商和余数都只能用 double" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "商可能仍有数百位；余数严格小于低精度除数，所以 int 足够。"
+  },
+  {
+    "id": "division-invariant",
+    "prompt": "除数为正数时，最终商 `q` 与余数 `r` 必须满足哪组条件？",
+    "options": [
+      { "id": "a", "text": "a = q + r，并且 r 可以任意大" },
+      { "id": "b", "text": "a = divisor * r + q，并且 q < divisor" },
+      { "id": "c", "text": "a = divisor / q + r" },
+      { "id": "d", "text": "a = divisor * q + r，并且 0 <= r < divisor" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "这是商和余数的定义，也是检查除法结果最直接的不变量。"
+  },
+  {
+    "id": "trim-quotient",
+    "prompt": "计算结束后为什么要对商调用 `trim()`？",
+    "options": [
+      { "id": "a", "text": "去掉最高位无意义的零块，同时保留一个零块表示 0" },
+      { "id": "b", "text": "把余数复制到商中" },
+      { "id": "c", "text": "把商改成负数" },
+      { "id": "d", "text": "把 BASE 改成 10" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "最高若干商块可能为零；规范化后比较和输出才能继续沿用统一表示。"
+  }
+]
+
