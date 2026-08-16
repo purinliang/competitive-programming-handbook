@@ -1,0 +1,62 @@
+[
+  {
+    "id": "two-orders",
+    "prompt": "Treap 的键值与随机优先级分别维护什么性质？",
+    "options": [
+      { "id": "a", "text": "键值维护二叉搜索树，优先级维护堆" },
+      { "id": "b", "text": "键值维护堆，优先级维护数组下标" },
+      { "id": "c", "text": "两者都只维护节点编号" },
+      { "id": "d", "text": "两者都不影响树形" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "键值确定中序有序关系，随机优先级随机化并平衡树形。"
+  },
+  {
+    "id": "rotation-order",
+    "prompt": "旋转为什么不会破坏二叉搜索树的键值顺序？",
+    "options": [
+      { "id": "a", "text": "旋转会删除所有键" },
+      { "id": "b", "text": "旋转前后的中序遍历顺序相同" },
+      { "id": "c", "text": "优先级与键值永远相等" },
+      { "id": "d", "text": "旋转只允许发生在叶子" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "旋转只改变局部父子结构，中序序列保持不变，因此键值仍然有序。"
+  },
+  {
+    "id": "duplicate-size",
+    "prompt": "一个节点的键出现 `count` 次时，子树 `size` 应怎样计算？",
+    "options": [
+      { "id": "a", "text": "只计算左右儿子，不计算当前节点" },
+      { "id": "b", "text": "左右子树大小加 1，忽略 count" },
+      { "id": "c", "text": "左右子树大小加 count" },
+      { "id": "d", "text": "永远等于优先级" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "重复元素会分别占据排名，因此当前节点要为子树大小贡献 count。"
+  },
+  {
+    "id": "kth-branch",
+    "prompt": "查询第 k 小时，若左子树大小小于 k，但 `k <= left_size + count`，答案在哪里？",
+    "options": [
+      { "id": "a", "text": "当前节点的键值" },
+      { "id": "b", "text": "一定在右子树" },
+      { "id": "c", "text": "一定不存在" },
+      { "id": "d", "text": "是根的优先级" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "当前键的多次出现占据 left_size+1 到 left_size+count 这些排名。"
+  },
+  {
+    "id": "strict-predecessor",
+    "prompt": "寻找 `key` 的严格前驱时，当前节点键值等于 `key` 应向哪里继续？",
+    "options": [
+      { "id": "a", "text": "直接把当前键作为答案" },
+      { "id": "b", "text": "同时进入两棵子树" },
+      { "id": "c", "text": "进入右子树" },
+      { "id": "d", "text": "进入左子树" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "严格前驱必须小于 key；相等时只能去左子树寻找。"
+  }
+]

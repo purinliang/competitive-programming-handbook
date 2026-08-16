@@ -526,7 +526,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 080109 | Treap | 计划 | `data-structures/treap.md` |
+| 080109 | Treap | 待审阅 | [data-structures/treap.md](data-structures/treap.md) |
 | 080110 | FHQ Treap | 计划 | `data-structures/fhq-treap.md` |
 | *990313 | Splay | 推迟 | `data-structures/splay.md` |
 | *990325 | 替罪羊树 | 推迟 | `data-structures/scapegoat-tree.md` |
