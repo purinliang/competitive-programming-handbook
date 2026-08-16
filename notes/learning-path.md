@@ -249,7 +249,7 @@
 | --- | --- | --- | --- |
 | 0208 | 贪心选择与正确性证明 | 算法基础 | [algorithm-basics/greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
 | 0238 | 邻项交换证明 | 算法基础 | [algorithm-basics/greedy-adjacent-exchange.md](algorithm-basics/greedy-adjacent-exchange.md) |
-| 0239 | 反悔贪心 | 算法基础 | `algorithm-basics/greedy-regret.md` |
+| 0239 | 反悔贪心 | 算法基础 | [algorithm-basics/greedy-regret.md](algorithm-basics/greedy-regret.md) |
 
 本阶段先独立建立复杂度，再学习后续代码马上需要的标准库基础。枚举与模拟提供最直接的基线方法；递归与递推建立较小问题之间的关系。排序之后由快速排序和归并排序归纳分治，再进入二分、前缀和、双指针和贪心。差分作为前缀和的逆过程放在同一单元；滑动窗口作为双指针维护连续区间的形式放在同一单元。
 

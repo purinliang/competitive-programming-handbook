@@ -1,0 +1,146 @@
+[
+  {
+    "id": "definition",
+    "prompt": "反悔贪心的基本决策过程是什么？",
+    "options": [
+      { "id": "a", "text": "先接受当前选择，发生冲突时再撤销已选集合中最差的一项" },
+      { "id": "b", "text": "枚举所有选择后随机保留一个" },
+      { "id": "c", "text": "每一步都永远不能撤销" },
+      { "id": "d", "text": "必须先建立二叉树" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "反悔允许利用新信息替换旧选择；撤销规则仍然需要正确性证明。"
+  },
+  {
+    "id": "deadline-order",
+    "prompt": "最多按时完成任务的问题为什么先按截止时间排序？",
+    "options": [
+      { "id": "a", "text": "为了让任务时长递增" },
+      { "id": "b", "text": "为了让 priority_queue 自动去重" },
+      { "id": "c", "text": "较早截止的任务先执行不会让较晚截止任务更难完成" },
+      { "id": "d", "text": "因为输入一定已经有序" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "交换截止时间逆序的相邻任务，会让早截止任务提前，而后一个完成时刻不变。"
+  },
+  {
+    "id": "tentative-acceptance",
+    "prompt": "扫描到新任务时，算法首先做什么？",
+    "options": [
+      { "id": "a", "text": "无条件放弃它" },
+      { "id": "b", "text": "暂时加入已选集合，并把时长计入 total_time" },
+      { "id": "c", "text": "删除当前最短任务" },
+      { "id": "d", "text": "重新枚举之前的全部子集" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "先接受能够保留更多任务；只有集合不再可行时才需要决定撤销谁。"
+  },
+  {
+    "id": "overflow",
+    "prompt": "加入当前任务后 `total_time > deadline` 说明什么？",
+    "options": [
+      { "id": "a", "text": "只要改变任务编号就能全部完成" },
+      { "id": "b", "text": "当前任务的时长一定最大" },
+      { "id": "c", "text": "后面的任务全部无解" },
+      { "id": "d", "text": "当前暂选的任务不能全部保留，至少要撤销一项" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "这些任务都必须在当前或更早的限制下完成，但总处理时间已经超过当前截止时间。"
+  },
+  {
+    "id": "remove-longest",
+    "prompt": "发生超时时，为什么撤销处理时间最长的任务？",
+    "options": [
+      { "id": "a", "text": "在减少一个任务的前提下，使剩余总时长最小" },
+      { "id": "b", "text": "最长任务一定是当前任务" },
+      { "id": "c", "text": "最长任务的截止时间一定最晚" },
+      { "id": "d", "text": "这样能让已选数量增加两个" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "保留数量同样减少一时，更小的剩余总时长会为未来截止时间留下更多余量。"
+  },
+  {
+    "id": "remove-current",
+    "prompt": "被撤销的任务能否正是刚加入的当前任务？",
+    "options": [
+      { "id": "a", "text": "不能，旧任务必须优先撤销" },
+      { "id": "b", "text": "只有截止时间相同时可以" },
+      { "id": "c", "text": "可以；若当前任务最长，它会被立即撤销" },
+      { "id": "d", "text": "只有堆为空时可以" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "反悔过程并不偏袒新旧任务，只保留能让总时长更小的选择。"
+  },
+  {
+    "id": "one-removal",
+    "prompt": "为什么每次加入任务后最多撤销一项，不需要反复弹出？",
+    "options": [
+      { "id": "a", "text": "因为所有任务时长都是 1" },
+      { "id": "b", "text": "最长时长不小于新任务时长，删除后总时长不超过加入前的可行总时长" },
+      { "id": "c", "text": "因为截止时间一定翻倍" },
+      { "id": "d", "text": "priority_queue 每轮只能 pop 一次" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "加入前集合可行；删除 longest 后得到 T+x-longest <= T，因此重新可行。"
+  },
+  {
+    "id": "linear-version",
+    "prompt": "不用堆、每次线性寻找最长已选任务时，总时间复杂度最坏是多少？",
+    "options": [
+      { "id": "a", "text": "$O(1)$" },
+      { "id": "b", "text": "$O(n)$" },
+      { "id": "c", "text": "$O(n\\log n)$" },
+      { "id": "d", "text": "$O(n^2)$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "最多处理 n 个任务，每次冲突都可能扫描 O(n) 个已选时长。"
+  },
+  {
+    "id": "heap-role",
+    "prompt": "`priority_queue` 在这篇算法中负责什么？",
+    "options": [
+      { "id": "a", "text": "加速反复找出并删除当前最长任务，不改变选择规则" },
+      { "id": "b", "text": "证明贪心算法正确" },
+      { "id": "c", "text": "决定是否按截止时间排序" },
+      { "id": "d", "text": "把所有任务时长变成相同" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "反悔逻辑在线性版本中已经完整；堆只把寻找最值降为对数时间。"
+  },
+  {
+    "id": "heap-direction",
+    "prompt": "本题应使用默认大根堆还是 `greater` 小根堆？",
+    "options": [
+      { "id": "a", "text": "小根堆，因为截止时间递增" },
+      { "id": "b", "text": "两者结果永远相同" },
+      { "id": "c", "text": "默认大根堆，因为需要撤销最长时长" },
+      { "id": "d", "text": "不允许使用 priority_queue" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "堆顶必须是当前最大 duration；哈夫曼编码取最小值才使用小根堆。"
+  },
+  {
+    "id": "complexity",
+    "prompt": "排序并使用堆实现后，总时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(n)$" },
+      { "id": "b", "text": "$O(n\\log n)$" },
+      { "id": "c", "text": "$O(n^2)$" },
+      { "id": "d", "text": "$O(2^n)$" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "排序、每次入堆和至多一次出堆都在 O(n log n) 总时间内完成。"
+  },
+  {
+    "id": "recover-tasks",
+    "prompt": "若还要输出最终保留的任务编号，堆中应额外保存什么？",
+    "options": [
+      { "id": "a", "text": "只保存截止时间" },
+      { "id": "b", "text": "只保存堆的大小" },
+      { "id": "c", "text": "不需要任何额外信息" },
+      { "id": "d", "text": "保存 `(duration, id)`，并记录哪些编号仍被选中" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "只保存时长无法区分同长度任务；编号和选中标记用于恢复具体集合。"
+  }
+]

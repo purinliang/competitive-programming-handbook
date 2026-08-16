@@ -198,7 +198,7 @@
 | 0236 | 出栈序列判定 | 待审阅 | [stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
 | 0237 | 表达式求值 | 待审阅 | [expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
 | 0238 | 邻项交换证明 | 待审阅 | [greedy-adjacent-exchange.md](algorithm-basics/greedy-adjacent-exchange.md) |
-| 0239 | 反悔贪心 | 计划 | `algorithm-basics/greedy-regret.md` |
+| 0239 | 反悔贪心 | 待审阅 | [greedy-regret.md](algorithm-basics/greedy-regret.md) |
 | 0242 | 倍增：基础 | 待审阅 | [doubling.md](algorithm-basics/doubling.md) |
 | 0243* | 搜索：迭代加深 | 计划 | `algorithm-basics/iterative-deepening.md` |
 | 0244* | 搜索：A* | 计划 | `algorithm-basics/a-star.md` |
