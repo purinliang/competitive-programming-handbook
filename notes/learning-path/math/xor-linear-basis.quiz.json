@@ -1,0 +1,62 @@
+[
+  {
+    "id": "xor-vector",
+    "prompt": "整数异或为什么可以看成二元域上的向量加法？",
+    "options": [
+      { "id": "a", "text": "每一位都按照模 2 加法独立合并" },
+      { "id": "b", "text": "异或与普通乘法完全相同" },
+      { "id": "c", "text": "所有整数只有一位" },
+      { "id": "d", "text": "异或会自动排序输入" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每个二进制位只记录这一位出现奇数次还是偶数次，正是模 2 加法。"
+  },
+  {
+    "id": "pivot-meaning",
+    "prompt": "`basis[bit]` 保存的基向量应满足什么？",
+    "options": [
+      { "id": "a", "text": "数值一定等于 bit" },
+      { "id": "b", "text": "最高有效位恰好是 bit" },
+      { "id": "c", "text": "只有第 bit 位可以为 0" },
+      { "id": "d", "text": "必须来自第 bit 个输入" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "唯一最高主元使插入消元和高位贪心都能按位进行。"
+  },
+  {
+    "id": "dependent-vector",
+    "prompt": "插入一个数时，若它最终被消成 0，说明什么？",
+    "options": [
+      { "id": "a", "text": "它比所有输入都大" },
+      { "id": "b", "text": "它必须成为新的最高主元" },
+      { "id": "c", "text": "它可以由已有基向量异或得到，与当前基线性相关" },
+      { "id": "d", "text": "整个线性基应被清空" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "所有有效位都能被已有主元消去，说明它没有提供新的独立方向。"
+  },
+  {
+    "id": "maximum-order",
+    "prompt": "构造最大可表示异或值时，为什么从高位向低位尝试基向量？",
+    "options": [
+      { "id": "a", "text": "高位对整数大小更重要，低主元不会再改变已确定高位" },
+      { "id": "b", "text": "因为低位永远为零" },
+      { "id": "c", "text": "因为输入已经按降序排列" },
+      { "id": "d", "text": "为了使复杂度变成平方级" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "整数比较由最高不同位决定；主元阶梯结构让每一步高位选择不可被低位推翻。"
+  },
+  {
+    "id": "representability",
+    "prompt": "判断目标 x 能否由原集合子集异或得到时，应怎样做？",
+    "options": [
+      { "id": "a", "text": "枚举全部 2^n 个子集" },
+      { "id": "b", "text": "只比较 x 与最大基向量" },
+      { "id": "c", "text": "把 x 与所有输入相加" },
+      { "id": "d", "text": "按主元从高到低消去，检查最终是否为 0" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每个最高位只能由对应主元消去；完全消成 0 就位于线性基张成空间。"
+  }
+]

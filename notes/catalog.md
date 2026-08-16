@@ -567,7 +567,7 @@
 | --- | --- | --- | --- |
 | *990330 | 01 Trie | 计划 | `data-structures/binary-trie.md` |
 | *990330e1 | 可持久化 01 Trie | 推迟 | `data-structures/persistent-binary-trie.md` |
-| 080303 | 异或线性基 | 计划 | `math/xor-linear-basis.md` |
+| 080303 | 异或线性基 | 待审阅 | [math/xor-linear-basis.md](math/xor-linear-basis.md) |
 | *080303e1 | 前缀线性基 | 推迟 | `math/prefix-xor-linear-basis.md` |
 
 ### 复合与空间数据结构
@@ -928,7 +928,7 @@
 | 060308 | 线性变换：矩阵表示 | 待审阅 | [linear-transformations-as-matrices.md](math/linear-transformations-as-matrices.md) |
 | *060308e1 | 线性变换：齐次坐标与仿射变换 | 待审阅 | [homogeneous-coordinates-affine-transformations.md](math/homogeneous-coordinates-affine-transformations.md) |
 | 060309 | 矩阵快速幂 | 待审阅 | [matrix-exponentiation.md](math/matrix-exponentiation.md) |
-| 080303 | 异或线性基 | 计划 | `math/xor-linear-basis.md` |
+| 080303 | 异或线性基 | 待审阅 | [math/xor-linear-basis.md](math/xor-linear-basis.md) |
 | *080303e1 | 前缀线性基 | 推迟 | `math/prefix-xor-linear-basis.md` |
 | 080304 | 高斯消元 | 计划 | `math/gaussian-elimination.md` |
 | 080305 | 线性代数：行列式 | 计划 | `math/determinant.md` |
