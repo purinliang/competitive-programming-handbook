@@ -764,6 +764,42 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 071004 | 单调栈优化 | 动态规划 | `dynamic-programming/monotone-stack-optimization.md` |
 | 071005 | 斜率优化 | 动态规划 | `dynamic-programming/convex-hull-trick.md` |
 
+### 单元 11：字符串：多模式匹配
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 071101 | 字符串：AC 自动机 | 字符串 | `strings/aho-corasick.md` |
+
+### 单元 12：字符串：回文算法
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 071201 | 字符串：Manacher | 字符串 | `strings/manacher.md` |
+| 071202 | 字符串：回文树 | 字符串 | `strings/palindromic-tree.md` |
+
+### 单元 13：字符串：后缀结构
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 071301 | 字符串：后缀数组 | 字符串 | `strings/suffix-array.md` |
+| 071302 | 字符串：后缀自动机 | 字符串 | `strings/suffix-automaton.md` |
+
+### 单元 14：字符串：结构之间的联系
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 071401 | 字符串结构中的后缀链接与长度 | 字符串 | `strings/suffix-links-and-lengths.md` |
+
+### 单元 15：字符串：子串问题
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 071501 | 本质不同子串计数 | 字符串 | `strings/distinct-substring-counting.md` |
+| 071502 | 字典序第 k 小子串 | 字符串 | `strings/kth-lexicographic-substring.md` |
+| 071503 | 子串出现次数 | 字符串 | `strings/substring-occurrence-counting.md` |
+| 071504 | 最长重复子串 | 字符串 | `strings/longest-repeated-substring.md` |
+| 071505 | 最长公共子串 | 字符串 | `strings/longest-common-substring.md` |
+
 完成 06 高中进阶后，读者已经具备独立阅读题解、按题目补充专题和判断新算法依赖的能力。这里不把高中竞赛一等奖与大学竞赛奖牌、Codeforces rating 做机械换算。
 
 ## 扩展阅读索引
@@ -1002,17 +1038,6 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| *990801 | 字符串：AC 自动机 | `strings/aho-corasick.md` |
-| *990802 | 字符串：Manacher | `strings/manacher.md` |
-| *990803 | 字符串：后缀数组 | `strings/suffix-array.md` |
-| *990804 | 字符串：后缀自动机 | `strings/suffix-automaton.md` |
-| *990805 | 字符串：回文树 | `strings/palindromic-tree.md` |
 | *990806 | 字符串：后缀树 | `strings/suffix-tree.md` |
 | *990807 | 最小表示法 | `strings/minimum-representation.md` |
 | *990808 | Lyndon 分解 | `strings/lyndon-factorization.md` |
-| *990812 | 本质不同子串计数 | `strings/distinct-substring-counting.md` |
-| *990813 | 字典序第 k 小子串 | `strings/kth-lexicographic-substring.md` |
-| *990814 | 子串出现次数 | `strings/substring-occurrence-counting.md` |
-| *990815 | 最长重复子串 | `strings/longest-repeated-substring.md` |
-| *990816 | 最长公共子串 | `strings/longest-common-substring.md` |
-| *990817 | 字符串结构中的后缀链接与长度 | `strings/suffix-links-and-lengths.md` |

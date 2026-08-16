@@ -1138,6 +1138,10 @@
 | 062003 | 字符串：Z 函数 | 待审阅 | [z-function.md](strings/z-function.md) |
 | 062004 | 字符串：Trie | 待审阅 | [trie.md](strings/trie.md) |
 | 062005 | 字符串构造 | 计划 | `strings/string-construction.md` |
+| 071101 | 字符串：AC 自动机 | 计划 | `strings/aho-corasick.md` |
+| 071201 | 字符串：Manacher | 计划 | `strings/manacher.md` |
+| 071301 | 字符串：后缀数组 | 计划 | `strings/suffix-array.md` |
+| 071302 | 字符串：后缀自动机 | 计划 | `strings/suffix-automaton.md` |
 
 ### 字符串基础
 
@@ -1171,40 +1175,38 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 062004 | 字符串：Trie | 待审阅 | [trie.md](strings/trie.md) |
-| *990801 | 字符串：AC 自动机 | 计划 | `strings/aho-corasick.md` |
-| *990817 | 字符串结构中的后缀链接与长度 | 计划 | `strings/suffix-links-and-lengths.md` |
+| 071101 | 字符串：AC 自动机 | 计划 | `strings/aho-corasick.md` |
 
 ### 回文结构
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| *990802 | 字符串：Manacher | 计划 | `strings/manacher.md` |
-| *990805 | 字符串：回文树 | 计划 | `strings/palindromic-tree.md` |
-| *990817 | 字符串结构中的后缀链接与长度 | 计划 | `strings/suffix-links-and-lengths.md` |
+| 071201 | 字符串：Manacher | 计划 | `strings/manacher.md` |
+| 071202 | 字符串：回文树 | 计划 | `strings/palindromic-tree.md` |
 
 ### 后缀结构
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| *990803 | 字符串：后缀数组 | 计划 | `strings/suffix-array.md` |
-| *990804 | 字符串：后缀自动机 | 计划 | `strings/suffix-automaton.md` |
+| 071301 | 字符串：后缀数组 | 计划 | `strings/suffix-array.md` |
+| 071302 | 字符串：后缀自动机 | 计划 | `strings/suffix-automaton.md` |
 | *990806 | 字符串：后缀树 | 计划 | `strings/suffix-tree.md` |
-| *990812 | 本质不同子串计数 | 计划 | `strings/distinct-substring-counting.md` |
-| *990813 | 字典序第 k 小子串 | 计划 | `strings/kth-lexicographic-substring.md` |
-| *990814 | 子串出现次数 | 计划 | `strings/substring-occurrence-counting.md` |
-| *990815 | 最长重复子串 | 计划 | `strings/longest-repeated-substring.md` |
-| *990816 | 最长公共子串 | 计划 | `strings/longest-common-substring.md` |
-| *990817 | 字符串结构中的后缀链接与长度 | 计划 | `strings/suffix-links-and-lengths.md` |
+
+### 结构之间的联系
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 071401 | 字符串结构中的后缀链接与长度 | 计划 | `strings/suffix-links-and-lengths.md` |
 
 ### 子串问题
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| *990812 | 本质不同子串计数 | 计划 | `strings/distinct-substring-counting.md` |
-| *990813 | 字典序第 k 小子串 | 计划 | `strings/kth-lexicographic-substring.md` |
-| *990814 | 子串出现次数 | 计划 | `strings/substring-occurrence-counting.md` |
-| *990815 | 最长重复子串 | 计划 | `strings/longest-repeated-substring.md` |
-| *990816 | 最长公共子串 | 计划 | `strings/longest-common-substring.md` |
+| 071501 | 本质不同子串计数 | 计划 | `strings/distinct-substring-counting.md` |
+| 071502 | 字典序第 k 小子串 | 计划 | `strings/kth-lexicographic-substring.md` |
+| 071503 | 子串出现次数 | 计划 | `strings/substring-occurrence-counting.md` |
+| 071504 | 最长重复子串 | 计划 | `strings/longest-repeated-substring.md` |
+| 071505 | 最长公共子串 | 计划 | `strings/longest-common-substring.md` |
 
 ### 字符串表示与分解
 
