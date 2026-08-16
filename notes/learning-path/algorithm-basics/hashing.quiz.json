@@ -1,0 +1,50 @@
+[
+  {
+    "id": "hash-equal-keys",
+    "prompt": "关于键相等与哈希值相等，哪一项必须成立？",
+    "options": [
+      { "id": "a", "text": "不同键必须得到不同哈希值" },
+      { "id": "b", "text": "哈希值相同就能推出键相等" },
+      { "id": "c", "text": "相等键必须得到相同哈希值" },
+      { "id": "d", "text": "相等键必须进入不同桶" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "查询同一个键必须回到与插入相同的位置；不同键仍允许冲突。"
+  },
+  {
+    "id": "hash-collision-inevitable",
+    "prompt": "为什么把无限整数映射到固定数量桶时冲突不可避免？",
+    "options": [
+      { "id": "a", "text": "根据抽屉原理，不同键数量超过输出数量时必有共享输出" },
+      { "id": "b", "text": "整数不能进行取模" },
+      { "id": "c", "text": "每个桶只能使用一次" },
+      { "id": "d", "text": "相同键会自动改变" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "大键空间压缩到小输出空间不可能保持一一对应，所以数据结构必须正确处理冲突。"
+  },
+  {
+    "id": "hash-distribution",
+    "prompt": "哈希函数分布很差、所有键集中到一个桶时，可能发生什么？",
+    "options": [
+      { "id": "a", "text": "桶数自动变成无限大" },
+      { "id": "b", "text": "所有键自动有序" },
+      { "id": "c", "text": "冲突全部消失" },
+      { "id": "d", "text": "需要扫描很长的拥挤桶，哈希表操作可能退化为线性时间" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "平均桶长只有在分布近似均匀时才有代表性；极端集中会破坏平均常数性能。"
+  },
+  {
+    "id": "hash-value-versus-bucket",
+    "prompt": "哈希表扩容后，同一个键为什么可能移动到另一个桶？",
+    "options": [
+      { "id": "a", "text": "键本身一定被修改" },
+      { "id": "b", "text": "桶编号还取决于桶数，桶数改变后要重新计算" },
+      { "id": "c", "text": "相等判断不再有效" },
+      { "id": "d", "text": "扩容会删除哈希函数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "宽哈希值可以不变，但 `hash_value % bucket_count` 会随桶数改变，因此需要重新哈希。"
+  }
+]

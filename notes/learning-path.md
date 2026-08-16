@@ -477,7 +477,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 050301 | 哈希 | 算法基础 | `algorithm-basics/hashing.md` |
+| 050301 | 哈希 | 算法基础 | [algorithm-basics/hashing.md](algorithm-basics/hashing.md) |
 | 050302 | 哈希表 | 算法基础 | [algorithm-basics/hash-table.md](algorithm-basics/hash-table.md) |
 
 ### 单元 04：标准库进阶

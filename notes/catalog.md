@@ -375,7 +375,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 050301 | 哈希 | 计划 | `algorithm-basics/hashing.md` |
+| 050301 | 哈希 | 待审阅 | [hashing.md](algorithm-basics/hashing.md) |
 | 050302 | 哈希表 | 待审阅 | [hash-table.md](algorithm-basics/hash-table.md) |
 
 ### 专题：双指针
