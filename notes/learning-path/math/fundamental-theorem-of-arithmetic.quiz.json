@@ -1,0 +1,146 @@
+[
+  {
+    "id": "theorem-meaning",
+    "prompt": "算术基本定理对每个大于 1 的正整数说明了什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "它只能写成两个质数的和"
+      },
+      {
+        "id": "b",
+        "text": "它存在质因数分解，且忽略排列顺序后分解唯一"
+      },
+      {
+        "id": "c",
+        "text": "它本身一定是质数"
+      },
+      {
+        "id": "d",
+        "text": "它的所有约数都相同"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "定理同时包含分解存在性与质因数多重集合的唯一性。"
+  },
+  {
+    "id": "existence-termination",
+    "prompt": "不断把合数拆成两个更小因数，为什么一定会停止？",
+    "options": [
+      {
+        "id": "a",
+        "text": "因为每次都会得到偶数"
+      },
+      {
+        "id": "b",
+        "text": "因为所有质数都小于 10"
+      },
+      {
+        "id": "c",
+        "text": "因为乘法只能执行有限次"
+      },
+      {
+        "id": "d",
+        "text": "因为大于 1 的正整数不能无限严格递减"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每次拆出的因数都严格小于原合数，最终只能到达不能再拆的质数。"
+  },
+  {
+    "id": "euclid-lemma",
+    "prompt": "欧几里得引理在唯一性证明中使用了哪条性质？",
+    "options": [
+      {
+        "id": "a",
+        "text": "质数 p 整除 ab 时，至少整除 a、b 中的一个"
+      },
+      {
+        "id": "b",
+        "text": "任意整数都整除质数"
+      },
+      {
+        "id": "c",
+        "text": "两个合数的乘积一定是质数"
+      },
+      {
+        "id": "d",
+        "text": "所有质数都互相相等"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "它迫使一种分解中的质数在另一种分解中找到相同质因数。"
+  },
+  {
+    "id": "one-empty-product",
+    "prompt": "在质因数指数坐标中，整数 1 怎样表示？",
+    "options": [
+      {
+        "id": "a",
+        "text": "把质因数 1 的指数设为 1"
+      },
+      {
+        "id": "b",
+        "text": "任选一个质数并取指数 1"
+      },
+      {
+        "id": "c",
+        "text": "所有质数指数都是 0，对应空乘积"
+      },
+      {
+        "id": "d",
+        "text": "1 没有任何乘法表示"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "空乘积约定为 1；把 1 当质因数反而会破坏唯一性。"
+  },
+  {
+    "id": "multiplication-exponents",
+    "prompt": "若质数 p 在 a、b 中的指数分别为 x、y，它在 ab 中的指数是多少？",
+    "options": [
+      {
+        "id": "a",
+        "text": "min(x, y)"
+      },
+      {
+        "id": "b",
+        "text": "x + y"
+      },
+      {
+        "id": "c",
+        "text": "max(x, y)"
+      },
+      {
+        "id": "d",
+        "text": "x - y"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "相乘会把两边已有的 p 因子合在一起，所以出现次数相加。"
+  },
+  {
+    "id": "divisibility-coordinates",
+    "prompt": "如何只用质因数指数判断 `a | b`？",
+    "options": [
+      {
+        "id": "a",
+        "text": "a 的每个质数指数都不超过 b 的对应指数"
+      },
+      {
+        "id": "b",
+        "text": "a 与 b 的所有指数都必须为 0"
+      },
+      {
+        "id": "c",
+        "text": "a 的每个指数都严格大于 b"
+      },
+      {
+        "id": "d",
+        "text": "只比较质因数 2 的指数"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "b 必须至少包含 a 所需的每一个质因数及其次数。"
+  }
+]

@@ -88,7 +88,7 @@ $$
 
 ## n 有多个不同质因数
 
-根据[算术基本定理](fundamental-theorem-of-arithmetic.md)，任意正整数都能唯一写成：
+根据 [算术基本定理](fundamental-theorem-of-arithmetic.md)，任意正整数都能唯一写成：
 
 $$
 n=p_1^{a_1}p_2^{a_2}\cdots p_k^{a_k}.
