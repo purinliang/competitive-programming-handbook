@@ -190,7 +190,7 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0204 | 查找：二分查找 | 算法基础 | [algorithm-basics/binary-search.md](algorithm-basics/binary-search.md) |
+| 0204 | 二分查找 | 算法基础 | [algorithm-basics/binary-search.md](algorithm-basics/binary-search.md) |
 | 0251 | 二分边界 | 算法基础 | `algorithm-basics/binary-search-boundaries.md` |
 | 0162 | STL 二分查找 | C++ | `cpp/stl-binary-search.md` |
 | 0219 | 二分答案 | 算法基础 | [algorithm-basics/binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |

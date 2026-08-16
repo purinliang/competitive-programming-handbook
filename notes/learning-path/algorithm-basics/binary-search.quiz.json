@@ -1,0 +1,86 @@
+[
+  {
+    "id": "binary-sorted-precondition",
+    "prompt": "普通数组二分查找最关键的前置条件是什么？",
+    "options": [
+      { "id": "a", "text": "数组已经按查询所用顺序排列" },
+      { "id": "b", "text": "数组长度必须是偶数" },
+      { "id": "c", "text": "所有元素必须互不相同" },
+      { "id": "d", "text": "目标必须存在" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "只有顺序关系才能让一次中点比较证明整侧位置不可能是答案。"
+  },
+  {
+    "id": "binary-closed-condition",
+    "prompt": "候选范围是闭区间 `[l,r]` 时，循环应在什么条件下继续？",
+    "options": [
+      { "id": "a", "text": "`l < r`" },
+      { "id": "b", "text": "`l <= r`" },
+      { "id": "c", "text": "`l == 0`" },
+      { "id": "d", "text": "`r < 0`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "l == r 时还有一个合法候选位置需要检查。"
+  },
+  {
+    "id": "binary-safe-midpoint",
+    "prompt": "为什么中点推荐写成 `l + (r - l) / 2`？",
+    "options": [
+      { "id": "a", "text": "它总是选择右端点" },
+      { "id": "b", "text": "它避免先计算可能溢出的 l + r" },
+      { "id": "c", "text": "它能在无序数组上工作" },
+      { "id": "d", "text": "它让复杂度变成 O(1)" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "r-l 位于候选长度范围内，再加回 l 可以得到同一个下中点。"
+  },
+  {
+    "id": "binary-smaller-mid",
+    "prompt": "升序数组中 `a[mid] < target` 时应怎样更新？",
+    "options": [
+      { "id": "a", "text": "`r = mid - 1`" },
+      { "id": "b", "text": "立即返回 mid" },
+      { "id": "c", "text": "`l = mid + 1`" },
+      { "id": "d", "text": "保持边界不变" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "a[l..mid] 都小于目标，中点与左侧可以一并排除。"
+  },
+  {
+    "id": "binary-exclude-mid",
+    "prompt": "为什么不能在 `a[mid] < target` 时写 `l = mid`？",
+    "options": [
+      { "id": "a", "text": "mid 一定是负数" },
+      { "id": "b", "text": "两个候选位置时 mid 可能等于 l，区间不再缩小" },
+      { "id": "c", "text": "这样会删除整个 vector" },
+      { "id": "d", "text": "C++ 不允许给 l 赋值" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "中点已被证明不是答案，保留它既无意义又可能导致无限循环。"
+  },
+  {
+    "id": "binary-duplicates",
+    "prompt": "数组含重复目标值时，本篇精确查找保证什么？",
+    "options": [
+      { "id": "a", "text": "一定返回第一次出现位置" },
+      { "id": "b", "text": "一定返回最后一次出现位置" },
+      { "id": "c", "text": "返回任意一个相等位置" },
+      { "id": "d", "text": "一定返回 -1" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "相等时立即结束，没有继续向左或向右寻找边界。"
+  },
+  {
+    "id": "binary-complexity",
+    "prompt": "已经有序的长度 n 数组中，二分查找的时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "O(n²)" },
+      { "id": "b", "text": "O(n)" },
+      { "id": "c", "text": "O(1)" },
+      { "id": "d", "text": "O(log n)" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "候选位置数量每轮至少减半，因此只需对数轮。"
+  }
+]

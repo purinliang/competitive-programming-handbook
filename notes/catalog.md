@@ -160,7 +160,7 @@
 | 0201e1 | 复杂度：渐近记号 | 待审阅 | [asymptotic-notation.md](algorithm-basics/asymptotic-notation.md) |
 | 0202 | 递推 | 待审阅 | [recurrence.md](algorithm-basics/recurrence.md) |
 | 0203 | 冒泡排序 | 待审阅 | [sorting.md](algorithm-basics/sorting.md) |
-| 0204 | 查找：二分查找 | 待审阅 | [binary-search.md](algorithm-basics/binary-search.md) |
+| 0204 | 二分查找 | 待审阅 | [binary-search.md](algorithm-basics/binary-search.md) |
 | 0205 | 双指针 | 待审阅 | [two-pointers.md](algorithm-basics/two-pointers.md) |
 | 0206 | 离散化 | 待审阅 | [coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
 | 0207 | 前缀和 | 定稿 | [prefix-sums.md](algorithm-basics/prefix-sums.md) |
