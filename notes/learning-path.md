@@ -661,7 +661,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 070506 | 概率与期望 DP | 动态规划 | [dynamic-programming/probability-expectation-dp.md](dynamic-programming/probability-expectation-dp.md) |
 | 070507 | 单调队列优化 | 动态规划 | [dynamic-programming/monotone-queue-optimization.md](dynamic-programming/monotone-queue-optimization.md) |
 | 070508 | 单调栈优化 | 动态规划 | [dynamic-programming/monotone-stack-optimization.md](dynamic-programming/monotone-stack-optimization.md) |
-| 070509 | 斜率优化 | 动态规划 | `dynamic-programming/convex-hull-trick.md` |
+| 070509 | 斜率优化 | 动态规划 | [dynamic-programming/convex-hull-trick.md](dynamic-programming/convex-hull-trick.md) |
 
 完成 07 高中进阶后，读者已经具备独立阅读题解、按题目补充专题和判断新算法依赖的能力。后续阶段改用区域赛奖牌能力描述覆盖范围，不再借用“大学基础”或 NOI 难度系数充当课程名称。
 

@@ -1111,7 +1111,7 @@
 | --- | --- | --- | --- |
 | 070507 | 单调队列优化 | 待审阅 | [monotone-queue-optimization.md](dynamic-programming/monotone-queue-optimization.md) |
 | 070508 | 单调栈优化 | 待审阅 | [dynamic-programming/monotone-stack-optimization.md](dynamic-programming/monotone-stack-optimization.md) |
-| 070509 | 斜率优化 | 计划 | `dynamic-programming/convex-hull-trick.md` |
+| 070509 | 斜率优化 | 待审阅 | [dynamic-programming/convex-hull-trick.md](dynamic-programming/convex-hull-trick.md) |
 | *990702 | 决策单调性与分治优化 | 推迟 | `dynamic-programming/divide-conquer-optimization.md` |
 | *990716 | 四边形不等式优化 | 计划 | `dynamic-programming/quadrangle-inequality-optimization.md` |
 | *990703 | 分段线性凸函数维护 | 推迟 | `dynamic-programming/slope-trick.md` |

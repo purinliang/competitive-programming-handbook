@@ -1,0 +1,62 @@
+[
+  {
+    "id": "startup-charge",
+    "prompt": "开始一批任务前的启动时间 `S` 为什么会产生 `S * (F[n]-F[j])` 的代价？",
+    "options": [
+      { "id": "a", "text": "它把分割点 `j` 之后所有未完成任务都延迟了 `S`" },
+      { "id": "b", "text": "它只延迟了任务 `j`" },
+      { "id": "c", "text": "它会把所有加工时间变成零" },
+      { "id": "d", "text": "这是为了排除普通 DP 而人为加入的条件" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "F[n]-F[j] 是全部未完成任务的代价系数之和，它们都被新批次的启动时间延迟。"
+  },
+  {
+    "id": "line-representation",
+    "prompt": "转移整理后，决策 `j` 对应直线的斜率和截距分别是什么？",
+    "options": [
+      { "id": "a", "text": "`T[j]` 和 `F[j]`" },
+      { "id": "b", "text": "`-F[j]` 和 `dp[j]`" },
+      { "id": "c", "text": "`dp[j]` 和 `-F[j]`" },
+      { "id": "d", "text": "`S` 和 `n`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "括号中的 dp[j]-(T[i]+S)F[j] 写成 m_j x+b_j，得到 m_j=-F[j]、b_j=dp[j]。"
+  },
+  {
+    "id": "obsolete-line",
+    "prompt": "斜率递减的三条直线 `a,b,c` 中，什么情况说明中间直线 `b` 可以删除？",
+    "options": [
+      { "id": "a", "text": "`b` 的截距恰好是零" },
+      { "id": "b", "text": "`b` 和 `c` 没有交点" },
+      { "id": "c", "text": "`a,b` 的交点不早于 `b,c` 的交点，使 `b` 没有任何最优区间" },
+      { "id": "d", "text": "查询次数超过一次" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "两个交点的顺序颠倒时，b 在从 a 更优转换到 c 更优的过程中没有自己单独最优的区间。"
+  },
+  {
+    "id": "monotone-query-pop",
+    "prompt": "查询坐标 `x` 递增时，为什么可以删除已经不如第二条直线的队首？",
+    "options": [
+      { "id": "a", "text": "队首直线会自动消失" },
+      { "id": "b", "text": "所有直线的斜率都相同" },
+      { "id": "c", "text": "查询会回到更小的 `x`" },
+      { "id": "d", "text": "后一条直线斜率更小，当它已经更优后，随 `x` 增大只会继续保持优势" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "单调查询保证不会回到交点左侧，因此已越过最优区间的队首永远无用。"
+  },
+  {
+    "id": "deque-preconditions",
+    "prompt": "使用双端队列维护基础斜率优化前，必须确认什么？",
+    "options": [
+      { "id": "a", "text": "加入直线的斜率和查询坐标都按可预知的单调顺序出现" },
+      { "id": "b", "text": "所有 DP 值都是零" },
+      { "id": "c", "text": "数组长度不超过两个" },
+      { "id": "d", "text": "必须使用浮点数计算交点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "队尾删线和队首弹出都依赖单调性；任一顺序不满足时，就需要其他查询或维护方式。"
+  }
+]
