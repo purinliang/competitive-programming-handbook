@@ -1,6 +1,6 @@
 # 出栈序列判定
 
-> 最近修订：2026-08-16 11:05 +10:00（未审阅）
+> 最近修订：2026-08-16 16:26 +10:00（未审阅）
 
 [栈](stack.md) 已经说明后进先出，[stack](../cpp/stack.md) 已经给出标准库接口。现在研究第一个完整应用：入栈顺序固定时，一个目标排列能否成为出栈顺序。
 
@@ -127,10 +127,15 @@ if (st.empty() || st.top() != desired) {
 st.pop();
 ```
 
-## 完整判定函数
+## 题目共享状态与判定函数
+
+`n` 和目标序列由输入与完整判定共同使用，是本题全局唯一的共享状态，因此保存为全局变量。栈、`next_push` 和 `desired` 只描述当前这一次模拟过程，仍然留在函数内部：
 
 ```cpp
-bool is_valid_pop_sequence(const vector<int>& target, int n) {
+int n;
+vector<int> target;
+
+bool is_valid_pop_sequence() {
     stack<int> st;
     int next_push = 1;
 
@@ -218,7 +223,7 @@ next_push: 4
 
 所以总时间复杂度是 $O(n)$，不是 $O(n^2)$。
 
-最坏情况下先把全部数字压栈，栈中同时保存 $n$ 个元素，因此额外空间复杂度是 $O(n)$。输入目标数组同样需要 $O(n)$ 空间，但不计入判定函数的额外工作空间。
+最坏情况下先把全部数字压栈，栈中同时保存 $n$ 个元素，因此额外空间复杂度是 $O(n)$。输入目标数组同样需要 $O(n)$ 空间，但不计入判定过程的额外工作空间。
 
 ## 完整代码
 
@@ -228,7 +233,10 @@ next_push: 4
 #include <bits/stdc++.h>
 using namespace std;
 
-bool is_valid_pop_sequence(const vector<int>& target, int n) {
+int n;
+vector<int> target;
+
+bool is_valid_pop_sequence() {
     stack<int> st;
     int next_push = 1;
 
@@ -250,15 +258,14 @@ bool is_valid_pop_sequence(const vector<int>& target, int n) {
 }
 
 void solve() {
-    int n;
     scanf("%d", &n);
 
-    vector<int> target(n + 5);
+    target.assign(n + 5, 0);
     for (int i = 1; i <= n; i++) {
         scanf("%d", &target[i]);
     }
 
-    printf("%s\n", is_valid_pop_sequence(target, n) ? "Yes" : "No");
+    printf("%s\n", is_valid_pop_sequence() ? "Yes" : "No");
 }
 
 int main() {
