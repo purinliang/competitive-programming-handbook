@@ -13,7 +13,7 @@
   },
   {
     "id": "state-information",
-    "prompt": "若题目规定“不能连续两次走 2 级”，为什么只用当前位置 `i` 作为状态不够？",
+    "prompt": "若题目规定“不能连续两次走 2 级”，为什么阶段 i 之外还要增加状态信息？",
     "options": [
       { "id": "a", "text": "因为 `i` 不能作为数组下标" },
       { "id": "b", "text": "因为所有走法都会变成非法" },
@@ -22,6 +22,30 @@
     ],
     "correctOptionId": "d",
     "explanation": "能够合并的历史必须具有完全相同的后续选择；上一跳会影响下一跳时，它也必须进入状态。"
+  },
+  {
+    "id": "stage-meaning",
+    "prompt": "在本篇的阶段式描述中，爬楼梯的阶段 i 表示什么？",
+    "options": [
+      { "id": "a", "text": "问题已经推进到第 i 级" },
+      { "id": "b", "text": "最后一步一定走了 i 级" },
+      { "id": "c", "text": "一共有 i 种走法" },
+      { "id": "d", "text": "还剩 i 个不同状态" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "阶段描述问题推进到哪里；同一阶段内若还有影响后续选择的差异，再用额外状态区分。"
+  },
+  {
+    "id": "decision-and-transition",
+    "prompt": "决策与状态转移之间是什么关系？",
+    "options": [
+      { "id": "a", "text": "二者都只是数组名称" },
+      { "id": "b", "text": "决策是一次选择，转移描述选择怎样连接前后状态" },
+      { "id": "c", "text": "决策只决定计算顺序，与状态无关" },
+      { "id": "d", "text": "状态转移只能来自唯一决策" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "本题的最后决策是走 1 级或 2 级；合并两类决策对应的前置状态，才得到转移方程。"
   },
   {
     "id": "transition-partition",
