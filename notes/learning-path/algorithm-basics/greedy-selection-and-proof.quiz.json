@@ -1,0 +1,146 @@
+[
+  {
+    "id": "greedy-choice",
+    "prompt": "基础贪心算法的局部选择需要满足什么，才能构成正确算法？",
+    "options": [
+      { "id": "a", "text": "在样例中看起来最好即可" },
+      { "id": "b", "text": "能够证明做出它后仍至少保留一组全局最优解" },
+      { "id": "c", "text": "每一步都选择数值最大的元素" },
+      { "id": "d", "text": "必须枚举所有后续选择" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "局部直觉不是证明；需要说明选择不会排除全部全局最优方案。"
+  },
+  {
+    "id": "subset-enumeration",
+    "prompt": "枚举 n 个区间的全部选择子集，方案数量是多少？",
+    "options": [
+      { "id": "a", "text": "$n$" },
+      { "id": "b", "text": "$n^2$" },
+      { "id": "c", "text": "$n!$" },
+      { "id": "d", "text": "$2^n$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每个区间都有选择或不选择两种状态，组合后共有 2^n 个子集。"
+  },
+  {
+    "id": "earliest-start-counterexample",
+    "prompt": "为什么最多不重叠区间问题不能贪心选择最早开始的区间？",
+    "options": [
+      { "id": "a", "text": "它可能结束很晚，挡住许多后续短区间" },
+      { "id": "b", "text": "左端点不能排序" },
+      { "id": "c", "text": "最早开始的区间一定最长" },
+      { "id": "d", "text": "它只适用于开区间" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "开始得早没有控制释放后续空间的时间，一个很长区间可能让答案显著变差。"
+  },
+  {
+    "id": "shortest-counterexample",
+    "prompt": "为什么选择长度最短的区间也不一定正确？",
+    "options": [
+      { "id": "a", "text": "短区间不能参与答案" },
+      { "id": "b", "text": "区间长度无法计算" },
+      { "id": "c", "text": "一个居中的短区间可能同时挡住左右两个本可共同选择的区间" },
+      { "id": "d", "text": "最短区间一定右端最大" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "长度只描述自身占用范围，没有说明选择后从哪里开始保留未来候选。"
+  },
+  {
+    "id": "earliest-finish",
+    "prompt": "无权最多不重叠区间问题的正确贪心规则是什么？",
+    "options": [
+      { "id": "a", "text": "优先选择左端最大的区间" },
+      { "id": "b", "text": "优先选择当前右端最小、结束最早的区间" },
+      { "id": "c", "text": "优先选择长度最大的区间" },
+      { "id": "d", "text": "保持输入顺序，遇到第一个就选" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "最早结束会最早释放右侧空间，保留的后续候选不会少于选择其他第一项。"
+  },
+  {
+    "id": "sort-key",
+    "prompt": "实现最早结束规则时，排序的关键字段是什么？",
+    "options": [
+      { "id": "a", "text": "区间编号" },
+      { "id": "b", "text": "左端点" },
+      { "id": "c", "text": "区间长度" },
+      { "id": "d", "text": "右端点非递减" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "右端相同时的其他字段只用于固定顺序，不影响最大选择数量。"
+  },
+  {
+    "id": "closed-interval-compatibility",
+    "prompt": "本文使用闭区间；上一个已选右端为 `last_right` 时，当前区间何时兼容？",
+    "options": [
+      { "id": "a", "text": "`current.l > last_right`" },
+      { "id": "b", "text": "`current.l >= last_right`" },
+      { "id": "c", "text": "`current.r < last_right`" },
+      { "id": "d", "text": "`current.l <= last_right`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "闭区间端点相等时共享该点，仍然算重叠；题目若允许时间衔接才改用大于等于。"
+  },
+  {
+    "id": "has-selected",
+    "prompt": "为什么代码使用 `has_selected`，而不把 `last_right` 初始化为一个很小的常量？",
+    "options": [
+      { "id": "a", "text": "布尔变量会加速排序" },
+      { "id": "b", "text": "last_right 不能保存负数" },
+      { "id": "c", "text": "避免哨兵数值与合法端点范围冲突，直接表达尚未选择" },
+      { "id": "d", "text": "闭区间必须使用两个状态变量" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "输入可能覆盖任意 64 位端点，单独的布尔状态不会占用某个合法数值。"
+  },
+  {
+    "id": "exchange-argument",
+    "prompt": "交换论证怎样证明最早结束的区间可以作为第一项？",
+    "options": [
+      { "id": "a", "text": "证明所有最优答案本来都包含它" },
+      { "id": "b", "text": "把某组最优答案的第一项换成它，合法性和答案数量都不变" },
+      { "id": "c", "text": "枚举全部排序并选择最短的" },
+      { "id": "d", "text": "假设它的左端也是最小" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "贪心区间右端不晚于原第一项，因此原来所有后续区间在替换后仍然兼容。"
+  },
+  {
+    "id": "same-subproblem",
+    "prompt": "选择最早结束区间后，为什么可以重复同一贪心规则？",
+    "options": [
+      { "id": "a", "text": "因为剩余区间自动按长度排序" },
+      { "id": "b", "text": "因为答案已经唯一" },
+      { "id": "c", "text": "因为所有剩余区间互不重叠" },
+      { "id": "d", "text": "剩余目标仍是在右侧候选中选最多个互不重叠区间，是同类问题" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "安全确定第一项后，删除冲突项得到规模更小但结构不变的子问题。"
+  },
+  {
+    "id": "complexity",
+    "prompt": "排序后扫描求最多不重叠区间，总时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(n\\log n)$" },
+      { "id": "b", "text": "$O(2^n)$" },
+      { "id": "c", "text": "$O(n^2)$" },
+      { "id": "d", "text": "$O(1)$" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "排序需要 O(n log n)，线性扫描需要 O(n)，前者决定总复杂度。"
+  },
+  {
+    "id": "weighted-intervals",
+    "prompt": "每个区间具有不同收益、目标改为最大总收益时，最早结束规则怎样？",
+    "options": [
+      { "id": "a", "text": "仍然必定最优" },
+      { "id": "b", "text": "只需把区间倒序扫描" },
+      { "id": "c", "text": "不再保证最优，通常需要带权区间调度动态规划" },
+      { "id": "d", "text": "只需改成最早开始" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "选择数量与收益总和是不同目标，原交换论证没有证明收益保持不变。"
+  }
+]

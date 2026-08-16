@@ -1,6 +1,6 @@
 # 贪心选择与正确性证明
 
-> 最近修订：2026-08-13 21:06 +10:00（未审阅）
+> 最近修订：2026-08-16 15:42 +10:00（未审阅）
 
 有些问题需要从许多候选项中逐个选择，最终构造一个合法答案。贪心算法每一步只根据当前信息作出一个不可撤销的选择，希望这些局部选择最终组成全局最优解。
 
@@ -115,8 +115,13 @@ if (!has_selected || intervals[i].l > last_right) {
 
 ## 完整选择函数
 
+区间数量与区间数组会被读入、排序和选择过程共同使用，因此保存为题目级共享状态：
+
 ```cpp
-int maximum_non_overlapping(vector<interval>& intervals, int n) {
+int n;
+vector<interval> intervals;
+
+int maximum_non_overlapping() {
     sort(intervals.begin() + 1, intervals.begin() + n + 1, compare_interval);
 
     bool has_selected = false;
@@ -229,6 +234,9 @@ struct interval {
     ll r;
 };
 
+int n;
+vector<interval> intervals;
+
 bool compare_interval(const interval& a, const interval& b) {
     if (a.r != b.r) {
         return a.r < b.r;
@@ -236,7 +244,7 @@ bool compare_interval(const interval& a, const interval& b) {
     return a.l < b.l;
 }
 
-int maximum_non_overlapping(vector<interval>& intervals, int n) {
+int maximum_non_overlapping() {
     sort(intervals.begin() + 1, intervals.begin() + n + 1, compare_interval);
 
     bool has_selected = false;
@@ -254,16 +262,19 @@ int maximum_non_overlapping(vector<interval>& intervals, int n) {
     return answer;
 }
 
-int main() {
-    int n;
+void solve() {
     scanf("%d", &n);
 
-    vector<interval> intervals(n + 5);
+    intervals.assign(n + 5, {});
     for (int i = 1; i <= n; i++) {
         scanf("%lld%lld", &intervals[i].l, &intervals[i].r);
     }
 
-    printf("%d\n", maximum_non_overlapping(intervals, n));
+    printf("%d\n", maximum_non_overlapping());
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -360,7 +371,3 @@ current.l >= last_right
 9. 为什么带权区间不能直接沿用本文的最早结束规则？
 
 贪心算法没有一份适用于所有题目的固定排序模板。遇到新的局部选择时，仍要根据目标重新建立反例检查和正确性证明。
-
-## 下一篇
-
-下一篇 [分治：基础](divide-and-conquer.md) 会把一个大问题递归拆成若干同类小问题，再合并这些子问题的答案。
