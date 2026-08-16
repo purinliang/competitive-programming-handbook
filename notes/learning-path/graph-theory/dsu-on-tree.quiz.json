@@ -1,0 +1,62 @@
+[
+  {
+    "id": "heavy-child",
+    "prompt": "树上启发式合并为什么选择子树最大的儿子作为重儿子？",
+    "options": [
+      { "id": "a", "text": "为了保留最大的一部分统计，减少重新加入的节点数" },
+      { "id": "b", "text": "因为重儿子的编号一定最小" },
+      { "id": "c", "text": "因为其他儿子不属于这棵树" },
+      { "id": "d", "text": "为了把树变成有向环" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "最大子树的数据被直接保留，其他较小子树再逐项加入，这正是小并大的选择。"
+  },
+  {
+    "id": "processing-order",
+    "prompt": "处理节点 `u` 时，轻儿子与重儿子的正确顺序是什么？",
+    "options": [
+      { "id": "a", "text": "只处理重儿子，忽略轻儿子" },
+      { "id": "b", "text": "先处理并清空轻儿子，再处理并保留重儿子" },
+      { "id": "c", "text": "先保留重儿子，再用清空轻儿子的过程一起删掉它" },
+      { "id": "d", "text": "顺序任意，所有统计都会自动恢复" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "这样处理完重儿子后，当前统计只保留最大的子树，随后可以安全加入所有轻子树。"
+  },
+  {
+    "id": "euler-interval",
+    "prompt": "DFS 序在本文中提供了什么关键性质？",
+    "options": [
+      { "id": "a", "text": "每个颜色在数组中只出现一次" },
+      { "id": "b", "text": "所有重儿子的编号连续" },
+      { "id": "c", "text": "一棵子树对应 DFS 序中的一个连续闭区间" },
+      { "id": "d", "text": "所有边权自动变成零" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "连续子树区间使整棵轻子树可以通过循环批量加入或删除。"
+  },
+  {
+    "id": "keep-false",
+    "prompt": "`dfs_sack(u,p,false)` 在记录 `answer[u]` 后还要做什么？",
+    "options": [
+      { "id": "a", "text": "永久保留 u 的整棵子树" },
+      { "id": "b", "text": "只删除重儿子" },
+      { "id": "c", "text": "重新计算整棵树的 DFS 序" },
+      { "id": "d", "text": "从当前统计中删除 u 的整棵子树" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "轻儿子的结果算完后必须恢复统计，避免污染随后处理的兄弟子树。"
+  },
+  {
+    "id": "not-disjoint-set",
+    "prompt": "DSU on Tree 中的 DSU 为什么不表示必须建立并查集？",
+    "options": [
+      { "id": "a", "text": "这里借用的是小并大的摊还思想，核心状态是子树统计" },
+      { "id": "b", "text": "因为树中没有节点" },
+      { "id": "c", "text": "因为并查集只能处理字符串" },
+      { "id": "d", "text": "因为 DFS 会自动建立最短路" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "算法通过保留重子树、重新加入轻子树实现启发式合并，不需要并查集父亲数组。"
+  }
+]

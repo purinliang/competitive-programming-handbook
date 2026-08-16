@@ -681,7 +681,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 080103 | 分块 | 数据结构 | [data-structures/square-root-decomposition.md](data-structures/square-root-decomposition.md) |
 | 080104 | 莫队算法 | 数据结构 | [data-structures/mo-algorithm.md](data-structures/mo-algorithm.md) |
 | 080105 | 启发式合并 | 数据结构 | [data-structures/small-to-large-merging.md](data-structures/small-to-large-merging.md) |
-| 080106 | 树上启发式合并 | 数据结构 | `graph-theory/dsu-on-tree.md` |
+| 080106 | 树上启发式合并 | 数据结构 | [graph-theory/dsu-on-tree.md](graph-theory/dsu-on-tree.md) |
 | 080107 | 重链剖分 | 数据结构 | [graph-theory/heavy-light-decomposition.md](graph-theory/heavy-light-decomposition.md) |
 | 080108 | 笛卡尔树 | 数据结构 | `data-structures/cartesian-tree.md` |
 | 080109 | Treap | 数据结构 | `data-structures/treap.md` |
