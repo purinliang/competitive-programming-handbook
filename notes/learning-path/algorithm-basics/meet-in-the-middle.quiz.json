@@ -1,0 +1,74 @@
+[
+  {
+    "id": "split-benefit",
+    "prompt": "Meet-in-the-Middle 最关键的规模变化是什么？",
+    "options": [
+      { "id": "a", "text": "把 $2^n$ 降成约 $2^{n/2}$" },
+      { "id": "b", "text": "把所有指数问题降成 $O(1)$" },
+      { "id": "c", "text": "把数组长度变成 0" },
+      { "id": "d", "text": "把答案除以 2" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "分别枚举两半后，每一侧只有约一半元素的指数状态。"
+  },
+  {
+    "id": "empty-subset",
+    "prompt": "为什么左右子集和数组都必须包含空集的和 0？",
+    "options": [
+      { "id": "a", "text": "为了让数组有序" },
+      { "id": "b", "text": "合法答案可能完全不选择其中一半的元素" },
+      { "id": "c", "text": "因为所有元素都等于 0" },
+      { "id": "d", "text": "为了避免使用 64 位整数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "完整子集在某一半的唯一选择可能恰好是空集。"
+  },
+  {
+    "id": "needed-sum",
+    "prompt": "左半子集和为 `left_sum` 时，需要寻找的右半子集和是什么？",
+    "options": [
+      { "id": "a", "text": "`target + left_sum`" },
+      { "id": "b", "text": "`left_sum - target`" },
+      { "id": "c", "text": "`target - left_sum`" },
+      { "id": "d", "text": "`target * left_sum`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "两半之和必须等于 target，移项后得到所需右半和。"
+  },
+  {
+    "id": "count-duplicates",
+    "prompt": "为什么统计子集数量时不能只用 `binary_search`？",
+    "options": [
+      { "id": "a", "text": "它不能处理负数" },
+      { "id": "b", "text": "它只能搜索未排序数组" },
+      { "id": "c", "text": "它的复杂度太高" },
+      { "id": "d", "text": "它只回答是否存在，不能统计来自不同子集的重复和" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "lower_bound 与 upper_bound 的距离才能保留全部重复子集。"
+  },
+  {
+    "id": "pairwise-failure",
+    "prompt": "分别枚举两半后又检查每一对左右结果，会发生什么？",
+    "options": [
+      { "id": "a", "text": "复杂度重新接近 $2^n$" },
+      { "id": "b", "text": "复杂度自动变成 $O(n)$" },
+      { "id": "c", "text": "所有答案都会重复两次" },
+      { "id": "d", "text": "无法生成空集" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两侧状态数相乘仍是 2^(n/2)·2^(n/2)=2^n。"
+  },
+  {
+    "id": "applicable-condition",
+    "prompt": "下列哪项最能说明一个问题适合折半枚举？",
+    "options": [
+      { "id": "a", "text": "候选不能拆成任何部分" },
+      { "id": "b", "text": "左右部分能独立枚举简洁信息并快速判断兼容" },
+      { "id": "c", "text": "每对左右结果都必须完整重做原算法" },
+      { "id": "d", "text": "输入规模必须小于 5" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "可拆分、可压缩信息、可快速配对是折半产生收益的关键。"
+  }
+]
