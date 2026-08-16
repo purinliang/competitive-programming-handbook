@@ -112,8 +112,8 @@ void dfs(int u) {
 void solve() {
     scanf("%d%d", &n, &m);
 
-    g.resize(n + 5);
-    vis.resize(n + 5);
+    g.assign(n + 5, {});
+    vis.assign(n + 5, false);
 
     for (int i = 1; i <= m; i++) {
         int u, v;
