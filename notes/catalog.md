@@ -916,7 +916,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 080315 | 生成函数：基础 | 计划 | `math/generating-functions.md` |
+| 080315 | 生成函数：基础 | 待审阅 | [math/generating-functions.md](math/generating-functions.md) |
 
 ### 线性代数
 
@@ -964,7 +964,7 @@
 | *990514 | 形式幂级数：指数 | 推迟 | `math/formal-power-series-exponential.md` |
 | *990515 | 形式幂级数：平方根 | 推迟 | `math/formal-power-series-square-root.md` |
 | *990516 | 形式幂级数：幂 | 推迟 | `math/formal-power-series-power.md` |
-| 080315 | 生成函数：基础 | 计划 | `math/generating-functions.md` |
+| 080315 | 生成函数：基础 | 待审阅 | [math/generating-functions.md](math/generating-functions.md) |
 | *990528 | 线性递推：Berlekamp–Massey | 推迟 | `math/berlekamp-massey.md` |
 
 ### 集合幂级数

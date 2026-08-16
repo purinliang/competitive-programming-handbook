@@ -1,0 +1,62 @@
+[
+  {
+    "id": "coefficient-meaning",
+    "prompt": "在普通生成函数中，`x^s` 的系数通常记录什么？",
+    "options": [
+      { "id": "a", "text": "总量恰好为 s 的方案数" },
+      { "id": "b", "text": "多项式一共有多少项" },
+      { "id": "c", "text": "必须给 x 代入的数值" },
+      { "id": "d", "text": "算法已经运行的次数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "指数记录总量，系数记录得到该总量的方案数。"
+  },
+  {
+    "id": "unlimited-choice",
+    "prompt": "面值为 w 的硬币可以取任意枚，它对应的生成函数是什么？",
+    "options": [
+      { "id": "a", "text": "`x + x^2 + ... + x^w`" },
+      { "id": "b", "text": "`1 + x^w + x^(2w) + x^(3w) + ...`" },
+      { "id": "c", "text": "只有 `x^w`" },
+      { "id": "d", "text": "`1 - x^w`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "取 0、1、2、3 枚分别贡献 0、w、2w、3w，因此次数是 w 的非负整数倍。"
+  },
+  {
+    "id": "product-meaning",
+    "prompt": "为什么两组独立选择应当把各自的生成函数相乘？",
+    "options": [
+      { "id": "a", "text": "乘法会删去所有重复方案" },
+      { "id": "b", "text": "乘法能让所有系数自动变成 1" },
+      { "id": "c", "text": "项相乘会把两部分总量的指数相加，并把方案数组合起来" },
+      { "id": "d", "text": "只有乘法能够降低多项式次数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "x^i 与 x^j 相乘得到 x^(i+j)，乘积系数因此枚举并合并所有总量拆分。"
+  },
+  {
+    "id": "empty-choice",
+    "prompt": "计数生成函数通常为什么从常数多项式 1 开始？",
+    "options": [
+      { "id": "a", "text": "为了避免使用数组下标 0" },
+      { "id": "b", "text": "因为所有非空方案都已经计算完毕" },
+      { "id": "c", "text": "因为任意答案都必须至少为 1" },
+      { "id": "d", "text": "总量为 0 的空选择恰好有一种" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "常数项 1 记录唯一的空选择，它是后续逐个加入对象时的起点。"
+  },
+  {
+    "id": "ascending-update",
+    "prompt": "处理一种可无限取用的硬币时，金额为什么从小到大更新？",
+    "options": [
+      { "id": "a", "text": "让本轮的 ways[sum-w] 可以继续加入当前硬币" },
+      { "id": "b", "text": "保证每种硬币最多使用一次" },
+      { "id": "c", "text": "让硬币面值自动变得有序" },
+      { "id": "d", "text": "避免保存 ways[0]" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "小金额已经包含当前硬币，本轮继续引用它就允许使用当前硬币多次。"
+  }
+]
