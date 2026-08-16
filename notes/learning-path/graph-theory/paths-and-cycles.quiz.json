@@ -1,0 +1,74 @@
+[
+  {
+    "id": "path-definition",
+    "prompt": "按照本书约定，一串点构成路径需要满足什么？",
+    "options": [
+      { "id": "a", "text": "只要起点和终点不同" },
+      { "id": "b", "text": "相邻点之间有边，并且经过的点互不重复" },
+      { "id": "c", "text": "必须经过图中的所有边" },
+      { "id": "d", "text": "必须回到起点" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "路径由首尾相接的边组成，并且本书采用点互不重复的严格定义。"
+  },
+  {
+    "id": "path-length",
+    "prompt": "不带权图中，一条依次经过四个点的路径通常长度是多少？",
+    "options": [
+      { "id": "a", "text": "4" },
+      { "id": "b", "text": "1" },
+      { "id": "c", "text": "3" },
+      { "id": "d", "text": "无法定义" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "不带权路径长度通常按边数计算；四个依次相邻的点之间有三条边。"
+  },
+  {
+    "id": "directed-path",
+    "prompt": "在有向图中判断一串点是否形成路径，还必须检查什么？",
+    "options": [
+      { "id": "a", "text": "每一步是否沿有向边的箭头方向前进" },
+      { "id": "b", "text": "所有点的编号是否递增" },
+      { "id": "c", "text": "边权是否都等于 1" },
+      { "id": "d", "text": "图中是否没有其他边" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "有向边的方向是关系的一部分，反向经过一条单向边不构成合法移动。"
+  },
+  {
+    "id": "cycle-definition",
+    "prompt": "按照本书约定，一个环允许怎样的点重复？",
+    "options": [
+      { "id": "a", "text": "任意中间点都能重复" },
+      { "id": "b", "text": "所有点都必须出现两次" },
+      { "id": "c", "text": "不允许任何点重复，包括首尾" },
+      { "id": "d", "text": "只允许起点与终点是同一个点" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "环首尾相接，除这一次重合外，中间经过的点互不重复。"
+  },
+  {
+    "id": "self-loop-cycle",
+    "prompt": "为什么自环也可以看成一种特殊的环？",
+    "options": [
+      { "id": "a", "text": "它连接图中所有点" },
+      { "id": "b", "text": "它用一条边从一个点回到同一个点" },
+      { "id": "c", "text": "它不含任何端点" },
+      { "id": "d", "text": "它一定带有负权" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "自环的起点和终点相同，只含一个点和一条首尾相接的边。"
+  },
+  {
+    "id": "circuit-difference",
+    "prompt": "本篇注释中的回路 circuit 与环 cycle 的主要区别是什么？",
+    "options": [
+      { "id": "a", "text": "回路只能出现在有向图" },
+      { "id": "b", "text": "环允许重复边，回路不允许" },
+      { "id": "c", "text": "回路不重复边但可以重复中间点，环不重复中间点" },
+      { "id": "d", "text": "两者都不能回到起点" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "两者都闭合且不重复边；cycle 进一步要求除首尾外不重复点。"
+  }
+]
