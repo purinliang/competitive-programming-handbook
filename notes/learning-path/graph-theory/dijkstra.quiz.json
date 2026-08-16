@@ -1,0 +1,62 @@
+[
+  {
+    "id": "relaxation",
+    "prompt": "处理边 $u\\to v$、边权为 $w$ 时，哪项是正确的松弛条件？",
+    "options": [
+      { "id": "a", "text": "$w<dist[v]$" },
+      { "id": "b", "text": "$dist[u]+w<dist[v]$" },
+      { "id": "c", "text": "$dist[v]+w<dist[u]$" },
+      { "id": "d", "text": "$dist[u]<w$" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "经过 u 到达 v 的候选路径长度是 dist[u]+w，只有它更小时才更新。"
+  },
+  {
+    "id": "nonnegative-requirement",
+    "prompt": "Dijkstra 为什么要求边权非负？",
+    "options": [
+      { "id": "a", "text": "否则邻接表不能存边" },
+      { "id": "b", "text": "否则优先队列不能保存 pair" },
+      { "id": "c", "text": "否则路径后半段可能让已选中的最小距离继续下降" },
+      { "id": "d", "text": "否则图一定不连通" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "负边会破坏“当前最小距离已经最终确定”这一核心结论。"
+  },
+  {
+    "id": "stale-state",
+    "prompt": "弹出状态 `(current_dist,u)` 后，什么情况表示它已经过期？",
+    "options": [
+      { "id": "a", "text": "`current_dist != dist[u]`" },
+      { "id": "b", "text": "`g[u].empty()`" },
+      { "id": "c", "text": "`u == s`" },
+      { "id": "d", "text": "`current_dist == 0`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "距离快照与当前最优记录不同，说明同一点后来已经被更短路径改善。"
+  },
+  {
+    "id": "heap-direction",
+    "prompt": "优先队列在 Dijkstra 中应优先取出什么状态？",
+    "options": [
+      { "id": "a", "text": "点编号最大的状态" },
+      { "id": "b", "text": "边权最大的状态" },
+      { "id": "c", "text": "最晚加入的状态" },
+      { "id": "d", "text": "候选距离最小的状态" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "算法每轮必须选择当前距离最小的有效点，因此使用小根优先队列。"
+  },
+  {
+    "id": "algorithm-selection",
+    "prompt": "下列哪张图可以直接使用本篇 Dijkstra？",
+    "options": [
+      { "id": "a", "text": "存在边权 -3 的有向图" },
+      { "id": "b", "text": "所有边权都非负的有向图" },
+      { "id": "c", "text": "只要没有环的任意带权图" },
+      { "id": "d", "text": "只要点数不超过 100 的任意图" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "图是否有环、点数大小都不是关键；本篇算法的核心前提是边权非负。"
+  }
+]
