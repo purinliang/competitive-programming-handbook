@@ -1,6 +1,6 @@
 # 图的遍历：广度优先搜索（BFS）
 
-> 状态：定稿
+> 最近修订：2026-08-16 14:51 +10:00（未审阅）
 
 在 [图的存储：邻接表（vector 实现）](vector-adjacency-list.md) 上，广度优先搜索（breadth-first search，BFS）从起点开始，先处理距离起点一条边的点，再处理距离两条边的点，依次向外扩展。图可能有环，同一个点还可能从多条边被发现；图也可能不连通，从一个起点无法到达所有点。因此 BFS 需要访问标记，并且一次搜索只会处理从起点可达的部分。
 
@@ -29,11 +29,7 @@
 令 `distance[u]` 表示从起点到点 $u$ 最少需要经过的边数。搜索开始前，把所有距离初始化为 `-1`，表示尚未发现：
 
 ```cpp
-int distance[MAXN];
-
-for (int u = 1; u <= n; u++) {
-    distance[u] = -1;
-}
+vector<int> distance(n + 5, -1);
 ```
 
 起点到自己的距离是 $0$，并首先入队：
@@ -99,27 +95,11 @@ parent[v] = u;
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 2e5 + 5;
-vector<int> g[MAXN];
-int distance_from_start[MAXN];
-
-int main() {
-    int n, m, start;
-    scanf("%d%d%d", &n, &m, &start);
-
-    for (int i = 1; i <= m; i++) {
-        int u, v;
-        scanf("%d%d", &u, &v);
-        g[u].push_back(v);
-        g[v].push_back(u);
-    }
-
-    for (int u = 1; u <= n; u++) {
-        distance_from_start[u] = -1;
-    }
-
+vector<int> bfs(int start, const vector<vector<int>>& g) {
+    vector<int> distance(g.size(), -1);
     queue<int> q;
-    distance_from_start[start] = 0;
+
+    distance[start] = 0;
     q.push(start);
 
     while (!q.empty()) {
@@ -127,19 +107,37 @@ int main() {
         q.pop();
 
         for (int v : g[u]) {
-            if (distance_from_start[v] != -1) {
+            if (distance[v] != -1) {
                 continue;
             }
 
-            distance_from_start[v] = distance_from_start[u] + 1;
+            distance[v] = distance[u] + 1;
             q.push(v);
         }
     }
+    return distance;
+}
 
-    for (int u = 1; u <= n; u++) {
-        printf("%d%c", distance_from_start[u], " \n"[u == n]);
+void solve() {
+    int n, m, start;
+    scanf("%d%d%d", &n, &m, &start);
+
+    vector<vector<int>> g(n + 5);
+    for (int i = 1; i <= m; i++) {
+        int u, v;
+        scanf("%d%d", &u, &v);
+        g[u].push_back(v);
+        g[v].push_back(u);
     }
 
+    vector<int> distance = bfs(start, g);
+    for (int u = 1; u <= n; u++) {
+        printf("%d%c", distance[u], u == n ? '\n' : ' ');
+    }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -184,6 +182,4 @@ int main() {
 - 这项最短路性质为什么不能直接用于边权不同的图？
 - 邻接表 BFS 的时间复杂度为什么是 $O(n+m)$？
 
-## 下一篇
-
-下一篇 [图的遍历：连通块](connected-components.md) 会用一次完整遍历为每个点记录所属连通块，使后续连通性查询无需重新搜索。
+[图的遍历：连通块](connected-components.md) 会用一次完整遍历为每个点记录所属连通块，使后续连通性查询无需重新搜索。

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "layer-order",
+    "prompt": "BFS 处理点的核心顺序是什么？",
+    "options": [
+      { "id": "a", "text": "先处理距离起点边数更少的层，再处理更远的层" },
+      { "id": "b", "text": "始终先处理编号最大的点" },
+      { "id": "c", "text": "沿一条分支一直递归到底" },
+      { "id": "d", "text": "先处理边权最大的边" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "先进先出队列让距离 d 的点先于由它们发现的距离 d+1 点出队。"
+  },
+  {
+    "id": "distance-sentinel",
+    "prompt": "把 distance[u] 初始化为 -1，通常同时表达什么？",
+    "options": [
+      { "id": "a", "text": "点 u 的编号为负" },
+      { "id": "b", "text": "点 u 尚未被发现，从起点暂时不可知是否可达" },
+      { "id": "c", "text": "点 u 到起点有一条负权边" },
+      { "id": "d", "text": "点 u 已经处理完毕" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "合法无权距离非负，因此 -1 可以作为未发现哨兵，并同时替代 visited。"
+  },
+  {
+    "id": "mark-on-enqueue",
+    "prompt": "为什么点 v 要在入队时立刻设置 distance[v]？",
+    "options": [
+      { "id": "a", "text": "让 v 自动成为起点" },
+      { "id": "b", "text": "避免 v 出队前被其他边重复加入队列" },
+      { "id": "c", "text": "让队列变成栈" },
+      { "id": "d", "text": "避免保存邻接表" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "发现时标记能让同层或后续点知道 v 已经进入搜索边界，保证每点只入队一次。"
+  },
+  {
+    "id": "next-distance",
+    "prompt": "第一次从点 u 发现邻点 v 时，应怎样设置 v 的距离？",
+    "options": [
+      { "id": "a", "text": "distance[v]=distance[u]+1" },
+      { "id": "b", "text": "distance[v]=v" },
+      { "id": "c", "text": "distance[v]=distance[u]-1" },
+      { "id": "d", "text": "distance[v]=0" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "到达 v 的这条路径是在到达 u 的路径后再经过一条边。"
+  },
+  {
+    "id": "shortest-edge-count",
+    "prompt": "为什么 BFS 第一次发现 v 时得到的是最少边数？",
+    "options": [
+      { "id": "a", "text": "因为所有图都是树" },
+      { "id": "b", "text": "因为 BFS 会枚举所有路径后再排序" },
+      { "id": "c", "text": "因为队列按距离层次处理；更短路径本应在更早层发现 v" },
+      { "id": "d", "text": "因为点编号等于距离" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "FIFO 保持层次单调；第一次到达 v 时，不可能还有尚未处理的更短层路径。"
+  },
+  {
+    "id": "weighted-limit",
+    "prompt": "普通 BFS 为什么不能直接求边权不同图中的最小权值和？",
+    "options": [
+      { "id": "a", "text": "它最小化的是经过边数，而不同边的代价并不相同" },
+      { "id": "b", "text": "queue 不能存点编号" },
+      { "id": "c", "text": "带权图一定不连通" },
+      { "id": "d", "text": "边权只能使用字符串保存" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "边数少的路径可能经过一条昂贵边；不同权值需要按总代价选择处理顺序。"
+  },
+  {
+    "id": "unreachable",
+    "prompt": "一次 BFS 结束后，怎样判断点 u 从起点不可达？",
+    "options": [
+      { "id": "a", "text": "u 的度数等于 0" },
+      { "id": "b", "text": "u 没有父节点，无论它是否为起点" },
+      { "id": "c", "text": "u 的编号大于起点" },
+      { "id": "d", "text": "distance[u] 仍然等于 -1" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "所有被发现点都会立即取得非负距离，搜索后保留哨兵值的点没有可达路径。"
+  },
+  {
+    "id": "bfs-complexity",
+    "prompt": "邻接表 BFS 遍历 n 点 m 边图的时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "O(nm)" },
+      { "id": "b", "text": "O(n+m)" },
+      { "id": "c", "text": "O(n^2) 且与边数无关" },
+      { "id": "d", "text": "O(log m)" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每个可达点只入队出队一次，每条邻接项只在所属点出队时检查一次。"
+  }
+]
