@@ -1,6 +1,6 @@
 # 链表
 
-> 最近修订：2026-08-13 05:08 +10:00（未审阅）
+> 最近修订：2026-08-16 10:53 +10:00（未审阅）
 
 [数组](array.md) 把元素连续存放，因此能在 $O(1)$ 时间内通过下标访问；但在中间插入或删除时，后缀元素必须整体移动。
 
@@ -14,19 +14,19 @@
 - `next`：下一个节点的编号。
 
 ```cpp
-struct node {
+struct Node {
     int value;
     int next;
 };
 ```
 
-本篇使用 `vector<node>` 保存实际节点。节点编号 `0` 固定表示“没有节点”，真实节点从 `1` 开始：
+本篇使用 `vector<Node>` 保存节点。普通节点的 `next = 0` 表示没有下一个节点，真实节点从 `1` 开始：
 
 ```cpp
-vector<node> nodes(1);
+vector<Node> nodes(1);
 ```
 
-`nodes[0]` 只是为空编号预留的格子，不保存真实元素。每建立一个新节点，就把它追加到 `nodes`，返回的下标就是稳定的节点编号：
+`nodes[0]` 不保存真实元素。每建立一个新节点，就把它追加到 `nodes`，返回的下标就是稳定的节点编号：
 
 ```cpp
 int create_node(int value) {
@@ -39,9 +39,9 @@ int create_node(int value) {
 
 一般情况下，`vector::push_back()` 建立节点是均摊 $O(1)$。题目已经给出最多会建立多少节点时，可以提前 `reserve` 足够空间，避免运行中扩容；节点之间的链接修改本身始终只涉及固定数量的赋值。
 
-## 头节点与逻辑顺序
+## 首节点与逻辑顺序
 
-变量 `head` 保存链表第一个真实节点的编号。空链表没有第一个节点，因此：
+变量 `head` 保存链表第一个真实节点（首节点）的编号。空链表没有首节点，因此：
 
 ```cpp
 int head = 0;
@@ -141,14 +141,40 @@ head = nodes[v].next;
 nodes[v].next = 0;
 ```
 
+## 虚拟头节点
+
+开头插入和删除之所以需要单独判断，是因为首节点没有真实前驱。可以在所有真实节点以前放一个不保存逻辑数据的节点，让它始终充当首节点的前驱。这个节点称为虚拟头节点，也常称哨兵节点。
+
+本篇可以直接复用编号 `0` 的预留格作为虚拟头节点：
+
+```cpp
+nodes[0].next = head;
+```
+
+此后不再单独保存 `head`，真正的首节点是 `nodes[0].next`。空链表满足 `nodes[0].next = 0`；尾节点的 `next = 0` 也仍然表示结束。编号 `0` 不是逻辑数据，只在链表入口处提供一个固定前驱。
+
+若要在逻辑位置 `position` 插入，只需先找到它的前驱 `u`。位置 `1` 的前驱自然就是虚拟头节点 `0`：
+
+```cpp
+int u = 0;
+for (int i = 1; i < position; i++) {
+    u = nodes[u].next;
+}
+
+int v = create_node(value);
+nodes[v].next = nodes[u].next;
+nodes[u].next = v;
+```
+
+删除也可以先找到相同的前驱 `u`，再跳过 `u` 的后继。这样位置 `1` 不再需要独立分支。虚拟头节点只消除了边界代码；为了找到第 `position - 1` 个真实节点，按逻辑位置操作的时间仍然是 $O(n)$。
+
 ## 按逻辑位置操作
 
 题目若要求“在第 `position` 个位置插入”，提供的是逻辑位置，不是已经找到的节点编号。
 
-- 在位置 `1` 插入可以直接修改 `head`；
-- 在位置 `2..n+1` 插入，必须先走到第 `position-1` 个节点；
-- 删除位置 `1` 可以直接修改 `head`；
-- 删除位置 `2..n`，必须先找到它的前驱。
+- 不使用虚拟头节点时，位置 `1` 必须直接修改 `head`；
+- 使用虚拟头节点时，从编号 `0` 出发走过 `position - 1` 个真实节点，就能找到统一的前驱；
+- 插入的合法位置是 `1..n+1`，删除的合法位置是 `1..n`。
 
 寻找前驱最坏需要 $O(n)$，之后修改链接只需 $O(1)$，所以按逻辑位置插入或删除的整体时间仍是 $O(n)$。
 
@@ -156,20 +182,15 @@ nodes[v].next = 0;
 
 ## 尾节点
 
-若只保存 `head`，向末尾追加前必须遍历到最后一个节点，是 $O(n)$。额外保存最后一个节点编号 `tail` 后，追加可以在 $O(1)$ 时间完成：
+无论首节点由 `head` 还是 `nodes[0].next` 保存，向末尾追加前若没有其他信息，都必须遍历到最后一个节点，是 $O(n)$。额外保存最后一个节点编号 `tail` 后，追加可以在 $O(1)$ 时间完成：
 
 ```cpp
 int u = create_node(value);
-
-if (head == 0) {
-    head = tail = u;
-} else {
-    nodes[tail].next = u;
-    tail = u;
-}
+nodes[tail].next = u;
+tail = u;
 ```
 
-删除最后一个节点时，单向链表仍然需要找到它的前驱，因此即使保存了 `tail`，最坏也要 $O(n)$。链表变空时必须同时恢复 `head = tail = 0`。
+这里沿用虚拟头节点：空链表的 `tail = 0`，所以第一次追加会令 `nodes[0].next` 指向新节点。删除最后一个节点时，单向链表仍然需要找到它的前驱，因此即使保存了 `tail`，最坏也要 $O(n)$。链表变空时必须恢复 `nodes[0].next = tail = 0`。
 
 ## 删除节点与释放存储
 
@@ -184,7 +205,7 @@ if (head == 0) {
 单向链表节点只保存 `next`。双向链表再保存前一个节点 `previous`：
 
 ```cpp
-struct node {
+struct Node {
     int value;
     int previous;
     int next;
@@ -228,27 +249,25 @@ head -> 1 -> 2 -> 3
 
 ## 完整代码
 
-下面的程序用索引实现一个单向链表。输入和 [数组](array.md#完整代码) 的示例相同：先建立初始序列，在指定逻辑位置插入一个值，再删除插入后的一个逻辑位置。
+下面的程序用索引和虚拟头节点实现一个单向链表。输入和 [数组](array.md#完整代码) 的示例相同：先建立初始序列，在指定逻辑位置插入一个值，再删除插入后的一个逻辑位置。
 
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-struct node {
+struct Node {
     int value;
     int next;
 };
 
-struct linked_list {
-    vector<node> nodes;
-    int head;
+struct LinkedList {
+    vector<Node> nodes;
     int tail;
     int n;
 
-    linked_list(int capacity) {
+    LinkedList(int capacity) {
         nodes.reserve(capacity + 5);
         nodes.push_back({0, 0});
-        head = 0;
         tail = 0;
         n = 0;
     }
@@ -260,54 +279,29 @@ struct linked_list {
 
     void push_back(int value) {
         int u = create_node(value);
-        if (head == 0) {
-            head = tail = u;
-        } else {
-            nodes[tail].next = u;
-            tail = u;
-        }
+        nodes[tail].next = u;
+        tail = u;
         n++;
     }
 
     void insert_at(int position, int value) {
-        int u = create_node(value);
-        if (position == 1) {
-            nodes[u].next = head;
-            head = u;
-            if (tail == 0) {
-                tail = u;
-            }
-            n++;
-            return;
-        }
-
-        int previous = head;
-        for (int i = 1; i < position - 1; i++) {
+        int previous = 0;
+        for (int i = 1; i < position; i++) {
             previous = nodes[previous].next;
         }
 
+        int u = create_node(value);
         nodes[u].next = nodes[previous].next;
         nodes[previous].next = u;
-        if (nodes[u].next == 0) {
+        if (previous == tail) {
             tail = u;
         }
         n++;
     }
 
     void erase_at(int position) {
-        if (position == 1) {
-            int u = head;
-            head = nodes[u].next;
-            nodes[u].next = 0;
-            if (head == 0) {
-                tail = 0;
-            }
-            n--;
-            return;
-        }
-
-        int previous = head;
-        for (int i = 1; i < position - 1; i++) {
+        int previous = 0;
+        for (int i = 1; i < position; i++) {
             previous = nodes[previous].next;
         }
 
@@ -322,7 +316,7 @@ struct linked_list {
 
     void print() const {
         bool first = true;
-        for (int u = head; u != 0; u = nodes[u].next) {
+        for (int u = nodes[0].next; u != 0; u = nodes[u].next) {
             if (!first) {
                 printf(" ");
             }
@@ -333,11 +327,11 @@ struct linked_list {
     }
 };
 
-int main() {
+void solve() {
     int n;
     scanf("%d", &n);
 
-    linked_list values(n + 1);
+    LinkedList values(n + 1);
     for (int i = 1; i <= n; i++) {
         int value;
         scanf("%d", &value);
@@ -353,6 +347,10 @@ int main() {
     values.erase_at(erase_position);
 
     values.print();
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -380,9 +378,9 @@ int main() {
 
 - 合法访问和删除位置是 `1..n`；
 - 合法插入位置是 `1..n+1`；
-- 空链表必须满足 `head = tail = 0`；
-- 插入第一个节点后，`head` 和 `tail` 都指向它；
-- 删除唯一节点后，`head` 和 `tail` 都恢复为 `0`；
+- 空链表必须满足 `nodes[0].next = tail = 0`；
+- 插入第一个节点后，`nodes[0].next` 和 `tail` 都指向它；
+- 删除唯一节点后，`nodes[0].next` 和 `tail` 都恢复为 `0`；
 - 插入或删除末尾时必须更新 `tail`。
 
 完整代码假设输入位置合法。对外提供通用容器接口时可以检查边界；竞赛模板通常依赖题目和调用者保证前置条件，避免在每个内部操作中重复判断。
@@ -393,26 +391,24 @@ int main() {
 2. 把新节点插在已知节点后面，说明两次修改 `next` 为什么不能交换顺序。
 3. 删除已知节点的后继，并处理后继是尾节点的情况。
 4. 分别模拟空链表、单节点链表和多节点链表的头部插入删除。
-5. 比较“已经知道前驱节点”和“只知道第 $k$ 个逻辑位置”时的操作复杂度。
-6. 为单向链表增加 `push_front`，再实现不保存 `tail` 的 `push_back` 并比较复杂度。
-7. 给节点增加 `previous`，写出双向链表删除已知节点需要修改的链接。
-8. 把单向链表改成循环链表，并设计不会无限循环的输出条件。
+5. 改用虚拟头节点，比较改写前后的首节点插入和删除代码。
+6. 比较“已经知道前驱节点”和“只知道第 $k$ 个逻辑位置”时的操作复杂度。
+7. 为单向链表增加 `push_front`，再实现不保存 `tail` 的 `push_back` 并比较复杂度。
+8. 给节点增加 `previous`，写出双向链表删除已知节点需要修改的链接。
+9. 把单向链表改成循环链表，并设计不会无限循环的输出条件。
 
 ## 需要记住什么
 
-1. 单向链表节点至少保存哪两部分？`head` 和 `0` 分别表示什么？
+1. 单向链表节点至少保存哪两部分？首节点编号和 `0` 分别表示什么？
 2. 节点编号与逻辑位置为什么不是同一个概念？
 3. 链表为什么不能通过第 $k$ 个位置随机访问？
 4. 已知节点后插入和已知前驱后删除为什么是 $O(1)$？
-5. 为什么按逻辑位置插入删除仍可能是 $O(n)$？
-6. 保存 `tail` 能加速哪些操作，不能加速单向链表的哪个末尾操作？
-7. 索引实现删除节点后，为什么 `nodes.size()` 不一定随当前长度减小？
-8. 双向链表比单向链表增加了什么能力和成本？
-9. 循环链表怎样表示末尾到开头的关系？遍历为什么必须额外设计停止条件？
-10. 数组和链表在随机访问、已知位置增删、存储方式上怎样取舍？
+5. 虚拟头节点为什么能统一首节点与其他位置的插入删除？它能降低按位置查找的复杂度吗？
+6. 为什么按逻辑位置插入删除仍可能是 $O(n)$？
+7. 保存 `tail` 能加速哪些操作，不能加速单向链表的哪个末尾操作？
+8. 索引实现删除节点后，为什么 `nodes.size()` 不一定随当前长度减小？
+9. 双向链表比单向链表增加了什么能力和成本？
+10. 循环链表怎样表示末尾到开头的关系？遍历为什么必须额外设计停止条件？
+11. 数组和链表在随机访问、已知位置增删、存储方式上怎样取舍？
 
 空闲节点复用、侵入式链表、跳表、异或链表以及标准库 `list` 的完整接口不属于本篇基础目标。竞赛中只有问题确实需要稳定节点和频繁链接修改时，才值得主动维护链表。
-
-## 下一篇
-
-下一篇 [栈](stack.md) 会限制只能在同一端加入和删除元素，从而得到后进先出的访问顺序。
