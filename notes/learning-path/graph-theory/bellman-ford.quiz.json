@@ -1,0 +1,62 @@
+[
+  {
+    "id": "negative-edge",
+    "prompt": "图中存在负边时，关于最短路的说法哪项正确？",
+    "options": [
+      { "id": "a", "text": "只要有负边就一定没有最短路" },
+      { "id": "b", "text": "负边一定构成负环" },
+      { "id": "c", "text": "负边可以存在；可达负环才会让相关最短距离无限下降" },
+      { "id": "d", "text": "所有负边都可以直接删掉" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "负边本身只可能改善路径；能够反复经过的可达负环才会让距离没有有限下界。"
+  },
+  {
+    "id": "round-meaning",
+    "prompt": "Bellman–Ford 第 k 轮松弛结束后，至少保证什么？",
+    "options": [
+      { "id": "a", "text": "至多使用 k 条边的有限最短路已经正确" },
+      { "id": "b", "text": "所有点都已经处理恰好 k 次" },
+      { "id": "c", "text": "图中只剩 k 条边" },
+      { "id": "d", "text": "所有距离都不会再变化" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每轮全边松弛至少让正确距离沿路径继续传播一条边。"
+  },
+  {
+    "id": "unreachable-guard",
+    "prompt": "松弛前为什么必须判断 `dist[u] != INF`？",
+    "options": [
+      { "id": "a", "text": "为了让边权变成非负数" },
+      { "id": "b", "text": "为了确保到 u 的前缀确实是一条从起点出发的路径" },
+      { "id": "c", "text": "为了让 edges 自动排序" },
+      { "id": "d", "text": "为了避免使用结构体" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "起点不可达的 u 不能作为真实路径前缀，也不应让无关负环影响单源结果。"
+  },
+  {
+    "id": "negative-cycle-check",
+    "prompt": "完成 n-1 轮后仍有可达边可以松弛，说明什么？",
+    "options": [
+      { "id": "a", "text": "图一定是无向图" },
+      { "id": "b", "text": "起点没有出边" },
+      { "id": "c", "text": "所有边权都为零" },
+      { "id": "d", "text": "从起点可以到达负环" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "继续改善需要一条含至少 n 条边的路径，其中必有重复点；改善来自其中的负权环。"
+  },
+  {
+    "id": "complexity",
+    "prompt": "含 n 个点、m 条边的 Bellman–Ford 最坏时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(n+m)$" },
+      { "id": "b", "text": "$O(m\\log n)$" },
+      { "id": "c", "text": "$O(nm)$" },
+      { "id": "d", "text": "$O(n^3)$" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "最坏执行 n-1 轮，每轮扫描全部 m 条边。"
+  }
+]
