@@ -510,7 +510,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 080103 | 分块 | 待审阅 | [data-structures/square-root-decomposition.md](data-structures/square-root-decomposition.md) |
-| 080104 | 莫队算法 | 计划 | `data-structures/mo-algorithm.md` |
+| 080104 | 莫队算法 | 待审阅 | [data-structures/mo-algorithm.md](data-structures/mo-algorithm.md) |
 | *990328 | 链上分块 | 推迟 | `data-structures/chain-block-decomposition.md` |
 | *990329 | 树上分块 | 推迟 | `data-structures/tree-block-decomposition.md` |
 

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "offline-order",
+    "prompt": "莫队算法为什么要重新排列区间询问？",
+    "options": [
+      { "id": "a", "text": "为了改变每个询问的正确答案" },
+      { "id": "b", "text": "为了让相邻询问的区间端点尽量少移动" },
+      { "id": "c", "text": "为了把数组本身变成有序数组" },
+      { "id": "d", "text": "为了省略所有加入和删除操作" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "莫队保留每个询问的内容，只调整处理顺序，以复用相邻区间的统计状态。"
+  },
+  {
+    "id": "distinct-add",
+    "prompt": "维护不同数字数量时，加入数值 `x` 的哪个时刻应使答案增加 1？",
+    "options": [
+      { "id": "a", "text": "加入前 `frequency[x]` 等于 0" },
+      { "id": "b", "text": "加入前 `frequency[x]` 大于 1" },
+      { "id": "c", "text": "每次加入都增加" },
+      { "id": "d", "text": "只有删除 `x` 时才增加" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "出现次数从 0 变为 1 时，x 才第一次成为当前区间中的一种数。"
+  },
+  {
+    "id": "snake-order",
+    "prompt": "奇偶块交替排列右端点的主要作用是什么？",
+    "options": [
+      { "id": "a", "text": "把渐近复杂度降到 `O(1)`" },
+      { "id": "b", "text": "允许在线回答询问" },
+      { "id": "c", "text": "减少相邻左端点块之间右指针的大幅回退" },
+      { "id": "d", "text": "让所有询问长度相等" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "右端点在相邻块中交替向右和向左移动，通常能减少实际指针移动次数。"
+  },
+  {
+    "id": "restore-order",
+    "prompt": "莫队排序打乱询问后，怎样按照输入顺序输出答案？",
+    "options": [
+      { "id": "a", "text": "再次排序原数组" },
+      { "id": "b", "text": "只输出最后一个询问" },
+      { "id": "c", "text": "按照区间长度输出" },
+      { "id": "d", "text": "保存原编号，并将结果写入 `answer[id]`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "处理顺序可以改变，输出顺序由每个询问保存的原编号恢复。"
+  },
+  {
+    "id": "suitable-problem",
+    "prompt": "下面哪类问题最适合考虑本文的基础莫队？",
+    "options": [
+      { "id": "a", "text": "必须在线回答，且每次询问后会修改整个数组" },
+      { "id": "b", "text": "静态数组的离线区间询问，加入和删除一个位置都容易维护" },
+      { "id": "c", "text": "只有一个可以直接 `O(1)` 回答的询问" },
+      { "id": "d", "text": "无法从当前状态删除任何元素的问题" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "静态、离线和可快速增删是基础莫队最重要的适用条件。"
+  }
+]
