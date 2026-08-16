@@ -1,146 +1,98 @@
 [
   {
-    "id": "base-and-width",
-    "prompt": "本篇令 `WIDTH = 8`、`BASE = 100000000`，每个数字块表示什么？",
+    "id": "digit-order",
+    "prompt": "为什么把高精度整数的最低十进制位保存在 `d[1]`？",
     "options": [
-      { "id": "a", "text": "一个二进制位" },
-      { "id": "b", "text": "最多 8 个字节" },
-      { "id": "c", "text": "从 0 到 10^8 - 1 的一组 8 位十进制信息" },
-      { "id": "d", "text": "完整高精度整数的位数" }
-    ],
-    "correctOptionId": "c",
-    "explanation": "压位存储让一格承载 8 位十进制数字；BASE 是每块进位的基数。"
-  },
-  {
-    "id": "little-endian-blocks",
-    "prompt": "为什么最低位数字块保存在 `d[1]`？",
-    "options": [
-      { "id": "a", "text": "为了让输出天然从左到右" },
-      { "id": "b", "text": "加减乘都从低位开始处理进位或借位，顺序遍历更直接" },
-      { "id": "c", "text": "因为最高位不能存入 int" },
-      { "id": "d", "text": "因为 vector 只能倒序存储" }
+      { "id": "a", "text": "为了让输入字符串保持原顺序" },
+      { "id": "b", "text": "加减乘从低位处理进位或借位，小下标向上遍历更直接" },
+      { "id": "c", "text": "因为最高位不能存进 int" },
+      { "id": "d", "text": "因为 vector 只能逆序保存" }
     ],
     "correctOptionId": "b",
-    "explanation": "低块在前让 i 从 1 递增即可沿进位传播方向处理；输出时再从最高块反向读取。"
-  },
-  {
-    "id": "string-interface-boundary",
-    "prompt": "构造函数解析输入字符串时，为什么字符区间使用 `[l, r)`？",
-    "options": [
-      { "id": "a", "text": "这里直接使用 string 原生 0-based 与左闭右开接口" },
-      { "id": "b", "text": "因为高精度块本身从 0 开始" },
-      { "id": "c", "text": "因为闭区间不能读取数字" },
-      { "id": "d", "text": "为了忽略每组最后一个字符" }
-    ],
-    "correctOptionId": "a",
-    "explanation": "自定义数字块仍是 1-based；只在与 string 接口接触的输入边界保留标准库约定。"
+    "explanation": "低位固定在小下标后，数字增长和向高位进位都不需要移动已有数字。"
   },
   {
     "id": "trim-zero",
-    "prompt": "`trim()` 为什么必须至少保留一个数字块？",
+    "prompt": "`trim()` 为什么不能删除数字零的最后一个数字位？",
     "options": [
-      { "id": "a", "text": "为了保证每个数至少有 8 位" },
-      { "id": "b", "text": "为了让乘法变成 O(1)" },
-      { "id": "c", "text": "因为输入一定非零" },
-      { "id": "d", "text": "需要用单个值为 0 的块规范表示数字零" }
+      { "id": "a", "text": "必须保留一个值为 0 的数字，维持统一合法表示" },
+      { "id": "b", "text": "因为零一定有很多前导零" },
+      { "id": "c", "text": "因为删除会把零变成一" },
+      { "id": "d", "text": "为了让乘法成为常数时间" }
     ],
-    "correctOptionId": "d",
-    "explanation": "若把所有块都删光，比较、输出和运算边界都会失去统一表示。"
-  },
-  {
-    "id": "comparison-order",
-    "prompt": "两个非负高精度整数块数相同时，应怎样比较大小？",
-    "options": [
-      { "id": "a", "text": "从最低块向上找到第一个不同块" },
-      { "id": "b", "text": "比较 vector 的容量" },
-      { "id": "c", "text": "从最高块向下找到第一个不同块" },
-      { "id": "d", "text": "只比较各块之和" }
-    ],
-    "correctOptionId": "c",
-    "explanation": "高位块的权重更大；块数相同时，第一个不同的最高位置决定整数大小。"
-  },
-  {
-    "id": "output-padding",
-    "prompt": "输出压位整数时，哪些块需要补足到 8 位？",
-    "options": [
-      { "id": "a", "text": "所有块，包括最高块" },
-      { "id": "b", "text": "除最高块以外的所有较低块" },
-      { "id": "c", "text": "只有最低块" },
-      { "id": "d", "text": "任何块都不补零" }
-    ],
-    "correctOptionId": "b",
-    "explanation": "最高块按真实长度输出；较低块若不补零，就会丢失它们在整体十进制数中的固定宽度。"
+    "correctOptionId": "a",
+    "explanation": "空数字数组无法统一完成比较和输出；单个 0 是规范表示。"
   },
   {
     "id": "addition-carry",
-    "prompt": "加法中当前块计算出 `current` 后，怎样拆成本块与进位？",
+    "prompt": "十进制逐位加法中，`current` 应怎样拆成本位和进位？",
     "options": [
-      { "id": "a", "text": "本块取 `current % BASE`，进位取 `current / BASE`" },
-      { "id": "b", "text": "本块取 `current / BASE`，进位取 `current % BASE`" },
-      { "id": "c", "text": "本块与进位都等于 current" },
-      { "id": "d", "text": "只有最高块需要处理进位" }
+      { "id": "a", "text": "本位取 current / 10，进位取 current % 10" },
+      { "id": "b", "text": "本位和进位都取 current" },
+      { "id": "c", "text": "本位取 current % 10，进位取 current / 10" },
+      { "id": "d", "text": "只在最高位处理进位" }
     ],
-    "correctOptionId": "a",
-    "explanation": "这正是以 BASE 为基数的竖式进位；余数留在当前位置，商进入更高块。"
+    "correctOptionId": "c",
+    "explanation": "余数留在当前十进制位，商进入高一位。"
   },
   {
-    "id": "subtraction-precondition",
-    "prompt": "本篇 `subtract(a, b)` 的前置条件是什么？",
+    "id": "subtraction-condition",
+    "prompt": "本篇 `subtract(a,b)` 需要什么前置条件？",
     "options": [
-      { "id": "a", "text": "a 与 b 必须块数相同" },
+      { "id": "a", "text": "a 和 b 位数必须相同" },
       { "id": "b", "text": "b 必须为零" },
       { "id": "c", "text": "a 必须严格大于 b" },
-      { "id": "d", "text": "a 不小于 b，因为本篇没有实现负数结果" }
+      { "id": "d", "text": "a 不小于 b，因为本篇不处理负数" }
     ],
     "correctOptionId": "d",
-    "explanation": "相等时结果为零也合法；若 a < b，需要额外的符号与绝对值分派规则。"
+    "explanation": "a=b 时结果零仍合法；a<b 则需要额外的符号处理。"
   },
   {
     "id": "multiplication-position",
-    "prompt": "块 `a.d[i]` 与 `b.d[j]` 的乘积应累加到结果哪个块？",
+    "prompt": "`a.d[i]` 与 `b.d[j]` 的乘积应加入结果哪个位置？",
     "options": [
-      { "id": "a", "text": "i + j" },
-      { "id": "b", "text": "i * j" },
-      { "id": "c", "text": "i + j - 1" },
-      { "id": "d", "text": "max(i, j)" }
-    ],
-    "correctOptionId": "c",
-    "explanation": "两块分别带有 BASE^(i-1) 与 BASE^(j-1) 的权重，相乘后的指数是 i+j-2。"
-  },
-  {
-    "id": "immediate-normalization",
-    "prompt": "乘法为什么每累加一个块乘积就立即进位？",
-    "options": [
-      { "id": "a", "text": "为了让结果自动变成负数" },
-      { "id": "b", "text": "避免同一结果块积累许多接近 10^16 的乘积而溢出 64 位整数" },
-      { "id": "c", "text": "因为乘法只能处理一位数" },
-      { "id": "d", "text": "为了把复杂度降到 O(n+m)" }
-    ],
-    "correctOptionId": "b",
-    "explanation": "及时把结果块归一化到 [0, BASE)，可以让下一次 current 继续安全放入 64 位整数。"
-  },
-  {
-    "id": "operation-complexity",
-    "prompt": "两个数分别有 n、m 个压位块时，基础加减与竖式乘法的时间复杂度分别是什么？",
-    "options": [
-      { "id": "a", "text": "$O(\\max(n,m))$ 与 $O(nm)$" },
-      { "id": "b", "text": "$O(1)$ 与 $O(n+m)$" },
-      { "id": "c", "text": "$O(nm)$ 与 $O(\\log n)$" },
-      { "id": "d", "text": "$O(n\\log n)$ 与 $O(m\\log m)$" }
+      { "id": "a", "text": "i+j-1" },
+      { "id": "b", "text": "i+j" },
+      { "id": "c", "text": "i*j" },
+      { "id": "d", "text": "max(i,j)" }
     ],
     "correctOptionId": "a",
-    "explanation": "加减只线性扫描较长操作数；竖式乘法处理每一对数字块。"
+    "explanation": "两位的权值指数分别是 i-1 与 j-1，相乘后的指数为 i+j-2。"
   },
   {
-    "id": "scope-of-article",
-    "prompt": "本篇完整实现覆盖了哪一类整数运算？",
+    "id": "immediate-carry-bound",
+    "prompt": "为什么当前逐位乘法的 `current` 上界不随总位数增长？",
     "options": [
-      { "id": "a", "text": "任意带符号整数的四则运算" },
-      { "id": "b", "text": "非负整数的加减乘除与取模" },
-      { "id": "c", "text": "只实现非负整数加法" },
-      { "id": "d", "text": "非负整数的比较、加法、a >= b 时的减法和乘法" }
+      { "id": "a", "text": "因为只乘最高位" },
+      { "id": "b", "text": "因为输入不会超过两位" },
+      { "id": "c", "text": "因为乘法被编译器改成了加法" },
+      { "id": "d", "text": "因为每加入一个数字乘积就立即进位，没有无限累积在同一格" }
     ],
     "correctOptionId": "d",
-    "explanation": "负数、除法与余数分别属于后续扩展，不能从当前接口推断它们已经支持。"
+    "explanation": "进入下一对数字前，结果格和 carry 都已经重新限制在十进制小范围内。"
+  },
+  {
+    "id": "multiplication-complexity",
+    "prompt": "n 位与 m 位高精度整数使用朴素竖式相乘，时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(n+m)$" },
+      { "id": "b", "text": "$O(nm)$" },
+      { "id": "c", "text": "$O(\log n)$" },
+      { "id": "d", "text": "$O(1)$" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每个 a 的数字都要与每个 b 的数字相乘一次。"
+  },
+  {
+    "id": "article-scope",
+    "prompt": "本篇完整代码支持哪些运算？",
+    "options": [
+      { "id": "a", "text": "任意带符号整数四则运算" },
+      { "id": "b", "text": "只支持非负整数加法" },
+      { "id": "c", "text": "非负整数比较、加法、a>=b 时的减法和乘法" },
+      { "id": "d", "text": "浮点数的精确乘除" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "负数与除法分别属于后续文章，不能从当前接口推断它们已经实现。"
   }
 ]

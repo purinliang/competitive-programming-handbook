@@ -601,6 +601,7 @@
 | 060605 | 线性同余方程 | 待审阅 | [linear-congruences.md](math/linear-congruences.md) |
 | 050501 | 高精度整数：加法、减法与乘法 | 待审阅 | [big-integer-addition-subtraction-multiplication.md](math/big-integer-addition-subtraction-multiplication.md) |
 | *050501e1 | 高精度整数：负数 | 计划 | `math/big-integer-negative-numbers.md` |
+| *050501e2 | 压位高精度 | 计划 | `math/packed-big-integer.md` |
 | 050502 | 高精度整数：除以低精度整数 | 待审阅 | [big-integer-division-by-small-integer.md](math/big-integer-division-by-small-integer.md) |
 | *050502e1 | 高精度整数：除以高精度整数 | 计划 | `math/big-integer-division-remainder.md` |
 | *990521 | 素性测试：Miller–Rabin | 计划 | `math/miller-rabin.md` |
