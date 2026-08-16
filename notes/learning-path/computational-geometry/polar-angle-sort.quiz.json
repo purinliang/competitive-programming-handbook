@@ -1,0 +1,62 @@
+[
+  {
+    "id": "starting-direction",
+    "prompt": "本篇极角排序从哪个方向开始？",
+    "options": [
+      { "id": "a", "text": "x 轴正方向，并沿逆时针增长" },
+      { "id": "b", "text": "y 轴正方向，并沿顺时针增长" },
+      { "id": "c", "text": "x 轴负方向，并沿逆时针增长" },
+      { "id": "d", "text": "从任意输入点开始" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "半平面划分把 [0,pi) 放在前面，对应从 x 轴正方向逆时针排序。"
+  },
+  {
+    "id": "half-plane",
+    "prompt": "极角排序为什么要先划分上下半平面？",
+    "options": [
+      { "id": "a", "text": "减少待排序点的数量" },
+      { "id": "b", "text": "处理 0 与 2pi 之间的整圈断点" },
+      { "id": "c", "text": "保证所有点的 y 坐标为正" },
+      { "id": "d", "text": "避免计算任何叉积" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "叉积描述局部转向；先分半圈后，同一半平面内才有一致的角度顺序。"
+  },
+  {
+    "id": "cross-order",
+    "prompt": "向量 a、b 位于同一半平面且 `cross(a,b) > 0`，应怎样排序？",
+    "options": [
+      { "id": "a", "text": "b 在 a 前面" },
+      { "id": "b", "text": "二者一定相等" },
+      { "id": "c", "text": "a 在 b 前面" },
+      { "id": "d", "text": "只能调用 atan2 决定" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "从 a 转向 b 为逆时针，且同一半平面不跨断点，因此 a 的极角更小。"
+  },
+  {
+    "id": "same-ray",
+    "prompt": "两个点位于相对中心的同一条射线上时，本篇如何确定顺序？",
+    "options": [
+      { "id": "a", "text": "按输入顺序随机选择" },
+      { "id": "b", "text": "按 y 坐标绝对值递减" },
+      { "id": "c", "text": "把二者视为相反方向" },
+      { "id": "d", "text": "先按到中心的距离从近到远" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "叉积为零且同半平面说明方向相同，再用距离提供确定的次级顺序。"
+  },
+  {
+    "id": "translation",
+    "prompt": "围绕点 O 对点 P 排极角时，为什么要比较向量 `P-O`？",
+    "options": [
+      { "id": "a", "text": "极角描述的是从 O 指向 P 的方向，而不是 P 相对原点的方向" },
+      { "id": "b", "text": "这样能让所有距离变成 1" },
+      { "id": "c", "text": "这样能自动删除重复点" },
+      { "id": "d", "text": "只有减法能够使用 sort" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "统一平移到原点后，半平面和叉积比较的才是围绕指定中心的射线。"
+  }
+]
