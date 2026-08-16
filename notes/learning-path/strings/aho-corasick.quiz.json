@@ -1,0 +1,62 @@
+[
+  {
+    "id": "failure-link",
+    "prompt": "AC 自动机中 `fail[u]` 指向什么状态？",
+    "options": [
+      { "id": "a", "text": "与 u 深度相同的任意节点" },
+      { "id": "b", "text": "u 表示字符串的最长真后缀，且该后缀也是 Trie 前缀" },
+      { "id": "c", "text": "u 的父节点" },
+      { "id": "d", "text": "最近插入的模式串结尾" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "失败指针保留失配后仍可能继续匹配的最长后缀前缀。"
+  },
+  {
+    "id": "bfs-build",
+    "prompt": "失败指针为什么使用 BFS 构造？",
+    "options": [
+      { "id": "a", "text": "保证计算深层节点前，所依赖的浅层失败状态已经完成" },
+      { "id": "b", "text": "保证模式串按字典序排列" },
+      { "id": "c", "text": "减少 Trie 中的节点数量" },
+      { "id": "d", "text": "让每个模式串只能出现一次" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "fail[v] 依赖 fail[u] 的转移，而 fail[u] 所在层一定比孩子 v 更浅。"
+  },
+  {
+    "id": "completed-transition",
+    "prompt": "把不存在的 Trie 边补成 `child[fail[u]][c]` 有什么作用？",
+    "options": [
+      { "id": "a", "text": "把所有模式串改成相同长度" },
+      { "id": "b", "text": "删除没有用到的字符" },
+      { "id": "c", "text": "让匹配阶段每读一个字符都能直接得到下一状态" },
+      { "id": "d", "text": "把失败指针变成父指针" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "完整转移表已经包含失配跳转，扫描文本时不必再写循环回退。"
+  },
+  {
+    "id": "reverse-propagation",
+    "prompt": "为什么出现次数沿失败指针汇总时要使用 BFS 逆序？",
+    "options": [
+      { "id": "a", "text": "为了先处理字典序较大的模式串" },
+      { "id": "b", "text": "为了让文本从后向前匹配" },
+      { "id": "c", "text": "为了跳过根节点的直接孩子" },
+      { "id": "d", "text": "让深层状态先把贡献交给较短后缀，再继续向上汇总" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "正序传播会在深层贡献到达前就处理浅层节点，从而漏掉继续向上的贡献。"
+  },
+  {
+    "id": "suffix-pattern",
+    "prompt": "模式串包含 `he` 和 `she`，文本中匹配到一次 `she` 时为什么也能统计 `he`？",
+    "options": [
+      { "id": "a", "text": "`he` 的结尾节点位于 `she` 状态的失败指针链上" },
+      { "id": "b", "text": "所有长度较短的模式串都会自动加一" },
+      { "id": "c", "text": "Trie 会把字符 s 删除" },
+      { "id": "d", "text": "两个模式串共享相同的根节点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "he 是 she 的后缀，也是 Trie 中的前缀；逆序传播会把出现贡献交给它。"
+  }
+]

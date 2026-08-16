@@ -718,7 +718,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 080401 | AC 自动机 | 字符串 | `strings/aho-corasick.md` |
+| 080401 | AC 自动机 | 字符串 | [strings/aho-corasick.md](strings/aho-corasick.md) |
 | 080402 | Manacher | 字符串 | `strings/manacher.md` |
 
 ### 单元 05：计算几何
