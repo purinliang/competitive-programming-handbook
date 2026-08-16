@@ -194,7 +194,7 @@
 | 0234* | 排序：基数排序 | 计划 | `algorithm-basics/0234-radix-sort.md` |
 | 0235* | 排序：桶排序 | 计划 | `algorithm-basics/0235-bucket-sort.md` |
 | 0236 | 出栈序列判定 | 待审阅 | [stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
-| 0237 | 栈的应用：表达式求值 | 待审阅 | [expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
+| 0237 | 表达式求值 | 待审阅 | [expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
 | 0238 | 贪心证明：邻项交换 | 计划 | `algorithm-basics/greedy-adjacent-exchange.md` |
 | 0239 | 贪心：反悔 | 计划 | `algorithm-basics/greedy-regret.md` |
 | 0240 | 编码：哈夫曼编码 | 待审阅 | [huffman-coding.md](algorithm-basics/huffman-coding.md) |

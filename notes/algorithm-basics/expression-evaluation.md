@@ -1,6 +1,6 @@
-# 栈的应用：表达式求值
+# 表达式求值
 
-> 最近修订：2026-08-13 21:45 +10:00（未审阅）
+> 最近修订：2026-08-16 11:07 +10:00（未审阅）
 
 人通常把二元运算符写在两个操作数中间，例如 `2 + 3`。表达式变长以后，还要依靠优先级、结合方向与括号确定先算哪一部分：
 
@@ -50,6 +50,8 @@
 - 左右子树分别是运算符的左操作数和右操作数。
 
 表达式树明确保存了运算结构。根节点的乘法必须等左右子表达式都得到结果后才能执行；减法的左右次序也由两棵子树固定，不会因为书写方式改变。
+
+这里的表达式树只是一张帮助观察运算顺序的结构图，不要求读者提前掌握树的存储或遍历算法。
 
 ## 中缀表达式
 
@@ -214,7 +216,7 @@ ll calculate(ll left, ll right, char operation) {
 定义：
 
 ```cpp
-struct token {
+struct Token {
     bool is_number;
     ll value;
     char symbol;
@@ -241,7 +243,7 @@ while (i < n && expression[i] >= '0' && expression[i] <= '9') {
 记号序列使用本书自定义的 1-based 约定，在位置 `0` 放一个不参与处理的空记号：
 
 ```cpp
-vector<token> tokens(1);
+vector<Token> tokens(1);
 tokens.push_back({true, value, 0});
 ```
 
@@ -258,8 +260,8 @@ bool is_space(char c) {
 完整分词函数是：
 
 ```cpp
-vector<token> tokenize(const string& expression) {
-    vector<token> tokens(1);
+vector<Token> tokenize(const string& expression) {
+    vector<Token> tokens(1);
     int n = expression.size();
 
     for (int i = 0; i < n;) {
@@ -396,13 +398,13 @@ while (!operators.empty()) {
 ## 完整转换函数
 
 ```cpp
-vector<token> infix_to_postfix(const vector<token>& infix) {
-    vector<token> postfix(1);
+vector<Token> infix_to_postfix(const vector<Token>& infix) {
+    vector<Token> postfix(1);
     stack<char> operators;
     int n = infix.size() - 1;
 
     for (int i = 1; i <= n; i++) {
-        token current = infix[i];
+        Token current = infix[i];
 
         if (current.is_number) {
             postfix.push_back(current);
@@ -473,12 +475,12 @@ vector<token> infix_to_postfix(const vector<token>& infix) {
 ## 完整后缀求值函数
 
 ```cpp
-ll evaluate_postfix(const vector<token>& postfix) {
+ll evaluate_postfix(const vector<Token>& postfix) {
     stack<ll> values;
     int n = postfix.size() - 1;
 
     for (int i = 1; i <= n; i++) {
-        token current = postfix[i];
+        Token current = postfix[i];
 
         if (current.is_number) {
             values.push(current.value);
@@ -554,7 +556,7 @@ const int MAXL = 2e5 + 5;
 
 char input[MAXL];
 
-struct token {
+struct Token {
     bool is_number;
     ll value;
     char symbol;
@@ -564,8 +566,8 @@ bool is_space(char c) {
     return c == ' ' || c == '\t' || c == '\n' || c == '\r';
 }
 
-vector<token> tokenize(const string& expression) {
-    vector<token> tokens(1);
+vector<Token> tokenize(const string& expression) {
+    vector<Token> tokens(1);
     int n = expression.size();
 
     for (int i = 0; i < n;) {
@@ -598,13 +600,13 @@ int precedence(char operation) {
     return 2;
 }
 
-vector<token> infix_to_postfix(const vector<token>& infix) {
-    vector<token> postfix(1);
+vector<Token> infix_to_postfix(const vector<Token>& infix) {
+    vector<Token> postfix(1);
     stack<char> operators;
     int n = infix.size() - 1;
 
     for (int i = 1; i <= n; i++) {
-        token current = infix[i];
+        Token current = infix[i];
 
         if (current.is_number) {
             postfix.push_back(current);
@@ -655,12 +657,12 @@ ll calculate(ll left, ll right, char operation) {
     return left / right;
 }
 
-ll evaluate_postfix(const vector<token>& postfix) {
+ll evaluate_postfix(const vector<Token>& postfix) {
     stack<ll> values;
     int n = postfix.size() - 1;
 
     for (int i = 1; i <= n; i++) {
-        token current = postfix[i];
+        Token current = postfix[i];
 
         if (current.is_number) {
             values.push(current.value);
@@ -679,7 +681,7 @@ ll evaluate_postfix(const vector<token>& postfix) {
     return values.top();
 }
 
-void print_postfix(const vector<token>& postfix) {
+void print_postfix(const vector<Token>& postfix) {
     int n = postfix.size() - 1;
 
     for (int i = 1; i <= n; i++) {
@@ -696,15 +698,19 @@ void print_postfix(const vector<token>& postfix) {
     printf("\n");
 }
 
-int main() {
+void solve() {
     fgets(input, MAXL, stdin);
 
     string expression = input;
-    vector<token> infix = tokenize(expression);
-    vector<token> postfix = infix_to_postfix(infix);
+    vector<Token> infix = tokenize(expression);
+    vector<Token> postfix = infix_to_postfix(infix);
 
     print_postfix(postfix);
     printf("%lld\n", evaluate_postfix(postfix));
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -782,7 +788,3 @@ int main() {
 11. 当前完整代码明确不支持哪些语法？整数除法与数值范围遵循什么约定？
 
 函数调用、数组下标、变量、浮点数、幂运算、右结合运算符、一元正负号和完整语法错误诊断都会增加新的记号类型或语法规则。它们应当在题目真正需要时逐项加入，不能假装基础四则运算代码已经自动支持。
-
-## 下一篇
-
-下一篇 [序列容器：deque](../cpp/deque.md) 会学习能够在两端加入、访问和删除元素的标准库容器，并为后续 `queue` 容器适配器提供默认底层实现。
