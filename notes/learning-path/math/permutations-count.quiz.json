@@ -1,0 +1,75 @@
+[
+  {
+    "id": "permutation-definition",
+    "prompt": "排列数 $P(n,k)$ 统计哪一种选择？",
+    "options": [
+      { "id": "a", "text": "从 n 个不同元素中选 k 个，不允许重复并且区分顺序" },
+      { "id": "b", "text": "从 n 个元素中选 k 个，不区分顺序" },
+      { "id": "c", "text": "每个位置都允许重复选择任意元素" },
+      { "id": "d", "text": "只统计空序列" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "排列同时包含选出哪些元素与把它们放入哪些有序位置。"
+  },
+  {
+    "id": "permutation-product",
+    "prompt": "填写第 `position` 个位置时，为什么有 `n-position+1` 种选择？",
+    "options": [
+      { "id": "a", "text": "因为位置编号从零开始" },
+      { "id": "b", "text": "因为前面已经使用了 position-1 个不同元素" },
+      { "id": "c", "text": "因为每一步都可以重复" },
+      { "id": "d", "text": "因为 n 必须等于 position" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "不允许重复时，每填入一个位置，可选元素就减少一个。"
+  },
+  {
+    "id": "permutation-factorial",
+    "prompt": "$P(n,k)$ 的阶乘形式是什么？",
+    "options": [
+      { "id": "a", "text": "$n!/k!$" },
+      { "id": "b", "text": "$k!/(n-k)!$" },
+      { "id": "c", "text": "$n!/(n-k)!$" },
+      { "id": "d", "text": "$n!k!$" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "约去 n! 中未使用的低端 (n-k)!，恰好留下 k 个递减因数。"
+  },
+  {
+    "id": "permutation-boundaries",
+    "prompt": "`P(n,0)` 与 `P(n,k)` 在 `k>n` 时分别是多少？",
+    "options": [
+      { "id": "a", "text": "0 与 1" },
+      { "id": "b", "text": "n 与 k" },
+      { "id": "c", "text": "都等于 n!" },
+      { "id": "d", "text": "1 与 0" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "选择零个元素只有一个空序列；元素不足时无法完成不重复选择。"
+  },
+  {
+    "id": "permutation-versus-power",
+    "prompt": "为什么一般不能用 $n^k$ 代替 $P(n,k)$？",
+    "options": [
+      { "id": "a", "text": "$n^k$ 允许不同位置重复选择同一元素" },
+      { "id": "b", "text": "$n^k$ 不区分任何位置" },
+      { "id": "c", "text": "$P(n,k)$ 允许无限重复" },
+      { "id": "d", "text": "两者永远相等" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "幂表示每个位置都有独立的 n 种选择；排列会排除已经使用的元素。"
+  },
+  {
+    "id": "permutation-versus-combination",
+    "prompt": "排列数与组合数最核心的区别是什么？",
+    "options": [
+      { "id": "a", "text": "排列只能选择一个元素" },
+      { "id": "b", "text": "组合一定允许重复" },
+      { "id": "c", "text": "排列区分顺序，组合不区分顺序" },
+      { "id": "d", "text": "组合不能使用乘法原理" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "相同元素集合以不同顺序出现时，在排列中是不同方案，在组合中是同一方案。"
+  }
+]
+
