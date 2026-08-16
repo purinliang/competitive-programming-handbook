@@ -723,7 +723,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 040901 | 字符串的基本概念 | 计划 | `strings/string-concepts.md` |
+| 040901 | 字符串的基本概念 | 待审阅 | [string-concepts.md](strings/string-concepts.md) |
 | 040902 | 字符串比较与字典序 | 待审阅 | [comparison-and-lexicographic-order.md](strings/comparison-and-lexicographic-order.md) |
 | 040903 | 朴素字符串匹配 | 待审阅 | [naive-pattern-matching.md](strings/naive-pattern-matching.md) |
 | 062001 | 字符串：哈希 | 计划 | `strings/rolling-hash.md` |

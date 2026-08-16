@@ -1,0 +1,50 @@
+[
+  {
+    "id": "string-proper-substring",
+    "prompt": "在允许空串作为子串的约定下，真子串排除了什么？",
+    "options": [
+      { "id": "a", "text": "只排除整个原字符串" },
+      { "id": "b", "text": "只排除空串" },
+      { "id": "c", "text": "同时排除空串和整个原字符串" },
+      { "id": "d", "text": "排除所有长度为 `1` 的字符串" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "“真”只表示不等于整个对象；要同时排除空串，应明确说“非空真子串”。"
+  },
+  {
+    "id": "substring-versus-subsequence",
+    "prompt": "子串与子序列最关键的区别是什么？",
+    "options": [
+      { "id": "a", "text": "子序列必须比原串长" },
+      { "id": "b", "text": "子串要求字符连续，子序列只要求相对顺序不变" },
+      { "id": "c", "text": "子串只能包含数字" },
+      { "id": "d", "text": "子序列可以任意改变字符顺序" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "子序列可以跳过中间字符，但不能打乱剩余字符的先后；子串必须来自连续区间。"
+  },
+  {
+    "id": "prefix-suffix-membership",
+    "prompt": "对任意字符串，下面哪一项正确？",
+    "options": [
+      { "id": "a", "text": "整个字符串不能是自己的前缀" },
+      { "id": "b", "text": "空串只能是前缀，不能是后缀" },
+      { "id": "c", "text": "后缀必须从第一个字符开始" },
+      { "id": "d", "text": "整个字符串和空串都同时是它的前缀与后缀" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "前缀和后缀都包含长度从 `0` 到 `n` 的情况，真前后缀才排除整个字符串。"
+  },
+  {
+    "id": "palindrome-definition",
+    "prompt": "什么是回文串？",
+    "options": [
+      { "id": "a", "text": "所有字符都必须相同的字符串" },
+      { "id": "b", "text": "长度必须为偶数的字符串" },
+      { "id": "c", "text": "正着读和反着读完全相同的字符串" },
+      { "id": "d", "text": "只包含一个字符的字符串" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "回文要求所有对称位置相等，可以是奇数长度、偶数长度、单字符或空串。"
+  }
+]

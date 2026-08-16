@@ -431,7 +431,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 040901 | 字符串的基本概念 | 字符串 | `strings/string-concepts.md` |
+| 040901 | 字符串的基本概念 | 字符串 | [strings/string-concepts.md](strings/string-concepts.md) |
 | 040902 | 字符串比较与字典序 | 字符串 | [strings/comparison-and-lexicographic-order.md](strings/comparison-and-lexicographic-order.md) |
 | 040903 | 朴素字符串匹配 | 字符串 | [strings/naive-pattern-matching.md](strings/naive-pattern-matching.md) |
 
