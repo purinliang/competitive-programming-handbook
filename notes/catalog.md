@@ -638,7 +638,7 @@
 | *060701e1 | 杜教筛 | 计划 | `math/du-jiao-sieve.md` |
 | *060701e2 | Min_25 筛 | 计划 | `math/min-25-sieve.md` |
 | *990550 | 筛法：分段筛 | 计划 | `math/segmented-sieve.md` |
-| *041001 | 数系：自然数、整数、有理数与实数 | 计划 | `math/number-systems-review.md` |
+| *041001 | 数系：自然数、整数、有理数与实数 | 待审阅 | [number-systems-review.md](math/number-systems-review.md) |
 | *041002 | 集合：基本概念与交、并、补 | 计划 | `math/sets-review.md` |
 | *041003 | 代数：方程与不等式 | 计划 | `math/equations-and-inequalities-review.md` |
 | *041004 | 几何：平面几何基础 | 计划 | `math/plane-geometry-basics.md` |

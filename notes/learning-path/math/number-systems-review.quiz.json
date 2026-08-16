@@ -1,0 +1,50 @@
+[
+  {
+    "id": "number-rational-definition",
+    "prompt": "哪一个条件准确描述有理数？",
+    "options": [
+      { "id": "a", "text": "只能写成有限小数" },
+      { "id": "b", "text": "能写成两个整数之比，且分母不为 `0`" },
+      { "id": "c", "text": "必须是正整数" },
+      { "id": "d", "text": "小数展开必须无限且不循环" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "整数 `p` 与非零整数 `q` 的比 `p/q` 定义了有理数；整数也可写成分母为 `1` 的分数。"
+  },
+  {
+    "id": "number-set-inclusion",
+    "prompt": "下面哪条包含关系正确？",
+    "options": [
+      { "id": "a", "text": "整数包含所有实数" },
+      { "id": "b", "text": "无理数包含所有有理数" },
+      { "id": "c", "text": "自然数、整数、有理数、实数彼此没有关系" },
+      { "id": "d", "text": "自然数包含于整数，整数包含于有理数，有理数包含于实数" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "常见关系为 `N ⊆ Z ⊆ Q ⊆ R`；自然数是否含零不影响它属于整数。"
+  },
+  {
+    "id": "number-cpp-division",
+    "prompt": "执行 `double result = 1 / 2;` 后，`result` 为什么是 `0.0`？",
+    "options": [
+      { "id": "a", "text": "右侧两个操作数是整数，先进行整数除法得到 `0`" },
+      { "id": "b", "text": "`double` 不能保存任何分数" },
+      { "id": "c", "text": "除法运算符只适用于负数" },
+      { "id": "d", "text": "分母必须写成字符串" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "结果变量的类型不会倒过来改变右侧已经选定的整数运算；可写 `1.0 / 2`。"
+  },
+  {
+    "id": "number-zero-sign",
+    "prompt": "关于数字 `0`，哪一项正确？",
+    "options": [
+      { "id": "a", "text": "它既是正数也是负数" },
+      { "id": "b", "text": "它只属于正数" },
+      { "id": "c", "text": "它既是非负数也是非正数，但不是正数或负数" },
+      { "id": "d", "text": "它不是整数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`0 >= 0` 且 `0 <= 0`，但 `0 > 0` 与 `0 < 0` 都不成立。"
+  }
+]
