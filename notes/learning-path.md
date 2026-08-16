@@ -17,57 +17,63 @@
 ## 01 C++ 基础
 
 本章只学习写竞赛程序和继续学习算法必需的 C++ 能力。最小输入输出从第一份程序
-开始使用；数值、控制流、函数、数组和文本随后逐步补全，最后再系统归纳字符串与
-输入输出。指针、类、编译过程等不阻塞主线的机制集中放入独立的第 02 章。
+开始使用；数值、条件、循环、数组、文本和函数随后逐步补全，最后通过进制表示完成
+第一次综合练习，再系统归纳输入输出。指针、类、编译过程等不阻塞主线的机制集中
+放入独立的第 02 章。
 
-### 单元：第一个竞赛程序
+### 单元：第一个程序
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0101 | Hello World! | C++ | [learning-path/cpp/hello-world.md](learning-path/cpp/hello-world.md) |
 | 0158 | A+B Problem | C++ | [learning-path/cpp/a-plus-b-problem.md](learning-path/cpp/a-plus-b-problem.md) |
 
-### 单元：数值、变量与算术
+### 单元：整数与浮点数
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0102 | 整数类型 | C++ | [cpp/integer-types.md](cpp/integer-types.md) |
 | 0103 | 浮点类型 | C++ | [cpp/floating-point-types.md](cpp/floating-point-types.md) |
-| 0106 | 变量 | C++ | [cpp/variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
-| 0128 | 常量 | C++ | [cpp/const.md](cpp/const.md) |
-| 0161 | 字面量 | C++ | [cpp/literals.md](cpp/literals.md) |
 | 0107 | 算术运算符 | C++ | [cpp/arithmetic-operators.md](cpp/arithmetic-operators.md) |
 | 0165 | 复合赋值运算符 | C++ | [cpp/compound-assignment-operators.md](cpp/compound-assignment-operators.md) |
 | 0110 | 类型转换 | C++ | [cpp/type-conversions.md](cpp/type-conversions.md) |
-| *0179 | constexpr | C++ | [cpp/constexpr.md](cpp/constexpr.md) |
+| 0194 | 数学函数 | C++ | `cpp/cmath-functions.md` |
 
-### 单元：进制与位运算
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0133 | 位运算符 | C++ | [cpp/bitwise-operators.md](cpp/bitwise-operators.md) |
-
-整数文章先介绍进制字面量；位、字节、补码和平台位宽由整数的附属扩展继续解释，
-IEEE 754 则跟随浮点类型。它们不占用核心上一篇、下一篇，但共同组成这个单元。
-
-### 单元：布尔、比较与逻辑
+### 单元：条件语句
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0105 | 布尔类型 | C++ | [cpp/boolean-type.md](cpp/boolean-type.md) |
 | 0108 | 比较运算符 | C++ | [cpp/comparison-operators.md](cpp/comparison-operators.md) |
 | 0109 | 逻辑运算符 | C++ | [cpp/logical-operators.md](cpp/logical-operators.md) |
+| 0111 | if 与 else | C++ | [cpp/conditional-branches.md](cpp/conditional-branches.md) |
+| 0166 | switch | C++ | [cpp/switch.md](cpp/switch.md) |
 
-### 单元：控制流
+### 单元：循环语句
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0111 | if 与 else | C++ | [cpp/conditional-branches.md](cpp/conditional-branches.md) |
-| 0166 | switch | C++ | [cpp/switch.md](cpp/switch.md) |
 | 0167 | while | C++ | [cpp/while.md](cpp/while.md) |
 | 0112 | for | C++ | [cpp/loops.md](cpp/loops.md) |
 | 0164 | 自增与自减运算符 | C++ | [cpp/increment-decrement-operators.md](cpp/increment-decrement-operators.md) |
 | 0168 | do while | C++ | [cpp/do-while.md](cpp/do-while.md) |
+
+### 单元：数组
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0118 | 一维数组 | C++ | [cpp/one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
+| 0119 | 多维数组 | C++ | [cpp/multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
+
+### 单元：字符串
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0104 | 字符类型 | C++ | [cpp/character-types.md](cpp/character-types.md) |
+| 0195 | 字符分类与转换 | C++ | `cpp/character-classification-and-conversion.md` |
+| 0120 | C 字符串 | C++ | [cpp/c-strings.md](cpp/c-strings.md) |
+| 0137 | string | C++ | [cpp/string.md](cpp/string.md) |
+| 0173 | 整行输入 | C++ | [cpp/whole-line-input.md](cpp/whole-line-input.md) |
 
 ### 单元：函数
 
@@ -79,21 +85,22 @@ IEEE 754 则跟随浮点类型。它们不占用核心上一篇、下一篇，�
 | 0131 | 调用栈 | C++ | [cpp/function-call-stack.md](cpp/function-call-stack.md) |
 | 0132 | 递归 | C++ | [cpp/recursion.md](cpp/recursion.md) |
 
-### 单元：数组
+### 单元：进制表示
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0118 | 一维数组 | C++ | [cpp/one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
-| 0119 | 多维数组 | C++ | [cpp/multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
+| 0192 | 位、字节与存储单位 | C++ | [cpp/bits-bytes-and-storage-units.md](cpp/bits-bytes-and-storage-units.md) |
+| 0196 | 进制表示 | C++ | `cpp/base-notation.md` |
+| 0193 | 整数的二进制表示 | C++ | [cpp/signed-integer-representations.md](cpp/signed-integer-representations.md) |
+| 0197 | 进制转换 | C++ | `cpp/base-conversion.md` |
 
-### 单元：字符、字符串与输入输出
+IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型的附属扩展，不占用核心
+上一篇、下一篇；本单元只把理解进制和完成转换程序所需的主干排入学习路线。
+
+### 单元：输入输出
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0104 | 字符类型 | C++ | [cpp/character-types.md](cpp/character-types.md) |
-| 0120 | C 字符串 | C++ | [cpp/c-strings.md](cpp/c-strings.md) |
-| 0137 | string | C++ | [cpp/string.md](cpp/string.md) |
-| 0173 | 整行输入 | C++ | [cpp/whole-line-input.md](cpp/whole-line-input.md) |
 | 0115 | 标准输入 | C++ | [cpp/standard-input.md](cpp/standard-input.md) |
 | 0116 | 标准输出 | C++ | [cpp/standard-output.md](cpp/standard-output.md) |
 | 0172 | 输出格式控制 | C++ | [cpp/output-formatting.md](cpp/output-formatting.md) |
@@ -105,73 +112,73 @@ IEEE 754 则跟随浮点类型。它们不占用核心上一篇、下一篇，�
 都是可跳过扩展：核心学习导航会从第 01 章直接进入第 03 章；需要指针、结构体、
 编译过程或类时，也可以按下面的单元完整学习。
 
-### 单元：名称与作用域
+### 单元：位运算
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
+| *0133 | 位运算符 | C++ | [cpp/bitwise-operators.md](cpp/bitwise-operators.md) |
+| *0198 | 移位运算符 | C++ | `cpp/shift-operators.md` |
+
+### 单元：指针与引用
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| *0125 | 指针 | C++ | [cpp/pointers.md](cpp/pointers.md) |
+| *0126 | 引用 | C++ | [cpp/references.md](cpp/references.md) |
+| *0127 | 参数传递 | C++ | [cpp/parameter-passing.md](cpp/parameter-passing.md) |
+
+### 单元：结构体
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| *0121 | 结构体 | C++ | [cpp/struct.md](cpp/struct.md) |
+| *0175 | 结构体指针与箭头运算符 | C++ | [cpp/struct-pointers-and-arrow.md](cpp/struct-pointers-and-arrow.md) |
+
+### 单元：类
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| *0180 | 类 | C++ | [cpp/class.md](cpp/class.md) |
+| *0181 | 类的成员 | C++ | [cpp/class-members.md](cpp/class-members.md) |
+| *0199 | 封装 | C++ | `cpp/encapsulation.md` |
+| *0182 | 访问权限 | C++ | [cpp/class-access-control.md](cpp/class-access-control.md) |
+| *0183 | 构造函数 | C++ | [cpp/constructors.md](cpp/constructors.md) |
+| *0184 | 析构函数 | C++ | [cpp/destructors.md](cpp/destructors.md) |
+| *0185 | 函数重载 | C++ | [cpp/overloading.md](cpp/overloading.md) |
+| *0191 | 运算符重载 | C++ | [cpp/operator-overloading.md](cpp/operator-overloading.md) |
+| *0186 | 继承 | C++ | [cpp/inheritance.md](cpp/inheritance.md) |
+| *0187 | 多态 | C++ | [cpp/polymorphism.md](cpp/polymorphism.md) |
+
+### 单元：编译
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| *0106 | 变量 | C++ | [cpp/variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
+| *0128 | 常量 | C++ | [cpp/const.md](cpp/const.md) |
 | *0171 | 标识符 | C++ | [cpp/keywords-and-identifiers.md](cpp/keywords-and-identifiers.md) |
 | *0190 | 关键字 | C++ | [cpp/keywords.md](cpp/keywords.md) |
 | *0114 | 作用域 | C++ | [cpp/scope.md](cpp/scope.md) |
 | *0153 | 命名空间与 std | C++ | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
 | *0160 | typedef 类型别名 | C++ | [cpp/type-aliases.md](cpp/type-aliases.md) |
 | *0188 | using 类型别名 | C++ | [cpp/using-type-aliases.md](cpp/using-type-aliases.md) |
-
-### 单元：地址、指针与引用
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| *0124 | 字节寻址 | C++ | [cpp/byte-addressing.md](cpp/byte-addressing.md) |
-| *0125 | 指针 | C++ | [cpp/pointers.md](cpp/pointers.md) |
-| *0126 | 引用 | C++ | [cpp/references.md](cpp/references.md) |
-| *0174 | 指针与引用中的 const | C++ | [cpp/const-pointers-and-references.md](cpp/const-pointers-and-references.md) |
-| *0127 | 参数传递 | C++ | [cpp/parameter-passing.md](cpp/parameter-passing.md) |
-
-### 单元：结构体、联合体与枚举
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| *0121 | 结构体 | C++ | [cpp/struct.md](cpp/struct.md) |
-| *0175 | 结构体指针与箭头运算符 | C++ | [cpp/struct-pointers-and-arrow.md](cpp/struct-pointers-and-arrow.md) |
-| *0122 | 联合体 | C++ | [cpp/union.md](cpp/union.md) |
-| *0123 | 枚举 | C++ | [cpp/enum.md](cpp/enum.md) |
-
-### 单元：内存与存储期
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| *0130 | 竞赛程序的常见内存分区 | C++ | [cpp/competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
-| *0129 | static 局部变量 | C++ | [cpp/static-local-variables.md](cpp/static-local-variables.md) |
-| *0157 | 对象生命周期 | C++ | [cpp/object-lifetime.md](cpp/object-lifetime.md) |
-| *0155 | volatile | C++ | [cpp/volatile.md](cpp/volatile.md) |
-
-本章仍只从 C++ 竞赛代码的需要解释这些机制，不代替计算机组成、体系结构、操作
-系统或编译原理课程。
-
-### 单元：从源码到程序
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
 | *0176 | 预处理 | C++ | [cpp/preprocessing.md](cpp/preprocessing.md) |
 | *0152 | 预处理：#include | C++ | [cpp/include.md](cpp/include.md) |
 | *0159 | 预处理：#define | C++ | [cpp/define-macros.md](cpp/define-macros.md) |
 | *0189 | 条件编译 | C++ | [cpp/conditional-compilation.md](cpp/conditional-compilation.md) |
 | *0177 | 编译 | C++ | [cpp/compilation.md](cpp/compilation.md) |
 | *0178 | 链接 | C++ | [cpp/linking.md](cpp/linking.md) |
-| *0154 | inline | C++ | [cpp/inline.md](cpp/inline.md) |
 
-### 单元：类与对象
+### 单元：内存
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| *0180 | 类与对象 | C++ | [cpp/class.md](cpp/class.md) |
-| *0181 | 类的成员 | C++ | [cpp/class-members.md](cpp/class-members.md) |
-| *0182 | 访问权限 | C++ | [cpp/class-access-control.md](cpp/class-access-control.md) |
-| *0183 | 构造函数 | C++ | [cpp/constructors.md](cpp/constructors.md) |
-| *0184 | 析构函数 | C++ | [cpp/destructors.md](cpp/destructors.md) |
-| *0185 | 函数重载 | C++ | [cpp/overloading.md](cpp/overloading.md) |
-| *0186 | 继承 | C++ | [cpp/inheritance.md](cpp/inheritance.md) |
-| *0187 | 多态 | C++ | [cpp/polymorphism.md](cpp/polymorphism.md) |
-| *0191 | 运算符重载 | C++ | [cpp/operator-overloading.md](cpp/operator-overloading.md) |
+| *0130 | 竞赛程序的常见内存分区 | C++ | [cpp/competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
+| *0129 | static 局部变量 | C++ | [cpp/static-local-variables.md](cpp/static-local-variables.md) |
+| *0157 | 对象生命周期 | C++ | [cpp/object-lifetime.md](cpp/object-lifetime.md) |
+
+本章仍只从 C++ 竞赛代码的需要解释这些机制，不代替计算机组成、体系结构、操作
+系统或编译原理课程。联合体、枚举、字面量、`inline` 和 `volatile` 等独立扩展仍
+由模块目录和文末索引收录，不为了目录齐全强行塞进六个学习单元。
 
 ## 03 算法入门
 
@@ -679,6 +686,7 @@ IEEE 754 则跟随浮点类型。它们不占用核心上一篇、下一篇，�
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
+| *0106 | 变量 | [cpp/variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
 | *0114 | 作用域 | [cpp/scope.md](cpp/scope.md) |
 | *0121 | 结构体 | [cpp/struct.md](cpp/struct.md) |
 | *0122 | 联合体 | [cpp/union.md](cpp/union.md) |
@@ -687,8 +695,10 @@ IEEE 754 则跟随浮点类型。它们不占用核心上一篇、下一篇，�
 | *0125 | 指针 | [cpp/pointers.md](cpp/pointers.md) |
 | *0126 | 引用 | [cpp/references.md](cpp/references.md) |
 | *0127 | 参数传递 | [cpp/parameter-passing.md](cpp/parameter-passing.md) |
+| *0128 | 常量 | [cpp/const.md](cpp/const.md) |
 | *0129 | static 局部变量 | [cpp/static-local-variables.md](cpp/static-local-variables.md) |
 | *0130 | 竞赛程序的常见内存分区 | [cpp/competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
+| *0133 | 位运算符 | [cpp/bitwise-operators.md](cpp/bitwise-operators.md) |
 | *0136 | array | [cpp/array.md](cpp/array.md) |
 | *0152 | 预处理：#include | [cpp/include.md](cpp/include.md) |
 | *0153 | 命名空间与 std | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
@@ -698,6 +708,7 @@ IEEE 754 则跟随浮点类型。它们不占用核心上一篇、下一篇，�
 | *0157 | 对象生命周期 | [cpp/object-lifetime.md](cpp/object-lifetime.md) |
 | *0159 | 预处理：#define | [cpp/define-macros.md](cpp/define-macros.md) |
 | *0160 | typedef 类型别名 | [cpp/type-aliases.md](cpp/type-aliases.md) |
+| *0161 | 字面量 | [cpp/literals.md](cpp/literals.md) |
 | *0171 | 标识符 | [cpp/keywords-and-identifiers.md](cpp/keywords-and-identifiers.md) |
 | *0174 | 指针与引用中的 const | [cpp/const-pointers-and-references.md](cpp/const-pointers-and-references.md) |
 | *0175 | 结构体指针与箭头运算符 | [cpp/struct-pointers-and-arrow.md](cpp/struct-pointers-and-arrow.md) |
@@ -705,7 +716,7 @@ IEEE 754 则跟随浮点类型。它们不占用核心上一篇、下一篇，�
 | *0177 | 编译 | [cpp/compilation.md](cpp/compilation.md) |
 | *0178 | 链接 | [cpp/linking.md](cpp/linking.md) |
 | *0179 | constexpr | [cpp/constexpr.md](cpp/constexpr.md) |
-| *0180 | 类与对象 | [cpp/class.md](cpp/class.md) |
+| *0180 | 类 | [cpp/class.md](cpp/class.md) |
 | *0181 | 类的成员 | [cpp/class-members.md](cpp/class-members.md) |
 | *0182 | 访问权限 | [cpp/class-access-control.md](cpp/class-access-control.md) |
 | *0183 | 构造函数 | [cpp/constructors.md](cpp/constructors.md) |
@@ -717,6 +728,8 @@ IEEE 754 则跟随浮点类型。它们不占用核心上一篇、下一篇，�
 | *0189 | 条件编译 | [cpp/conditional-compilation.md](cpp/conditional-compilation.md) |
 | *0190 | 关键字 | [cpp/keywords.md](cpp/keywords.md) |
 | *0191 | 运算符重载 | [cpp/operator-overloading.md](cpp/operator-overloading.md) |
+| *0198 | 移位运算符 | `cpp/shift-operators.md` |
+| *0199 | 封装 | `cpp/encapsulation.md` |
 
 ### 02 算法基础
 

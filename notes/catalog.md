@@ -26,8 +26,6 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 0102 | 整数类型 | 定稿 | [integer-types.md](cpp/integer-types.md) |
-| *0102e1 | 位、字节与存储单位 | 定稿 | [bits-bytes-and-storage-units.md](cpp/bits-bytes-and-storage-units.md) |
-| *0102e2 | 整数的二进制表示 | 定稿 | [signed-integer-representations.md](cpp/signed-integer-representations.md) |
 | *0102e3 | 整数类型的位宽与平台差异 | 定稿 | [integer-type-widths.md](cpp/integer-type-widths.md) |
 | 0103 | 浮点类型 | 定稿 | [floating-point-types.md](cpp/floating-point-types.md) |
 | *0103e1 | IEEE 754 浮点数表示 | 定稿 | [ieee-754.md](cpp/ieee-754.md) |
@@ -35,13 +33,24 @@
 | 0105 | 布尔类型 | 待审阅 | [boolean-type.md](cpp/boolean-type.md) |
 | 0110 | 类型转换 | 待审阅 | [type-conversions.md](cpp/type-conversions.md) |
 
+### 专题：进制与机器表示
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 0192 | 位、字节与存储单位 | 定稿 | [bits-bytes-and-storage-units.md](cpp/bits-bytes-and-storage-units.md) |
+| 0196 | 进制表示 | 计划 | `cpp/base-notation.md` |
+| 0193 | 整数的二进制表示 | 定稿 | [signed-integer-representations.md](cpp/signed-integer-representations.md) |
+| *0102e3 | 整数类型的位宽与平台差异 | 定稿 | [integer-type-widths.md](cpp/integer-type-widths.md) |
+| *0103e1 | IEEE 754 浮点数表示 | 定稿 | [ieee-754.md](cpp/ieee-754.md) |
+| 0197 | 进制转换 | 计划 | `cpp/base-conversion.md` |
+
 ### 专题：变量、常量与字面量
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 0106 | 变量 | 待审阅 | [variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
-| 0128 | 常量 | 待审阅 | [const.md](cpp/const.md) |
-| 0161 | 字面量 | 待审阅 | [literals.md](cpp/literals.md) |
+| *0106 | 变量 | 待审阅 | [variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
+| *0128 | 常量 | 待审阅 | [const.md](cpp/const.md) |
+| *0161 | 字面量 | 待审阅 | [literals.md](cpp/literals.md) |
 | *0179 | constexpr | 待审阅 | [constexpr.md](cpp/constexpr.md) |
 
 ### 专题：运算符
@@ -53,8 +62,18 @@
 | 0109 | 逻辑运算符 | 待审阅 | [logical-operators.md](cpp/logical-operators.md) |
 | 0164 | 自增与自减运算符 | 待审阅 | [increment-decrement-operators.md](cpp/increment-decrement-operators.md) |
 | 0165 | 复合赋值运算符 | 待审阅 | [compound-assignment-operators.md](cpp/compound-assignment-operators.md) |
-| 0133 | 位运算符 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
+| *0133 | 位运算符 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
+| *0198 | 移位运算符 | 计划 | `cpp/shift-operators.md` |
 | *0191 | 运算符重载 | 待审阅 | [operator-overloading.md](cpp/operator-overloading.md) |
+
+### 专题：数值计算
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 0107 | 算术运算符 | 待审阅 | [arithmetic-operators.md](cpp/arithmetic-operators.md) |
+| 0165 | 复合赋值运算符 | 待审阅 | [compound-assignment-operators.md](cpp/compound-assignment-operators.md) |
+| 0110 | 类型转换 | 待审阅 | [type-conversions.md](cpp/type-conversions.md) |
+| 0194 | 数学函数 | 计划 | `cpp/cmath-functions.md` |
 
 ### 专题：控制流
 
@@ -92,6 +111,8 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
+| 0104 | 字符类型 | 待审阅 | [character-types.md](cpp/character-types.md) |
+| 0195 | 字符分类与转换 | 计划 | `cpp/character-classification-and-conversion.md` |
 | 0120 | C 字符串 | 待审阅 | [c-strings.md](cpp/c-strings.md) |
 | 0137 | string | 待审阅 | [string.md](cpp/string.md) |
 | 0173 | 整行输入 | 待审阅 | [whole-line-input.md](cpp/whole-line-input.md) |
@@ -197,12 +218,13 @@
 | *0177 | 编译 | 待审阅 | [compilation.md](cpp/compilation.md) |
 | *0178 | 链接 | 待审阅 | [linking.md](cpp/linking.md) |
 
-### 专题：类与对象
+### 专题：类
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| *0180 | 类与对象 | 待审阅 | [class.md](cpp/class.md) |
+| *0180 | 类 | 待审阅 | [class.md](cpp/class.md) |
 | *0181 | 类的成员 | 待审阅 | [class-members.md](cpp/class-members.md) |
+| *0199 | 封装 | 计划 | `cpp/encapsulation.md` |
 | *0182 | 访问权限 | 待审阅 | [class-access-control.md](cpp/class-access-control.md) |
 | *0183 | 构造函数 | 待审阅 | [constructors.md](cpp/constructors.md) |
 | *0184 | 析构函数 | 待审阅 | [destructors.md](cpp/destructors.md) |
