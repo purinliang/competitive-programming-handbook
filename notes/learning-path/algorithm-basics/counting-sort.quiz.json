@@ -1,0 +1,74 @@
+[
+  {
+    "id": "counting-main-idea",
+    "prompt": "计数排序怎样得到元素之间的顺序？",
+    "options": [
+      { "id": "a", "text": "反复比较相邻元素" },
+      { "id": "b", "text": "随机交换元素" },
+      { "id": "c", "text": "按整数值统计次数，再从小到大恢复" },
+      { "id": "d", "text": "把数组递归分成两半" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "整数值决定计数位置，遍历计数位置的顺序就是数值顺序。"
+  },
+  {
+    "id": "negative-offset",
+    "prompt": "本篇把整数 `value` 映射到哪个计数下标？",
+    "options": [
+      { "id": "a", "text": "`value - min_value + 1`" },
+      { "id": "b", "text": "`value + max_value`" },
+      { "id": "c", "text": "`min_value - value`" },
+      { "id": "d", "text": "始终映射到 0" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "减去最小值完成非负平移，再加 1 保留 0 号位置。"
+  },
+  {
+    "id": "counting-complexity",
+    "prompt": "令 `k = max_value - min_value + 1`，计数排序的时间和额外空间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "O(n log n) 与 O(1)" },
+      { "id": "b", "text": "O(n + k) 与 O(k)" },
+      { "id": "c", "text": "O(k²) 与 O(n²)" },
+      { "id": "d", "text": "一律 O(n) 与 O(1)" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "算法扫描 n 个输入和 k 个可能值，并为整个值域分配计数数组。"
+  },
+  {
+    "id": "sparse-range",
+    "prompt": "只有 `-1000000000` 和 `1000000000` 两个元素时，为什么计数排序不合适？",
+    "options": [
+      { "id": "a", "text": "计数排序不能处理负数" },
+      { "id": "b", "text": "两个元素不能排序" },
+      { "id": "c", "text": "相等元素太多" },
+      { "id": "d", "text": "连续值域约有二十亿个位置" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "计数数组依赖整个 min 到 max 的连续范围，而不只依赖实际出现的值数。"
+  },
+  {
+    "id": "counting-vs-bucket",
+    "prompt": "计数排序与桶排序的关键区别是什么？",
+    "options": [
+      { "id": "a", "text": "计数位置对应具体整数；桶可对应一段范围并需处理桶内顺序" },
+      { "id": "b", "text": "两者是完全相同的标准术语" },
+      { "id": "c", "text": "桶排序只能处理一个元素" },
+      { "id": "d", "text": "计数排序必须使用递归" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "本书不沿用把计数排序口语化称为桶排序的混用方式。"
+  },
+  {
+    "id": "counting-records",
+    "prompt": "为什么本篇频次重建不能直接稳定排序带编号的记录？",
+    "options": [
+      { "id": "a", "text": "因为编号一定是负数" },
+      { "id": "b", "text": "频次只保留键出现次数，丢失记录身份和原顺序" },
+      { "id": "c", "text": "因为稳定排序不能有重复键" },
+      { "id": "d", "text": "因为 vector 不保存整数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "稳定记录排序还需累计位置并把完整记录放进额外输出数组。"
+  }
+]
