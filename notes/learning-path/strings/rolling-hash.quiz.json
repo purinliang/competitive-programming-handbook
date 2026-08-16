@@ -1,0 +1,74 @@
+[
+  {
+    "id": "positive-character-code",
+    "prompt": "为什么不应把小写字母 `a` 编码成 0？",
+    "options": [
+      { "id": "a", "text": "因为 0 不能存进整数" },
+      { "id": "b", "text": "因为前导的 0 可能不改变多项式哈希" },
+      { "id": "c", "text": "因为字符只能编码成负数" },
+      { "id": "d", "text": "因为模运算不允许出现 0" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "最高位字符若为 0，在前面增加这种字符可能不改变哈希值。"
+  },
+  {
+    "id": "prefix-transition",
+    "prompt": "加入新字符时，为什么要先把旧前缀哈希乘以 `BASE`？",
+    "options": [
+      { "id": "a", "text": "把已有字符整体左移一位，为新字符腾出最低位" },
+      { "id": "b", "text": "删除前缀的第一个字符" },
+      { "id": "c", "text": "把字符串倒序" },
+      { "id": "d", "text": "保证哈希值一定不碰撞" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "多项式追加一位时，原有各项的幂次都增加 1。"
+  },
+  {
+    "id": "substring-alignment",
+    "prompt": "计算 `hash(l, r)` 时，为什么要让 `prefix[l - 1]` 乘以 `power[r - l + 1]`？",
+    "options": [
+      { "id": "a", "text": "把查询区间扩大一倍" },
+      { "id": "b", "text": "改变字符串的字符编码" },
+      { "id": "c", "text": "把要删除的左前缀对齐到 `prefix[r]` 中的位数" },
+      { "id": "d", "text": "避免预处理幂数组" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "左前缀在 prefix[r] 中已经又向高位移动了子串长度那么多位。"
+  },
+  {
+    "id": "collision-meaning",
+    "prompt": "两个等长子串的单模哈希值相同，能够得到什么结论？",
+    "options": [
+      { "id": "a", "text": "两个子串一定不同" },
+      { "id": "b", "text": "两个子串一定相同" },
+      { "id": "c", "text": "模数一定不是质数" },
+      { "id": "d", "text": "两个子串极大概率相同，但仍可能碰撞" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "有限哈希值不能与无限多字符串建立单射，碰撞无法彻底消除。"
+  },
+  {
+    "id": "different-hashes",
+    "prompt": "两个等长子串的哈希值不同，说明什么？",
+    "options": [
+      { "id": "a", "text": "两个子串一定不同" },
+      { "id": "b", "text": "两个子串仍可能完全相同" },
+      { "id": "c", "text": "必须再逐字符比较才能排除不同" },
+      { "id": "d", "text": "只能说明它们长度不同" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "同一字符串在同一套哈希规则下必然得到相同结果，因此哈希不同可以确定原串不同。"
+  },
+  {
+    "id": "query-complexity",
+    "prompt": "完成 $O(n)$ 前缀哈希预处理后，一次子串哈希查询的时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "$O(n)$" },
+      { "id": "b", "text": "$O(\\log n)$" },
+      { "id": "c", "text": "$O(1)$" },
+      { "id": "d", "text": "$O(n^2)$" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "查询只访问两个前缀值、一个幂并进行常数次整数运算。"
+  }
+]
