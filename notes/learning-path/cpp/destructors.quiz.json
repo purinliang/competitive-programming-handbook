@@ -3,36 +3,36 @@
     "id": "destructor-form",
     "prompt": "类 `Trace` 的析构函数应怎样声明？",
     "options": [
-      { "id": "a", "text": "`~Trace()`，没有返回类型和参数" },
-      { "id": "b", "text": "`void Trace()`" },
+      { "id": "a", "text": "`void Trace()`" },
+      { "id": "b", "text": "`~Trace()`，没有返回类型和参数" },
       { "id": "c", "text": "`delete Trace(int)`" },
       { "id": "d", "text": "`Trace::~Trace(int)`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "析构函数由波浪号加类名组成，一个类只有一个，不能按参数重载。"
   },
   {
     "id": "automatic-destruction",
     "prompt": "普通局部对象通常什么时候自动调用析构函数？",
     "options": [
-      { "id": "a", "text": "执行离开它所在的作用域时" },
+      { "id": "a", "text": "每次循环开始时" },
       { "id": "b", "text": "每次读取成员以前" },
-      { "id": "c", "text": "每次循环开始时" },
+      { "id": "c", "text": "执行离开它所在的作用域时" },
       { "id": "d", "text": "只有手动调用时" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "正常到达末尾、提前返回或其他离开作用域的控制流都会触发已构造自动对象的销毁。"
   },
   {
     "id": "reverse-order",
     "prompt": "同一作用域先构造 `first`、后构造 `second`，通常怎样销毁？",
     "options": [
-      { "id": "a", "text": "先 `second`，后 `first`" },
+      { "id": "a", "text": "顺序每次随机" },
       { "id": "b", "text": "先 `first`，后 `second`" },
       { "id": "c", "text": "只销毁 `first`" },
-      { "id": "d", "text": "顺序每次随机" }
+      { "id": "d", "text": "先 `second`，后 `first`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "自动对象以构造完成的相反顺序销毁，使后取得的资源先归还。"
   },
   {
@@ -51,36 +51,36 @@
     "id": "delete-effects",
     "prompt": "对 `new Trace` 得到的指针执行 `delete` 会做什么？",
     "options": [
-      { "id": "a", "text": "调用目标析构函数，然后释放对应存储" },
-      { "id": "b", "text": "只把指针变量改名" },
+      { "id": "a", "text": "只把指针变量改名" },
+      { "id": "b", "text": "调用目标析构函数，然后释放对应存储" },
       { "id": "c", "text": "重新调用构造函数" },
       { "id": "d", "text": "自动删除整个类定义" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "数组形式需要匹配 `delete[]`；竞赛代码通常优先让容器自动管理资源。"
   },
   {
     "id": "raii",
     "prompt": "RAII 为什么能让函数提前返回时仍然释放局部资源？",
     "options": [
-      { "id": "a", "text": "资源归还绑定在对象离开作用域时执行的析构中" },
+      { "id": "a", "text": "它要求所有资源永久存在" },
       { "id": "b", "text": "提前返回会跳过所有对象生命周期规则" },
-      { "id": "c", "text": "它要求所有资源永久存在" },
+      { "id": "c", "text": "资源归还绑定在对象离开作用域时执行的析构中" },
       { "id": "d", "text": "它把资源改成预处理指令" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "只要资源由自动对象拥有，各个退出路径都会经过对象的正常销毁过程。"
   },
   {
     "id": "virtual-destructor-context",
     "prompt": "什么时候尤其需要把基类析构函数声明为 `virtual`？",
     "options": [
-      { "id": "a", "text": "类型会通过基类指针多态删除派生对象时" },
+      { "id": "a", "text": "只要没有继承就需要" },
       { "id": "b", "text": "类中只有一个整数时" },
       { "id": "c", "text": "所有竞赛结构无条件都需要" },
-      { "id": "d", "text": "只要没有继承就需要" }
+      { "id": "d", "text": "类型会通过基类指针多态删除派生对象时" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "虚析构让删除过程按实际对象类型完成；它不是所有类的普遍要求。"
   }
 ]

@@ -15,36 +15,36 @@
     "id": "non-virtual-call",
     "prompt": "基类 `sound` 不是虚函数时，通过 `Animal*` 指向 `Dog` 并调用它，会选择哪一版？",
     "options": [
-      { "id": "a", "text": "按静态类型选择 `Animal::sound`" },
-      { "id": "b", "text": "一定选择 `Dog::sound`" },
+      { "id": "a", "text": "一定选择 `Dog::sound`" },
+      { "id": "b", "text": "按静态类型选择 `Animal::sound`" },
       { "id": "c", "text": "同时调用两个版本" },
       { "id": "d", "text": "自动把指针改成整数" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "同名并不会自动形成运行时多态；基类接口必须把函数声明为 virtual。"
   },
   {
     "id": "override-check",
     "prompt": "派生类函数末尾写 `override` 有什么价值？",
     "options": [
-      { "id": "a", "text": "要求编译器确认它确实覆盖基类虚函数" },
+      { "id": "a", "text": "允许改变所有参数而仍然覆盖" },
       { "id": "b", "text": "把函数自动变成构造函数" },
-      { "id": "c", "text": "允许改变所有参数而仍然覆盖" },
+      { "id": "c", "text": "要求编译器确认它确实覆盖基类虚函数" },
       { "id": "d", "text": "让类不再能建立对象" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "参数、const 等签名细节不匹配时会立即报错，避免悄悄声明另一个函数。"
   },
   {
     "id": "reference-polymorphism",
     "prompt": "为什么多态接口通常接收 `const Animal&` 而不是按值接收 `Animal`？",
     "options": [
-      { "id": "a", "text": "引用保留原派生对象，按值复制会发生对象切片" },
+      { "id": "a", "text": "引用会把运行时间变成零" },
       { "id": "b", "text": "引用会删除所有虚函数" },
       { "id": "c", "text": "按值参数不能调用任何函数" },
-      { "id": "d", "text": "引用会把运行时间变成零" }
+      { "id": "d", "text": "引用保留原派生对象，按值复制会发生对象切片" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "切片后的独立基类对象不再带有派生部分，无法表现原派生类型行为。"
   },
   {
@@ -63,24 +63,24 @@
     "id": "virtual-destructor",
     "prompt": "通过基类指针删除实际派生对象时，基类为什么需要虚析构函数？",
     "options": [
-      { "id": "a", "text": "让销毁按实际类型先处理派生部分，再处理基类部分" },
-      { "id": "b", "text": "让所有对象永久不销毁" },
+      { "id": "a", "text": "让所有对象永久不销毁" },
+      { "id": "b", "text": "让销毁按实际类型先处理派生部分，再处理基类部分" },
       { "id": "c", "text": "让基类变成命名空间" },
       { "id": "d", "text": "让构造函数接受更多参数" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "非虚基类析构下执行这种 delete 属于未定义行为。"
   },
   {
     "id": "vtable-model",
     "prompt": "关于虚函数表和虚表指针，哪项准确？",
     "options": [
-      { "id": "a", "text": "它们是主流实现模型，不是 C++ 标准强制的唯一布局" },
+      { "id": "a", "text": "所有没有虚函数的整数也必须有虚表" },
       { "id": "b", "text": "标准规定每个对象必须把虚表放在第一个字节" },
-      { "id": "c", "text": "所有没有虚函数的整数也必须有虚表" },
+      { "id": "c", "text": "它们是主流实现模型，不是 C++ 标准强制的唯一布局" },
       { "id": "d", "text": "虚表会消除一切运行时开销" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "标准约束虚调用的行为；具体表结构、隐藏指针和对象大小由实现决定。"
   }
 ]

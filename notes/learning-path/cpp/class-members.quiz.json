@@ -3,36 +3,36 @@
     "id": "member-kinds",
     "prompt": "数据成员与成员函数分别负责什么？",
     "options": [
-      { "id": "a", "text": "保存对象状态与提供相关操作" },
-      { "id": "b", "text": "包含头文件与声明命名空间" },
+      { "id": "a", "text": "包含头文件与声明命名空间" },
+      { "id": "b", "text": "保存对象状态与提供相关操作" },
       { "id": "c", "text": "分配点编号与边编号" },
       { "id": "d", "text": "二者都只能保存整数" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "日常也常把它们称为成员变量和方法；准确术语是数据成员与成员函数。"
   },
   {
     "id": "this-pointer",
     "prompt": "非静态成员函数中的 `this` 表示什么？",
     "options": [
-      { "id": "a", "text": "指向当前调用对象的指针" },
+      { "id": "a", "text": "一个共享的全局整数" },
       { "id": "b", "text": "指向类定义文本的指针" },
-      { "id": "c", "text": "一个共享的全局整数" },
+      { "id": "c", "text": "指向当前调用对象的指针" },
       { "id": "d", "text": "函数的返回类型" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "对象调用非静态成员函数时，`this` 让函数能够定位这个对象自己的成员。"
   },
   {
     "id": "const-member-function",
     "prompt": "`int get() const` 末尾的 `const` 表示什么？",
     "options": [
-      { "id": "a", "text": "函数不会通过当前对象修改普通数据成员" },
+      { "id": "a", "text": "整个类不能再建立对象" },
       { "id": "b", "text": "返回值一定等于零" },
       { "id": "c", "text": "函数只能调用一次" },
-      { "id": "d", "text": "整个类不能再建立对象" }
+      { "id": "d", "text": "函数不会通过当前对象修改普通数据成员" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "这种成员函数可以对常量对象调用；该 `const` 修饰的是对当前对象的访问。"
   },
   {
@@ -51,24 +51,24 @@
     "id": "static-member-function",
     "prompt": "静态成员函数为什么不能直接访问非静态数据成员？",
     "options": [
-      { "id": "a", "text": "调用时没有当前对象，也没有 `this` 指针" },
-      { "id": "b", "text": "静态函数不能有函数体" },
+      { "id": "a", "text": "静态函数不能有函数体" },
+      { "id": "b", "text": "调用时没有当前对象，也没有 `this` 指针" },
       { "id": "c", "text": "非静态成员总是私有" },
       { "id": "d", "text": "作用域解析运算符会删除对象" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "没有具体对象就无法决定应访问哪一份普通成员；静态成员本身则由类共享。"
   },
   {
     "id": "const-data-member",
     "prompt": "带 `const` 的成员应怎样分类？",
     "options": [
-      { "id": "a", "text": "它仍是数据成员，只是受到不可普通赋值修改的限制" },
+      { "id": "a", "text": "它自动变成成员函数" },
       { "id": "b", "text": "它不再属于类" },
-      { "id": "c", "text": "它自动变成成员函数" },
+      { "id": "c", "text": "它仍是数据成员，只是受到不可普通赋值修改的限制" },
       { "id": "d", "text": "它一定由所有对象共享" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "是否共享由 `static` 决定；`const` 只限制修改，不能另造一个错误的成员类别。"
   }
 ]

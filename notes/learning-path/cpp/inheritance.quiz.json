@@ -3,12 +3,12 @@
     "id": "base-and-derived",
     "prompt": "`class Contestant : public Person` 中，两个类分别是什么？",
     "options": [
-      { "id": "a", "text": "`Person` 是基类，`Contestant` 是派生类" },
+      { "id": "a", "text": "二者都是预处理宏" },
       { "id": "b", "text": "二者都是命名空间" },
       { "id": "c", "text": "`Contestant` 是基类，`Person` 是成员函数" },
-      { "id": "d", "text": "二者都是预处理宏" }
+      { "id": "d", "text": "`Person` 是基类，`Contestant` 是派生类" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "派生对象包含一个基类子对象，并可在基类接口上增加自己的状态和操作。"
   },
   {
@@ -27,36 +27,36 @@
     "id": "base-private-member",
     "prompt": "派生类能否因为使用 `private` 继承而直接访问基类的 `private` 成员？",
     "options": [
-      { "id": "a", "text": "不能，继承方式不会打开基类私有实现" },
-      { "id": "b", "text": "可以，private 两次会变成 public" },
+      { "id": "a", "text": "可以，private 两次会变成 public" },
+      { "id": "b", "text": "不能，继承方式不会打开基类私有实现" },
       { "id": "c", "text": "只有成员是整数时可以" },
       { "id": "d", "text": "只有多继承时可以" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "派生类应通过基类的公开或保护接口操作私有状态。"
   },
   {
     "id": "default-inheritance",
     "prompt": "省略继承方式时，`struct` 与 `class` 分别默认采用什么继承？",
     "options": [
-      { "id": "a", "text": "`struct` 默认 public，`class` 默认 private" },
+      { "id": "a", "text": "二者都默认 protected" },
       { "id": "b", "text": "二者都默认 public" },
-      { "id": "c", "text": "二者都默认 protected" },
+      { "id": "c", "text": "`struct` 默认 public，`class` 默认 private" },
       { "id": "d", "text": "`struct` 默认 private，`class` 默认 public" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "正文代码仍显式写出继承方式，避免读者依赖默认值判断接口。"
   },
   {
     "id": "construction-order",
     "prompt": "建立派生对象时，基类部分与派生部分按什么顺序构造？",
     "options": [
-      { "id": "a", "text": "先基类子对象，再派生类成员与构造函数体" },
+      { "id": "a", "text": "顺序由输入决定" },
       { "id": "b", "text": "先派生部分，再基类部分" },
       { "id": "c", "text": "只构造派生部分" },
-      { "id": "d", "text": "顺序由输入决定" }
+      { "id": "d", "text": "先基类子对象，再派生类成员与构造函数体" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "销毁顺序相反；需要参数的基类构造函数由派生类初始化列表指定。"
   },
   {
@@ -75,12 +75,12 @@
     "id": "object-slicing",
     "prompt": "`Person person = contestant;` 为什么称为对象切片？",
     "options": [
-      { "id": "a", "text": "新对象只复制 Person 基类部分，派生部分没有进入副本" },
-      { "id": "b", "text": "它把字符串切成字符" },
+      { "id": "a", "text": "它把字符串切成字符" },
+      { "id": "b", "text": "新对象只复制 Person 基类部分，派生部分没有进入副本" },
       { "id": "c", "text": "它创建了基类引用" },
       { "id": "d", "text": "它保留了完整运行时派生身份" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "需要运行时多态时应通过基类指针或引用访问原派生对象。"
   }
 ]

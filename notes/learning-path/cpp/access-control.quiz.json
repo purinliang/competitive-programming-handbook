@@ -3,24 +3,24 @@
     "id": "public-access",
     "prompt": "`public` 成员允许怎样访问？",
     "options": [
-      { "id": "a", "text": "普通类外代码可以通过对象访问" },
+      { "id": "a", "text": "只能由友元类访问" },
       { "id": "b", "text": "只能由预处理器访问" },
-      { "id": "c", "text": "只能由友元类访问" },
+      { "id": "c", "text": "普通类外代码可以通过对象访问" },
       { "id": "d", "text": "任何位置都不能访问" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "公开成员构成类对调用者提供的接口。"
   },
   {
     "id": "private-class-level",
     "prompt": "一个类的成员函数能否访问另一个同类对象的私有成员？",
     "options": [
-      { "id": "a", "text": "可以，访问权限属于类而不是单个对象" },
+      { "id": "a", "text": "只有把成员改成静态时可以" },
       { "id": "b", "text": "不可以，私有成员只能由自己这个对象访问" },
       { "id": "c", "text": "只有对象编号相同时可以" },
-      { "id": "d", "text": "只有把成员改成静态时可以" }
+      { "id": "d", "text": "可以，访问权限属于类而不是单个对象" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "类的成员可以访问该类对象的非公开成员，不限定为当前对象。"
   },
   {
@@ -39,36 +39,36 @@
     "id": "encapsulation-invariant",
     "prompt": "把字段改成 `private` 后，怎样才真正帮助维护分数范围？",
     "options": [
-      { "id": "a", "text": "让公开操作检查并保持 `0..100` 的规则" },
-      { "id": "b", "text": "给每个字段换一个更短的名字" },
+      { "id": "a", "text": "给每个字段换一个更短的名字" },
+      { "id": "b", "text": "让公开操作检查并保持 `0..100` 的规则" },
       { "id": "c", "text": "删除所有成员函数" },
       { "id": "d", "text": "把类改成宏" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "访问限制只是手段；封装的价值在于让公开接口维护清楚的不变量。"
   },
   {
     "id": "friend-function",
     "prompt": "类中声明的友元函数具有什么身份？",
     "options": [
-      { "id": "a", "text": "它仍是类外函数，但获准访问该类的非公开成员" },
+      { "id": "a", "text": "它成为第四种访问权限" },
       { "id": "b", "text": "它自动成为静态数据成员" },
-      { "id": "c", "text": "它成为第四种访问权限" },
+      { "id": "c", "text": "它仍是类外函数，但获准访问该类的非公开成员" },
       { "id": "d", "text": "它只能访问公开成员" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "friend 只授予访问权，不把函数改造成成员函数。"
   },
   {
     "id": "friend-properties",
     "prompt": "关于友元关系，哪项正确？",
     "options": [
-      { "id": "a", "text": "它不会自动双向、传递或被继承" },
+      { "id": "a", "text": "派生类一定继承全部友元关系" },
       { "id": "b", "text": "它总是自动双向" },
       { "id": "c", "text": "友元的所有朋友都会获得权限" },
-      { "id": "d", "text": "派生类一定继承全部友元关系" }
+      { "id": "d", "text": "它不会自动双向、传递或被继承" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "提供非公开成员的类必须明确声明每一个需要获得权限的函数或类。"
   }
 ]

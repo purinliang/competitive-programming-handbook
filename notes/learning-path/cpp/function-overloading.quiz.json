@@ -3,24 +3,24 @@
     "id": "overload-parameters",
     "prompt": "同一作用域的同名函数依靠什么形成重载？",
     "options": [
-      { "id": "a", "text": "不同的参数数量、类型或排列" },
+      { "id": "a", "text": "只修改函数体注释" },
       { "id": "b", "text": "只修改形参名字" },
-      { "id": "c", "text": "只修改函数体注释" },
+      { "id": "c", "text": "不同的参数数量、类型或排列" },
       { "id": "d", "text": "只修改返回类型" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "形参名称不参与函数签名，返回类型也不能单独区分重载。"
   },
   {
     "id": "compile-time-selection",
     "prompt": "普通函数重载通常在什么时候决定调用哪个版本？",
     "options": [
-      { "id": "a", "text": "编译时，根据实参的静态类型和转换关系" },
+      { "id": "a", "text": "只根据函数返回值" },
       { "id": "b", "text": "程序结束以后" },
       { "id": "c", "text": "随机选择" },
-      { "id": "d", "text": "只根据函数返回值" }
+      { "id": "d", "text": "编译时，根据实参的静态类型和转换关系" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "这与通过基类指针或引用在运行时选择虚函数实现的多态不同。"
   },
   {
@@ -39,36 +39,36 @@
     "id": "operator-function",
     "prompt": "`Point operator+(const Point& a, const Point& b)` 是什么？",
     "options": [
-      { "id": "a", "text": "让 Point 参与加法的运算符函数" },
-      { "id": "b", "text": "改变所有整数加法的预处理指令" },
+      { "id": "a", "text": "改变所有整数加法的预处理指令" },
+      { "id": "b", "text": "让 Point 参与加法的运算符函数" },
       { "id": "c", "text": "一个新的 C++ 标点符号" },
       { "id": "d", "text": "只能用于删除对象的析构函数" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "运算符表达式会寻找匹配的 operator 函数；至少一个操作数需为类或枚举类型。"
   },
   {
     "id": "member-binary-operator",
     "prompt": "二元运算符写成成员函数时，左操作数在哪里？",
     "options": [
-      { "id": "a", "text": "它是当前对象，右操作数才是显式参数" },
+      { "id": "a", "text": "它被自动删除" },
       { "id": "b", "text": "它必须是全局变量" },
-      { "id": "c", "text": "它被自动删除" },
+      { "id": "c", "text": "它是当前对象，右操作数才是显式参数" },
       { "id": "d", "text": "左右操作数都不能访问" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "例如成员 `a.operator+(b)` 对应表达式 `a + b`。"
   },
   {
     "id": "strict-comparison",
     "prompt": "为排序定义 `operator<` 时，相等的两个对象应返回什么？",
     "options": [
-      { "id": "a", "text": "`false`" },
+      { "id": "a", "text": "任意随机值" },
       { "id": "b", "text": "`true`" },
       { "id": "c", "text": "对象地址" },
-      { "id": "d", "text": "任意随机值" }
+      { "id": "d", "text": "`false`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "严格顺序不能让相等元素互相位于对方之前，因此不能用 `<=` 语义。"
   },
   {

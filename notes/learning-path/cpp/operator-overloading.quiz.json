@@ -1,0 +1,74 @@
+[
+  {
+    "id": "operator-overloading-purpose",
+    "prompt": "运算符重载解决的是什么问题？",
+    "options": [
+      { "id": "a", "text": "为自定义类型规定已有运算符对应的函数行为" },
+      { "id": "b", "text": "在运行时创造全新的运算符符号" },
+      { "id": "c", "text": "改变所有内置整数的运算规则" },
+      { "id": "d", "text": "让程序跳过编译阶段" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "运算符重载仍然是在声明函数，只是函数使用 `operator` 加已有运算符作为名称。"
+  },
+  {
+    "id": "member-left-operand",
+    "prompt": "二元运算符使用成员函数形式时，左操作数通常由什么表示？",
+    "options": [
+      { "id": "a", "text": "一个隐藏的全局整数" },
+      { "id": "b", "text": "当前对象，右操作数再作为显式参数" },
+      { "id": "c", "text": "函数返回类型" },
+      { "id": "d", "text": "预处理宏" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "成员运算符函数通过当前对象接收左操作数，只把右操作数写进参数列表。"
+  },
+  {
+    "id": "strict-comparison",
+    "prompt": "为排序定义 `operator<` 时，相等对象之间应返回什么？",
+    "options": [
+      { "id": "a", "text": "随机结果" },
+      { "id": "b", "text": "始终返回 `true`" },
+      { "id": "c", "text": "返回 `false`，使比较关系保持严格" },
+      { "id": "d", "text": "直接结束程序" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "严格顺序不能认为一个对象小于自身；相等对象双向比较都应为假。"
+  },
+  {
+    "id": "unchanged-syntax-rules",
+    "prompt": "运算符重载能否改变运算符原有的优先级和结合方向？",
+    "options": [
+      { "id": "a", "text": "能，只要返回 `bool`" },
+      { "id": "b", "text": "能，但只对整数有效" },
+      { "id": "c", "text": "优先级能改，结合方向不能改" },
+      { "id": "d", "text": "不能，表达式仍按原有语法规则解析" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "重载只决定自定义类型参与运算时调用什么函数，不改变符号的语法结构。"
+  },
+  {
+    "id": "custom-type-required",
+    "prompt": "下面哪类运算可以由用户定义的运算符重载参与？",
+    "options": [
+      { "id": "a", "text": "至少一个操作数具有类或枚举等用户定义类型" },
+      { "id": "b", "text": "只包含两个普通 `int` 的任意表达式" },
+      { "id": "c", "text": "没有任何操作数的符号" },
+      { "id": "d", "text": "预处理开始以前的文本" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "用户不能重新定义纯内置类型之间原本的运算规则；重载必须涉及用户定义类型。"
+  },
+  {
+    "id": "non-overloadable-operator",
+    "prompt": "下面哪个运算符不能由用户重载？",
+    "options": [
+      { "id": "a", "text": "`+`" },
+      { "id": "b", "text": "`.`" },
+      { "id": "c", "text": "`<`" },
+      { "id": "d", "text": "`[]`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "成员访问 `.` 不能被用户重载；算术、比较和下标等运算符则可以在规则允许时重载。"
+  }
+]
