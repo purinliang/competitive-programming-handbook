@@ -1,0 +1,50 @@
+[
+  {
+    "id": "definition",
+    "prompt": "欧拉函数 `phi(n)` 计数什么？",
+    "options": [
+      { "id": "a", "text": "1 到 n 中与 n 互质的整数个数" },
+      { "id": "b", "text": "n 的质因数个数" },
+      { "id": "c", "text": "n 以内全部质数个数" },
+      { "id": "d", "text": "n 的正因数和" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "通常在 1..n 中计数，n>1 时 n 自身不与 n 互质。"
+  },
+  {
+    "id": "prime-power",
+    "prompt": "p 为质数时，`phi(p^a)` 等于什么？",
+    "options": [
+      { "id": "a", "text": "`p^a-1`" },
+      { "id": "b", "text": "`p^a-p^(a-1)`" },
+      { "id": "c", "text": "`a*p`" },
+      { "id": "d", "text": "`p^(a-1)`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "不互质的数恰好是 p 的倍数，共 p^(a-1) 个。"
+  },
+  {
+    "id": "distinct-primes",
+    "prompt": "计算一般 n 的欧拉函数时，为什么每个不同质因数只更新一次？",
+    "options": [
+      { "id": "a", "text": "公式按是否被 p 整除排除，不按 p 的指数重复排除" },
+      { "id": "b", "text": "质因数指数总是 1" },
+      { "id": "c", "text": "重复更新会让 n 变成质数" },
+      { "id": "d", "text": "欧拉函数只适用于平方自由数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "公式 n*prod(1-1/p) 的乘积遍历 n 的不同质因数。"
+  },
+  {
+    "id": "multiplicativity",
+    "prompt": "欧拉函数满足 `phi(ab)=phi(a)phi(b)` 需要什么条件？",
+    "options": [
+      { "id": "a", "text": "a 与 b 都是偶数" },
+      { "id": "b", "text": "a=b" },
+      { "id": "c", "text": "a、b 都是质数" },
+      { "id": "d", "text": "`gcd(a,b)=1`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "欧拉函数是积性函数，积性结论以两个参数互质为前提。"
+  }
+]
