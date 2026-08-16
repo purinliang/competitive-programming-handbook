@@ -1,0 +1,50 @@
+[
+  {
+    "id": "edge-meaning",
+    "prompt": "先后约束图中的有向边 `u->v` 表示什么？",
+    "options": [
+      { "id": "a", "text": "u 必须排在 v 以前" },
+      { "id": "b", "text": "v 必须排在 u 以前" },
+      { "id": "c", "text": "u 与 v 必须相邻" },
+      { "id": "d", "text": "u 与 v 可以交换且没有限制" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "拓扑序必须让每条有向边的起点出现在终点之前。"
+  },
+  {
+    "id": "all-zero-indegree",
+    "prompt": "Kahn 算法开始时为什么要加入所有入度为 0 的点？",
+    "options": [
+      { "id": "a", "text": "它们都没有尚未完成的前置约束" },
+      { "id": "b", "text": "它们一定互相连接" },
+      { "id": "c", "text": "只能有一个零入度点" },
+      { "id": "d", "text": "这样能让图变成无向图" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "任意当前零入度点都可以作为下一项，只加入一个会漏掉其他连通部分。"
+  },
+  {
+    "id": "cycle-detection",
+    "prompt": "算法结束后 `order.size()<n` 说明什么？",
+    "options": [
+      { "id": "a", "text": "拓扑序不唯一" },
+      { "id": "b", "text": "图中存在有向环，仍有点无法降到零入度" },
+      { "id": "c", "text": "图中没有边" },
+      { "id": "d", "text": "所有点都已处理" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "环内点彼此保留入边，无法进入队列，因此不能得到完整拓扑序。"
+  },
+  {
+    "id": "lexicographic-order",
+    "prompt": "若要得到字典序最小的拓扑序，应怎样选择当前零入度点？",
+    "options": [
+      { "id": "a", "text": "先得到任意拓扑序再整体排序" },
+      { "id": "b", "text": "始终选择编号最大的点" },
+      { "id": "c", "text": "随机选择" },
+      { "id": "d", "text": "用小根堆始终取编号最小的可选点" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每一步在当前合法选择中取最小值，才保持全部先后约束并得到最小序。"
+  }
+]
