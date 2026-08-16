@@ -1,0 +1,74 @@
+[
+  {
+    "id": "coprime-meaning",
+    "prompt": "两个正整数互质表示什么？",
+    "options": [
+      { "id": "a", "text": "它们都必须是质数" },
+      { "id": "b", "text": "它们的最大公约数是 1" },
+      { "id": "c", "text": "它们的最小公倍数是 1" },
+      { "id": "d", "text": "它们必须一奇一偶" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "互质只要求没有大于 1 的公约数，两个数本身可以都是合数。"
+  },
+  {
+    "id": "gcd-exponent",
+    "prompt": "质数 p 在 a、b 中的指数分别为 x、y，它在 gcd(a,b) 中的指数是多少？",
+    "options": [
+      { "id": "a", "text": "x + y" },
+      { "id": "b", "text": "max(x, y)" },
+      { "id": "c", "text": "x * y" },
+      { "id": "d", "text": "min(x, y)" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "公约数不能使用超过任一原数已有数量的质因数；取较小指数才能在此前提下最大。"
+  },
+  {
+    "id": "lcm-exponent",
+    "prompt": "质数 p 在 a、b 中的指数分别为 x、y，它在 lcm(a,b) 中的指数是多少？",
+    "options": [
+      { "id": "a", "text": "max(x, y)" },
+      { "id": "b", "text": "min(x, y)" },
+      { "id": "c", "text": "x + y" },
+      { "id": "d", "text": "abs(x - y)" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "公倍数必须容纳两边各自需要的质因数次数；取较大指数才能满足要求且保持最小。"
+  },
+  {
+    "id": "product-relation",
+    "prompt": "对正整数 a、b，gcd(a,b) 与 lcm(a,b) 满足哪条关系？",
+    "options": [
+      { "id": "a", "text": "gcd(a,b) + lcm(a,b) = a + b" },
+      { "id": "b", "text": "gcd(a,b) = lcm(a,b)" },
+      { "id": "c", "text": "gcd(a,b) * lcm(a,b) = a * b" },
+      { "id": "d", "text": "gcd(a,b) * a = lcm(a,b) * b" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每个质数上都有 min(x,y)+max(x,y)=x+y，因此两边质因数指数完全相同。"
+  },
+  {
+    "id": "lcm-order",
+    "prompt": "用 gcd 计算 lcm 时，为什么通常写成 a / gcd(a,b) * b？",
+    "options": [
+      { "id": "a", "text": "这样一定能把结果压缩到 int 范围" },
+      { "id": "b", "text": "先除后乘可以降低中间结果溢出的风险" },
+      { "id": "c", "text": "整数乘法不能放在除法以前" },
+      { "id": "d", "text": "这样可以不用计算 gcd" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "先约掉最大公约数通常会让中间乘数更小；若最终 lcm 本身超出范围，换顺序仍无法解决。"
+  },
+  {
+    "id": "zero-convention",
+    "prompt": "竞赛中通常怎样约定 gcd(a,0) 与 lcm(a,0)？",
+    "options": [
+      { "id": "a", "text": "两者都没有定义" },
+      { "id": "b", "text": "两者都等于 1" },
+      { "id": "c", "text": "gcd(a,0)=0，lcm(a,0)=|a|" },
+      { "id": "d", "text": "gcd(a,0)=|a|，lcm(a,0)=0" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "这组约定与整除含义和聚合运算保持一致，特别地 gcd(0,0)=0。"
+  }
+]

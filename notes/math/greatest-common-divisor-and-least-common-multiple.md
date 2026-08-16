@@ -1,8 +1,10 @@
-# 数论：最大公约数与最小公倍数
+# 最大公约数与最小公倍数
 
-> 状态：定稿
+> 最近修订：2026-08-16 11:48 +10:00（未审阅）
 
 [算术基本定理](fundamental-theorem-of-arithmetic.md) 把每个正整数变成了一组唯一的质因数指数。在这组坐标上，最大公约数和最小公倍数并不是两个需要分别背诵的奇怪公式：它们就是逐个质数取 `min` 和 `max`。
+
+它们经常出现在这些问题中：把分数约到最简、求多个长度都能整除的最大单位、求多个周期第一次同时发生的时刻，以及判断两个整数是否互质。本篇先解释它们是什么以及为什么满足常见性质；怎样高效计算最大公约数留给 [欧几里得算法](euclidean-algorithm.md)。
 
 ## 公约数与最大公约数
 
@@ -111,7 +113,7 @@ $$
 由此可以用 `gcd` 计算 `lcm`。下面的函数假设 `a,b` 都是非负整数：
 
 ```cpp
-long long lcm(long long a, long long b) {
+ll get_lcm(ll a, ll b) {
     if (a == 0 || b == 0) {
         return 0;
     }
@@ -154,12 +156,16 @@ using namespace std;
 
 typedef long long ll;
 
-int main() {
+void solve() {
     ll a, b;
     scanf("%lld%lld", &a, &b);
 
     printf("%lld\n", gcd(a, b));
     printf("%lld\n", lcm(a, b));
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -195,6 +201,4 @@ int main() {
 5. 计算 `lcm` 时为什么应当先除以 `gcd` 再相乘？
 6. $\gcd(a,0)$ 和 $\mathrm{lcm}(a,0)$ 分别约定为什么？
 
-## 下一篇
-
-质因数指数解释了 `gcd` 是什么，却不是最高效的计算方法。下一篇 [数论：欧几里得算法](euclidean-algorithm.md) 会用余数在对数步数内求出最大公约数。
+质因数指数解释了 `gcd` 是什么，却不是最高效的计算方法。[欧几里得算法](euclidean-algorithm.md) 会用余数在对数步数内求出最大公约数。

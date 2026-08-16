@@ -245,7 +245,7 @@
 | 0502 | 质数 | 数学 | [math/prime-numbers.md](math/prime-numbers.md) |
 | 0535 | 算术基本定理 | 数学 | [math/fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
 | 0539 | 质因数分解 | 数学 | [math/prime-factorization.md](math/prime-factorization.md) |
-| 0536 | 数论：最大公约数与最小公倍数 | 数学 | [math/greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
+| 0536 | 最大公约数与最小公倍数 | 数学 | [math/greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
 | 0537 | 数论：欧几里得算法 | 数学 | [math/euclidean-algorithm.md](math/euclidean-algorithm.md) |
 
 ### 学习单元：哈希表

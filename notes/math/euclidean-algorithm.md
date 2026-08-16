@@ -2,7 +2,7 @@
 
 > 状态：定稿
 
-[数论：最大公约数与最小公倍数](greatest-common-divisor-and-least-common-multiple.md) 可以通过质因数分解求 `gcd`，但分解两个很大的整数通常比求它们的 `gcd` 困难得多。欧几里得算法（Euclidean algorithm，又称辗转相除法）不分解任何质因数，只反复做整除和取余。
+[最大公约数与最小公倍数](greatest-common-divisor-and-least-common-multiple.md) 可以通过质因数分解求 `gcd`，但分解两个很大的整数通常比求它们的 `gcd` 困难得多。欧几里得算法（Euclidean algorithm，又称辗转相除法）不分解任何质因数，只反复做整除和取余。
 
 ## 保持不变的公约数
 
