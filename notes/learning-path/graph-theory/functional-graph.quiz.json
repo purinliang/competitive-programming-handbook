@@ -1,0 +1,62 @@
+[
+  {
+    "id": "degree-property",
+    "prompt": "函数图中每个点必须满足什么条件？",
+    "options": [
+      { "id": "a", "text": "入度恰好为 1" },
+      { "id": "b", "text": "出度恰好为 1" },
+      { "id": "c", "text": "总度数恰好为 2" },
+      { "id": "d", "text": "不能有自环" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每个点由函数指定唯一后继，所以出度恰好为 1；入度可以任意。"
+  },
+  {
+    "id": "component-structure",
+    "prompt": "函数图的一个弱连通分量具有怎样的结构？",
+    "options": [
+      { "id": "a", "text": "一个有向环加上指向环的若干内向树" },
+      { "id": "b", "text": "一定是一条无环链" },
+      { "id": "c", "text": "一定是完全图" },
+      { "id": "d", "text": "可以包含任意多个互不相连的环" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "沿唯一后继最终进入唯一有向环，环外节点形成指向它的树。"
+  },
+  {
+    "id": "doubling-state",
+    "prompt": "`up[bit][u]` 表示什么？",
+    "options": [
+      { "id": "a", "text": "u 的第 bit 个前驱" },
+      { "id": "b", "text": "从 u 走 bit 步的节点" },
+      { "id": "c", "text": "从 u 走 $2^{bit}$ 步的节点" },
+      { "id": "d", "text": "u 所在环的长度" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "倍增表把一步反复合成为 2、4、8 等二次幂步数。"
+  },
+  {
+    "id": "doubling-transition",
+    "prompt": "哪一个是正确的倍增递推？",
+    "options": [
+      { "id": "a", "text": "`up[bit][u]=up[bit-1][u]+up[bit-1][u]`" },
+      { "id": "b", "text": "`up[bit][u]=nxt[bit]`" },
+      { "id": "c", "text": "`up[bit][u]=u`" },
+      { "id": "d", "text": "`up[bit][u]=up[bit-1][up[bit-1][u]]`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "先走前一层的步数，再从其终点继续走相同步数。"
+  },
+  {
+    "id": "cycle-peeling",
+    "prompt": "函数图中用剥离法寻找环点时，初始删除哪些点？",
+    "options": [
+      { "id": "a", "text": "入度为零的点" },
+      { "id": "b", "text": "出度为零的点" },
+      { "id": "c", "text": "度数为二的点" },
+      { "id": "d", "text": "所有自环点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "环外内向树从没有前驱的节点开始逐层剥离，环点最终留下。"
+  }
+]
