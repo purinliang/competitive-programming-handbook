@@ -1,63 +1,89 @@
-// 用每格一位十进制数字的朴素实现作为独立答案。
-
 #define main big_integer_template_main
 #include "../math/big-integer.cpp"
 #undef main
 
-string normalize_decimal(const string& s) {
-    int i = 0;
-    while (i + 1 < (int)s.size() && s[i] == '0') {
-        i++;
+struct decimal {
+    int sign;
+    string d;
+};
+
+decimal normalize_decimal(decimal a) {
+    int begin = 0;
+    while (begin + 1 < (int)a.d.size() && a.d[begin] == '0') {
+        begin++;
     }
-    return s.substr(i);
+    a.d = a.d.substr(begin);
+    if (a.d == "0") {
+        a.sign = 0;
+    }
+    return a;
 }
 
-int oracle_compare(const string& raw_a, const string& raw_b) {
-    string a = normalize_decimal(raw_a);
-    string b = normalize_decimal(raw_b);
-    if (a.size() != b.size()) {
-        return a.size() < b.size() ? -1 : 1;
+decimal parse_decimal(const string& s) {
+    decimal a;
+    int begin = 0;
+    a.sign = 1;
+    if (s[0] == '-' || s[0] == '+') {
+        a.sign = s[0] == '-' ? -1 : 1;
+        begin = 1;
     }
-    if (a == b) {
+    a.d = s.substr(begin);
+    return normalize_decimal(a);
+}
+
+string decimal_str(const decimal& a) {
+    return a.sign < 0 ? "-" + a.d : a.d;
+}
+
+int oracle_compare_abs(const decimal& a, const decimal& b) {
+    if (a.d.size() != b.d.size()) {
+        return a.d.size() < b.d.size() ? -1 : 1;
+    }
+    if (a.d == b.d) {
         return 0;
     }
-    return a < b ? -1 : 1;
+    return a.d < b.d ? -1 : 1;
 }
 
-string oracle_add(const string& raw_a, const string& raw_b) {
-    string a = normalize_decimal(raw_a);
-    string b = normalize_decimal(raw_b);
-    string result;
+int oracle_compare(const decimal& a, const decimal& b) {
+    if (a.sign != b.sign) {
+        return a.sign < b.sign ? -1 : 1;
+    }
+    if (a.sign == 0) {
+        return 0;
+    }
+    int order = oracle_compare_abs(a, b);
+    return a.sign > 0 ? order : -order;
+}
 
-    int i = a.size() - 1;
-    int j = b.size() - 1;
+decimal oracle_add_abs(const decimal& a, const decimal& b) {
+    string result;
+    int i = a.d.size() - 1;
+    int j = b.d.size() - 1;
     int carry = 0;
     while (i >= 0 || j >= 0 || carry > 0) {
         int current = carry;
         if (i >= 0) {
-            current += a[i--] - '0';
+            current += a.d[i--] - '0';
         }
         if (j >= 0) {
-            current += b[j--] - '0';
+            current += b.d[j--] - '0';
         }
         result.push_back('0' + current % 10);
         carry = current / 10;
     }
     reverse(result.begin(), result.end());
-    return result;
+    return {1, result};
 }
 
-string oracle_subtract(const string& raw_a, const string& raw_b) {
-    string a = normalize_decimal(raw_a);
-    string b = normalize_decimal(raw_b);
+decimal oracle_subtract_abs(const decimal& a, const decimal& b) {
     string result;
-
-    int j = b.size() - 1;
+    int j = b.d.size() - 1;
     int borrow = 0;
-    for (int i = a.size() - 1; i >= 0; i--) {
-        int current = a[i] - '0' - borrow;
+    for (int i = a.d.size() - 1; i >= 0; i--) {
+        int current = a.d[i] - '0' - borrow;
         if (j >= 0) {
-            current -= b[j--] - '0';
+            current -= b.d[j--] - '0';
         }
         if (current < 0) {
             current += 10;
@@ -67,21 +93,48 @@ string oracle_subtract(const string& raw_a, const string& raw_b) {
         }
         result.push_back('0' + current);
     }
-    while (result.size() > 1 && result.back() == '0') {
-        result.pop_back();
-    }
     reverse(result.begin(), result.end());
-    return result;
+    return normalize_decimal({1, result});
 }
 
-string oracle_multiply(const string& raw_a, const string& raw_b) {
-    string a = normalize_decimal(raw_a);
-    string b = normalize_decimal(raw_b);
-    vector<int> d(a.size() + b.size(), 0);
+decimal oracle_add(const decimal& a, const decimal& b) {
+    if (a.sign == 0) {
+        return b;
+    }
+    if (b.sign == 0) {
+        return a;
+    }
+    if (a.sign == b.sign) {
+        decimal c = oracle_add_abs(a, b);
+        c.sign = a.sign;
+        return c;
+    }
 
-    for (int i = a.size() - 1; i >= 0; i--) {
-        for (int j = b.size() - 1; j >= 0; j--) {
-            d[i + j + 1] += (a[i] - '0') * (b[j] - '0');
+    int order = oracle_compare_abs(a, b);
+    if (order == 0) {
+        return {0, "0"};
+    }
+    if (order > 0) {
+        decimal c = oracle_subtract_abs(a, b);
+        c.sign = a.sign;
+        return c;
+    }
+
+    decimal c = oracle_subtract_abs(b, a);
+    c.sign = b.sign;
+    return c;
+}
+
+decimal oracle_opposite(decimal a) {
+    a.sign = -a.sign;
+    return a;
+}
+
+decimal oracle_multiply(const decimal& a, const decimal& b) {
+    vector<int> d(a.d.size() + b.d.size(), 0);
+    for (int i = a.d.size() - 1; i >= 0; i--) {
+        for (int j = b.d.size() - 1; j >= 0; j--) {
+            d[i + j + 1] += (a.d[i] - '0') * (b.d[j] - '0');
         }
     }
     for (int i = d.size() - 1; i >= 1; i--) {
@@ -90,14 +143,30 @@ string oracle_multiply(const string& raw_a, const string& raw_b) {
     }
 
     string result;
-    int i = 0;
-    while (i + 1 < (int)d.size() && d[i] == 0) {
-        i++;
+    for (int digit : d) {
+        result.push_back('0' + digit);
     }
-    for (; i < (int)d.size(); i++) {
-        result.push_back('0' + d[i]);
+    return normalize_decimal({a.sign * b.sign, result});
+}
+
+pair<decimal, int> oracle_divide(const decimal& a, int divisor) {
+    ll positive_divisor = abs((ll)divisor);
+    ll remainder = 0;
+    string result;
+
+    for (char digit : a.d) {
+        ll current = remainder * 10 + digit - '0';
+        result.push_back('0' + current / positive_divisor);
+        remainder = current % positive_divisor;
     }
-    return result;
+
+    decimal quotient =
+        normalize_decimal({a.sign * (divisor < 0 ? -1 : 1), result});
+    int signed_remainder = remainder;
+    if (a.sign < 0) {
+        signed_remainder = -signed_remainder;
+    }
+    return {quotient, signed_remainder};
 }
 
 string random_number(mt19937_64& rng, int length) {
@@ -106,59 +175,77 @@ string random_number(mt19937_64& rng, int length) {
     for (int i = 1; i < length; i++) {
         s[i] = '0' + rng() % 10;
     }
+    if (rng() % 2 == 0) {
+        s = "-" + s;
+    }
     return s;
 }
 
-bool check(string sa, string sb) {
-    if (oracle_compare(sa, sb) < 0) {
-        swap(sa, sb);
-    }
-
+bool check(const string& sa, const string& sb, int divisor) {
     bigint a(sa);
     bigint b(sb);
-    if (a.str() != normalize_decimal(sa) || b.str() != normalize_decimal(sb)) {
+    decimal expected_a = parse_decimal(sa);
+    decimal expected_b = parse_decimal(sb);
+
+    if (a.str() != decimal_str(expected_a) ||
+        b.str() != decimal_str(expected_b)) {
         return false;
     }
-    if (compare(a, b) != oracle_compare(sa, sb)) {
+    if (compare(a, b) != oracle_compare(expected_a, expected_b)) {
         return false;
     }
-    if (add(a, b).str() != oracle_add(sa, sb)) {
+    if (add(a, b).str() != decimal_str(oracle_add(expected_a, expected_b))) {
         return false;
     }
-    if (subtract(a, b).str() != oracle_subtract(sa, sb)) {
+    if (subtract(a, b).str() !=
+        decimal_str(oracle_add(expected_a, oracle_opposite(expected_b)))) {
         return false;
     }
-    return multiply(a, b).str() == oracle_multiply(sa, sb);
+    if (multiply(a, b).str() !=
+        decimal_str(oracle_multiply(expected_a, expected_b))) {
+        return false;
+    }
+
+    auto [quotient, remainder] = divide(a, divisor);
+    auto [expected_quotient, expected_remainder] =
+        oracle_divide(expected_a, divisor);
+    return quotient.str() == decimal_str(expected_quotient) &&
+           remainder == expected_remainder;
 }
 
 int main() {
-    vector<pair<string, string>> fixed = {
-        {"0", "0"},
-        {"00000000", "0000"},
-        {"1", "0"},
-        {"100000000", "1"},
-        {"9999999999999999", "2"},
-        {"12345678901234567890", "987654321"},
+    vector<tuple<string, string, int>> fixed = {
+        {"0", "-0", 1},
+        {"+000000000", "-000", -1},
+        {"1", "-1", INT_MIN},
+        {"-12345678901234567890", "98765432109876543210", 97},
+        {"999999999999999999", "-1000000000000000000", INT_MAX},
     };
-    for (auto& [a, b] : fixed) {
-        if (!check(a, b)) {
-            printf("fixed test failed: %s %s\n", a.c_str(), b.c_str());
+    for (auto& [a, b, divisor] : fixed) {
+        if (!check(a, b, divisor)) {
+            printf("fixed test failed: %s %s %d\n", a.c_str(), b.c_str(),
+                   divisor);
             return 1;
         }
     }
 
-    mt19937_64 rng(20050314);
+    mt19937_64 rng(20260817);
     for (int test = 1; test <= 10000; test++) {
-        int n = rng() % 200 + 1;
-        int m = rng() % 200 + 1;
+        int n = rng() % 300 + 1;
+        int m = rng() % 300 + 1;
         string a = random_number(rng, n);
         string b = random_number(rng, m);
-        if (!check(a, b)) {
+        int divisor = rng();
+        if (divisor == 0) {
+            divisor = 1;
+        }
+
+        if (!check(a, b, divisor)) {
             printf("random test %d failed\n", test);
             return 1;
         }
     }
 
-    printf("10000 random tests passed\n");
+    printf("10000 random signed tests passed\n");
     return 0;
 }
