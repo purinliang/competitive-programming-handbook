@@ -1,6 +1,6 @@
 # `using` 类型别名
 
-> 最近修订：2026-08-16 13:13 +10:00（未审阅）
+> 最近修订：2026-08-16 13:24 +10:00（未审阅）
 
 [`typedef` 类型别名](type-aliases.md) 已经能给一个已有类型增加新名字：
 
@@ -64,20 +64,38 @@ using std::cin;
 using namespace std;
 ```
 
-- 第一行声明类型别名；
-- 第二行把命名空间中的一个名称引入当前作用域；
-- 第三行是 using 指令，让未限定名称查找考虑整个命名空间。
+- 第一行是别名声明，为 `long long` 增加类型名 `ll`；
+- 第二行是 using 声明，使后续代码可以用未限定名称 `cin` 指代 `std::cin`；
+- 第三行是 using 指令，使 `std` 中的名称参与后续的未限定名称查找。
 
 [命名空间与 `std`](namespace-and-std.md) 负责后两种写法。本篇只讨论等号两侧分别
 是别名和原类型的别名声明。
+
+`using namespace std;` 不是类型别名，也不是把 `std` 中的每个名称复制到当前
+作用域。它改变的是未限定名称查找的候选范围，所以直接写 `vector`、`sort` 或
+`cout` 时可以找到 `std` 中的对应声明；出现同名候选时仍可能产生歧义。
+
+## 别名的作用域
+
+`using` 类型别名与 `typedef` 一样遵守普通 C++ 作用域。函数中的局部别名只能从
+声明位置使用到所在代码块结束：
+
+```cpp
+void solve() {
+    using ll = long long;
+    ll answer = 0;
+}
+```
+
+离开 `solve` 后，这个 `ll` 不再可见。这里的 `using ll = long long;` 是声明，
+不是预处理替换。
 
 ## 别名模板
 
 `using` 可以让别名本身带有模板参数：
 
 ```cpp
-template <class T>
-using Matrix = vector<vector<T>>;
+template <class T> using Matrix = vector<vector<T>>;
 ```
 
 于是同一个别名可以生成不同元素类型的矩阵：
@@ -162,5 +180,6 @@ using ll = long long;
 1. `using ll = long long;` 中等号两侧分别是什么？
 2. 它与 `typedef long long ll;` 在这个例子中有什么语义差别？
 3. `using Name = Type;` 与 `using namespace name;` 分别解决什么问题？
-4. 为什么复杂类型使用 `using` 往往更容易阅读？
-5. 哪一种写法可以直接声明别名模板？
+4. 函数内部声明的 `using` 类型别名可以在函数外直接使用吗？
+5. 为什么复杂类型使用 `using` 往往更容易阅读？
+6. 哪一种写法可以直接声明别名模板？

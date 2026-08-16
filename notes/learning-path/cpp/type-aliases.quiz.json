@@ -12,6 +12,18 @@
     "explanation": "`typedef` 先写原类型，最后写新别名；它没有创建对象。"
   },
   {
+    "id": "typedef-scope",
+    "prompt": "在函数内部声明 `typedef long long ll;`，这个 `ll` 通常在哪里可见？",
+    "options": [
+      { "id": "a", "text": "从声明处到所在代码块结束" },
+      { "id": "b", "text": "整个项目的所有源文件" },
+      { "id": "c", "text": "只在下一行" },
+      { "id": "d", "text": "预处理结束以前的所有文本" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`typedef` 引入普通 C++ 名称，遵守声明所在的词法作用域。"
+  },
+  {
     "id": "alias-identity",
     "prompt": "`Score` 和 `Distance` 都是 `long long` 的别名时，哪项正确？",
     "options": [
