@@ -1,88 +1,85 @@
 # 图的存储：邻接表（vector 实现）
 
-> 状态：定稿
+> 最近修订：2026-08-16 14:06 +10:00（未审阅）
 
-[图的存储：基础概念](graph-representation.md) 已经把邻接表定义为“为每个点分别保存全部出边”。本篇只讨论它在普通图算法中的默认实现：用一个 `vector` 保存每个点的邻接项。
+[图的存储：基础概念](graph-representation.md) 已经把邻接表定义为“为每个点分别保存全部出边”。本篇只讨论它在普通图算法中的默认实现：为每个点准备一个 `vector` 保存邻接项。
 
 ## 无权有向图
 
-教学代码先使用完整名称。令 `graph[from]` 表示从点 `from` 出发的全部边；无权邻接项只需保存终点 `to`：
+令 `g[u]` 表示从点 `u` 出发的全部边；无权邻接项只需保存终点 `v`。如果点从 $1$ 开始编号，就为外层 `vector` 多留五个位置：
 
 ```cpp
-vector<int> graph[MAXN];
+vector<vector<int>> g(n + 5);
 
-graph[from].push_back(to);
+g[u].push_back(v);
 ```
 
-加入有向边 `from -> to` 时，只在 `graph[from]` 中加入一次。枚举它的所有出边：
+加入有向边 `u -> v` 时，只在 `g[u]` 中加入一次。枚举它的所有出边：
 
 ```cpp
-for (int to : graph[from]) {
-    // 处理 from -> to
+for (int v : g[u]) {
+    // 处理 u -> v
 }
 ```
 
-起点由数组下标 `from` 表达，所以 `vector` 中不必再次保存它。
+起点由外层下标 `u` 表达，所以内层 `vector` 中不必再次保存它。
 
 ## 无权无向图
 
-无向边 $(from,to)$ 可以从两端通行，因此要加入两个方向：
+无向边 $(u,v)$ 可以从两端通行，因此要加入两个方向：
 
 ```cpp
-graph[from].push_back(to);
-graph[to].push_back(from);
+g[u].push_back(v);
+g[v].push_back(u);
 ```
 
 这两项只是同一条无向边的两个遍历方向。题目给出的原始边数仍然是 $m$，邻接表中则会保存 $2m$ 个邻接项。
 
 ## 带权有向图
 
-带权邻接项还要保存边权。本书固定使用 `pair<int, int>`，并约定两个位置依次是 `(to, weight)`：
+带权邻接项还要保存边权。本书固定使用 `pair<int, int>`，并约定两个位置依次是 `(v,w)`：
 
 ```cpp
-vector<pair<int, int>> graph[MAXN];
+vector<vector<pair<int, int>>> g(n + 5);
 
-graph[from].push_back({to, weight});
+g[u].push_back({v, w});
 ```
 
 C++17 可以用结构化绑定直接为两个位置命名：
 
 ```cpp
-for (auto& [to, weight] : graph[from]) {
-    // 处理 from -> to，边权为 weight
+for (auto& [v, w] : g[u]) {
+    // 处理 u -> v，边权为 w
 }
 ```
 
 这里的 `auto&` 表示直接引用邻接项，不复制 `pair`。如果循环只读取内容，不会修改终点和边权，可以写得更严格：
 
 ```cpp
-for (const auto& [to, weight] : graph[from]) {
+for (const auto& [v, w] : g[u]) {
     // 只读访问
 }
 ```
 
-本书始终使用 `(to, weight)` 这个顺序，避免在不同算法中反复猜测 `first` 和 `second` 的含义。
+本书始终使用 `(v,w)` 这个顺序，避免在不同算法中反复猜测 `first` 和 `second` 的含义。
 
 ## 带权无向图
 
 带权无向边仍然加入两个方向，并让它们保存相同的边权：
 
 ```cpp
-graph[from].push_back({to, weight});
-graph[to].push_back({from, weight});
+g[u].push_back({v, w});
+g[v].push_back({u, w});
 ```
 
 此时枚举任意一个点的邻接项，都能直接得到可以到达的点及这条边的权值。
 
-## 竞赛模板
-
-进入可复制的竞赛代码后，`graph` 缩写为 `g`，端点和边权使用 `u`、`v`、`w`。
+## 核心写法
 
 无权图的核心写法是：
 
 ```cpp
-const int MAXN = 2e5 + 5;
-vector<int> g[MAXN];
+vector<vector<int>> g(n + 5);
 
 g[u].push_back(v); // 有向边 u -> v
 
@@ -94,8 +91,7 @@ for (int v : g[u]) {
 带权图的核心写法是：
 
 ```cpp
-const int MAXN = 2e5 + 5;
-vector<pair<int, int>> g[MAXN];
+vector<vector<pair<int, int>>> g(n + 5);
 
 g[u].push_back({v, w}); // 有向边 u -> v，边权为 w
 
@@ -114,13 +110,11 @@ for (auto& [v, w] : g[u]) {
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 2e5 + 5;
-vector<pair<int, int>> g[MAXN];
-
-int main() {
+void solve() {
     int n, m;
     scanf("%d%d", &n, &m);
 
+    vector<vector<pair<int, int>>> g(n + 5);
     for (int i = 1; i <= m; i++) {
         int u, v, w;
         scanf("%d%d%d", &u, &v, &w);
@@ -130,12 +124,15 @@ int main() {
 
     for (int u = 1; u <= n; u++) {
         printf("%d:", u);
-        for (auto& [v, w] : g[u]) {
+        for (const auto& [v, w] : g[u]) {
             printf(" (%d, %d)", v, w);
         }
         printf("\n");
     }
+}
 
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -185,7 +182,7 @@ DFS、BFS、最短路和绝大多数普通图算法只需快速枚举当前点�
 
 ## 需要记住什么
 
-- `graph[from]` 和竞赛代码中的 `g[u]` 分别表示什么？
+- `g[u]` 表示什么？为什么邻接项不必再次保存 `u`？
 - 无权邻接项为什么只保存终点？
 - 无向边为什么要加入两个方向？
 - 本书在 `pair<int, int>` 中按什么顺序保存终点和边权？
@@ -194,6 +191,4 @@ DFS、BFS、最短路和绝大多数普通图算法只需快速枚举当前点�
 - 哪两类需求分别更适合边集和链式前向星？
 - 哈密顿问题为什么不会仅仅因为原图无向，就要求使用链式前向星？
 
-## 下一篇
-
-下一篇将在邻接表上介绍 [图的遍历：深度优先搜索（DFS）](graph-depth-first-search.md)。
+[图的遍历：深度优先搜索（DFS）](graph-depth-first-search.md) 会直接在这份邻接表上沿边探索。
