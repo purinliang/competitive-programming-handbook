@@ -1,0 +1,98 @@
+[
+  {
+    "id": "parent-not-enough",
+    "prompt": "一般无向图中，DFS 为什么不能只跳过当前点的父节点？",
+    "options": [
+      { "id": "a", "text": "因为父节点一定没有编号" },
+      { "id": "b", "text": "因为含环图还能从其他边回到更早访问过的祖先或点" },
+      { "id": "c", "text": "因为每个点都有多个父节点" },
+      { "id": "d", "text": "因为无向图不能使用递归" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "跳过来边只阻止立即返回；环上的另一条边仍可能通向已访问点，所以一般图需要完整 visited 标记。"
+  },
+  {
+    "id": "mark-time",
+    "prompt": "第一次进入点 u 时，visited[u] 应在什么时候设为 true？",
+    "options": [
+      { "id": "a", "text": "递归访问邻居以前立刻设置" },
+      { "id": "b", "text": "所有邻居处理完以后" },
+      { "id": "c", "text": "整张图遍历结束以后" },
+      { "id": "d", "text": "只有遇到自环时" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "进入时标记能让任何后续路径立即识别 u 已被发现，阻止环或多条边重复递归。"
+  },
+  {
+    "id": "single-start-range",
+    "prompt": "无向图中，一次 dfs(start) 会访问哪些点？",
+    "options": [
+      { "id": "a", "text": "编号不小于 start 的点" },
+      { "id": "b", "text": "整张图的所有点，无论是否连通" },
+      { "id": "c", "text": "恰好从 start 可达的点，也就是其所在连通块" },
+      { "id": "d", "text": "只访问 start 的直接邻居" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "DFS 会沿所有可继续的边深入，但不能跨越不存在的边到达其他连通块。"
+  },
+  {
+    "id": "outer-loop",
+    "prompt": "遍历一张可能不连通的图，为什么还需要按点编号的外层循环？",
+    "options": [
+      { "id": "a", "text": "为了给邻接表排序" },
+      { "id": "b", "text": "为了多次访问同一个点" },
+      { "id": "c", "text": "为了把无向图变成有向图" },
+      { "id": "d", "text": "为了从每个尚未访问的连通块选择一个新起点" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "一次 DFS 只覆盖一个可达区域；每次从未访问点重新开始，最终才能覆盖所有连通块。"
+  },
+  {
+    "id": "dfs-tree",
+    "prompt": "DFS 树中的父子边来自哪里？",
+    "options": [
+      { "id": "a", "text": "每次从 u 第一次递归进入未访问点 v 的边" },
+      { "id": "b", "text": "原图中的所有边" },
+      { "id": "c", "text": "只选择边权最小的边" },
+      { "id": "d", "text": "只选择自环" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "首次发现关系为每个非根点确定唯一父边，因此这些边无环并组成搜索树。"
+  },
+  {
+    "id": "directed-reachability",
+    "prompt": "有向图中 dfs(start) 的访问范围由什么决定？",
+    "options": [
+      { "id": "a", "text": "忽略所有箭头后的无向连通性" },
+      { "id": "b", "text": "从 start 沿箭头方向能够到达的点" },
+      { "id": "c", "text": "所有入度为零的点" },
+      { "id": "d", "text": "边的输入顺序决定是否可达" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "g[u] 只包含从 u 出发的边，DFS 不能逆着未存储的方向移动。"
+  },
+  {
+    "id": "dfs-complexity",
+    "prompt": "使用邻接表遍历 n 点 m 边图时，DFS 的时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "O(n^2)" },
+      { "id": "b", "text": "O(m^2)" },
+      { "id": "c", "text": "O(log n)" },
+      { "id": "d", "text": "O(n+m)" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每个点只首次处理一次，每条邻接项也只在所属点被处理时检查一次。"
+  },
+  {
+    "id": "recursion-depth",
+    "prompt": "递归 DFS 在什么情况下可能超过调用栈限制？",
+    "options": [
+      { "id": "a", "text": "图中存在很长简单路径，递归深度接近 n" },
+      { "id": "b", "text": "所有点都是孤立点" },
+      { "id": "c", "text": "只要图中有一条边" },
+      { "id": "d", "text": "邻接表使用 vector" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "搜索树可能退化成一条长链；此时应考虑显式栈实现，而不是改变 visited 规则。"
+  }
+]

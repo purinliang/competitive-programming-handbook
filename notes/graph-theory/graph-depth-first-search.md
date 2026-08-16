@@ -1,6 +1,6 @@
 # 图的遍历：深度优先搜索（DFS）
 
-> 状态：定稿
+> 最近修订：2026-08-16 14:22 +10:00（未审阅）
 
 [图的存储：邻接表（vector 实现）](vector-adjacency-list.md) 告诉我们一个点能够沿哪些边继续前进。深度优先搜索（depth-first search，DFS）从起点出发，每次先沿一条尚未探索的分支不断深入，再在走不下去时返回。一般图可能有环，也可能不连通，因此还要记录哪些点已经访问过，并在每个尚未访问的连通块重新开始搜索。
 
@@ -21,13 +21,13 @@
 使用 `visited[u]` 记录点 $u$ 是否已经访问：
 
 ```cpp
-bool visited[MAXN];
+vector<bool> visited(n + 5);
 ```
 
 第一次进入点 `u` 时立刻标记，再处理它的所有相邻点：
 
 ```cpp
-void dfs(int u) {
+void dfs(int u, const vector<vector<int>>& g, vector<bool>& visited) {
     visited[u] = true;
     printf("%d ", u);
 
@@ -35,7 +35,7 @@ void dfs(int u) {
         if (visited[v]) {
             continue;
         }
-        dfs(v);
+        dfs(v, g, visited);
     }
 }
 ```
@@ -59,7 +59,7 @@ void dfs(int u) {
 ```cpp
 for (int u = 1; u <= n; u++) {
     if (!visited[u]) {
-        dfs(u);
+        dfs(u, g, visited);
     }
 }
 ```
@@ -92,11 +92,7 @@ for (int u = 1; u <= n; u++) {
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 2e5 + 5;
-vector<int> g[MAXN];
-bool visited[MAXN];
-
-void dfs(int u) {
+void dfs(int u, const vector<vector<int>>& g, vector<bool>& visited) {
     visited[u] = true;
     printf("%d ", u);
 
@@ -104,14 +100,15 @@ void dfs(int u) {
         if (visited[v]) {
             continue;
         }
-        dfs(v);
+        dfs(v, g, visited);
     }
 }
 
-int main() {
+void solve() {
     int n, m;
     scanf("%d%d", &n, &m);
 
+    vector<vector<int>> g(n + 5);
     for (int i = 1; i <= m; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
@@ -119,17 +116,20 @@ int main() {
         g[v].push_back(u);
     }
 
+    vector<bool> visited(n + 5);
     int component_count = 0;
-
     for (int u = 1; u <= n; u++) {
         if (!visited[u]) {
             component_count++;
-            dfs(u);
+            dfs(u, g, visited);
         }
     }
 
     printf("\n%d\n", component_count);
+}
 
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -177,6 +177,4 @@ DFS 总是按照 `g[u]` 中邻接项的先后顺序选择下一条边。交换�
 - 有向图中一次 DFS 的范围为什么由箭头方向决定？
 - 邻接表 DFS 的时间复杂度为什么是 $O(n+m)$？
 
-## 下一篇
-
-下一篇 [搜索：DFS、回溯与剪枝](dfs-backtracking-pruning.md) 会把逐步选择产生的状态看成一棵隐式搜索树，并在递归返回时撤销当前选择。
+[搜索：DFS、回溯与剪枝](dfs-backtracking-pruning.md) 会把逐步选择产生的状态看成一棵隐式搜索树，并在递归返回时撤销当前选择。
