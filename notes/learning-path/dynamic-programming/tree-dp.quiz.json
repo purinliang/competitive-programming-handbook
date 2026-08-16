@@ -1,0 +1,50 @@
+[
+  {
+    "id": "state-zero",
+    "prompt": "`f[u][0]` 的完整含义是什么？",
+    "options": [
+      { "id": "a", "text": "不选择 u 时，u 子树内的最大权值和" },
+      { "id": "b", "text": "u 的父节点编号" },
+      { "id": "c", "text": "选择 u 时的全树权值和" },
+      { "id": "d", "text": "u 子树中的节点数量" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "状态同时限定处理范围为 u 子树，并限定根节点 u 不被选择。"
+  },
+  {
+    "id": "selected-parent",
+    "prompt": "最大权独立集中选择节点 u 后，儿子 v 应贡献什么？",
+    "options": [
+      { "id": "a", "text": "`max(f[v][0],f[v][1])`" },
+      { "id": "b", "text": "`f[v][1]`" },
+      { "id": "c", "text": "`f[v][0]`" },
+      { "id": "d", "text": "`weight[u]`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "相邻点不能同时选择；u 已选时，所有儿子必须不选。"
+  },
+  {
+    "id": "unselected-parent",
+    "prompt": "不选择节点 u 时，为什么每个儿子可以取两个状态的最大值？",
+    "options": [
+      { "id": "a", "text": "因为所有点权都相同" },
+      { "id": "b", "text": "因为父子限制已解除，不同儿子子树之间也没有边" },
+      { "id": "c", "text": "因为树中没有叶子" },
+      { "id": "d", "text": "因为必须选择所有儿子" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "u 不选时，每棵儿子子树可以独立决定是否选择自己的根。"
+  },
+  {
+    "id": "calculation-order",
+    "prompt": "树形 DP 为什么通常在 DFS 返回时合并儿子状态？",
+    "options": [
+      { "id": "a", "text": "此时父节点已经被删除" },
+      { "id": "b", "text": "此时边权都变为零" },
+      { "id": "c", "text": "此时已经知道根节点答案" },
+      { "id": "d", "text": "此时儿子的整棵子树状态已经计算完成" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "父状态依赖儿子子树的完整结果，因此使用后序计算。"
+  }
+]
