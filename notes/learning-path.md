@@ -666,10 +666,10 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 061901 | 状态机动态规划 | 动态规划 | [dynamic-programming/state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
-| 061902 | 动态规划：DAG 上的 DP | 动态规划 | `dynamic-programming/dag-dp.md` |
-| 061903 | 动态规划：树形 DP | 动态规划 | `dynamic-programming/tree-dp.md` |
-| 061904 | 动态规划：状压 DP | 动态规划 | `dynamic-programming/bitmask-dp.md` |
+| 061901 | 状态机 DP | 动态规划 | [dynamic-programming/state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
+| 061902 | DAG 上的 DP | 动态规划 | `dynamic-programming/dag-dp.md` |
+| 061903 | 树形 DP | 动态规划 | `dynamic-programming/tree-dp.md` |
+| 061904 | 状态压缩 DP | 动态规划 | `dynamic-programming/bitmask-dp.md` |
 
 ### 单元 20：字符串：经典算法
 
@@ -756,9 +756,9 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 071001 | 动态规划：数位 DP | 动态规划 | `dynamic-programming/digit-dp.md` |
-| 071002 | 动态规划：概率与期望 | 动态规划 | `dynamic-programming/probability-expectation-dp.md` |
-| 071003 | 动态规划优化：单调队列 | 动态规划 | `dynamic-programming/monotone-queue-optimization.md` |
+| 071001 | 数位 DP | 动态规划 | `dynamic-programming/digit-dp.md` |
+| 071002 | 概率与期望 DP | 动态规划 | `dynamic-programming/probability-expectation-dp.md` |
+| 071003 | 单调队列优化 | 动态规划 | `dynamic-programming/monotone-queue-optimization.md` |
 
 完成 06 高中进阶后，读者已经具备独立阅读题解、按题目补充专题和判断新算法依赖的能力。这里不把高中竞赛一等奖与大学竞赛奖牌、Codeforces rating 做机械换算。
 
@@ -860,6 +860,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990327 | KD 树 | `data-structures/kd-tree.md` |
 | *990328 | 链上分块 | `data-structures/chain-block-decomposition.md` |
 | *990329 | 树上分块 | `data-structures/tree-block-decomposition.md` |
+| *990330 | 01 Trie | `data-structures/binary-trie.md` |
 
 ### 04 图论
 
@@ -979,22 +980,22 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| *990701 | 动态规划优化：斜率 | `dynamic-programming/convex-hull-trick.md` |
-| *990702 | 动态规划优化：分治 | `dynamic-programming/divide-conquer-optimization.md` |
-| *990703 | 动态规划：Slope Trick | `dynamic-programming/slope-trick.md` |
+| *990701 | 斜率优化 | `dynamic-programming/convex-hull-trick.md` |
+| *990702 | 分治优化 | `dynamic-programming/divide-conquer-optimization.md` |
+| *990703 | 分段线性凸函数维护 | `dynamic-programming/slope-trick.md` |
 | *990704 | 记忆化搜索 | `dynamic-programming/memoized-search.md` |
-| *990705 | 背包：分组背包 | `dynamic-programming/group-knapsack.md` |
-| *990706 | 背包：混合背包 | `dynamic-programming/mixed-knapsack.md` |
-| *990707 | 背包：多维背包 | `dynamic-programming/multidimensional-knapsack.md` |
-| *990708 | 背包：树上背包 | `dynamic-programming/tree-knapsack.md` |
-| *990709 | 状态压缩：轮廓线 DP | `dynamic-programming/profile-dp.md` |
-| *990710 | 状态压缩：插头 DP | `dynamic-programming/plug-dp.md` |
+| *990705 | 分组背包 | `dynamic-programming/group-knapsack.md` |
+| *990706 | 混合背包 | `dynamic-programming/mixed-knapsack.md` |
+| *990707 | 多维背包 | `dynamic-programming/multidimensional-knapsack.md` |
+| *990708 | 树上背包 | `dynamic-programming/tree-knapsack.md` |
+| *990709 | 轮廓线 DP | `dynamic-programming/profile-dp.md` |
+| *990710 | 插头 DP | `dynamic-programming/plug-dp.md` |
 | *990711 | 括号序列 DP | `dynamic-programming/bracket-sequence-dp.md` |
 | *990712 | 自动机 DP | `dynamic-programming/automaton-dp.md` |
 | *990713 | 划分 DP | `dynamic-programming/partition-dp.md` |
 | *990714 | 动态 DP | `dynamic-programming/dynamic-dp.md` |
-| *990715 | 动态规划优化：单调栈 | `dynamic-programming/monotone-stack-optimization.md` |
-| *990716 | 动态规划优化：四边形不等式 | `dynamic-programming/quadrangle-inequality-optimization.md` |
+| *990715 | 单调栈优化 | `dynamic-programming/monotone-stack-optimization.md` |
+| *990716 | 四边形不等式优化 | `dynamic-programming/quadrangle-inequality-optimization.md` |
 
 ### 08 字符串
 
@@ -1008,3 +1009,12 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990806 | 字符串：后缀树 | `strings/suffix-tree.md` |
 | *990807 | 最小表示法 | `strings/minimum-representation.md` |
 | *990808 | Lyndon 分解 | `strings/lyndon-factorization.md` |
+| *990809 | 拼接字符串与分隔符 | `strings/concatenation-and-separators.md` |
+| *990810 | 倍长串与循环移位 | `strings/doubled-string-and-cyclic-shifts.md` |
+| *990811 | 反转串与回文转换 | `strings/reversed-string-palindrome-transformations.md` |
+| *990812 | 本质不同子串计数 | `strings/distinct-substring-counting.md` |
+| *990813 | 字典序第 k 小子串 | `strings/kth-lexicographic-substring.md` |
+| *990814 | 子串出现次数 | `strings/substring-occurrence-counting.md` |
+| *990815 | 最长重复子串 | `strings/longest-repeated-substring.md` |
+| *990816 | 最长公共子串 | `strings/longest-common-substring.md` |
+| *990817 | 字符串结构中的后缀链接与长度 | `strings/suffix-links-and-lengths.md` |

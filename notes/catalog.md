@@ -577,6 +577,17 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 062004 | 字符串：Trie | 计划 | `strings/trie.md` |
+| *990330 | 01 Trie | 计划 | `data-structures/binary-trie.md` |
+| *990330e1 | 可持久化 01 Trie | 计划 | `data-structures/persistent-binary-trie.md` |
+
+### 异或查询
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990330 | 01 Trie | 计划 | `data-structures/binary-trie.md` |
+| *990330e1 | 可持久化 01 Trie | 计划 | `data-structures/persistent-binary-trie.md` |
+| *990502 | XOR 线性基 | 计划 | `math/xor-linear-basis.md` |
+| *990502e1 | 前缀线性基 | 计划 | `math/prefix-xor-linear-basis.md` |
 
 ### 复合与空间数据结构
 
@@ -854,6 +865,7 @@
 | *061004e1 | 线性变换：齐次坐标与仿射变换 | 待审阅 | [homogeneous-coordinates-affine-transformations.md](math/homogeneous-coordinates-affine-transformations.md) |
 | 061005 | 矩阵快速幂 | 待审阅 | [matrix-exponentiation.md](math/matrix-exponentiation.md) |
 | *990502 | XOR 线性基 | 计划 | `math/xor-linear-basis.md` |
+| *990502e1 | 前缀线性基 | 计划 | `math/prefix-xor-linear-basis.md` |
 | *990503 | 高斯消元 | 计划 | `math/gaussian-elimination.md` |
 | *990527 | 线性代数：行列式 | 计划 | `math/determinant.md` |
 
@@ -954,16 +966,16 @@
 | 040803 | 多重背包 | 待审阅 | [multiple-knapsack.md](dynamic-programming/multiple-knapsack.md) |
 | 050701 | 区间 DP | 待审阅 | [interval-dp.md](dynamic-programming/interval-dp.md) |
 
-### 基础模型
+### 动态规划：基础模型
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 040701 | 动态规划的状态与转移 | 待审阅 | [dp-state-transition.md](dynamic-programming/dp-state-transition.md) |
 | *990704 | 记忆化搜索 | 计划 | `dynamic-programming/memoized-search.md` |
 | 040702 | 数字三角形 | 待审阅 | [number-triangle.md](dynamic-programming/number-triangle.md) |
-| 061901 | 状态机动态规划 | 待审阅 | [state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
+| 061901 | 状态机 DP | 待审阅 | [state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
 
-### 序列动态规划
+### 动态规划：序列
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -972,78 +984,78 @@
 | *040704e1 | 最长上升子序列：$O(n\log n)$ 优化 | 待审阅 | [lis-n-log-n.md](dynamic-programming/lis-n-log-n.md) |
 | 040705 | 最长公共子序列 | 待审阅 | [longest-common-subsequence.md](dynamic-programming/longest-common-subsequence.md) |
 
-### 背包
+### 动态规划：背包
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 040801 | 0-1 背包 | 待审阅 | [zero-one-knapsack.md](dynamic-programming/zero-one-knapsack.md) |
 | 040802 | 完全背包 | 待审阅 | [complete-knapsack.md](dynamic-programming/complete-knapsack.md) |
 | 040803 | 多重背包 | 待审阅 | [multiple-knapsack.md](dynamic-programming/multiple-knapsack.md) |
-| *990705 | 背包：分组背包 | 计划 | `dynamic-programming/group-knapsack.md` |
-| *990706 | 背包：混合背包 | 计划 | `dynamic-programming/mixed-knapsack.md` |
-| *990707 | 背包：多维背包 | 计划 | `dynamic-programming/multidimensional-knapsack.md` |
-| *990708 | 背包：树上背包 | 计划 | `dynamic-programming/tree-knapsack.md` |
+| *990705 | 分组背包 | 计划 | `dynamic-programming/group-knapsack.md` |
+| *990706 | 混合背包 | 计划 | `dynamic-programming/mixed-knapsack.md` |
+| *990707 | 多维背包 | 计划 | `dynamic-programming/multidimensional-knapsack.md` |
+| *990708 | 树上背包 | 计划 | `dynamic-programming/tree-knapsack.md` |
 
-### 区间动态规划
+### 动态规划：区间
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 050701 | 区间 DP | 待审阅 | [interval-dp.md](dynamic-programming/interval-dp.md) |
 
-### 树形动态规划
+### 动态规划：树形
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 061903 | 动态规划：树形 DP | 计划 | `dynamic-programming/tree-dp.md` |
-| *990708 | 背包：树上背包 | 计划 | `dynamic-programming/tree-knapsack.md` |
+| 061903 | 树形 DP | 计划 | `dynamic-programming/tree-dp.md` |
+| *990708 | 树上背包 | 计划 | `dynamic-programming/tree-knapsack.md` |
 
-### 状态压缩动态规划
-
-| ID | 知识点 | 状态 | 文件 |
-| --- | --- | --- | --- |
-| 061904 | 动态规划：状压 DP | 计划 | `dynamic-programming/bitmask-dp.md` |
-| *990709 | 状态压缩：轮廓线 DP | 计划 | `dynamic-programming/profile-dp.md` |
-| *990710 | 状态压缩：插头 DP | 计划 | `dynamic-programming/plug-dp.md` |
-
-### 数位动态规划
+### 动态规划：状态压缩
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 071001 | 动态规划：数位 DP | 计划 | `dynamic-programming/digit-dp.md` |
+| 061904 | 状态压缩 DP | 计划 | `dynamic-programming/bitmask-dp.md` |
+| *990709 | 轮廓线 DP | 计划 | `dynamic-programming/profile-dp.md` |
+| *990710 | 插头 DP | 计划 | `dynamic-programming/plug-dp.md` |
 
-### 图与自动机上的动态规划
+### 动态规划：数位
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 061902 | 动态规划：DAG 上的 DP | 计划 | `dynamic-programming/dag-dp.md` |
-| 061901 | 状态机动态规划 | 待审阅 | [state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
+| 071001 | 数位 DP | 计划 | `dynamic-programming/digit-dp.md` |
+
+### 动态规划：图与自动机
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 061902 | DAG 上的 DP | 计划 | `dynamic-programming/dag-dp.md` |
+| 061901 | 状态机 DP | 待审阅 | [state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
 | *990712 | 自动机 DP | 计划 | `dynamic-programming/automaton-dp.md` |
 
-### 计数动态规划
+### 动态规划：计数
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | *990711 | 括号序列 DP | 计划 | `dynamic-programming/bracket-sequence-dp.md` |
 | *990713 | 划分 DP | 计划 | `dynamic-programming/partition-dp.md` |
 
-### 概率与期望动态规划
+### 动态规划：概率与期望
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 071002 | 动态规划：概率与期望 | 计划 | `dynamic-programming/probability-expectation-dp.md` |
+| 071002 | 概率与期望 DP | 计划 | `dynamic-programming/probability-expectation-dp.md` |
 
-### 动态规划优化
+### 动态规划：优化
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 071003 | 动态规划优化：单调队列 | 计划 | `dynamic-programming/monotone-queue-optimization.md` |
-| *990715 | 动态规划优化：单调栈 | 计划 | `dynamic-programming/monotone-stack-optimization.md` |
-| *990701 | 动态规划优化：斜率 | 计划 | `dynamic-programming/convex-hull-trick.md` |
-| *990702 | 动态规划优化：分治 | 计划 | `dynamic-programming/divide-conquer-optimization.md` |
-| *990716 | 动态规划优化：四边形不等式 | 计划 | `dynamic-programming/quadrangle-inequality-optimization.md` |
-| *990703 | 动态规划：Slope Trick | 计划 | `dynamic-programming/slope-trick.md` |
+| 071003 | 单调队列优化 | 计划 | `dynamic-programming/monotone-queue-optimization.md` |
+| *990715 | 单调栈优化 | 计划 | `dynamic-programming/monotone-stack-optimization.md` |
+| *990701 | 斜率优化 | 计划 | `dynamic-programming/convex-hull-trick.md` |
+| *990702 | 分治优化 | 计划 | `dynamic-programming/divide-conquer-optimization.md` |
+| *990716 | 四边形不等式优化 | 计划 | `dynamic-programming/quadrangle-inequality-optimization.md` |
+| *990703 | 分段线性凸函数维护 | 计划 | `dynamic-programming/slope-trick.md` |
 
-### 动态 DP
+### 动态规划：动态 DP
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -1061,6 +1073,7 @@
 | 062002 | 字符串：KMP 与前缀函数 | 计划 | `strings/kmp-prefix-function.md` |
 | 062003 | 字符串：Z 函数 | 计划 | `strings/z-function.md` |
 | 062004 | 字符串：Trie | 计划 | `strings/trie.md` |
+| *990809 | 拼接字符串与分隔符 | 计划 | `strings/concatenation-and-separators.md` |
 
 ### 字符串基础
 
@@ -1068,6 +1081,14 @@
 | --- | --- | --- | --- |
 | 040901 | 字符串的基本概念 | 待审阅 | [string-concepts.md](strings/string-concepts.md) |
 | 040902 | 字符串比较与字典序 | 待审阅 | [comparison-and-lexicographic-order.md](strings/comparison-and-lexicographic-order.md) |
+
+### 字符串构造
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990809 | 拼接字符串与分隔符 | 计划 | `strings/concatenation-and-separators.md` |
+| *990810 | 倍长串与循环移位 | 计划 | `strings/doubled-string-and-cyclic-shifts.md` |
+| *990811 | 反转串与回文转换 | 计划 | `strings/reversed-string-palindrome-transformations.md` |
 
 ### 字符串哈希
 
@@ -1089,6 +1110,7 @@
 | --- | --- | --- | --- |
 | 062004 | 字符串：Trie | 计划 | `strings/trie.md` |
 | *990801 | 字符串：AC 自动机 | 计划 | `strings/aho-corasick.md` |
+| *990817 | 字符串结构中的后缀链接与长度 | 计划 | `strings/suffix-links-and-lengths.md` |
 
 ### 回文结构
 
@@ -1096,6 +1118,8 @@
 | --- | --- | --- | --- |
 | *990802 | 字符串：Manacher | 计划 | `strings/manacher.md` |
 | *990805 | 字符串：回文树 | 计划 | `strings/palindromic-tree.md` |
+| *990811 | 反转串与回文转换 | 计划 | `strings/reversed-string-palindrome-transformations.md` |
+| *990817 | 字符串结构中的后缀链接与长度 | 计划 | `strings/suffix-links-and-lengths.md` |
 
 ### 后缀结构
 
@@ -1104,6 +1128,22 @@
 | *990803 | 字符串：后缀数组 | 计划 | `strings/suffix-array.md` |
 | *990804 | 字符串：后缀自动机 | 计划 | `strings/suffix-automaton.md` |
 | *990806 | 字符串：后缀树 | 计划 | `strings/suffix-tree.md` |
+| *990812 | 本质不同子串计数 | 计划 | `strings/distinct-substring-counting.md` |
+| *990813 | 字典序第 k 小子串 | 计划 | `strings/kth-lexicographic-substring.md` |
+| *990814 | 子串出现次数 | 计划 | `strings/substring-occurrence-counting.md` |
+| *990815 | 最长重复子串 | 计划 | `strings/longest-repeated-substring.md` |
+| *990816 | 最长公共子串 | 计划 | `strings/longest-common-substring.md` |
+| *990817 | 字符串结构中的后缀链接与长度 | 计划 | `strings/suffix-links-and-lengths.md` |
+
+### 子串问题
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990812 | 本质不同子串计数 | 计划 | `strings/distinct-substring-counting.md` |
+| *990813 | 字典序第 k 小子串 | 计划 | `strings/kth-lexicographic-substring.md` |
+| *990814 | 子串出现次数 | 计划 | `strings/substring-occurrence-counting.md` |
+| *990815 | 最长重复子串 | 计划 | `strings/longest-repeated-substring.md` |
+| *990816 | 最长公共子串 | 计划 | `strings/longest-common-substring.md` |
 
 ### 字符串表示与分解
 
@@ -1111,10 +1151,3 @@
 | --- | --- | --- | --- |
 | *990807 | 最小表示法 | 计划 | `strings/minimum-representation.md` |
 | *990808 | Lyndon 分解 | 计划 | `strings/lyndon-factorization.md` |
-
-## 09 其他
-
-### 专题：编码
-
-| ID | 知识点 | 状态 | 文件 |
-| --- | --- | --- | --- |
