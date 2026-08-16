@@ -435,7 +435,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *041001 | 数系：自然数、整数、有理数与实数 | 数学 | `math/number-systems-review.md` |
 | *041002 | 集合：基本概念与交、并、补 | 数学 | `math/sets-review.md` |
 | *041003 | 代数：方程与不等式 | 数学 | `math/equations-and-inequalities-review.md` |
-| *041004 | 初等平面几何 | 数学 | `math/elementary-plane-geometry-review.md` |
+| *041004 | 几何：平面几何基础 | 数学 | `math/plane-geometry-basics.md` |
 
 本单元只复习竞赛题面会直接使用的术语、符号和运算，不重新讲授完整的初中数学
 课程；暂时跳过不会阻塞后续算法学习。
@@ -894,7 +894,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *041001 | 数系：自然数、整数、有理数与实数 | `math/number-systems-review.md` |
 | *041002 | 集合：基本概念与交、并、补 | `math/sets-review.md` |
 | *041003 | 代数：方程与不等式 | `math/equations-and-inequalities-review.md` |
-| *041004 | 初等平面几何 | `math/elementary-plane-geometry-review.md` |
+| *041004 | 几何：平面几何基础 | `math/plane-geometry-basics.md` |
 | *990501 | Nim、SG 函数与基础博弈论 | `math/nim-sg-game-theory.md` |
 | *990502 | XOR 线性基 | `math/xor-linear-basis.md` |
 | *990503 | 高斯消元 | `math/gaussian-elimination.md` |

@@ -641,7 +641,7 @@
 | *041001 | 数系：自然数、整数、有理数与实数 | 计划 | `math/number-systems-review.md` |
 | *041002 | 集合：基本概念与交、并、补 | 计划 | `math/sets-review.md` |
 | *041003 | 代数：方程与不等式 | 计划 | `math/equations-and-inequalities-review.md` |
-| *041004 | 初等平面几何 | 计划 | `math/elementary-plane-geometry-review.md` |
+| *041004 | 几何：平面几何基础 | 计划 | `math/plane-geometry-basics.md` |
 | 050601 | 加法原理 | 待审阅 | [addition-principle.md](math/addition-principle.md) |
 | 050602 | 乘法原理 | 待审阅 | [multiplication-principle.md](math/multiplication-principle.md) |
 | 050603 | 排列数 | 待审阅 | [permutations-count.md](math/permutations-count.md) |
