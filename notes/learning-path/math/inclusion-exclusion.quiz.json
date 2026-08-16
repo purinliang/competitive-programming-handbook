@@ -1,0 +1,74 @@
+[
+  {
+    "id": "two-set-formula",
+    "prompt": "两个集合并集大小的正确公式是什么？",
+    "options": [
+      { "id": "a", "text": "$|A|+|B|$" },
+      { "id": "b", "text": "$|A|+|B|-|A\\cap B|$" },
+      { "id": "c", "text": "$|A\\cap B|-|A|-|B|$" },
+      { "id": "d", "text": "$|A|\\times|B|$" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "交集元素在前两项中被计数两次，需要减去一次。"
+  },
+  {
+    "id": "parity-sign",
+    "prompt": "一般容斥中，选中偶数个集合的交集使用什么符号？",
+    "options": [
+      { "id": "a", "text": "减号" },
+      { "id": "b", "text": "加号" },
+      { "id": "c", "text": "乘号" },
+      { "id": "d", "text": "不计入" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "非空交集按照选中集合数奇加偶减。"
+  },
+  {
+    "id": "divisibility-intersection",
+    "prompt": "同时能被若干个正整数整除，等价于能被什么整除？",
+    "options": [
+      { "id": "a", "text": "它们的和" },
+      { "id": "b", "text": "它们的最大公约数" },
+      { "id": "c", "text": "它们的最小公倍数" },
+      { "id": "d", "text": "它们的最大值" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "共同倍数集合恰好是最小公倍数的倍数集合。"
+  },
+  {
+    "id": "empty-subset",
+    "prompt": "位掩码容斥为什么从 `mask = 1` 开始？",
+    "options": [
+      { "id": "a", "text": "因为第一个集合编号为 1" },
+      { "id": "b", "text": "因为 0 不能参与循环" },
+      { "id": "c", "text": "为了只枚举偶数大小子集" },
+      { "id": "d", "text": "并集公式只枚举非空集合子集" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "空集没有对应需要加减的交集项。"
+  },
+  {
+    "id": "safe-lcm",
+    "prompt": "若 `current_lcm > n / factor`，为什么可以停止当前子集？",
+    "options": [
+      { "id": "a", "text": "新 LCM 将超过 n，交集数量为 0" },
+      { "id": "b", "text": "说明所有数都相等" },
+      { "id": "c", "text": "说明当前子集大小为偶数" },
+      { "id": "d", "text": "说明 GCD 等于 0" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "1..n 中不存在大于 n 的正数 LCM 的正倍数，同时避免了实际乘法溢出。"
+  },
+  {
+    "id": "applicable-scale",
+    "prompt": "完整子集容斥最适合哪种规模？",
+    "options": [
+      { "id": "a", "text": "条件数量很大且无法枚举" },
+      { "id": "b", "text": "条件数量较少，但对象范围可能很大" },
+      { "id": "c", "text": "没有任何重叠条件" },
+      { "id": "d", "text": "只能处理两个对象" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "复杂度指数依赖条件数 k，而对象范围常能通过公式直接计数。"
+  }
+]
