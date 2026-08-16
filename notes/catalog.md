@@ -38,7 +38,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 0192 | 位、字节与存储单位 | 定稿 | [bits-bytes-and-storage-units.md](cpp/bits-bytes-and-storage-units.md) |
-| 0196 | 进制表示 | 计划 | `cpp/base-notation.md` |
+| 0196 | 进制表示 | 待审阅 | [base-notation.md](cpp/base-notation.md) |
 | 0193 | 整数的二进制表示 | 定稿 | [signed-integer-representations.md](cpp/signed-integer-representations.md) |
 | *0102e3 | 整数类型的位宽与平台差异 | 定稿 | [integer-type-widths.md](cpp/integer-type-widths.md) |
 | *0103e1 | IEEE 754 浮点数表示 | 定稿 | [ieee-754.md](cpp/ieee-754.md) |

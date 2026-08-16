@@ -119,7 +119,7 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0192 | 位、字节与存储单位 | C++ | [cpp/bits-bytes-and-storage-units.md](cpp/bits-bytes-and-storage-units.md) |
-| 0196 | 进制表示 | C++ | `cpp/base-notation.md` |
+| 0196 | 进制表示 | C++ | [cpp/base-notation.md](cpp/base-notation.md) |
 | 0193 | 整数的二进制表示 | C++ | [cpp/signed-integer-representations.md](cpp/signed-integer-representations.md) |
 | 0197 | 进制转换 | C++ | `cpp/base-conversion.md` |
 

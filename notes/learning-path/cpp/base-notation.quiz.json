@@ -1,0 +1,74 @@
+[
+  {
+    "id": "binary-place-values",
+    "prompt": "二进制数 `101101` 表示的十进制值是多少？",
+    "options": [
+      { "id": "a", "text": "`35`" },
+      { "id": "b", "text": "`41`" },
+      { "id": "c", "text": "`44`" },
+      { "id": "d", "text": "`45`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "$101101_2=2^5+2^3+2^2+2^0=45$。"
+  },
+  {
+    "id": "same-integer-literals",
+    "prompt": "下面哪组 C++17 整数字面量都表示十进制的 `42`？",
+    "options": [
+      { "id": "a", "text": "`0b101010`、`052`、`42`、`0x2a`" },
+      { "id": "b", "text": "`0b101010`、`042`、`42`、`0x42`" },
+      { "id": "c", "text": "`101010`、`052`、`42`、`2a`" },
+      { "id": "d", "text": "`0b42`、`0o52`、`42`、`0x2a`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "二进制使用 `0b`，八进制使用前导 `0`，十六进制使用 `0x`；这四个字面量的值都是 42。"
+  },
+  {
+    "id": "leading-zero-octal",
+    "prompt": "C++17 源码中的整数字面量 `010` 表示什么值？",
+    "options": [
+      { "id": "a", "text": "十进制 `2`" },
+      { "id": "b", "text": "十进制 `8`" },
+      { "id": "c", "text": "十进制 `10`" },
+      { "id": "d", "text": "这是非法字面量" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "前导 `0` 表示八进制；$10_8=8_{10}$。"
+  },
+  {
+    "id": "literal-versus-input-text",
+    "prompt": "关于源码中的 `0x10` 和输入文件中的文本 `0x10`，下面哪项正确？",
+    "options": [
+      { "id": "a", "text": "两者都会无条件被识别为十六进制整数" },
+      { "id": "b", "text": "两者都会作为五个普通字符保存" },
+      { "id": "c", "text": "前者由编译器识别；后者是否识别前缀取决于输入规则" },
+      { "id": "d", "text": "前者只能用于字符串，后者只能用于整数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "源码字面量在编译时解释；输入文件提供的是字符序列，读取接口决定怎样解析。"
+  },
+  {
+    "id": "hexadecimal-bit-group",
+    "prompt": "为什么一个十六进制数字恰好可以表示四个二进制位？",
+    "options": [
+      { "id": "a", "text": "因为 $16=2^4$" },
+      { "id": "b", "text": "因为十六进制只使用四个数字" },
+      { "id": "c", "text": "因为一个字节固定等于四位" },
+      { "id": "d", "text": "因为所有整数都占四字节" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "四个二进制位共有 $2^4=16$ 种组合，正好对应一个十六进制数字。"
+  },
+  {
+    "id": "binary-standard-io",
+    "prompt": "题目输入二进制文本 `101010` 时，基础做法通常是什么？",
+    "options": [
+      { "id": "a", "text": "用 `scanf` 的 `%b` 直接读取" },
+      { "id": "b", "text": "用 `cin >> bin` 直接读取" },
+      { "id": "c", "text": "在整数前写 `0b` 后重新提交输入" },
+      { "id": "d", "text": "先按字符串读取，再按位权自行转换" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "标准 C++17 的常规流和 `scanf` 都没有二进制格式接口；二进制文本通常按字符串处理。"
+  }
+]
