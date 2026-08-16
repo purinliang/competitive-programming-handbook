@@ -1,0 +1,98 @@
+[
+  {
+    "id": "difference-definition",
+    "prompt": "`difference[i]` 的定义是什么？",
+    "options": [
+      { "id": "a", "text": "`a[i] - a[i-1]`" },
+      { "id": "b", "text": "`a[i] + a[i-1]`" },
+      { "id": "c", "text": "`a[1] + ... + a[i]`" },
+      { "id": "d", "text": "数组最大值" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "差分记录从前一个位置走到当前位置时数值发生的变化。"
+  },
+  {
+    "id": "difference-recovery",
+    "prompt": "为什么对差分数组求前缀和能恢复原数组？",
+    "options": [
+      { "id": "a", "text": "相邻相减项会在累计中依次抵消" },
+      { "id": "b", "text": "所有差分都等于 0" },
+      { "id": "c", "text": "前缀和会自动排序" },
+      { "id": "d", "text": "因为只恢复第一个元素" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "从 a[0]=0 开始累计 (a[i]-a[i-1])，最终只留下 a[i]。"
+  },
+  {
+    "id": "range-add-boundaries",
+    "prompt": "闭区间 `[l,r]` 整体增加 delta 时，应修改哪两个位置？",
+    "options": [
+      { "id": "a", "text": "`difference[l] += delta` 与 `difference[r+1] -= delta`" },
+      { "id": "b", "text": "`difference[l-1] += delta` 与 `difference[r] -= delta`" },
+      { "id": "c", "text": "只修改 difference[r]" },
+      { "id": "d", "text": "清空整个差分数组" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "影响从 l 开始，在闭区间右端之后的 r+1 处被抵消。"
+  },
+  {
+    "id": "difference-interior",
+    "prompt": "区间内部的差分为什么不变？",
+    "options": [
+      { "id": "a", "text": "内部元素都被删除" },
+      { "id": "b", "text": "相邻两个元素同时增加相同 delta，差值不变" },
+      { "id": "c", "text": "delta 只能为 0" },
+      { "id": "d", "text": "差分不允许修改" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "(a[i]+delta)-(a[i-1]+delta) 与原差值相同。"
+  },
+  {
+    "id": "difference-right-sentinel",
+    "prompt": "`r == n` 时为什么仍可写 `difference[n+1] -= delta`？",
+    "options": [
+      { "id": "a", "text": "n+1 是额外保留的边界哨兵，最终不输出" },
+      { "id": "b", "text": "n+1 属于原数组最后一个位置" },
+      { "id": "c", "text": "vector 会忽略所有越界" },
+      { "id": "d", "text": "这行永远不会执行" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "+5 余量让取消标记有合法存储位置，恢复只处理 1..n。"
+  },
+  {
+    "id": "difference-multiple-updates",
+    "prompt": "为什么多次区间加可以先叠加边界，最后只恢复一次？",
+    "options": [
+      { "id": "a", "text": "所有区间必须互不相交" },
+      { "id": "b", "text": "每次修改都会覆盖以前的修改" },
+      { "id": "c", "text": "加法边界变化可以累加，最终前缀会汇总所有影响" },
+      { "id": "d", "text": "因为只允许一次修改" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每个位置恢复时累计所有已经开始但尚未结束的区间增量。"
+  },
+  {
+    "id": "difference-complexity",
+    "prompt": "长度 n、修改 m 次的一维离线差分总时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "O(nm)" },
+      { "id": "b", "text": "O(n + m)" },
+      { "id": "c", "text": "O(log n)" },
+      { "id": "d", "text": "O(n² + m²)" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "建立与恢复各扫描 n，每次修改只记录两个边界。"
+  },
+  {
+    "id": "difference-offline-limit",
+    "prompt": "哪种需求不适合直接使用本篇基础差分？",
+    "options": [
+      { "id": "a", "text": "所有修改结束后输出最终数组" },
+      { "id": "b", "text": "统计若干区间对每个位置的覆盖数" },
+      { "id": "c", "text": "区间增加负数" },
+      { "id": "d", "text": "每次修改后立刻在线查询区间和" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "反复恢复会回到线性成本；在线交错操作需要动态数据结构。"
+  }
+]

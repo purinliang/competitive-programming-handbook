@@ -196,19 +196,19 @@
 | 0219 | 二分答案 | 算法基础 | [algorithm-basics/binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |
 | 0252 | 浮点数二分 | 算法基础 | [algorithm-basics/floating-point-binary-search.md](algorithm-basics/floating-point-binary-search.md) |
 
-### 学习单元：双指针与滑动窗口
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0205 | 双指针 | 算法基础 | [algorithm-basics/two-pointers.md](algorithm-basics/two-pointers.md) |
-| 0220 | 双指针：滑动窗口 | 算法基础 | [algorithm-basics/sliding-window.md](algorithm-basics/sliding-window.md) |
-
 ### 学习单元：前缀和与差分
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0207 | 前缀和 | 算法基础 | [algorithm-basics/prefix-sums.md](algorithm-basics/prefix-sums.md) |
 | 0221 | 差分 | 算法基础 | [algorithm-basics/difference-array.md](algorithm-basics/difference-array.md) |
+
+### 学习单元：双指针与滑动窗口
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0205 | 双指针 | 算法基础 | [algorithm-basics/two-pointers.md](algorithm-basics/two-pointers.md) |
+| 0220 | 双指针：滑动窗口 | 算法基础 | [algorithm-basics/sliding-window.md](algorithm-basics/sliding-window.md) |
 
 ### 学习单元：枚举与模拟
 
