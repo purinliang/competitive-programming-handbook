@@ -1,0 +1,194 @@
+[
+  {
+    "id": "fifo-order",
+    "prompt": "依次把 3、5、8 加入空队列后，第一次删除得到什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "8"
+      },
+      {
+        "id": "b",
+        "text": "3"
+      },
+      {
+        "id": "c",
+        "text": "5"
+      },
+      {
+        "id": "d",
+        "text": "无法确定"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "队列先进先出，最早加入而尚未离开的 3 位于队首。"
+  },
+  {
+    "id": "read-and-pop-front",
+    "prompt": "要取得并删除普通队列的队首，正确顺序是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "先 `back()`，再 `pop()`"
+      },
+      {
+        "id": "b",
+        "text": "只调用 `size()`"
+      },
+      {
+        "id": "c",
+        "text": "先 `pop()`，再 `front()`"
+      },
+      {
+        "id": "d",
+        "text": "先 `front()` 保存，再 `pop()`"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "front 读取队首但不删除，pop 删除队首但不返回原值。"
+  },
+  {
+    "id": "linear-pop",
+    "prompt": "线性数组队列怎样在 O(1) 时间删除队首？",
+    "options": [
+      {
+        "id": "a",
+        "text": "只把 `head_index` 向右推进一格"
+      },
+      {
+        "id": "b",
+        "text": "把所有后继元素向左移动"
+      },
+      {
+        "id": "c",
+        "text": "先对队列排序"
+      },
+      {
+        "id": "d",
+        "text": "重新分配整个数组"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "逻辑内容由边界下标界定，离队旧值留在区间外不会影响队列。"
+  },
+  {
+    "id": "linear-capacity",
+    "prompt": "线性数组队列当前很短，为什么仍可能无法继续入队？",
+    "options": [
+      {
+        "id": "a",
+        "text": "队列长度只能是偶数"
+      },
+      {
+        "id": "b",
+        "text": "head_index 必须一直等于 1"
+      },
+      {
+        "id": "c",
+        "text": "tail_index 只向右增长，不会复用左侧空位"
+      },
+      {
+        "id": "d",
+        "text": "front 会删除全部容量"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "线性实现按总入队次数消耗右侧位置；长期复用固定空间需要循环队列。"
+  },
+  {
+    "id": "circular-empty-full",
+    "prompt": "循环队列同时保存 `head_index`、`next_index` 和 `count` 时，`count` 的关键作用是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "保存队首元素的数值"
+      },
+      {
+        "id": "b",
+        "text": "区分下标相等时的空队列与满队列"
+      },
+      {
+        "id": "c",
+        "text": "让数组改成 0-based"
+      },
+      {
+        "id": "d",
+        "text": "记录总共发生过多少次比较"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "绕一圈以后空与满都可能出现相同下标，仅比较下标无法区分。"
+  },
+  {
+    "id": "linked-tail-reset",
+    "prompt": "链表队列删除唯一节点以后，哪项状态正确？",
+    "options": [
+      {
+        "id": "a",
+        "text": "只把 tail 增加一"
+      },
+      {
+        "id": "b",
+        "text": "head 保留原节点，tail 设为 0"
+      },
+      {
+        "id": "c",
+        "text": "tail 保留原节点，head 设为 0"
+      },
+      {
+        "id": "d",
+        "text": "head 和 tail 都恢复为空编号 0"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "唯一元素离队后没有首尾节点，两端都必须表示空。"
+  },
+  {
+    "id": "stack-versus-queue",
+    "prompt": "栈与队列最本质的操作差别是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "栈只能用数组，队列只能用链表"
+      },
+      {
+        "id": "b",
+        "text": "队列不能保存整数"
+      },
+      {
+        "id": "c",
+        "text": "栈从同一端加入删除，队列从队尾加入、队首删除"
+      },
+      {
+        "id": "d",
+        "text": "栈的所有操作都是 O(n)"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "端点限制分别产生后进先出和先进先出的顺序。"
+  },
+  {
+    "id": "event-complexity",
+    "prompt": "使用 O(1) 线性数组队列处理 q 个到达或服务事件，总时间是多少？",
+    "options": [
+      {
+        "id": "a",
+        "text": "O(q)"
+      },
+      {
+        "id": "b",
+        "text": "O(q²)"
+      },
+      {
+        "id": "c",
+        "text": "O(log q)"
+      },
+      {
+        "id": "d",
+        "text": "O(1)"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每个事件只进行常数次队列操作，q 个事件合计线性时间。"
+  }
+]
