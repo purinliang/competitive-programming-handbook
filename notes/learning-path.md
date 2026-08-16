@@ -160,6 +160,14 @@
 | 0140 | sort | C++ | [cpp/sorting.md](cpp/sorting.md) |
 | 0141 | unique | C++ | [cpp/deduplication.md](cpp/deduplication.md) |
 
+### 学习单元：枚举与模拟
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0210 | 枚举 | 算法基础 | [algorithm-basics/enumeration.md](algorithm-basics/enumeration.md) |
+| 0211 | 枚举：子集与位掩码 | 算法基础 | [algorithm-basics/subset-bitmask-enumeration.md](algorithm-basics/subset-bitmask-enumeration.md) |
+| 0222 | 模拟 | 算法基础 | [algorithm-basics/simulation.md](algorithm-basics/simulation.md) |
+
 ### 学习单元：递归与递推
 
 | ID | 知识点 | 模块 | 文件 |
@@ -209,14 +217,6 @@
 | --- | --- | --- | --- |
 | 0205 | 双指针 | 算法基础 | [algorithm-basics/two-pointers.md](algorithm-basics/two-pointers.md) |
 | 0220 | 滑动窗口 | 算法基础 | [algorithm-basics/sliding-window.md](algorithm-basics/sliding-window.md) |
-
-### 学习单元：枚举与模拟
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0210 | 枚举 | 算法基础 | [algorithm-basics/enumeration.md](algorithm-basics/enumeration.md) |
-| 0211 | 枚举：子集与位掩码 | 算法基础 | [algorithm-basics/subset-bitmask-enumeration.md](algorithm-basics/subset-bitmask-enumeration.md) |
-| 0222 | 模拟 | 算法基础 | [algorithm-basics/simulation.md](algorithm-basics/simulation.md) |
 
 本阶段先独立建立复杂度，再学习后续代码马上需要的 `vector`、`sort` 和 `unique`。这里只学习基础 STL 的真实用途，不预先背诵全部容器。数组、链表、栈、队列和双端队列连同对应标准库接口放在初中基础；`pair` 等到图的带权邻接表以前再学习。
 

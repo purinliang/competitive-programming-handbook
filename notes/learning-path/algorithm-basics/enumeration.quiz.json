@@ -1,0 +1,98 @@
+[
+  {
+    "id": "enumeration-three-questions",
+    "prompt": "设计枚举时首先要回答哪三个问题？",
+    "options": [
+      { "id": "a", "text": "候选是什么、怎样不漏不重、总成本多少" },
+      { "id": "b", "text": "变量颜色、编辑器主题、文件大小" },
+      { "id": "c", "text": "只要确定循环层数" },
+      { "id": "d", "text": "只要确定答案类型" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "循环只是实现，候选表示、覆盖证明与复杂度判断才决定枚举是否正确可行。"
+  },
+  {
+    "id": "pair-unique-representation",
+    "prompt": "本篇为什么统一只生成 `i < j`？",
+    "options": [
+      { "id": "a", "text": "让两个下标一定相等" },
+      { "id": "b", "text": "同时避免自配对和 `(i,j)`、`(j,i)` 重复" },
+      { "id": "c", "text": "因为 j 不能访问数组" },
+      { "id": "d", "text": "为了让数组升序" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "给无序下标对规定唯一的从小到大表示，每对恰好出现一次。"
+  },
+  {
+    "id": "pair-loop-boundary",
+    "prompt": "固定 `i` 后，内层 `j` 应从哪里开始？",
+    "options": [
+      { "id": "a", "text": "1" },
+      { "id": "b", "text": "i" },
+      { "id": "c", "text": "i + 1" },
+      { "id": "d", "text": "n + 1" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "这把 i<j 直接写进生成范围，不必在循环内部反复过滤。"
+  },
+  {
+    "id": "enumeration-pair-count",
+    "prompt": "`1 <= i < j <= n` 一共有多少个候选？",
+    "options": [
+      { "id": "a", "text": "n" },
+      { "id": "b", "text": "n(n-1)/2" },
+      { "id": "c", "text": "2^n" },
+      { "id": "d", "text": "log n" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每个 i 后面分别有 n-i 个 j，求和得到 n(n-1)/2。"
+  },
+  {
+    "id": "enumeration-total-cost",
+    "prompt": "若有 O(n²) 个候选、每个候选检查需要 O(n)，总时间是多少？",
+    "options": [
+      { "id": "a", "text": "O(n³)" },
+      { "id": "b", "text": "O(n²)" },
+      { "id": "c", "text": "O(n log n)" },
+      { "id": "d", "text": "O(1)" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "总成本是候选数量乘以每个候选的检查成本。"
+  },
+  {
+    "id": "indices-not-values",
+    "prompt": "数组中两个位置数值相同时，本篇如何看待它们？",
+    "options": [
+      { "id": "a", "text": "自动合并成一个位置" },
+      { "id": "b", "text": "不能参加任何候选" },
+      { "id": "c", "text": "只保留下标较小的位置" },
+      { "id": "d", "text": "仍是不同下标，可以形成不同下标对" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "题目统计下标对，候选身份由位置决定，不由数值是否重复决定。"
+  },
+  {
+    "id": "enumeration-baseline",
+    "prompt": "即使最终需要更快算法，朴素枚举仍有什么价值？",
+    "options": [
+      { "id": "a", "text": "能说明完整候选，并可作为小规模对拍基准" },
+      { "id": "b", "text": "会自动证明所有复杂算法" },
+      { "id": "c", "text": "能让指数候选变成常数" },
+      { "id": "d", "text": "不需要分析数据范围" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "可靠基线有助于定位重复工作，也能检验优化算法是否漏解。"
+  },
+  {
+    "id": "enumeration-wide-values",
+    "prompt": "为什么 `sum` 和 `answer` 都使用 64 位整数？",
+    "options": [
+      { "id": "a", "text": "两个元素之和与平方数量级对数都可能超出 32 位" },
+      { "id": "b", "text": "循环下标必须是 long long" },
+      { "id": "c", "text": "64 位会自动去重" },
+      { "id": "d", "text": "int 不能保存正数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "中间表达式和答案范围都要独立估算，不能只看单个输入元素。"
+  }
+]
