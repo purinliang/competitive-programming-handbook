@@ -1,0 +1,50 @@
+[
+  {
+    "id": "dimension-condition",
+    "prompt": "A 是 r*k 矩阵、B 是 k*c 矩阵，乘积 A*B 的大小是什么？",
+    "options": [
+      { "id": "a", "text": "`r*c`" },
+      { "id": "b", "text": "`k*k`" },
+      { "id": "c", "text": "`c*r`" },
+      { "id": "d", "text": "`(r+k)*(k+c)`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "内侧维度 k 被枚举并消去，答案保留 A 的行和 B 的列。"
+  },
+  {
+    "id": "element-formula",
+    "prompt": "乘积元素 `C[i][j]` 怎样计算？",
+    "options": [
+      { "id": "a", "text": "`A[i][j]*B[i][j]`" },
+      { "id": "b", "text": "A 的第 i 行与 B 的第 j 列对应乘积之和" },
+      { "id": "c", "text": "A 的第 j 行与 B 的第 i 行之和" },
+      { "id": "d", "text": "只取中间状态 k=1" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每个中间状态 k 贡献 A[i][k]*B[k][j]，再对 k 求和。"
+  },
+  {
+    "id": "identity-matrix",
+    "prompt": "单位矩阵的元素有什么特征？",
+    "options": [
+      { "id": "a", "text": "全部是 1" },
+      { "id": "b", "text": "全部是 0" },
+      { "id": "c", "text": "主对角线为 1，其余为 0" },
+      { "id": "d", "text": "第一行为 1，其余为 0" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "单位矩阵保持每个分量不变，是矩阵乘法的单位元。"
+  },
+  {
+    "id": "multiplication-laws",
+    "prompt": "矩阵乘法通常满足哪组性质？",
+    "options": [
+      { "id": "a", "text": "交换律成立，结合律不成立" },
+      { "id": "b", "text": "交换律与结合律都成立" },
+      { "id": "c", "text": "二者都不成立" },
+      { "id": "d", "text": "结合律成立，交换律通常不成立" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "可以改变连续乘法的括号位置，但不能随意交换变换顺序。"
+  }
+]
