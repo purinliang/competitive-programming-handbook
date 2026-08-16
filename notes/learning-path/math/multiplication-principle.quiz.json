@@ -1,0 +1,63 @@
+[
+  {
+    "id": "multiplication-structure",
+    "prompt": "乘法原理适合怎样的完整方案结构？",
+    "options": [
+      { "id": "a", "text": "从互斥完整方法中任选一种" },
+      { "id": "b", "text": "只统计一个集合的元素" },
+      { "id": "c", "text": "依次完成构成同一方案的多个必需步骤" },
+      { "id": "d", "text": "把重叠情形直接相加" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "一个完整方案由每一步的一次选择共同组成，对应一个有序选择组。"
+  },
+  {
+    "id": "multiplication-dependence",
+    "prompt": "若第二步选择数取决于第一步具体选择，应该怎样处理？",
+    "options": [
+      { "id": "a", "text": "分别计算各第一步分支，再用加法原理合并" },
+      { "id": "b", "text": "任取一个第二步数量直接相乘" },
+      { "id": "c", "text": "忽略第二步" },
+      { "id": "d", "text": "把所有选择数改成零" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "不同前缀拥有不同后继数量时，应先在每个分支内计数，再合并互斥分支。"
+  },
+  {
+    "id": "multiplication-no-repeat",
+    "prompt": "从 n 个不同元素中依次选 k 个且不重复，为什么因数依次是 `n,n-1,...`？",
+    "options": [
+      { "id": "a", "text": "因为每一步会新增一个元素" },
+      { "id": "b", "text": "因为已经选过的元素不能再次选择" },
+      { "id": "c", "text": "因为顺序完全不重要" },
+      { "id": "d", "text": "因为每个因数都必须相同" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每完成一步，未使用元素恰好减少一个；同一步对任意合法前缀的剩余数相同。"
+  },
+  {
+    "id": "multiplication-empty-product",
+    "prompt": "没有任何必需步骤时，为什么空积定义为 1？",
+    "options": [
+      { "id": "a", "text": "因为没有步骤意味着没有方案" },
+      { "id": "b", "text": "因为每一步都有一个选择" },
+      { "id": "c", "text": "因为答案必须是正数" },
+      { "id": "d", "text": "什么也不做本身构成唯一的空方案，1 也是乘法单位元" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "初始化为 1 能让后续因数正常相乘，也准确计数不做选择的唯一过程。"
+  },
+  {
+    "id": "multiplication-zero-step",
+    "prompt": "某个必需步骤没有任何合法选择时，完整方案数是多少？",
+    "options": [
+      { "id": "a", "text": "1" },
+      { "id": "b", "text": "取决于其他步骤" },
+      { "id": "c", "text": "0" },
+      { "id": "d", "text": "无穷多" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每个完整方案必须完成所有步骤；任何一环无法选择，就不存在完整方案。"
+  }
+]
+
