@@ -84,15 +84,15 @@
     "explanation": "质数输入会让候选一直尝试到平方根；能存下输入并不代表运行时间可行。"
   },
   {
-    "id": "factor-record",
-    "prompt": "一条 PrimeFactor 记录最需要保存哪两个量？",
+    "id": "skip-even-candidates",
+    "prompt": "先处理质因数 2，再只枚举奇数候选，会带来什么变化？",
     "options": [
-      { "id": "a", "text": "原数和它的平方根" },
-      { "id": "b", "text": "候选编号和循环次数" },
-      { "id": "c", "text": "质因数 prime 和出现次数 exponent" },
-      { "id": "d", "text": "商和余数" }
+      { "id": "a", "text": "把最坏时间复杂度降为 O(log n)" },
+      { "id": "b", "text": "保证所有剩余候选都是质数" },
+      { "id": "c", "text": "约省去一半候选，但仍是 O(sqrt(n))" },
+      { "id": "d", "text": "使最后的 remaining 不再需要处理" }
     ],
     "correctOptionId": "c",
-    "explanation": "质因数决定底数，指数决定该质数在唯一分解中出现多少次。"
+    "explanation": "处理完唯一的偶质数 2 后，偶数候选不可能再整除剩余值；这只改善常数，不改变平方根级复杂度。"
   }
 ]
