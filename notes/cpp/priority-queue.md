@@ -1,4 +1,4 @@
-# 容器适配器：priority_queue
+# `priority_queue`
 
 > 最近修订：2026-08-13 23:22 +10:00（未审阅）
 

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "default-top",
+    "prompt": "`priority_queue<int>` 默认让哪个元素位于 `top()`？",
+    "options": [
+      { "id": "a", "text": "当前最大值" },
+      { "id": "b", "text": "当前最小值" },
+      { "id": "c", "text": "最早加入的值" },
+      { "id": "d", "text": "最后加入的值" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "默认比较规则让最大值具有最高取出优先级，因此 `top()` 返回当前最大值。"
+  },
+  {
+    "id": "top-pop",
+    "prompt": "怎样取得并删除当前顶部元素？",
+    "options": [
+      { "id": "a", "text": "直接写 `int value = values.pop();`" },
+      { "id": "b", "text": "先复制 `values.top()`，再调用 `values.pop()`" },
+      { "id": "c", "text": "调用 `values.erase(values.top())`" },
+      { "id": "d", "text": "调用 `values.front()` 后再删除队首" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`top()` 只查看，`pop()` 只删除且返回 `void`，因此需要依次调用两个接口。"
+  },
+  {
+    "id": "empty-precondition",
+    "prompt": "题目没有保证优先队列非空时，调用 `top()` 或 `pop()` 前应当做什么？",
+    "options": [
+      { "id": "a", "text": "先调用 `size()` 并把结果加一" },
+      { "id": "b", "text": "先加入一个值为 -1 的哨兵" },
+      { "id": "c", "text": "使用 `empty()` 检查是否非空" },
+      { "id": "d", "text": "无需检查，空时会自动返回 -1" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "空优先队列上的 `top()` 和 `pop()` 没有合法结果，不能假设标准库会返回哨兵。"
+  },
+  {
+    "id": "operation-complexity",
+    "prompt": "含有 $n$ 个元素时，`push()`、`top()`、`pop()` 的时间复杂度依次是什么？",
+    "options": [
+      { "id": "a", "text": "$O(1), O(1), O(1)$" },
+      { "id": "b", "text": "$O(n), O(1), O(n)$" },
+      { "id": "c", "text": "$O(\\log n), O(\\log n), O(1)$" },
+      { "id": "d", "text": "$O(\\log n), O(1), O(\\log n)$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "查看堆顶是常数时间；加入和删除堆顶都可能沿二叉堆的一条树链修复。"
+  },
+  {
+    "id": "minimum-queue",
+    "prompt": "下面哪项声明会让最小整数位于顶部？",
+    "options": [
+      { "id": "a", "text": "`priority_queue<int, vector<int>, greater<int>> values;`" },
+      { "id": "b", "text": "`priority_queue<int, greater<int>> values;`" },
+      { "id": "c", "text": "`priority_queue<int, vector<int>, less<int>> values;`" },
+      { "id": "d", "text": "`queue<int, greater<int>> values;`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "比较类型是第三个模板参数；第二个位置必须显式写出底层容器 `vector<int>`。"
+  },
+  {
+    "id": "pair-order",
+    "prompt": "默认的 `priority_queue<pair<int, int>>` 怎样决定顶部？",
+    "options": [
+      { "id": "a", "text": "只比较 `second`，忽略 `first`" },
+      { "id": "b", "text": "先取 `first` 最大者；相等时再取 `second` 最大者" },
+      { "id": "c", "text": "先取 `first` 最小者；相等时再取 `second` 最小者" },
+      { "id": "d", "text": "按照加入顺序决定" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`pair` 默认按 `first`、`second` 字典序比较，而默认优先队列把该顺序中的最大元素放在顶部。"
+  },
+  {
+    "id": "custom-comparator",
+    "prompt": "自定义 `priority_queue` 比较器对 `(a, b)` 返回 `true` 时，竞赛中可怎样理解？",
+    "options": [
+      { "id": "a", "text": "a 与 b 必须相等" },
+      { "id": "b", "text": "a 应当比 b 更早取出" },
+      { "id": "c", "text": "a 的取出优先级低于 b" },
+      { "id": "d", "text": "a 会立即从队列中删除" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "先写清谁应当先取，再让比较器在左边对象应当后取时返回 `true`，能减少方向写反。"
+  },
+  {
+    "id": "no-iteration",
+    "prompt": "若要按优先级查看全部元素，同时保留原优先队列，正确做法是什么？",
+    "options": [
+      { "id": "a", "text": "使用范围 `for` 直接遍历" },
+      { "id": "b", "text": "使用下标从 0 访问到 `size() - 1`" },
+      { "id": "c", "text": "取得 `begin()` 与 `end()` 后排序" },
+      { "id": "d", "text": "复制一份，再对副本反复 `top()` 和 `pop()`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "`priority_queue` 不暴露迭代器和下标；弹出会修改容器，因此要保留原数据时只能先复制。"
+  },
+  {
+    "id": "duplicate-values",
+    "prompt": "向 `priority_queue<int>` 加入两个相同的值后，一次 `pop()` 会怎样？",
+    "options": [
+      { "id": "a", "text": "只删除顶部的一份，另一份仍然存在" },
+      { "id": "b", "text": "删除所有相同值" },
+      { "id": "c", "text": "因为重复而插入失败" },
+      { "id": "d", "text": "自动把两个值合并成一个计数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "优先队列允许重复元素，每个元素分别保存；一次 `pop()` 只删除当前顶部的一项。"
+  },
+  {
+    "id": "mutable-external-priority",
+    "prompt": "为什么不应让比较器只读取一个会变化的外部优先级数组？",
+    "options": [
+      { "id": "a", "text": "因为比较器不能读取任何变量" },
+      { "id": "b", "text": "外部值改变后，已经在队列中的元素不会自动重新排列" },
+      { "id": "c", "text": "因为优先队列只能保存整数" },
+      { "id": "d", "text": "外部数组一定比优先队列慢" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "容器假设元素留在其中时比较关系稳定；常见做法是把加入时的优先级一同保存，并在取出时判断记录是否过期。"
+  }
+]
