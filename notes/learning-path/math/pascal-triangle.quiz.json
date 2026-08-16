@@ -1,0 +1,63 @@
+[
+  {
+    "id": "pascal-recurrence",
+    "prompt": "杨辉三角内部位置 $C(n,k)$ 的递推式是什么？",
+    "options": [
+      { "id": "a", "text": "$C(n-1,k-1)+C(n-1,k)$" },
+      { "id": "b", "text": "$C(n-1,k-1)C(n-1,k)$" },
+      { "id": "c", "text": "$C(n,k-1)+C(n,k+1)$" },
+      { "id": "d", "text": "$n+k$" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "按最后一个元素是否被选择分类，分别得到上一行的 k-1 与 k 两个状态。"
+  },
+  {
+    "id": "pascal-boundary",
+    "prompt": "杨辉三角第 n 行两侧为什么都是 1？",
+    "options": [
+      { "id": "a", "text": "因为内部递推会自动覆盖两侧" },
+      { "id": "b", "text": "因为 C(n,0)=C(n,n)=1" },
+      { "id": "c", "text": "因为 n 永远等于 1" },
+      { "id": "d", "text": "因为两侧不属于组合数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "一个也不选与全部选中都只有一种方案。"
+  },
+  {
+    "id": "pascal-order",
+    "prompt": "二维构造杨辉三角时，为什么按行号从小到大计算？",
+    "options": [
+      { "id": "a", "text": "因为每行只依赖下一行" },
+      { "id": "b", "text": "为了让每个数都变成 1" },
+      { "id": "c", "text": "因为第 n 行依赖已经算好的第 n-1 行" },
+      { "id": "d", "text": "因为组合数不能倒序读取" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "递推的两个来源都位于上一行，阶段必须先小后大。"
+  },
+  {
+    "id": "pascal-binomial",
+    "prompt": "杨辉三角第 n 行与二项式定理有什么关系？",
+    "options": [
+      { "id": "a", "text": "它记录 (x+y)^(n+1) 的指数" },
+      { "id": "b", "text": "它只记录奇数系数" },
+      { "id": "c", "text": "它记录 x^n 的具体数值" },
+      { "id": "d", "text": "它依次给出 (x+y)^n 的全部系数" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "第 n 行第 k 项是 C(n,k)，正是 x^(n-k)y^k 的系数。"
+  },
+  {
+    "id": "pascal-complexity",
+    "prompt": "保存并构造杨辉三角前 n 行的渐进时间与空间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "时间 O(n)，空间 O(1)" },
+      { "id": "b", "text": "时间 O(log n)，空间 O(n)" },
+      { "id": "c", "text": "时间 O(n^2)，空间 O(n^2)" },
+      { "id": "d", "text": "时间 O(2^n)，空间 O(1)" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "前 n 行包含平方数量级的数字；保存完整三角形也需要相同数量级的空间。"
+  }
+]
+

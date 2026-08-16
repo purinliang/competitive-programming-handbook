@@ -646,7 +646,7 @@
 | 050602 | 乘法原理 | 待审阅 | [multiplication-principle.md](math/multiplication-principle.md) |
 | 050603 | 排列数 | 待审阅 | [permutations-count.md](math/permutations-count.md) |
 | 050605 | 二项式定理 | 待审阅 | [binomial-theorem.md](math/binomial-theorem.md) |
-| 050606 | 杨辉三角 | 计划 | `math/pascal-triangle.md` |
+| 050606 | 杨辉三角 | 待审阅 | [pascal-triangle.md](math/pascal-triangle.md) |
 | 060801 | 组合数：阶乘与逆元预处理 | 待审阅 | [binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
 | 060902 | 欧拉定理 | 待审阅 | [euler-theorem.md](math/euler-theorem.md) |
 | 061002 | 矩阵：加法与减法 | 待审阅 | [matrix-addition-subtraction.md](math/matrix-addition-subtraction.md) |
