@@ -1,0 +1,74 @@
+[
+  {
+    "id": "node-path-formula",
+    "prompt": "给 `u-v` 路径上所有节点增加 `w`，正确差分标记是什么？",
+    "options": [
+      { "id": "a", "text": "只在 `u` 和 `v` 加 `w`" },
+      { "id": "b", "text": "`+u,+v,-lca,-parent(lca)`，各乘 `w`" },
+      { "id": "c", "text": "在 LCA 加 `2w`" },
+      { "id": "d", "text": "只在根减 `w`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "两端产生两股向上贡献，在 LCA 保留一次并在其父亲上方完全抵消。"
+  },
+  {
+    "id": "bottom-up",
+    "prompt": "为什么最后必须从儿子向父亲累加？",
+    "options": [
+      { "id": "a", "text": "让每个节点先收齐整个子树的标记" },
+      { "id": "b", "text": "为了改变树根" },
+      { "id": "c", "text": "因为父亲编号一定更大" },
+      { "id": "d", "text": "为了重新计算 LCA" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "最终值是子树内初始差分标记之和，必须先汇总后代。"
+  },
+  {
+    "id": "lca-retained",
+    "prompt": "节点差分为什么不能在 LCA 处直接减去 `2w`？",
+    "options": [
+      { "id": "a", "text": "因为 LCA 不在路径上" },
+      { "id": "b", "text": "因为 `2w` 一定溢出" },
+      { "id": "c", "text": "那会把 LCA 自身应获得的一次贡献也抵消" },
+      { "id": "d", "text": "因为 LCA 没有编号" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "节点路径包含 LCA，两个端点贡献在这里应只消去一份。"
+  },
+  {
+    "id": "edge-formula",
+    "prompt": "若维护路径经过的边，正确标记有什么变化？",
+    "options": [
+      { "id": "a", "text": "在 `u,v` 各加，在 LCA 减去两次" },
+      { "id": "b", "text": "与节点公式完全相同" },
+      { "id": "c", "text": "只在 LCA 父亲加两次" },
+      { "id": "d", "text": "不能使用差分" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "LCA 上方父边不属于路径，因此两股贡献在 LCA 完全抵消。"
+  },
+  {
+    "id": "root-parent",
+    "prompt": "根的父亲设为 0 有什么作用？",
+    "options": [
+      { "id": "a", "text": "把根从树中删除" },
+      { "id": "b", "text": "让 `difference[parent(lca)]` 在 LCA 为根时安全写入留空位置" },
+      { "id": "c", "text": "让根深度无限大" },
+      { "id": "d", "text": "让所有 LCA 都等于 0" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "位置 0 不对应真实节点，但统一了根边界公式。"
+  },
+  {
+    "id": "offline-limitation",
+    "prompt": "什么情况下不能只用这份树上差分？",
+    "options": [
+      { "id": "a", "text": "所有操作完成后才输出最终节点值" },
+      { "id": "b", "text": "每次路径修改后都要立即查询当前结果" },
+      { "id": "c", "text": "树以节点 1 为根" },
+      { "id": "d", "text": "路径端点可能相同" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "还原前只有边界标记，在线查询需要树链剖分等动态结构。"
+  }
+]
