@@ -1,0 +1,98 @@
+[
+  {
+    "id": "preorder-position",
+    "prompt": "前序遍历在什么时机处理当前节点？",
+    "options": [
+      { "id": "a", "text": "左子树返回以后" },
+      { "id": "b", "text": "递归左子树以前" },
+      { "id": "c", "text": "右子树返回以后" },
+      { "id": "d", "text": "只在叶节点处" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "前序顺序是当前节点、左子树、右子树，所以当前节点最先处理。"
+  },
+  {
+    "id": "inorder-order",
+    "prompt": "中序遍历的顺序是什么？",
+    "options": [
+      { "id": "a", "text": "当前节点、左子树、右子树" },
+      { "id": "b", "text": "右子树、当前节点、左子树" },
+      { "id": "c", "text": "左子树、右子树、当前节点" },
+      { "id": "d", "text": "左子树、当前节点、右子树" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "中序位置恰好位于递归左子树和递归右子树之间。"
+  },
+  {
+    "id": "postorder-use",
+    "prompt": "需要先得到两棵子树结果再合并到父节点时，哪个处理位置最自然？",
+    "options": [
+      { "id": "a", "text": "后序位置" },
+      { "id": "b", "text": "前序位置" },
+      { "id": "c", "text": "只处理根节点" },
+      { "id": "d", "text": "按节点编号排序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "后序在左右子树都返回以后处理当前节点，适合自底向上合并。"
+  },
+  {
+    "id": "null-base",
+    "prompt": "三个递归函数遇到 `u == 0` 时为什么立即返回？",
+    "options": [
+      { "id": "a", "text": "因为节点 0 是整棵树的根" },
+      { "id": "b", "text": "因为节点 0 的值最小" },
+      { "id": "c", "text": "0 表示空孩子，不对应需要处理的真实节点" },
+      { "id": "d", "text": "因为所有叶节点编号都是 0" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "空子树的遍历结果为空，这也是递归停止的边界。"
+  },
+  {
+    "id": "bst-inorder",
+    "prompt": "示例中序值递增，能否据此认为任意二叉树中序值都递增？",
+    "options": [
+      { "id": "a", "text": "能，因为中序会自动排序所有值" },
+      { "id": "b", "text": "不能；递增来自示例同时满足二叉搜索树的大小规则" },
+      { "id": "c", "text": "能，但只在节点数为奇数时" },
+      { "id": "d", "text": "不能，因为中序从不访问节点值" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "遍历只规定访问顺序，不会改变树；左小右大的额外性质才产生有序值。"
+  },
+  {
+    "id": "ordinary-tree-inorder",
+    "prompt": "为什么普通无序有根树没有唯一对应的中序遍历？",
+    "options": [
+      { "id": "a", "text": "因为普通树不能递归" },
+      { "id": "b", "text": "因为普通树没有根" },
+      { "id": "c", "text": "因为普通树不能保存值" },
+      { "id": "d", "text": "它没有固定的左、右子树来确定当前节点插入的位置" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "中序依赖左子树、当前节点、右子树这三个有序部分。"
+  },
+  {
+    "id": "time-complexity",
+    "prompt": "任意一种递归遍历含 `n` 个节点的二叉树，时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "$O(n)$" },
+      { "id": "b", "text": "$O(n^2)$" },
+      { "id": "c", "text": "$O(\\log n)$" },
+      { "id": "d", "text": "$O(2^n)$" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每个真实节点被进入一次，并执行常数次本地操作。"
+  },
+  {
+    "id": "recursion-space",
+    "prompt": "递归遍历的调用栈额外空间由什么决定？",
+    "options": [
+      { "id": "a", "text": "只由节点值大小决定" },
+      { "id": "b", "text": "固定为 $O(1)$" },
+      { "id": "c", "text": "由树高 `h` 决定，最坏可达 $O(n)$" },
+      { "id": "d", "text": "固定为 $O(n^2)$" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "同时存在的递归调用对应一条根到当前节点的路径，长度至多为树高。"
+  }
+]

@@ -1,6 +1,6 @@
 # 二叉树的遍历：前序、中序与后序
 
-> 状态：定稿
+> 最近修订：2026-08-16 14:47 +10:00（未审阅）
 
 [树的遍历：深度优先搜索（DFS）](../graph-theory/tree-depth-first-search.md) 会在进入一个节点后递归处理它的每棵子树。[二叉树的结构与存储](binary-tree-structure-and-storage.md) 进一步规定了左子树和右子树，因此每个节点都有三个稳定的处理位置：递归左子树之前、左右子树之间、递归右子树之后。把“处理当前节点”分别放在这三个位置，就得到前序、中序和后序遍历。
 
@@ -153,6 +153,20 @@ void traverse(int u) {
 
 “序”说的就是当前节点相对于左右子树的处理次序，不是三套互不相关的模板。读递归代码时，只要找到处理当前节点的语句位于两次递归调用的哪一侧，就能判断遍历类型。
 
+## 正确性
+
+对任意以 `u` 为根的子树，可以按照子树节点数归纳。
+
+空节点 `u == 0` 不包含任何真实节点，函数立即返回，输出为空，符合三种遍历定义。
+对于非空节点，假设递归调用已经分别按照正确顺序遍历左、右子树：
+
+- 前序函数先处理 `u`，再连接左、右子树的前序结果；
+- 中序函数连接左子树结果、`u`、右子树结果；
+- 后序函数连接左、右子树结果，最后处理 `u`。
+
+三种连接顺序分别与定义完全相同，并且 `u`、左子树和右子树互不重叠、覆盖整棵
+子树。因此三个函数都会按照对应顺序恰好处理每个节点一次。
+
 ## 完整代码
 
 下面的程序读取孩子数组表示的二叉树，依次输出三种遍历。第一行给出节点数 `n` 和根节点编号 `root`，随后第 `u` 行给出节点 `u` 的值、左孩子编号和右孩子编号。
@@ -161,18 +175,20 @@ void traverse(int u) {
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 2e5 + 5;
-
-int value[MAXN];
-int left_child[MAXN];
-int right_child[MAXN];
+int n, root;
+vector<int> value;
+vector<int> left_child;
+vector<int> right_child;
+vector<int> preorder_result;
+vector<int> inorder_result;
+vector<int> postorder_result;
 
 void preorder(int u) {
     if (u == 0) {
         return;
     }
 
-    printf("%d ", value[u]);
+    preorder_result.push_back(value[u]);
     preorder(left_child[u]);
     preorder(right_child[u]);
 }
@@ -183,7 +199,7 @@ void inorder(int u) {
     }
 
     inorder(left_child[u]);
-    printf("%d ", value[u]);
+    inorder_result.push_back(value[u]);
     inorder(right_child[u]);
 }
 
@@ -194,26 +210,46 @@ void postorder(int u) {
 
     postorder(left_child[u]);
     postorder(right_child[u]);
-    printf("%d ", value[u]);
+    postorder_result.push_back(value[u]);
 }
 
-int main() {
-    int n, root;
+void print_result(const vector<int>& result) {
+    int length = result.size();
+    if (length == 0) {
+        printf("\n");
+        return;
+    }
+
+    for (int i = 0; i < length; i++) {
+        printf("%d%c", result[i], " \n"[i + 1 == length]);
+    }
+}
+
+void solve() {
     scanf("%d%d", &n, &root);
+
+    value.assign(n + 5, 0);
+    left_child.assign(n + 5, 0);
+    right_child.assign(n + 5, 0);
+    preorder_result.clear();
+    inorder_result.clear();
+    postorder_result.clear();
 
     for (int u = 1; u <= n; u++) {
         scanf("%d%d%d", &value[u], &left_child[u], &right_child[u]);
     }
 
     preorder(root);
-    printf("\n");
-
     inorder(root);
-    printf("\n");
-
     postorder(root);
-    printf("\n");
 
+    print_result(preorder_result);
+    print_result(inorder_result);
+    print_result(postorder_result);
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -259,7 +295,3 @@ int main() {
 - 任意二叉树的中序值都会递增吗？示例为什么恰好递增？
 - 哪种顺序保证父节点先于后代出现？哪种保证父节点晚于后代出现？
 - 三种遍历的时间复杂度和递归空间复杂度分别是多少？
-
-## 下一篇
-
-下一篇“工具类型：bitset”将进入高中基础阶段，介绍怎样用固定数量的二进制位保存和批量操作布尔状态。
