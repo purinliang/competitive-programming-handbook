@@ -3,12 +3,12 @@
     "id": "using-alias-order",
     "prompt": "哪一行把 `ll` 声明为 `long long` 的类型别名？",
     "options": [
-      { "id": "a", "text": "`using ll = long long;`" },
+      { "id": "a", "text": "`long long using ll;`" },
       { "id": "b", "text": "`using long long = ll;`" },
       { "id": "c", "text": "`using namespace ll;`" },
-      { "id": "d", "text": "`long long using ll;`" }
+      { "id": "d", "text": "`using ll = long long;`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "`using` 类型别名采用 `using 别名 = 原类型;` 的顺序。"
   },
   {
@@ -27,36 +27,36 @@
     "id": "using-forms",
     "prompt": "哪一种 `using` 写法声明的是类型别名？",
     "options": [
-      { "id": "a", "text": "`using Edge = pair<int, int>;`" },
-      { "id": "b", "text": "`using std::cin;`" },
+      { "id": "a", "text": "`using std::cin;`" },
+      { "id": "b", "text": "`using Edge = pair<int, int>;`" },
       { "id": "c", "text": "`using namespace std;`" },
       { "id": "d", "text": "`using <vector>;`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "带等号的形式声明别名；另外两种合法写法处理命名空间中的名称。"
   },
   {
     "id": "using-namespace-effect",
     "prompt": "`using namespace std;` 的准确作用是什么？",
     "options": [
-      { "id": "a", "text": "让 `std` 中的名称参与后续未限定名称查找" },
+      { "id": "a", "text": "把标准库对象复制到当前函数" },
       { "id": "b", "text": "为 `std` 声明一个类型别名" },
-      { "id": "c", "text": "把标准库对象复制到当前函数" },
+      { "id": "c", "text": "让 `std` 中的名称参与后续未限定名称查找" },
       { "id": "d", "text": "自动包含所有标准库头文件" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "using 指令改变名称查找，不复制对象、不包含头文件，也不声明类型别名。"
   },
   {
     "id": "alias-template",
     "prompt": "哪一种写法可以直接声明带模板参数的类型别名？",
     "options": [
-      { "id": "a", "text": "`using` 别名声明" },
+      { "id": "a", "text": "`#include` 指令" },
       { "id": "b", "text": "传统 `typedef`" },
       { "id": "c", "text": "`using namespace` 指令" },
-      { "id": "d", "text": "`#include` 指令" }
+      { "id": "d", "text": "`using` 别名声明" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "C++11 的 `using` 可以直接声明别名模板，传统 `typedef` 不可以。"
   }
 ]

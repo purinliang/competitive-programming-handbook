@@ -3,24 +3,24 @@
     "id": "typedef-order",
     "prompt": "`typedef long long ll;` 中，`ll` 表示什么？",
     "options": [
-      { "id": "a", "text": "已有类型 `long long` 的别名" },
+      { "id": "a", "text": "一个新的整数值" },
       { "id": "b", "text": "一个名为 `ll` 的变量" },
-      { "id": "c", "text": "一个新的整数值" },
+      { "id": "c", "text": "已有类型 `long long` 的别名" },
       { "id": "d", "text": "一个命名空间" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "`typedef` 先写原类型，最后写新别名；它没有创建对象。"
   },
   {
     "id": "typedef-scope",
     "prompt": "在函数内部声明 `typedef long long ll;`，这个 `ll` 通常在哪里可见？",
     "options": [
-      { "id": "a", "text": "从声明处到所在代码块结束" },
+      { "id": "a", "text": "预处理结束以前的所有文本" },
       { "id": "b", "text": "整个项目的所有源文件" },
       { "id": "c", "text": "只在下一行" },
-      { "id": "d", "text": "预处理结束以前的所有文本" }
+      { "id": "d", "text": "从声明处到所在代码块结束" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "`typedef` 引入普通 C++ 名称，遵守声明所在的词法作用域。"
   },
   {
@@ -39,24 +39,24 @@
     "id": "expression-type",
     "prompt": "`int a, b; ll product = a * b;` 为什么仍可能溢出？",
     "options": [
-      { "id": "a", "text": "乘法先按两个操作数的 `int` 类型计算" },
-      { "id": "b", "text": "`ll` 只能保存负数" },
+      { "id": "a", "text": "`ll` 只能保存负数" },
+      { "id": "b", "text": "乘法先按两个操作数的 `int` 类型计算" },
       { "id": "c", "text": "类型别名会缩小整数范围" },
       { "id": "d", "text": "赋值运算总是在乘法以前发生" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "结果类型不会反向改变子表达式；可写 `1LL * a * b` 先把计算提升到 `long long`。"
   },
   {
     "id": "alias-versus-macro",
     "prompt": "为什么本仓库不用 `#define ll long long`？",
     "options": [
-      { "id": "a", "text": "宏只是文本替换，类型别名由 C++ 类型规则理解" },
+      { "id": "a", "text": "`long long` 只能写在函数外" },
       { "id": "b", "text": "宏不能包含任何英文字符" },
-      { "id": "c", "text": "`long long` 只能写在函数外" },
+      { "id": "c", "text": "宏只是文本替换，类型别名由 C++ 类型规则理解" },
       { "id": "d", "text": "`typedef` 会让算法复杂度更低" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "正式类型别名能保留类型语义，并避免宏在意外位置替换同名记号。"
   }
 ]

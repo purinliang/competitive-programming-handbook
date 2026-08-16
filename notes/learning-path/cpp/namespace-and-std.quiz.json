@@ -3,36 +3,36 @@
     "id": "namespace-purpose",
     "prompt": "命名空间主要解决什么问题？",
     "options": [
-      { "id": "a", "text": "把名字分组，使不同组可以拥有同名实体" },
-      { "id": "b", "text": "把所有变量自动改成常量" },
+      { "id": "a", "text": "把所有变量自动改成常量" },
+      { "id": "b", "text": "把名字分组，使不同组可以拥有同名实体" },
       { "id": "c", "text": "让程序不再需要函数" },
       { "id": "d", "text": "改变整数的存储范围" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "命名空间为名字增加作用域；调用者可以通过限定名称明确选择其中一组。"
   },
   {
     "id": "scope-resolution",
     "prompt": "`first::value` 中的 `::` 有什么作用？",
     "options": [
-      { "id": "a", "text": "指定从 `first` 命名空间中查找 `value`" },
+      { "id": "a", "text": "访问某个对象的成员" },
       { "id": "b", "text": "把 `value` 乘以二" },
-      { "id": "c", "text": "访问某个对象的成员" },
+      { "id": "c", "text": "指定从 `first` 命名空间中查找 `value`" },
       { "id": "d", "text": "声明一个引用" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "`::` 是作用域解析运算符；这里组成的限定名称消除了同名实体之间的歧义。"
   },
   {
     "id": "std-namespace",
     "prompt": "为什么标准库接口常写成 `std::cout` 或 `std::vector`？",
     "options": [
-      { "id": "a", "text": "C++ 标准库的大多数名字位于 `std` 命名空间" },
+      { "id": "a", "text": "`::` 会包含标准头文件" },
       { "id": "b", "text": "`std` 是一种整数类型" },
       { "id": "c", "text": "所有函数都必须以 `std` 开头" },
-      { "id": "d", "text": "`::` 会包含标准头文件" }
+      { "id": "d", "text": "C++ 标准库的大多数名字位于 `std` 命名空间" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "`std::name` 明确要求编译器在标准库的 `std` 命名空间中查找该名字。"
   },
   {
@@ -51,24 +51,24 @@
     "id": "using-directive-conflict",
     "prompt": "两个命名空间都含有 `value`，并同时使用 `using namespace` 后，直接写 `value` 可能怎样？",
     "options": [
-      { "id": "a", "text": "产生歧义，需要写出限定名称" },
-      { "id": "b", "text": "自动把两个值相加" },
+      { "id": "a", "text": "自动把两个值相加" },
+      { "id": "b", "text": "产生歧义，需要写出限定名称" },
       { "id": "c", "text": "总是选择后声明的名字" },
       { "id": "d", "text": "自动删除其中一个名字" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "未限定查找得到多个同样合适的候选时无法自行选择；写成 `first::value` 可以明确目标。"
   },
   {
     "id": "contest-style",
     "prompt": "本仓库为什么在竞赛代码中使用 `using namespace std;`？",
     "options": [
-      { "id": "a", "text": "单文件竞赛程序中可缩短高频名字，冲突范围也较小" },
+      { "id": "a", "text": "这样可以降低算法时间复杂度" },
       { "id": "b", "text": "C++17 强制所有程序这样写" },
-      { "id": "c", "text": "这样可以降低算法时间复杂度" },
+      { "id": "c", "text": "单文件竞赛程序中可缩短高频名字，冲突范围也较小" },
       { "id": "d", "text": "否则标准头不会参与编译" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "这是按竞赛代码规模选择的风格，不是语言规则；公共工程头文件通常更谨慎。"
   }
 ]
