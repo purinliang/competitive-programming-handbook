@@ -6,6 +6,8 @@ import "./theme.css";
 import "./styles.css";
 import "./article.css";
 
+import { BrowserFocusReset } from "@/components/browser-focus-reset";
+
 export const metadata: Metadata = {
   title: {
     default: "算法竞赛手册",
@@ -18,6 +20,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="zh-CN" data-scroll-behavior="smooth">
       <body>
+        <BrowserFocusReset />
         {children}
       </body>
     </html>
