@@ -1,0 +1,74 @@
+[
+  {
+    "id": "doubling-state",
+    "prompt": "`jump[u][j]` 的准确含义是什么？",
+    "options": [
+      { "id": "a", "text": "从 u 出发走 j 步的位置" },
+      { "id": "b", "text": "从 j 出发走 u 步的位置" },
+      { "id": "c", "text": "从 u 出发走 2^j 步的位置" },
+      { "id": "d", "text": "编号为 u 的第 j 个邻居" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "第二维保存二的幂次；j=0 对应一步，j=1 对应两步。"
+  },
+  {
+    "id": "doubling-transition",
+    "prompt": "为什么 `jump[u][j] = jump[jump[u][j-1]][j-1]`？",
+    "options": [
+      { "id": "a", "text": "两段 2^(j-1) 步首尾相接，合计 2^j 步" },
+      { "id": "b", "text": "因为任何跳跃都只能走一步" },
+      { "id": "c", "text": "因为 u 与 j 必须交换" },
+      { "id": "d", "text": "因为表中所有值都相同" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "先完成前半段到达中间点，再从中间点完成同长度的后半段。"
+  },
+  {
+    "id": "doubling-query",
+    "prompt": "查询走 k 步时，为什么检查 k 的二进制位？",
+    "options": [
+      { "id": "a", "text": "因为房间编号必须是二进制" },
+      { "id": "b", "text": "因为每个 k 都只能含一个二进制位" },
+      { "id": "c", "text": "因为二进制会自动修改 jump 表" },
+      { "id": "d", "text": "k 能唯一拆成若干不同的 2^j，正好对应预处理跳跃" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每个为 1 的二进制位选择一段对应长度的跳跃，所选长度之和恰好为 k。"
+  },
+  {
+    "id": "doubling-log",
+    "prompt": "若查询步数满足 `0 <= k <= 10^18`，`LOG` 主要由什么决定？",
+    "options": [
+      { "id": "a", "text": "房间的颜色数量" },
+      { "id": "b", "text": "最大查询步数的最高二进制位" },
+      { "id": "c", "text": "查询的输入顺序" },
+      { "id": "d", "text": "只有房间数 n" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "表必须覆盖 k 可能出现的所有有效二进制位；10^18 小于 2^60。"
+  },
+  {
+    "id": "doubling-zero",
+    "prompt": "查询 `move(u,0)` 应返回什么？",
+    "options": [
+      { "id": "a", "text": "0 号房间" },
+      { "id": "b", "text": "to[u]" },
+      { "id": "c", "text": "原来的 u" },
+      { "id": "d", "text": "jump[u][LOG-1]" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "零步没有选择任何跳跃，当前位置保持不变。"
+  },
+  {
+    "id": "doubling-complexity",
+    "prompt": "预处理 n 个点、最大步数为 K 的倍增表后，一次查询复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(\log K)$" },
+      { "id": "b", "text": "$O(K)$" },
+      { "id": "c", "text": "$O(nK)$" },
+      { "id": "d", "text": "$O(1)$ 且无需预处理" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "查询只检查 LOG 个二进制位，而 LOG 与最大步数的对数同阶。"
+  }
+]
