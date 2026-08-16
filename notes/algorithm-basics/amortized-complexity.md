@@ -235,8 +235,8 @@ void solve() {
     DoublingArrayModel model;
     for (int i = 1; i <= n; i++) {
         int actual_cost = model.push_back();
-        printf("%d %d %d %d %lld\n", i, actual_cost, model.siz,
-               model.capacity, model.total_cost);
+        printf("%d %d %d %d %lld\n", i, actual_cost, model.siz, model.capacity,
+               model.total_cost);
     }
 }
 

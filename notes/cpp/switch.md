@@ -30,8 +30,8 @@ case '*':
 
 ```cpp
 default:
-    cout << "unknown operator" << '\n';
-    break;
+cout << "unknown operator" << '\n';
+break;
 ```
 
 当输入保证只会出现已经列出的取值时，可以不写 `default`；需要处理其余所有值时，`default` 与 `if` 分支链最后的 `else` 类似。
@@ -70,7 +70,7 @@ default:
 
 ## 与 if 的选择
 
-`switch` 只能匹配离散值；[if 与 else](conditional-branches.md) 可以表达范围和任意布尔条件。分数段、大小关系和多个条件的组合使用 `if` 更自然，菜单编号或单个运算符字符才可能适合 `switch`。竞赛中 `if` 的使用频率明显更高。
+`switch` 只能匹配离散值；[if 与 else](if-and-else.md) 可以表达范围和任意布尔条件。分数段、大小关系和多个条件的组合使用 `if` 更自然，菜单编号或单个运算符字符才可能适合 `switch`。竞赛中 `if` 的使用频率明显更高。
 
 ## 完整代码
 

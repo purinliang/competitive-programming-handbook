@@ -14,7 +14,7 @@
 
 ```cpp
 class Counter {
-public:
+  public:
     int value;
 };
 ```
@@ -38,7 +38,7 @@ second.value = 5;
 
 ```cpp
 class Counter {
-public:
+  public:
     int value;
 
     void reset() {
@@ -113,7 +113,7 @@ cout << counter.get() << '\n';
 
 ```cpp
 class Counter {
-public:
+  public:
     static int total_additions;
 };
 
@@ -138,7 +138,7 @@ C++ 也允许通过对象访问公开的静态成员，但写出类名能清楚�
 
 ```cpp
 class Counter {
-public:
+  public:
     static int total_additions;
 
     static int additions() {
@@ -172,7 +172,7 @@ const int id;
 
 ```cpp
 class Counter {
-public:
+  public:
     static const int MAX_VALUE = 1000000000;
 };
 ```
@@ -188,7 +188,7 @@ public:
 using namespace std;
 
 class Counter {
-public:
+  public:
     int value;
     static int total_additions;
 

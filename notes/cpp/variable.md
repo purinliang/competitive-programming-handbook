@@ -32,7 +32,7 @@ bool visited;
 
 变量的类型一旦确定就不会改变。`score` 以后可以保存另一个 `int` 值，但不会在运行到一半时变成 `double` 或 `char`。
 
-当前先使用由英文字母、数字和下划线组成、且不以数字开头的变量名。后面的 [标识符](keywords-and-identifiers.md) 会系统整理命名规则；`int`、`return`、`if` 等具有语法作用的 [关键字](keywords.md) 不能用作变量名。
+当前先使用由英文字母、数字和下划线组成、且不以数字开头的变量名。后面的 [标识符](identifiers.md) 会系统整理命名规则；`int`、`return`、`if` 等具有语法作用的 [关键字](keywords.md) 不能用作变量名。
 
 ## 初始化
 

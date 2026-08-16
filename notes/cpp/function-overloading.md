@@ -66,8 +66,8 @@ double parse(string text);
 void show(int value);
 void show(double value);
 
-show(3);    // 选择 int
-show(3.5);  // 选择 double
+show(3);   // 选择 int
+show(3.5); // 选择 double
 ```
 
 若多个候选同样合适，调用会产生歧义，而不是凭声明顺序选择：

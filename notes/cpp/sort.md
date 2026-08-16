@@ -163,13 +163,12 @@ sort(contestants.begin(), contestants.end(),
 
 ```cpp
 bool ascending = true;
-sort(values.begin(), values.end(),
-     [ascending](int a, int b) {
-         if (ascending) {
-             return a < b;
-         }
-         return a > b;
-     });
+sort(values.begin(), values.end(), [ascending](int a, int b) {
+    if (ascending) {
+        return a < b;
+    }
+    return a > b;
+});
 ```
 
 捕获的配置在一次排序过程中不应变化，否则同一对元素可能得到前后矛盾的答案。
@@ -181,8 +180,7 @@ sort(values.begin(), values.end(),
 
 ```cpp
 struct compare_contestant {
-    bool operator()(const contestant& a,
-                    const contestant& b) const {
+    bool operator()(const contestant& a, const contestant& b) const {
         if (a.score != b.score) {
             return a.score > b.score;
         }
@@ -269,7 +267,7 @@ bool compare(int a, int b) {
 后续对这个序列进行二分时，必须继续使用兼容的比较规则。否则序列在查询规则下
 未必有序，二分结论没有保证。
 
-[unique](deduplication.md) 默认使用 `==` 判断相邻元素是否相等，不会自动从
+[unique](unique.md) 默认使用 `==` 判断相邻元素是否相等，不会自动从
 `compare` 推导上面的等价关系。若排序只观察部分字段，而 `==` 比较全部字段，
 需要为去重显式提供与题意一致的等价判断。
 

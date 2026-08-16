@@ -10,7 +10,7 @@ $$
 
 按照递推式依次计算到 $F_n$ 需要 $O(n)$ 时间。若 $n$ 接近 $10^{18}$，即使每项只进行一次加法，也无法逐项走完。
 
-一次递推可以表示成一个[线性变换](linear-transformations-as-matrices.md)。连续执行同一个递推，就是反复乘同一个矩阵；再把[快速幂](fast-power.md)中的普通乘法换成[矩阵乘法](matrix-multiplication.md)，便能在 $O(\log n)$ 轮中合成全部转移。
+一次递推可以表示成一个[线性变换](linear-transformations-as-matrices.md)。连续执行同一个递推，就是反复乘同一个矩阵；再把[快速幂](fast-exponentiation.md)中的普通乘法换成[矩阵乘法](matrix-multiplication.md)，便能在 $O(\log n)$ 轮中合成全部转移。
 
 本篇从 Fibonacci 数列推出转移矩阵，再把这一方法推广到一般线性递推。
 

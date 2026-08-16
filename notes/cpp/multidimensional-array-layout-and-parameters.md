@@ -176,9 +176,7 @@ struct Grid {
     int stride;
     vector<int> value;
 
-    Grid(int n, int m)
-        : n(n), m(m), stride(m + 5), value((n + 5) * stride) {
-    }
+    Grid(int n, int m) : n(n), m(m), stride(m + 5), value((n + 5) * stride) {}
 
     int& at(int i, int j) {
         return value[i * stride + j];

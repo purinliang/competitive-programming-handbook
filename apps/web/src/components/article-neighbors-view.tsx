@@ -17,7 +17,10 @@ export function ArticleNeighborsView({
     const route = mode === "learning-path" ? article.learningPathRoute : article.catalogRoute;
     return `${route}?entry=${encodeURIComponent(entryKey)}`;
   };
-  const titleFor = (article: ArticleRecord) => mode === "learning-path" ? article.learningTitle : article.title;
+  const titleFor = (article: ArticleRecord) => {
+    const title = mode === "learning-path" ? article.learningTitle : article.title;
+    return `${article.kind === "extension" ? "*" : ""}${title}`;
+  };
   return (
     <nav className="article-neighbors" aria-label={mode === "learning-path" ? "学习路线中的相邻文章" : "模块中的相邻文章"}>
       {previous ? <Link href={routeFor(previous)}><ArrowLeft aria-hidden="true" size={18} /><span><small>上一篇</small>{titleFor(previous.article)}</span></Link> : <span className="article-neighbor-disabled" aria-disabled="true"><ArrowLeft aria-hidden="true" size={18} /><span><small>上一篇</small>没有更早的文章</span></span>}

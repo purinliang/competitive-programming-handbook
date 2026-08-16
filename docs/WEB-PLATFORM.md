@@ -48,7 +48,7 @@ D1 只保存用户产生的状态：
 
 ## 文章身份
 
-四位编号只用于当前目录编排，不作为网站、API 或数据库中的文章 ID。
+六位 `CCUUPP` 编号只用于目录中的课程位置，不作为网站、API 或数据库中的文章身份。运行时身份继续使用语义路径构成的 `article_key`。
 
 正文文件名去掉 `.md` 后得到 `article_slug`，例如 `hello-world.md` 对应 `hello-world`。由于不同模块中已经存在 `array.md`、`queue.md`、`sorting.md` 和 `stack.md` 等重名文件，运行时使用模块相对路径作为唯一的 `article_key`：
 

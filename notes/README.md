@@ -9,7 +9,7 @@
 
 ## 编号与目录
 
-正文文件使用四位 ID：前两位表示模块，后两位表示篇。例如 `0304` 是数据结构模块的第 4 篇。大纲首次审核通过后 ID 保持稳定；ID 不代表学习先后，调整路线时不重命名正文。
+学习路线使用六位 `CCUUPP` 文章 ID，分别表示两位章号、单元号和篇序。例如 `030405` 表示第 03 章第 04 单元的第 05 篇。文件名另行使用不带 ID 的英文语义路径；完整规则见 [文章编号与语义路径](../docs/ARTICLE-IDENTITY.md)。
 
 模块目录包括 `cpp/`、`algorithm-basics/`、`data-structures/`、`graph-theory/`、`math/`、`computational-geometry/`、`dynamic-programming/` 和 `strings/`。计划节点只登记在模块目录中；开始起草时再创建文件。
 

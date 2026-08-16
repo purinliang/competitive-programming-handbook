@@ -100,7 +100,7 @@ for (int iteration = 1; iteration <= 100; iteration++) {
 许多十进制小数无法被二进制浮点精确表示，算术运算还会产生舍入。等待：
 
 ```cpp
-mid * mid == x
+mid* mid == x
 ```
 
 可能永远无法成立；即使偶然成立，也不能覆盖没有有限浮点表示的平方根。

@@ -66,10 +66,10 @@ inline int square(int x) {
 
 ```cpp
 class Counter {
-private:
+  private:
     int value;
 
-public:
+  public:
     int get() const {
         return value;
     }
@@ -92,7 +92,7 @@ inline const int MAX_SCORE = 100;
 
 ```cpp
 class Counter {
-public:
+  public:
     inline static int total = 0;
 };
 ```

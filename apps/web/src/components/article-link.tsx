@@ -19,7 +19,7 @@ export function ArticleLink({
   navigation,
 }: ArticleLinkProps) {
   const visibleTitle = label ?? (navigation === "learning-path" ? article.learningTitle : article.title);
-  const title = `${visibleTitle}${article.kind === "extension" ? "*" : ""}`;
+  const title = `${article.kind === "extension" ? "*" : ""}${visibleTitle}`;
   const route = navigation === "learning-path" ? article.learningPathRoute : article.catalogRoute;
   const href = entryKey ? `${route}?entry=${encodeURIComponent(entryKey)}` : route;
   const unavailable = !article.exists || article.status === "计划";

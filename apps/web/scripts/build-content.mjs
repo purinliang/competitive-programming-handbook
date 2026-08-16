@@ -209,11 +209,17 @@ async function parseLearningStages() {
       continue;
     }
 
-    const unitMatch = line.match(/^###\s+(?:单元|学习单元|扩展单元)：(.+)$/);
+    const unitMatch = line.match(/^###\s+单元\s+(\d{2})：(.+)$/);
     if (currentStage && unitMatch) {
-      const title = unitMatch[1].trim();
+      const number = unitMatch[1];
+      const title = unitMatch[2].trim();
+      const expectedNumber = String(currentStage.units.length + 1).padStart(2, "0");
+      if (number !== expectedNumber) {
+        throw new Error(`${currentStage.title} 的单元编号应为 ${expectedNumber}，实际为 ${number}`);
+      }
       currentUnit = {
-        key: `learning-${navigationKey(currentStage.key, title)}`,
+        key: `learning-${navigationKey(currentStage.key, number, title)}`,
+        number,
         title,
         articleKeys: [],
         entryKeys: [],
@@ -574,7 +580,8 @@ let rebuiltQuizCount = 0;
 async function loadArticleVariant(article, variant, sourcePath, title, markdown, fallback) {
   const stateKey = `${variant}:${article.articleKey}`;
   const outputPath = path.join(articleCacheRoot, variant, `${article.articleKey}.json`);
-  const inputHash = hashParts("article-v1", compilerRevision, sourcePath, title, markdown);
+  const displayTitle = article.kind === "extension" ? `*${title}` : title;
+  const inputHash = hashParts("article-v1", compilerRevision, sourcePath, displayTitle, markdown);
   nextState.articles[stateKey] = {
     hash: inputHash,
     outputPath: path.relative(cacheRoot, outputPath),
@@ -588,7 +595,7 @@ async function loadArticleVariant(article, variant, sourcePath, title, markdown,
     }
   }
 
-  const rendered = fallback ?? await renderArticle(sourcePath, title, markdown);
+  const rendered = fallback ?? await renderArticle(sourcePath, displayTitle, markdown);
   await mkdir(path.dirname(outputPath), { recursive: true });
   await writeFile(outputPath, `${JSON.stringify(rendered)}\n`);
   rebuiltArticles.add(article.articleKey);
@@ -627,7 +634,7 @@ for (const article of publishedArticles) {
   }
   searchRecords.push({
     articleKey: article.articleKey,
-    title: article.title,
+    title: `${article.kind === "extension" ? "*" : ""}${article.title}`,
     moduleTitle: article.moduleTitle,
     route: article.catalogRoute,
     status: article.status,

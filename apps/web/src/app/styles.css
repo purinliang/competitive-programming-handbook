@@ -440,9 +440,7 @@ a:focus-visible {
 
 .route-convention {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 16px;
-  align-items: baseline;
+  gap: 8px;
   margin-bottom: var(--section-gap);
   padding: 0 0 16px;
   border-bottom: 1px solid var(--divider-border);
@@ -456,7 +454,15 @@ a:focus-visible {
 }
 
 .route-convention p {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 16px;
+  align-items: baseline;
   margin: 0;
+}
+
+.route-convention code {
+  font-family: var(--font-code);
 }
 
 .hero-actions {
@@ -783,7 +789,13 @@ a.article-link.is-active:hover {
   }
 
   .route-convention p {
+    display: block;
     margin-top: 6px;
+  }
+
+  .route-convention strong {
+    display: block;
+    margin-bottom: 4px;
   }
 
 }

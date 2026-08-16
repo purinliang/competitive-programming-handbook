@@ -15,7 +15,7 @@ C++ 有 `public`、`private` 和 `protected` 三种成员访问权限。`friend`
 
 ```cpp
 class Counter {
-public:
+  public:
     int value;
 };
 
@@ -32,10 +32,10 @@ counter.value = 5;
 
 ```cpp
 class Counter {
-private:
+  private:
     int value;
 
-public:
+  public:
     void set(int new_value) {
         value = new_value;
     }
@@ -65,7 +65,7 @@ cout << counter.get() << '\n';
 
 ```cpp
 class Base {
-protected:
+  protected:
     int value;
 };
 ```
@@ -99,10 +99,10 @@ struct Visible {
 
 ```cpp
 class Score {
-private:
+  private:
     int value;
 
-public:
+  public:
     bool set(int new_value) {
         if (new_value < 0 || new_value > 100) {
             return false;
@@ -126,10 +126,10 @@ public:
 
 ```cpp
 class Score {
-private:
+  private:
     int value;
 
-public:
+  public:
     void set(int new_value) {
         value = new_value;
     }
@@ -156,7 +156,7 @@ bool same_score(const Score& a, const Score& b) {
 class Inspector;
 
 class Score {
-private:
+  private:
     int value;
 
     friend class Inspector;
@@ -181,10 +181,10 @@ private:
 using namespace std;
 
 class Score {
-private:
+  private:
     int value;
 
-public:
+  public:
     bool set(int new_value) {
         if (new_value < 0 || new_value > 100) {
             return false;

@@ -15,11 +15,11 @@
 
 ```cpp
 class Contestant {
-private:
+  private:
     int id;
     int score;
 
-public:
+  public:
     Contestant() {
         id = 0;
         score = 0;
@@ -55,9 +55,8 @@ Contestant() {
 
 ```cpp
 class Contestant {
-public:
-    Contestant(int id, int score) {
-    }
+  public:
+    Contestant(int id, int score) {}
 };
 ```
 
@@ -70,11 +69,11 @@ public:
 
 ```cpp
 class Contestant {
-private:
+  private:
     int id;
     int score;
 
-public:
+  public:
     Contestant(int id, int score) {
         this->id = id;
         this->score = score;
@@ -96,9 +95,7 @@ Contestant contestant{7, 95};
 更直接的写法是在构造函数体以前初始化成员：
 
 ```cpp
-Contestant(int id, int score)
-    : id(id), score(score) {
-}
+Contestant(int id, int score) : id(id), score(score) {}
 ```
 
 冒号后的部分称为**成员初始化列表**。左边的 `id`、`score` 是数据成员，括号中
@@ -110,14 +107,12 @@ Contestant(int id, int score)
 
 ```cpp
 class Entry {
-private:
+  private:
     const int id;
     int& value;
 
-public:
-    Entry(int id, int& value)
-        : id(id), value(value) {
-    }
+  public:
+    Entry(int id, int& value) : id(id), value(value) {}
 };
 ```
 
@@ -130,14 +125,12 @@ public:
 
 ```cpp
 class Example {
-private:
+  private:
     int first;
     int second;
 
-public:
-    Example(int value)
-        : second(value), first(second) {
-    }
+  public:
+    Example(int value) : second(value), first(second) {}
 };
 ```
 
@@ -150,7 +143,7 @@ public:
 
 ```cpp
 class Contestant {
-private:
+  private:
     int id = 0;
     int score = 0;
 };
@@ -167,9 +160,8 @@ private:
 
 ```cpp
 class Score {
-public:
-    Score(int value) {
-    }
+  public:
+    Score(int value) {}
 };
 
 Score score = 95;
@@ -178,8 +170,7 @@ Score score = 95;
 若不希望普通整数在未写明意图时自动变成 `Score`，在构造函数前写 `explicit`：
 
 ```cpp
-explicit Score(int value) {
-}
+explicit Score(int value) {}
 ```
 
 此后仍可明确写 `Score score{95};`。竞赛结构中的单参数构造函数若只是容量、模数
@@ -194,12 +185,11 @@ explicit Score(int value) {
 using namespace std;
 
 class Score {
-private:
+  private:
     int value;
 
-public:
-    explicit Score(int value)
-        : value(value) {
+  public:
+    explicit Score(int value) : value(value) {
         if (this->value < 0) {
             this->value = 0;
         }

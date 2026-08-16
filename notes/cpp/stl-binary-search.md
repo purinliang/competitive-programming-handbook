@@ -132,19 +132,14 @@ int upper_index = upper - a.begin();
 ```cpp
 sort(a.begin(), a.end(), greater<int>());
 
-auto lower = lower_bound(
-    a.begin(),
-    a.end(),
-    target,
-    greater<int>()
-);
+auto lower = lower_bound(a.begin(), a.end(), target, greater<int>());
 ```
 
 降序中的“lower bound”仍由传入的严格顺序定义，不再是普通数值意义的第一个
 `>= target`。因此初学时优先在默认升序上使用二分；需要自定义顺序时，先明确
 比较器下什么叫“排在目标以前”。
 
-自定义结构体也遵循同一规则。若 [sort](sorting.md) 使用了某个比较器，二分范围
+自定义结构体也遵循同一规则。若 [sort](sort.md) 使用了某个比较器，二分范围
 必须按完全兼容的顺序排列。先按一个字段排序、再按另一个无关字段二分，结果没有
 保证。
 

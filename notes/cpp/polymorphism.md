@@ -15,14 +15,14 @@ C++ 中“多态”有时也泛指函数重载和模板等多种形式。本篇�
 
 ```cpp
 class Animal {
-public:
+  public:
     string sound() const {
         return "unknown";
     }
 };
 
 class Dog : public Animal {
-public:
+  public:
     string sound() const {
         return "woof";
     }
@@ -48,7 +48,7 @@ Animal* animal = &dog;
 
 ```cpp
 class Animal {
-public:
+  public:
     virtual string sound() const {
         return "unknown";
     }
@@ -59,7 +59,7 @@ public:
 
 ```cpp
 class Dog : public Animal {
-public:
+  public:
     string sound() const override {
         return "woof";
     }
@@ -122,7 +122,7 @@ void print_sound(Animal animal) {
 
 ```cpp
 class Shape {
-public:
+  public:
     virtual double area() const = 0;
     virtual ~Shape() = default;
 };
@@ -133,13 +133,11 @@ public:
 
 ```cpp
 class Square : public Shape {
-private:
+  private:
     double side;
 
-public:
-    explicit Square(double side)
-        : side(side) {
-    }
+  public:
+    explicit Square(double side) : side(side) {}
 
     double area() const override {
         return side * side;
@@ -155,7 +153,7 @@ public:
 
 ```cpp
 class Animal {
-public:
+  public:
     virtual ~Animal() = default;
 };
 ```
@@ -190,7 +188,7 @@ delete animal;
 
 ## 重载与覆盖
 
-[函数重载](overloading.md) 根据参数列表在编译时从同名候选中选择。
+[函数重载](function-overloading.md) 根据参数列表在编译时从同名候选中选择。
 覆盖则发生在继承体系中：派生类为基类虚函数提供相同接口的新实现。
 
 ```text
@@ -210,7 +208,7 @@ delete animal;
 using namespace std;
 
 class Animal {
-public:
+  public:
     virtual string sound() const {
         return "unknown";
     }
@@ -219,14 +217,14 @@ public:
 };
 
 class Dog : public Animal {
-public:
+  public:
     string sound() const override {
         return "woof";
     }
 };
 
 class Cat : public Animal {
-public:
+  public:
     string sound() const override {
         return "meow";
     }

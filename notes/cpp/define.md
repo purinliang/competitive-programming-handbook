@@ -214,7 +214,7 @@ int main() {
 ### 用宏代替类型别名
 
 `#define ll long long` 仍然是文本替换。类型别名应使用 `typedef` 或 `using`；
-后续 [`typedef` 类型别名](type-aliases.md) 与
+后续 [`typedef` 类型别名](typedef-type-alias.md) 与
 [`using` 类型别名](using-type-aliases.md) 会分别解释两种写法。
 
 ## 需要记住什么

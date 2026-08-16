@@ -16,7 +16,7 @@
 
 ```cpp
 class Person {
-public:
+  public:
     string name;
 };
 ```
@@ -25,7 +25,7 @@ public:
 
 ```cpp
 class Contestant : public Person {
-public:
+  public:
     int score;
 };
 ```
@@ -68,8 +68,7 @@ contestant.score = 95;
 本书显式写出继承方式，不依赖这项默认值：
 
 ```cpp
-class Contestant : public Person {
-};
+class Contestant : public Person {};
 ```
 
 ## 构造基类部分
@@ -79,23 +78,19 @@ class Contestant : public Person {
 
 ```cpp
 class Person {
-private:
+  private:
     string name;
 
-public:
-    explicit Person(string name)
-        : name(name) {
-    }
+  public:
+    explicit Person(string name) : name(name) {}
 };
 
 class Contestant : public Person {
-private:
+  private:
     int score;
 
-public:
-    Contestant(string name, int score)
-        : Person(name), score(score) {
-    }
+  public:
+    Contestant(string name, int score) : Person(name), score(score) {}
 };
 ```
 
@@ -111,13 +106,11 @@ public:
 
 ```cpp
 class Person {
-private:
+  private:
     string name;
 
-public:
-    explicit Person(string name)
-        : name(name) {
-    }
+  public:
+    explicit Person(string name) : name(name) {}
 
     const string& get_name() const {
         return name;
@@ -171,8 +164,7 @@ void print_name(const Person& person) {
 一个派生类可以列出多个基类：
 
 ```cpp
-class Contestant : public Person, public Scorable {
-};
+class Contestant : public Person, public Scorable {};
 ```
 
 这称为多继承。派生对象含有各个基类子对象。如果不同基类提供同名成员，直接使用
@@ -191,13 +183,11 @@ C++ 提供虚继承处理共享基类，但复杂度远超竞赛主线。本篇�
 using namespace std;
 
 class Person {
-private:
+  private:
     string name;
 
-public:
-    explicit Person(string name)
-        : name(name) {
-    }
+  public:
+    explicit Person(string name) : name(name) {}
 
     const string& get_name() const {
         return name;
@@ -205,13 +195,11 @@ public:
 };
 
 class Contestant : public Person {
-private:
+  private:
     int score;
 
-public:
-    Contestant(string name, int score)
-        : Person(name), score(score) {
-    }
+  public:
+    Contestant(string name, int score) : Person(name), score(score) {}
 
     int get_score() const {
         return score;

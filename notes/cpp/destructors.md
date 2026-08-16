@@ -16,7 +16,7 @@
 
 ```cpp
 class Trace {
-public:
+  public:
     ~Trace() {
         cout << "destroy\n";
     }
@@ -60,7 +60,7 @@ Trace second{2};
 
 ```cpp
 class Data {
-private:
+  private:
     vector<int> values;
     string name;
 };
@@ -143,12 +143,11 @@ virtual ~Base() = default;
 using namespace std;
 
 class Trace {
-private:
+  private:
     int id;
 
-public:
-    explicit Trace(int id)
-        : id(id) {
+  public:
+    explicit Trace(int id) : id(id) {
         cout << "construct " << id << '\n';
     }
 

@@ -44,6 +44,7 @@ export interface LearningStage {
 
 export interface LearningUnit {
   key: string;
+  number: string;
   title: string;
   articleKeys: string[];
   entryKeys: string[];

@@ -14,7 +14,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - 公开文章、学习路线、模块目录、搜索、题目与讲解不得被登录页或鉴权重定向阻挡。用户身份只控制进度同步、作答历史、留言和管理功能。
 - `notes/` 是文章与 SVG 的唯一事实来源；题目正文也应保存在 Git。D1 只保存用户产生的状态，不复制出版内容。
-- 文章运行时身份使用相对模块路径与文件名组成的 `article_key`，不使用四位目录编号。
+- 文章运行时身份使用相对模块路径与文件名组成的 `article_key`，不使用六位目录编号。
 - Next.js 继续静态导出，Markdown、目录和 Shiki 只在构建期运行；Cloudflare 使用 Static Assets 分发 `out/`，轻量 Worker 只处理 `/api/*`，不部署 Next.js 运行时。
 - 用户进度、作答与留言通过独立的 `/api/*` Worker 边界叠加，不能迫使静态正文按请求重新渲染，也不能把出版内容复制进 D1。
 - UI 以 `docs/UI-DESIGN.md` 为准，并继承 Arctic Aria 的共享组件体系。`../arctic-aria` 是只读设计来源，不得在 handbook 工作中修改。

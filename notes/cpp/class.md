@@ -15,7 +15,7 @@
 
 ```cpp
 class Contestant {
-public:
+  public:
     int id;
     int score;
 };
@@ -138,7 +138,7 @@ bob = alice;
 using namespace std;
 
 class Contestant {
-public:
+  public:
     int id;
     int score;
 };

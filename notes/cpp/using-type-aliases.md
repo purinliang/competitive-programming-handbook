@@ -2,7 +2,7 @@
 
 > 最近修订：2026-08-16 13:24 +10:00（未审阅）
 
-[`typedef` 类型别名](type-aliases.md) 已经能给一个已有类型增加新名字：
+[`typedef` 类型别名](typedef-type-alias.md) 已经能给一个已有类型增加新名字：
 
 ```cpp
 typedef long long ll;

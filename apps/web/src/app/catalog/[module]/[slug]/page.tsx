@@ -18,7 +18,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: CatalogArticlePageProps): Promise<Metadata> {
   const { module, slug } = await params;
   const article = getArticle(`${module}/${slug}`);
-  return article ? { title: article.title } : {};
+  return article ? { title: `${article.kind === "extension" ? "*" : ""}${article.title}` } : {};
 }
 
 export default async function CatalogArticlePage({ params }: CatalogArticlePageProps) {

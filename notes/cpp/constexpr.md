@@ -77,8 +77,8 @@ int value[MAXN];
 constexpr int QUIT = 0;
 
 switch (operation) {
-    case QUIT:
-        break;
+case QUIT:
+    break;
 }
 ```
 
@@ -137,7 +137,7 @@ constexpr int MAXN = 200005;
 ```
 
 这样 `MAXN` 有明确类型，遵循作用域，也能参与编译器的类型检查。宏仍有条件编译
-等不可替代的预处理用途，详情见 [#define 宏](define-macros.md)。
+等不可替代的预处理用途，详情见 [#define 宏](define.md)。
 
 ## 完整代码
 

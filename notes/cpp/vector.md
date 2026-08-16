@@ -271,7 +271,7 @@ for (auto it = values.begin(); it != values.end(); it++) {
 ```
 
 `*it` 表示当前位置的元素。普通遍历优先使用下标或范围 `for`；现在引入
-`begin()` 和 `end()`，主要是因为 [sort](sorting.md) 中的
+`begin()` 和 `end()`，主要是因为 [sort](sort.md) 中的
 `sort(values.begin(), values.end())` 会用它们准确表示排序范围。
 
 ## 插入与删除

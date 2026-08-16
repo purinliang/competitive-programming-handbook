@@ -28,17 +28,16 @@ struct Student;
 下面的标识符合法：
 
 ```cpp
-score
-player_1
-maximum_value
+score player_1 maximum_value
 ```
 
 下面的写法不合法：
 
 ```cpp
 1st_player // 以数字开头
-return     // C++ 关键字
-player-id  // 减号是运算符，不是名称的一部分
+    return // C++ 关键字
+    player -
+    id // 减号是运算符，不是名称的一部分
 ```
 
 标准还为编译器和标准库实现保留了一些名称，例如包含连续两个下划线的名称，

@@ -26,7 +26,7 @@ MODULE_PREFIXES = {
     "strings": "08",
     "other": "09",
 }
-ARTICLE_ID_PATTERN = r"\d{4}(?:e\d+)?"
+ARTICLE_ID_PATTERN = r"\d{6}(?:e\d+)?"
 CATALOG_ROW = re.compile(
     rf"^\|\s*(\*)?({ARTICLE_ID_PATTERN})\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
 )
@@ -64,7 +64,11 @@ class RouteEntry:
     path: str
     linked: bool
     stage: str
+    stage_number: str
     section: str
+    unit_number: str
+    unit_extension: bool
+    article_position: int
 
 
 @dataclass(frozen=True)
@@ -92,7 +96,7 @@ class Checker:
         legacy = self.parse_legacy_drafts(catalog_text)
 
         self.check_module_headings(catalog_text)
-        self.check_catalog(entries, legacy)
+        self.check_catalog(entries, legacy, route)
         self.check_learning_path(entries, route)
         self.check_extension_index(entries, extension_index)
         self.check_article_files(entries, legacy)
@@ -161,7 +165,12 @@ class Checker:
         route: list[RouteEntry] = []
         extension_index: list[ExtensionIndexEntry] = []
         stage = "(no stage)"
+        stage_number = ""
         section = "(no section)"
+        unit_number = ""
+        unit_extension = False
+        article_position = 0
+        expected_unit_number = 0
         in_extension_index = False
         for line_number, line in enumerate(text.splitlines(), start=1):
             if line == "## 扩展阅读索引":
@@ -170,10 +179,37 @@ class Checker:
                 continue
             if line.startswith("## "):
                 stage = line[3:].strip()
+                stage_match = re.match(r"^(\d{2})\s+", stage)
+                stage_number = stage_match.group(1) if stage_match else ""
                 section = "(no section)"
+                unit_number = ""
+                unit_extension = False
+                article_position = 0
+                expected_unit_number = 0
                 continue
             if line.startswith("### "):
-                section = line[4:].strip()
+                raw_section = line[4:].strip()
+                unit_match = re.fullmatch(r"单元 (\d{2})：(.+)", raw_section)
+                if not in_extension_index and not unit_match:
+                    self.error(
+                        f"learning-path.md:{line_number}: unit heading must use "
+                        "'单元 01：名称'"
+                    )
+                    section = raw_section
+                    continue
+                if unit_match:
+                    unit_number, raw_title = unit_match.groups()
+                    expected_unit_number += 1
+                    if unit_number != f"{expected_unit_number:02d}":
+                        self.error(
+                            f"learning-path.md:{line_number}: expected unit "
+                            f"{expected_unit_number:02d}, got {unit_number}"
+                        )
+                    unit_extension = raw_title.startswith("*")
+                    section = raw_title.removeprefix("*").strip()
+                    article_position = 0
+                else:
+                    section = raw_section
                 continue
             if in_extension_index:
                 extension_match = EXTENSION_INDEX_ROW.match(line)
@@ -205,6 +241,7 @@ class Checker:
             match = PATH_ROW.match(line)
             if not match:
                 continue
+            article_position += 1
             marker, article_id, title, module, raw_file = (
                 part.strip() if part else part for part in match.groups()
             )
@@ -225,7 +262,11 @@ class Checker:
                     path,
                     linked,
                     stage,
+                    stage_number,
                     section,
+                    unit_number,
+                    unit_extension,
+                    article_position,
                 )
             )
         if not route:
@@ -250,35 +291,53 @@ class Checker:
             self.error("catalog.md: missing legacy-drafts marker")
             return set()
         legacy = {item.strip() for item in match.group(1).split(",") if item.strip()}
-        invalid = sorted(item for item in legacy if not re.fullmatch(r"\d{4}", item))
+        invalid = sorted(item for item in legacy if not re.fullmatch(r"\d{6}", item))
         if invalid:
             self.error(f"catalog.md: invalid legacy draft IDs: {', '.join(invalid)}")
         return legacy
 
-    def check_catalog(self, entries: dict[str, Entry], legacy: set[str]) -> None:
+    def check_catalog(
+        self,
+        entries: dict[str, Entry],
+        legacy: set[str],
+        route: list[RouteEntry],
+    ) -> None:
         positions = {article_id: index for index, article_id in enumerate(entries)}
+        route_ids = {item.article_id for item in route}
         for entry in entries.values():
             location = f"catalog.md ({entry.article_id})"
             if entry.status not in ALLOWED_STATUSES:
                 self.error(f"{location}: invalid status {entry.status!r}")
             if not ARTICLE_FILENAME.fullmatch(Path(entry.path).name):
                 self.error(f"{location}: invalid article filename {entry.path!r}")
+            elif re.match(r"\d{4,6}-", Path(entry.path).name):
+                self.error(
+                    f"{location}: semantic article filename must not carry an ID"
+                )
             module = Path(entry.path).parts[0] if Path(entry.path).parts else ""
             expected_prefix = MODULE_PREFIXES.get(module)
             if expected_prefix is None:
                 self.error(f"{location}: unknown module directory {module!r}")
-            elif not entry.article_id.startswith(expected_prefix):
-                self.error(
-                    f"{location}: module {module!r} must use ID prefix {expected_prefix}"
-                )
-            elif "e" in entry.article_id:
-                base_id = entry.article_id[:4]
+            if "e" in entry.article_id:
+                base_id = entry.article_id.split("e", 1)[0]
                 if base_id not in positions:
                     self.error(f"{location}: companion base {base_id} is absent")
                 elif positions[base_id] >= positions[entry.article_id]:
                     self.error(
                         f"{location}: companion base {base_id} must appear earlier"
                     )
+            elif entry.kind == "核心教程" and entry.article_id.startswith("99"):
+                self.error(f"{location}: core article must not use the 99 extension range")
+            elif (
+                entry.kind == "扩展专题"
+                and entry.article_id not in route_ids
+                and expected_prefix is not None
+                and not entry.article_id.startswith(f"99{expected_prefix}")
+            ):
+                self.error(
+                    f"{location}: catalog-only extension in module {module!r} "
+                    f"must use prefix 99{expected_prefix}"
+                )
             if entry.status == "计划" and entry.linked:
                 self.error(f"{location}: planned article must use a code path")
             if entry.status != "计划" and not entry.linked:
@@ -310,6 +369,8 @@ class Checker:
     ) -> None:
         seen_entrances: set[tuple[str, str, str]] = set()
         repeated_metadata: dict[str, tuple[bool, str, str, str, bool]] = {}
+        primary_positions: dict[str, str] = {}
+        unit_entries: dict[tuple[str, str], list[RouteEntry]] = {}
         route_ids: list[str] = []
         for item in route:
             location = f"learning-path.md ({item.article_id}, {item.stage})"
@@ -336,15 +397,42 @@ class Checker:
                 continue
             if item.extension_marker != (entry.kind == "扩展专题"):
                 self.error(f"{location}: extension marker differs from catalog")
-            if re.fullmatch(r"\d{4}e\d+", item.article_id):
+            if re.fullmatch(r"\d{6}e\d+", item.article_id):
                 self.error(f"{location}: attached extensions must not enter stage directories")
+            expected_id = (
+                f"{item.stage_number}{item.unit_number}{item.article_position:02d}"
+            )
+            primary = primary_positions.setdefault(item.article_id, expected_id)
+            if primary == expected_id and item.article_id != expected_id:
+                self.error(
+                    f"{location}: primary route position requires ID {expected_id}"
+                )
+            if item.article_id.startswith("99"):
+                self.error(f"{location}: route article must not use the 99 extension range")
             if entry.kind == "核心教程":
                 route_ids.append(item.article_id)
+            unit_entries.setdefault((item.stage, item.unit_number), []).append(item)
             logical_path = item.path.removeprefix("learning-path/")
             if logical_path != entry.path:
                 self.error(
                     f"{location}: article key differs from catalog ({logical_path!r} != {entry.path!r})"
                 )
+
+        for (stage, unit_number), items in unit_entries.items():
+            all_extensions = all(item.extension_marker for item in items)
+            marked_extension = items[0].unit_extension
+            if all_extensions != marked_extension:
+                name = items[0].section
+                if all_extensions:
+                    self.error(
+                        f"learning-path.md ({stage}, unit {unit_number} {name}): "
+                        "an all-extension unit must prefix its title with *"
+                    )
+                else:
+                    self.error(
+                        f"learning-path.md ({stage}, unit {unit_number} {name}): "
+                        "a starred unit may contain only extensions"
+                    )
 
         core_ids = {key for key, entry in entries.items() if entry.kind == "核心教程"}
         core_route_ids = set(route_ids)
@@ -393,7 +481,7 @@ class Checker:
                 self.error(f"{location}: core article must stay in stages 1–7")
             if not item.extension_marker:
                 self.error(f"{location}: extension index entries must use *")
-            if re.fullmatch(r"\d{4}e\d+", item.article_id):
+            if re.fullmatch(r"\d{6}e\d+", item.article_id):
                 self.error(f"{location}: attached extensions must not enter the public index")
             if item.title != entry.title:
                 self.error(
@@ -414,7 +502,7 @@ class Checker:
                 article_id
                 for article_id, entry in entries.items()
                 if entry.kind == "扩展专题"
-                and not re.fullmatch(r"\d{4}e\d+", article_id)
+                and not re.fullmatch(r"\d{6}e\d+", article_id)
             ),
             key=lambda article_id: (
                 module_order[Path(entries[article_id].path).parts[0]],
