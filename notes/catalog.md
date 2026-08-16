@@ -176,7 +176,7 @@
 | 0217* | 整体二分与并行二分 | 计划 | `algorithm-basics/0217-parallel-binary-search.md` |
 | 0218* | CDQ 分治 | 计划 | `algorithm-basics/0218-cdq-divide-and-conquer.md` |
 | 0219 | 二分答案 | 待审阅 | [binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |
-| 0220 | 双指针：滑动窗口 | 待审阅 | [sliding-window.md](algorithm-basics/sliding-window.md) |
+| 0220 | 滑动窗口 | 待审阅 | [sliding-window.md](algorithm-basics/sliding-window.md) |
 | 0221 | 差分 | 待审阅 | [difference-array.md](algorithm-basics/difference-array.md) |
 | 0222 | 模拟 | 待审阅 | [simulation.md](algorithm-basics/simulation.md) |
 | 0223 | 线性结构：数组 | 待审阅 | [array.md](algorithm-basics/array.md) |

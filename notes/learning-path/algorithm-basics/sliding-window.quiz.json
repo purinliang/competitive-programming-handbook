@@ -1,0 +1,98 @@
+[
+  {
+    "id": "window-state",
+    "prompt": "本篇滑动窗口用什么表示当前状态？",
+    "options": [
+      { "id": "a", "text": "闭区间 `[l,r]` 与其中元素和 `sum`" },
+      { "id": "b", "text": "两个互不相关的随机数" },
+      { "id": "c", "text": "整个数组的排序结果" },
+      { "id": "d", "text": "递归调用深度" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "端点移动时只需加入或删除一个元素，就能增量维护窗口和。"
+  },
+  {
+    "id": "window-expand-right",
+    "prompt": "每次右端扩展到 `r` 时，首先做什么？",
+    "options": [
+      { "id": "a", "text": "清空整个窗口" },
+      { "id": "b", "text": "`sum += a[r]`" },
+      { "id": "c", "text": "让左端回到 1" },
+      { "id": "d", "text": "把 a[r] 改成 0" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "新元素进入闭区间后，sum 才表示当前 [l,r] 的和。"
+  },
+  {
+    "id": "window-shrink-order",
+    "prompt": "窗口和达到目标后，为什么先更新答案再删除左端？",
+    "options": [
+      { "id": "a", "text": "删除后窗口可能立刻不合法，当前合法区间会被漏掉" },
+      { "id": "b", "text": "删除操作在 C++ 中不存在" },
+      { "id": "c", "text": "答案只能在左端删除前初始化" },
+      { "id": "d", "text": "这样能让所有元素变正" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "当前 [l,r] 已经是候选，必须记录后才能破坏它并继续收缩。"
+  },
+  {
+    "id": "window-while-not-if",
+    "prompt": "为什么收缩使用 `while (sum >= target)` 而不是 `if`？",
+    "options": [
+      { "id": "a", "text": "while 一定比 if 更快" },
+      { "id": "b", "text": "一个右端可能对应多段合法窗口，需要持续缩短" },
+      { "id": "c", "text": "if 不能判断整数" },
+      { "id": "d", "text": "为了让左端向左移动" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "只删除一次可能错过以同一 r 结尾的更短合法区间。"
+  },
+  {
+    "id": "window-linear-time",
+    "prompt": "外层 for 加内层 while 为什么总时间仍是 O(n)？",
+    "options": [
+      { "id": "a", "text": "内层 while 从不执行" },
+      { "id": "b", "text": "每个端点只向右，元素至多加入和删除各一次" },
+      { "id": "c", "text": "嵌套循环永远是 O(n)" },
+      { "id": "d", "text": "n 在运行时等于 0" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "复杂度取决于整个执行过程的总移动次数，而不只看语法嵌套。"
+  },
+  {
+    "id": "window-positive-condition",
+    "prompt": "正数或非负数条件提供了什么关键性质？",
+    "options": [
+      { "id": "a", "text": "扩展右端时和不减，删除左端时和不增" },
+      { "id": "b", "text": "所有窗口长度相同" },
+      { "id": "c", "text": "数组自动有序" },
+      { "id": "d", "text": "答案一定为 1" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "这条单调性证明何时可以停止收缩且端点不必回退。"
+  },
+  {
+    "id": "window-negative-counterexample",
+    "prompt": "数组含负数时，本篇停止收缩的规则为什么可能失效？",
+    "options": [
+      { "id": "a", "text": "删除负数反而可能让窗口和增大" },
+      { "id": "b", "text": "负数不能存进 vector" },
+      { "id": "c", "text": "负数会改变数组长度" },
+      { "id": "d", "text": "目标值必须为负" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "窗口当前不足时继续删除负数仍可能重新合法，原有单调证明不成立。"
+  },
+  {
+    "id": "fixed-window",
+    "prompt": "固定长度为 k 的窗口怎样决定左端？",
+    "options": [
+      { "id": "a", "text": "由数值是否达到 target 决定" },
+      { "id": "b", "text": "始终固定在 1" },
+      { "id": "c", "text": "由右端确定为 `r-k+1`" },
+      { "id": "d", "text": "每轮随机选择" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "右端加入后只需删除唯一离开长度 k 范围的元素。"
+  }
+]
