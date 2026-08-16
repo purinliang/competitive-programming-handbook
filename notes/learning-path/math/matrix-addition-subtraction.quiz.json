@@ -1,0 +1,50 @@
+[
+  {
+    "id": "size-condition",
+    "prompt": "两个矩阵能够相加或相减的尺寸条件是什么？",
+    "options": [
+      { "id": "a", "text": "行数相等即可" },
+      { "id": "b", "text": "前者列数等于后者行数" },
+      { "id": "c", "text": "行数和列数都分别相等" },
+      { "id": "d", "text": "二者都必须是方阵" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "加减法逐位置配对，两个矩阵必须拥有完全相同的形状。"
+  },
+  {
+    "id": "element-operation",
+    "prompt": "矩阵和 `C=A+B` 的元素 `C[i][j]` 怎样计算？",
+    "options": [
+      { "id": "a", "text": "`A[i][j]+B[i][j]`" },
+      { "id": "b", "text": "A 的第 i 行乘 B 的第 j 列" },
+      { "id": "c", "text": "`A[j][i]+B[i][j]`" },
+      { "id": "d", "text": "把 A 与 B 拼接" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "矩阵加法就是对每个相同位置执行普通加法。"
+  },
+  {
+    "id": "zero-matrix",
+    "prompt": "为什么说“零矩阵”时仍需要指定大小？",
+    "options": [
+      { "id": "a", "text": "零矩阵不能含有 0" },
+      { "id": "b", "text": "不同尺寸的全零矩阵不能参与同一组逐位置运算" },
+      { "id": "c", "text": "零矩阵必须是 1*1" },
+      { "id": "d", "text": "大小决定其中的非零元素" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "矩阵不只由元素值决定，行列形状也是对象的一部分。"
+  },
+  {
+    "id": "subtraction-law",
+    "prompt": "关于矩阵减法，哪项正确？",
+    "options": [
+      { "id": "a", "text": "总满足 A-B=B-A" },
+      { "id": "b", "text": "只能对角元素相减" },
+      { "id": "c", "text": "答案尺寸是两矩阵尺寸之和" },
+      { "id": "d", "text": "通常 A-B 与 B-A 不同" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "逐元素减法继承普通减法的不交换性。"
+  }
+]
