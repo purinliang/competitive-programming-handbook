@@ -1,0 +1,62 @@
+[
+  {
+    "id": "line-representation",
+    "prompt": "为什么公切线不宜只用两个圆上的切点表示？",
+    "options": [
+      { "id": "a", "text": "切点一定不是浮点数" },
+      { "id": "b", "text": "两个圆相切时切点可能重合，无法由这两个点确定方向" },
+      { "id": "c", "text": "切线不能经过圆上的点" },
+      { "id": "d", "text": "两个切点一定距离太远" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "保存直上一点和非零方向向量，在普通和退化相切情况下都有效。"
+  },
+  {
+    "id": "point-tangent-count",
+    "prompt": "给定点严格位于圆外时，从该点能作多少条圆的切线？",
+    "options": [
+      { "id": "a", "text": "2 条" },
+      { "id": "b", "text": "0 条" },
+      { "id": "c", "text": "1 条" },
+      { "id": "d", "text": "无穷多条" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "圆外点与圆形成上下对称的两个切点，因此有两条切线。"
+  },
+  {
+    "id": "tangent-property",
+    "prompt": "切点处的半径与切线方向满足什么关系？",
+    "options": [
+      { "id": "a", "text": "方向相同" },
+      { "id": "b", "text": "长度相等" },
+      { "id": "c", "text": "互相垂直，点积为 0" },
+      { "id": "d", "text": "夹角固定为 45 度" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "半径垂直于圆在切点处的切线，这是全部公式的基础。"
+  },
+  {
+    "id": "signed-radius",
+    "prompt": "求内公切线时，为什么把第二个圆的半径视为负数？",
+    "options": [
+      { "id": "a", "text": "让第二个圆消失" },
+      { "id": "b", "text": "表示第二个圆半径真的为负" },
+      { "id": "c", "text": "避免计算圆心距离" },
+      { "id": "d", "text": "统一表达两个切点位于公切线法向量的相反侧" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "带符号半径只是公式约定，让外公切线和内公切线共享同一法向量方程。"
+  },
+  {
+    "id": "coincident-circles",
+    "prompt": "两个圆完全重合时有多少条公切线？",
+    "options": [
+      { "id": "a", "text": "无穷多条" },
+      { "id": "b", "text": "4 条" },
+      { "id": "c", "text": "2 条" },
+      { "id": "d", "text": "0 条" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "重合圆的每一条切线同时也是两个圆的切线。"
+  }
+]

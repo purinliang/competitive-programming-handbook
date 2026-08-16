@@ -1004,7 +1004,7 @@
 | *990607 | 半平面交 | 推迟 | `computational-geometry/half-plane-intersection.md` |
 | *990608 | 闵可夫斯基和 | 推迟 | `computational-geometry/minkowski-sum.md` |
 | 080501 | 极角排序 | 待审阅 | [computational-geometry/polar-angle-sort.md](computational-geometry/polar-angle-sort.md) |
-| 080503 | 圆：切线 | 计划 | `computational-geometry/circle-tangents.md` |
+| 080503 | 圆：切线 | 待审阅 | [computational-geometry/circle-tangents.md](computational-geometry/circle-tangents.md) |
 | *990611 | 圆：面积交与面积并 | 推迟 | `computational-geometry/circle-area-intersection-union.md` |
 | *990612 | 三维计算几何 | 推迟 | `computational-geometry/three-dimensional-geometry.md` |
 | *990613 | 平面点定位 | 推迟 | `computational-geometry/point-location.md` |

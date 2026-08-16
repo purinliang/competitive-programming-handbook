@@ -727,7 +727,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | --- | --- | --- | --- |
 | 080501 | 极角排序 | 计算几何 | [computational-geometry/polar-angle-sort.md](computational-geometry/polar-angle-sort.md) |
 | 080502 | 圆：位置关系与交点 | 计算几何 | [computational-geometry/circles.md](computational-geometry/circles.md) |
-| 080503 | 圆：切线 | 计算几何 | `computational-geometry/circle-tangents.md` |
+| 080503 | 圆：切线 | 计算几何 | [computational-geometry/circle-tangents.md](computational-geometry/circle-tangents.md) |
 
 ## 09 区域赛金牌
 
