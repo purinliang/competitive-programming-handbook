@@ -1,0 +1,146 @@
+[
+  {
+    "id": "problem-goal",
+    "prompt": "最小化总等待时间问题中，一个任务的等待时间是什么？",
+    "options": [
+      { "id": "a", "text": "它自身的处理时间" },
+      { "id": "b", "text": "它后面所有任务的处理时间之和" },
+      { "id": "c", "text": "它前面所有任务的处理时间之和" },
+      { "id": "d", "text": "全部任务的总处理时间" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "任务开始前必须等待前面的任务完成，不需要等待自己完成。"
+  },
+  {
+    "id": "brute-force",
+    "prompt": "暴力枚举 n 个任务的全部处理顺序，需要检查多少种排列？",
+    "options": [
+      { "id": "a", "text": "$n!$" },
+      { "id": "b", "text": "$2^n$" },
+      { "id": "c", "text": "$n^2$" },
+      { "id": "d", "text": "$n$" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "这里需要排列全部任务，而不是只决定每个任务选或不选。"
+  },
+  {
+    "id": "local-contribution",
+    "prompt": "相邻任务时长依次为 x、y，之前总耗时为 S 时，它们的等待时间贡献是什么？",
+    "options": [
+      { "id": "a", "text": "$x+y$" },
+      { "id": "b", "text": "$S+x+y$" },
+      { "id": "c", "text": "$2S+y$" },
+      { "id": "d", "text": "$S+(S+x)$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "第一个任务等待 S，第二个还要额外等待前一个任务的时长 x。"
+  },
+  {
+    "id": "swap-difference",
+    "prompt": "原顺序 x,y 的贡献减去交换后 y,x 的贡献是多少？",
+    "options": [
+      { "id": "a", "text": "$x+y$" },
+      { "id": "b", "text": "$x-y$" },
+      { "id": "c", "text": "$S-x$" },
+      { "id": "d", "text": "$2S$" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "共同的 2S 抵消，只剩原顺序额外等待 x、交换后额外等待 y。"
+  },
+  {
+    "id": "unaffected-suffix",
+    "prompt": "交换相邻任务 x、y 后，为什么后续任务的等待时间不变？",
+    "options": [
+      { "id": "a", "text": "因为后续任务时长都相同" },
+      { "id": "b", "text": "因为交换会删除一个任务" },
+      { "id": "c", "text": "因为后续任务不计等待时间" },
+      { "id": "d", "text": "两个任务处理完的总时刻仍然是 $S+x+y$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "相邻两项之和不因次序改变，因此它们之后的全部开始时刻保持不变。"
+  },
+  {
+    "id": "inversion",
+    "prompt": "若相邻任务满足 x > y，交换它们会怎样？",
+    "options": [
+      { "id": "a", "text": "总等待时间减少 x-y" },
+      { "id": "b", "text": "总等待时间增加 x-y" },
+      { "id": "c", "text": "答案一定不变" },
+      { "id": "d", "text": "无法判断" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "较长任务在前是一个可改进的相邻逆序，短任务应当移到前面。"
+  },
+  {
+    "id": "equal-duration",
+    "prompt": "两个相邻任务时长相等时，交换会怎样？",
+    "options": [
+      { "id": "a", "text": "一定破坏最优性" },
+      { "id": "b", "text": "总等待时间增加两倍" },
+      { "id": "c", "text": "总等待时间不变，两种相对顺序都可以" },
+      { "id": "d", "text": "只能按编号降序" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "交换差值 x-y 为 0，因此平局规则不影响目标值。"
+  },
+  {
+    "id": "global-order",
+    "prompt": "不断消除相邻逆序后，会得到什么顺序？",
+    "options": [
+      { "id": "a", "text": "时长非递增" },
+      { "id": "b", "text": "时长非递减" },
+      { "id": "c", "text": "编号非递减" },
+      { "id": "d", "text": "任意循环顺序" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "不存在相邻 x>y 的排列恰好是时长非递减排列。"
+  },
+  {
+    "id": "answer-loop-order",
+    "prompt": "扫描有序任务时，循环内为什么先 `answer += elapsed` 再增加当前时长？",
+    "options": [
+      { "id": "a", "text": "当前任务只等待前面的任务，不等待自己" },
+      { "id": "b", "text": "为了让 sort 更稳定" },
+      { "id": "c", "text": "因为 elapsed 只能增加一次" },
+      { "id": "d", "text": "为了跳过第一个任务" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "进入当前任务时的 elapsed 正好是它开始前已经经过的时间。"
+  },
+  {
+    "id": "complexity",
+    "prompt": "排序并扫描求最小总等待时间的总时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(n)$" },
+      { "id": "b", "text": "$O(n^2)$" },
+      { "id": "c", "text": "$O(n!)$" },
+      { "id": "d", "text": "$O(n\\log n)$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "排序决定 O(n log n)，之后只需一次线性扫描。"
+  },
+  {
+    "id": "when-to-use",
+    "prompt": "什么问题最适合尝试邻项交换证明？",
+    "options": [
+      { "id": "a", "text": "只需要判断一个数是否为质数" },
+      { "id": "b", "text": "只进行一次数组查询" },
+      { "id": "c", "text": "需要确定全部对象的顺序，并能比较相邻两种次序的目标贡献" },
+      { "id": "d", "text": "任何出现 sort 的程序" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "关键是局部次序可以比较，且交换能够逐步把任意排列变成目标全序。"
+  },
+  {
+    "id": "new-objective",
+    "prompt": "若目标函数改变，为什么不能直接沿用短任务优先？",
+    "options": [
+      { "id": "a", "text": "因为 sort 只能用于一个目标" },
+      { "id": "b", "text": "相邻两种顺序的贡献差可能改变，必须重新推导交换条件" },
+      { "id": "c", "text": "因为任务时长会自动变化" },
+      { "id": "d", "text": "因为新的目标一定没有最优解" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "排序规则依赖目标函数；旧证明只覆盖总等待时间这一目标。"
+  }
+]
