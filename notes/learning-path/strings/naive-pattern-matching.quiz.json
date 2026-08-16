@@ -1,0 +1,98 @@
+[
+  {
+    "id": "character-alignment",
+    "prompt": "模式串从文本位置 `start` 开始时，模式位置 `j` 对应哪个文本位置？",
+    "options": [
+      { "id": "a", "text": "`start + j - 1`" },
+      { "id": "b", "text": "`start + j`" },
+      { "id": "c", "text": "`start - j`" },
+      { "id": "d", "text": "`j - start + 1`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "当 j = 1 时应正好对齐 text[start]，因此需要减去 1。"
+  },
+  {
+    "id": "last-start",
+    "prompt": "长度为 `m` 的模式完整放进长度为 `n` 的文本时，最后合法起点是什么？",
+    "options": [
+      { "id": "a", "text": "`n`" },
+      { "id": "b", "text": "`n - m`" },
+      { "id": "c", "text": "`n - m + 1`" },
+      { "id": "d", "text": "`m - n + 1`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "匹配末端 start + m - 1 不能超过 n，整理后得到 start <= n - m + 1。"
+  },
+  {
+    "id": "continuous-match",
+    "prompt": "为什么从 `a x b x c` 中按顺序挑出 `a b c` 不算模式 `abc` 的一次出现？",
+    "options": [
+      { "id": "a", "text": "因为文本不能包含字符 `x`" },
+      { "id": "b", "text": "因为模式串必须比文本更长" },
+      { "id": "c", "text": "因为字符 `a` 不能作为起点" },
+      { "id": "d", "text": "模式匹配要求字符对应连续文本位置" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "能够保持顺序但跳过字符只说明 abc 是子序列，不是连续子串。"
+  },
+  {
+    "id": "overlapping-matches",
+    "prompt": "怎样保证文本 `aaaaa` 中模式 `aaa` 的三个重叠匹配都被找到？",
+    "options": [
+      { "id": "a", "text": "找到后把起点增加模式长度" },
+      { "id": "b", "text": "无论是否匹配，外层起点每次只增加 1" },
+      { "id": "c", "text": "只检查起点 1" },
+      { "id": "d", "text": "找到后立即结束整个算法" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "依次检查起点 1、2、3 才不会跳过彼此重叠的合法区间。"
+  },
+  {
+    "id": "early-break",
+    "prompt": "检查固定起点时，发现一对字符不同后为什么可以立即停止？",
+    "options": [
+      { "id": "a", "text": "完整匹配要求每一对字符都相同，已有失配无法被后缀修复" },
+      { "id": "b", "text": "因为后面的字符一定相同" },
+      { "id": "c", "text": "因为当前起点已经匹配成功" },
+      { "id": "d", "text": "因为模式串会自动变短" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "只要一个对应位置不同，当前起点就不满足完整逐字符相等的定义。"
+  },
+  {
+    "id": "one-based-conversion",
+    "prompt": "给 `string` 前面补占位字符以前，为什么要先保存真实长度？",
+    "options": [
+      { "id": "a", "text": "因为补位会删除原字符串" },
+      { "id": "b", "text": "因为补位后字符串不能访问" },
+      { "id": "c", "text": "补位后的 `size()` 比真实字符数多 1" },
+      { "id": "d", "text": "因为真实长度必须等于 0" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "算法把位置 0 留空，但 n、m 仍应描述真实文本和模式的字符数量。"
+  },
+  {
+    "id": "worst-case-time",
+    "prompt": "朴素字符串匹配的最坏时间复杂度为什么是 $O(nm)$？",
+    "options": [
+      { "id": "a", "text": "因为要枚举全部文本子序列" },
+      { "id": "b", "text": "因为每次匹配都需要排序" },
+      { "id": "c", "text": "因为字符串只能使用二维数组" },
+      { "id": "d", "text": "最多有线性个起点，每个起点可能比较整个模式串" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "提前失配能改善部分输入，但不能排除几乎每个起点都比较 m 个字符的最坏情况。"
+  },
+  {
+    "id": "find-interface",
+    "prompt": "若改用 `string::find` 查找全部重叠出现，需要特别处理什么？",
+    "options": [
+      { "id": "a", "text": "每次从上次起点加模式长度继续" },
+      { "id": "b", "text": "从上次起点加 1 继续，并把 0-based 结果转换成 1-based" },
+      { "id": "c", "text": "把文本倒序以后再查找" },
+      { "id": "d", "text": "删除所有重复字符" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "加 1 才保留重叠候选；标准库返回值使用 string 的原生 0-based 下标。"
+  }
+]

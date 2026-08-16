@@ -1,6 +1,6 @@
-# 字符串：模式匹配与朴素算法
+# 朴素字符串匹配
 
-> 最近修订：2026-08-13 23:07 +10:00（未审阅）
+> 最近修订：2026-08-16 14:38 +10:00（未审阅）
 
 给定一段较长文本和一个较短模式串，模式匹配（pattern matching）要找出模式串在哪些位置完整、连续地出现在文本中。
 
@@ -170,13 +170,16 @@ text[0], pattern[0] 只是占位
 
 这次转换只发生在输入与算法的边界。算法内部、返回的出现位置和正文公式全部保持 1-based，不在循环中反复加减下标体系。
 
-## 完整匹配函数
+## 题目级状态与匹配函数
 
-朴素匹配只依赖本次输入，没有跨调用持续状态，使用普通函数：
+`text`、`pattern`、`n` 和 `m` 由输入、匹配函数与输出共同使用，因此保存为题目级
+全局状态。匹配函数不再重复接收这四个参数：
 
 ```cpp
-vector<int> find_occurrences(const string& text, const string& pattern, int n,
-                             int m) {
+int n, m;
+string text, pattern;
+
+vector<int> find_occurrences() {
     vector<int> occurrences;
 
     for (int start = 1; start + m - 1 <= n; start++) {
@@ -220,8 +223,10 @@ vector<int> find_occurrences(const string& text, const string& pattern, int n,
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> find_occurrences(const string& text, const string& pattern, int n,
-                             int m) {
+int n, m;
+string text, pattern;
+
+vector<int> find_occurrences() {
     vector<int> occurrences;
 
     for (int start = 1; start + m - 1 <= n; start++) {
@@ -241,16 +246,15 @@ vector<int> find_occurrences(const string& text, const string& pattern, int n,
     return occurrences;
 }
 
-int main() {
-    string text, pattern;
+void solve() {
     cin >> text >> pattern;
 
-    int n = text.size();
-    int m = pattern.size();
+    n = text.size();
+    m = pattern.size();
     text = " " + text;
     pattern = " " + pattern;
 
-    vector<int> occurrences = find_occurrences(text, pattern, n, m);
+    vector<int> occurrences = find_occurrences();
 
     int count = occurrences.size();
     cout << count << '\n';
@@ -260,6 +264,10 @@ int main() {
     if (count == 0) {
         cout << '\n';
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -353,7 +361,3 @@ $$
 9. 怎样构造使大多数起点都比较到模式末尾才失败的数据？
 
 KMP、Z 函数和字符串哈希都试图复用已经比较出的信息，避免每个起点从模式开头重新检查。朴素算法仍然是理解这些优化和随机验证它们的基准。
-
-## 下一篇
-
-下一阶段从 [容器适配器：priority_queue](../cpp/priority-queue.md) 开始，学习按照优先级而不是进入顺序取出元素的标准库接口。

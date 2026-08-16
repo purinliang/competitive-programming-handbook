@@ -504,7 +504,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 0801 | 字符串比较与字典序 | 待审阅 | [comparison-and-lexicographic-order.md](strings/comparison-and-lexicographic-order.md) |
-| 0802 | 字符串：模式匹配与朴素算法 | 待审阅 | [naive-pattern-matching.md](strings/naive-pattern-matching.md) |
+| 0802 | 朴素字符串匹配 | 待审阅 | [naive-pattern-matching.md](strings/naive-pattern-matching.md) |
 | 0803 | 字符串：哈希 | 计划 | `strings/0803-rolling-hash.md` |
 | 0804 | 字符串：KMP 与前缀函数 | 计划 | `strings/0804-kmp-prefix-function.md` |
 | 0805 | 字符串：Z 函数 | 计划 | `strings/0805-z-function.md` |
