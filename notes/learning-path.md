@@ -692,7 +692,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 080201 | 二分图：最大匹配 | 图论 | [graph-theory/bipartite-matching.md](graph-theory/bipartite-matching.md) |
-| 080202 | 2-SAT | 图论 | `graph-theory/two-sat.md` |
+| 080202 | 2-SAT | 图论 | [graph-theory/two-sat.md](graph-theory/two-sat.md) |
 
 ### 单元 03：数学
 

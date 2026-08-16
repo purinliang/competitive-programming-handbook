@@ -1,0 +1,62 @@
+[
+  {
+    "id": "forbidden-pair",
+    "prompt": "禁止 `a=x` 与 `b=y` 同时发生，应加入哪两条蕴含？",
+    "options": [
+      { "id": "a", "text": "`a=x -> b=y` 与 `b=y -> a=x`" },
+      { "id": "b", "text": "`a=x -> b!=y` 与 `b=y -> a!=x`" },
+      { "id": "c", "text": "只加入 `a=x -> b=y`" },
+      { "id": "d", "text": "不需要加入任何边" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "任一禁配状态成立时，另一变量都必须避开对应状态。"
+  },
+  {
+    "id": "same-scc",
+    "prompt": "变量的两个相反选择落在同一个强连通分量中意味着什么？",
+    "options": [
+      { "id": "a", "text": "两个选择互相迫使成立，问题无解" },
+      { "id": "b", "text": "两个选择可以同时使用" },
+      { "id": "c", "text": "这个变量可以删除" },
+      { "id": "d", "text": "答案一定全部为 0" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "选择任一状态都会沿蕴含路径迫使其反面成立，无法只选一个。"
+  },
+  {
+    "id": "literal-count",
+    "prompt": "含 n 个布尔变量的 2-SAT 蕴含图为什么通常有 2n 个节点？",
+    "options": [
+      { "id": "a", "text": "每条边需要两个端点" },
+      { "id": "b", "text": "每个变量要分别表示两个相反取值" },
+      { "id": "c", "text": "为了把复杂度变成平方级" },
+      { "id": "d", "text": "因为每个变量必须出现两次" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "变量为 0 和为 1 是两个互相否定的文字，需要分别成为图节点。"
+  },
+  {
+    "id": "component-order",
+    "prompt": "为什么不能直接照抄其他 2-SAT 模板中 SCC 编号的大小比较符号？",
+    "options": [
+      { "id": "a", "text": "因为 SCC 不包含节点" },
+      { "id": "b", "text": "因为变量编号必须从 0 开始" },
+      { "id": "c", "text": "因为不同算法和实现可能按相反拓扑方向编号 SCC" },
+      { "id": "d", "text": "因为比较符号与答案无关" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "赋值依赖缩点图的顺序，编号方向变化时大小关系也要随之变化。"
+  },
+  {
+    "id": "not-two-sat",
+    "prompt": "下面哪个限制通常不能直接用基础 2-SAT 的两条蕴含边完整表达？",
+    "options": [
+      { "id": "a", "text": "a 与 b 不能同时为真" },
+      { "id": "b", "text": "a 与 b 至少一个为真" },
+      { "id": "c", "text": "a 与 b 必须不同" },
+      { "id": "d", "text": "a、b、c 至少一个为真" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "三个文字的析取条件一般不能只靠两个变量之间的一对蕴含完整表示。"
+  }
+]

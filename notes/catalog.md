@@ -667,7 +667,7 @@
 | 070201 | 有向图：强连通分量 | 待审阅 | [strongly-connected-components.md](graph-theory/strongly-connected-components.md) |
 | 070202 | 无向图：割点与桥 | 待审阅 | [articulation-points-bridges.md](graph-theory/articulation-points-bridges.md) |
 | *990402 | 无向图：双连通分量与圆方树 | 推迟 | `graph-theory/biconnected-components-block-cut-tree.md` |
-| 080202 | 2-SAT | 计划 | `graph-theory/two-sat.md` |
+| 080202 | 2-SAT | 待审阅 | [graph-theory/two-sat.md](graph-theory/two-sat.md) |
 | *990423 | 支配树 | 推迟 | `graph-theory/dominator-tree.md` |
 | *990424 | 无向图：全局最小割 | 推迟 | `graph-theory/global-minimum-cut.md` |
 
