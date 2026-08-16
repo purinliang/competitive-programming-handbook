@@ -1,0 +1,62 @@
+[
+  {
+    "id": "second-kind",
+    "prompt": "第二类 Stirling 数计算什么？",
+    "options": [
+      { "id": "a", "text": "把 n 个不同元素分成 k 个非空无标号集合的方案数" },
+      { "id": "b", "text": "n 个元素的全部排列数" },
+      { "id": "c", "text": "把整数 n 分拆成 k 个数" },
+      { "id": "d", "text": "含 k 条边的图数量" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "第二类按非空集合组数统计集合划分，组本身没有固定标签。"
+  },
+  {
+    "id": "second-coefficient",
+    "prompt": "第二类递推中，新元素加入已有结构的系数为什么是 k？",
+    "options": [
+      { "id": "a", "text": "因为有 k 个已有集合可供选择" },
+      { "id": "b", "text": "因为每个集合有 k 个元素" },
+      { "id": "c", "text": "因为 n 永远等于 k" },
+      { "id": "d", "text": "因为排列有 k 个位置" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "在一份具体的 k 组划分中，新元素可以加入其中任意一组。"
+  },
+  {
+    "id": "first-kind",
+    "prompt": "无符号第一类 Stirling 数按照什么统计排列？",
+    "options": [
+      { "id": "a", "text": "固定点数量" },
+      { "id": "b", "text": "逆序对数量" },
+      { "id": "c", "text": "排列环数量" },
+      { "id": "d", "text": "上升子序列长度" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "它计算 n 个元素排列中恰好分解成 k 个不相交环的方案数。"
+  },
+  {
+    "id": "first-coefficient",
+    "prompt": "第一类递推中，新元素插入已有环的系数为什么是 n-1？",
+    "options": [
+      { "id": "a", "text": "可以插在每个旧元素后面，共 n-1 个不同位置" },
+      { "id": "b", "text": "因为只能选择第一个环" },
+      { "id": "c", "text": "因为所有环长度都为 n-1" },
+      { "id": "d", "text": "为了与第二类相同" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "环分解中每个旧元素后面都对应一个唯一插入位置，与环的总个数不同。"
+  },
+  {
+    "id": "descending-update",
+    "prompt": "一维 Stirling 递推为什么让 group 从大到小？",
+    "options": [
+      { "id": "a", "text": "为了让 group-1 保持上一层 n-1 的值" },
+      { "id": "b", "text": "因为 group 必须为负数" },
+      { "id": "c", "text": "为了跳过所有状态" },
+      { "id": "d", "text": "因为数组不能正向遍历" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "倒序避免同一轮刚更新的状态再次使用第 i 个元素。"
+  }
+]
