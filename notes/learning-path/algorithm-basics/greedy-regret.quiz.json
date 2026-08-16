@@ -16,7 +16,7 @@
     "prompt": "最多按时完成任务的问题为什么先按截止时间排序？",
     "options": [
       { "id": "a", "text": "为了让任务时长递增" },
-      { "id": "b", "text": "为了让 priority_queue 自动去重" },
+      { "id": "b", "text": "为了让已选数组自动去重" },
       { "id": "c", "text": "较早截止的任务先执行不会让较晚截止任务更难完成" },
       { "id": "d", "text": "因为输入一定已经有序" }
     ],
@@ -78,7 +78,7 @@
       { "id": "a", "text": "因为所有任务时长都是 1" },
       { "id": "b", "text": "最长时长不小于新任务时长，删除后总时长不超过加入前的可行总时长" },
       { "id": "c", "text": "因为截止时间一定翻倍" },
-      { "id": "d", "text": "priority_queue 每轮只能 pop 一次" }
+      { "id": "d", "text": "因为每轮只允许检查一次冲突" }
     ],
     "correctOptionId": "b",
     "explanation": "加入前集合可行；删除 longest 后得到 T+x-longest <= T，因此重新可行。"
@@ -96,44 +96,20 @@
     "explanation": "最多处理 n 个任务，每次冲突都可能扫描 O(n) 个已选时长。"
   },
   {
-    "id": "heap-role",
-    "prompt": "`priority_queue` 在这篇算法中负责什么？",
-    "options": [
-      { "id": "a", "text": "加速反复找出并删除当前最长任务，不改变选择规则" },
-      { "id": "b", "text": "证明贪心算法正确" },
-      { "id": "c", "text": "决定是否按截止时间排序" },
-      { "id": "d", "text": "把所有任务时长变成相同" }
-    ],
-    "correctOptionId": "a",
-    "explanation": "反悔逻辑在线性版本中已经完整；堆只把寻找最值降为对数时间。"
-  },
-  {
-    "id": "heap-direction",
-    "prompt": "本题应使用默认大根堆还是 `greater` 小根堆？",
-    "options": [
-      { "id": "a", "text": "小根堆，因为截止时间递增" },
-      { "id": "b", "text": "两者结果永远相同" },
-      { "id": "c", "text": "默认大根堆，因为需要撤销最长时长" },
-      { "id": "d", "text": "不允许使用 priority_queue" }
-    ],
-    "correctOptionId": "c",
-    "explanation": "堆顶必须是当前最大 duration；哈夫曼编码取最小值才使用小根堆。"
-  },
-  {
     "id": "complexity",
-    "prompt": "排序并使用堆实现后，总时间复杂度是什么？",
+    "prompt": "排序后用无序数组保存已选任务，并线性寻找最长任务，总时间复杂度最坏是什么？",
     "options": [
       { "id": "a", "text": "$O(n)$" },
       { "id": "b", "text": "$O(n\\log n)$" },
       { "id": "c", "text": "$O(n^2)$" },
       { "id": "d", "text": "$O(2^n)$" }
     ],
-    "correctOptionId": "b",
-    "explanation": "排序、每次入堆和至多一次出堆都在 O(n log n) 总时间内完成。"
+    "correctOptionId": "c",
+    "explanation": "排序需要 O(n log n)，但至多 n 次线性扫描各需要 O(n)，因此总时间由 O(n^2) 主导。"
   },
   {
     "id": "recover-tasks",
-    "prompt": "若还要输出最终保留的任务编号，堆中应额外保存什么？",
+    "prompt": "若还要输出最终保留的任务编号，已选数组应额外保存什么？",
     "options": [
       { "id": "a", "text": "只保存截止时间" },
       { "id": "b", "text": "只保存堆的大小" },

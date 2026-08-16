@@ -1,6 +1,6 @@
 # 反悔贪心
 
-> 最近修订：2026-08-16 16:00 +10:00（未审阅）
+> 最近修订：2026-08-17 09:52 +10:00（未审阅）
 
 [贪心选择与正确性证明](greedy-selection-and-proof.md) 中，每次接受一个区间以后就不再撤销。但有些问题在看到当前候选时，还无法确定它是否比未来候选更值得保留。
 
@@ -120,31 +120,14 @@ if (total_time > tasks[i].deadline) {
 
 这份写法已经完整表达算法：`priority_queue` 不会改变选择规则，只负责更快找到最长任务。
 
-## 用大根堆加速撤销
+## 后续怎样加速
 
-C++ 的 `priority_queue<ll>` 默认让最大值位于堆顶，正好维护当前已选任务中的最长时长：
+线性扫描已经完整解决问题，但每次寻找最长任务可能需要检查整个已选数组。学习
+[二叉堆](binary-heap.md)与 [`priority_queue`](../cpp/priority-queue.md) 后，可以用
+大根堆维护当前最长时长，把一次寻找和删除从 $O(n)$ 降为 $O(\log n)$。
 
-```cpp
-priority_queue<ll> selected;
-```
-
-接受任务：
-
-```cpp
-selected.push(tasks[i].duration);
-total_time += tasks[i].duration;
-```
-
-超时时撤销堆顶：
-
-```cpp
-if (total_time > tasks[i].deadline) {
-    total_time -= selected.top();
-    selected.pop();
-}
-```
-
-最终 `selected.size()` 就是最多能按时完成的任务数量。
+这项替换只改变“怎样找到最长任务”，不改变先接受、冲突时撤销最长任务的决策，
+也不参与本文后面的基础练习。
 
 ## 手动过程
 
@@ -181,6 +164,7 @@ struct Task {
 
 int n;
 vector<Task> tasks;
+vector<ll> selected_duration;
 
 bool compare_task(const Task& a, const Task& b) {
     if (a.deadline != b.deadline) {
@@ -193,19 +177,29 @@ int maximum_completed_tasks() {
     sort(tasks.begin() + 1, tasks.begin() + n + 1, compare_task);
 
     ll total_time = 0;
-    priority_queue<ll> selected;
+    selected_duration.assign(n + 5, 0);
+    int selected_count = 0;
 
     for (int i = 1; i <= n; i++) {
-        selected.push(tasks[i].duration);
+        selected_count++;
+        selected_duration[selected_count] = tasks[i].duration;
         total_time += tasks[i].duration;
 
         if (total_time > tasks[i].deadline) {
-            total_time -= selected.top();
-            selected.pop();
+            int longest_pos = 1;
+            for (int j = 2; j <= selected_count; j++) {
+                if (selected_duration[j] > selected_duration[longest_pos]) {
+                    longest_pos = j;
+                }
+            }
+
+            total_time -= selected_duration[longest_pos];
+            selected_duration[longest_pos] = selected_duration[selected_count];
+            selected_count--;
         }
     }
 
-    return selected.size();
+    return selected_count;
 }
 
 void solve() {
@@ -248,23 +242,17 @@ int main() {
 
 加入当前任务后若超时，至少要放弃一个已选任务。所有只放弃一项的选择都会保留相同数量的任务，而放弃最长任务会使剩余总时长最小。对于任意放弃较短任务的方案，都可以用该较短任务替换它保留的最长任务，使任务数量不变、总时长不增。因此保留最长任务不会比撤销它为当前或未来提供更多机会。
 
-每次冲突时执行这次交换后，算法保留同样多且总时长尽可能小的候选；未来截止时间不早于当前截止时间，更小的已用时间只会留下更多可用时间。重复处理全部任务后，不存在另一种方案能够保留更多任务，所以堆中任务数量最大。
+每次冲突时执行这次交换后，算法保留同样多且总时长尽可能小的候选；未来截止时间不早于当前截止时间，更小的已用时间只会留下更多可用时间。重复处理全部任务后，不存在另一种方案能够保留更多任务，所以 `selected_count` 就是最大数量。
 
 ## 复杂度
 
-排序需要 $O(n\log n)$ 时间。每个任务入堆一次、至多有一个任务出堆一次，每次堆操作需要 $O(\log n)$ 时间，因此总时间复杂度是 $O(n\log n)$，堆和任务数组空间是 $O(n)$。
+排序需要 $O(n\log n)$ 时间。每次冲突都可能线性扫描 $O(n)$ 个已选任务，因此本文基础实现的总时间复杂度是 $O(n^2)$，任务数组和已选数组使用 $O(n)$ 空间。
 
-若线性扫描寻找最长任务，选择逻辑完全相同，但最坏时间复杂度会变成 $O(n^2)$。
+改用大根堆后，每个任务插入一次、至多有一个任务被删除一次，总时间复杂度可以降为 $O(n\log n)$，空间复杂度仍为 $O(n)$。
 
 ## 如何恢复具体任务
 
-若只求最大数量，堆中保存时长即可。若还要输出任务编号，可以保存：
-
-```cpp
-priority_queue<pair<ll, int>> selected;
-```
-
-并用一个布尔数组记录任务是否仍被选中。最终把被保留的任务按截止时间重新排列，就是一种合法执行顺序。
+若还要输出任务编号，可以让已选数组同时保存时长和原编号。删除最长任务时用末项覆盖它，并用一个布尔数组记录哪些编号仍被选中。最终把保留任务按截止时间排列，就是一种合法执行顺序。
 
 这只是输出信息的扩展，不改变“超时后撤销最长任务”的决策。
 
@@ -278,10 +266,6 @@ priority_queue<pair<ll, int>> selected;
 
 当前任务不一定最差。它可能很短，替换一个更长的旧任务以后能为未来留下更多时间。
 
-### 使用小根堆
-
-本题需要撤销最长任务，应使用默认大根堆。哈夫曼编码需要取最小值才使用小根堆，二者不能按“都叫贪心”混用。
-
 ### 误写成反复删除
 
 加入前的集合已经可行，撤销的最长任务不会短于当前新任务，因此删除一次后总时长不超过加入前，不需要 `while`。
@@ -290,17 +274,17 @@ priority_queue<pair<ll, int>> selected;
 
 是否超时取决于总时长；要同时维护 `total_time`。堆的大小只表示当前保留数量。
 
-### 把堆当作正确性的来源
+### 把数据结构当作正确性的来源
 
-正确性来自“超时后撤销最长任务”的交换论证。堆只把寻找最长任务从线性时间降到对数时间。
+正确性来自“超时后撤销最长任务”的交换论证。无序数组和大根堆都只是实现寻找最长任务的工具。
 
 ## 基础练习
 
-1. 手动模拟示例中的堆、`total_time` 和保留数量。
+1. 手动模拟示例中的已选数组、`total_time` 和保留数量。
 2. 构造一个当前任务很短、应撤销旧任务的例子。
 3. 证明删除最长任务后只需检查一次，不需要继续弹出。
 4. 使用无序数组线性寻找最长任务，实现 $O(n^2)$ 版本。
-5. 在堆中同时保存任务编号，输出最终保留的任务集合。
+5. 在已选数组中同时保存任务编号，输出最终保留的任务集合。
 6. 枚举小规模任务子集，检查是否能按截止时间完成，与贪心答案对拍。
 
 ## 需要记住什么
@@ -312,6 +296,4 @@ priority_queue<pair<ll, int>> selected;
 5. 为什么撤销最长任务为未来留下的时间最多？
 6. 为什么每次最多只需要撤销一个任务？
 7. 线性扫描版本怎样找到并删除最长任务？
-8. `priority_queue` 加速了哪一步？它是否改变贪心规则？
-9. 排序、入堆与出堆共同得到什么复杂度？
-10. 若要输出具体选择，需要在堆中额外保存什么？
+8. 线性扫描版本的时间复杂度是什么？大根堆能够加速哪一步？
