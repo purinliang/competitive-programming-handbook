@@ -1,12 +1,12 @@
-# 数论：质数
+# 质数
 
-> 状态：定稿
+> 最近修订：2026-08-16 11:24 +10:00（未审阅）
 
 [整除](divisibility.md) 建立了“能否除尽”的关系。有些正整数几乎不能被更小的数整除；它们是整数乘法结构中的基本材料。
 
 ## 质数与合数
 
-大于 $1$ 的正整数，如果它的正因数只有 $1$ 和它本身，就称为**质数**（prime number）。例如
+大于 $1$ 的正整数，如果它的正约数只有 $1$ 和它本身，就称为**质数**（prime number）。例如
 
 ```text
 2, 3, 5, 7, 11, 13
@@ -37,12 +37,14 @@ $$
 与 $ab=n$ 矛盾。因此，一对因数中至少有一个不超过 $\sqrt n$。只要检查到平方根，就不会漏掉任何合数。
 
 ```cpp
-bool is_prime(long long n) {
+typedef long long ll;
+
+bool is_prime(ll n) {
     if (n < 2) {
         return false;
     }
 
-    for (long long i = 2; i <= n / i; i++) {
+    for (ll i = 2; i <= n / i; i++) {
         if (n % i == 0) {
             return false;
         }
@@ -76,7 +78,7 @@ bool is_prime(ll n) {
     return true;
 }
 
-int main() {
+void solve() {
     ll n;
     scanf("%lld", &n);
 
@@ -85,6 +87,10 @@ int main() {
     } else {
         printf("No\n");
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -121,6 +127,4 @@ Yes
 4. `i <= n / i` 相比 `i * i <= n` 避免了什么问题？
 5. 单次试除判定的时间和额外空间复杂度是什么？
 
-## 下一篇
-
-下一篇 [数论：算术基本定理](fundamental-theorem-of-arithmetic.md) 会说明为什么质数可以作为所有正整数的唯一乘法坐标。
+[算术基本定理](fundamental-theorem-of-arithmetic.md) 会继续说明质数为什么能够唯一表示所有正整数的乘法结构。

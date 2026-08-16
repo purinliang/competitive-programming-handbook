@@ -338,7 +338,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 0501 | 整除 | 待审阅 | [divisibility.md](math/divisibility.md) |
-| 0502 | 数论：质数 | 定稿 | [prime-numbers.md](math/prime-numbers.md) |
+| 0502 | 质数 | 待审阅 | [prime-numbers.md](math/prime-numbers.md) |
 | 0503 | 数论：扩展欧几里得算法 | 待审阅 | [extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
 | 0504 | 模运算 | 待审阅 | [modular-arithmetic.md](math/modular-arithmetic.md) |
 | 0504e1 | 模运算：modint | 待审阅 | [mod-int.md](math/mod-int.md) |
