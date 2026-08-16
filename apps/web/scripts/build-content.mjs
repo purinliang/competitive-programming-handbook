@@ -26,8 +26,45 @@ const notesRoot = path.resolve(appRoot, "../../notes");
 const cacheRoot = path.join(appRoot, ".content-cache");
 const articleCacheRoot = path.join(cacheRoot, "articles");
 const quizCacheRoot = path.join(cacheRoot, "quizzes");
+const buildStatePath = path.join(cacheRoot, "build-state.json");
 const searchIndexPath = path.join(appRoot, "public/search-index.json");
 const articleStatuses = new Set(["计划", "待审阅", "已审阅", "草稿", "定稿"]);
+const arguments_ = new Set(process.argv.slice(2));
+const unknownArguments = [...arguments_].filter(
+  (argument) => argument !== "--full" && argument !== "--incremental",
+);
+if (unknownArguments.length > 0 || (arguments_.has("--full") && arguments_.has("--incremental"))) {
+  throw new Error("用法：node scripts/build-content.mjs [--incremental|--full]");
+}
+const fullBuild = arguments_.has("--full");
+
+function hashParts(...parts) {
+  const hash = createHash("sha256");
+  for (const part of parts) {
+    hash.update(String(part.length));
+    hash.update(":");
+    hash.update(part);
+  }
+  return hash.digest("hex");
+}
+
+async function readJson(filePath) {
+  try {
+    return JSON.parse(await readFile(filePath, "utf8"));
+  } catch {
+    return;
+  }
+}
+
+async function contentCompilerRevision() {
+  const sources = await Promise.all([
+    readFile(new URL(import.meta.url), "utf8"),
+    readFile(new URL("./content-identity.mjs", import.meta.url), "utf8"),
+    readFile(path.join(appRoot, "package.json"), "utf8"),
+    readFile(path.join(appRoot, "pnpm-lock.yaml"), "utf8"),
+  ]);
+  return hashParts("content-compiler-v1", ...sources);
+}
 
 function extractMarkdownPath(cell) {
   return cell.match(/\]\(([^)]+\.md)(?:#[^)]+)?\)/)?.[1] ?? cell.match(/`([^`]+\.md)`/)?.[1];
@@ -380,8 +417,7 @@ function rehypeAddSectionActionSlots() {
   };
 }
 
-async function renderArticle(article, sourcePath, title) {
-  const markdown = await readFile(path.join(notesRoot, sourcePath), "utf8");
+async function renderArticle(sourcePath, title, markdown) {
   const tableOfContents = [];
   const sections = extractArticleSections(markdown, sourcePath);
   const result = await unified()
@@ -443,13 +479,8 @@ function searchableText(markdown, articleTitles) {
     .trim();
 }
 
-async function compileLearningQuiz(articleKey) {
+async function compileLearningQuiz(articleKey, source) {
   const sourcePath = path.join(notesRoot, "learning-path", `${articleKey}.quiz.json`);
-  if (!(await fileExists(sourcePath))) {
-    return;
-  }
-
-  const source = await readFile(sourcePath, "utf8");
   const questions = JSON.parse(source);
   if (!Array.isArray(questions) || questions.length === 0) {
     throw new Error(`${path.relative(notesRoot, sourcePath)} 必须包含至少一道题`);
@@ -499,10 +530,20 @@ async function compileLearningQuiz(articleKey) {
   return compiledQuiz;
 }
 
-await rm(cacheRoot, { force: true, recursive: true });
+if (fullBuild) {
+  await rm(cacheRoot, { force: true, recursive: true });
+}
 await mkdir(articleCacheRoot, { recursive: true });
 await mkdir(quizCacheRoot, { recursive: true });
 
+const compilerRevision = await contentCompilerRevision();
+const previousState = fullBuild ? undefined : await readJson(buildStatePath);
+const nextState = {
+  articles: {},
+  compilerRevision,
+  quizzes: {},
+  version: 1,
+};
 const [articles, learningPath] = await Promise.all([parseCatalog(), parseLearningStages()]);
 const { sourcePaths: learningSourcePaths, stages, titles: learningTitles } = learningPath;
 const articlesByKey = new Map(articles.map((article) => [article.articleKey, article]));
@@ -526,21 +567,56 @@ const learningArticleKeys = new Set(stages.flatMap((stage) => stage.articleKeys)
 const articleTitles = new Set(publishedArticles.map((article) => article.title));
 const searchRecords = [];
 const interactionDocuments = {};
+const rebuiltArticles = new Set();
+let quizCount = 0;
+let rebuiltQuizCount = 0;
+
+async function loadArticleVariant(article, variant, sourcePath, title, markdown, fallback) {
+  const stateKey = `${variant}:${article.articleKey}`;
+  const outputPath = path.join(articleCacheRoot, variant, `${article.articleKey}.json`);
+  const inputHash = hashParts("article-v1", compilerRevision, sourcePath, title, markdown);
+  nextState.articles[stateKey] = {
+    hash: inputHash,
+    outputPath: path.relative(cacheRoot, outputPath),
+  };
+
+  const previous = previousState?.version === 1 ? previousState.articles?.[stateKey] : undefined;
+  if (!fullBuild && previous?.hash === inputHash && await fileExists(outputPath)) {
+    const cached = await readJson(outputPath);
+    if (cached) {
+      return cached;
+    }
+  }
+
+  const rendered = fallback ?? await renderArticle(sourcePath, title, markdown);
+  await mkdir(path.dirname(outputPath), { recursive: true });
+  await writeFile(outputPath, `${JSON.stringify(rendered)}\n`);
+  rebuiltArticles.add(article.articleKey);
+  return rendered;
+}
 
 for (const article of publishedArticles) {
   const markdown = await readFile(path.join(notesRoot, article.sourcePath), "utf8");
-  const catalogRendered = await renderArticle(article, article.sourcePath, article.title);
-  const learningRendered = article.learningSourcePath === article.sourcePath
-    ? article.learningTitle === article.title
-      ? catalogRendered
-      : await renderArticle(article, article.learningSourcePath, article.learningTitle)
-    : await renderArticle(article, article.learningSourcePath, article.learningTitle);
-  const catalogOutputPath = path.join(articleCacheRoot, "catalog", `${article.articleKey}.json`);
-  const learningOutputPath = path.join(articleCacheRoot, "learning-path", `${article.articleKey}.json`);
-  await mkdir(path.dirname(catalogOutputPath), { recursive: true });
-  await mkdir(path.dirname(learningOutputPath), { recursive: true });
-  await writeFile(catalogOutputPath, `${JSON.stringify(catalogRendered)}\n`);
-  await writeFile(learningOutputPath, `${JSON.stringify(learningRendered)}\n`);
+  const catalogRendered = await loadArticleVariant(
+    article,
+    "catalog",
+    article.sourcePath,
+    article.title,
+    markdown,
+  );
+  const sameLearningVariant = article.learningSourcePath === article.sourcePath
+    && article.learningTitle === article.title;
+  const learningMarkdown = article.learningSourcePath === article.sourcePath
+    ? markdown
+    : await readFile(path.join(notesRoot, article.learningSourcePath), "utf8");
+  const learningRendered = await loadArticleVariant(
+    article,
+    "learning-path",
+    article.learningSourcePath,
+    article.learningTitle,
+    learningMarkdown,
+    sameLearningVariant ? catalogRendered : undefined,
+  );
   if (learningArticleKeys.has(article.articleKey)) {
     interactionDocuments[`learning-path:${article.articleKey}`] = {
       articleKey: article.articleKey,
@@ -559,9 +635,31 @@ for (const article of publishedArticles) {
   });
 }
 
-const compiledQuizzes = await Promise.all(
-  [...learningArticleKeys].map(async (articleKey) => [articleKey, await compileLearningQuiz(articleKey)]),
-);
+const compiledQuizzes = await Promise.all([...learningArticleKeys].map(async (articleKey) => {
+  const sourcePath = path.join(notesRoot, "learning-path", `${articleKey}.quiz.json`);
+  if (!(await fileExists(sourcePath))) {
+    return [articleKey, undefined];
+  }
+
+  quizCount += 1;
+  const source = await readFile(sourcePath, "utf8");
+  const inputHash = hashParts("quiz-v1", compilerRevision, source);
+  const outputPath = path.join(quizCacheRoot, `${articleKey}.json`);
+  nextState.quizzes[articleKey] = {
+    hash: inputHash,
+    outputPath: path.relative(cacheRoot, outputPath),
+  };
+  const previous = previousState?.version === 1 ? previousState.quizzes?.[articleKey] : undefined;
+  if (!fullBuild && previous?.hash === inputHash && await fileExists(outputPath)) {
+    const cached = await readJson(outputPath);
+    if (cached) {
+      return [articleKey, cached];
+    }
+  }
+
+  rebuiltQuizCount += 1;
+  return [articleKey, await compileLearningQuiz(articleKey, source)];
+}));
 for (const [articleKey, quiz] of compiledQuizzes) {
   if (quiz && interactionDocuments[`learning-path:${articleKey}`]) {
     interactionDocuments[`learning-path:${articleKey}`].questions = quiz.questions.map((question) => ({
@@ -579,5 +677,10 @@ await writeFile(
 
 await mkdir(path.dirname(searchIndexPath), { recursive: true });
 await writeFile(searchIndexPath, `${JSON.stringify(searchRecords)}\n`);
+await writeFile(buildStatePath, `${JSON.stringify(nextState)}\n`);
 
-console.log(`已预编译 ${publishedArticles.length} 篇文章。`);
+const modeLabel = fullBuild ? "全量" : "增量";
+console.log(
+  `内容预编译（${modeLabel}）：重新生成 ${rebuiltArticles.size} 篇、复用 ${publishedArticles.length - rebuiltArticles.size} 篇；`
+  + `重新生成 ${rebuiltQuizCount} 份题目、复用 ${quizCount - rebuiltQuizCount} 份。`,
+);
