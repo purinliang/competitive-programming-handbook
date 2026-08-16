@@ -1,146 +1,50 @@
 [
   {
     "id": "prime-definition",
-    "prompt": "哪一个条件准确描述质数？",
+    "prompt": "下面哪项准确描述质数？",
     "options": [
-      {
-        "id": "a",
-        "text": "所有正整数都是质数"
-      },
-      {
-        "id": "b",
-        "text": "正约数数量不超过三个的整数"
-      },
-      {
-        "id": "c",
-        "text": "大于 1 且正约数只有 1 和自身的整数"
-      },
-      {
-        "id": "d",
-        "text": "不能被 2 整除的整数"
-      }
+      { "id": "a", "text": "所有不能被 `2` 整除的整数" },
+      { "id": "b", "text": "正因数数量不超过三个的整数" },
+      { "id": "c", "text": "大于 `1` 且正因数只有 `1` 和自身的整数" },
+      { "id": "d", "text": "所有正整数" }
     ],
     "correctOptionId": "c",
-    "explanation": "质数必须大于 1，并且恰好只有两个正约数。"
+    "explanation": "质数必须大于 1，并且恰好只有 1 与自身两个不同的正因数。"
   },
   {
     "id": "one-classification",
-    "prompt": "整数 1 应怎样分类？",
+    "prompt": "整数 `1` 应怎样分类？",
     "options": [
-      {
-        "id": "a",
-        "text": "既不是质数，也不是合数"
-      },
-      {
-        "id": "b",
-        "text": "是最小质数"
-      },
-      {
-        "id": "c",
-        "text": "是最小合数"
-      },
-      {
-        "id": "d",
-        "text": "同时是质数和合数"
-      }
+      { "id": "a", "text": "既不是质数，也不是合数" },
+      { "id": "b", "text": "是最小质数" },
+      { "id": "c", "text": "是最小合数" },
+      { "id": "d", "text": "同时是质数和合数" }
     ],
     "correctOptionId": "a",
-    "explanation": "质数与合数都要求大于 1；排除 1 也保证质因数分解的唯一性。"
+    "explanation": "质数与合数都要求大于 1；排除 1 也让质因数分解不会随意加入任意多个 1。"
   },
   {
-    "id": "sqrt-factor",
-    "prompt": "若 n 是合数，为什么试除只需检查到 √n？",
+    "id": "only-even-prime",
+    "prompt": "为什么 `2` 是唯一的偶质数？",
     "options": [
-      {
-        "id": "a",
-        "text": "因为大于 √n 的整数都不是约数"
-      },
-      {
-        "id": "b",
-        "text": "因为 n 一定是完全平方数"
-      },
-      {
-        "id": "c",
-        "text": "因为 √n 永远是整数"
-      },
-      {
-        "id": "d",
-        "text": "一对非平凡因数不可能同时大于 √n"
-      }
-    ],
-    "correctOptionId": "d",
-    "explanation": "若两个因数都大于 √n，它们的乘积就会严格大于 n。"
-  },
-  {
-    "id": "safe-loop-bound",
-    "prompt": "为什么代码常写 `i <= n / i` 而不是 `i * i <= n`？",
-    "options": [
-      {
-        "id": "a",
-        "text": "整数除法比乘法更精确地表示实数平方根"
-      },
-      {
-        "id": "b",
-        "text": "避免 i * i 在接近 64 位整数上限时溢出"
-      },
-      {
-        "id": "c",
-        "text": "这样循环只执行一次"
-      },
-      {
-        "id": "d",
-        "text": "因为 C++ 不支持整数乘法"
-      }
+      { "id": "a", "text": "因为所有偶数都等于 `2`" },
+      { "id": "b", "text": "因为大于 `2` 的偶数还有正因数 `2`，所以是合数" },
+      { "id": "c", "text": "因为奇数都不是质数" },
+      { "id": "d", "text": "因为 `2` 没有正因数" }
     ],
     "correctOptionId": "b",
-    "explanation": "对正整数 i、n，两条件等价，而除法形式不先形成可能越界的平方。"
+    "explanation": "任何大于 2 的偶数都能被 2 整除，而 2 既不是 1 也不是它自身，因此存在额外正因数。"
   },
   {
-    "id": "small-inputs",
-    "prompt": "`is_prime(n)` 为什么先判断 `n < 2`？",
+    "id": "odd-composite",
+    "prompt": "下面哪个数是奇合数？",
     "options": [
-      {
-        "id": "a",
-        "text": "为了把 2 排除为合数"
-      },
-      {
-        "id": "b",
-        "text": "为了让所有负数成为质数"
-      },
-      {
-        "id": "c",
-        "text": "因为小于 2 的整数都不属于质数"
-      },
-      {
-        "id": "d",
-        "text": "为了跳过所有奇数"
-      }
+      { "id": "a", "text": "`2`" },
+      { "id": "b", "text": "`3`" },
+      { "id": "c", "text": "`7`" },
+      { "id": "d", "text": "`9`" }
     ],
-    "correctOptionId": "c",
-    "explanation": "定义要求质数是大于 1 的正整数，0、1 与负数应直接返回 false。"
-  },
-  {
-    "id": "trial-division-complexity",
-    "prompt": "单次试除判定质数的时间与额外空间复杂度分别是什么？",
-    "options": [
-      {
-        "id": "a",
-        "text": "O(√n) 与 O(1)"
-      },
-      {
-        "id": "b",
-        "text": "O(n) 与 O(n)"
-      },
-      {
-        "id": "c",
-        "text": "O(log n) 与 O(n)"
-      },
-      {
-        "id": "d",
-        "text": "O(1) 与 O(√n)"
-      }
-    ],
-    "correctOptionId": "a",
-    "explanation": "最多尝试到平方根，只保存循环变量和少量状态。"
+    "correctOptionId": "d",
+    "explanation": "9 是奇数，但 $9=3\\times3$，除了 1 与自身还有正因数 3，因此是合数。"
   }
 ]

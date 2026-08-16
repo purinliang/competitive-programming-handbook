@@ -1,0 +1,74 @@
+[
+  {
+    "id": "linear-trial-range",
+    "prompt": "完全按定义判断 `n > 1` 是否为质数时，最直接的试除范围是什么？",
+    "options": [
+      { "id": "a", "text": "只检查 `0`" },
+      { "id": "b", "text": "只检查 `n`" },
+      { "id": "c", "text": "检查 `2..n-1`" },
+      { "id": "d", "text": "检查所有负整数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "质数不能有 1 与自身以外的正因数；最直接做法就是尝试 2 到 n-1 的全部候选。"
+  },
+  {
+    "id": "sqrt-factor-pair",
+    "prompt": "为什么合数的试除只需检查到平方根？",
+    "options": [
+      { "id": "a", "text": "一对因数不可能同时严格大于平方根" },
+      { "id": "b", "text": "所有合数都是完全平方数" },
+      { "id": "c", "text": "平方根一定是质数" },
+      { "id": "d", "text": "大于平方根的整数都没有因数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "若一对因数都严格大于平方根，它们的乘积就会严格大于原数，产生矛盾。"
+  },
+  {
+    "id": "include-square-root",
+    "prompt": "循环为什么要检查 `i * i <= n` 中等号对应的位置？",
+    "options": [
+      { "id": "a", "text": "为了把所有质数排除" },
+      { "id": "b", "text": "为了让循环至少执行两次" },
+      { "id": "c", "text": "为了把 `n` 自动变成浮点数" },
+      { "id": "d", "text": "为了发现 `49 = 7 * 7` 这类完全平方数" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "完全平方数的非平凡因数可能正好等于平方根；不包含等号就会漏掉它。"
+  },
+  {
+    "id": "safe-square-bound",
+    "prompt": "为什么 64 位试除代码常写 `i <= n / i`？",
+    "options": [
+      { "id": "a", "text": "这样会自动跳过所有合数" },
+      { "id": "b", "text": "避免 `i * i` 在形成循环边界时溢出" },
+      { "id": "c", "text": "因为 C++ 不支持乘法" },
+      { "id": "d", "text": "因为整数除法会计算精确平方根" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "对正整数，两种条件等价；除法形式不需要先形成可能超出 64 位范围的平方。"
+  },
+  {
+    "id": "primes-up-to-ten",
+    "prompt": "为什么判断 100 以内的合数只需检查 `2,3,5,7`？",
+    "options": [
+      { "id": "a", "text": "因为所有合数都只含这四个因数" },
+      { "id": "b", "text": "因为 100 以内没有其他质数" },
+      { "id": "c", "text": "因为合数有不超过 10 的质因数，而不超过 10 的质数只有这四个" },
+      { "id": "d", "text": "因为试除法只能运行四次" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "合数至少有一个不超过自身平方根的质因数；100 的平方根是 10，而 10 以内的质数恰好是 2、3、5、7。"
+  },
+  {
+    "id": "odd-candidate-complexity",
+    "prompt": "先处理 `2`、再只枚举奇数候选，会怎样改变复杂度？",
+    "options": [
+      { "id": "a", "text": "从 $O(\\sqrt n)$ 变成 $O(1)$" },
+      { "id": "b", "text": "从 $O(\\sqrt n)$ 变成 $O(\\log n)$" },
+      { "id": "c", "text": "额外空间变成 $O(n)$" },
+      { "id": "d", "text": "减少常数，但仍是 $O(\\sqrt n)$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "跳过偶数大约减少一半候选，却没有改变候选数量与平方根同阶的事实。"
+  }
+]
