@@ -203,7 +203,7 @@
 | 0207 | 前缀和 | 算法基础 | [algorithm-basics/prefix-sums.md](algorithm-basics/prefix-sums.md) |
 | 0221 | 差分 | 算法基础 | [algorithm-basics/difference-array.md](algorithm-basics/difference-array.md) |
 
-### 学习单元：双指针与滑动窗口
+### 学习单元：双指针
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |

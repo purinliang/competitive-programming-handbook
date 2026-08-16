@@ -1,0 +1,98 @@
+[
+  {
+    "id": "two-pointers-core",
+    "prompt": "双指针能避免平方枚举的关键是什么？",
+    "options": [
+      { "id": "a", "text": "声明两个任意整数变量" },
+      { "id": "b", "text": "利用单调关系证明一次移动能安全排除一批候选" },
+      { "id": "c", "text": "把数组复制两次" },
+      { "id": "d", "text": "让两个指针随机回退" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "核心不是变量数量，而是单调移动与被跳过状态不再可能成为答案。"
+  },
+  {
+    "id": "two-sum-start",
+    "prompt": "有序两数之和为什么从数组两端开始？",
+    "options": [
+      { "id": "a", "text": "两端分别给出当前最小与最大候选" },
+      { "id": "b", "text": "中间元素不能参加答案" },
+      { "id": "c", "text": "端点一定组成答案" },
+      { "id": "d", "text": "只有两端能用 64 位整数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "极值关系让当前和太小或太大时能够证明应排除哪个端点。"
+  },
+  {
+    "id": "two-sum-too-small",
+    "prompt": "当前和小于目标时应怎样移动？",
+    "options": [
+      { "id": "a", "text": "右端左移" },
+      { "id": "b", "text": "两个端点都不动" },
+      { "id": "c", "text": "左端右移" },
+      { "id": "d", "text": "立即返回失败" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "当前右端已经最大，固定左端换更小右端只会让和更小，所以排除左端。"
+  },
+  {
+    "id": "two-sum-too-large",
+    "prompt": "当前和大于目标时为什么可以排除右端？",
+    "options": [
+      { "id": "a", "text": "当前左端已经最小，换更大左端只会让和不减" },
+      { "id": "b", "text": "右端一定是负数" },
+      { "id": "c", "text": "右端从不参加任何答案" },
+      { "id": "d", "text": "目标值会自动变大" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "右端与剩余任意左端的和都过大，因此令 r-- 不会漏掉答案。"
+  },
+  {
+    "id": "two-pointers-distinct-positions",
+    "prompt": "循环条件 `l < r` 保证了什么？",
+    "options": [
+      { "id": "a", "text": "两个元素值一定不同" },
+      { "id": "b", "text": "数组没有重复值" },
+      { "id": "c", "text": "两个下标表示不同位置" },
+      { "id": "d", "text": "目标一定存在" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "数值可以相等，但题目要求不能重复使用同一个位置。"
+  },
+  {
+    "id": "two-pointers-time",
+    "prompt": "相向双指针为什么是 O(n)？",
+    "options": [
+      { "id": "a", "text": "因为只声明了一个 while" },
+      { "id": "b", "text": "左右指针各自只单调移动至多 n 次" },
+      { "id": "c", "text": "因为所有输入长度都等于 1" },
+      { "id": "d", "text": "因为比较不计入时间" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "总移动次数是线性的，每轮还只做常数工作。"
+  },
+  {
+    "id": "two-pointers-sorted",
+    "prompt": "为什么无序数组不能直接使用本篇移动规则？",
+    "options": [
+      { "id": "a", "text": "无序数组不能访问下标" },
+      { "id": "b", "text": "当前端点和无法推出与中间元素组合的统一大小关系" },
+      { "id": "c", "text": "无序数组只能保存字符串" },
+      { "id": "d", "text": "左右端点会自动相等" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "没有顺序就无法证明移动一个端点会安全排除它的全部组合。"
+  },
+  {
+    "id": "two-pointers-wide-sum",
+    "prompt": "为什么当前和使用 64 位整数？",
+    "options": [
+      { "id": "a", "text": "两个 32 位整数相加可能超出 32 位范围" },
+      { "id": "b", "text": "下标必须是 long long" },
+      { "id": "c", "text": "64 位整数会自动去重" },
+      { "id": "d", "text": "只有 long long 能比较相等" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "应在加法发生以前把表达式提升到 64 位。"
+  }
+]

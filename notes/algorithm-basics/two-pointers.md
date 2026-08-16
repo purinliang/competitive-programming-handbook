@@ -1,6 +1,6 @@
 # 双指针
 
-> 最近修订：2026-08-13 20:36 +10:00（未审阅）
+> 最近修订：2026-08-16 15:30 +10:00（未审阅）
 
 枚举数组中的两个位置通常需要两层循环。若两个位置之间存在顺序关系，并且一个位置移动后，另一批候选能够被整体排除，就不必反复从头尝试所有组合。
 
@@ -30,7 +30,7 @@ target = 10
 ```cpp
 for (int l = 1; l <= n; l++) {
     for (int r = l + 1; r <= n; r++) {
-        if ((ll)a[l] + a[r] == target) {
+        if (1LL * a[l] + a[r] == target) {
             return {l, r};
         }
     }
@@ -54,7 +54,7 @@ int r = n;
 
 ```cpp
 while (l < r) {
-    ll sum = (ll)a[l] + a[r];
+    ll sum = 1LL * a[l] + a[r];
     // 根据 sum 移动一个指针
 }
 ```
@@ -122,12 +122,17 @@ r--;
 ## 完整查找函数
 
 ```cpp
-pair<int, int> find_pair_sum(const vector<int>& a, int n, ll target) {
+struct Answer {
+    int l;
+    int r;
+};
+
+Answer find_pair_sum(const vector<int>& a, int n, ll target) {
     int l = 1;
     int r = n;
 
     while (l < r) {
-        ll sum = (ll)a[l] + a[r];
+        ll sum = 1LL * a[l] + a[r];
         if (sum == target) {
             return {l, r};
         }
@@ -208,7 +213,8 @@ target = 6
 
 和二分查找一样，排除依据来自数组顺序。若数组无序，`a[l] + a[r]` 太小时，不能推出当前 `l` 与中间任意元素组合也太小。
 
-无序输入可以先排序，再用双指针，时间是 $O(n\log n)$。但排序会改变原下标；若题目要求输出原位置，需要把每个值与原编号组成 `pair` 或 `struct` 后一起排序。
+无序输入可以先排序，再用双指针，时间是 $O(n\log n)$。但排序会改变原下标；若
+题目要求输出原位置，需要把每个值与原编号组成一个结构体后一起排序。
 
 若只做一次两数之和查询，后续学习哈希表后还可以在平均 $O(n)$ 时间内处理无序数组，并保留原下标。结构选择取决于输入是否有序、查询次数和输出要求。
 
@@ -236,12 +242,17 @@ using namespace std;
 
 typedef long long ll;
 
-pair<int, int> find_pair_sum(const vector<int>& a, int n, ll target) {
+struct Answer {
+    int l;
+    int r;
+};
+
+Answer find_pair_sum(const vector<int>& a, int n, ll target) {
     int l = 1;
     int r = n;
 
     while (l < r) {
-        ll sum = (ll)a[l] + a[r];
+        ll sum = 1LL * a[l] + a[r];
         if (sum == target) {
             return {l, r};
         }
@@ -255,18 +266,22 @@ pair<int, int> find_pair_sum(const vector<int>& a, int n, ll target) {
     return {-1, -1};
 }
 
-int main() {
+void solve() {
     int n;
     ll target;
-    scanf("%d%lld", &n, &target);
+    cin >> n >> target;
 
     vector<int> a(n + 5);
     for (int i = 1; i <= n; i++) {
-        scanf("%d", &a[i]);
+        cin >> a[i];
     }
 
-    auto [l, r] = find_pair_sum(a, n, target);
-    printf("%d %d\n", l, r);
+    Answer answer = find_pair_sum(a, n, target);
+    cout << answer.l << ' ' << answer.r << '\n';
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -312,16 +327,6 @@ int main() {
 
 双指针复杂度来自整个过程中每个指针的总移动次数。即使后续滑动窗口写成外层 `for` 加内层 `while`，只要左指针不回退，总移动仍可为 $O(n)$。
 
-## 基础练习
-
-1. 手动处理目标和太小、太大、恰好相等的三种分支，并证明每次排除安全。
-2. 测试空数组、单元素、两个相同值、全相同和不存在答案的情况。
-3. 构造含 `INT_MIN`、`INT_MAX` 的有序数组，验证必须使用 64 位和。
-4. 用两层枚举与双指针随机对拍，检查返回下标合法且数值和正确。
-5. 无序输入保留原编号后排序，输出任意一组原下标。
-6. 修改问题为统计不同数值对，观察为什么找到一组后需要跳过重复值。
-7. 回顾归并排序，指出其中两个同向指针各自只移动多少次。
-
 ## 需要记住什么
 
 1. 双指针通过什么性质避免枚举全部下标组合？
@@ -335,7 +340,3 @@ int main() {
 9. 相向双指针与同向双指针有什么共同点？
 
 三数之和、回文扩展、链表快慢指针、环检测和多序列指针不属于本篇基础模型。它们会在具体问题中重新证明相应的移动规则。
-
-## 下一篇
-
-下一篇 [双指针：滑动窗口](sliding-window.md) 会维护一个连续区间，在右端扩展后按需推进左端，同时更新窗口状态。
