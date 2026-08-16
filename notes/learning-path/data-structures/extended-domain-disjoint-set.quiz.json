@@ -1,0 +1,74 @@
+[
+  {
+    "id": "second-domain",
+    "prompt": "两个阵营的扩展域并查集中，`u+n` 表示什么？",
+    "options": [
+      { "id": "a", "text": "编号为 `u` 的另一个真实人物" },
+      { "id": "b", "text": "`u` 的父节点" },
+      { "id": "c", "text": "与 `u` 所在阵营相反的关系域" },
+      { "id": "d", "text": "`u` 所在集合的大小" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "扩展编号表示关系命题，不是复制真实对象。"
+  },
+  {
+    "id": "same-merges",
+    "prompt": "声明 `u` 与 `v` 同阵营时，需要合并哪些关系？",
+    "options": [
+      { "id": "a", "text": "`u~v` 且 `u+n~v+n`" },
+      { "id": "b", "text": "只合并 `u~v+n`" },
+      { "id": "c", "text": "`u~u+n`" },
+      { "id": "d", "text": "`v~v+n`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两人同阵营时，两人的相反阵营也必须对应相同。"
+  },
+  {
+    "id": "different-merges",
+    "prompt": "声明 `u` 与 `v` 不同阵营时，正确合并是什么？",
+    "options": [
+      { "id": "a", "text": "`u~v` 且 `u+n~v+n`" },
+      { "id": "b", "text": "`u~v+n` 且 `u+n~v`" },
+      { "id": "c", "text": "只合并 `u+n~v+n`" },
+      { "id": "d", "text": "把全部四个编号合并" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每个人的本域与另一个人的相反域对应。"
+  },
+  {
+    "id": "unknown-relation",
+    "prompt": "若 `u` 与 `v` 不在同一集合，可以直接断定什么？",
+    "options": [
+      { "id": "a", "text": "二者一定不同阵营" },
+      { "id": "b", "text": "二者一定同阵营" },
+      { "id": "c", "text": "输入一定矛盾" },
+      { "id": "d", "text": "还要检查 `u` 是否与 `v+n` 同集合，否则可能未知" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "普通不连通只排除已知相同，不能自动证明相反。"
+  },
+  {
+    "id": "check-before-merge",
+    "prompt": "为什么要在任何合并发生前完成矛盾检查？",
+    "options": [
+      { "id": "a", "text": "并查集不支持查询" },
+      { "id": "b", "text": "部分合并后才拒绝会永久污染已有关系" },
+      { "id": "c", "text": "因为合并只能执行一次" },
+      { "id": "d", "text": "为了减少对象数量" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "普通并查集没有撤销能力，矛盾操作必须保持完全不修改状态。"
+  },
+  {
+    "id": "multi-domain",
+    "prompt": "把扩展域推广到 $k$ 种关系时，最先应该做什么？",
+    "options": [
+      { "id": "a", "text": "明确每一层编号代表的相对关系" },
+      { "id": "b", "text": "把所有层直接合并" },
+      { "id": "c", "text": "删除原对象编号" },
+      { "id": "d", "text": "改用浮点下标" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "关系层语义决定所有偏移和合并公式，必须先于代码固定。"
+  }
+]
