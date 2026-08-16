@@ -49,7 +49,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | *0106 | 变量 | 待审阅 | [variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
-| *0128 | 常量 | 待审阅 | [const.md](cpp/const.md) |
+| 0128 | 常量 | 待审阅 | [const.md](cpp/const.md) |
 | *0161 | 字面量 | 待审阅 | [literals.md](cpp/literals.md) |
 | *0179 | constexpr | 待审阅 | [constexpr.md](cpp/constexpr.md) |
 
@@ -62,8 +62,8 @@
 | 0109 | 逻辑运算符 | 待审阅 | [logical-operators.md](cpp/logical-operators.md) |
 | 0164 | 自增与自减运算符 | 待审阅 | [increment-decrement-operators.md](cpp/increment-decrement-operators.md) |
 | 0165 | 复合赋值运算符 | 待审阅 | [compound-assignment-operators.md](cpp/compound-assignment-operators.md) |
-| *0133 | 位运算符 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
-| *0198 | 移位运算符 | 计划 | `cpp/shift-operators.md` |
+| 0133 | 位运算符 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
+| 0198 | 移位运算符 | 计划 | `cpp/shift-operators.md` |
 | *0191 | 运算符重载 | 待审阅 | [operator-overloading.md](cpp/operator-overloading.md) |
 
 ### 专题：数值计算
@@ -142,17 +142,17 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | *0124 | 字节寻址 | 待审阅 | [byte-addressing.md](cpp/byte-addressing.md) |
-| *0125 | 指针 | 待审阅 | [pointers.md](cpp/pointers.md) |
-| *0126 | 引用 | 待审阅 | [references.md](cpp/references.md) |
+| 0125 | 指针 | 待审阅 | [pointers.md](cpp/pointers.md) |
+| 0126 | 引用 | 待审阅 | [references.md](cpp/references.md) |
 | *0174 | 指针与引用中的 const | 待审阅 | [const-pointers-and-references.md](cpp/const-pointers-and-references.md) |
-| *0127 | 参数传递 | 待审阅 | [parameter-passing.md](cpp/parameter-passing.md) |
+| 0127 | 参数传递 | 待审阅 | [parameter-passing.md](cpp/parameter-passing.md) |
 
 ### 专题：复合类型
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| *0121 | 结构体 | 待审阅 | [struct.md](cpp/struct.md) |
-| *0175 | 结构体指针与箭头运算符 | 待审阅 | [struct-pointers-and-arrow.md](cpp/struct-pointers-and-arrow.md) |
+| 0121 | 结构体 | 待审阅 | [struct.md](cpp/struct.md) |
+| 0175 | 结构体指针与箭头运算符 | 待审阅 | [struct-pointers-and-arrow.md](cpp/struct-pointers-and-arrow.md) |
 | *0121e1 | 结构体的内存布局 | 待审阅 | [struct-memory-layout.md](cpp/struct-memory-layout.md) |
 | *0122 | 联合体 | 待审阅 | [union.md](cpp/union.md) |
 | *0123 | 枚举 | 待审阅 | [enum.md](cpp/enum.md) |
