@@ -1,4 +1,5 @@
 import { ArticleFamilyList } from "./article-family-list";
+import { CatalogAreaList } from "./catalog-area-list";
 import { ScrollArea } from "./scroll-area";
 
 import type { ArticleNavigation, NavigationMode } from "@/lib/content/types";
@@ -19,11 +20,20 @@ export function ArticleNavigationView({
         refreshKey={`${mode}:${navigation.activeEntryKey}`}
       >
         <nav className="sidebar-list">
-          <ArticleFamilyList
-            groups={navigation.groups}
-            activeEntryKey={navigation.activeEntryKey}
-            navigation={mode}
-          />
+          {navigation.areas ? (
+            <CatalogAreaList
+              areas={navigation.areas}
+              activeEntryKey={navigation.activeEntryKey}
+              navigation={mode}
+              sidebar
+            />
+          ) : (
+            <ArticleFamilyList
+              groups={navigation.groups}
+              activeEntryKey={navigation.activeEntryKey}
+              navigation={mode}
+            />
+          )}
         </nav>
       </ScrollArea>
     </aside>

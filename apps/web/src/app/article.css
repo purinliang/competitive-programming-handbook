@@ -224,6 +224,41 @@
   padding-left: 28px;
 }
 
+.catalog-area + .catalog-area {
+  border-top: 1px solid var(--divider-border);
+}
+
+.catalog-area > h3 {
+  margin: 0;
+  padding: 11px 16px 9px;
+  color: var(--primary-text);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.catalog-area-entries > .article-link {
+  padding-left: 24px;
+}
+
+.catalog-area-list.is-sidebar .catalog-area > h3 {
+  padding: 9px 12px 7px;
+  color: var(--secondary-text);
+  font-size: 12px;
+}
+
+.catalog-area-list.is-sidebar .catalog-area-entries > .article-link {
+  padding-left: 20px;
+}
+
+.catalog-area-list.is-sidebar .article-family > summary {
+  padding-left: 20px;
+}
+
+.catalog-area-list.is-sidebar .article-family > div .article-link {
+  padding-left: 36px;
+}
+
 .directory-layout {
   grid-template-areas: "sidebar content empty";
 }

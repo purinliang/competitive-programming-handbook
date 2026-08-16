@@ -91,9 +91,11 @@ async function fileExists(filePath) {
 async function parseCatalog() {
   const catalog = await readFile(path.join(notesRoot, "catalog.md"), "utf8");
   const articles = new Map();
+  const modules = new Map();
   let moduleKey = "";
   let moduleTitle = "";
   let moduleAnchor = "";
+  let catalogAreaTitle;
   let catalogTopicTitle;
   let catalogPosition = 0;
   const moduleSlugger = new GithubSlugger();
@@ -104,11 +106,26 @@ async function parseCatalog() {
       moduleTitle = moduleMatch[1].trim();
       moduleAnchor = moduleSlugger.slug(moduleMatch[1].trim());
       moduleKey = "";
+      catalogAreaTitle = undefined;
       catalogTopicTitle = undefined;
       continue;
     }
 
-    const topicMatch = line.match(/^###\s+专题：(.+)$/);
+    const areaMatch = line.match(/^###\s+(?!专题：)(.+)$/);
+    if (areaMatch) {
+      catalogAreaTitle = areaMatch[1].trim();
+      catalogTopicTitle = undefined;
+      continue;
+    }
+
+    const legacyTopicMatch = line.match(/^###\s+专题：(.+)$/);
+    if (legacyTopicMatch) {
+      catalogAreaTitle = legacyTopicMatch[1].trim();
+      catalogTopicTitle = undefined;
+      continue;
+    }
+
+    const topicMatch = line.match(/^####\s+专题：(.+)$/);
     if (topicMatch) {
       catalogTopicTitle = topicMatch[1].trim();
       continue;
@@ -133,11 +150,35 @@ async function parseCatalog() {
     const articleKey = toArticleKey(sourcePath);
     const pathParts = articleKey.split("/");
     moduleKey ||= pathParts[0];
-    const topic = catalogTopicTitle ? {
-      key: `catalog-${navigationKey(moduleKey, catalogTopicTitle)}`,
-      title: catalogTopicTitle,
+    modules.set(moduleKey, {
+      key: moduleKey,
+      title: moduleTitle,
+      anchor: moduleAnchor,
+    });
+
+    const areaTitle = catalogAreaTitle ?? moduleTitle.replace(/^\d+\s+/, "");
+    const areaKey = `catalog-${navigationKey(moduleKey, areaTitle)}`;
+    const topicKey = catalogTopicTitle
+      ? `catalog-${navigationKey(moduleKey, areaTitle, catalogTopicTitle)}`
+      : undefined;
+    const placement = {
+      key: `catalog-${navigationKey(
+        moduleKey,
+        areaTitle,
+        catalogTopicTitle ?? "",
+        articleKey,
+      )}`,
+      moduleKey,
+      moduleTitle,
+      moduleAnchor,
+      areaKey,
+      areaTitle,
+      areaPosition: catalogPosition,
+      topicKey,
+      topicTitle: catalogTopicTitle,
+      topicPosition: catalogTopicTitle ? catalogPosition : undefined,
       position: catalogPosition,
-    } : undefined;
+    };
     catalogPosition += 1;
 
     const existing = articles.get(articleKey);
@@ -147,28 +188,28 @@ async function parseCatalog() {
         || existing.title !== title
         || existing.status !== status
         || existing.sourcePath !== sourcePath
-        || existing.moduleKey !== moduleKey
       ) {
         throw new Error(`catalog.md 中重复条目 ${articleKey} 的元数据不一致`);
       }
-      if (topic && !existing.catalogTopics.some((item) => item.title === topic.title)) {
-        existing.catalogTopics.push(topic);
+      if (!existing.catalogPlacements.some((item) => item.key === placement.key)) {
+        existing.catalogPlacements.push(placement);
       }
       continue;
     }
 
+    const primaryModuleKey = pathParts[0];
     articles.set(articleKey, {
       articleKey,
       articleSlug: pathParts.at(-1) ?? articleKey,
       catalogId,
       title,
       learningTitle: title,
-      catalogTopics: topic ? [topic] : [],
+      catalogPlacements: [placement],
       status,
       kind: rawCatalogId.startsWith("*") ? "extension" : "core",
-      moduleKey,
-      moduleTitle,
-      moduleAnchor,
+      moduleKey: primaryModuleKey,
+      moduleTitle: "",
+      moduleAnchor: "",
       sourcePath,
       learningSourcePath: sourcePath,
       catalogRoute: `/catalog/${articleKey}/`,
@@ -177,7 +218,15 @@ async function parseCatalog() {
     });
   }
 
-  return [...articles.values()];
+  return [...articles.values()].map((article) => {
+    const primaryModule = modules.get(article.moduleKey)
+      ?? article.catalogPlacements[0];
+    return {
+      ...article,
+      moduleTitle: primaryModule.title ?? primaryModule.moduleTitle,
+      moduleAnchor: primaryModule.anchor ?? primaryModule.moduleAnchor,
+    };
+  });
 }
 
 async function parseLearningStages() {

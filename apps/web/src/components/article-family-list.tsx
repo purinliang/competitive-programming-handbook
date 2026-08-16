@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 import { ArticleLink } from "./article-link";
 import { ArticleGroupProgress } from "./article-progress";
 
@@ -13,16 +15,18 @@ export function ArticleFamilyList({ groups, activeEntryKey, navigation }: Articl
   return groups.map((group, index) => {
     const active = group.entryKeys.includes(activeEntryKey ?? "");
     if (!group.grouped) {
-      const article = group.articles[0];
-      const entryKey = group.entryKeys[0];
       return (
-        <ArticleLink
-          article={article}
-          active={active}
-          entryKey={entryKey}
-          navigation={navigation}
-          key={entryKey}
-        />
+        <Fragment key={`${group.entryKeys[0]}:${index}`}>
+          {group.articles.map((article, articleIndex) => (
+            <ArticleLink
+              article={article}
+              active={group.entryKeys[articleIndex] === activeEntryKey}
+              entryKey={group.entryKeys[articleIndex]}
+              navigation={navigation}
+              key={group.entryKeys[articleIndex]}
+            />
+          ))}
+        </Fragment>
       );
     }
 

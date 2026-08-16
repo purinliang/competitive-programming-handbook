@@ -8,6 +8,7 @@ import type {
   ArticleNavigation,
   ArticleNavigationTarget,
   ArticleRecord,
+  CatalogArea,
   LearningStage,
   ModuleRecord,
 } from "./types";
@@ -32,17 +33,23 @@ export function getModules(): ModuleRecord[] {
   const modules = new Map<string, ModuleRecord>();
 
   for (const article of getArticles()) {
-    const module = modules.get(article.moduleKey) ?? {
-      key: article.moduleKey,
-      title: article.moduleTitle,
-      anchor: article.moduleAnchor,
-      articles: [],
-    };
-    module.articles.push(article);
-    modules.set(article.moduleKey, module);
+    for (const placement of article.catalogPlacements) {
+      const module = modules.get(placement.moduleKey) ?? {
+        key: placement.moduleKey,
+        title: placement.moduleTitle,
+        anchor: placement.moduleAnchor,
+        position: placement.position,
+        articles: [],
+      };
+      module.position = Math.min(module.position, placement.position);
+      if (!module.articles.some((item) => item.articleKey === article.articleKey)) {
+        module.articles.push(article);
+      }
+      modules.set(placement.moduleKey, module);
+    }
   }
 
-  return [...modules.values()];
+  return [...modules.values()].sort((left, right) => left.position - right.position);
 }
 
 export function getArticle(articleKey: string): ArticleRecord | undefined {
@@ -125,8 +132,16 @@ export function getArticleModuleNeighbors(
     return {};
   }
 
-  const module = getModules().find((item) => item.key === article.moduleKey);
-  const groups = getCatalogGroups(module?.articles ?? [article]);
+  const placement = article.catalogPlacements.find(
+    (item) => item.key === requestedEntryKey,
+  ) ?? article.catalogPlacements[0];
+  if (!placement) return {};
+
+  const module = getModules().find((item) => item.key === placement.moduleKey);
+  const groups = getCatalogAreas(
+    placement.moduleKey,
+    module?.articles ?? [article],
+  ).flatMap((area) => area.groups);
   const group = groups.find((item) => requestedEntryKey && item.entryKeys.includes(requestedEntryKey))
     ?? groups.find((item) => item.articles.some((candidate) => candidate.articleKey === articleKey));
   if (!group) return {};
@@ -172,9 +187,9 @@ export function groupAdjacentArticles(
     }
 
     const title = article.title.slice(0, separator);
-    const familyKey = `${article.moduleKey}:${title}`;
+    const familyKey = title;
     const previous = groups.at(-1);
-    if (previous?.grouped && previous.title === title && previous.articles[0].moduleKey === article.moduleKey) {
+    if (previous?.grouped && previous.title === title) {
       previous.articles.push(article);
       previous.entryKeys.push(entryKey);
     } else {
@@ -193,53 +208,107 @@ export function groupAdjacentArticles(
   return groups;
 }
 
-export function getCatalogGroups(articles: ArticleRecord[]): ArticleFamily[] {
-  if (!articles.some((article) => article.catalogTopics.length > 0)) {
-    return groupAdjacentArticles(articles);
-  }
-
-  const topics = new Map<
+export function getCatalogAreas(
+  moduleKey: string,
+  articles: ArticleRecord[],
+): CatalogArea[] {
+  const articleByKey = new Map(
+    articles.map((article) => [article.articleKey, article]),
+  );
+  const areas = new Map<
     string,
     {
+      key: string;
       title: string;
       position: number;
-      articles: Array<{
+      entries: Array<{
         article: ArticleRecord;
         entryKey: string;
         position: number;
+        topicKey?: string;
+        topicTitle?: string;
       }>;
     }
   >();
+
   for (const article of articles) {
-    for (const membership of article.catalogTopics) {
-      const topic = topics.get(membership.key) ?? {
-        title: membership.title,
-        position: membership.position,
-        articles: [],
+    for (const placement of article.catalogPlacements) {
+      if (placement.moduleKey !== moduleKey) continue;
+
+      const area = areas.get(placement.areaKey) ?? {
+        key: placement.areaKey,
+        title: placement.areaTitle,
+        position: placement.areaPosition,
+        entries: [],
       };
-      topic.position = Math.min(topic.position, membership.position);
-      topic.articles.push({
+      area.position = Math.min(area.position, placement.areaPosition);
+      area.entries.push({
         article,
-        entryKey: `${membership.key}:${article.articleKey}`,
-        position: membership.position,
+        entryKey: placement.key,
+        position: placement.position,
+        topicKey: placement.topicKey,
+        topicTitle: placement.topicTitle,
       });
-      topics.set(membership.key, topic);
+      areas.set(placement.areaKey, area);
     }
   }
 
-  return [...topics.values()]
-    .sort((left, right) => left.position - right.position)
-    .map((topic) => {
-      const entries = topic.articles.sort((left, right) => left.position - right.position);
+  return [...areas.values()].sort((left, right) => left.position - right.position)
+    .map((area) => {
+      const groups: ArticleFamily[] = [];
+      const topics = new Map<string, ArticleFamily>();
+      let directGroup: ArticleFamily | undefined;
+
+      for (const entry of area.entries.sort((left, right) => left.position - right.position)) {
+        if (!articleByKey.has(entry.article.articleKey)) continue;
+
+        if (!entry.topicKey || !entry.topicTitle) {
+          if (!directGroup) {
+            directGroup = {
+              title: area.title,
+              articles: [],
+              entryKeys: [],
+              grouped: false,
+              continued: false,
+              stripTitlePrefix: false,
+            };
+            groups.push(directGroup);
+          }
+          directGroup.articles.push(entry.article);
+          directGroup.entryKeys.push(entry.entryKey);
+          continue;
+        }
+
+        let topic = topics.get(entry.topicKey);
+        if (!topic) {
+          topic = {
+            title: entry.topicTitle,
+            articles: [],
+            entryKeys: [],
+            grouped: true,
+            continued: false,
+            stripTitlePrefix: false,
+          };
+          topics.set(entry.topicKey, topic);
+          groups.push(topic);
+        }
+        topic.articles.push(entry.article);
+        topic.entryKeys.push(entry.entryKey);
+      }
+
       return {
-        title: topic.title,
-        articles: entries.map((item) => item.article),
-        entryKeys: entries.map((item) => item.entryKey),
-        grouped: true,
-        continued: false,
-        stripTitlePrefix: false,
+        key: area.key,
+        title: area.title,
+        groups,
       };
     });
+}
+
+export function getCatalogGroups(
+  moduleKey: string,
+  articles: ArticleRecord[],
+): ArticleFamily[] {
+  return getCatalogAreas(moduleKey, articles).flatMap((area) => area.groups);
 }
 
 export function getLearningUnitGroups(stage: LearningStage): ArticleFamily[] {
@@ -278,22 +347,33 @@ export function getArticleModuleNavigations(articleKey: string): ArticleNavigati
     return [];
   }
 
-  const module = getModules().find((item) => item.key === article.moduleKey);
-  const groups = getCatalogGroups(module?.articles ?? [article]);
-  return groups.flatMap((group) => group.articles.flatMap((candidate, index) => {
-    const activeEntryKey = group.entryKeys[index];
-    if (candidate.articleKey !== articleKey || !activeEntryKey) {
-      return [];
-    }
-    const neighbors = getArticleModuleNeighbors(articleKey, activeEntryKey);
-    return [{
+  const placements = [...article.catalogPlacements].sort((left, right) => {
+    const leftRank = left.moduleKey === article.moduleKey
+      ? (left.areaTitle === "常用" ? 1 : 0)
+      : 2;
+    const rightRank = right.moduleKey === article.moduleKey
+      ? (right.areaTitle === "常用" ? 1 : 0)
+      : 2;
+    return leftRank - rightRank || left.position - right.position;
+  });
+
+  return placements.map((placement) => {
+    const module = getModules().find((item) => item.key === placement.moduleKey);
+    const areas = getCatalogAreas(
+      placement.moduleKey,
+      module?.articles ?? [article],
+    );
+    const groups = areas.flatMap((area) => area.groups);
+    const neighbors = getArticleModuleNeighbors(articleKey, placement.key);
+    return {
       label: "模块",
-      title: article.moduleTitle,
+      title: placement.moduleTitle,
       groups,
-      activeEntryKey,
+      areas,
+      activeEntryKey: placement.key,
       ...neighbors,
-    }];
-  }));
+    };
+  });
 }
 
 export function getArticleLearningNavigations(articleKey: string): ArticleNavigation[] {

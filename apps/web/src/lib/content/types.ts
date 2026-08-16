@@ -1,10 +1,24 @@
 export type ArticleStatus = "计划" | "待审阅" | "已审阅" | "草稿" | "定稿";
 export type NavigationMode = "learning-path" | "catalog";
 
-export interface CatalogTopicMembership {
+export interface CatalogPlacement {
+  key: string;
+  moduleKey: string;
+  moduleTitle: string;
+  moduleAnchor: string;
+  areaKey: string;
+  areaTitle: string;
+  areaPosition: number;
+  topicKey?: string;
+  topicTitle?: string;
+  topicPosition?: number;
+  position: number;
+}
+
+export interface CatalogArea {
   key: string;
   title: string;
-  position: number;
+  groups: ArticleFamily[];
 }
 
 export interface ArticleRecord {
@@ -13,7 +27,7 @@ export interface ArticleRecord {
   catalogId: string;
   title: string;
   learningTitle: string;
-  catalogTopics: CatalogTopicMembership[];
+  catalogPlacements: CatalogPlacement[];
   status: ArticleStatus;
   kind: "core" | "extension";
   moduleKey: string;
@@ -43,6 +57,7 @@ export interface ModuleRecord {
   key: string;
   title: string;
   anchor: string;
+  position: number;
   articles: ArticleRecord[];
 }
 
@@ -81,6 +96,7 @@ export interface ArticleNavigation {
   label: string;
   title: string;
   groups: ArticleFamily[];
+  areas?: CatalogArea[];
   activeEntryKey: string;
   previous?: ArticleNavigationTarget;
   next?: ArticleNavigationTarget;
