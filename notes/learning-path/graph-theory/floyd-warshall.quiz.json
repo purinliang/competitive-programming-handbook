@@ -1,0 +1,62 @@
+[
+  {
+    "id": "initialization",
+    "prompt": "Floyd–Warshall 初始化时，`dist[u][u]` 应设为什么？",
+    "options": [
+      { "id": "a", "text": "`INF`" },
+      { "id": "b", "text": "`-1`" },
+      { "id": "c", "text": "`0`" },
+      { "id": "d", "text": "点 u 的出度" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "不经过任何边即可从 u 到达自身，所以空路径长度为 0。"
+  },
+  {
+    "id": "stage-meaning",
+    "prompt": "处理完阶段 k 后，`dist[u][v]` 的含义是什么？",
+    "options": [
+      { "id": "a", "text": "只使用编号 1..k 的点作为中间点时的最短距离" },
+      { "id": "b", "text": "恰好经过 k 条边的路径数量" },
+      { "id": "c", "text": "从点 k 到所有点的距离" },
+      { "id": "d", "text": "只允许边权不超过 k 的最短距离" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "k 是逐步开放中间点的动态规划阶段。"
+  },
+  {
+    "id": "loop-order",
+    "prompt": "三层循环中，哪个变量必须位于最外层？",
+    "options": [
+      { "id": "a", "text": "起点 u" },
+      { "id": "b", "text": "终点 v" },
+      { "id": "c", "text": "边编号" },
+      { "id": "d", "text": "中间点 k" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "必须完整完成“允许点 k 作为中间点”的阶段后，才能开放下一个点。"
+  },
+  {
+    "id": "parallel-edges",
+    "prompt": "读入多条相同方向的 `u->v` 边时，应如何初始化？",
+    "options": [
+      { "id": "a", "text": "只保留第一条边" },
+      { "id": "b", "text": "保留这些边权的最小值" },
+      { "id": "c", "text": "把所有边权相加" },
+      { "id": "d", "text": "只保留最后一条边" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "不使用中间点时，平行边中最短的一条才是这对点的初始最短距离。"
+  },
+  {
+    "id": "negative-cycle",
+    "prompt": "算法结束后，哪种现象能说明图中存在负环？",
+    "options": [
+      { "id": "a", "text": "存在 `dist[u][u] < 0`" },
+      { "id": "b", "text": "存在 `dist[u][v] == INF`" },
+      { "id": "c", "text": "存在两点距离相同" },
+      { "id": "d", "text": "矩阵不是对称的" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "从 u 回到 u 的负长度路径中包含负环。"
+  }
+]
