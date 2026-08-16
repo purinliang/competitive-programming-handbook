@@ -1,0 +1,50 @@
+[
+  {
+    "id": "matrix-size",
+    "prompt": "一个有 r 行、c 列的矩阵大小怎样书写？",
+    "options": [
+      { "id": "a", "text": "`c*r`" },
+      { "id": "b", "text": "`r+c`" },
+      { "id": "c", "text": "`r*c`，先行后列" },
+      { "id": "d", "text": "只写元素总数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "矩阵尺寸按行数乘列数书写，顺序不能交换。"
+  },
+  {
+    "id": "element-index",
+    "prompt": "`A[i][j]` 中 i 和 j 分别表示什么？",
+    "options": [
+      { "id": "a", "text": "第 i 行、第 j 列" },
+      { "id": "b", "text": "第 i 列、第 j 行" },
+      { "id": "c", "text": "矩阵高度和宽度" },
+      { "id": "d", "text": "两个矩阵编号" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "二维元素位置固定按行下标、列下标读取。"
+  },
+  {
+    "id": "matrix-equality",
+    "prompt": "两个矩阵相等必须满足什么？",
+    "options": [
+      { "id": "a", "text": "元素总数相同即可" },
+      { "id": "b", "text": "尺寸相同，且每个对应位置的元素都相等" },
+      { "id": "c", "text": "行数相同即可" },
+      { "id": "d", "text": "所有元素之和相同即可" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "矩阵还保留行列结构，不能只比较元素数量或总和。"
+  },
+  {
+    "id": "logical-size",
+    "prompt": "内部 vector 带 `+5` 余量时，为什么 Matrix 还要保存 rows 和 columns？",
+    "options": [
+      { "id": "a", "text": "为了让矩阵一定成为方阵" },
+      { "id": "b", "text": "为了自动执行矩阵乘法" },
+      { "id": "c", "text": "为了把所有元素初始化为 5" },
+      { "id": "d", "text": "vector 的物理长度包含余量，不能代表真实行列范围" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "逻辑尺寸必须独立保存，算法只访问 1..rows 与 1..columns。"
+  }
+]
