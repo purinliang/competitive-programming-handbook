@@ -1,0 +1,86 @@
+[
+  {
+    "id": "comparison-default-choice",
+    "prompt": "普通竞赛题只要求把一般序列排好序时，首先应考虑什么？",
+    "options": [
+      { "id": "a", "text": "手写冒泡排序" },
+      { "id": "b", "text": "手写选择排序" },
+      { "id": "c", "text": "标准库 `sort`" },
+      { "id": "d", "text": "为所有整数分配计数数组" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "标准库实现成熟高效；手写基础排序主要用于理解原理或满足特殊题意。"
+  },
+  {
+    "id": "stable-basic-methods",
+    "prompt": "按照本书的具体实现，哪一组排序都稳定？",
+    "options": [
+      { "id": "a", "text": "冒泡排序、插入排序、归并排序" },
+      { "id": "b", "text": "选择排序、快速排序、std::sort" },
+      { "id": "c", "text": "快速排序、堆排序、选择排序" },
+      { "id": "d", "text": "所有使用严格比较的排序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "严格相邻交换、严格右移和相等时先取左侧分别保持相等记录原顺序。"
+  },
+  {
+    "id": "strict-not-stable",
+    "prompt": "为什么朴素选择排序使用严格小于比较仍可能不稳定？",
+    "options": [
+      { "id": "a", "text": "严格比较不能处理整数" },
+      { "id": "b", "text": "远距离交换可能让相等记录互相跨越" },
+      { "id": "c", "text": "它使用了额外数组" },
+      { "id": "d", "text": "它只能输出降序" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "稳定性不仅取决于比较符号，还取决于元素怎样移动。"
+  },
+  {
+    "id": "counting-range-cost",
+    "prompt": "计数排序何时最值得考虑？",
+    "options": [
+      { "id": "a", "text": "元素是任意长字符串" },
+      { "id": "b", "text": "值域跨度远大于内存" },
+      { "id": "c", "text": "只知道元素可以比较" },
+      { "id": "d", "text": "元素是整数且连续值域足够小" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "它需要为从最小值到最大值的整个值域分配和扫描计数位置。"
+  },
+  {
+    "id": "linked-list-sort",
+    "prompt": "单向链表为什么通常更适合归并排序而不是数组式快速排序？",
+    "options": [
+      { "id": "a", "text": "归并只需顺序读取并可重新连接节点" },
+      { "id": "b", "text": "链表能常数时间访问任意下标" },
+      { "id": "c", "text": "链表不需要比较元素" },
+      { "id": "d", "text": "快速排序只能处理浮点数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "链表缺少随机访问和自然的远距离交换，却很适合顺序合并。"
+  },
+  {
+    "id": "quicksort-extra-space",
+    "prompt": "本篇为什么没有把快速排序额外空间一律写成 O(1)？",
+    "options": [
+      { "id": "a", "text": "pivot 是长度为 n 的数组" },
+      { "id": "b", "text": "每次交换会复制 vector" },
+      { "id": "c", "text": "递归调用栈仍需空间，极端时深度可达 n" },
+      { "id": "d", "text": "所有排序都必须使用 O(n) 空间" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "分区本身原地不等于整个递归算法没有额外空间。"
+  },
+  {
+    "id": "stable-library-choice",
+    "prompt": "只按分数排序并要求同分记录保持输入顺序，应优先使用什么？",
+    "options": [
+      { "id": "a", "text": "`reverse`" },
+      { "id": "b", "text": "`stable_sort` 与只比较分数的严格比较器" },
+      { "id": "c", "text": "`unique`" },
+      { "id": "d", "text": "不含比较器的随机交换" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "stable_sort 保证排序意义下等价记录仍保留原相对顺序。"
+  }
+]
