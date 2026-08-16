@@ -241,7 +241,7 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0501 | 数论：整除 | 数学 | [math/divisibility.md](math/divisibility.md) |
+| 0501 | 整除 | 数学 | [math/divisibility.md](math/divisibility.md) |
 | 0502 | 数论：质数 | 数学 | [math/prime-numbers.md](math/prime-numbers.md) |
 | 0535 | 数论：算术基本定理 | 数学 | [math/fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
 | 0539 | 数论：质因数分解 | 数学 | [math/prime-factorization.md](math/prime-factorization.md) |

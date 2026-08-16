@@ -1,0 +1,122 @@
+[
+  {
+    "id": "divisibility-order",
+    "prompt": "记号 `b | a` 表示什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "a 与 b 必须相等"
+      },
+      {
+        "id": "b",
+        "text": "存在整数 k，使 a = bk"
+      },
+      {
+        "id": "c",
+        "text": "存在整数 k，使 b = ak，且 k 必须为正"
+      },
+      {
+        "id": "d",
+        "text": "a 除以 b 的商必须是 0"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "b 写在整除符号左边，是 a 的除数；定义要求 a 是 b 的整数倍。"
+  },
+  {
+    "id": "divisor-multiple",
+    "prompt": "若 `3 | 12`，哪项术语关系正确？",
+    "options": [
+      {
+        "id": "a",
+        "text": "12 是 3 的约数"
+      },
+      {
+        "id": "b",
+        "text": "3 是 12 的倍数"
+      },
+      {
+        "id": "c",
+        "text": "3 是 12 的约数，12 是 3 的倍数"
+      },
+      {
+        "id": "d",
+        "text": "3 与 12 都不是整数"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "整除符号左侧是约数，右侧是它的倍数。"
+  },
+  {
+    "id": "remainder-test",
+    "prompt": "已知 `b != 0`，哪一个条件与 `b | a` 等价？",
+    "options": [
+      {
+        "id": "a",
+        "text": "`a % b == 0`"
+      },
+      {
+        "id": "b",
+        "text": "`b % a == 1`"
+      },
+      {
+        "id": "c",
+        "text": "`a / b == 0`"
+      },
+      {
+        "id": "d",
+        "text": "`a + b == 0`"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "余数为 0 表示 a 恰好是 b 的整数倍；b 非零避免对 0 取余。"
+  },
+  {
+    "id": "zero-dividend",
+    "prompt": "对任意非零整数 b，为什么都有 `b | 0`？",
+    "options": [
+      {
+        "id": "a",
+        "text": "因为 0 / b 一定未定义"
+      },
+      {
+        "id": "b",
+        "text": "因为 b 必须等于 1"
+      },
+      {
+        "id": "c",
+        "text": "因为所有整数都等于 0"
+      },
+      {
+        "id": "d",
+        "text": "因为存在整数 k = 0，使 0 = b × k"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "直接取定义中的整数倍 k = 0 即可。"
+  },
+  {
+    "id": "linear-combination",
+    "prompt": "若 `d | a` 且 `d | b`，下列哪一项一定也能被 d 整除？",
+    "options": [
+      {
+        "id": "a",
+        "text": "任意实数倍的和"
+      },
+      {
+        "id": "b",
+        "text": "对任意整数 x、y 的 `ax + by`"
+      },
+      {
+        "id": "c",
+        "text": "a / b，无需任何条件"
+      },
+      {
+        "id": "d",
+        "text": "所有不含 a、b 的整数"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "写成 a = dm、b = dn 后，ax + by = d(mx + ny)，仍是 d 的整数倍。"
+  }
+]
