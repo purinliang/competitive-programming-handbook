@@ -1,0 +1,98 @@
+[
+  {
+    "id": "compile-time-size",
+    "prompt": "关于 `bitset<N>` 中的 `N`，哪项说法正确？",
+    "options": [
+      { "id": "a", "text": "`N` 会在每次 `set` 时自动增长" },
+      { "id": "b", "text": "`N` 必须在编译时确定，并且是类型的一部分" },
+      { "id": "c", "text": "`N` 必须等于当前为 `1` 的位数" },
+      { "id": "d", "text": "`N` 只能是输入读到的运行时变量" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`bitset<8>` 与 `bitset<16>` 是不同类型；运行时的 `n` 只能决定使用哪些位，不能改变模板参数。"
+  },
+  {
+    "id": "position-zero-output",
+    "prompt": "只把 `bitset<8>` 的位置 `0` 设为 `1`，直接输出时会得到什么？",
+    "options": [
+      { "id": "a", "text": "`10000000`" },
+      { "id": "b", "text": "`00000000`" },
+      { "id": "c", "text": "`1`" },
+      { "id": "d", "text": "`00000001`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "位置 0 对应最低位，输出时位于最右边；较大的位置依次写在左侧。"
+  },
+  {
+    "id": "checked-access",
+    "prompt": "需要读取一位，并希望越界时得到范围检查，应使用哪个接口？",
+    "options": [
+      { "id": "a", "text": "`bits.test(pos)`" },
+      { "id": "b", "text": "`bits.count(pos)`" },
+      { "id": "c", "text": "`bits.size(pos)`" },
+      { "id": "d", "text": "`bits.any(pos)`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`test(pos)` 读取指定位置并检查范围；`operator[]` 更短，但不提供同样的越界检查。"
+  },
+  {
+    "id": "whole-bitset-reset",
+    "prompt": "怎样把一个 `bitset` 的全部位置都设为 `0`？",
+    "options": [
+      { "id": "a", "text": "`bits.none()`" },
+      { "id": "b", "text": "`bits.test()`" },
+      { "id": "c", "text": "`bits.reset()`" },
+      { "id": "d", "text": "`bits.count()`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "不传位置的 `reset()` 清除全部位；`none()` 只查询是否全为 0，不会修改对象。"
+  },
+  {
+    "id": "count-versus-size",
+    "prompt": "`bits.count()` 与 `bits.size()` 分别返回什么？",
+    "options": [
+      { "id": "a", "text": "二者都返回最后一个为 `1` 的位置" },
+      { "id": "b", "text": "前者返回 `1` 的数量，后者返回固定总位数" },
+      { "id": "c", "text": "前者返回总位数，后者返回 `1` 的数量" },
+      { "id": "d", "text": "二者都返回对象占用的字节数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`count()` 由当前位值决定；`size()` 始终等于模板参数 `N`。"
+  },
+  {
+    "id": "set-intersection",
+    "prompt": "两个相同长度的 `bitset` 分别表示两个集合，哪个表达式得到交集？",
+    "options": [
+      { "id": "a", "text": "`a | b`" },
+      { "id": "b", "text": "`a ^ b`" },
+      { "id": "c", "text": "`~a`" },
+      { "id": "d", "text": "`a & b`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "交集只保留两边都为 1 的位置，对应按位与 `&`。"
+  },
+  {
+    "id": "bulk-operation-cost",
+    "prompt": "怎样理解长度为 $N$ 的 `bitset` 整体按位运算的成本？",
+    "options": [
+      { "id": "a", "text": "通常按机器字成块处理，可近似理解为 $O(N/W)$，并非任意长度都严格 $O(1)$" },
+      { "id": "b", "text": "标准保证无论多长都只执行一条机器指令" },
+      { "id": "c", "text": "一定需要 $O(N^2)$ 次逐位比较" },
+      { "id": "d", "text": "成本只由当前为 `1` 的位数决定" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "实现通常一次处理一个机器字中的多位，所以比逐个布尔值循环常数更好，但位数增加时仍需处理更多分块。"
+  },
+  {
+    "id": "unused-high-bits",
+    "prompt": "只使用 `bitset<MAXN>` 的前 `n` 位时，为什么不能直接用 `(~bits).count()` 统计这 `n` 位中的零？",
+    "options": [
+      { "id": "a", "text": "因为 `count()` 只能处理整数" },
+      { "id": "b", "text": "因为 `~` 会改变 `MAXN`" },
+      { "id": "c", "text": "`~` 也会把未使用的高位翻成 `1`，这些位置同样会被计数" },
+      { "id": "d", "text": "因为位置 `0` 不能翻转" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`bitset` 的宽度固定为 `MAXN`；需要先限制到有效位置，或改用 `n - bits.count()` 等符合题意的计算。"
+  }
+]

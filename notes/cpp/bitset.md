@@ -1,6 +1,6 @@
 # bitset
 
-> 最近修订：2026-08-15 20:56 +10:00（未审阅）
+> 最近修订：2026-08-16 16:49 +10:00（未审阅）
 
 假设题目有 $1000$ 名学生，我们只需要记录每名学生是否到场。使用 `bool` 数组当然可以完成，但求两个班都到场、至少一个班到场等集合关系时，仍要逐个位置扫描。
 
@@ -206,7 +206,7 @@ using namespace std;
 
 const int MAX_STUDENTS = 1000;
 
-int main() {
+void solve() {
     int n, a, b;
     scanf("%d%d%d", &n, &a, &b);
 
@@ -230,6 +230,10 @@ int main() {
     int neither = n - at_least_one;
 
     printf("%d %d %d\n", both, at_least_one, neither);
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
