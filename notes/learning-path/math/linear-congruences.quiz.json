@@ -1,0 +1,50 @@
+[
+  {
+    "id": "equation-conversion",
+    "prompt": "同余方程 `ax≡c (mod m)` 可以改写成什么整数方程？",
+    "options": [
+      { "id": "a", "text": "`ax+my=c`，其中 y 为整数" },
+      { "id": "b", "text": "`a+x=m+c`" },
+      { "id": "c", "text": "`ax=c/m`" },
+      { "id": "d", "text": "`x^m=c`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "ax-c 是 m 的整数倍，移项后得到二元线性不定方程。"
+  },
+  {
+    "id": "solvability",
+    "prompt": "`ax≡c (mod m)` 有解的充要条件是什么？",
+    "options": [
+      { "id": "a", "text": "`gcd(a,m)=1`" },
+      { "id": "b", "text": "`gcd(a,m)` 能整除 c" },
+      { "id": "c", "text": "c 必须等于 1" },
+      { "id": "d", "text": "m 必须是质数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "一般线性同余允许 gcd 大于 1，只要右侧能被它整除。"
+  },
+  {
+    "id": "solution-period",
+    "prompt": "令 `g=gcd(a,m)`，方程有解时 x 的最小周期是多少？",
+    "options": [
+      { "id": "a", "text": "m" },
+      { "id": "b", "text": "a/g" },
+      { "id": "c", "text": "m/g" },
+      { "id": "d", "text": "g*m" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "约去公因子后，系数与新模数 m/g 互质，解按该模数重复。"
+  },
+  {
+    "id": "number-of-solutions",
+    "prompt": "方程有解时，在完整模 m 范围内有多少个不同解？",
+    "options": [
+      { "id": "a", "text": "始终只有 1 个" },
+      { "id": "b", "text": "m/g 个" },
+      { "id": "c", "text": "m 个" },
+      { "id": "d", "text": "g 个" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "基础解以周期 m/g 重复，在长度为 m 的范围内正好出现 g 次。"
+  }
+]
