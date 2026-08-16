@@ -714,8 +714,8 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 061701 | 图：基环树 | 待审阅 | [unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
-| 061702 | 图：函数图 | 待审阅 | [functional-graph.md](graph-theory/functional-graph.md) |
+| *061302 | 图：基环树 | 待审阅 | [unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
+| 061701 | 图：函数图 | 待审阅 | [functional-graph.md](graph-theory/functional-graph.md) |
 | *990417 | 竞赛图 | 计划 | `graph-theory/tournament-graph.md` |
 | *990419 | 仙人掌 | 计划 | `graph-theory/cactus-graph.md` |
 | *990425 | 弦图 | 计划 | `graph-theory/chordal-graph.md` |
@@ -813,7 +813,7 @@
 | 060901 | 欧拉函数 | 待审阅 | [euler-totient.md](math/euler-totient.md) |
 | *060901e2 | 欧拉函数：筛法预处理 | 计划 | `math/euler-totient-sieve.md` |
 | 060903 | 莫比乌斯函数 | 待审阅 | [mobius-function.md](math/mobius-function.md) |
-| *990520 | 莫比乌斯反演 | 计划 | `math/mobius-inversion.md` |
+| *060903e1 | 莫比乌斯反演 | 计划 | `math/mobius-inversion.md` |
 | *060701e1 | 杜教筛 | 计划 | `math/du-jiao-sieve.md` |
 | *060701e2 | Min_25 筛 | 计划 | `math/min-25-sieve.md` |
 
@@ -1114,7 +1114,7 @@
 | 071003 | 单调队列优化 | 待审阅 | [monotone-queue-optimization.md](dynamic-programming/monotone-queue-optimization.md) |
 | 071004 | 单调栈优化 | 计划 | `dynamic-programming/monotone-stack-optimization.md` |
 | 071005 | 斜率优化 | 计划 | `dynamic-programming/convex-hull-trick.md` |
-| *990702 | 分治优化 | 计划 | `dynamic-programming/divide-conquer-optimization.md` |
+| *990702 | 决策单调性与分治优化 | 计划 | `dynamic-programming/divide-conquer-optimization.md` |
 | *990716 | 四边形不等式优化 | 计划 | `dynamic-programming/quadrangle-inequality-optimization.md` |
 | *990703 | 分段线性凸函数维护 | 计划 | `dynamic-programming/slope-trick.md` |
 

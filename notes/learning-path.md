@@ -622,6 +622,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 061301 | 有向无环图：拓扑排序 | 图论 | [graph-theory/topological-sort.md](graph-theory/topological-sort.md) |
+| *061302 | 图：基环树 | 图论 | [graph-theory/unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
 
 ### 单元 14：图论：最短路
 
@@ -652,8 +653,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 061701 | 图：基环树 | 图论 | [graph-theory/unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
-| 061702 | 图：函数图 | 图论 | [graph-theory/functional-graph.md](graph-theory/functional-graph.md) |
+| 061701 | 图：函数图 | 图论 | [graph-theory/functional-graph.md](graph-theory/functional-graph.md) |
 
 ### 单元 18：图论：欧拉与哈密顿问题
 
@@ -719,11 +719,11 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 070401 | 有向图：强连通分量 | 图论 | [graph-theory/strongly-connected-components.md](graph-theory/strongly-connected-components.md) |
 | 070402 | 无向图：割点与桥 | 图论 | [graph-theory/articulation-points-bridges.md](graph-theory/articulation-points-bridges.md) |
 
-### 单元 05：图论：树上数据结构
+### 单元 05：数据结构：树上维护
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 070501 | 树上数据结构：树链剖分 | 图论 | [graph-theory/heavy-light-decomposition.md](graph-theory/heavy-light-decomposition.md) |
+| 070501 | 树上数据结构：树链剖分 | 数据结构 | [graph-theory/heavy-light-decomposition.md](graph-theory/heavy-light-decomposition.md) |
 | 070502 | 树上技巧：树上差分 | 图论 | [graph-theory/tree-difference.md](graph-theory/tree-difference.md) |
 | 070503 | DSU on Tree | 图论 | `graph-theory/dsu-on-tree.md` |
 
@@ -895,6 +895,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
+| *061302 | 图：基环树 | [graph-theory/unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
 | *990401 | 二分图：最大匹配 | `graph-theory/bipartite-matching.md` |
 | *990402 | 无向图：双连通分量与圆方树 | `graph-theory/biconnected-components-block-cut-tree.md` |
 | *990403 | 2-SAT | `graph-theory/two-sat.md` |
@@ -950,7 +951,6 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990517 | 多项式：除法与余数 | `math/polynomial-division-remainder.md` |
 | *990518 | 多项式：多点求值 | `math/multipoint-evaluation.md` |
 | *990519 | 多项式：插值 | `math/polynomial-interpolation.md` |
-| *990520 | 莫比乌斯反演 | `math/mobius-inversion.md` |
 | *990521 | 质数检测：Miller–Rabin | `math/miller-rabin.md` |
 | *990522 | 整数分解：Pollard–Rho | `math/pollard-rho.md` |
 | *990523 | 原根 | `math/primitive-roots.md` |
@@ -1008,7 +1008,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| *990702 | 分治优化 | `dynamic-programming/divide-conquer-optimization.md` |
+| *990702 | 决策单调性与分治优化 | `dynamic-programming/divide-conquer-optimization.md` |
 | *990703 | 分段线性凸函数维护 | `dynamic-programming/slope-trick.md` |
 | *990704 | 记忆化搜索 | `dynamic-programming/memoized-search.md` |
 | *990705 | 分组背包 | `dynamic-programming/group-knapsack.md` |
