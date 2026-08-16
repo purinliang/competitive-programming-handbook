@@ -1,0 +1,146 @@
+[
+  {
+    "id": "unique-values",
+    "prompt": "向 `set<int>` 依次插入 `5, 2, 5, 8` 后，容器中有多少个元素？",
+    "options": [
+      { "id": "a", "text": "2 个" },
+      { "id": "b", "text": "4 个" },
+      { "id": "c", "text": "3 个" },
+      { "id": "d", "text": "插入重复值会导致错误" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`set` 中每个比较等价的键最多保存一份，第二次插入 5 不会新增元素。"
+  },
+  {
+    "id": "insert-result",
+    "prompt": "`values.insert(x).second` 表示什么？",
+    "options": [
+      { "id": "a", "text": "本次是否真正插入了一个新键" },
+      { "id": "b", "text": "插入后容器中的第二个元素" },
+      { "id": "c", "text": "x 在有序遍历中的下标" },
+      { "id": "d", "text": "容器中 x 的出现次数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`insert` 返回迭代器与布尔量组成的 pair；`second` 在键原本不存在时为 true。"
+  },
+  {
+    "id": "find-missing",
+    "prompt": "`values.find(x)` 没有找到键时返回什么？",
+    "options": [
+      { "id": "a", "text": "`values.begin()`" },
+      { "id": "b", "text": "空指针" },
+      { "id": "c", "text": "指向数值 -1 的迭代器" },
+      { "id": "d", "text": "`values.end()`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "`end()` 是尾后哨兵，不能解引用；使用 `*it` 以前必须先检查是否找到。"
+  },
+  {
+    "id": "erase-by-value",
+    "prompt": "对 `set` 调用 `values.erase(x)` 时，返回值是什么？",
+    "options": [
+      { "id": "a", "text": "删除后的最小值" },
+      { "id": "b", "text": "删除的元素数量，只可能是 0 或 1" },
+      { "id": "c", "text": "永远是 `values.end()`" },
+      { "id": "d", "text": "删除前 x 的有序排名" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "键存在时删除一份并返回 1，不存在时容器不变并返回 0。"
+  },
+  {
+    "id": "immutable-key",
+    "prompt": "为什么不能通过 `set` 迭代器直接修改 `*it`？",
+    "options": [
+      { "id": "a", "text": "因为 set 只能保存常量表达式" },
+      { "id": "b", "text": "因为迭代器不能解引用" },
+      { "id": "c", "text": "因为修改后元素会自动被删除" },
+      { "id": "d", "text": "元素本身是排序键，直接修改会绕过容器维护的有序规则" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "需要改变键时应先删除旧值，再插入新值，让容器重新确定位置。"
+  },
+  {
+    "id": "minimum-element",
+    "prompt": "默认升序且非空的 `set<int> values` 中，怎样取得最小值？",
+    "options": [
+      { "id": "a", "text": "`*values.begin()`" },
+      { "id": "b", "text": "`*values.end()`" },
+      { "id": "c", "text": "`values.front()`" },
+      { "id": "d", "text": "`values[0]`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "默认比较顺序从小到大，`begin()` 指向第一个真实元素；调用前必须保证非空。"
+  },
+  {
+    "id": "lower-bound",
+    "prompt": "默认升序 `set` 的成员函数 `lower_bound(x)` 返回什么？",
+    "options": [
+      { "id": "a", "text": "最后一个小于 x 的元素" },
+      { "id": "b", "text": "第一个大于 x 的元素" },
+      { "id": "c", "text": "第一个不小于 x 的元素" },
+      { "id": "d", "text": "x 的出现次数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`lower_bound` 对默认升序容器寻找第一个 `>= x` 的位置，没有时返回 `end()`。"
+  },
+  {
+    "id": "strict-predecessor",
+    "prompt": "怎样寻找默认升序 `set` 中严格小于 x 的最大元素？",
+    "options": [
+      { "id": "a", "text": "直接解引用 `lower_bound(x)`" },
+      { "id": "b", "text": "取得 `lower_bound(x)`；若它不等于 `begin()`，再向前移动一步" },
+      { "id": "c", "text": "取得 `upper_bound(x)` 并向后移动一步" },
+      { "id": "d", "text": "使用 `find(x - 1)`，一定能找到" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`lower_bound(x)` 指向第一个不小于 x 的位置，其前驱才是严格小于 x 的最大元素；必须先避免越过 begin。"
+  },
+  {
+    "id": "member-bound",
+    "prompt": "为什么应优先写 `values.lower_bound(x)`，而不是对 `set` 调用泛型 `lower_bound(values.begin(), values.end(), x)`？",
+    "options": [
+      { "id": "a", "text": "成员函数利用容器结构达到 O(log n)，泛型算法可能需要线性次迭代器移动" },
+      { "id": "b", "text": "泛型算法只能处理数组" },
+      { "id": "c", "text": "成员函数会自动插入 x" },
+      { "id": "d", "text": "泛型算法只支持降序容器" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "树形容器的成员函数能沿内部结构查找；泛型算法只看到非随机访问迭代器。"
+  },
+  {
+    "id": "erase-while-iterating",
+    "prompt": "遍历 `set` 时删除当前迭代器指向的元素，C++17 中应怎样继续？",
+    "options": [
+      { "id": "a", "text": "删除后继续对旧 it 执行 ++it" },
+      { "id": "b", "text": "每次删除后从 begin() 重新遍历" },
+      { "id": "c", "text": "在范围 for 中直接删除当前元素" },
+      { "id": "d", "text": "写成 `it = values.erase(it)`，接住返回的后继迭代器" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "被删除元素的迭代器已经失效；`erase(it)` 返回后继位置，可安全继续遍历。"
+  },
+  {
+    "id": "comparator-equivalence",
+    "prompt": "自定义比较器下，`set` 何时把两个对象 a、b 视为同一个键？",
+    "options": [
+      { "id": "a", "text": "它们占用的字节数相同" },
+      { "id": "b", "text": "只要 `a == b` 编译通过" },
+      { "id": "c", "text": "`compare(a, b)` 与 `compare(b, a)` 都为 false" },
+      { "id": "d", "text": "比较器在两个方向都返回 true" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "有序关联容器用比较关系判断键等价，不需要再调用相等运算符。"
+  },
+  {
+    "id": "static-data-choice",
+    "prompt": "全部数据一次读入、之后不再更新，只需排序去重时通常优先选择什么？",
+    "options": [
+      { "id": "a", "text": "始终使用 set，因为它必然更快" },
+      { "id": "b", "text": "使用 vector 配合一次 sort 和 unique" },
+      { "id": "c", "text": "使用 priority_queue 并删除全部元素" },
+      { "id": "d", "text": "使用 queue 保持输入顺序" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`set` 的优势是更新之间持续保持有序；静态数据一次排序通常更直接，连续存储常数也更小。"
+  }
+]
