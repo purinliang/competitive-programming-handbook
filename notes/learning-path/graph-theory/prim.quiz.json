@@ -1,0 +1,62 @@
+[
+  {
+    "id": "best-meaning",
+    "prompt": "Prim 中 `best[v]` 表示什么？",
+    "options": [
+      { "id": "a", "text": "起点到 v 的最短路径长度" },
+      { "id": "b", "text": "v 到任意点的最大边权" },
+      { "id": "c", "text": "把 v 接入当前生成树的最小单边权值" },
+      { "id": "d", "text": "v 在输入中的出现次数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "best 维护的是跨越当前割、直接连接到 v 的最轻边，不是路径长度。"
+  },
+  {
+    "id": "answer-time",
+    "prompt": "什么时候应把候选边权加入最小生成树总权值？",
+    "options": [
+      { "id": "a", "text": "读入边时" },
+      { "id": "b", "text": "更新 best[v] 时" },
+      { "id": "c", "text": "边第一次进入优先队列时" },
+      { "id": "d", "text": "点通过有效最小状态第一次加入生成树时" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "候选可能继续变小；只有点正式加入时，这条接入边才被最终选择。"
+  },
+  {
+    "id": "cut-property",
+    "prompt": "Prim 每次选择哪条边？",
+    "options": [
+      { "id": "a", "text": "跨越树内点集与树外点集的最轻边" },
+      { "id": "b", "text": "图中编号最小的边" },
+      { "id": "c", "text": "当前最长路径上的边" },
+      { "id": "d", "text": "任意连接两个树内点的边" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "跨越当前割的最轻边由最小生成树割性质保证安全。"
+  },
+  {
+    "id": "disconnected",
+    "prompt": "优先队列为空但只加入了少于 n 个点，说明什么？",
+    "options": [
+      { "id": "a", "text": "最小生成树已经完成" },
+      { "id": "b", "text": "原图不连通" },
+      { "id": "c", "text": "图中存在负环" },
+      { "id": "d", "text": "所有边权相等" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "当前连通点集已没有通向剩余点的边，因此无法构造覆盖全部点的生成树。"
+  },
+  {
+    "id": "kruskal-comparison",
+    "prompt": "Prim 与 Kruskal 的主要组织差别是什么？",
+    "options": [
+      { "id": "a", "text": "Prim 只能处理有向图" },
+      { "id": "b", "text": "Kruskal 不能处理负边" },
+      { "id": "c", "text": "Prim 扩大一个连通点集，Kruskal 按边权合并多个分量" },
+      { "id": "d", "text": "两者分别求最长路和最短路" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "两者都求最小生成树并使用割性质，只是候选边的组织方式不同。"
+  }
+]
