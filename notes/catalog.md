@@ -297,7 +297,7 @@
 | 0429 | 最短路：分层图与状态图 | 计划 | `graph-theory/0429-layered-state-shortest-path.md` |
 | 0430* | 树哈希 | 计划 | `graph-theory/0430-tree-hashing.md` |
 | 0431 | 路径与环 | 待审阅 | [paths-and-cycles.md](graph-theory/paths-and-cycles.md) |
-| 0432 | 图：度数 | 定稿 | [vertex-degrees.md](graph-theory/vertex-degrees.md) |
+| 0432 | 度数 | 待审阅 | [vertex-degrees.md](graph-theory/vertex-degrees.md) |
 | 0433 | 树：无根树 | 定稿 | [unrooted-trees.md](graph-theory/unrooted-trees.md) |
 | 0434 | 树的遍历：深度优先搜索（DFS） | 定稿 | [tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
 | 0435 | 树的遍历：广度优先搜索（BFS） | 定稿 | [tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |

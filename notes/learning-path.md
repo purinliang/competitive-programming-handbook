@@ -266,7 +266,7 @@
 | --- | --- | --- | --- |
 | 0401 | 点与边 | 图论 | [graph-theory/vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
 | 0431 | 路径与环 | 图论 | [graph-theory/paths-and-cycles.md](graph-theory/paths-and-cycles.md) |
-| 0432 | 图：度数 | 图论 | [graph-theory/vertex-degrees.md](graph-theory/vertex-degrees.md) |
+| 0432 | 度数 | 图论 | [graph-theory/vertex-degrees.md](graph-theory/vertex-degrees.md) |
 | 0402 | 图的存储：基础概念 | 图论 | [graph-theory/graph-representation.md](graph-theory/graph-representation.md) |
 | 0439 | 图的存储：邻接表（vector 实现） | 图论 | [graph-theory/vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
 

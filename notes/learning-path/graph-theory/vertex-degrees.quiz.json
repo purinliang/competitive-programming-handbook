@@ -1,0 +1,74 @@
+[
+  {
+    "id": "undirected-degree",
+    "prompt": "无向图中点 u 的度数统计什么？",
+    "options": [
+      { "id": "a", "text": "只统计从 u 出发的有向边" },
+      { "id": "b", "text": "与 u 相连的边在 u 端出现的次数" },
+      { "id": "c", "text": "从 u 能到达的所有点数" },
+      { "id": "d", "text": "图中的总边数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "普通无向边在端点贡献 1，自环的两端都落在同一点，因此贡献 2。"
+  },
+  {
+    "id": "self-loop-degree",
+    "prompt": "一条无向自环对所在点的度数贡献多少？",
+    "options": [
+      { "id": "a", "text": "0" },
+      { "id": "b", "text": "1" },
+      { "id": "c", "text": "2" },
+      { "id": "d", "text": "取决于点编号" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "自环的两个端点都在同一个点上，所以同一点被计算两次。"
+  },
+  {
+    "id": "handshaking-lemma",
+    "prompt": "无向图所有点的度数之和等于什么？",
+    "options": [
+      { "id": "a", "text": "2|E|" },
+      { "id": "b", "text": "|V|" },
+      { "id": "c", "text": "|E|" },
+      { "id": "d", "text": "|V|+|E|" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每条无向边共有两个端点贡献；自环也在同一点贡献两次。"
+  },
+  {
+    "id": "odd-degree-count",
+    "prompt": "无向图中奇数度数的点有多少个？",
+    "options": [
+      { "id": "a", "text": "一定恰好两个" },
+      { "id": "b", "text": "一定是奇数个" },
+      { "id": "c", "text": "一定与边数相同" },
+      { "id": "d", "text": "一定是偶数个，可能为零" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "总度数 2|E| 是偶数，而奇数个奇数相加仍为奇数，因此奇度点数量只能为偶数。"
+  },
+  {
+    "id": "directed-degrees",
+    "prompt": "读到有向边 u→v 时，应怎样更新度数？",
+    "options": [
+      { "id": "a", "text": "u、v 的入度都增加 1" },
+      { "id": "b", "text": "u 的出度增加 1，v 的入度增加 1" },
+      { "id": "c", "text": "u 的入度增加 1，v 的出度增加 1" },
+      { "id": "d", "text": "只更新边权" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "有向边从 u 出发并以 v 为终点，因此分别贡献一次出度和入度。"
+  },
+  {
+    "id": "directed-sums",
+    "prompt": "含 m 条边的有向图中，全体入度之和与全体出度之和分别是多少？",
+    "options": [
+      { "id": "a", "text": "都等于 2m" },
+      { "id": "b", "text": "入度和为 m，出度和为 2m" },
+      { "id": "c", "text": "都等于 m" },
+      { "id": "d", "text": "无法由边数确定" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每条有向边恰好贡献一次入度和一次出度，所以两个总和分别各计数 m 次。"
+  }
+]
