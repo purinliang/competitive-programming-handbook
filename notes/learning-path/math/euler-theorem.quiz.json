@@ -1,0 +1,50 @@
+[
+  {
+    "id": "theorem",
+    "prompt": "欧拉定理的正确结论是什么？",
+    "options": [
+      { "id": "a", "text": "若 gcd(a,n)=1，则 `a^phi(n)≡1 (mod n)`" },
+      { "id": "b", "text": "对任意 a 都有 `a^n≡1 (mod n)`" },
+      { "id": "c", "text": "若 n 为合数，则 `a^phi(n)≡0`" },
+      { "id": "d", "text": "`phi(n)=n-1` 对所有 n 成立" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "底数与模数互质是欧拉定理不可省略的条件。"
+  },
+  {
+    "id": "permutation",
+    "prompt": "为什么把所有与 n 互质的余数都乘以 a 后仍是同一集合的重排？",
+    "options": [
+      { "id": "a", "text": "乘法会让所有余数相等" },
+      { "id": "b", "text": "a 与 n 互质，乘法保持互质且不会把两个余数映到同一项" },
+      { "id": "c", "text": "phi(n) 一定是质数" },
+      { "id": "d", "text": "余数集合只有一个元素" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "有限集合上的单射就是排列，这使乘积前后只多出 a^phi(n)。"
+  },
+  {
+    "id": "exponent-reduction",
+    "prompt": "什么时候可以把指数 b 直接改成 `b%phi(n)`？",
+    "options": [
+      { "id": "a", "text": "只要 b 很大" },
+      { "id": "b", "text": "只要 n 是偶数" },
+      { "id": "c", "text": "在 gcd(a,n)=1 的欧拉定理条件下" },
+      { "id": "d", "text": "对任何 a、n 都可以" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "互质时 a^phi(n)≡1，指数每增加 phi(n) 才不会改变模结果。"
+  },
+  {
+    "id": "fermat-special-case",
+    "prompt": "费马小定理怎样成为欧拉定理的特殊情形？",
+    "options": [
+      { "id": "a", "text": "令 a=0" },
+      { "id": "b", "text": "令 phi(n)=n" },
+      { "id": "c", "text": "令指数为 1" },
+      { "id": "d", "text": "模数 p 为质数时 `phi(p)=p-1`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "质数模下所有 1..p-1 都与 p 互质，欧拉周期正好变成 p-1。"
+  }
+]
