@@ -192,7 +192,6 @@ QueryResult get(ll key) const {
     return {false, 0};
 }
 ```
-```
 
 返回值同时包含：
 
