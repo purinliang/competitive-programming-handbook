@@ -1,0 +1,50 @@
+[
+  {
+    "id": "minimum-prime",
+    "prompt": "欧拉筛中的 `min_prime[x]` 表示什么？",
+    "options": [
+      { "id": "a", "text": "不小于 x 的第一个质数" },
+      { "id": "b", "text": "x 的最小质因数" },
+      { "id": "c", "text": "x 的质因数个数" },
+      { "id": "d", "text": "x 以内质数的和" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "质数位置的最小质因数就是它自身，合数位置记录分解入口。"
+  },
+  {
+    "id": "prime-discovery",
+    "prompt": "扫描到 x 时，为什么 `min_prime[x]==0` 说明 x 是质数？",
+    "options": [
+      { "id": "a", "text": "更小质数都未能生成 x，说明它没有更小质因数" },
+      { "id": "b", "text": "所有合数都等于 0" },
+      { "id": "c", "text": "x 一定是奇数" },
+      { "id": "d", "text": "数组下标 0 代表质数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "按从小到大扫描，任何合数早已由它的最小质因数对应方式标记。"
+  },
+  {
+    "id": "stop-condition",
+    "prompt": "内层枚举质数 p 时，为什么到 `p=min_prime[x]` 后就停止？",
+    "options": [
+      { "id": "a", "text": "更大的 p 会让乘积超出 n" },
+      { "id": "b", "text": "质数列表只含一个元素" },
+      { "id": "c", "text": "继续会让同一合数被非唯一方式生成" },
+      { "id": "d", "text": "min_prime[x] 一定等于 x" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "限制保证每个合数只由“最小质因数乘另一个数”的唯一组合筛到。"
+  },
+  {
+    "id": "linear-time",
+    "prompt": "欧拉筛为什么是 O(n)？",
+    "options": [
+      { "id": "a", "text": "每个 x 的内层循环只运行一次" },
+      { "id": "b", "text": "它不使用任何循环" },
+      { "id": "c", "text": "质数数量是常数" },
+      { "id": "d", "text": "每个合数按其最小质因数对应的方式恰好生成一次" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "总生成次数与合数数量同阶，而不是对每个数重复筛许多次。"
+  }
+]
