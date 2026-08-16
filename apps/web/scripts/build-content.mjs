@@ -148,7 +148,7 @@ async function parseLearningStages() {
       continue;
     }
 
-    const unitMatch = line.match(/^###\s+(?:学习单元|扩展单元)：(.+)$/);
+    const unitMatch = line.match(/^###\s+(?:单元|学习单元|扩展单元)：(.+)$/);
     if (currentStage && unitMatch) {
       currentUnit = {
         title: unitMatch[1].trim(),
