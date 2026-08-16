@@ -1,0 +1,86 @@
+[
+  {
+    "id": "prefix-definition",
+    "prompt": "`prefix[i]` 表示什么？",
+    "options": [
+      { "id": "a", "text": "`a[i..n]` 的和" },
+      { "id": "b", "text": "`a[1..i]` 的和" },
+      { "id": "c", "text": "只等于 `a[i]`" },
+      { "id": "d", "text": "数组最大值" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "前缀从数组开头开始，prefix[i] 累计第 1 项到第 i 项。"
+  },
+  {
+    "id": "empty-prefix",
+    "prompt": "为什么定义 `prefix[0] = 0`？",
+    "options": [
+      { "id": "a", "text": "让 l=1 的区间也能使用统一公式" },
+      { "id": "b", "text": "因为 a[0] 必须参加所有查询" },
+      { "id": "c", "text": "为了把所有前缀清零" },
+      { "id": "d", "text": "因为数组不能从 1 开始" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "空前缀没有元素、和为 0，使 prefix[r]-prefix[l-1] 在 l=1 时仍成立。"
+  },
+  {
+    "id": "prefix-recurrence",
+    "prompt": "前缀和的递推式是什么？",
+    "options": [
+      { "id": "a", "text": "`prefix[i] = prefix[i-1] + a[i]`" },
+      { "id": "b", "text": "`prefix[i] = prefix[i+1]`" },
+      { "id": "c", "text": "`prefix[i] = a[i] - a[i-1]`" },
+      { "id": "d", "text": "`prefix[i] = 0`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "当前前缀比前一个前缀恰好多包含新元素 a[i]。"
+  },
+  {
+    "id": "closed-range-sum",
+    "prompt": "闭区间 `[l,r]` 的和怎样计算？",
+    "options": [
+      { "id": "a", "text": "`prefix[r] - prefix[l]`" },
+      { "id": "b", "text": "`prefix[r] + prefix[l-1]`" },
+      { "id": "c", "text": "`prefix[r] - prefix[l-1]`" },
+      { "id": "d", "text": "`a[r] - a[l]`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "从 prefix[r] 中减掉目标区间以前的 a[1..l-1]。"
+  },
+  {
+    "id": "prefix-complexity",
+    "prompt": "预处理后一次区间和查询的时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "O(n²)" },
+      { "id": "b", "text": "O(n)" },
+      { "id": "c", "text": "O(log n)" },
+      { "id": "d", "text": "O(1)" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "查询只读取两个前缀并做一次减法。"
+  },
+  {
+    "id": "prefix-integer-width",
+    "prompt": "为什么元素能放进 `int` 时，前缀和仍可能需要 `long long`？",
+    "options": [
+      { "id": "a", "text": "前缀会累加许多元素，范围可能显著扩大" },
+      { "id": "b", "text": "int 不能保存负数" },
+      { "id": "c", "text": "long long 会自动排序" },
+      { "id": "d", "text": "数组下标必须是 long long" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "应估算最多累加项数乘以单项最大绝对值，而不只看单个元素。"
+  },
+  {
+    "id": "prefix-static-data",
+    "prompt": "普通前缀和最适合哪类操作？",
+    "options": [
+      { "id": "a", "text": "数组建立后不修改，反复查询区间和" },
+      { "id": "b", "text": "每次查询前随机修改全部元素" },
+      { "id": "c", "text": "在线删除任意节点" },
+      { "id": "d", "text": "寻找图的最短路" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "一次修改会影响其后的许多前缀，普通前缀和主要用于静态数组。"
+  }
+]
