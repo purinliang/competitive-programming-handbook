@@ -65,7 +65,3 @@
 - 点数很小时，可以阅读 [哈密顿问题：小规模回溯](hamiltonian-backtracking.md)。它不属于当前主学习路线。
 - [OI Wiki：哈密顿图](https://oi-wiki.org/graph/hamilton/) 收录了哈密顿图的若干性质和充分条件；这些条件不要求在基础阶段理解或记忆。
 - [Competitive Programmer's Handbook](https://usaco.guide/CPH.pdf) 使用英文竞赛术语定义 Hamiltonian path。
-
-## 下一篇
-
-树的结构性质见 [树的直径与中心](tree-diameter-center.md)。
