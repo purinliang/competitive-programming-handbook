@@ -1,0 +1,146 @@
+[
+  {
+    "id": "declaration",
+    "prompt": "`tuple<int, int, ll>` 描述了什么？",
+    "options": [
+      { "id": "a", "text": "三个类型相同、数量可变的值" },
+      { "id": "b", "text": "一个 int 和一个长度为 ll 的数组" },
+      { "id": "c", "text": "按顺序保存两个 int 和一个 ll 的固定成员集合" },
+      { "id": "d", "text": "只能保存三个整数常量的容器" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "tuple 的模板参数依次给出每个成员的类型，成员数量和类型在编译期固定。"
+  },
+  {
+    "id": "make-tuple",
+    "prompt": "`make_tuple(-2, 8, 9LL)` 的主要作用是什么？",
+    "options": [
+      { "id": "a", "text": "根据实参推导各成员类型并构造 tuple" },
+      { "id": "b", "text": "把三个数全部转换成 int" },
+      { "id": "c", "text": "建立长度可以增长的容器" },
+      { "id": "d", "text": "给三个变量分别赋值" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "末尾的 LL 会让第三个成员被推导为 long long；类型已明确时也可直接用花括号。"
+  },
+  {
+    "id": "get-position",
+    "prompt": "为什么不能用运行时变量 `i` 写 `get<i>(information)`？",
+    "options": [
+      { "id": "a", "text": "tuple 不允许读取成员" },
+      { "id": "b", "text": "i 必须从 1 开始" },
+      { "id": "c", "text": "只有 pair 支持 get" },
+      { "id": "d", "text": "不同位置可能有不同类型，位置必须在编译期确定返回类型" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "get 的位置是模板参数，不是普通函数的运行时参数。"
+  },
+  {
+    "id": "multiple-return-values",
+    "prompt": "函数需要同时返回最小值、最大值与总和时，tuple 的主要优势是什么？",
+    "options": [
+      { "id": "a", "text": "自动计算这三个值" },
+      { "id": "b", "text": "把固定数量、类型可以不同的自然结果组成一个返回对象" },
+      { "id": "c", "text": "允许函数执行三次 return" },
+      { "id": "d", "text": "不需要声明函数返回类型" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "return 仍只返回一个对象，只是这个 tuple 对象内部平行保存多个结果。"
+  },
+  {
+    "id": "structured-binding-count",
+    "prompt": "`auto [minimum, maximum, sum] = analyze(a, b, c);` 有什么要求？",
+    "options": [
+      { "id": "a", "text": "三个名字必须与函数内部变量同名" },
+      { "id": "b", "text": "所有成员必须是 int" },
+      { "id": "c", "text": "只能接收全局 tuple" },
+      { "id": "d", "text": "名称数量和顺序必须与 tuple 成员对应" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "结构化绑定按位置为每个成员命名，名称本身可以根据当前语义选择。"
+  },
+  {
+    "id": "structured-binding-reference",
+    "prompt": "若希望通过结构化绑定修改原 tuple 的成员，应怎样写？",
+    "options": [
+      { "id": "a", "text": "`auto& [a, b, c] = values;`" },
+      { "id": "b", "text": "`auto [a, b, c] = values;`" },
+      { "id": "c", "text": "`const auto& [a, b, c] = values;`" },
+      { "id": "d", "text": "结构化绑定永远不能修改原成员" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "不带引用会建立对应值；auto& 让名称绑定原成员，const auto& 则只读。"
+  },
+  {
+    "id": "lexicographical-comparison",
+    "prompt": "两个相同类型的 tuple 怎样比较大小？",
+    "options": [
+      { "id": "a", "text": "比较成员数量" },
+      { "id": "b", "text": "比较对象地址" },
+      { "id": "c", "text": "按字典序，由第一个不同成员决定" },
+      { "id": "d", "text": "tuple 不支持比较" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "前面的成员相等时才继续比较后面的成员。"
+  },
+  {
+    "id": "choose-struct",
+    "prompt": "哪种情况通常更适合使用 struct，而不是 tuple？",
+    "options": [
+      { "id": "a", "text": "一次函数临时返回 gcd、x、y" },
+      { "id": "b", "text": "长期表示含姓名、年龄、分数等有明确语义成员的对象" },
+      { "id": "c", "text": "临时保存三个坐标" },
+      { "id": "d", "text": "比较两个固定结果" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "长期题目对象更需要有名成员来表达含义和支持后续修改。"
+  },
+  {
+    "id": "pair-or-tuple",
+    "prompt": "一个结果天然只包含两个值，且语境已经说明含义时，通常优先选择什么？",
+    "options": [
+      { "id": "a", "text": "pair" },
+      { "id": "b", "text": "四成员 tuple" },
+      { "id": "c", "text": "动态数组" },
+      { "id": "d", "text": "union" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "pair 直接表达两个位置；三个或更多临时结果才更常使用 tuple。"
+  },
+  {
+    "id": "fixed-operation-complexity",
+    "prompt": "只分析并返回固定三个整数时，示例函数的时间和额外空间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(n)$ 与 $O(n)$" },
+      { "id": "b", "text": "$O(\\log n)$ 与 $O(1)$" },
+      { "id": "c", "text": "$O(n^2)$ 与 $O(n)$" },
+      { "id": "d", "text": "都是 $O(1)$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "成员数量固定，只进行常数次比较、加法和对象构造。"
+  },
+  {
+    "id": "heterogeneous-members",
+    "prompt": "tuple 的不同成员能否具有不同类型？",
+    "options": [
+      { "id": "a", "text": "不能，所有标准容器都要求同类型" },
+      { "id": "b", "text": "只有前两个能不同" },
+      { "id": "c", "text": "可以，每个位置的类型分别由模板参数指定" },
+      { "id": "d", "text": "只能在运行时改变类型" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "tuple 是固定异构成员集合，与保存同类型序列的 vector 不同。"
+  },
+  {
+    "id": "zero-based-get",
+    "prompt": "三个成员的 tuple 使用哪些 `get` 位置？",
+    "options": [
+      { "id": "a", "text": "1、2、3" },
+      { "id": "b", "text": "0、1、2" },
+      { "id": "c", "text": "-1、0、1" },
+      { "id": "d", "text": "由成员类型自动编号" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "get 是标准库原生接口，位置从 0 开始。"
+  }
+]
