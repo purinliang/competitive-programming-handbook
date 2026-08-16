@@ -1,6 +1,6 @@
 # `vector`
 
-> 最近修订：2026-08-16 09:36 +10:00（未审阅）
+> 最近修订：2026-08-16 17:30 +10:00（未审阅）
 
 [一维数组](one-dimensional-arrays.md) 需要在声明时决定容量，并由另一个变量记录
 当前实际使用了多少格。题目的元素数量经常要到运行时才能读入；筛选、搜索和建图
@@ -44,7 +44,7 @@ vector<int> values(n);
 这会直接建立 $n$ 个 `int` 元素，并将它们值初始化为 $0$。也可以为全部元素指定同一个初始值：
 
 ```cpp
-vector<int> distance(n, -1);
+vector<int> dist(n, -1);
 ```
 
 花括号表示直接列出各个元素：
@@ -167,6 +167,28 @@ values.resize(10);
 ```
 
 长度增大时，新增加的 `int` 值初始化为 $0$；长度缩小时，末尾多出的元素被删除。
+原来仍然保留在范围内的元素不会被重新初始化，因此当前长度已经是 $10$ 时，
+再次调用 `values.resize(10)` 不会把旧元素清零。
+
+`assign(count, value)` 把原有内容全部替换为 `count` 个相同的 `value`：
+
+```cpp
+values.assign(10, -1);
+```
+
+调用以后，`values.size()` 恰好是 $10$，每个元素都是 `-1`。它适合在读入规模后
+建立题目级动态数组，也适合在多组数据之间彻底重置状态：
+
+```cpp
+vector<vector<int>> g;
+vector<int> dist;
+
+g.assign(n + 5, {});
+dist.assign(n + 5, -1);
+```
+
+这里的 `{}` 表示默认构造一个空的 `vector<int>`，因此重新调用 `assign` 会清除
+上一组图留下的全部邻接项。
 
 `reserve(new_capacity)` 只预留存储空间，不建立新元素：
 
@@ -176,6 +198,27 @@ values.reserve(1000);
 ```
 
 这时 `values.size()` 仍然是 $0$，所以 `values[0]` 仍然越界。已经知道将要追加很多元素时，`reserve` 可以减少扩容次数；普通题目不需要为了微小常数到处使用它。
+
+`reserve` 与 `reverse` 只差一个字母，但没有从属关系：
+
+```cpp
+values.reserve(1000);
+reverse(values.begin(), values.end());
+```
+
+`reserve` 是 `vector` 的成员函数：需要时，它会让 `capacity()` 至少达到指定值，
+但绝不改变 `size()`，也不会建立新的可访问元素。`reverse` 是 `<algorithm>`
+提供的算法，在线性时间内颠倒已有元素的顺序，不改变 `size()` 和 `capacity()`。
+
+几个容易混淆的操作可以统一比较：
+
+| 操作 | 是否改变 `size()` | 是否覆盖旧元素 | 主要用途 |
+| --- | --- | --- | --- |
+| `assign(count, value)` | 是 | 全部替换 | 建立或彻底重置内容 |
+| `resize(count)` | 是 | 保留仍在范围内的旧元素 | 扩大或缩小现有序列 |
+| `reserve(count)` | 否 | 否 | 为后续追加预留容量 |
+| `fill(first, last, value)` | 否 | 覆盖指定现有区间 | 不改长度地重填内容 |
+| `reverse(first, last)` | 否 | 调换指定现有区间 | 颠倒元素顺序 |
 
 ## 范围遍历与引用
 
@@ -270,9 +313,36 @@ for (auto it = values.begin(); it != values.end();) {
 
 `vector` 的元素连续存放。容量不足时继续 `push_back`，它会申请一段更大的连续空间，再把原元素搬过去。因此，扩容后以前保存的迭代器、元素指针和元素引用都不能继续使用。
 
-`reserve`、扩大 `resize` 和 `insert` 也可能触发扩容；一旦重新分配，全部旧位置失效。没有扩容时，中间插入会让插入位置及其后的旧位置失效，`erase` 会让删除位置及其后的旧位置失效。
+`assign` 会替换原有内容，相关旧位置全部失效。`reserve`、扩大 `resize` 和 `insert`
+也可能触发扩容；一旦重新分配，全部旧位置失效。没有扩容时，中间插入会让插入
+位置及其后的旧位置失效，`erase` 会让删除位置及其后的旧位置失效。
 
 竞赛代码中最简单可靠的规则是：修改 `vector` 长度以后，不继续保存或使用修改前取得的迭代器、指针和引用；需要位置时重新通过下标、`begin()` 或 `end()` 取得。上一节在删除循环中立即接收 `erase` 返回的新位置，就是这条规则的实际写法。
+
+同样不能在范围 `for` 遍历一个 `vector` 时向它自己追加元素：
+
+```cpp
+for (int value : values) {
+    values.push_back(value); // 错误
+}
+```
+
+范围 `for` 内部也保存了迭代器和结束位置。`push_back` 触发扩容时会让全部旧位置
+失效；即使提前 `reserve` 避免扩容，原来的 `end()` 也会因长度变化而失效。
+
+确实只想复制原来的元素时，先固定原长度，并且不跨越 `push_back` 保存引用：
+
+```cpp
+int original_size = values.size();
+
+for (int i = 0; i < original_size; i++) {
+    int value = values[i];
+    values.push_back(value);
+}
+```
+
+这里每次通过当前容器和下标重新取得元素，循环也不会继续处理新加入的部分。若任务
+不是原地追加，默认把结果写入另一个 `vector`，通常更容易证明正确。
 
 ## 复制与函数参数
 
@@ -374,6 +444,8 @@ int main() {
 | `size()`、`empty()`、下标、`front()`、`back()` | $O(1)$ |
 | `push_back()` | 均摊 $O(1)$ |
 | `pop_back()` | $O(1)$ |
+| `assign()`、`fill()`、`reverse()` | $O(n)$ |
+| `resize()`、`reserve()` | 最坏 $O(n)$ |
 | 中间 `insert` 或 `erase` | $O(n)$ |
 | 整体复制 | $O(n)$ |
 
@@ -385,21 +457,26 @@ int main() {
 2. 分别写出“五个值为 `-1` 的元素”和“两个元素 `5,-1`”的初始化形式。
 3. 从空 `vector` 开始连续追加整数，再按相反顺序用 `back()` 和 `pop_back()` 删除。
 4. 使用范围 `for` 分别复制读取、引用修改一组整数，比较两次结果。
-5. 使用 `resize` 和 `reserve` 分别操作空 `vector`，检查每次操作后的 `size()`。
-6. 安全删除 `vector` 中的全部负数，不跳过相邻元素。
-7. 使用 `vector<int> a(n + 5)` 保存 1-based 题目数组，并说明 `n` 与 `a.size()` 为什么不同。
+5. 使用 `assign`、`resize` 和 `reserve` 分别操作同一个 `vector`，检查每次操作后
+   的内容、`size()` 和 `capacity()`。
+6. 分别调用 `reserve` 与 `reverse`，观察前者只影响容量，后者只颠倒元素顺序。
+7. 安全删除 `vector` 中的全部负数，不跳过相邻元素。
+8. 使用 `vector<int> a(n + 5)` 保存 1-based 题目数组，并说明 `n` 与 `a.size()` 为什么不同。
 
 ## 需要记住什么
 
 1. `vector<T>` 解决了内置数组的什么长度限制？
 2. `vector<int> a(n)`、`vector<int> a(n, -1)` 和 `vector<int> a = {n, -1}` 分别建立什么内容？
-3. `size()`、`capacity()`、`resize()` 和 `reserve()` 分别改变什么？
+3. `assign()`、`resize()`、`reserve()` 和 `fill()` 分别改变长度、容量与哪些元素？
 4. `push_back()` 与 `pop_back()` 怎样改变末尾？为什么不能对空容器调用 `pop_back()`？
 5. 范围 `for` 中的值、普通引用和 `const` 引用有什么区别？
 6. `begin()` 与 `end()` 分别表示哪里？为什么不能读取 `end()`？
 7. 为什么 `vector` 中间插入和删除是 $O(n)$？遍历中删除当前元素时怎样继续？
-8. 哪些改变长度的操作可能使旧迭代器、指针和引用失效？最简单的安全规则是什么？
-9. 自定义 1-based 算法使用 `vector<int> a(n + 5)` 时，哪些位置是逻辑元素？
-10. 为什么只读的 `vector` 函数参数通常使用 `const` 引用？
+8. `reserve` 与 `reverse` 分别做什么？
+9. 哪些改变长度的操作可能使旧迭代器、指针和引用失效？最简单的安全规则是什么？
+10. 为什么不能在范围 `for` 遍历 `vector` 时向同一个容器 `push_back`？若只想处理
+    原有元素，怎样使用固定长度和下标安全完成？
+11. 自定义 1-based 算法使用 `vector<int> a(n + 5)` 时，哪些位置是逻辑元素？
+12. 为什么只读的 `vector` 函数参数通常使用 `const` 引用？
 
 `vector` 的增长倍率、内存分配器、异常保证和 `vector<bool>` 的特殊压位实现不属于本篇的竞赛基础用法，不要求理解或记忆。

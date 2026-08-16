@@ -72,6 +72,30 @@
     "explanation": "reserve 只预留存储空间；resize 才会真正改变元素数量。"
   },
   {
+    "id": "assign-reset",
+    "prompt": "已有 `vector<int> a` 可能保存上一组数据；哪项能把它重建为 `n + 5` 个 `-1`？",
+    "options": [
+      { "id": "a", "text": "`a.assign(n + 5, -1);`" },
+      { "id": "b", "text": "`a.reserve(n + 5);`" },
+      { "id": "c", "text": "`a.resize(a.size());`" },
+      { "id": "d", "text": "`reverse(a.begin(), a.end());`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "assign 同时把长度改为 n + 5 并替换全部元素；resize 到当前长度不会重置旧值。"
+  },
+  {
+    "id": "reserve-vs-reverse",
+    "prompt": "关于 `reserve` 与 `reverse`，哪项正确？",
+    "options": [
+      { "id": "a", "text": "二者都会把元素顺序颠倒" },
+      { "id": "b", "text": "`reserve` 预留容量，`reverse` 颠倒已有元素顺序" },
+      { "id": "c", "text": "二者都会建立指定数量的新元素" },
+      { "id": "d", "text": "二者都是 `vector` 的成员函数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "reserve 是 vector 成员且不改变 size；reverse 是 algorithm 中的区间算法。"
+  },
+  {
     "id": "range-for-reference",
     "prompt": "要在范围 `for` 中把原容器的每个整数翻倍，应怎样声明循环变量？",
     "options": [
@@ -88,7 +112,7 @@
     "prompt": "`[values.begin(), values.end())` 为什么恰好覆盖全部元素？",
     "options": [
       { "id": "a", "text": "begin 和 end 都指向最后一个元素" },
-      { "id": "b", "text": "begin 和 end 都指向最后一个元素" },
+      { "id": "b", "text": "begin 指向首元素，end 指向末元素本身" },
       { "id": "c", "text": "begin 指向首元素，end 指向末元素之后且右端不包含" },
       { "id": "d", "text": "这个范围只包含偶数下标" }
     ],
@@ -118,6 +142,18 @@
     ],
     "correctOptionId": "b",
     "explanation": "重新分配会改变元素地址，因此旧迭代器、指针和引用失效；需要位置时应重新取得。"
+  },
+  {
+    "id": "push-while-iterating",
+    "prompt": "为什么不应在范围 `for` 遍历 `values` 时对同一个 `values` 调用 `push_back()`？",
+    "options": [
+      { "id": "a", "text": "`push_back()` 只能用于空 `vector`" },
+      { "id": "b", "text": "范围 `for` 保存的位置可能失效，原结束位置也会改变" },
+      { "id": "c", "text": "范围 `for` 禁止读取整数" },
+      { "id": "d", "text": "追加元素一定会把 `size()` 变成零" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "即使 reserve 避免了重新分配，追加元素也会使原来的 end 失效；可固定原长度后使用下标，或写入另一个 vector。"
   },
   {
     "id": "const-reference-parameter",
