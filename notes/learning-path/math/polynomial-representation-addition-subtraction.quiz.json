@@ -1,0 +1,62 @@
+[
+  {
+    "id": "coefficient-index",
+    "prompt": "多项式数组中的 `coefficient[i]` 表示什么？",
+    "options": [
+      { "id": "a", "text": "x^i 的系数" },
+      { "id": "b", "text": "多项式的第 i 个根" },
+      { "id": "c", "text": "系数总和" },
+      { "id": "d", "text": "多项式次数加一" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "下标直接等于指数，coefficient[0] 因而是常数项。"
+  },
+  {
+    "id": "degree-size",
+    "prompt": "次数为 n 的非零多项式通常需要保存多少个系数？",
+    "options": [
+      { "id": "a", "text": "n-1" },
+      { "id": "b", "text": "n" },
+      { "id": "c", "text": "n+1" },
+      { "id": "d", "text": "2n" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "指数从 0 到 n，共 n+1 项。"
+  },
+  {
+    "id": "normalization",
+    "prompt": "规范化多项式时可以删除哪些零？",
+    "options": [
+      { "id": "a", "text": "全部零系数，包括中间项" },
+      { "id": "b", "text": "最高次末尾连续的零，并至少保留一个系数" },
+      { "id": "c", "text": "只删除常数项" },
+      { "id": "d", "text": "任何零都不能删除" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "末尾零不影响次数，中间零却占据真实幂次位置，不能移动后续系数。"
+  },
+  {
+    "id": "addition-alignment",
+    "prompt": "次数不同的两个多项式相加时，缺少的高次项怎样处理？",
+    "options": [
+      { "id": "a", "text": "视为系数 0，按相同指数对齐" },
+      { "id": "b", "text": "复制最高次系数" },
+      { "id": "c", "text": "删除较长多项式" },
+      { "id": "d", "text": "禁止相加" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "同次数系数相加，不存在的项就是零系数。"
+  },
+  {
+    "id": "zero-polynomial",
+    "prompt": "本文为什么把零多项式保存为 `{0}` 而不是空 vector？",
+    "options": [
+      { "id": "a", "text": "为了安全访问常数项并保持统一容器不变量" },
+      { "id": "b", "text": "因为零多项式有一个非零项" },
+      { "id": "c", "text": "为了让次数严格等于 1" },
+      { "id": "d", "text": "因为 vector 不能为空" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "保留一个零系数让接口始终可安全访问；degree 返回 0 只是代码约定。"
+  }
+]

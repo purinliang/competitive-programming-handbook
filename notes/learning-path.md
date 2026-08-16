@@ -708,7 +708,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 080308 | 组合数学：整数划分 | 数学 | [math/integer-partitions.md](math/integer-partitions.md) |
 | 080309 | 组合数学：Catalan 数 | 数学 | [math/catalan-numbers.md](math/catalan-numbers.md) |
 | 080310 | 组合数学：Stirling 数 | 数学 | [math/stirling-numbers.md](math/stirling-numbers.md) |
-| 080311 | 多项式：表示、加法与减法 | 数学 | `math/polynomial-representation-addition-subtraction.md` |
+| 080311 | 多项式：表示、加法与减法 | 数学 | [math/polynomial-representation-addition-subtraction.md](math/polynomial-representation-addition-subtraction.md) |
 | 080312 | 多项式：卷积与朴素乘法 | 数学 | `math/convolution-naive-multiplication.md` |
 | 080313 | 多项式：FFT | 数学 | `math/fft.md` |
 | 080314 | 多项式：NTT | 数学 | `math/ntt.md` |
