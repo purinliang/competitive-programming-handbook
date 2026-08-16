@@ -1,0 +1,74 @@
+[
+  {
+    "id": "bit-and-byte-roles",
+    "prompt": "位和字节在本篇中分别承担什么角色？",
+    "options": [
+      { "id": "a", "text": "位是最小的二进制信息单位，字节是基本存储与寻址单位" },
+      { "id": "b", "text": "字节只能保存 `0` 或 `1`，位用来保存整个文件" },
+      { "id": "c", "text": "二者只是同一个单位的两种写法" },
+      { "id": "d", "text": "位只用于网络，字节只用于整数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "一个位记录一个二进制状态；普通 C++ 对象的大小和地址递增则以字节为基本单位。"
+  },
+  {
+    "id": "bit-byte-symbols",
+    "prompt": "哪组英文缩写正确区分了 bit 和 byte？",
+    "options": [
+      { "id": "a", "text": "bit 用 `B`，byte 用 `b`" },
+      { "id": "b", "text": "bit 用 `b`，byte 用 `B`" },
+      { "id": "c", "text": "二者都只能写成 `M`" },
+      { "id": "d", "text": "二者都没有缩写" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "bit 使用小写 `b`，byte 使用大写 `B`；大小写错误会让数量相差八倍。"
+  },
+  {
+    "id": "byte-width",
+    "prompt": "现代主流竞赛环境中，`32 b` 等于多少字节？",
+    "options": [
+      { "id": "a", "text": "`2 B`" },
+      { "id": "b", "text": "`8 B`" },
+      { "id": "c", "text": "`4 B`" },
+      { "id": "d", "text": "`32 B`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "主流环境中一个字节是八位，因此三十二位等于四字节。"
+  },
+  {
+    "id": "decimal-and-binary-prefixes",
+    "prompt": "哪项准确比较了 `MB` 与 `MiB`？",
+    "options": [
+      { "id": "a", "text": "二者都严格等于 `1024 B`" },
+      { "id": "b", "text": "`MB` 一定表示位，`MiB` 一定表示字节" },
+      { "id": "c", "text": "`MB` 严格等于 `MiB`" },
+      { "id": "d", "text": "正式定义中 `MB` 按 1000 进位，`MiB` 按 1024 进位" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "`MB` 是十进制前缀，`MiB` 是二进制前缀；旧资料仍可能把 `MB` 用作二进制口径。"
+  },
+  {
+    "id": "network-rate-conversion",
+    "prompt": "忽略协议开销时，`100 Mbps` 对应的理论下载速度是多少？",
+    "options": [
+      { "id": "a", "text": "`12.5 MB/s`" },
+      { "id": "b", "text": "`100 MB/s`" },
+      { "id": "c", "text": "`800 MB/s`" },
+      { "id": "d", "text": "`1024 MB/s`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "文件速度以字节计，而一个字节是八位，所以一百兆比特每秒除以八得到十二点五兆字节每秒。"
+  },
+  {
+    "id": "sizeof-unit",
+    "prompt": "C++ 的 `sizeof` 结果以什么为单位？",
+    "options": [
+      { "id": "a", "text": "十进制数字位" },
+      { "id": "b", "text": "字节" },
+      { "id": "c", "text": "网络数据包" },
+      { "id": "d", "text": "源代码行" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`sizeof` 返回对象或类型占用的字节数；主流环境中再乘八可换算成位数。"
+  }
+]

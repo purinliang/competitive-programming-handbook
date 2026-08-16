@@ -1,0 +1,74 @@
+[
+  {
+    "id": "signed-magnitude-zero",
+    "prompt": "为什么原码会同时出现 `+0` 和 `-0`？",
+    "options": [
+      { "id": "a", "text": "最高位单独表示符号，绝对值部分为零时仍可选择两个符号" },
+      { "id": "b", "text": "原码没有符号位" },
+      { "id": "c", "text": "零必须使用两个字节" },
+      { "id": "d", "text": "所有整数都存在两个表示" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "原码把符号和绝对值分开保存；绝对值全零时，符号位仍可分别取零和一。"
+  },
+  {
+    "id": "ones-complement-negative",
+    "prompt": "怎样从正数 `+5` 的位串得到 `-5` 的反码？",
+    "options": [
+      { "id": "a", "text": "只清空最低位" },
+      { "id": "b", "text": "把固定位宽中的每一位取反" },
+      { "id": "c", "text": "把所有位向左移动一位" },
+      { "id": "d", "text": "把十进制文本倒序" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "负数的反码由对应正数在固定宽度内逐位取反得到。"
+  },
+  {
+    "id": "twos-complement-negative",
+    "prompt": "怎样从正数 `+5` 的位串得到 `-5` 的补码？",
+    "options": [
+      { "id": "a", "text": "只把最高位改成零" },
+      { "id": "b", "text": "先加一，再删除最高位" },
+      { "id": "c", "text": "在固定位宽内逐位取反，再加一" },
+      { "id": "d", "text": "对十进制数除以二" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "二补码负数可以由对应正数逐位取反后加一得到。"
+  },
+  {
+    "id": "twos-complement-range",
+    "prompt": "一个 `N` 位二补码有符号整数的范围是什么？",
+    "options": [
+      { "id": "a", "text": "`[0, 2^N - 1]`" },
+      { "id": "b", "text": "`[-2^N, 2^N]`" },
+      { "id": "c", "text": "`[-2^(N-1) + 1, 2^(N-1)]`" },
+      { "id": "d", "text": "`[-2^(N-1), 2^(N-1) - 1]`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "二补码只有一个零，额外位模式用于最小负数，因此负数一侧比正数一侧多一个值。"
+  },
+  {
+    "id": "twos-complement-benefit",
+    "prompt": "二补码相对原码的重要优势是什么？",
+    "options": [
+      { "id": "a", "text": "加法与减法都能归结为保留低 `N` 位的普通二进制加法" },
+      { "id": "b", "text": "所有整数都变成正数" },
+      { "id": "c", "text": "每个整数只需要一个二进制位" },
+      { "id": "d", "text": "它使有符号溢出成为标准规定的成环" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "二补码让同一套低位二进制加法电路处理正负数的加减，但这不意味着 C++ 有符号溢出可以依赖成环。"
+  },
+  {
+    "id": "minimum-absolute-value",
+    "prompt": "为什么不能在同一 `N` 位有符号类型中直接取得最小值的正绝对值？",
+    "options": [
+      { "id": "a", "text": "最小值一定等于零" },
+      { "id": "b", "text": "类型能表示 `-2^(N-1)`，却不能表示正的 `2^(N-1)`" },
+      { "id": "c", "text": "补码没有负数" },
+      { "id": "d", "text": "绝对值只适用于浮点数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "二补码范围不对称，最小负数对应的正数超出了同一有符号类型的上界。"
+  }
+]
