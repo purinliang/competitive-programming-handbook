@@ -1,0 +1,50 @@
+[
+  {
+    "id": "radix-low-to-high",
+    "prompt": "LSD 基数排序为什么从最低位开始处理？",
+    "options": [
+      { "id": "a", "text": "最低位一定比其他位更大" },
+      { "id": "b", "text": "后续稳定处理高位时，可以保留相同高位元素已经建立的低位顺序" },
+      { "id": "c", "text": "这样不需要读取数组" },
+      { "id": "d", "text": "十进制只允许读取个位" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "稳定的高位排序只重排高位不同的组，相同高位内部继续沿用低位顺序。"
+  },
+  {
+    "id": "radix-extract-digit",
+    "prompt": "非负整数 `value` 在位权 `place` 上的十进制数字怎样计算？",
+    "options": [
+      { "id": "a", "text": "`value % place / 10`" },
+      { "id": "b", "text": "`value * place % 10`" },
+      { "id": "c", "text": "`value / place % 10`" },
+      { "id": "d", "text": "`place / value % 10`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "先除以位权把目标位移到个位，再对 `10` 取余。"
+  },
+  {
+    "id": "radix-stable-placement",
+    "prompt": "使用累计计数表示各组末尾时，为什么恢复数组要从右向左读取原序列？",
+    "options": [
+      { "id": "a", "text": "让相同数位元素保持原来的相对顺序" },
+      { "id": "b", "text": "让每个数都变成负数" },
+      { "id": "c", "text": "避免计算当前数位" },
+      { "id": "d", "text": "把升序自动改成降序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "靠后的同组元素先占据组内靠后位置，靠前元素随后放到更前位置，因此保持稳定。"
+  },
+  {
+    "id": "radix-complexity",
+    "prompt": "基数为 `b`、处理 `d` 个数位、共有 `n` 个元素时，时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "`O(log n)`" },
+      { "id": "b", "text": "`O(n^2)`，与数位无关" },
+      { "id": "c", "text": "`O(b^n)`" },
+      { "id": "d", "text": "`O(d(n + b))`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每一位需要扫描元素和数位计数范围，共进行 `d` 趟。"
+  }
+]
