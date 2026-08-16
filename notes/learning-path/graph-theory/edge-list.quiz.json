@@ -1,0 +1,50 @@
+[
+  {
+    "id": "weighted-edge",
+    "prompt": "带权有向边的边集记录至少需要保存哪些字段？",
+    "options": [
+      { "id": "a", "text": "起点、终点和边权" },
+      { "id": "b", "text": "只保存边权" },
+      { "id": "c", "text": "只保存两个端点中较小者" },
+      { "id": "d", "text": "保存整个邻接矩阵" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "边集逐条保存边本身；有向带权边需要 from、to、weight。"
+  },
+  {
+    "id": "best-use",
+    "prompt": "边集最适合哪类操作？",
+    "options": [
+      { "id": "a", "text": "反复查询一个点的全部出边" },
+      { "id": "b", "text": "整体扫描或排序全部边" },
+      { "id": "c", "text": "O(1) 判断任意两点是否相邻" },
+      { "id": "d", "text": "维护树的左右儿子" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Kruskal 等算法关心全体边的顺序，不要求按起点快速分组。"
+  },
+  {
+    "id": "undirected-kruskal",
+    "prompt": "Kruskal 使用无向边集时，为什么通常每条原始边只保存一次？",
+    "options": [
+      { "id": "a", "text": "无向边没有端点" },
+      { "id": "b", "text": "保存两次会让边权变成两倍" },
+      { "id": "c", "text": "算法按原始边选择，两个方向不是两次独立选择" },
+      { "id": "d", "text": "sort 不支持重复元素" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "无向边的两个方向属于同一条可选边，整体排序时无需复制。"
+  },
+  {
+    "id": "traversal-cost",
+    "prompt": "DFS 或 BFS 为什么不宜直接使用未经索引的边集？",
+    "options": [
+      { "id": "a", "text": "边集不能存储有向边" },
+      { "id": "b", "text": "边集只能保存一条边" },
+      { "id": "c", "text": "遍历不允许读取边权" },
+      { "id": "d", "text": "找某个点的出边可能每次都要扫描全部边" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "邻接表按起点组织边，才适合从当前点反复枚举邻居。"
+  }
+]
