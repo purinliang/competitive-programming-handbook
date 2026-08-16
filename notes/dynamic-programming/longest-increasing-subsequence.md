@@ -1,6 +1,6 @@
-# 动态规划：最长上升子序列
+# 最长上升子序列
 
-> 最近修订：2026-08-13 22:56 +10:00（未审阅）
+> 最近修订：2026-08-16 14:14 +10:00（未审阅）
 
 给定一个序列，删除其中任意一些元素但保持剩余元素的原有顺序，可以得到一个子序列。最长上升子序列（Longest Increasing Subsequence，LIS）要求找到长度最大的严格递增子序列。
 
@@ -247,17 +247,22 @@ using namespace std;
 
 typedef long long ll;
 
-int main() {
-    int n;
+int n;
+vector<ll> a;
+vector<int> dp;
+vector<int> previous;
+
+void solve() {
     scanf("%d", &n);
 
-    vector<ll> a(n + 5);
+    a.assign(n + 5, 0);
+    dp.assign(n + 5, 0);
+    previous.assign(n + 5, 0);
+
     for (int i = 1; i <= n; i++) {
         scanf("%lld", &a[i]);
     }
 
-    vector<int> dp(n + 5, 0);
-    vector<int> previous(n + 5, 0);
     int answer_length = 0;
     int end_position = 0;
 
@@ -287,6 +292,10 @@ int main() {
     for (int i = 0; i < answer_length; i++) {
         printf("%lld%c", answer[i], " \n"[i + 1 == answer_length]);
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -368,7 +377,3 @@ LIS 可以在任意位置结束。必须对 `dp[1..n]` 取最大，并记录对�
 ## 扩展阅读
 
 目录已经登记 [最长上升子序列：$O(n\log n)$ 优化](../catalog.md#07-动态规划)。它为每个长度保存尽可能小的结尾值，再用二分查找更新位置；这是直接配套扩展，不进入当前主学习路线。
-
-## 下一篇
-
-下一篇 [字符串：比较与字典序](../strings/comparison-and-lexicographic-order.md) 会从字符逐位比较开始，建立字符串问题的基础顺序关系。

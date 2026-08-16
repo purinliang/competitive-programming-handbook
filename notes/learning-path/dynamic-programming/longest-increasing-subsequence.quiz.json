@@ -1,0 +1,98 @@
+[
+  {
+    "id": "subsequence-definition",
+    "prompt": "序列 `3 1 2 5 4 7` 中，下面哪一个是严格上升子序列？",
+    "options": [
+      { "id": "a", "text": "`1 2 4 7`" },
+      { "id": "b", "text": "`3 5 4`" },
+      { "id": "c", "text": "`1 2 2 7`" },
+      { "id": "d", "text": "`2 1 4 7`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "子序列保持原位置顺序但不要求连续；所选值还必须严格递增。"
+  },
+  {
+    "id": "strict-comparison",
+    "prompt": "本文求严格上升子序列时，前驱位置 `j` 必须满足什么条件？",
+    "options": [
+      { "id": "a", "text": "`j > i` 且 `a[j] > a[i]`" },
+      { "id": "b", "text": "`j < i` 且 `a[j] <= a[i]`" },
+      { "id": "c", "text": "`j < i` 且 `a[j] < a[i]`" },
+      { "id": "d", "text": "只需满足 `a[j] != a[i]`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "位置顺序要求 j 在 i 以前，严格上升要求前一个值严格小于当前值。"
+  },
+  {
+    "id": "endpoint-state",
+    "prompt": "为什么把 `dp[i]` 限定为“恰好以位置 `i` 结尾”？",
+    "options": [
+      { "id": "a", "text": "为了让所有状态值都等于 `a[i]`" },
+      { "id": "b", "text": "结尾位置同时确定顺序和最后值，使后续能判断是否可以接入" },
+      { "id": "c", "text": "为了强制子序列使用连续位置" },
+      { "id": "d", "text": "为了避免保存序列长度" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "前缀全局答案会丢失最后值；固定结尾后，转移所需的信息由 i 和 a[i] 给出。"
+  },
+  {
+    "id": "transition-source",
+    "prompt": "若 `j < i` 且 `a[j] < a[i]`，从状态 `j` 转移到 `i` 得到的候选长度是多少？",
+    "options": [
+      { "id": "a", "text": "`dp[i] + 1`" },
+      { "id": "b", "text": "`a[j] + a[i]`" },
+      { "id": "c", "text": "`dp[j] - 1`" },
+      { "id": "d", "text": "`dp[j] + 1`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "在一条以 j 结尾的最优子序列后接入 a[i]，长度增加 1。"
+  },
+  {
+    "id": "single-element-base",
+    "prompt": "为什么每个 `dp[i]` 的初始值都是 `1`？",
+    "options": [
+      { "id": "a", "text": "只选择 `a[i]` 本身就是合法的非空上升子序列" },
+      { "id": "b", "text": "每个位置以前一定存在一个更小元素" },
+      { "id": "c", "text": "LIS 的答案永远等于 1" },
+      { "id": "d", "text": "下标从 1 开始时数组会自动填入 1" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "即使没有合法前驱，单元素子序列也让当前状态至少具有长度 1。"
+  },
+  {
+    "id": "final-endpoint",
+    "prompt": "LIS 长度为什么要对 `dp[1..n]` 取最大值？",
+    "options": [
+      { "id": "a", "text": "因为 `dp[n]` 一定等于 0" },
+      { "id": "b", "text": "因为数组最后一个元素不能被选择" },
+      { "id": "c", "text": "最长上升子序列可以结束在任意位置" },
+      { "id": "d", "text": "因为取最大值会自动把序列排序" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每个 dp[i] 只覆盖固定结尾位置，全局答案必须比较所有可能结尾。"
+  },
+  {
+    "id": "predecessor-restoration",
+    "prompt": "`previous[i]` 在方案恢复中保存什么？",
+    "options": [
+      { "id": "a", "text": "位置 `i` 前面的所有原数组元素" },
+      { "id": "b", "text": "当前最优状态选择的前一个位置" },
+      { "id": "c", "text": "整个 LIS 的长度" },
+      { "id": "d", "text": "位置 `i` 后面的第一个更大值" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "从最优结束位置反复跟随 previous，能倒序取回这条状态转移链。"
+  },
+  {
+    "id": "quadratic-complexity",
+    "prompt": "基础 LIS 动态规划的时间复杂度为什么是 $O(n^2)$？",
+    "options": [
+      { "id": "a", "text": "因为需要枚举全部 $2^n$ 个子序列" },
+      { "id": "b", "text": "因为每次比较都要重新排序数组" },
+      { "id": "c", "text": "因为方案恢复需要平方时间" },
+      { "id": "d", "text": "每个结尾位置 `i` 都枚举了全部更早位置 `j`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "比较次数为 0 + 1 + ... + (n - 1)，其数量级为 n²。"
+  }
+]
