@@ -1,6 +1,6 @@
-# 工具类型：pair
+# pair
 
-> 最近修订：2026-08-13 04:23 +10:00（未审阅）
+> 最近修订：2026-08-16 12:27 +10:00（未审阅）
 
 一个 C++ 函数通常通过一条 `return` 返回一个结果。但有些结果天然由两部分组成：
 
@@ -147,7 +147,7 @@ printf(a < b ? "Yes\n" : "No\n");
 
 输出 `Yes`，因为第一个成员已经有 $2<3$，不再需要用第二个成员决定大小。
 
-这个规则对按“主关键字，再按次关键字”排序非常方便。具体排序接口见 [STL 算法：排序](sorting.md)。
+这个规则对按“主关键字，再按次关键字”排序非常方便。具体排序接口见 [sort](sorting.md)。
 
 ## 完整代码
 
@@ -163,12 +163,16 @@ pair<int, int> divide(int a, int b) {
     return {quotient, remainder};
 }
 
-int main() {
+void solve() {
     int a, b;
     scanf("%d%d", &a, &b);
 
     auto [quotient, remainder] = divide(a, b);
     printf("%d %d\n", quotient, remainder);
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```

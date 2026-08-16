@@ -2,7 +2,7 @@
 
 > 最近修订：2026-08-13 04:28 +10:00（未审阅）
 
-[工具类型：pair](pair.md) 可以把两个相关的值组成一个对象。当一个结果天然包含三个值时，继续嵌套 `pair` 也能保存：
+[pair](pair.md) 可以把两个相关的值组成一个对象。当一个结果天然包含三个值时，继续嵌套 `pair` 也能保存：
 
 ```cpp
 pair<int, pair<int, ll>> result;
@@ -96,7 +96,7 @@ auto [minimum, maximum, sum] = analyze(a, b, c);
 
 方括号中的名称数量必须与 `tuple` 成员数量一致，顺序与返回类型的类型列表一致。
 
-[工具类型：pair](pair.md#结构化绑定) 已经解释过复制与引用的区别：
+[pair](pair.md#结构化绑定) 已经解释过复制与引用的区别：
 
 ```cpp
 auto [a, b, c] = values;        // 建立对应值

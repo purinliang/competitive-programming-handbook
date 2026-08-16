@@ -1,0 +1,74 @@
+[
+  {
+    "id": "pair-types",
+    "prompt": "pair<T,U> 中的 T 和 U 分别决定什么？",
+    "options": [
+      { "id": "a", "text": "两个成员的名称" },
+      { "id": "b", "text": "first 和 second 的类型，二者可以不同" },
+      { "id": "c", "text": "容器的长度和容量" },
+      { "id": "d", "text": "两个值的排序方向" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "T 是 first 的类型，U 是 second 的类型；pair 可以组合两个相同或不同类型的值。"
+  },
+  {
+    "id": "member-access",
+    "prompt": "怎样访问 pair<int,double> p 的第二个成员？",
+    "options": [
+      { "id": "a", "text": "p[1]" },
+      { "id": "b", "text": "p.value" },
+      { "id": "c", "text": "p.second" },
+      { "id": "d", "text": "p->second" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "pair 固定提供 first 与 second 两个成员，普通对象通过点运算符访问。"
+  },
+  {
+    "id": "return-pair",
+    "prompt": "函数返回 {quotient,remainder} 时，为什么仍只执行了一次 return？",
+    "options": [
+      { "id": "a", "text": "花括号构造了一个内部含两个成员的 pair 对象" },
+      { "id": "b", "text": "C++ 会忽略 remainder" },
+      { "id": "c", "text": "return 可以返回任意多个互不相关的对象" },
+      { "id": "d", "text": "两个 int 会自动相加" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "返回值是一个 pair，只是这个对象内部保存 first、second 两项。"
+  },
+  {
+    "id": "structured-binding-reference",
+    "prompt": "要通过结构化绑定修改原 pair 的成员，应使用哪种写法？",
+    "options": [
+      { "id": "a", "text": "auto [x,y]=p" },
+      { "id": "b", "text": "const auto [x,y]=p" },
+      { "id": "c", "text": "auto* [x,y]=p" },
+      { "id": "d", "text": "auto& [x,y]=p" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "引用结构化绑定让 x、y 分别引用原成员；不带 & 的写法会复制对应值。"
+  },
+  {
+    "id": "lexicographic-order",
+    "prompt": "比较 pair<int,int>{2,100} 与 {3,1} 时，结果由什么决定？",
+    "options": [
+      { "id": "a", "text": "先比较 second，所以左边更大" },
+      { "id": "b", "text": "先比较 first，所以左边更小" },
+      { "id": "c", "text": "把两个成员分别求和" },
+      { "id": "d", "text": "pair 不支持比较" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "pair 使用字典序；first 不同时已经确定顺序，只有 first 相等才比较 second。"
+  },
+  {
+    "id": "pair-or-struct",
+    "prompt": "哪种场景更适合声明具名 struct 而不是 pair？",
+    "options": [
+      { "id": "a", "text": "临时保存一个坐标的 x、y" },
+      { "id": "b", "text": "返回整数除法的商和余数" },
+      { "id": "c", "text": "长期维护姓名、年龄、分数等多个语义明确的字段" },
+      { "id": "d", "text": "邻接表中保存终点和边权" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "字段多且业务含义明确时，具名成员比 first、second 更易读；pair 更适合语境已说明的两项组合。"
+  }
+]
