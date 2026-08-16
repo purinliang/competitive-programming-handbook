@@ -15,36 +15,36 @@
     "id": "dereference",
     "prompt": "若 `p` 指向 `x`，表达式 `*p` 表示什么？",
     "options": [
-      { "id": "a", "text": "`p` 指向的原对象 `x`" },
-      { "id": "b", "text": "指针自己的地址" },
+      { "id": "a", "text": "指针自己的地址" },
+      { "id": "b", "text": "`p` 指向的原对象 `x`" },
       { "id": "c", "text": "一个与 `x` 无关的新整数" },
       { "id": "d", "text": "数组容量" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "解引用通过指针保存的地址访问目标对象，因此给 `*p` 赋值就是修改 `x`。"
   },
   {
     "id": "change-pointee",
     "prompt": "执行 `p = &b;` 时改变的是什么？",
     "options": [
-      { "id": "a", "text": "`p` 保存的地址，使它改为指向 `b`" },
+      { "id": "a", "text": "把 `b` 改成空指针" },
       { "id": "b", "text": "把原对象和 `b` 自动交换" },
-      { "id": "c", "text": "把 `b` 改成空指针" },
+      { "id": "c", "text": "`p` 保存的地址，使它改为指向 `b`" },
       { "id": "d", "text": "把指针类型改成 `double*`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "普通指针变量可以保存另一个同类型对象的地址，从而改变目标。"
   },
   {
     "id": "null-pointer",
     "prompt": "关于 `nullptr`，下面哪项正确？",
     "options": [
-      { "id": "a", "text": "它明确表示指针当前没有指向对象，不能解引用" },
+      { "id": "a", "text": "它表示数组末尾的最后一个元素" },
       { "id": "b", "text": "它是一个可以读写的整数对象" },
       { "id": "c", "text": "解引用它一定得到 `0`" },
-      { "id": "d", "text": "它表示数组末尾的最后一个元素" }
+      { "id": "d", "text": "它明确表示指针当前没有指向对象，不能解引用" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "空指针可用于表示缺少目标和进行比较，但不指向可访问对象。"
   },
   {
@@ -63,36 +63,36 @@
     "id": "pointer-versus-value-increment",
     "prompt": "`p++` 与 `(*p)++` 的区别是什么？",
     "options": [
-      { "id": "a", "text": "前者移动指针，后者增加当前指向的整数" },
-      { "id": "b", "text": "两者都只增加指针地址" },
+      { "id": "a", "text": "两者都只增加指针地址" },
+      { "id": "b", "text": "前者移动指针，后者增加当前指向的整数" },
       { "id": "c", "text": "两者都只修改整数" },
       { "id": "d", "text": "两者都不能用于数组" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "括号让解引用先发生，因此自增作用于目标对象；没有括号时后缀自增作用于指针。"
   },
   {
     "id": "one-past-end",
     "prompt": "指向数组末尾后一位的指针可以怎样使用？",
     "options": [
-      { "id": "a", "text": "可以作为比较边界，但不能解引用" },
+      { "id": "a", "text": "只能改成字符指针" },
       { "id": "b", "text": "可以当作一个额外数组元素读写" },
-      { "id": "c", "text": "只能改成字符指针" },
+      { "id": "c", "text": "可以作为比较边界，但不能解引用" },
       { "id": "d", "text": "必须保存答案" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "C++ 允许形成末尾后一位的边界指针，但那个位置不属于数组元素。"
   },
   {
     "id": "scanf-address",
     "prompt": "`scanf(\"%d\", &x)` 为什么传入 `&x`？",
     "options": [
-      { "id": "a", "text": "让 `scanf` 能通过地址把读到的整数写入原对象" },
+      { "id": "a", "text": "要求输入中必须出现 `&`" },
       { "id": "b", "text": "让 `scanf` 只读取 `x` 现有的值" },
       { "id": "c", "text": "把 `x` 转换成字符串" },
-      { "id": "d", "text": "要求输入中必须出现 `&`" }
+      { "id": "d", "text": "让 `scanf` 能通过地址把读到的整数写入原对象" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "函数只有得到变量地址，才能找到并修改调用处的整数对象。"
   }
 ]

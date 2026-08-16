@@ -3,36 +3,36 @@
     "id": "struct-pointer",
     "prompt": "`Contestant* p = &contestant;` 中，`p` 保存什么？",
     "options": [
-      { "id": "a", "text": "结构体对象 `contestant` 的地址" },
-      { "id": "b", "text": "只有 `contestant.score` 的整数副本" },
+      { "id": "a", "text": "只有 `contestant.score` 的整数副本" },
+      { "id": "b", "text": "结构体对象 `contestant` 的地址" },
       { "id": "c", "text": "结构体类型的名称" },
       { "id": "d", "text": "数组容量" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "`Contestant*` 是指向结构体对象的指针类型，使用对象地址初始化。"
   },
   {
     "id": "parenthesized-dereference",
     "prompt": "为什么通过解引用访问成员要写成 `(*p).score`？",
     "options": [
-      { "id": "a", "text": "括号先得到目标对象，再让点运算符访问成员" },
+      { "id": "a", "text": "星号只能放在括号中输出" },
       { "id": "b", "text": "括号会复制整个结构体" },
-      { "id": "c", "text": "星号只能放在括号中输出" },
+      { "id": "c", "text": "括号先得到目标对象，再让点运算符访问成员" },
       { "id": "d", "text": "点运算符只能访问整数指针" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "点运算优先结合；不加括号会尝试先访问指针 `p` 的成员。"
   },
   {
     "id": "arrow-equivalence",
     "prompt": "对普通结构体指针，`p->score` 等价于什么？",
     "options": [
-      { "id": "a", "text": "`(*p).score`" },
+      { "id": "a", "text": "`&p.score`" },
       { "id": "b", "text": "`*(p.score)`" },
       { "id": "c", "text": "`p + score`" },
-      { "id": "d", "text": "`&p.score`" }
+      { "id": "d", "text": "`(*p).score`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "箭头把解引用指针和使用点访问目标对象成员组合起来。"
   },
   {
@@ -51,24 +51,24 @@
     "id": "pointer-step",
     "prompt": "`Contestant* p` 指向结构体数组元素时，`p++` 移动到哪里？",
     "options": [
-      { "id": "a", "text": "下一个完整的 `Contestant` 元素" },
-      { "id": "b", "text": "当前对象的下一个整数成员" },
+      { "id": "a", "text": "当前对象的下一个整数成员" },
+      { "id": "b", "text": "下一个完整的 `Contestant` 元素" },
       { "id": "c", "text": "固定向后一个字节" },
       { "id": "d", "text": "数组开头" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "指针算术以所指类型为单位，一步跨过 `sizeof(Contestant)` 的整个数组元素。"
   },
   {
     "id": "null-arrow",
     "prompt": "为什么不能执行 `Contestant* p = nullptr; p->score = 100;`？",
     "options": [
-      { "id": "a", "text": "箭头需要解引用目标，空指针没有可访问对象" },
+      { "id": "a", "text": "箭头只能用于数组最后一个元素" },
       { "id": "b", "text": "结构体成员不能保存整数" },
-      { "id": "c", "text": "箭头只能用于数组最后一个元素" },
+      { "id": "c", "text": "箭头需要解引用目标，空指针没有可访问对象" },
       { "id": "d", "text": "`nullptr` 会自动创建结构体" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "空指针不指向对象，对它使用箭头属于解引用空指针的未定义行为。"
   }
 ]

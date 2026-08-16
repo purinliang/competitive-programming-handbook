@@ -15,36 +15,36 @@
     "id": "trailing-semicolon",
     "prompt": "结构体类型声明的右花括号后需要什么？",
     "options": [
-      { "id": "a", "text": "分号" },
-      { "id": "b", "text": "冒号" },
+      { "id": "a", "text": "冒号" },
+      { "id": "b", "text": "分号" },
       { "id": "c", "text": "另一个 `struct`" },
       { "id": "d", "text": "输入运算符" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "完整写法以 `};` 结束，分号终止整个类型声明。"
   },
   {
     "id": "type-and-object",
     "prompt": "在 `Contestant contestant;` 中，两个名称分别表示什么？",
     "options": [
-      { "id": "a", "text": "`Contestant` 是类型，`contestant` 是对象名称" },
+      { "id": "a", "text": "二者都是 C++ 关键字" },
       { "id": "b", "text": "二者都是成员函数" },
-      { "id": "c", "text": "二者都是 C++ 关键字" },
+      { "id": "c", "text": "`Contestant` 是类型，`contestant` 是对象名称" },
       { "id": "d", "text": "前者是数组下标，后者是容量" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "结构体类型与 `int` 一样可用于声明变量，对象才保存一组具体成员值。"
   },
   {
     "id": "dot-member-access",
     "prompt": "拥有对象 `contestant` 时，怎样访问它的 `score` 成员？",
     "options": [
-      { "id": "a", "text": "`contestant.score`" },
+      { "id": "a", "text": "`contestant::score()`" },
       { "id": "b", "text": "`contestant[score]`" },
       { "id": "c", "text": "`score.contestant`" },
-      { "id": "d", "text": "`contestant::score()`" }
+      { "id": "d", "text": "`contestant.score`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "点运算符左侧是结构体对象，右侧是该类型声明的成员名。"
   },
   {
@@ -63,24 +63,24 @@
     "id": "array-of-structs",
     "prompt": "`contestants[i].score` 中的下标和点分别选择什么？",
     "options": [
-      { "id": "a", "text": "先选择第 `i` 个对象，再选择它的 `score` 成员" },
-      { "id": "b", "text": "先选择所有分数，再选择第 `i` 个类型" },
+      { "id": "a", "text": "先选择所有分数，再选择第 `i` 个类型" },
+      { "id": "b", "text": "先选择第 `i` 个对象，再选择它的 `score` 成员" },
       { "id": "c", "text": "二者都只选择数组容量" },
       { "id": "d", "text": "表达式不访问任何对象" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "数组下标得到一个完整结构体对象，点运算符再访问该对象中的成员。"
   },
   {
     "id": "whole-object-assignment",
     "prompt": "把一个 `Contestant` 对象赋值给另一个同类型对象时会怎样？",
     "options": [
-      { "id": "a", "text": "逐成员复制，之后两个对象仍然相互独立" },
+      { "id": "a", "text": "两个对象永久变成同一个别名" },
       { "id": "b", "text": "只复制类型名，不复制成员" },
-      { "id": "c", "text": "两个对象永久变成同一个别名" },
+      { "id": "c", "text": "逐成员复制，之后两个对象仍然相互独立" },
       { "id": "d", "text": "C++17 禁止结构体赋值" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "结构体对象支持同类型整体赋值，成员值被复制，修改副本不会自动修改原对象。"
   }
 ]

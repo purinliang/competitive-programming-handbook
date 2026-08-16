@@ -3,36 +3,36 @@
     "id": "reference-alias",
     "prompt": "`int& r = x;` 中的 `r` 与 `x` 是什么关系？",
     "options": [
-      { "id": "a", "text": "`r` 是原对象 `x` 的别名" },
-      { "id": "b", "text": "`r` 是与 `x` 无关的整数副本" },
+      { "id": "a", "text": "`r` 是与 `x` 无关的整数副本" },
+      { "id": "b", "text": "`r` 是原对象 `x` 的别名" },
       { "id": "c", "text": "`r` 是空指针" },
       { "id": "d", "text": "`r` 是数组容量" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "普通表达式中的引用名称直接代表它绑定的原对象，读写 `r` 就是读写 `x`。"
   },
   {
     "id": "ampersand-context",
     "prompt": "`a & b`、`&x` 与 `int& r` 中的 `&` 分别表示什么？",
     "options": [
-      { "id": "a", "text": "按位与、取地址、引用声明" },
+      { "id": "a", "text": "三处都表示引用" },
       { "id": "b", "text": "三处都表示按位与" },
-      { "id": "c", "text": "三处都表示引用" },
+      { "id": "c", "text": "按位与、取地址、引用声明" },
       { "id": "d", "text": "加法、减法、乘法" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "同一个符号会根据语法位置承担不同作用，阅读时要看完整声明或表达式。"
   },
   {
     "id": "immediate-binding",
     "prompt": "为什么普通引用不能只写 `int& r;`？",
     "options": [
-      { "id": "a", "text": "引用声明时必须立即绑定一个对象" },
+      { "id": "a", "text": "引用名称必须是 `x`" },
       { "id": "b", "text": "引用只能绑定字符" },
       { "id": "c", "text": "引用必须先设为 `nullptr`" },
-      { "id": "d", "text": "引用名称必须是 `x`" }
+      { "id": "d", "text": "引用声明时必须立即绑定一个对象" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "普通引用没有正常的空状态，从创建开始就应当作为某个对象的别名。"
   },
   {
@@ -51,36 +51,36 @@
     "id": "reference-address",
     "prompt": "若 `r` 是 `x` 的引用，`&r` 与 `&x` 有什么关系？",
     "options": [
-      { "id": "a", "text": "二者得到同一个原对象的地址" },
-      { "id": "b", "text": "`&r` 永远是空指针" },
+      { "id": "a", "text": "`&r` 永远是空指针" },
+      { "id": "b", "text": "二者得到同一个原对象的地址" },
       { "id": "c", "text": "二者地址必须相差一个字节" },
       { "id": "d", "text": "引用不能使用取地址运算符" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "表达式中的 `r` 代表原对象，因此对它取地址得到的仍是 `x` 的地址。"
   },
   {
     "id": "const-reference-write",
     "prompt": "`const int& r = x;` 对通过 `r` 的操作施加什么限制？",
     "options": [
-      { "id": "a", "text": "可以读取，但不能通过 `r` 修改对象" },
+      { "id": "a", "text": "必须让 `x` 变成空指针" },
       { "id": "b", "text": "只能写入，不能读取" },
-      { "id": "c", "text": "必须让 `x` 变成空指针" },
+      { "id": "c", "text": "可以读取，但不能通过 `r` 修改对象" },
       { "id": "d", "text": "允许把 `r` 重新绑定到任意对象" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "`const` 引用提供只读访问；若原对象本身可修改，其他名称造成的新值仍能通过引用观察到。"
   },
   {
     "id": "pointer-or-reference",
     "prompt": "目标可能不存在，并且需要用 `nullptr` 表示时，应优先使用什么？",
     "options": [
-      { "id": "a", "text": "指针" },
+      { "id": "a", "text": "字符串字面量" },
       { "id": "b", "text": "普通引用" },
       { "id": "c", "text": "整数除法" },
-      { "id": "d", "text": "字符串字面量" }
+      { "id": "d", "text": "指针" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "普通引用必须绑定存在的对象；指针具有明确的空状态，也能改变指向。"
   },
   {
