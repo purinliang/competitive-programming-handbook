@@ -1,0 +1,110 @@
+[
+  {
+    "id": "connected-meaning",
+    "prompt": "无向图中点 u 与点 v 连通表示什么？",
+    "options": [
+      { "id": "a", "text": "u 与 v 的编号相邻" },
+      { "id": "b", "text": "u 与 v 之间存在一条路径" },
+      { "id": "c", "text": "u 与 v 必须由一条边直接连接" },
+      { "id": "d", "text": "u 与 v 的度数相同" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "路径可以含多条边；长度为 0 的路径也说明每个点与自己连通。"
+  },
+  {
+    "id": "component-maximal",
+    "prompt": "连通分量定义中的“极大”表示什么？",
+    "options": [
+      { "id": "a", "text": "其中点编号必须最大" },
+      { "id": "b", "text": "其中必须包含整张图的所有边" },
+      { "id": "c", "text": "已经不能再加入其他点并保持整体连通" },
+      { "id": "d", "text": "它的点数必须大于所有其他分量" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "一小段路径虽然连通，但若还能加入同组点，就只是连通子图而不是完整连通块。"
+  },
+  {
+    "id": "isolated-component",
+    "prompt": "一个没有任何边的孤立点构成怎样的连通块？",
+    "options": [
+      { "id": "a", "text": "大小为 1 的连通块" },
+      { "id": "b", "text": "不属于任何连通块" },
+      { "id": "c", "text": "必须并入编号最小的块" },
+      { "id": "d", "text": "大小为 0 的连通块" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "点与自己通过长度为 0 的路径连通，因此孤立点独自形成一个极大连通子图。"
+  },
+  {
+    "id": "zero-sentinel",
+    "prompt": "从 1 开始给连通块编号时，component_id[u]==0 表示什么？",
+    "options": [
+      { "id": "a", "text": "u 一定是孤立点" },
+      { "id": "b", "text": "u 已属于第一个连通块" },
+      { "id": "c", "text": "u 的度数为 0" },
+      { "id": "d", "text": "u 尚未被遍历并分类" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "真实连通块编号从 1 开始，0 可以无歧义地兼作未访问标记。"
+  },
+  {
+    "id": "new-component",
+    "prompt": "外层循环什么时候应增加 component_count？",
+    "options": [
+      { "id": "a", "text": "每检查一条边时" },
+      { "id": "b", "text": "发现一个仍未编号的点并准备从它开始新搜索时" },
+      { "id": "c", "text": "DFS 每递归一层时" },
+      { "id": "d", "text": "查询两个点不相同时" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "此前搜索无法到达该点，它必属于一个尚未发现的新连通块；同次 DFS 内其他点沿用同一编号。"
+  },
+  {
+    "id": "constant-query",
+    "prompt": "预处理后怎样在 O(1) 时间判断 u、v 是否连通？",
+    "options": [
+      { "id": "a", "text": "比较 component_id[u] 与 component_id[v] 是否相等" },
+      { "id": "b", "text": "每次重新从 u 执行 DFS" },
+      { "id": "c", "text": "比较 u、v 的大小" },
+      { "id": "d", "text": "只检查它们是否有直接边" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "一次完整遍历已经把可达关系压缩成分类标签，查询只需两次数组访问和一次比较。"
+  },
+  {
+    "id": "id-not-order",
+    "prompt": "改变点或邻边的遍历顺序后，连通块编号可能变化；什么保持不变？",
+    "options": [
+      { "id": "a", "text": "每个块一定仍使用原编号" },
+      { "id": "b", "text": "DFS 的访问顺序" },
+      { "id": "c", "text": "哪些点拥有相同编号所表达的分组关系" },
+      { "id": "d", "text": "每个点的编号" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "编号只是任意标签；算法依赖相等关系和块大小，不能给标签数值附加图论含义。"
+  },
+  {
+    "id": "directed-difference",
+    "prompt": "为什么本篇算法不能直接解释为有向图的强连通分量算法？",
+    "options": [
+      { "id": "a", "text": "有向图不能使用邻接表" },
+      { "id": "b", "text": "有向可达不对称，单向到达不能推出互相到达" },
+      { "id": "c", "text": "强连通分量只含一个点" },
+      { "id": "d", "text": "有向图没有路径" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "无向连通是等价关系；强连通要求两个方向都可达，需要专门算法识别。"
+  },
+  {
+    "id": "total-complexity",
+    "prompt": "一次预处理后回答 q 次连通性查询，总时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "O(q(n+m))" },
+      { "id": "b", "text": "O(nmq)" },
+      { "id": "c", "text": "O(n+m+q)" },
+      { "id": "d", "text": "O(log(n+m))" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "完整遍历花 O(n+m)，之后每次查询 O(1)，因此把重复搜索降为一次预处理加线性查询总量。"
+  }
+]

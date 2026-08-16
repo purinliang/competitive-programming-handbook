@@ -267,7 +267,7 @@
 | 0401 | 点与边 | 待审阅 | [vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
 | 0402 | 图的存储：基础概念 | 待审阅 | [graph-representation.md](graph-theory/graph-representation.md) |
 | 0403 | 树上查询：倍增 LCA | 定稿 | [lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
-| 0404 | 图的遍历：连通块 | 待审阅 | [connected-components.md](graph-theory/connected-components.md) |
+| 0404 | 连通块 | 待审阅 | [connected-components.md](graph-theory/connected-components.md) |
 | 0405 | 有向无环图：拓扑排序 | 待审阅 | [topological-sort.md](graph-theory/topological-sort.md) |
 | 0406 | 图的遍历：多源 BFS | 待审阅 | [multi-source-bfs.md](graph-theory/multi-source-bfs.md) |
 | 0407 | 最短路：Dijkstra | 计划 | `graph-theory/0407-dijkstra.md` |

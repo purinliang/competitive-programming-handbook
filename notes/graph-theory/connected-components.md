@@ -1,6 +1,6 @@
-# 图的遍历：连通块
+# 连通块
 
-> 最近修订：2026-08-13 22:20 +10:00（未审阅）
+> 最近修订：2026-08-16 15:06 +10:00（未审阅）
 
 一张道路图中可能存在互不相通的若干片区域。题目不仅可能询问区域数量，还可能反复询问两座城市能否互相到达、某座城市所在区域有多少座城市。
 
@@ -142,14 +142,14 @@ component_size[component_id[u]]
 邻接表、连通块编号、大小和总数都属于同一次预处理，并由加边、遍历和查询操作共同使用，因此封装成一个对象：
 
 ```cpp
-struct connected_components {
+struct ConnectedComponents {
     int n;
     int component_count;
     vector<vector<int>> g;
     vector<int> component_id;
     vector<int> component_size;
 
-    connected_components(int size) {
+    ConnectedComponents(int size) {
         n = size;
         component_count = 0;
         g.resize(n + 5);
@@ -220,14 +220,14 @@ q 次查询 u v
 #include <bits/stdc++.h>
 using namespace std;
 
-struct connected_components {
+struct ConnectedComponents {
     int n;
     int component_count;
     vector<vector<int>> g;
     vector<int> component_id;
     vector<int> component_size;
 
-    connected_components(int size) {
+    ConnectedComponents(int size) {
         n = size;
         component_count = 0;
         g.resize(n + 5);
@@ -274,11 +274,11 @@ struct connected_components {
     }
 };
 
-int main() {
+void solve() {
     int n, m, q;
     scanf("%d%d%d", &n, &m, &q);
 
-    connected_components components(n);
+    ConnectedComponents components(n);
     for (int i = 1; i <= m; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
@@ -289,10 +289,10 @@ int main() {
 
     printf("%d\n", components.component_count);
     for (int u = 1; u <= n; u++) {
-        printf("%d%c", components.component_id[u], " \n"[u == n]);
+        printf("%d%c", components.component_id[u], u == n ? '\n' : ' ');
     }
     for (int u = 1; u <= n; u++) {
-        printf("%d%c", components.size_of(u), " \n"[u == n]);
+        printf("%d%c", components.size_of(u), u == n ? '\n' : ' ');
     }
 
     for (int i = 1; i <= q; i++) {
@@ -300,6 +300,10 @@ int main() {
         scanf("%d%d", &u, &v);
         printf("%s\n", components.same_component(u, v) ? "Yes" : "No");
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -406,6 +410,4 @@ $$
 
 动态图中的加边连通性适合使用并查集；强连通分量、点双连通分量和边双连通分量具有额外定义与算法，不属于本篇基础目标。
 
-## 下一篇
-
-下一篇 [树：无根树](unrooted-trees.md) 会研究只有一个连通块且不含环的特殊无向图。
+[无根树](unrooted-trees.md) 会研究只有一个连通块且不含环的特殊无向图。
