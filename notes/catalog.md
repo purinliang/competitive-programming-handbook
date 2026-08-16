@@ -218,6 +218,9 @@
 | 0258 | 插入排序 | 待审阅 | [insertion-sort.md](algorithm-basics/insertion-sort.md) |
 | 0259 | 计数排序 | 待审阅 | [counting-sort.md](algorithm-basics/counting-sort.md) |
 | 0260 | 排序方法比较 | 待审阅 | [sorting-comparison.md](algorithm-basics/sorting-comparison.md) |
+| 0261 | 状态空间与隐式图 | 计划 | `algorithm-basics/state-space-and-implicit-graphs.md` |
+| 0262 | 排列枚举 | 计划 | `algorithm-basics/permutation-enumeration.md` |
+| 0263 | 组合枚举 | 计划 | `algorithm-basics/combination-enumeration.md` |
 
 ## 03 数据结构
 
@@ -469,7 +472,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 0701 | 动态规划的状态与转移 | 待审阅 | [dp-state-transition.md](dynamic-programming/dp-state-transition.md) |
-| 0702 | 线性动态规划 | 待审阅 | [linear-dp.md](dynamic-programming/linear-dp.md) |
+| 0702 | 最大子段和 | 待审阅 | [linear-dp.md](dynamic-programming/linear-dp.md) |
 | 0703 | 0-1 背包 | 待审阅 | [zero-one-knapsack.md](dynamic-programming/zero-one-knapsack.md) |
 | 0704 | 最长上升子序列 | 待审阅 | [longest-increasing-subsequence.md](dynamic-programming/longest-increasing-subsequence.md) |
 | 0704e1* | 最长上升子序列：$O(n\log n)$ 优化 | 计划 | `dynamic-programming/lis-n-log-n.md` |
@@ -499,6 +502,8 @@
 | 0728* | 动态 DP | 计划 | `dynamic-programming/dynamic-dp.md` |
 | 0729* | 动态规划优化：单调栈 | 计划 | `dynamic-programming/monotone-stack-optimization.md` |
 | 0730* | 动态规划优化：四边形不等式 | 计划 | `dynamic-programming/quadrangle-inequality-optimization.md` |
+| 0731 | 数字三角形 | 计划 | `dynamic-programming/number-triangle.md` |
+| 0732 | 最长公共子序列 | 计划 | `dynamic-programming/longest-common-subsequence.md` |
 
 ## 08 字符串
 

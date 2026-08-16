@@ -194,7 +194,6 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0210 | 枚举 | 算法基础 | [algorithm-basics/enumeration.md](algorithm-basics/enumeration.md) |
-| 0211 | 子集与位掩码枚举 | 算法基础 | [algorithm-basics/subset-bitmask-enumeration.md](algorithm-basics/subset-bitmask-enumeration.md) |
 | 0222 | 模拟 | 算法基础 | [algorithm-basics/simulation.md](algorithm-basics/simulation.md) |
 
 ### 单元：递归与递推
@@ -309,12 +308,21 @@
 | 0402 | 图的存储：基础概念 | 图论 | [graph-theory/graph-representation.md](graph-theory/graph-representation.md) |
 | 0439 | 图的存储：邻接表（vector 实现） | 图论 | [graph-theory/vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
 
-### 单元：图论：图的遍历
+### 单元：图论：深度优先搜索
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0436 | 图的遍历：深度优先搜索（DFS） | 图论 | [graph-theory/graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
+| 0261 | 状态空间与隐式图 | 算法基础 | `algorithm-basics/state-space-and-implicit-graphs.md` |
+| 0211 | 子集与位掩码枚举 | 算法基础 | [algorithm-basics/subset-bitmask-enumeration.md](algorithm-basics/subset-bitmask-enumeration.md) |
+| 0262 | 排列枚举 | 算法基础 | `algorithm-basics/permutation-enumeration.md` |
+| 0263 | 组合枚举 | 算法基础 | `algorithm-basics/combination-enumeration.md` |
 | 0443 | DFS、回溯与剪枝 | 图论 | [graph-theory/dfs-backtracking-pruning.md](graph-theory/dfs-backtracking-pruning.md) |
+
+### 单元：图论：广度优先搜索
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0437 | 图的遍历：广度优先搜索（BFS） | 图论 | [graph-theory/graph-breadth-first-search.md](graph-theory/graph-breadth-first-search.md) |
 | 0404 | 连通块 | 图论 | [graph-theory/connected-components.md](graph-theory/connected-components.md) |
 
@@ -327,14 +335,15 @@
 | 0434 | 树的遍历：深度优先搜索（DFS） | 图论 | [graph-theory/tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
 | 0435 | 树的遍历：广度优先搜索（BFS） | 图论 | [graph-theory/tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
 
-### 单元：动态规划：状态设计
+### 单元：动态规划：动态规划基础
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0701 | 动态规划的状态与转移 | 动态规划 | [dynamic-programming/dp-state-transition.md](dynamic-programming/dp-state-transition.md) |
-| 0702 | 线性动态规划 | 动态规划 | [dynamic-programming/linear-dp.md](dynamic-programming/linear-dp.md) |
+| 0731 | 数字三角形 | 动态规划 | `dynamic-programming/number-triangle.md` |
+| 0702 | 最大子段和 | 动态规划 | [dynamic-programming/linear-dp.md](dynamic-programming/linear-dp.md) |
 | 0704 | 最长上升子序列 | 动态规划 | [dynamic-programming/longest-increasing-subsequence.md](dynamic-programming/longest-increasing-subsequence.md) |
-| 0717 | 状态机动态规划 | 动态规划 | [dynamic-programming/state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
+| 0732 | 最长公共子序列 | 动态规划 | `dynamic-programming/longest-common-subsequence.md` |
 
 ### 单元：动态规划：背包
 
@@ -344,7 +353,7 @@
 | 0715 | 完全背包 | 动态规划 | [dynamic-programming/complete-knapsack.md](dynamic-programming/complete-knapsack.md) |
 | 0716 | 多重背包 | 动态规划 | [dynamic-programming/multiple-knapsack.md](dynamic-programming/multiple-knapsack.md) |
 
-### 单元：字符串：基础算法
+### 单元：字符串：字符串基础
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -562,6 +571,7 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
+| 0717 | 状态机动态规划 | 动态规划 | [dynamic-programming/state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
 | 0705 | 动态规划：区间 DP | 动态规划 | `dynamic-programming/0705-interval-dp.md` |
 | 0706 | 动态规划：DAG 上的 DP | 动态规划 | `dynamic-programming/0706-dag-dp.md` |
 | 0707 | 动态规划：树形 DP | 动态规划 | `dynamic-programming/0707-tree-dp.md` |
