@@ -1,0 +1,50 @@
+[
+  {
+    "id": "modulus-condition",
+    "prompt": "经典 CRT 对方程组的模数有什么要求？",
+    "options": [
+      { "id": "a", "text": "模数必须全部相等" },
+      { "id": "b", "text": "模数必须两两互质" },
+      { "id": "c", "text": "模数必须都是偶数" },
+      { "id": "d", "text": "模数之和必须是质数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "两两互质保证每个 Mi 在对应 mi 下可逆，并使解模乘积唯一。"
+  },
+  {
+    "id": "partial-product",
+    "prompt": "令 `M=prod(m_i)`，经典 CRT 中 `M_i` 怎样定义？",
+    "options": [
+      { "id": "a", "text": "`M/m_i`" },
+      { "id": "b", "text": "`M+m_i`" },
+      { "id": "c", "text": "`m_i^2`" },
+      { "id": "d", "text": "全部模数的最大公约数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Mi 含有除 mi 外的全部模数，因此对其他条件都同余 0。"
+  },
+  {
+    "id": "selector",
+    "prompt": "若 `t_i` 是 `M_i` 模 `m_i` 的逆元，`E_i=M_i*t_i` 有什么性质？",
+    "options": [
+      { "id": "a", "text": "对所有模数都同余 1" },
+      { "id": "b", "text": "只对 m_i 同余 0" },
+      { "id": "c", "text": "对 m_i 同余 1，对其他模数同余 0" },
+      { "id": "d", "text": "等于全部模数之和" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "Ei 像只打开第 i 个余数条件的开关，乘 ai 后贡献目标余数。"
+  },
+  {
+    "id": "unique-modulus",
+    "prompt": "经典 CRT 的全部解按哪个模数重复？",
+    "options": [
+      { "id": "a", "text": "最小的 m_i" },
+      { "id": "b", "text": "模数之和" },
+      { "id": "c", "text": "任意一个 m_i" },
+      { "id": "d", "text": "`M=prod(m_i)`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "两组满足全部条件的解之差能被每个两两互质模数整除，因此能被乘积整除。"
+  }
+]
