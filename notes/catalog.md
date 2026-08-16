@@ -229,7 +229,7 @@
 | 0308 | 稀疏表（ST 表） | 待审阅 | [sparse-table.md](data-structures/sparse-table.md) |
 | 0309 | 并查集：扩展域 | 计划 | `data-structures/extended-domain-disjoint-set.md` |
 | 0310 | 并查集：带权 | 计划 | `data-structures/weighted-disjoint-set.md` |
-| 0311 | 二叉树：结构与存储 | 定稿 | [binary-tree-structure-and-storage.md](data-structures/binary-tree-structure-and-storage.md) |
+| 0311 | 二叉树的结构与存储 | 待审阅 | [binary-tree-structure-and-storage.md](data-structures/binary-tree-structure-and-storage.md) |
 | 0312* | 可撤销并查集 | 计划 | `data-structures/0312-rollback-disjoint-set.md` |
 | 0313* | 分块 | 计划 | `data-structures/0313-square-root-decomposition.md` |
 | 0314* | 莫队算法 | 计划 | `data-structures/0314-mo-algorithm.md` |

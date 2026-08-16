@@ -6,7 +6,7 @@
 
 随意使用不同长度会导致无法分割。哈夫曼编码（Huffman coding）先把可唯一解码的编码表示成二叉树，再反复合并频率最小的两棵树，得到带权路径长度最小的前缀编码。
 
-本篇需要已经了解 [容器适配器：priority_queue](../cpp/priority-queue.md) 和 [二叉树：结构与存储](../data-structures/binary-tree-structure-and-storage.md)。
+本篇需要已经了解 [容器适配器：priority_queue](../cpp/priority-queue.md) 和 [二叉树的结构与存储](../data-structures/binary-tree-structure-and-storage.md)。
 
 ## 等长编码
 

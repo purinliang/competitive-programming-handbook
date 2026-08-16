@@ -1,0 +1,98 @@
+[
+  {
+    "id": "child-count",
+    "prompt": "二叉树中的每个节点最多有多少个子节点？",
+    "options": [
+      { "id": "a", "text": "2 个" },
+      { "id": "b", "text": "1 个" },
+      { "id": "c", "text": "3 个" },
+      { "id": "d", "text": "没有上限" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "二叉树为每个节点保留左、右两个孩子位置，二者都可以为空。"
+  },
+  {
+    "id": "left-right-order",
+    "prompt": "一个二叉树节点只有一个孩子时，为什么仍要记录它在左边还是右边？",
+    "options": [
+      { "id": "a", "text": "因为右孩子的值必须更大" },
+      { "id": "b", "text": "因为左孩子不能是叶节点" },
+      { "id": "c", "text": "左、右位置本身就是二叉树结构的一部分" },
+      { "id": "d", "text": "因为孩子编号必须连续" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "同一个孩子放在左侧或右侧会形成不同结构，并影响后续遍历顺序。"
+  },
+  {
+    "id": "id-and-value",
+    "prompt": "节点编号与节点值分别承担什么作用？",
+    "options": [
+      { "id": "a", "text": "二者始终必须相等" },
+      { "id": "b", "text": "编号识别节点，值是节点保存的题目数据" },
+      { "id": "c", "text": "编号是数据，值用于寻找左右孩子" },
+      { "id": "d", "text": "二者都只表示深度" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "程序用稳定编号连接结构，同一节点还可以保存与编号完全不同的值。"
+  },
+  {
+    "id": "null-child",
+    "prompt": "孩子数组中的编号 `0` 表示什么？",
+    "options": [
+      { "id": "a", "text": "根节点" },
+      { "id": "b", "text": "值为 0 的真实节点" },
+      { "id": "c", "text": "当前节点自己" },
+      { "id": "d", "text": "对应的孩子位置为空" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "真实节点统一编号为 1..n，保留 0 就能安全表示空节点。"
+  },
+  {
+    "id": "find-root",
+    "prompt": "只给出每个节点左右孩子时，怎样找出根？",
+    "options": [
+      { "id": "a", "text": "寻找唯一没有作为任何节点孩子出现的真实节点" },
+      { "id": "b", "text": "选择值最大的节点" },
+      { "id": "c", "text": "选择编号最大的节点" },
+      { "id": "d", "text": "寻找第一个叶节点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "除根以外，每个节点都恰好有一个父节点，因此会作为孩子出现。"
+  },
+  {
+    "id": "complete-tree",
+    "prompt": "完全二叉树最后一层的节点怎样排列？",
+    "options": [
+      { "id": "a", "text": "只能出现在最右侧" },
+      { "id": "b", "text": "任意位置都可以有空缺" },
+      { "id": "c", "text": "从左到右连续排列" },
+      { "id": "d", "text": "必须没有任何节点" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "除最后一层外全部填满，最后一层从左向右连续，是数组编号连续的原因。"
+  },
+  {
+    "id": "array-relations",
+    "prompt": "1-based 完全二叉树中，位置 `u` 的右孩子位于哪里？",
+    "options": [
+      { "id": "a", "text": "`u / 2`" },
+      { "id": "b", "text": "`2 * u + 1`" },
+      { "id": "c", "text": "`2 * u`" },
+      { "id": "d", "text": "`u + 1`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "左孩子为 2 * u，右孩子为 2 * u + 1，父节点为 u / 2。"
+  },
+  {
+    "id": "sparse-indexing",
+    "prompt": "普通二叉树为什么不总适合直接套用完全二叉树下标？",
+    "options": [
+      { "id": "a", "text": "因为普通二叉树没有节点值" },
+      { "id": "b", "text": "因为普通二叉树不能有右孩子" },
+      { "id": "c", "text": "因为数组不能保存整数" },
+      { "id": "d", "text": "偏斜结构会让下标快速增长并留下大量空位" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "只有右孩子的长链会使用 1、3、7、15 等位置，显式孩子编号更节省空间。"
+  }
+]
