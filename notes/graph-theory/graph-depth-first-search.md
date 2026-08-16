@@ -18,21 +18,21 @@
 
 ## 访问标记
 
-使用 `visited[u]` 记录点 $u$ 是否已经访问：
+使用 `vis[u]` 记录点 $u$ 是否已经访问：
 
 ```cpp
-vector<bool> visited;
+vector<bool> vis;
 ```
 
 第一次进入点 `u` 时立刻标记，再处理它的所有相邻点：
 
 ```cpp
 void dfs(int u) {
-    visited[u] = true;
+    vis[u] = true;
     printf("%d ", u);
 
     for (int v : g[u]) {
-        if (visited[v]) {
+        if (vis[v]) {
             continue;
         }
         dfs(v);
@@ -40,7 +40,7 @@ void dfs(int u) {
 }
 ```
 
-标记必须发生在递归访问其他点之前。一旦 `visited[u]` 变成 `true`，任何路径再次遇到 `u` 都会立即跳过，环就不会造成重复递归。
+标记必须发生在递归访问其他点之前。一旦 `vis[u]` 变成 `true`，任何路径再次遇到 `u` 都会立即跳过，环就不会造成重复递归。
 
 调用一次 `dfs(start)` 会访问从 `start` 能够到达的所有点。在无向图中，这些点组成 `start` 所在的连通块。
 
@@ -58,7 +58,7 @@ void dfs(int u) {
 
 ```cpp
 for (int u = 1; u <= n; u++) {
-    if (!visited[u]) {
+    if (!vis[u]) {
         dfs(u);
     }
 }
@@ -95,14 +95,14 @@ using namespace std;
 int n;
 int m;
 vector<vector<int>> g;
-vector<bool> visited;
+vector<bool> vis;
 
 void dfs(int u) {
-    visited[u] = true;
+    vis[u] = true;
     printf("%d ", u);
 
     for (int v : g[u]) {
-        if (visited[v]) {
+        if (vis[v]) {
             continue;
         }
         dfs(v);
@@ -113,7 +113,7 @@ void solve() {
     scanf("%d%d", &n, &m);
 
     g.resize(n + 5);
-    visited.resize(n + 5);
+    vis.resize(n + 5);
 
     for (int i = 1; i <= m; i++) {
         int u, v;
@@ -124,7 +124,7 @@ void solve() {
 
     int component_count = 0;
     for (int u = 1; u <= n; u++) {
-        if (!visited[u]) {
+        if (!vis[u]) {
             component_count++;
             dfs(u);
         }
@@ -139,7 +139,7 @@ int main() {
 }
 ```
 
-`n`、`m`、`g` 和 `visited` 描述整道题共享的输入与搜索状态，因此放在全局；
+`n`、`m`、`g` 和 `vis` 描述整道题共享的输入与搜索状态，因此放在全局；
 `dfs` 只接收当前点 `u`。这样以后在 DFS 中继续维护父节点、进入时间或其他题目
 信息时，不需要把同一批容器逐层加入参数列表。
 
@@ -179,7 +179,7 @@ DFS 总是按照 `g[u]` 中邻接项的先后顺序选择下一条边。交换�
 ## 需要记住什么
 
 - 一般图中为什么只跳过父节点不能阻止沿环重复访问？
-- `visited[u]` 应该在什么时候设为 `true`？
+- `vis[u]` 应该在什么时候设为 `true`？
 - 一次 `dfs(start)` 在无向图中会访问哪些点？
 - 为什么遍历整张不连通的图还需要外层循环？
 - DFS 树和 DFS 森林分别是什么？

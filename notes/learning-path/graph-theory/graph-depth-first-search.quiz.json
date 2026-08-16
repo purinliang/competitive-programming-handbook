@@ -9,11 +9,11 @@
       { "id": "d", "text": "因为无向图不能使用递归" }
     ],
     "correctOptionId": "b",
-    "explanation": "跳过来边只阻止立即返回；环上的另一条边仍可能通向已访问点，所以一般图需要完整 visited 标记。"
+    "explanation": "跳过来边只阻止立即返回；环上的另一条边仍可能通向已访问点，所以一般图需要完整 `vis` 标记。"
   },
   {
     "id": "mark-time",
-    "prompt": "第一次进入点 u 时，visited[u] 应在什么时候设为 true？",
+    "prompt": "第一次进入点 `u` 时，`vis[u]` 应在什么时候设为 `true`？",
     "options": [
       { "id": "a", "text": "递归访问邻居以前立刻设置" },
       { "id": "b", "text": "所有邻居处理完以后" },
@@ -93,6 +93,6 @@
       { "id": "d", "text": "邻接表使用 vector" }
     ],
     "correctOptionId": "a",
-    "explanation": "搜索树可能退化成一条长链；此时应考虑显式栈实现，而不是改变 visited 规则。"
+    "explanation": "搜索树可能退化成一条长链；此时应考虑显式栈实现，而不是改变 `vis` 规则。"
   }
 ]
