@@ -1,0 +1,74 @@
+[
+  {
+    "id": "equally-likely-outcomes",
+    "prompt": "什么情况下可以直接用有利结果数除以全部结果数？",
+    "options": [
+      { "id": "a", "text": "样本空间只有两个结果时" },
+      { "id": "b", "text": "所有样本点等可能出现时" },
+      { "id": "c", "text": "事件中至少有一个结果时" },
+      { "id": "d", "text": "随机变量只取整数时" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "计数法把每个样本点视为相同的一份概率，因此必须先确认它们等可能。"
+  },
+  {
+    "id": "complement-event",
+    "prompt": "独立抛一枚公平硬币 3 次，至少出现一次正面的概率是多少？",
+    "options": [
+      { "id": "a", "text": "$1/8$" },
+      { "id": "b", "text": "$1/2$" },
+      { "id": "c", "text": "$3/4$" },
+      { "id": "d", "text": "$7/8$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "补事件是三次都为反面，概率为 $(1/2)^3=1/8$，所以答案是 $1-1/8=7/8$。"
+  },
+  {
+    "id": "conditional-sample-space",
+    "prompt": "已知公平骰子的点数大于 3，它为偶数的条件概率是多少？",
+    "options": [
+      { "id": "a", "text": "$2/3$" },
+      { "id": "b", "text": "$1/6$" },
+      { "id": "c", "text": "$1/2$" },
+      { "id": "d", "text": "$5/6$" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "条件把等可能结果缩小为 4、5、6，其中 4 和 6 为偶数。"
+  },
+  {
+    "id": "independent-versus-disjoint",
+    "prompt": "下列关于独立事件与互斥事件的说法，哪一项正确？",
+    "options": [
+      { "id": "a", "text": "互斥就是相互独立" },
+      { "id": "b", "text": "独立事件不能同时发生" },
+      { "id": "c", "text": "独立表示一个事件的发生不改变另一个的概率" },
+      { "id": "d", "text": "任意两个非空事件都相互独立" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "独立描述概率不受影响；互斥则描述两个事件不能同时发生。"
+  },
+  {
+    "id": "die-expectation",
+    "prompt": "公平六面骰子点数的期望是多少？",
+    "options": [
+      { "id": "a", "text": "$3$" },
+      { "id": "b", "text": "$4$" },
+      { "id": "c", "text": "$6$" },
+      { "id": "d", "text": "$7/2$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "六个点数等可能，期望为 $(1+2+3+4+5+6)/6=7/2$。"
+  },
+  {
+    "id": "linearity-without-independence",
+    "prompt": "应用 $E(X+Y)=E(X)+E(Y)$ 时，需要什么额外条件？",
+    "options": [
+      { "id": "a", "text": "X 与 Y 必须相互独立" },
+      { "id": "b", "text": "X 与 Y 必须同分布" },
+      { "id": "c", "text": "不要求独立，只要这些期望有定义" },
+      { "id": "d", "text": "X 与 Y 只能取 0 或 1" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "期望的线性性不依赖随机变量之间的独立性。"
+  }
+]
