@@ -37,19 +37,19 @@
   },
   {
     "id": "depth-update",
-    "prompt": "从节点 `u` 进入其子节点 `v` 前，应怎样计算 `depth[v]`？",
+    "prompt": "从节点 `u` 进入其子节点 `v` 前，应怎样计算 `dep[v]`？",
     "options": [
-      { "id": "a", "text": "`depth[v] = depth[u] + 1`" },
-      { "id": "b", "text": "`depth[v] = depth[u] - 1`" },
-      { "id": "c", "text": "`depth[v] = subtree_size[u]`" },
-      { "id": "d", "text": "`depth[v] = v`" }
+      { "id": "a", "text": "`dep[v] = dep[u] + 1`" },
+      { "id": "b", "text": "`dep[v] = dep[u] - 1`" },
+      { "id": "c", "text": "`dep[v] = siz[u]`" },
+      { "id": "d", "text": "`dep[v] = v`" }
     ],
     "correctOptionId": "a",
     "explanation": "子节点到根的唯一路径比父节点多经过一条边。"
   },
   {
     "id": "subtree-return",
-    "prompt": "为什么要在 `dfs(v, u)` 返回以后再累加 `subtree_size[v]`？",
+    "prompt": "为什么要在 `dfs(v, u)` 返回以后再累加 `siz[v]`？",
     "options": [
       { "id": "a", "text": "返回时 `v` 的整棵子树才已经统计完成" },
       { "id": "b", "text": "递归以前不能访问任何数组" },

@@ -85,16 +85,16 @@ dfs(1, 0);
 
 ## 进入节点时确定层级
 
-父节点参数已经给出了 `parent[u]`：
+父节点参数已经给出了 `par[u]`：
 
 ```cpp
-parent[u] = p;
+par[u] = p;
 ```
 
 根节点的深度为 $0$。从 `u` 进入子节点 `v` 前，可以确定 `v` 比 `u` 深一层：
 
 ```cpp
-depth[v] = depth[u] + 1;
+dep[v] = dep[u] + 1;
 dfs(v, u);
 ```
 
@@ -106,23 +106,23 @@ dfs(v, u);
 每个节点自己的子树至少包含它自己，因此第一次进入 `u` 时令：
 
 ```cpp
-subtree_size[u] = 1;
+siz[u] = 1;
 ```
 
 `dfs(v, u)` 返回时，节点 `v` 的整棵子树已经处理完成，
-`subtree_size[v]` 也已经得到。此时才能把它加入当前节点：
+`siz[v]` 也已经得到。此时才能把它加入当前节点：
 
 ```cpp
 dfs(v, u);
-subtree_size[u] += subtree_size[v];
+siz[u] += siz[v];
 ```
 
 一个节点的子树由它自己和每棵子树互不重叠地组成，所以最终有：
 
 $$
-\mathrm{subtree\_size}(u)
+\mathrm{siz}(u)
 =1+\sum_{v\text{ 是 }u\text{ 的子节点}}
-\mathrm{subtree\_size}(v)
+\mathrm{siz}(v)
 $$
 
 写在递归调用之后的操作要等子树完成才能执行，通常称为返回时或后序位置的操作。
@@ -134,13 +134,13 @@ $$
 
 ```cpp
 vector<vector<int>> g;
-vector<int> parent;
-vector<int> depth;
-vector<int> subtree_size;
+vector<int> par;
+vector<int> dep;
+vector<int> siz;
 
 void dfs(int u, int p) {
-    parent[u] = p;
-    subtree_size[u] = 1;
+    par[u] = p;
+    siz[u] = 1;
     printf("%d ", u);
 
     for (int v : g[u]) {
@@ -148,18 +148,18 @@ void dfs(int u, int p) {
             continue;
         }
 
-        depth[v] = depth[u] + 1;
+        dep[v] = dep[u] + 1;
         dfs(v, u);
-        subtree_size[u] += subtree_size[v];
+        siz[u] += siz[v];
     }
 }
 ```
 
-`g`、`parent`、`depth` 和 `subtree_size` 都描述整道题中的同一棵树，并且会被
+`g`、`par`、`dep` 和 `siz` 都描述整道题中的同一棵树，并且会被
 `solve` 与 DFS 共同维护，因此声明为题目级全局状态。函数参数只保留当前节点 `u`
 和父节点 `p`，不在每一层递归中重复传递同一批容器。
 
-`parent[u]` 和 `depth[v]` 在进入阶段确定；`subtree_size[v]` 必须等递归返回以后
+`par[u]` 和 `dep[v]` 在进入阶段确定；`siz[v]` 必须等递归返回以后
 才能使用。每一行的位置都由信息何时可用决定，而不是需要背诵的固定格式。
 
 ## 完整代码
@@ -173,13 +173,13 @@ using namespace std;
 
 int n;
 vector<vector<int>> g;
-vector<int> parent;
-vector<int> depth;
-vector<int> subtree_size;
+vector<int> par;
+vector<int> dep;
+vector<int> siz;
 
 void dfs(int u, int p) {
-    parent[u] = p;
-    subtree_size[u] = 1;
+    par[u] = p;
+    siz[u] = 1;
     printf("%d ", u);
 
     for (int v : g[u]) {
@@ -187,19 +187,19 @@ void dfs(int u, int p) {
             continue;
         }
 
-        depth[v] = depth[u] + 1;
+        dep[v] = dep[u] + 1;
         dfs(v, u);
-        subtree_size[u] += subtree_size[v];
+        siz[u] += siz[v];
     }
 }
 
 void solve() {
     scanf("%d", &n);
 
-    g.resize(n + 5);
-    parent.resize(n + 5);
-    depth.resize(n + 5);
-    subtree_size.resize(n + 5);
+    g.assign(n + 5, {});
+    par.assign(n + 5, 0);
+    dep.assign(n + 5, 0);
+    siz.assign(n + 5, 0);
 
     for (int i = 1; i < n; i++) {
         int u, v;
@@ -212,7 +212,7 @@ void solve() {
     printf("\n");
 
     for (int u = 1; u <= n; u++) {
-        printf("%d %d %d %d\n", u, parent[u], depth[u], subtree_size[u]);
+        printf("%d %d %d %d\n", u, par[u], dep[u], siz[u]);
     }
 }
 
@@ -250,7 +250,7 @@ int main() {
 ```
 
 后八行依次表示节点编号、父节点、深度和子树大小。根节点的父节点是哨兵 `0`，
-整棵树就是根节点的子树，所以 `subtree_size[1] = 8`。
+整棵树就是根节点的子树，所以 `siz[1] = 8`。
 
 ## 正确性
 
@@ -286,7 +286,7 @@ $2(n-1)$ 个邻接项，因此时间复杂度是 $O(n)$。邻接表和三个结�
 
 ### 递归以前累加子树大小
 
-进入 `v` 以前，`subtree_size[v]` 还没有计算完成。必须等 `dfs(v, u)`
+进入 `v` 以前，`siz[v]` 还没有计算完成。必须等 `dfs(v, u)`
 返回以后再累加。
 
 ### 把 DFS 顺序当成树的固定属性
@@ -304,8 +304,8 @@ $2(n-1)$ 个邻接项，因此时间复杂度是 $O(n)$。邻接表和三个结�
 
 - 为什么无向树的 DFS 不能直接递归到所有相邻节点？
 - 参数 `u` 和 `p` 分别表示什么？根节点为什么传入父节点 `0`？
-- 为什么树中跳过父节点就足够，而一般图还需要 `visited`？
+- 为什么树中跳过父节点就足够，而一般图还需要 `vis`？
 - 哪些信息可以在进入节点时确定，哪些信息必须等待递归返回？
-- 为什么 `subtree_size[u]` 从 $1$ 开始，并在子节点返回后累加？
+- 为什么 `siz[u]` 从 $1$ 开始，并在子节点返回后累加？
 - 邻接表顺序改变时，哪些结果可能改变，哪些性质不会改变？
 - 树上 DFS 的时间与空间复杂度为什么都是 $O(n)$？
