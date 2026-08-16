@@ -1,0 +1,62 @@
+[
+  {
+    "id": "pointwise-product",
+    "prompt": "多项式转换到相同点集的点值表示后，乘法怎样进行？",
+    "options": [
+      { "id": "a", "text": "对应点的函数值直接相乘" },
+      { "id": "b", "text": "仍枚举所有系数对" },
+      { "id": "c", "text": "只相加第一个点" },
+      { "id": "d", "text": "把所有点排序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "乘积多项式在任一点的值等于两个因子在该点函数值的乘积。"
+  },
+  {
+    "id": "root-property",
+    "prompt": "单位根的哪条性质支持 FFT 把规模 n 拆成两个 n/2？",
+    "options": [
+      { "id": "a", "text": "所有单位根都等于 1" },
+      { "id": "b", "text": "`omega_n^(2k) = omega_(n/2)^k`" },
+      { "id": "c", "text": "单位根只能是实数" },
+      { "id": "d", "text": "n 必须是质数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "偶数幂的 n 次单位根正好形成 n/2 次单位根，使偶数项和奇数项子问题复用。"
+  },
+  {
+    "id": "padding-length",
+    "prompt": "长度 p 与 q 的数组做普通卷积，FFT 长度至少要覆盖多少个结果？",
+    "options": [
+      { "id": "a", "text": "max(p,q)" },
+      { "id": "b", "text": "p*q" },
+      { "id": "c", "text": "p+q-1" },
+      { "id": "d", "text": "p-q" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "最高结果下标为 (p-1)+(q-1)，共有 p+q-1 个系数。"
+  },
+  {
+    "id": "inverse-transform",
+    "prompt": "逆 FFT 相比正 FFT 需要哪两项改变？",
+    "options": [
+      { "id": "a", "text": "反转单位根角度，并在最后除以长度" },
+      { "id": "b", "text": "删除全部虚部，并乘以长度" },
+      { "id": "c", "text": "只改变输入顺序" },
+      { "id": "d", "text": "不需要任何变化" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "逆变换使用共轭方向的单位根，变换矩阵的逆还带有 1/n 因子。"
+  },
+  {
+    "id": "precision-risk",
+    "prompt": "为什么不能只凭 double 有约 15 位有效数字就断言任意整数卷积安全？",
+    "options": [
+      { "id": "a", "text": "误差还取决于变换长度、中间量和大量运算的累积" },
+      { "id": "b", "text": "double 完全不能表示整数" },
+      { "id": "c", "text": "FFT 不进行乘法" },
+      { "id": "d", "text": "所有卷积答案都是负数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "中间频域数值和舍入累积共同决定误差，最终位数不是唯一安全标准。"
+  }
+]
