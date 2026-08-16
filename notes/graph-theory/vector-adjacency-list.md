@@ -1,6 +1,6 @@
-# 图的存储：邻接表（vector 实现）
+# 图的存储：邻接表（`vector` 实现）
 
-> 最近修订：2026-08-16 14:06 +10:00（未审阅）
+> 最近修订：2026-08-16 21:27 +10:00（未审阅）
 
 [图的存储：基础概念](graph-representation.md) 已经把邻接表定义为“为每个点分别保存全部出边”。本篇只讨论它在普通图算法中的默认实现：为每个点准备一个 `vector` 保存邻接项。
 
@@ -9,7 +9,14 @@
 令 `g[u]` 表示从点 `u` 出发的全部边；无权邻接项只需保存终点 `v`。如果点从 $1$ 开始编号，就为外层 `vector` 多留五个位置：
 
 ```cpp
-vector<vector<int>> g(n + 5);
+vector<vector<int>> g;
+```
+
+`g` 是整道题共享的图，因此声明为全局变量；读入 `n` 后再用 `assign` 分配并清空
+`n + 5` 个邻接表。这样同一个 `solve()` 以后再次调用时也不会残留旧边：
+
+```cpp
+g.assign(n + 5, {});
 
 g[u].push_back(v);
 ```
@@ -40,7 +47,13 @@ g[v].push_back(u);
 带权邻接项还要保存边权。本书固定使用 `pair<int, int>`，并约定两个位置依次是 `(v,w)`：
 
 ```cpp
-vector<vector<pair<int, int>>> g(n + 5);
+vector<vector<pair<int, int>>> g;
+```
+
+读入 `n` 后初始化，再加入邻接项：
+
+```cpp
+g.assign(n + 5, {});
 
 g[u].push_back({v, w});
 ```
@@ -79,7 +92,11 @@ g[v].push_back({u, w});
 无权图的核心写法是：
 
 ```cpp
-vector<vector<int>> g(n + 5);
+vector<vector<int>> g;
+```
+
+```cpp
+g.assign(n + 5, {});
 
 g[u].push_back(v); // 有向边 u -> v
 
@@ -91,7 +108,11 @@ for (int v : g[u]) {
 带权图的核心写法是：
 
 ```cpp
-vector<vector<pair<int, int>>> g(n + 5);
+vector<vector<pair<int, int>>> g;
+```
+
+```cpp
+g.assign(n + 5, {});
 
 g[u].push_back({v, w}); // 有向边 u -> v，边权为 w
 
@@ -110,11 +131,13 @@ for (auto& [v, w] : g[u]) {
 #include <bits/stdc++.h>
 using namespace std;
 
+int n, m;
+vector<vector<pair<int, int>>> g;
+
 void solve() {
-    int n, m;
     scanf("%d%d", &n, &m);
 
-    vector<vector<pair<int, int>>> g(n + 5);
+    g.assign(n + 5, {});
     for (int i = 1; i <= m; i++) {
         int u, v, w;
         scanf("%d%d%d", &u, &v, &w);
