@@ -1,6 +1,6 @@
 # 高精度整数：负数
 
-> 最近修订：2026-08-17 01:34 +10:00（未审阅）
+> 最近修订：2026-08-17 00:58 +10:00（未审阅）
 
 基础高精度整数只保存非负数，减法也要求左操作数不小于右操作数。若题目需要负数，
 最直接的扩展不是给数字数组硬加一个“符号位”，而是把整数拆成符号与绝对值：
@@ -180,14 +180,41 @@ c.sign = a.sign * b.sign;
 只要有一个操作数为零，绝对值乘法得到零，`normalize()` 会把结果符号统一改成
 `0`。
 
+## 除以低精度整数
+
+除法先对绝对值做竖式，再单独确定商和余数的符号。本篇采用与 C++ 整数除法相同的
+约定：商向零取整，余数与被除数同号。例如：
+
+```text
+-17 / 5 = -3
+-17 % 5 = -2
+17 / -5 = -3
+17 % -5 = 2
+```
+
+无论除数是正数还是负数，绝对值竖式都使用正除数。商的符号由两个操作数的符号
+决定，余数的符号只跟随被除数：
+
+```cpp
+quotient.sign = a.sign * (divisor < 0 ? -1 : 1);
+```
+
+当除数可能占满 64 位整数时，`remainder * 10 + digit` 不能继续假设一定能放进
+64 位整数；`LLONG_MIN` 也不能先在 64 位整数中取绝对值。因此完整代码用
+`__int128` 保存正除数、当前值和非负余数，最终余数仍然严格小于除数的绝对值，
+可以安全返回为 64 位整数。
+
 ## 完整代码
 
-下面沿用一格一位的十进制表示，完整实现带符号整数的加法、减法和乘法。
+下面沿用一格一位的十进制表示，完整实现带符号整数的加法、减法、乘法以及除以
+低精度整数。
 
 ```cpp
 #include <bits/stdc++.h>
 
 using namespace std;
+
+typedef long long ll;
 
 struct bigint {
     int sign;
@@ -344,8 +371,7 @@ bigint multiply(const bigint& a, const bigint& b) {
     for (int i = 1; i <= a.n; i++) {
         int carry = 0;
         for (int j = 1; j <= b.n; j++) {
-            int current = c.d[i + j - 1]
-                + a.d[i] * b.d[j] + carry;
+            int current = c.d[i + j - 1] + a.d[i] * b.d[j] + carry;
             c.d[i + j - 1] = current % 10;
             carry = current / 10;
         }
@@ -355,15 +381,46 @@ bigint multiply(const bigint& a, const bigint& b) {
     return c;
 }
 
+pair<bigint, ll> divide(const bigint& a, ll divisor) {
+    assert(divisor != 0);
+
+    __int128 positive_divisor = divisor;
+    if (positive_divisor < 0) {
+        positive_divisor = -positive_divisor;
+    }
+
+    bigint quotient;
+    quotient.sign = a.sign * (divisor < 0 ? -1 : 1);
+    quotient.n = a.n;
+    quotient.d.assign(quotient.n + 5, 0);
+
+    __int128 remainder = 0;
+    for (int i = a.n; i >= 1; i--) {
+        __int128 current = remainder * 10 + a.d[i];
+        quotient.d[i] = current / positive_divisor;
+        remainder = current % positive_divisor;
+    }
+    quotient.normalize();
+
+    ll signed_remainder = remainder;
+    if (a.sign < 0) {
+        signed_remainder = -signed_remainder;
+    }
+    return {quotient, signed_remainder};
+}
+
 int main() {
     string sa, sb;
-    cin >> sa >> sb;
+    ll divisor;
+    cin >> sa >> sb >> divisor;
 
     bigint a(sa);
     bigint b(sb);
+    auto [quotient, remainder] = divide(a, divisor);
     cout << add(a, b).str() << '\n';
     cout << subtract(a, b).str() << '\n';
     cout << multiply(a, b).str() << '\n';
+    cout << quotient.str() << ' ' << remainder << '\n';
     return 0;
 }
 ```
@@ -371,7 +428,7 @@ int main() {
 输入：
 
 ```text
--123 50
+-123 50 10
 ```
 
 输出：
@@ -380,6 +437,7 @@ int main() {
 -73
 -173
 -6150
+-12 -3
 ```
 
 ## 正确性
@@ -391,7 +449,11 @@ int main() {
 - 绝对值相等时，结果为零。
 
 这些规则与整数加法的定义完全一致。减法通过 `a+(-b)` 化为已经正确的加法；乘法
-先计算绝对值乘积，再使用符号乘法规则，所以三种运算都正确。
+先计算绝对值乘积，再使用符号乘法规则。
+
+低精度除法首先对绝对值执行与基础篇相同的竖式，因此得到唯一的非负绝对值商与
+余数。随后让商采用两个操作数的符号乘积，并让余数采用被除数的符号，恰好得到
+C++ 向零取整的带符号除法语义。
 
 ## 常见错误
 
@@ -420,6 +482,8 @@ int main() {
 4. 同号相加与异号相加分别调用哪种绝对值运算？
 5. 异号相加的结果采用谁的符号？
 6. 怎样把带符号减法化成加法？
+7. 除以低精度整数时，商和余数的符号分别怎样确定？
+8. 为什么实现使用 `__int128` 保存竖式中的当前值？
 
 ## 扩展阅读
 
