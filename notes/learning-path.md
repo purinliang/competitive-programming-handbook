@@ -361,7 +361,7 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0227 | 二叉堆 | 算法基础 | [algorithm-basics/binary-heap.md](algorithm-basics/binary-heap.md) |
-| 0233* | 堆排序 | 算法基础 | `algorithm-basics/0233-heap-sort.md` |
+| 0233* | 堆排序 | 算法基础 | [algorithm-basics/heap-sort.md](algorithm-basics/heap-sort.md) |
 
 ### 单元：数据结构：哈希表
 
@@ -694,7 +694,7 @@
 | 0216* | 随机化算法 | `algorithm-basics/0216-randomized-algorithms.md` |
 | 0217* | 整体二分与并行二分 | `algorithm-basics/0217-parallel-binary-search.md` |
 | 0218* | CDQ 分治 | `algorithm-basics/0218-cdq-divide-and-conquer.md` |
-| 0233* | 堆排序 | `algorithm-basics/0233-heap-sort.md` |
+| 0233* | 堆排序 | [algorithm-basics/heap-sort.md](algorithm-basics/heap-sort.md) |
 | 0234* | 基数排序 | `algorithm-basics/0234-radix-sort.md` |
 | 0235* | 桶排序 | `algorithm-basics/0235-bucket-sort.md` |
 | 0243* | 搜索：迭代加深 | `algorithm-basics/iterative-deepening.md` |

@@ -192,7 +192,7 @@
 | 0231 | 快速排序 | 待审阅 | [quicksort.md](algorithm-basics/quicksort.md) |
 | 0232 | 归并排序 | 待审阅 | [merge-sort.md](algorithm-basics/merge-sort.md) |
 | 0232e1* | 用归并排序统计逆序对 | 计划 | `algorithm-basics/merge-sort-inversion-count.md` |
-| 0233* | 堆排序 | 计划 | `algorithm-basics/0233-heap-sort.md` |
+| 0233* | 堆排序 | 待审阅 | [heap-sort.md](algorithm-basics/heap-sort.md) |
 | 0234* | 基数排序 | 计划 | `algorithm-basics/0234-radix-sort.md` |
 | 0235* | 桶排序 | 计划 | `algorithm-basics/0235-bucket-sort.md` |
 | 0236 | 出栈序列判定 | 待审阅 | [stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
