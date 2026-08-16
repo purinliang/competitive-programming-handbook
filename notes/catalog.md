@@ -112,7 +112,7 @@
 | 0139 | deque | 待审阅 | [deque.md](cpp/deque.md) |
 | 0140 | sort | 待审阅 | [sorting.md](cpp/sorting.md) |
 | 0141 | unique | 待审阅 | [deduplication.md](cpp/deduplication.md) |
-| 0162 | STL 二分查找 | 计划 | `cpp/stl-binary-search.md` |
+| 0162 | STL 二分查找 | 待审阅 | [stl-binary-search.md](cpp/stl-binary-search.md) |
 | 0163 | fill | 待审阅 | [fill.md](cpp/fill.md) |
 | 0142 | stack | 待审阅 | [stack.md](cpp/stack.md) |
 | 0143 | queue | 待审阅 | [queue.md](cpp/queue.md) |

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "stl-binary-precondition",
+    "prompt": "调用 STL 二分接口以前必须确认什么？",
+    "options": [
+      { "id": "a", "text": "范围已按兼容的比较规则排列" },
+      { "id": "b", "text": "vector 容量必须等于 5" },
+      { "id": "c", "text": "目标一定存在" },
+      { "id": "d", "text": "所有元素必须为正数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "有序性让中点比较能排除一侧；标准库不会自动排序。"
+  },
+  {
+    "id": "binary-search-return",
+    "prompt": "`binary_search(first,last,target)` 返回什么？",
+    "options": [
+      { "id": "a", "text": "第一个位置的迭代器" },
+      { "id": "b", "text": "最后一个位置的下标" },
+      { "id": "c", "text": "表示是否存在的 bool" },
+      { "id": "d", "text": "目标出现次数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "它只回答存在性；位置与范围应使用 lower_bound、upper_bound。"
+  },
+  {
+    "id": "stl-lower-bound",
+    "prompt": "默认升序范围中的 `lower_bound` 指向什么？",
+    "options": [
+      { "id": "a", "text": "第一个不小于目标的元素" },
+      { "id": "b", "text": "第一个严格大于目标的元素" },
+      { "id": "c", "text": "最后一个小于目标的元素" },
+      { "id": "d", "text": "数组中点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "这与手写下界的 >= 条件一致。"
+  },
+  {
+    "id": "stl-end-sentinel",
+    "prompt": "所有元素都小于目标时，`lower_bound` 返回什么？",
+    "options": [
+      { "id": "a", "text": "`begin()`" },
+      { "id": "b", "text": "`end()`" },
+      { "id": "c", "text": "空指针" },
+      { "id": "d", "text": "最后一个元素本身" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "右端迭代器表示范围中不存在符合条件的元素，不能被解引用。"
+  },
+  {
+    "id": "equal-range-count",
+    "prompt": "`equal_range` 得到 `lower` 与 `upper` 后，目标次数怎样计算？",
+    "options": [
+      { "id": "a", "text": "`lower - upper`" },
+      { "id": "b", "text": "`upper + lower`" },
+      { "id": "c", "text": "`upper - lower + 1`" },
+      { "id": "d", "text": "`upper - lower`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "相等元素形成迭代器左闭右开范围 [lower,upper)。"
+  },
+  {
+    "id": "one-based-stl-range",
+    "prompt": "1-based 逻辑数组 `a[1..n]` 应把哪个范围传给 STL？",
+    "options": [
+      { "id": "a", "text": "`[begin(),begin()+n)`" },
+      { "id": "b", "text": "`[begin()+1,begin()+n+1)`" },
+      { "id": "c", "text": "`[begin()+1,begin()+n)`" },
+      { "id": "d", "text": "只传 `a[n]`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "STL 右端不包含，因此要传最后一个逻辑元素之后的位置。"
+  },
+  {
+    "id": "comparator-consistency",
+    "prompt": "为什么自定义排序后，二分也要使用兼容比较器？",
+    "options": [
+      { "id": "a", "text": "否则范围对二分采用的顺序可能不是有序的" },
+      { "id": "b", "text": "否则 vector 会自动清空" },
+      { "id": "c", "text": "否则比较器会变成变量" },
+      { "id": "d", "text": "为了把 O(log n) 改成 O(n²)" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "二分排除一侧的证明必须使用建立当前顺序的同一关系。"
+  },
+  {
+    "id": "associative-member-bound",
+    "prompt": "为什么 `set` 查询边界应优先使用成员函数？",
+    "options": [
+      { "id": "a", "text": "set 没有迭代器" },
+      { "id": "b", "text": "通用算法在非随机访问迭代器上的移动可能是线性的" },
+      { "id": "c", "text": "成员函数会返回数组下标" },
+      { "id": "d", "text": "通用算法只能查询字符串" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "容器成员函数能直接利用内部有序结构达到对数时间。"
+  }
+]
