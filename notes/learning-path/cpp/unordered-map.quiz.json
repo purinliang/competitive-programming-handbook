@@ -1,0 +1,146 @@
+[
+  {
+    "id": "key-value-semantics",
+    "prompt": "`unordered_map<Key, Value>` 保存的核心关系是什么？",
+    "options": [
+      { "id": "a", "text": "每个唯一键对应一个可修改的映射值" },
+      { "id": "b", "text": "每个键对应任意多条记录" },
+      { "id": "c", "text": "只保存键，不保存其他信息" },
+      { "id": "d", "text": "按照映射值维持全局有序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "它与 map 保存相同的唯一键到映射值关系，只是不维护键的大小顺序。"
+  },
+  {
+    "id": "map-comparison",
+    "prompt": "`map` 与 `unordered_map` 的主要差别是哪一项？",
+    "options": [
+      { "id": "a", "text": "前者能保存值，后者不能" },
+      { "id": "b", "text": "前者允许重复键，后者不允许" },
+      { "id": "c", "text": "前者按键有序且单键操作 O(log n) 最坏；后者无序且平均 O(1)、最坏 O(n)" },
+      { "id": "d", "text": "二者的顺序和复杂度完全相同" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "是否需要顺序、边界查询和最坏复杂度保证，是两者选择的关键。"
+  },
+  {
+    "id": "missing-subscript",
+    "prompt": "首次执行 `frequency[x]++` 且 x 不存在时，会发生什么？",
+    "options": [
+      { "id": "a", "text": "抛出 out_of_range" },
+      { "id": "b", "text": "先插入 x -> 0，再把映射值增加到 1" },
+      { "id": "c", "text": "什么也不做" },
+      { "id": "d", "text": "把全部已有次数增加 1" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "方括号会自动建立缺失键并值初始化映射值，因此特别适合频次累加。"
+  },
+  {
+    "id": "pure-query",
+    "prompt": "只想查询一个可能不存在的键及其映射值，并且不能插入新键，通常应使用什么？",
+    "options": [
+      { "id": "a", "text": "`frequency[x]`" },
+      { "id": "b", "text": "`frequency.insert({x, 0})`" },
+      { "id": "c", "text": "`frequency.clear()`" },
+      { "id": "d", "text": "一次 `find(x)`，检查后读取 `it->second`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "find 同时完成存在性判断与取值，不产生方括号的自动插入副作用。"
+  },
+  {
+    "id": "modifiable-field",
+    "prompt": "通过 `unordered_map` 迭代器可以直接修改哪个字段？",
+    "options": [
+      { "id": "a", "text": "可以修改 `second`，不能修改决定哈希位置的 `first`" },
+      { "id": "b", "text": "只能修改 `first`" },
+      { "id": "c", "text": "两个字段都可修改" },
+      { "id": "d", "text": "两个字段都不能修改" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "更换键需要删除旧记录再插入；映射值不影响桶位置，可以原地修改。"
+  },
+  {
+    "id": "insert-existing",
+    "prompt": "键已经存在时，`insert({key, value})` 会怎样？",
+    "options": [
+      { "id": "a", "text": "一定覆盖旧值" },
+      { "id": "b", "text": "新增一份重复键" },
+      { "id": "c", "text": "保持旧值，并在返回结果中表明没有新插入" },
+      { "id": "d", "text": "删除原键" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "需要覆盖时使用方括号赋值或 insert_or_assign；普通 insert 只接受新键。"
+  },
+  {
+    "id": "unordered-iteration",
+    "prompt": "若答案要求按键升序输出全部键值对，应怎样处理？",
+    "options": [
+      { "id": "a", "text": "直接范围遍历，unordered_map 默认升序" },
+      { "id": "b", "text": "复制到 vector 后按键排序再输出" },
+      { "id": "c", "text": "调用 lower_bound 反复寻找" },
+      { "id": "d", "text": "只调用 reserve 即可固定升序" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "哈希容器不承诺遍历顺序；需要持续维护有序键时则应直接选择 map。"
+  },
+  {
+    "id": "no-lower-bound",
+    "prompt": "为什么 `unordered_map` 没有 `lower_bound`？",
+    "options": [
+      { "id": "a", "text": "因为映射值不能比较" },
+      { "id": "b", "text": "因为键必须是字符串" },
+      { "id": "c", "text": "因为容器最多保存一个键" },
+      { "id": "d", "text": "它按完整键哈希定位，不维护键的大小顺序" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "最小键、前驱、后继和值域边界都需要有序结构，例如 map。"
+  },
+  {
+    "id": "reserve-elements",
+    "prompt": "`frequency.reserve(expected_size)` 中的参数表示什么？",
+    "options": [
+      { "id": "a", "text": "预计保存的不同键数量" },
+      { "id": "b", "text": "固定桶数" },
+      { "id": "c", "text": "键允许的最大值" },
+      { "id": "d", "text": "每个映射值的字节数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "预留容量可减少重新哈希，但不能消除冲突或提供 O(1) 最坏保证。"
+  },
+  {
+    "id": "rehash-invalidates",
+    "prompt": "插入新键触发重新哈希时，旧迭代器会怎样？",
+    "options": [
+      { "id": "a", "text": "全部继续有效" },
+      { "id": "b", "text": "只有 end() 失效" },
+      { "id": "c", "text": "全部失效，因为记录可能被搬到新桶" },
+      { "id": "d", "text": "自动变成指向同键的新指针" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "不能在未知是否扩容的插入后继续使用此前保存的迭代器，应重新 find。"
+  },
+  {
+    "id": "zero-count-invariant",
+    "prompt": "用 `unordered_map<int, int>` 只保存正出现次数时，次数降到 0 后应怎样？",
+    "options": [
+      { "id": "a", "text": "保留键，让遍历时忽略" },
+      { "id": "b", "text": "删除整条键值记录" },
+      { "id": "c", "text": "把键改成 0" },
+      { "id": "d", "text": "重新哈希整个容器" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "否则 size、遍历和存在性查询仍把零次数键视为存在，破坏频次表不变量。"
+  },
+  {
+    "id": "small-contiguous-keys",
+    "prompt": "键是较小的连续非负整数，需要最坏 O(1) 直接访问时，通常优先选择什么？",
+    "options": [
+      { "id": "a", "text": "map" },
+      { "id": "b", "text": "unordered_map" },
+      { "id": "c", "text": "multimap" },
+      { "id": "d", "text": "直接寻址的 vector" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "键范围小且连续时可直接作为下标，代码更简单、常数更小，也没有哈希最坏退化。"
+  }
+]
