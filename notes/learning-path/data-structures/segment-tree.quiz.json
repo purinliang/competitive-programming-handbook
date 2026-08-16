@@ -1,0 +1,50 @@
+[
+  {
+    "id": "node-meaning",
+    "prompt": "区间和线段树中，`tree[u]` 始终表示什么？",
+    "options": [
+      { "id": "a", "text": "节点 u 对应区间 `[l,r]` 的元素个数" },
+      { "id": "b", "text": "节点 u 对应区间 `[l,r]` 的当前区间和" },
+      { "id": "c", "text": "数组前 u 个元素的和" },
+      { "id": "d", "text": "节点 u 的深度" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "节点信息始终概括它负责的完整区间，父节点再由两个儿子合并得到。"
+  },
+  {
+    "id": "query-cover",
+    "prompt": "区间查询什么时候可以直接返回 `tree[u]`？",
+    "options": [
+      { "id": "a", "text": "当前节点区间被查询区间完全覆盖时" },
+      { "id": "b", "text": "查询区间只碰到当前区间一个端点时" },
+      { "id": "c", "text": "当前节点不是叶节点时" },
+      { "id": "d", "text": "每次进入递归以后都可以" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "完全覆盖时节点已经保存整段答案；部分覆盖才需要继续拆到儿子。"
+  },
+  {
+    "id": "lazy-meaning",
+    "prompt": "带懒标记时，节点 u 尚未下传标记意味着什么？",
+    "options": [
+      { "id": "a", "text": "tree[u] 仍是旧答案，儿子已经更新" },
+      { "id": "b", "text": "当前整棵线段树都不能查询" },
+      { "id": "c", "text": "tree[u] 已反映修改，但儿子可能尚未反映" },
+      { "id": "d", "text": "该节点区间没有发生任何修改" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "懒标记延迟的是向儿子传播，当前节点自己的区间答案必须立即正确。"
+  },
+  {
+    "id": "push-before-child",
+    "prompt": "为什么访问儿子以前要先执行 `push`？",
+    "options": [
+      { "id": "a", "text": "为了重新分配 4n 空间" },
+      { "id": "b", "text": "为了把查询区间改成前缀" },
+      { "id": "c", "text": "为了删除当前节点" },
+      { "id": "d", "text": "儿子的旧信息可能尚未包含祖先延迟的修改" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "继续向下读取或修改前，必须先保证儿子状态与当前节点代表的真实值一致。"
+  }
+]
