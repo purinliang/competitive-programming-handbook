@@ -1,0 +1,62 @@
+[
+  {
+    "id": "naive-transition",
+    "prompt": "将前 `i` 个数分成 `g` 段时，朴素转移为什么要枚举分割点 `j`？",
+    "options": [
+      { "id": "a", "text": "`j` 决定前 `g-1` 段的结束位置和最后一段 `[j+1,i]`" },
+      { "id": "b", "text": "`j` 决定数组的排序方式" },
+      { "id": "c", "text": "`j` 只用来计算数组长度" },
+      { "id": "d", "text": "`j` 必须等于 `i`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "分割点把已处理前缀分为前 g-1 段和新的最后一段，因此枚举 j 就枚举了最后一次决策。"
+  },
+  {
+    "id": "merge-same-maximum",
+    "prompt": "一组分割点的最后一段最大值都是 `m` 时，这组需要保留什么？",
+    "options": [
+      { "id": "a", "text": "所有分割点的完整列表" },
+      { "id": "b", "text": "这组中最小的 `previous[j]`" },
+      { "id": "c", "text": "这组中最大的 `previous[j]`" },
+      { "id": "d", "text": "分割点下标的总和" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "共同的区间代价 m 可以提出最小值，这组只需要最小前缀 DP 代价。"
+  },
+  {
+    "id": "pop-condition",
+    "prompt": "处理新元素 `a[i]` 时，为什么可以弹出 `maximum <= a[i]` 的栈顶组？",
+    "options": [
+      { "id": "a", "text": "这些组已经不存在分割点" },
+      { "id": "b", "text": "它们的最大值会变成零" },
+      { "id": "c", "text": "加入 `a[i]` 后，它们的新区间最大值都变成 `a[i]`，可以合并" },
+      { "id": "d", "text": "单调栈必须每次清空" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "新区间最大值是 max(old_maximum,a[i])；对所有不超过 a[i] 的组，结果都是 a[i]。"
+  },
+  {
+    "id": "node-best",
+    "prompt": "栈节点中的 `best` 表示什么？",
+    "options": [
+      { "id": "a", "text": "当前组中的最大下标" },
+      { "id": "b", "text": "当前数组的最大元素" },
+      { "id": "c", "text": "当前组中的分割点数量" },
+      { "id": "d", "text": "从栈底到该节点的所有候选组中，最小的转移值" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "best 是栈上的前缀最小值；只从栈顶弹出时，剩余栈顶的 best 仍然有效。"
+  },
+  {
+    "id": "linear-layer",
+    "prompt": "为什么固定段数的一层 DP 只需要 `O(n)` 时间？",
+    "options": [
+      { "id": "a", "text": "每个候选组入栈至多一次、出栈至多一次" },
+      { "id": "b", "text": "因为没有任何 `while` 循环" },
+      { "id": "c", "text": "因为 `k` 必须等于 1" },
+      { "id": "d", "text": "因为数组必须已排序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "用总操作次数而不是循环嵌套形式分析，所有弹栈次数合计受入栈次数限制。"
+  }
+]
