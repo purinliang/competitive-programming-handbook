@@ -1,0 +1,86 @@
+[
+  {
+    "id": "combination-definition",
+    "prompt": "组合数 $C(n,k)$ 统计哪一种选择？",
+    "options": [
+      { "id": "a", "text": "从 n 个不同元素中选 k 个，不重复并且不区分顺序" },
+      { "id": "b", "text": "从 n 个元素中依次选 k 个并区分顺序" },
+      { "id": "c", "text": "允许每个元素无限重复" },
+      { "id": "d", "text": "只统计全排列" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "组合只关心最终选中了哪些元素，同一集合的不同排列不重复计数。"
+  },
+  {
+    "id": "combination-factorial",
+    "prompt": "$C(n,k)$ 的阶乘公式是什么？",
+    "options": [
+      { "id": "a", "text": "$n!/(n-k)!$" },
+      { "id": "b", "text": "$n!/(k!(n-k)!)$" },
+      { "id": "c", "text": "$k!/n!$" },
+      { "id": "d", "text": "$n!k!$" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "排列数还把选中的 k 个元素按 k! 种顺序重复计算，所以需要再除以 k!。"
+  },
+  {
+    "id": "combination-symmetry",
+    "prompt": "为什么 $C(n,k)=C(n,n-k)$？",
+    "options": [
+      { "id": "a", "text": "因为 k 永远等于 n-k" },
+      { "id": "b", "text": "因为所有组合数都相等" },
+      { "id": "c", "text": "选择 k 个元素与决定剩下哪 n-k 个不选一一对应" },
+      { "id": "d", "text": "因为阶乘不能做除法" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每个被选集合拥有唯一补集，反过来也一样。"
+  },
+  {
+    "id": "combination-recurrence",
+    "prompt": "按是否选择一个固定元素分类，会得到哪个递推？",
+    "options": [
+      { "id": "a", "text": "$C(n,k)=C(n,k-1)+C(n,k+1)$" },
+      { "id": "b", "text": "$C(n,k)=nC(n-1,k)$" },
+      { "id": "c", "text": "$C(n,k)=C(n-1,k-1)C(n-1,k)$" },
+      { "id": "d", "text": "$C(n,k)=C(n-1,k)+C(n-1,k-1)$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "不选择固定元素时仍选 k 个；选择它时还需选 k-1 个，两类互斥相加。"
+  },
+  {
+    "id": "combination-boundary",
+    "prompt": "组合数边界 `C(n,0)`、`C(n,n)` 与 `C(n,k)` 在 `k>n` 时分别是多少？",
+    "options": [
+      { "id": "a", "text": "1、1、0" },
+      { "id": "b", "text": "0、0、1" },
+      { "id": "c", "text": "n、n、k" },
+      { "id": "d", "text": "都等于 n!" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "空集合和全集各只有一种；选择数量超过元素数量时没有方案。"
+  },
+  {
+    "id": "combination-reverse-update",
+    "prompt": "一维 Pascal 递推为什么必须让 `chosen` 倒序更新？",
+    "options": [
+      { "id": "a", "text": "为了让数组变成降序" },
+      { "id": "b", "text": "保证读取的 combination[chosen-1] 仍是上一阶段旧值" },
+      { "id": "c", "text": "因为正序循环不能编译" },
+      { "id": "d", "text": "为了删除所有边界" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "正序会读取本轮刚更新的状态，相当于同一个新元素可以被重复选择。"
+  },
+  {
+    "id": "combination-modulo",
+    "prompt": "Pascal 递推计算模组合数时，对模数有什么特殊要求？",
+    "options": [
+      { "id": "a", "text": "必须是偶数" },
+      { "id": "b", "text": "必须大于 n!" },
+      { "id": "c", "text": "必须是质数" },
+      { "id": "d", "text": "只需是正模数；递推只使用加法，不需要模逆元" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "质数条件属于某些逆元方法，不属于只做加法的 Pascal 递推。"
+  }
+]
