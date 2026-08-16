@@ -1,6 +1,6 @@
 # 枚举
 
-> 最近修订：2026-08-16 16:20 +10:00（未审阅）
+> 最近修订：2026-08-17 09:49 +10:00（未审阅）
 
 许多题目的答案来自一个有限的候选集合。只要候选数量能够承受，最可靠的办法就是按照明确顺序生成每个候选，检查它是否满足条件，再更新答案。这种方法称为枚举。
 
@@ -8,7 +8,8 @@
 
 ## 目标和下标对
 
-给定一个长度为 $n$ 的无序整数数组 `a[1..n]` 和目标 `target`，统计有多少对下标 `(i, j)` 满足：
+给定一个长度为 $n$ 的无序整数数组 `a[1..n]` 和目标 `target`，其中
+$1\le n\le5000$。统计有多少对下标 `(i, j)` 满足：
 
 $$
 1\le i<j\le n
@@ -112,10 +113,16 @@ $$
 
 它可能超出 32 位整数范围。
 
-完整计数函数是：
+数组、长度和目标值都是这道题的共享状态，先使用已经学过的内置数组保存：
 
 ```cpp
-ll count_pair_sum(const vector<int>& a, int n, ll target) {
+const int MAXN = 5005;
+
+int n;
+ll target;
+int a[MAXN];
+
+ll count_pair_sum() {
     ll answer = 0;
 
     for (int i = 1; i <= n; i++) {
@@ -215,7 +222,8 @@ $O(n^2)$ 可能正是题目预期；若 $n$ 达到 $2\times10^5$，约 $2\times1
 
 ## 完整代码
 
-下面的程序读入一个无序数组和 64 位目标和，输出满足条件的下标对数量。输入保证数组元素可以使用 32 位整数保存。
+下面的程序读入一个无序数组和 64 位目标和，输出满足条件的下标对数量。
+输入保证 $1\le n\le5000$，数组元素可以使用 32 位整数保存。
 
 ```cpp
 #include <bits/stdc++.h>
@@ -223,7 +231,13 @@ using namespace std;
 
 typedef long long ll;
 
-ll count_pair_sum(const vector<int>& a, int n, ll target) {
+const int MAXN = 5005;
+
+int n;
+ll target;
+int a[MAXN];
+
+ll count_pair_sum() {
     ll answer = 0;
 
     for (int i = 1; i <= n; i++) {
@@ -239,16 +253,13 @@ ll count_pair_sum(const vector<int>& a, int n, ll target) {
 }
 
 void solve() {
-    int n;
-    ll target;
     cin >> n >> target;
 
-    vector<int> a(n + 5);
     for (int i = 1; i <= n; i++) {
         cin >> a[i];
     }
 
-    cout << count_pair_sum(a, n, target) << '\n';
+    cout << count_pair_sum() << '\n';
 }
 
 int main() {
