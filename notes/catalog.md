@@ -795,7 +795,7 @@
 | 060302 | 模快速幂 | 待审阅 | [modular-exponentiation.md](math/modular-exponentiation.md) |
 | 070304 | 费马小定理 | 待审阅 | [fermat-little-theorem.md](math/fermat-little-theorem.md) |
 | 080301 | 欧拉定理 | 待审阅 | [euler-theorem.md](math/euler-theorem.md) |
-| 080302 | 扩展欧拉定理 | 计划 | `math/extended-euler-theorem.md` |
+| 080302 | 扩展欧拉定理 | 待审阅 | [math/extended-euler-theorem.md](math/extended-euler-theorem.md) |
 | 070303 | 线性同余方程 | 待审阅 | [linear-congruences.md](math/linear-congruences.md) |
 | 070305 | 模逆元 | 待审阅 | [modular-inverse.md](math/modular-inverse.md) |
 | *070305e1 | 模逆元：线性预处理 | 计划 | `math/linear-modular-inverses.md` |

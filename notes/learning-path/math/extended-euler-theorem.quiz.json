@@ -1,0 +1,62 @@
+[
+  {
+    "id": "direct-reduction-failure",
+    "prompt": "当 `gcd(a,m) != 1` 时，为什么不能总把指数直接替换成 `b % phi(m)`？",
+    "options": [
+      { "id": "a", "text": "因为 phi(m) 永远等于零" },
+      { "id": "b", "text": "非互质幂次可能先经历质因数积累阶段，缩成小指数会改变结果" },
+      { "id": "c", "text": "因为快速幂不能处理余数" },
+      { "id": "d", "text": "因为模运算不允许指数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "非互质部分不是从指数 0 开始纯周期；过度缩小会丢失已经进入稳定阶段的信息。"
+  },
+  {
+    "id": "large-formula",
+    "prompt": "当巨大指数 `b >= phi(m)` 时，扩展欧拉定理使用哪个缩小后的指数？",
+    "options": [
+      { "id": "a", "text": "`b % phi(m) + phi(m)`" },
+      { "id": "b", "text": "恒为 0" },
+      { "id": "c", "text": "`b / phi(m)`" },
+      { "id": "d", "text": "`phi(m) - b`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "余数保留周期位置，加回 phi(m) 保证指数仍处于足够大的阶段。"
+  },
+  {
+    "id": "capped-value",
+    "prompt": "读取指数字符串时维护 `capped = min(period, capped*10+digit)` 的目的是什么？",
+    "options": [
+      { "id": "a", "text": "计算指数有多少个不同数字" },
+      { "id": "b", "text": "把十进制转换成二进制" },
+      { "id": "c", "text": "判断原指数是否至少达到 period，同时避免保存完整大整数" },
+      { "id": "d", "text": "计算模数的质因数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "capped 只保留大小是否跨过阈值的信息，达到 period 后无需继续增长。"
+  },
+  {
+    "id": "small-exponent",
+    "prompt": "若 `b < phi(m)`，正确处理是什么？",
+    "options": [
+      { "id": "a", "text": "仍然强制加上 phi(m)" },
+      { "id": "b", "text": "把指数改成零" },
+      { "id": "c", "text": "把模数改成质数" },
+      { "id": "d", "text": "保留原指数 b" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "非互质情形的小指数还未必进入稳定阶段，不能擅自增加周期。"
+  },
+  {
+    "id": "simpler-case",
+    "prompt": "下面哪种情况通常不需要扩展欧拉定理？",
+    "options": [
+      { "id": "a", "text": "指数能直接存入 64 位整数，可以直接快速幂" },
+      { "id": "b", "text": "指数有几十万位且底数与模数不互质" },
+      { "id": "c", "text": "必须判断巨大指数是否超过 phi(m)" },
+      { "id": "d", "text": "模数需要先计算欧拉函数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "指数本来就可直接处理时，普通快速幂更短、更直接。"
+  }
+]
