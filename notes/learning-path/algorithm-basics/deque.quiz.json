@@ -1,0 +1,194 @@
+[
+  {
+    "id": "endpoint-operations",
+    "prompt": "双端队列相对普通队列增加的核心能力是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "自动按数值排序"
+      },
+      {
+        "id": "b",
+        "text": "随机删除任意中间元素"
+      },
+      {
+        "id": "c",
+        "text": "能够在队首和队尾分别加入与删除"
+      },
+      {
+        "id": "d",
+        "text": "所有元素同时出队"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "double-ended queue 的本质是开放线性序列的两个端点。"
+  },
+  {
+    "id": "stack-queue-restrictions",
+    "prompt": "怎样用双端队列模拟普通先进先出队列？",
+    "options": [
+      {
+        "id": "a",
+        "text": "固定从队尾加入、从队首删除"
+      },
+      {
+        "id": "b",
+        "text": "始终从同一端加入和删除"
+      },
+      {
+        "id": "c",
+        "text": "每次删除数值最大的元素"
+      },
+      {
+        "id": "d",
+        "text": "只读取中间元素"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "限制为 push_back 与 pop_front，就保持普通队列的到达顺序。"
+  },
+  {
+    "id": "next-index",
+    "prompt": "本篇循环数组实现中的 `next_index` 指向哪里？",
+    "options": [
+      {
+        "id": "a",
+        "text": "当前队首"
+      },
+      {
+        "id": "b",
+        "text": "当前队尾"
+      },
+      {
+        "id": "c",
+        "text": "数组中固定的第一个位置"
+      },
+      {
+        "id": "d",
+        "text": "下一个从队尾加入时要写入的位置"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "它位于逻辑队尾之后，所以队尾本身是它的前一个循环位置。"
+  },
+  {
+    "id": "empty-full-count",
+    "prompt": "为什么循环双端队列额外保存 `count`？",
+    "options": [
+      {
+        "id": "a",
+        "text": "为了记录元素之和"
+      },
+      {
+        "id": "b",
+        "text": "为了区分下标重合时的空状态与满状态"
+      },
+      {
+        "id": "c",
+        "text": "为了让下标从 0 开始"
+      },
+      {
+        "id": "d",
+        "text": "为了自动扩大固定容量"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "空和绕满一圈都可能让 head_index 等于 next_index。"
+  },
+  {
+    "id": "push-front-order",
+    "prompt": "循环数组执行 `push_front(value)` 时，正确顺序是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "先删除队尾，再写入 value"
+      },
+      {
+        "id": "b",
+        "text": "先写入原 head_index，再向后移动"
+      },
+      {
+        "id": "c",
+        "text": "先把 head_index 向前移动，再写入 value"
+      },
+      {
+        "id": "d",
+        "text": "只增加 count，不写数组"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "新元素位于旧队首以前，因此先取得前一个循环位置。"
+  },
+  {
+    "id": "back-position",
+    "prompt": "非空时为什么用 `previous_position(next_index)` 读取队尾？",
+    "options": [
+      {
+        "id": "a",
+        "text": "next_index 指向队尾之后的下一个写入位置"
+      },
+      {
+        "id": "b",
+        "text": "队尾永远固定在数组末端"
+      },
+      {
+        "id": "c",
+        "text": "previous_position 会自动排序"
+      },
+      {
+        "id": "d",
+        "text": "队尾与队首必须相同"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "回退一个循环位置，才能从空写入位回到最后一个有效元素。"
+  },
+  {
+    "id": "operation-complexity",
+    "prompt": "固定容量循环数组的六个端点操作复杂度是多少？",
+    "options": [
+      {
+        "id": "a",
+        "text": "都是 O(n)"
+      },
+      {
+        "id": "b",
+        "text": "只有队首操作是 O(1)"
+      },
+      {
+        "id": "c",
+        "text": "只有队尾操作是 O(1)"
+      },
+      {
+        "id": "d",
+        "text": "都是 O(1)"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每次只修改常数个下标、计数和值，不移动已有序列。"
+  },
+  {
+    "id": "not-priority",
+    "prompt": "哪项不是双端队列本身保证的性质？",
+    "options": [
+      {
+        "id": "a",
+        "text": "能够读取队首和队尾"
+      },
+      {
+        "id": "b",
+        "text": "队首始终是数值最小的元素"
+      },
+      {
+        "id": "c",
+        "text": "能够从两端删除"
+      },
+      {
+        "id": "d",
+        "text": "元素保持由操作决定的逻辑顺序"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "双端队列只限制可操作端点，不按数值自动维护优先级。"
+  }
+]
