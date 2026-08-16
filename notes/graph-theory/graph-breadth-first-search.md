@@ -126,7 +126,7 @@ void solve() {
     int s;
     scanf("%d%d%d", &n, &m, &s);
 
-    g.resize(n + 5);
+    g.assign(n + 5, {});
     dist.assign(n + 5, -1);
 
     for (int i = 1; i <= m; i++) {
