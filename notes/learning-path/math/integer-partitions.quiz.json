@@ -1,0 +1,62 @@
+[
+  {
+    "id": "order-ignored",
+    "prompt": "整数划分中，`1+3` 与 `3+1` 是几种方案？",
+    "options": [
+      { "id": "a", "text": "一种，因为不区分加数顺序" },
+      { "id": "b", "text": "两种，因为书写顺序不同" },
+      { "id": "c", "text": "零种" },
+      { "id": "d", "text": "四种" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "整数划分只关心各个正整数出现多少次，不把排列顺序当作新方案。"
+  },
+  {
+    "id": "two-dimensional-transition",
+    "prompt": "`dp[i][s]` 只使用 1..i 划分 s 时，正确转移是什么？",
+    "options": [
+      { "id": "a", "text": "`dp[i-1][s-1]`" },
+      { "id": "b", "text": "`dp[i-1][s] + dp[i][s-i]`" },
+      { "id": "c", "text": "`dp[i][s] * i`" },
+      { "id": "d", "text": "`dp[i+1][s+i]`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "方案分为不使用 i 与至少使用一个 i；后一类拿出一个 i 后仍可继续使用 i。"
+  },
+  {
+    "id": "loop-direction",
+    "prompt": "一维实现中，固定加数 part 后为什么让 sum 从小到大？",
+    "options": [
+      { "id": "a", "text": "为了让同一个 part 可以使用多次" },
+      { "id": "b", "text": "为了禁止使用 part" },
+      { "id": "c", "text": "为了把所有答案清零" },
+      { "id": "d", "text": "因为数组只能正向访问" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "当前轮更新后的 dp[sum-part] 能继续转移，相当于再次选择当前加数。"
+  },
+  {
+    "id": "empty-partition",
+    "prompt": "`dp[0] = 1` 的组合意义是什么？",
+    "options": [
+      { "id": "a", "text": "0 有一个正整数加数" },
+      { "id": "b", "text": "模数等于 1" },
+      { "id": "c", "text": "一个加数都不选择的空划分是一种方案" },
+      { "id": "d", "text": "所有 n 的答案都为 1" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "空划分是加入第一个加数的起点，也是标准约定 p(0)=1。"
+  },
+  {
+    "id": "distinct-parts",
+    "prompt": "若每个加数最多使用一次，一维内层循环应怎样改变？",
+    "options": [
+      { "id": "a", "text": "从 n 向 part 递减" },
+      { "id": "b", "text": "仍从 part 向 n 递增" },
+      { "id": "c", "text": "只访问 dp[0]" },
+      { "id": "d", "text": "删除外层循环" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "倒序更新避免本轮刚加入的 part 被再次使用，对应 0/1 背包。"
+  }
+]
