@@ -1,6 +1,6 @@
 # 计数排序
 
-> 最近修订：2026-08-16 10:50 +10:00（未审阅）
+> 最近修订：2026-08-16 18:02 +10:00（未审阅）
 
 前面的排序通过比较两个元素决定先后。当元素都是整数，并且可能取到的整数范围不
 大时，还可以换一种思路：不再记录每个元素应该与谁交换，只统计每个值出现了多少
@@ -162,7 +162,9 @@ $$
 
 ## 完整代码
 
-下面的程序支持负整数。它假定输入值域足够小，可以分配 `range + 5` 个计数位置：
+下面的程序支持负整数。`n` 和 `a` 是整道题共享的输入状态，放在全局；`count`
+只在一次计数排序过程中存在，仍然保留为函数内部的局部状态。程序假定输入值域
+足够小，可以分配 `range + 5` 个计数位置：
 
 ```cpp
 #include <bits/stdc++.h>
@@ -170,7 +172,10 @@ using namespace std;
 
 typedef long long ll;
 
-void counting_sort(vector<int>& a, int n) {
+int n;
+vector<int> a;
+
+void counting_sort() {
     if (n <= 1) {
         return;
     }
@@ -204,23 +209,22 @@ void counting_sort(vector<int>& a, int n) {
 }
 
 void solve() {
-    int n;
-    cin >> n;
+    scanf("%d", &n);
 
-    vector<int> a(n + 5);
+    a.assign(n + 5, 0);
     for (int i = 1; i <= n; i++) {
-        cin >> a[i];
+        scanf("%d", &a[i]);
     }
 
-    counting_sort(a, n);
+    counting_sort();
 
     for (int i = 1; i <= n; i++) {
         if (i > 1) {
-            cout << ' ';
+            printf(" ");
         }
-        cout << a[i];
+        printf("%d", a[i]);
     }
-    cout << '\n';
+    printf("\n");
 }
 
 int main() {
