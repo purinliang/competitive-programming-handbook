@@ -401,3 +401,6 @@ int main() {
 
 [压位高精度](packed-big-integer.md) 会把若干十进制数字合并成一个数字块，严格
 推导安全 `BASE`，并给出更高效的完整模板。
+
+[高精度整数：快速乘法](big-integer-fast-multiplication.md) 会把大整数乘法转成
+多项式卷积，并使用 NTT 把复杂度降到 $O(n\log n)$ 量级。

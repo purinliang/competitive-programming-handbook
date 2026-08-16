@@ -410,6 +410,9 @@ Karatsuba、Toom 或 FFT 等更快乘法，而不是无限扩大 `BASE`。
 [高精度整数：除以高精度整数](big-integer-division-remainder.md) 会说明十进制逐位
 试商，并进一步解释压位以后为什么需要二分试商或最高块估商。
 
+[高精度整数：快速乘法](big-integer-fast-multiplication.md) 会解释卷积为什么不能
+直接沿用九位块，并给出带有严格模数上界的单模数 NTT 模板。
+
 [OI Wiki：高精度计算](https://oi-wiki.org/math/bignum/) 对比了逐位高精度、压位
 高精度和更快乘法；[GMP 乘法算法](https://gmplib.org/manual/Multiplication-Algorithms)
 展示了成熟大整数库如何按规模在普通乘法、Karatsuba、Toom 与 FFT 之间切换。
