@@ -1,0 +1,50 @@
+[
+  {
+    "id": "edge-condition",
+    "prompt": "欧拉路径要求什么对象恰好使用一次？",
+    "options": [
+      { "id": "a", "text": "每个点" },
+      { "id": "b", "text": "每条边" },
+      { "id": "c", "text": "每种边权" },
+      { "id": "d", "text": "每个连通分量" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "点允许重复经过，限制的是每条原始边恰好使用一次。"
+  },
+  {
+    "id": "undirected-degrees",
+    "prompt": "连通的无向图存在欧拉回路时，所有非孤立点的度数必须怎样？",
+    "options": [
+      { "id": "a", "text": "全部是偶数" },
+      { "id": "b", "text": "全部是奇数" },
+      { "id": "c", "text": "全部等于 2" },
+      { "id": "d", "text": "互不相同" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "回路每次进入一个点都要由另一条边离开，使用边在该点成对出现。"
+  },
+  {
+    "id": "paired-marking",
+    "prompt": "无向边用两条反向记录保存时，使用其中一条后为什么要同时标记 `i^1`？",
+    "options": [
+      { "id": "a", "text": "两条记录代表同一条原始无向边，只能使用一次" },
+      { "id": "b", "text": "为了把边权翻倍" },
+      { "id": "c", "text": "为了删除两个端点" },
+      { "id": "d", "text": "因为有向边必须成对使用" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "存储有两个方向，欧拉限制却针对一条原始边。"
+  },
+  {
+    "id": "postorder-output",
+    "prompt": "Hierholzer 算法为什么在当前点无边可走时才把它加入答案？",
+    "options": [
+      { "id": "a", "text": "为了得到点的 BFS 顺序" },
+      { "id": "b", "text": "为了只输出奇度点" },
+      { "id": "c", "text": "为了按字典序排序" },
+      { "id": "d", "text": "走尽局部边后回退拼接回路，最终再反转得到正确顺序" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "提前输出可能被后续未走完的分支打断；后序加入才能正确拼接。"
+  }
+]
