@@ -1,0 +1,98 @@
+[
+  {
+    "id": "merge-next-element",
+    "prompt": "合并两个有序序列时，下一个最小值为什么只需比较两个当前首元素？",
+    "options": [
+      { "id": "a", "text": "两个首元素一定相等" },
+      { "id": "b", "text": "每边的首元素分别是该边剩余部分的最小值" },
+      { "id": "c", "text": "后面的元素已经被删除" },
+      { "id": "d", "text": "因为只允许进行一次比较" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "整体剩余最小值只能是两个局部最小值中更小的那个。"
+  },
+  {
+    "id": "merge-three-positions",
+    "prompt": "合并数组时，`i`、`j`、`position` 分别表示什么？",
+    "options": [
+      { "id": "a", "text": "左右剩余首元素与临时数组下一写入位置" },
+      { "id": "b", "text": "三个随机基准值" },
+      { "id": "c", "text": "最小值、最大值与数组长度" },
+      { "id": "d", "text": "三个递归深度" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两个读取指针分别前进，position 连续保存已经合并的结果。"
+  },
+  {
+    "id": "merge-remaining-side",
+    "prompt": "主合并循环结束后，为什么可以直接复制另一边的剩余元素？",
+    "options": [
+      { "id": "a", "text": "剩余元素全都相等" },
+      { "id": "b", "text": "另一边一定为空" },
+      { "id": "c", "text": "剩余部分本来有序且不小于已写入结果" },
+      { "id": "d", "text": "复制会自动调用 sort" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "只有一边可能还有元素，它原有的有序关系可以直接保留。"
+  },
+  {
+    "id": "merge-temporary-array",
+    "prompt": "数组归并为什么先写临时数组？",
+    "options": [
+      { "id": "a", "text": "为了把下标改成 0-based" },
+      { "id": "b", "text": "避免覆盖左右半区中尚未读取的元素" },
+      { "id": "c", "text": "因为原数组不能修改" },
+      { "id": "d", "text": "为了让时间退化到 O(n²)" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "完整合并完成后再统一写回，读取源数据时不会被提前覆盖。"
+  },
+  {
+    "id": "merge-stability",
+    "prompt": "当左右当前值相等时，稳定实现应先取哪一边？",
+    "options": [
+      { "id": "a", "text": "随机选择" },
+      { "id": "b", "text": "右半区" },
+      { "id": "c", "text": "两边同时删除" },
+      { "id": "d", "text": "左半区" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "左半区记录在原数组中更早，使用 <= 先取左侧可以保持原顺序。"
+  },
+  {
+    "id": "merge-order",
+    "prompt": "归并排序一次非基本递归调用的正确顺序是什么？",
+    "options": [
+      { "id": "a", "text": "先合并无序区间，再递归" },
+      { "id": "b", "text": "只递归左半区" },
+      { "id": "c", "text": "递归排好左右半区，再合并" },
+      { "id": "d", "text": "只复制原数组" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "merge 的前提是左右两个输入区间已经分别有序。"
+  },
+  {
+    "id": "merge-complexity",
+    "prompt": "数组归并排序的时间与额外空间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "O(n log n) 与 O(n)" },
+      { "id": "b", "text": "O(n²) 与 O(1)" },
+      { "id": "c", "text": "O(n) 与 O(log n)" },
+      { "id": "d", "text": "O(log n) 与 O(n²)" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "递归树有对数层、每层总合并量为 n；共享临时数组占 O(n)。"
+  },
+  {
+    "id": "merge-linked-list",
+    "prompt": "为什么归并排序自然适合单向链表？",
+    "options": [
+      { "id": "a", "text": "它要求常数时间访问任意下标" },
+      { "id": "b", "text": "它只需顺序读取并可通过修改 next 合并节点" },
+      { "id": "c", "text": "链表会自动保持全局有序" },
+      { "id": "d", "text": "链表不允许保存重复值" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "线性合并无需随机访问，已有节点还可直接重新链接。"
+  }
+]

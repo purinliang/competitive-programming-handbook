@@ -188,7 +188,7 @@
 | 0229 | 单调栈 | 待审阅 | [monotonic-stack.md](algorithm-basics/monotonic-stack.md) |
 | 0230 | 单调队列 | 待审阅 | [monotonic-queue.md](algorithm-basics/monotonic-queue.md) |
 | 0231 | 快速排序 | 待审阅 | [quicksort.md](algorithm-basics/quicksort.md) |
-| 0232 | 排序：归并排序 | 待审阅 | [merge-sort.md](algorithm-basics/merge-sort.md) |
+| 0232 | 归并排序 | 待审阅 | [merge-sort.md](algorithm-basics/merge-sort.md) |
 | 0232e1 | 归并排序：逆序对计数 | 计划 | `algorithm-basics/merge-sort-inversion-count.md` |
 | 0233* | 排序：堆排序 | 计划 | `algorithm-basics/0233-heap-sort.md` |
 | 0234* | 排序：基数排序 | 计划 | `algorithm-basics/0234-radix-sort.md` |

@@ -176,7 +176,7 @@
 | 0258 | 插入排序 | 算法基础 | [algorithm-basics/insertion-sort.md](algorithm-basics/insertion-sort.md) |
 | 0259 | 计数排序 | 算法基础 | [algorithm-basics/counting-sort.md](algorithm-basics/counting-sort.md) |
 | 0231 | 快速排序 | 算法基础 | [algorithm-basics/quicksort.md](algorithm-basics/quicksort.md) |
-| 0232 | 排序：归并排序 | 算法基础 | [algorithm-basics/merge-sort.md](algorithm-basics/merge-sort.md) |
+| 0232 | 归并排序 | 算法基础 | [algorithm-basics/merge-sort.md](algorithm-basics/merge-sort.md) |
 | 0260 | 排序方法比较 | 算法基础 | `algorithm-basics/sorting-comparison.md` |
 | 0206 | 离散化 | 算法基础 | [algorithm-basics/coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
 
