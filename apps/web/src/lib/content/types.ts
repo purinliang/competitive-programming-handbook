@@ -1,4 +1,4 @@
-export type ArticleStatus = "计划" | "待审阅" | "已审阅" | "草稿" | "定稿";
+export type ArticleStatus = "计划" | "推迟" | "待审阅" | "已审阅" | "草稿" | "定稿";
 export type NavigationMode = "learning-path" | "catalog";
 
 export interface DirectoryReturnTarget {

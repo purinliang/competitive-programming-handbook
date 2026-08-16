@@ -68,4 +68,4 @@
 
 ## 下一篇
 
-下一篇回到树的结构性质，介绍 [树：直径与中心](tree-diameter-center.md)。
+树的结构性质见 [树的直径与中心](tree-diameter-center.md)。

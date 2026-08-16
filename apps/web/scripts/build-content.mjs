@@ -29,7 +29,7 @@ const quizCacheRoot = path.join(cacheRoot, "quizzes");
 const buildStatePath = path.join(cacheRoot, "build-state.json");
 const searchIndexPath = path.join(appRoot, "public/search-index.json");
 const learningProgressPath = path.join(appRoot, "public/learning-progress.json");
-const articleStatuses = new Set(["计划", "待审阅", "已审阅", "草稿", "定稿"]);
+const articleStatuses = new Set(["计划", "推迟", "待审阅", "已审阅", "草稿", "定稿"]);
 const arguments_ = new Set(process.argv.slice(2));
 const unknownArguments = [...arguments_].filter(
   (argument) => argument !== "--full" && argument !== "--incremental",
@@ -641,7 +641,10 @@ for (const [articleKey, sourcePath] of learningSourcePaths) {
   if (!article) {
     throw new Error(`learning-path.md 中的学习正文没有对应目录条目：${sourcePath}`);
   }
-  if (article.status !== "计划" && !(await fileExists(path.join(notesRoot, sourcePath)))) {
+  if (
+    !["计划", "推迟"].includes(article.status) &&
+    !(await fileExists(path.join(notesRoot, sourcePath)))
+  ) {
     throw new Error(`learning-path.md 中的学习正文不存在：${sourcePath}`);
   }
 }
@@ -649,8 +652,35 @@ for (const article of articles) {
   article.learningSourcePath = learningSourcePaths.get(article.articleKey) ?? article.sourcePath;
   article.learningTitle = learningTitles.get(article.articleKey) ?? article.title;
 }
-const publishedArticles = articles.filter((article) => article.exists && article.status !== "计划");
-const learningArticleKeys = new Set(stages.flatMap((stage) => stage.articleKeys));
+const visibleArticles = articles.filter((article) => article.status !== "推迟");
+const visibleArticleKeys = new Set(visibleArticles.map((article) => article.articleKey));
+const visibleStages = stages.map((stage) => {
+  const units = stage.units.flatMap((unit) => {
+    const entries = unit.articleKeys.flatMap((articleKey, index) => {
+      const entryKey = unit.entryKeys[index];
+      return visibleArticleKeys.has(articleKey) && entryKey
+        ? [{ articleKey, entryKey }]
+        : [];
+    });
+    return entries.length > 0
+      ? [{
+          ...unit,
+          articleKeys: entries.map((entry) => entry.articleKey),
+          entryKeys: entries.map((entry) => entry.entryKey),
+        }]
+      : [];
+  });
+  return {
+    ...stage,
+    articleKeys: units.flatMap((unit) => unit.articleKeys),
+    entryKeys: units.flatMap((unit) => unit.entryKeys),
+    units,
+  };
+}).filter((stage) => stage.articleKeys.length > 0);
+const publishedArticles = visibleArticles.filter(
+  (article) => article.exists && article.status !== "计划",
+);
+const learningArticleKeys = new Set(visibleStages.flatMap((stage) => stage.articleKeys));
 const articleTitles = new Set(publishedArticles.map((article) => article.title));
 const searchRecords = [];
 const interactionDocuments = {};
@@ -770,7 +800,10 @@ for (const [articleKey, quiz] of compiledQuizzes) {
     };
   }
 }
-await writeFile(path.join(cacheRoot, "manifest.json"), `${JSON.stringify({ articles, stages })}\n`);
+await writeFile(
+  path.join(cacheRoot, "manifest.json"),
+  `${JSON.stringify({ articles: visibleArticles, stages: visibleStages })}\n`,
+);
 await writeFile(
   learningProgressPath,
   `${JSON.stringify({ articles: learningProgressArticles })}\n`,

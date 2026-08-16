@@ -4,16 +4,16 @@
 
 路线使用学习单元表示一次相对完整的学习任务，文章仍然保持足够小且聚焦；同一单元可以把需要共同理解或反复对照的不同模块专题放在一起。路线允许先学会最小用法、以后再回访底层规则，不承诺所有概念都能排成一条没有交叉的直线。单元边界按阶段逐章审计，不能为了表面整齐把只有前置关系的主题强行合并。
 
-标为代码路径的文章尚在计划中；可点击链接表示已经存在正文。`*` 前缀表示扩展阅读，难度通常更高或使用频率更低，暂时不学也不影响后续主线。高中进阶之后不再虚构统一的难度顺序，目录中的其余内容统一收录在文末的 [扩展阅读索引](#扩展阅读索引) 中。
+标为代码路径的文章尚在计划中；可点击链接表示已经存在正文。`*` 前缀表示扩展阅读，难度通常更高或使用频率更低，暂时不学也不影响后续主线。第 08–09 章分别按照区域赛银牌与金牌能力组织；更远内容只在模块目录登记为“推迟”，不建立第 10 章。其余可选内容统一收录在文末的 [扩展阅读索引](#扩展阅读索引) 中。
 
-常见 XCPC 路线图中的“铜牌、银牌、金牌”描述的是达到相应竞赛能力时应覆盖的知识集合，不是严格的教学阶段：同一档会同时包含很早学习的基础技巧和依赖较多的专题。本路线把入门到铜牌知识进一步拆成 01–06，再用 07 收录高中进阶主干；扩展阅读覆盖金牌及更远专题。两套分级只能相互校准，不能逐项机械换算。
+常见 XCPC 路线图中的“铜牌、银牌、金牌”描述的是达到相应竞赛能力时应覆盖的知识集合，不是严格的教学阶段：同一档会同时包含很早学习的基础技巧和依赖较多的专题。本路线把入门到铜牌知识进一步拆成 01–06，用 07 收录高中进阶主干，再用 08–09 补齐没有适合前移的银牌与金牌算法。已经在 01–07 学过的内容不因同属银牌集合而重复出现。
 
 [CCF 2025 年 NOI 系列活动竞赛大纲](https://www.noi.cn/xw/2025-04-18/841584.shtml)
 把知识点分为入门级、提高级和 NOI 级，并另外标注 `[1]`–`[10]` 的学习难度系数：
 入门级知识点通常为 `1–5`，提高级通常为 `5–8`，NOI 级通常为 `7–10`。这些区间
 故意重叠，不是学校年级或本书章节编号。本书 04–05 大致对应入门级后半段并在难度
-`5` 附近接触提高级，06–07 承接提高级主干；扩展阅读索引继续收录 NOI 级内容，
-不为它们虚构一个具有严格统一顺序的第 08 章。
+`5` 附近接触提高级，06–07 承接提高级主干。NOI 级标签只用于核对是否漏项；文章
+进入 08、09 还是长期推迟，由区域赛能力分级和实际教学价值共同决定。
 
 ## 下标与区间约定
 
@@ -504,10 +504,11 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | --- | --- | --- | --- |
 | 050601 | 加法原理 | 数学 | [math/addition-principle.md](math/addition-principle.md) |
 | 050602 | 乘法原理 | 数学 | [math/multiplication-principle.md](math/multiplication-principle.md) |
-| 050603 | 排列数 | 数学 | [math/permutations-count.md](math/permutations-count.md) |
-| 050604 | 组合数与二项式系数 | 数学 | [math/binomial-coefficients.md](math/binomial-coefficients.md) |
-| 050605 | 二项式定理 | 数学 | [math/binomial-theorem.md](math/binomial-theorem.md) |
-| 050606 | 杨辉三角 | 数学 | [math/pascal-triangle.md](math/pascal-triangle.md) |
+| *050603 | 容斥原理 | 数学 | [math/inclusion-exclusion.md](math/inclusion-exclusion.md) |
+| 050604 | 排列数 | 数学 | [math/permutations-count.md](math/permutations-count.md) |
+| 050605 | 组合数与二项式系数 | 数学 | [math/binomial-coefficients.md](math/binomial-coefficients.md) |
+| 050606 | 二项式定理 | 数学 | [math/binomial-theorem.md](math/binomial-theorem.md) |
+| 050607 | 杨辉三角 | 数学 | [math/pascal-triangle.md](math/pascal-triangle.md) |
 
 组合数与二项式系数是同一个数学对象的两种名称。杨辉三角从组合数递推式推导，并
 作为递推和二维动态规划的直接例子。
@@ -524,278 +525,239 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 ## 06 高中基础
 
-本阶段进入高中竞赛一等奖常见主干：先补充均摊分析和标准库位集合，再学习区间查询、并查集与单调结构；随后系统推进模运算、筛法、计数、数论函数和矩阵，并完成最短路、生成树、树上基础问题、常见动态规划模型、经典字符串算法与计算几何基础。
+本阶段进入高中竞赛一等奖常见主干。目录从本阶段开始改用较粗的模块单元组织内容；
+只有最短路、最小生成树这类边界稳定且内部包含多种算法的专题单独成单元。
 
-### 单元 01：算法基础：复杂度进阶
+### 单元 01：算法基础
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 060101 | 均摊复杂度 | 算法基础 | [algorithm-basics/amortized-complexity.md](algorithm-basics/amortized-complexity.md) |
 | 060102 | 均摊复杂度：势能法 | 算法基础 | [algorithm-basics/potential-method.md](algorithm-basics/potential-method.md) |
 
-### 单元 02：标准库：位集合
+### 单元 02：数据结构
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 060201 | bitset | C++ | [cpp/bitset.md](cpp/bitset.md) |
+| 060201 | 线段树 | 数据结构 | [data-structures/segment-tree.md](data-structures/segment-tree.md) |
+| 060202 | 树状数组 | 数据结构 | [data-structures/fenwick-tree.md](data-structures/fenwick-tree.md) |
+| *060203 | 稀疏表（ST 表） | 数据结构 | [data-structures/sparse-table.md](data-structures/sparse-table.md) |
+| 060204 | 单调栈 | 算法基础 | [algorithm-basics/monotonic-stack.md](algorithm-basics/monotonic-stack.md) |
+| 060205 | 单调队列 | 算法基础 | [algorithm-basics/monotonic-queue.md](algorithm-basics/monotonic-queue.md) |
 
-### 单元 03：数据结构：区间查询
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 060301 | 线段树：基础 | 数据结构 | [data-structures/segment-tree.md](data-structures/segment-tree.md) |
-| 060302 | 树状数组：基础 | 数据结构 | [data-structures/fenwick-tree.md](data-structures/fenwick-tree.md) |
-| 060303 | 稀疏表（ST 表） | 数据结构 | [data-structures/sparse-table.md](data-structures/sparse-table.md) |
-
-### 单元 04：数据结构：并查集
+### 单元 03：数学
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 060401 | 并查集：基础 | 数据结构 | [data-structures/disjoint-set-union.md](data-structures/disjoint-set-union.md) |
+| 060301 | 模运算 | 数学 | [math/modular-arithmetic.md](math/modular-arithmetic.md) |
+| 060302 | 模快速幂 | 数学 | [math/modular-exponentiation.md](math/modular-exponentiation.md) |
+| 060303 | 正因数个数 | 数学 | [math/divisor-count.md](math/divisor-count.md) |
+| 060304 | 正因数和 | 数学 | [math/divisor-sum.md](math/divisor-sum.md) |
+| 060305 | 矩阵：表示 | 数学 | [math/matrix-representation.md](math/matrix-representation.md) |
+| 060306 | 矩阵：加法与减法 | 数学 | [math/matrix-addition-subtraction.md](math/matrix-addition-subtraction.md) |
+| 060307 | 矩阵：乘法 | 数学 | [math/matrix-multiplication.md](math/matrix-multiplication.md) |
+| 060308 | 线性变换：矩阵表示 | 数学 | [math/linear-transformations-as-matrices.md](math/linear-transformations-as-matrices.md) |
+| 060309 | 矩阵快速幂 | 数学 | [math/matrix-exponentiation.md](math/matrix-exponentiation.md) |
 
-### 单元 05：数据结构：单调结构
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 060501 | 单调栈 | 算法基础 | [algorithm-basics/monotonic-stack.md](algorithm-basics/monotonic-stack.md) |
-| 060502 | 单调队列 | 算法基础 | [algorithm-basics/monotonic-queue.md](algorithm-basics/monotonic-queue.md) |
-
-### 单元 06：数学：模运算与线性同余
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 060601 | 模运算 | 数学 | [math/modular-arithmetic.md](math/modular-arithmetic.md) |
-| 060602 | 模快速幂 | 数学 | [math/modular-exponentiation.md](math/modular-exponentiation.md) |
-| 060603 | 数论：扩展欧几里得算法 | 数学 | [math/extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
-| 060604 | 线性不定方程 | 数学 | [math/linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
-| 060605 | 线性同余方程 | 数学 | [math/linear-congruences.md](math/linear-congruences.md) |
-| 060606 | 费马小定理 | 数学 | [math/fermat-little-theorem.md](math/fermat-little-theorem.md) |
-| 060607 | 模逆元 | 数学 | [math/modular-inverse.md](math/modular-inverse.md) |
-
-### 单元 07：数学：筛法与因数函数
+### 单元 04：图论
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 060701 | 筛法：欧拉筛（线性筛） | 数学 | [math/euler-sieve.md](math/euler-sieve.md) |
-| 060702 | 正因数个数 | 数学 | [math/divisor-count.md](math/divisor-count.md) |
-| 060703 | 正因数和 | 数学 | [math/divisor-sum.md](math/divisor-sum.md) |
+| 060401 | 树的直径与中心 | 图论 | [graph-theory/tree-diameter-center.md](graph-theory/tree-diameter-center.md) |
+| 060402 | 树的重心 | 图论 | [graph-theory/tree-centroid.md](graph-theory/tree-centroid.md) |
+| 060403 | 树的 DFS 序与子树区间 | 图论 | [graph-theory/tree-euler-tour.md](graph-theory/tree-euler-tour.md) |
+| 060404 | 倍增 LCA | 图论 | [graph-theory/lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
+| 060405 | 树上差分 | 图论 | [graph-theory/tree-difference.md](graph-theory/tree-difference.md) |
+| 060406 | 拓扑排序 | 图论 | [graph-theory/topological-sort.md](graph-theory/topological-sort.md) |
+| *060407 | 基环树 | 图论 | [graph-theory/unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
 
-### 单元 08：数学：组合数的模运算
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 060801 | 组合数：阶乘与逆元预处理 | 数学 | [math/binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
-
-### 单元 09：数学：数论函数
+### 单元 05：图论：最短路
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 060901 | 欧拉函数 | 数学 | [math/euler-totient.md](math/euler-totient.md) |
-| 060902 | 欧拉定理 | 数学 | [math/euler-theorem.md](math/euler-theorem.md) |
-| 060903 | 莫比乌斯函数 | 数学 | [math/mobius-function.md](math/mobius-function.md) |
+| 060501 | 最短路：Dijkstra | 图论 | [graph-theory/dijkstra.md](graph-theory/dijkstra.md) |
+| 060502 | 最短路：Bellman–Ford 与负环 | 图论 | [graph-theory/bellman-ford.md](graph-theory/bellman-ford.md) |
+| 060503 | 最短路：Floyd–Warshall | 图论 | [graph-theory/floyd-warshall.md](graph-theory/floyd-warshall.md) |
+| 060504 | 最短路：0-1 BFS | 图论 | [graph-theory/zero-one-bfs.md](graph-theory/zero-one-bfs.md) |
 
-### 单元 10：数学：矩阵与线性变换
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 061001 | 矩阵：表示 | 数学 | [math/matrix-representation.md](math/matrix-representation.md) |
-| 061002 | 矩阵：加法与减法 | 数学 | [math/matrix-addition-subtraction.md](math/matrix-addition-subtraction.md) |
-| 061003 | 矩阵：乘法 | 数学 | [math/matrix-multiplication.md](math/matrix-multiplication.md) |
-| 061004 | 线性变换：矩阵表示 | 数学 | [math/linear-transformations-as-matrices.md](math/linear-transformations-as-matrices.md) |
-| 061005 | 矩阵快速幂 | 数学 | [math/matrix-exponentiation.md](math/matrix-exponentiation.md) |
-
-### 单元 11：数学：概率与期望
+### 单元 06：图论：最小生成树
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 061101 | 概率与期望基础 | 数学 | [math/probability-expectation.md](math/probability-expectation.md) |
+| 060601 | 图的存储：边集 | 图论 | [graph-theory/edge-list.md](graph-theory/edge-list.md) |
+| 060602 | 并查集 | 数据结构 | [data-structures/disjoint-set-union.md](data-structures/disjoint-set-union.md) |
+| 060603 | 最小生成树：Kruskal | 图论 | [graph-theory/kruskal.md](graph-theory/kruskal.md) |
+| 060604 | 最小生成树：Prim | 图论 | [graph-theory/prim.md](graph-theory/prim.md) |
 
-### 单元 12：图论：图的存储实现
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 061201 | 图的存储：边集 | 图论 | [graph-theory/edge-list.md](graph-theory/edge-list.md) |
-| 061202 | 图的存储：邻接表（链式前向星实现） | 图论 | [graph-theory/chained-forward-star.md](graph-theory/chained-forward-star.md) |
-
-### 单元 13：图论：拓扑排序
+### 单元 07：字符串
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 061301 | 有向无环图：拓扑排序 | 图论 | [graph-theory/topological-sort.md](graph-theory/topological-sort.md) |
-| *061302 | 图：基环树 | 图论 | [graph-theory/unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
-
-### 单元 14：图论：最短路
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 061401 | 最短路：Dijkstra | 图论 | [graph-theory/dijkstra.md](graph-theory/dijkstra.md) |
-| 061402 | 最短路：Bellman–Ford 与负环 | 图论 | [graph-theory/bellman-ford.md](graph-theory/bellman-ford.md) |
-| 061403 | 最短路：Floyd–Warshall | 图论 | [graph-theory/floyd-warshall.md](graph-theory/floyd-warshall.md) |
-| 061404 | 最短路：0-1 BFS | 图论 | [graph-theory/zero-one-bfs.md](graph-theory/zero-one-bfs.md) |
-
-### 单元 15：图论：最小生成树
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 061501 | 最小生成树：Kruskal | 图论 | [graph-theory/kruskal.md](graph-theory/kruskal.md) |
-| 061502 | 最小生成树：Prim | 图论 | [graph-theory/prim.md](graph-theory/prim.md) |
-
-### 单元 16：图论：树上基础问题
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 061601 | 树：直径与中心 | 图论 | [graph-theory/tree-diameter-center.md](graph-theory/tree-diameter-center.md) |
-| 061602 | 树：重心 | 图论 | [graph-theory/tree-centroid.md](graph-theory/tree-centroid.md) |
-| 061603 | 树的遍历：DFS 序与子树区间 | 图论 | [graph-theory/tree-euler-tour.md](graph-theory/tree-euler-tour.md) |
-| 061604 | 树上查询：倍增 LCA | 图论 | [graph-theory/lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
-
-### 单元 17：图论：特殊图结构
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 061701 | 图：函数图 | 图论 | [graph-theory/functional-graph.md](graph-theory/functional-graph.md) |
-
-### 单元 18：图论：欧拉与哈密顿问题
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 061801 | 欧拉问题：路径、回路与图 | 图论 | [graph-theory/eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
-| 061802 | 哈密顿问题：路径、回路与图 | 图论 | [graph-theory/hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
-
-### 单元 19：动态规划：常见模型
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 061901 | 状态机 DP | 动态规划 | [dynamic-programming/state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
-| 061902 | DAG 上的 DP | 动态规划 | [dynamic-programming/dag-dp.md](dynamic-programming/dag-dp.md) |
-| 061903 | 树形 DP | 动态规划 | [dynamic-programming/tree-dp.md](dynamic-programming/tree-dp.md) |
-| 061904 | 状态压缩 DP | 动态规划 | [dynamic-programming/bitmask-dp.md](dynamic-programming/bitmask-dp.md) |
-
-### 单元 20：字符串：经典算法
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 062001 | 字符串：哈希 | 字符串 | [strings/rolling-hash.md](strings/rolling-hash.md) |
-| 062002 | 字符串：KMP 与前缀函数 | 字符串 | [strings/kmp-prefix-function.md](strings/kmp-prefix-function.md) |
-| *062003 | 字符串：Z 函数 | 字符串 | [strings/z-function.md](strings/z-function.md) |
-| 062004 | 字符串：Trie | 字符串 | [strings/trie.md](strings/trie.md) |
-| 062005 | 字符串构造 | 字符串 | `strings/string-construction.md` |
-
-### 单元 21：计算几何：基础
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 062101 | 坐标、点、向量与精度 | 计算几何 | [computational-geometry/points-vectors-precision.md](computational-geometry/points-vectors-precision.md) |
-| 062102 | 点积、叉积与方向判断 | 计算几何 | [computational-geometry/dot-cross-orientation.md](computational-geometry/dot-cross-orientation.md) |
+| 060701 | 字符串哈希 | 字符串 | [strings/rolling-hash.md](strings/rolling-hash.md) |
+| 060702 | KMP 与前缀函数 | 字符串 | [strings/kmp-prefix-function.md](strings/kmp-prefix-function.md) |
+| *060703 | Z 函数 | 字符串 | [strings/z-function.md](strings/z-function.md) |
+| 060704 | Trie | 字符串 | [strings/trie.md](strings/trie.md) |
+| 060705 | 字符串构造 | 字符串 | `strings/string-construction.md` |
 
 ## 07 高中进阶
 
-本阶段在前面的稳定模型上继续组合技巧：折半枚举与离线处理扩展候选组织方式，并查集、图连通性和树上数据结构增加维护能力；状态图最短路、中国剩余定理、容斥、平面几何与进阶动态规划分别完成高中竞赛主干中更专门的专题。
+本阶段在前面的稳定模型上继续组合技巧。与高中基础相同，目录默认按知识模块组织，
+不再为一两篇文章制造单独单元。
 
-### 单元 01：算法基础：折半枚举
+### 单元 01：算法基础
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 070101 | 枚举：Meet-in-the-Middle | 算法基础 | [algorithm-basics/meet-in-the-middle.md](algorithm-basics/meet-in-the-middle.md) |
+| 070102 | 离线算法 | 算法基础 | [algorithm-basics/offline-algorithms.md](algorithm-basics/offline-algorithms.md) |
+| 070103 | 扫描线与事件排序 | 算法基础 | [algorithm-basics/sweep-line.md](algorithm-basics/sweep-line.md) |
 
-### 单元 02：算法基础：离线处理
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 070201 | 离线算法 | 算法基础 | [algorithm-basics/offline-algorithms.md](algorithm-basics/offline-algorithms.md) |
-| 070202 | 扫描线与事件排序 | 算法基础 | [algorithm-basics/sweep-line.md](algorithm-basics/sweep-line.md) |
-
-### 单元 03：数据结构：并查集扩展
+### 单元 02：图论
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 070301 | 并查集：扩展域 | 数据结构 | [data-structures/extended-domain-disjoint-set.md](data-structures/extended-domain-disjoint-set.md) |
-| 070302 | 并查集：带权 | 数据结构 | [data-structures/weighted-disjoint-set.md](data-structures/weighted-disjoint-set.md) |
+| 070201 | 有向图：强连通分量 | 图论 | [graph-theory/strongly-connected-components.md](graph-theory/strongly-connected-components.md) |
+| 070202 | 无向图：割点与桥 | 图论 | [graph-theory/articulation-points-bridges.md](graph-theory/articulation-points-bridges.md) |
+| 070203 | 最短路：分层图与状态图 | 图论 | [graph-theory/layered-state-shortest-path.md](graph-theory/layered-state-shortest-path.md) |
+| 070204 | 图的存储：邻接表（链式前向星实现） | 图论 | [graph-theory/chained-forward-star.md](graph-theory/chained-forward-star.md) |
+| 070205 | 欧拉问题：路径、回路与图 | 图论 | [graph-theory/eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
+| 070206 | 哈密顿问题：路径、回路与图 | 图论 | [graph-theory/hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
 
-### 单元 04：图论：连通性
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 070401 | 有向图：强连通分量 | 图论 | [graph-theory/strongly-connected-components.md](graph-theory/strongly-connected-components.md) |
-| 070402 | 无向图：割点与桥 | 图论 | [graph-theory/articulation-points-bridges.md](graph-theory/articulation-points-bridges.md) |
-
-### 单元 05：数据结构：树上维护
+### 单元 03：数学
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 070501 | 树上数据结构：树链剖分 | 数据结构 | [graph-theory/heavy-light-decomposition.md](graph-theory/heavy-light-decomposition.md) |
-| 070502 | 树上技巧：树上差分 | 图论 | [graph-theory/tree-difference.md](graph-theory/tree-difference.md) |
-| 070503 | DSU on Tree | 图论 | `graph-theory/dsu-on-tree.md` |
+| 070301 | 数论：扩展欧几里得算法 | 数学 | [math/extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
+| 070302 | 线性不定方程 | 数学 | [math/linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
+| 070303 | 线性同余方程 | 数学 | [math/linear-congruences.md](math/linear-congruences.md) |
+| 070304 | 费马小定理 | 数学 | [math/fermat-little-theorem.md](math/fermat-little-theorem.md) |
+| 070305 | 模逆元 | 数学 | [math/modular-inverse.md](math/modular-inverse.md) |
+| 070306 | 组合数：阶乘与逆元预处理 | 数学 | [math/binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
+| 070307 | 筛法：欧拉筛（线性筛） | 数学 | [math/euler-sieve.md](math/euler-sieve.md) |
+| 070308 | 欧拉函数 | 数学 | [math/euler-totient.md](math/euler-totient.md) |
+| 070309 | 莫比乌斯函数 | 数学 | [math/mobius-function.md](math/mobius-function.md) |
+| 070310 | 数论：中国剩余定理（CRT） | 数学 | [math/chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
+| 070311 | 数论：扩展中国剩余定理（exCRT） | 数学 | [math/extended-chinese-remainder-theorem.md](math/extended-chinese-remainder-theorem.md) |
 
-### 单元 06：图论：状态图最短路
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 070601 | 最短路：分层图与状态图 | 图论 | [graph-theory/layered-state-shortest-path.md](graph-theory/layered-state-shortest-path.md) |
-
-### 单元 07：数学：中国剩余定理
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 070701 | 数论：中国剩余定理（CRT） | 数学 | [math/chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
-| 070702 | 数论：扩展中国剩余定理（exCRT） | 数学 | [math/extended-chinese-remainder-theorem.md](math/extended-chinese-remainder-theorem.md) |
-
-### 单元 08：数学：容斥原理
+### 单元 04：计算几何
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 070801 | 容斥原理 | 数学 | [math/inclusion-exclusion.md](math/inclusion-exclusion.md) |
+| 070401 | 坐标、点、向量与精度 | 计算几何 | [computational-geometry/points-vectors-precision.md](computational-geometry/points-vectors-precision.md) |
+| 070402 | 点积、叉积与方向判断 | 计算几何 | [computational-geometry/dot-cross-orientation.md](computational-geometry/dot-cross-orientation.md) |
+| 070403 | 直线、线段与相交判定 | 计算几何 | [computational-geometry/lines-segments-intersections.md](computational-geometry/lines-segments-intersections.md) |
+| 070404 | 多边形面积与点的位置 | 计算几何 | [computational-geometry/polygon-area-point-location.md](computational-geometry/polygon-area-point-location.md) |
+| 070405 | 凸包 | 计算几何 | [computational-geometry/convex-hull.md](computational-geometry/convex-hull.md) |
 
-### 单元 09：计算几何：平面几何算法
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 070901 | 直线、线段与相交判定 | 计算几何 | [computational-geometry/lines-segments-intersections.md](computational-geometry/lines-segments-intersections.md) |
-| 070902 | 多边形面积与点的位置 | 计算几何 | [computational-geometry/polygon-area-point-location.md](computational-geometry/polygon-area-point-location.md) |
-| 070903 | 凸包 | 计算几何 | [computational-geometry/convex-hull.md](computational-geometry/convex-hull.md) |
-
-### 单元 10：动态规划：进阶
+### 单元 05：动态规划
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 071001 | 数位 DP | 动态规划 | [dynamic-programming/digit-dp.md](dynamic-programming/digit-dp.md) |
-| 071002 | 概率与期望 DP | 动态规划 | [dynamic-programming/probability-expectation-dp.md](dynamic-programming/probability-expectation-dp.md) |
-| 071003 | 单调队列优化 | 动态规划 | [dynamic-programming/monotone-queue-optimization.md](dynamic-programming/monotone-queue-optimization.md) |
-| 071004 | 单调栈优化 | 动态规划 | `dynamic-programming/monotone-stack-optimization.md` |
-| 071005 | 斜率优化 | 动态规划 | `dynamic-programming/convex-hull-trick.md` |
+| 070501 | DAG 上的 DP | 动态规划 | [dynamic-programming/dag-dp.md](dynamic-programming/dag-dp.md) |
+| 070502 | 树形 DP | 动态规划 | [dynamic-programming/tree-dp.md](dynamic-programming/tree-dp.md) |
+| 070503 | 状态压缩 DP | 动态规划 | [dynamic-programming/bitmask-dp.md](dynamic-programming/bitmask-dp.md) |
+| 070504 | 数位 DP | 动态规划 | [dynamic-programming/digit-dp.md](dynamic-programming/digit-dp.md) |
+| 070505 | 概率与期望基础 | 数学 | [math/probability-expectation.md](math/probability-expectation.md) |
+| 070506 | 概率与期望 DP | 动态规划 | [dynamic-programming/probability-expectation-dp.md](dynamic-programming/probability-expectation-dp.md) |
+| 070507 | 单调队列优化 | 动态规划 | [dynamic-programming/monotone-queue-optimization.md](dynamic-programming/monotone-queue-optimization.md) |
+| 070508 | 单调栈优化 | 动态规划 | `dynamic-programming/monotone-stack-optimization.md` |
+| 070509 | 斜率优化 | 动态规划 | `dynamic-programming/convex-hull-trick.md` |
 
-### 单元 11：字符串：进阶结构
+完成 07 高中进阶后，读者已经具备独立阅读题解、按题目补充专题和判断新算法依赖的能力。后续阶段改用区域赛奖牌能力描述覆盖范围，不再借用“大学基础”或 NOI 难度系数充当课程名称。
 
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 071101 | 字符串：AC 自动机 | 字符串 | `strings/aho-corasick.md` |
-| 071102 | 字符串：Manacher | 字符串 | `strings/manacher.md` |
-| 071103 | 字符串：后缀数组 | 字符串 | `strings/suffix-array.md` |
-| 071104 | 字符串：后缀自动机 | 字符串 | `strings/suffix-automaton.md` |
-| *071105 | 字符串：回文自动机 | 字符串 | `strings/palindromic-tree.md` |
+## 08 区域赛银牌
 
-### 单元 12：字符串：子串问题
+本阶段补齐达到区域赛银牌所需、且没有必要提前放入高中路线的知识。章内既可以包含
+参考技能树中的蓝色银牌算法，也可以包含此前遗漏的更简单前置，或为了连续推导而与
+蓝色文章共同学习的基础篇；章节位置不等于单篇难度标签。生成函数、Treap 和
+FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段。
 
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 071201 | 本质不同子串计数 | 字符串 | `strings/distinct-substring-counting.md` |
-| 071202 | 字典序第 k 小子串 | 字符串 | `strings/kth-lexicographic-substring.md` |
-| 071203 | 子串出现次数 | 字符串 | `strings/substring-occurrence-counting.md` |
-| 071204 | 最长重复子串 | 字符串 | `strings/longest-repeated-substring.md` |
-| 071205 | 最长公共子串 | 字符串 | `strings/longest-common-substring.md` |
-
-### 单元 13：数据结构：平衡树
+### 单元 01：数据结构
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 071301 | Treap | 数据结构 | `data-structures/treap.md` |
-| 071302 | 无旋 Treap | 数据结构 | `data-structures/fhq-treap.md` |
+| 080101 | 并查集：扩展域 | 数据结构 | [data-structures/extended-domain-disjoint-set.md](data-structures/extended-domain-disjoint-set.md) |
+| 080102 | 并查集：带权 | 数据结构 | [data-structures/weighted-disjoint-set.md](data-structures/weighted-disjoint-set.md) |
+| 080103 | 分块 | 数据结构 | `data-structures/square-root-decomposition.md` |
+| 080104 | 莫队算法 | 数据结构 | `data-structures/mo-algorithm.md` |
+| 080105 | 启发式合并 | 数据结构 | `data-structures/small-to-large-merging.md` |
+| 080106 | 树上启发式合并 | 数据结构 | `graph-theory/dsu-on-tree.md` |
+| 080107 | 重链剖分 | 数据结构 | [graph-theory/heavy-light-decomposition.md](graph-theory/heavy-light-decomposition.md) |
+| 080108 | 笛卡尔树 | 数据结构 | `data-structures/cartesian-tree.md` |
+| 080109 | Treap | 数据结构 | `data-structures/treap.md` |
+| 080110 | FHQ Treap | 数据结构 | `data-structures/fhq-treap.md` |
 
-完成 06 高中进阶后，读者已经具备独立阅读题解、按题目补充专题和判断新算法依赖的能力。这里不把高中竞赛一等奖与大学竞赛奖牌、Codeforces rating 做机械换算。
+### 单元 02：图论
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 080201 | 二分图：最大匹配 | 图论 | `graph-theory/bipartite-matching.md` |
+| 080202 | 2-SAT | 图论 | `graph-theory/two-sat.md` |
+
+### 单元 03：数学
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 080301 | 数论：欧拉定理 | 数学 | [math/euler-theorem.md](math/euler-theorem.md) |
+| 080302 | 数论：扩展欧拉定理 | 数学 | `math/extended-euler-theorem.md` |
+| 080303 | 线性代数：异或线性基 | 数学 | `math/xor-linear-basis.md` |
+| 080304 | 线性代数：高斯消元 | 数学 | `math/gaussian-elimination.md` |
+| 080305 | 线性代数：行列式 | 数学 | `math/determinant.md` |
+| 080306 | Nim、SG 函数与基础博弈论 | 数学 | `math/nim-sg-game-theory.md` |
+| 080307 | 组合数学：错位排列 | 数学 | `math/derangement-numbers.md` |
+| 080308 | 组合数学：整数划分 | 数学 | `math/integer-partitions.md` |
+| 080309 | 组合数学：Catalan 数 | 数学 | `math/catalan-numbers.md` |
+| 080310 | 组合数学：Stirling 数 | 数学 | `math/stirling-numbers.md` |
+| 080311 | 多项式：表示、加法与减法 | 数学 | `math/polynomial-representation-addition-subtraction.md` |
+| 080312 | 多项式：卷积与朴素乘法 | 数学 | `math/convolution-naive-multiplication.md` |
+| 080313 | 多项式：FFT | 数学 | `math/fft.md` |
+| 080314 | 多项式：NTT | 数学 | `math/ntt.md` |
+| 080315 | 生成函数：基础 | 数学 | `math/generating-functions.md` |
+
+### 单元 04：字符串
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 080401 | AC 自动机 | 字符串 | `strings/aho-corasick.md` |
+| 080402 | Manacher | 字符串 | `strings/manacher.md` |
+
+### 单元 05：计算几何
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 080501 | 极角排序 | 计算几何 | `computational-geometry/polar-angle-sort.md` |
+| 080502 | 圆：位置关系与交点 | 计算几何 | `computational-geometry/circles.md` |
+| 080503 | 圆：切线 | 计算几何 | `computational-geometry/circle-tangents.md` |
+
+## 09 区域赛金牌
+
+本阶段只收区域赛金牌范围内已经形成稳定问题模型的内容。当前条目统一保持“推迟”，
+不进入公网目录、搜索、统计和正文路由；后续逐专题审核时再从现有高级专题候选池迁入。
+
+### 单元 01：字符串：后缀结构
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 090101 | 后缀数组 | 字符串 | `strings/suffix-array.md` |
+| 090102 | 后缀自动机 | 字符串 | `strings/suffix-automaton.md` |
+| *090103 | 回文自动机 | 字符串 | `strings/palindromic-tree.md` |
+
+### 单元 02：字符串：子串问题
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 090201 | 本质不同子串计数 | 字符串 | `strings/distinct-substring-counting.md` |
+| 090202 | 字典序第 k 小子串 | 字符串 | `strings/kth-lexicographic-substring.md` |
+| 090203 | 子串出现次数 | 字符串 | `strings/substring-occurrence-counting.md` |
+| 090204 | 最长重复子串 | 字符串 | `strings/longest-repeated-substring.md` |
+| 090205 | 最长公共子串 | 字符串 | `strings/longest-common-substring.md` |
+
+红色争冠内容不建立第 10 章。它们只在模块目录中以“推迟”状态保留资料身份，除非
+以后出现明确学习需求，否则不进入写作和审核队列。
 
 ## 扩展阅读索引
 
-以下独立扩展不属于 01–07 的必学顺序，其中一部分可能明显高于高中竞赛一等奖的常见范围。它们按模块和 ID 排列，便于查找；开始某篇之前可以回到 [模块目录](catalog.md) 查看状态和所属模块。使用 `*CCUUPPe1`、`*CCUUPPe2` 等编号的附属扩展只从对应基础文章进入，不在这里重复平铺。
+以下独立扩展不属于核心必学顺序，其中一部分可能明显高于高中竞赛一等奖的常见范围。它们按模块和 ID 排列，便于查找；开始某篇之前可以回到 [模块目录](catalog.md) 查看状态和所属模块。使用 `*CCUUPPe1`、`*CCUUPPe2` 等编号的附属扩展只从对应基础文章进入，不在这里重复平铺。
 
 ### 01 C++
 
@@ -838,7 +800,8 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990105 | 字节寻址 | [cpp/byte-addressing.md](cpp/byte-addressing.md) |
 | *990106 | 指针与引用中的 const | [cpp/const-pointers-and-references.md](cpp/const-pointers-and-references.md) |
 | *990109 | volatile | [cpp/volatile.md](cpp/volatile.md) |
-| *990110 | order-statistics tree（GNU PBDS） | `cpp/gnu-pbds.md` |
+| *990110 | GNU PBDS | `cpp/gnu-pbds.md` |
+| *990111 | bitset | [cpp/bitset.md](cpp/bitset.md) |
 
 ### 02 算法基础
 
@@ -862,10 +825,9 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
+| *060203 | 稀疏表（ST 表） | [data-structures/sparse-table.md](data-structures/sparse-table.md) |
 | *990301 | 线段树：懒标记的组合顺序 | [data-structures/segment-tree-lazy-tags.md](data-structures/segment-tree-lazy-tags.md) |
 | *990302 | 可撤销并查集 | `data-structures/rollback-disjoint-set.md` |
-| *990303 | 分块 | `data-structures/square-root-decomposition.md` |
-| *990304 | 莫队算法 | `data-structures/mo-algorithm.md` |
 | *990305 | 线段树二分与树上下降 | `data-structures/segment-tree-descent.md` |
 | *990306 | 可持久化线段树 | `data-structures/persistent-segment-tree.md` |
 | *990307 | 动态开点线段树 | `data-structures/dynamic-segment-tree.md` |
@@ -875,9 +837,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990311 | 左偏树 | `data-structures/leftist-tree.md` |
 | *990313 | Splay | `data-structures/splay.md` |
 | *990314 | B 树与 B+ 树 | `data-structures/b-tree-and-b-plus-tree.md` |
-| *990315 | 笛卡尔树 | `data-structures/cartesian-tree.md` |
 | *990316 | Wavelet Matrix | `data-structures/wavelet-matrix.md` |
-| *990317 | 启发式合并（small-to-large） | `data-structures/small-to-large-merging.md` |
 | *990318 | 斜堆 | `data-structures/skew-heap.md` |
 | *990319 | 配对堆 | `data-structures/pairing-heap.md` |
 | *990320 | 可持久化并查集 | `data-structures/persistent-disjoint-set-union.md` |
@@ -895,10 +855,8 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| *061302 | 图：基环树 | [graph-theory/unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
-| *990401 | 二分图：最大匹配 | `graph-theory/bipartite-matching.md` |
+| *060407 | 基环树 | [graph-theory/unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
 | *990402 | 无向图：双连通分量与圆方树 | `graph-theory/biconnected-components-block-cut-tree.md` |
-| *990403 | 2-SAT | `graph-theory/two-sat.md` |
 | *990404 | 网络流：Dinic | `graph-theory/dinic-max-flow.md` |
 | *990405 | 最小费用最大流 | `graph-theory/min-cost-max-flow.md` |
 | *990406 | 虚树 | `graph-theory/virtual-tree.md` |
@@ -916,13 +874,14 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990419 | 仙人掌 | `graph-theory/cactus-graph.md` |
 | *990420 | 有向最小生成树：Chu–Liu/Edmonds | `graph-theory/directed-minimum-spanning-tree.md` |
 | *990421 | 一般图最大匹配 | `graph-theory/general-graph-matching.md` |
-| *990422 | 最短路：$k$ 短路 | `graph-theory/k-shortest-paths.md` |
+| *990422 | 最短路：k 短路 | `graph-theory/k-shortest-paths.md` |
 | *990423 | 支配树 | `graph-theory/dominator-tree.md` |
 | *990424 | 无向图：全局最小割 | `graph-theory/global-minimum-cut.md` |
 | *990425 | 弦图 | `graph-theory/chordal-graph.md` |
 | *990426 | 树分治：边分治 | `graph-theory/edge-decomposition.md` |
 | *990427 | 树分治：动态点分治 | `graph-theory/dynamic-centroid-decomposition.md` |
 | *990428 | 长链剖分 | `graph-theory/long-chain-decomposition.md` |
+| *990429 | 图：函数图 | [graph-theory/functional-graph.md](graph-theory/functional-graph.md) |
 
 ### 05 数学
 
@@ -932,15 +891,8 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *041002 | 集合：基本概念与交、并、补 | [math/sets-review.md](math/sets-review.md) |
 | *041003 | 代数：方程与不等式 | [math/equations-and-inequalities-review.md](math/equations-and-inequalities-review.md) |
 | *041004 | 几何：平面几何基础 | [math/plane-geometry-basics.md](math/plane-geometry-basics.md) |
-| *990501 | Nim、SG 函数与基础博弈论 | `math/nim-sg-game-theory.md` |
-| *990502 | XOR 线性基 | `math/xor-linear-basis.md` |
-| *990503 | 高斯消元 | `math/gaussian-elimination.md` |
-| *990504 | 多项式：NTT | `math/ntt.md` |
+| *050603 | 容斥原理 | [math/inclusion-exclusion.md](math/inclusion-exclusion.md) |
 | *990505 | BSGS 与离散对数 | `math/discrete-logarithm.md` |
-| *990506 | 多项式：表示、加法与减法 | `math/polynomial-representation-addition-subtraction.md` |
-| *990507 | 多项式：卷积与朴素乘法 | `math/convolution-naive-multiplication.md` |
-| *990508 | 复数与单位根 | `math/complex-numbers-roots-of-unity.md` |
-| *990509 | 多项式：FFT | `math/fft.md` |
 | *990510 | 形式幂级数：求逆 | `math/formal-power-series-inverse.md` |
 | *990511 | 形式幂级数：形式导数 | `math/formal-derivative.md` |
 | *990512 | 形式幂级数：形式积分 | `math/formal-integral.md` |
@@ -957,13 +909,11 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990524 | 二次剩余与勒让德符号 | `math/quadratic-residues-legendre-symbol.md` |
 | *990525 | 二次剩余：Cipolla 算法 | `math/cipolla.md` |
 | *990526 | 佩尔方程 | `math/pell-equation.md` |
-| *990527 | 线性代数：行列式 | `math/determinant.md` |
 | *990528 | 线性递推：Berlekamp–Massey | `math/berlekamp-massey.md` |
 | *990529 | 图论计数：矩阵树定理 | `math/matrix-tree-theorem.md` |
 | *990530 | 欧拉回路计数：BEST 定理 | `math/best-theorem.md` |
 | *990531 | 树的编码：Prufer 序列 | `math/prufer-sequence.md` |
 | *990532 | 路径计数：LGV 引理 | `math/lindstrom-gessel-viennot-lemma.md` |
-| *990533 | 生成函数：基础 | `math/generating-functions.md` |
 | *990534 | 群论：置换 | `math/permutations.md` |
 | *990535 | 群作用计数：Burnside 引理 | `math/burnside-lemma.md` |
 | *990536 | 群作用计数：Polya 定理 | `math/polya-enumeration.md` |
@@ -971,9 +921,6 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990538 | 组合计数：抽屉原理 | `math/pigeonhole-principle.md` |
 | *990539 | 组合计数：最值容斥 | `math/min-max-inclusion-exclusion.md` |
 | *990540 | 组合计数：二项式反演 | `math/binomial-inversion.md` |
-| *990541 | 常见数列：错排数 | `math/derangement-numbers.md` |
-| *990542 | 常见数列：Catalan 数 | `math/catalan-numbers.md` |
-| *990543 | 常见数列：Stirling 数 | `math/stirling-numbers.md` |
 | *990544 | 常见数列：Bell 数 | `math/bell-numbers.md` |
 | *990545 | 常见数列：Bernoulli 数 | `math/bernoulli-numbers.md` |
 | *990546 | 组合计数：杨表 | `math/young-tableaux.md` |
@@ -986,7 +933,6 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| *990601 | 圆与圆的关系 | `computational-geometry/circles.md` |
 | *990602 | 旋转卡壳 | `computational-geometry/rotating-calipers.md` |
 | *990603 | 几何扫描线 | `computational-geometry/geometric-sweep-line.md` |
 | *990604 | 最近点对 | `computational-geometry/closest-pair-of-points.md` |
@@ -994,8 +940,6 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990606 | 凸多边形：切线与极值查询 | `computational-geometry/convex-polygon-tangents-extrema.md` |
 | *990607 | 半平面交 | `computational-geometry/half-plane-intersection.md` |
 | *990608 | 闵可夫斯基和 | `computational-geometry/minkowski-sum.md` |
-| *990609 | 极角排序 | `computational-geometry/polar-angle-sort.md` |
-| *990610 | 圆：切线 | `computational-geometry/circle-tangents.md` |
 | *990611 | 圆：面积交与面积并 | `computational-geometry/circle-area-intersection-union.md` |
 | *990612 | 三维计算几何 | `computational-geometry/three-dimensional-geometry.md` |
 | *990613 | 平面点定位 | `computational-geometry/point-location.md` |
@@ -1027,8 +971,8 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| *062003 | 字符串：Z 函数 | [strings/z-function.md](strings/z-function.md) |
-| *071105 | 字符串：回文自动机 | `strings/palindromic-tree.md` |
-| *990806 | 字符串：后缀树 | `strings/suffix-tree.md` |
+| *060703 | Z 函数 | [strings/z-function.md](strings/z-function.md) |
+| *090103 | 回文自动机 | `strings/palindromic-tree.md` |
+| *990806 | 后缀树 | `strings/suffix-tree.md` |
 | *990807 | 最小表示法 | `strings/minimum-representation.md` |
 | *990808 | Lyndon 分解 | `strings/lyndon-factorization.md` |

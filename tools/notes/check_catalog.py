@@ -14,7 +14,7 @@ NOTES = ROOT / "notes"
 CATALOG = NOTES / "catalog.md"
 LEARNING_PATH = NOTES / "learning-path.md"
 
-ALLOWED_STATUSES = {"计划", "待审阅", "已审阅", "草稿", "定稿"}
+ALLOWED_STATUSES = {"计划", "推迟", "待审阅", "已审阅", "草稿", "定稿"}
 MODULE_PREFIXES = {
     "cpp": "01",
     "algorithm-basics": "02",
@@ -340,7 +340,7 @@ class Checker:
                 )
             if entry.status == "计划" and entry.linked:
                 self.error(f"{location}: planned article must use a code path")
-            if entry.status != "计划" and not entry.linked:
+            if entry.status not in {"计划", "推迟"} and not entry.linked:
                 self.error(f"{location}: article with a body must use a Markdown link")
         unknown_legacy = sorted(legacy - entries.keys())
         if unknown_legacy:
@@ -452,6 +452,8 @@ class Checker:
             "05 初中进阶",
             "06 高中基础",
             "07 高中进阶",
+            "08 区域赛银牌",
+            "09 区域赛金牌",
         ]
         if stages != expected_stages:
             self.error(
@@ -478,7 +480,7 @@ class Checker:
                 self.error(f"{location}: ID is absent from catalog.md")
                 continue
             if entry.kind != "扩展专题":
-                self.error(f"{location}: core article must stay in stages 1–7")
+                self.error(f"{location}: core article must stay in the staged route")
             if not item.extension_marker:
                 self.error(f"{location}: extension index entries must use *")
             if re.fullmatch(r"\d{6}e\d+", item.article_id):
@@ -533,7 +535,7 @@ class Checker:
         expected = {
             entry.path: entry
             for entry in entries.values()
-            if entry.status != "计划"
+            if entry.linked
         }
         actual: set[str] = set()
         for module in MODULE_PREFIXES:
@@ -582,7 +584,7 @@ class Checker:
         if not status:
             self.error(f"{display}: incomplete article information block")
             return
-        if status != entry.status:
+        if entry.status != "推迟" and status != entry.status:
             self.error(f"{display}: article status differs from catalog")
 
     def check_local_links(self, path: Path, text: str) -> None:
