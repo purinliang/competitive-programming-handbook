@@ -219,7 +219,7 @@
 | *020702 | 预处理：#include | 待审阅 | [include.md](cpp/include.md) |
 | *020703 | 预处理：#define | 待审阅 | [define.md](cpp/define.md) |
 | *020704 | 条件编译 | 待审阅 | [conditional-compilation.md](cpp/conditional-compilation.md) |
-| *020705 | 编译器与解释器 | 计划 | `cpp/compiler-and-interpreter.md` |
+| *020705 | 编译器与解释器 | 待审阅 | [compiler-and-interpreter.md](cpp/compiler-and-interpreter.md) |
 | *020706 | 编译 | 待审阅 | [compilation.md](cpp/compilation.md) |
 | *020707 | 链接 | 待审阅 | [linking.md](cpp/linking.md) |
 | *020708 | 调试与调试器 | 计划 | `cpp/debugging-and-debuggers.md` |

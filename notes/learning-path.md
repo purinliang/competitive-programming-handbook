@@ -184,7 +184,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *020702 | 预处理：#include | C++ | [cpp/include.md](cpp/include.md) |
 | *020703 | 预处理：#define | C++ | [cpp/define.md](cpp/define.md) |
 | *020704 | 条件编译 | C++ | [cpp/conditional-compilation.md](cpp/conditional-compilation.md) |
-| *020705 | 编译器与解释器 | C++ | `cpp/compiler-and-interpreter.md` |
+| *020705 | 编译器与解释器 | C++ | [cpp/compiler-and-interpreter.md](cpp/compiler-and-interpreter.md) |
 | *020706 | 编译 | C++ | [cpp/compilation.md](cpp/compilation.md) |
 | *020707 | 链接 | C++ | [cpp/linking.md](cpp/linking.md) |
 | *020708 | 调试与调试器 | C++ | `cpp/debugging-and-debuggers.md` |
@@ -784,7 +784,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *020702 | 预处理：#include | [cpp/include.md](cpp/include.md) |
 | *020703 | 预处理：#define | [cpp/define.md](cpp/define.md) |
 | *020704 | 条件编译 | [cpp/conditional-compilation.md](cpp/conditional-compilation.md) |
-| *020705 | 编译器与解释器 | `cpp/compiler-and-interpreter.md` |
+| *020705 | 编译器与解释器 | [cpp/compiler-and-interpreter.md](cpp/compiler-and-interpreter.md) |
 | *020706 | 编译 | [cpp/compilation.md](cpp/compilation.md) |
 | *020707 | 链接 | [cpp/linking.md](cpp/linking.md) |
 | *020708 | 调试与调试器 | `cpp/debugging-and-debuggers.md` |
