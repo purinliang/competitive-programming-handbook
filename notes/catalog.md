@@ -466,48 +466,127 @@
 
 ## 03 数据结构
 
+### 常用
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 050201 | 二叉堆 | 待审阅 | [binary-heap.md](algorithm-basics/binary-heap.md) |
+| 060401 | 并查集：基础 | 待审阅 | [disjoint-set-union.md](data-structures/disjoint-set-union.md) |
+| 060302 | 树状数组：基础 | 待审阅 | [fenwick-tree.md](data-structures/fenwick-tree.md) |
+| 060301 | 线段树：基础 | 待审阅 | [segment-tree.md](data-structures/segment-tree.md) |
+| 060303 | 稀疏表（ST 表） | 待审阅 | [sparse-table.md](data-structures/sparse-table.md) |
+| 062004 | 字符串：Trie | 计划 | `strings/trie.md` |
+| 070501 | 树上数据结构：树链剖分 | 计划 | `graph-theory/heavy-light-decomposition.md` |
+
+### 二叉树
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 050101 | 二叉树的基本概念 | 待审阅 | [binary-tree-concepts.md](data-structures/binary-tree-concepts.md) |
+| 050102 | 二叉树的存储 | 待审阅 | [binary-tree-storage.md](data-structures/binary-tree-storage.md) |
+| 050103 | 完全二叉树 | 待审阅 | [complete-binary-tree.md](data-structures/complete-binary-tree.md) |
+| 050104 | 二叉树的遍历：前序、中序与后序 | 待审阅 | [binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
+| 050105 | 二叉搜索树的概念与构造 | 待审阅 | [binary-search-tree-construction.md](data-structures/binary-search-tree-construction.md) |
+
+### 并查集
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 060401 | 并查集：基础 | 待审阅 | [disjoint-set-union.md](data-structures/disjoint-set-union.md) |
+| 070301 | 并查集：扩展域 | 计划 | `data-structures/extended-domain-disjoint-set.md` |
+| 070302 | 并查集：带权 | 计划 | `data-structures/weighted-disjoint-set.md` |
+| *990302 | 可撤销并查集 | 计划 | `data-structures/rollback-disjoint-set.md` |
+| *990320 | 可持久化并查集 | 计划 | `data-structures/persistent-disjoint-set-union.md` |
+
+### 树状数组
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 060302 | 树状数组：基础 | 待审阅 | [fenwick-tree.md](data-structures/fenwick-tree.md) |
+| *990309 | 树状数组的区间修改变体 | 计划 | `data-structures/fenwick-range-updates.md` |
+| *990310 | 树状数组维护区间最值 | 计划 | `data-structures/fenwick-range-extrema.md` |
+
+### 线段树
+
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 060301 | 线段树：基础 | 待审阅 | [segment-tree.md](data-structures/segment-tree.md) |
 | *990301 | 线段树：懒标记的组合顺序 | 待审阅 | [segment-tree-lazy-tags.md](data-structures/segment-tree-lazy-tags.md) |
-| 060302 | 树状数组：基础 | 待审阅 | [fenwick-tree.md](data-structures/fenwick-tree.md) |
-| 060401 | 并查集：基础 | 待审阅 | [disjoint-set-union.md](data-structures/disjoint-set-union.md) |
-| 060303 | 稀疏表（ST 表） | 待审阅 | [sparse-table.md](data-structures/sparse-table.md) |
-| 070301 | 并查集：扩展域 | 计划 | `data-structures/extended-domain-disjoint-set.md` |
-| 070302 | 并查集：带权 | 计划 | `data-structures/weighted-disjoint-set.md` |
-| 050101 | 二叉树的基本概念 | 待审阅 | [binary-tree-concepts.md](data-structures/binary-tree-concepts.md) |
-| 050102 | 二叉树的存储 | 待审阅 | [binary-tree-storage.md](data-structures/binary-tree-storage.md) |
-| 050103 | 完全二叉树 | 待审阅 | [complete-binary-tree.md](data-structures/complete-binary-tree.md) |
-| *990302 | 可撤销并查集 | 计划 | `data-structures/rollback-disjoint-set.md` |
-| *990303 | 分块 | 计划 | `data-structures/square-root-decomposition.md` |
-| *990304 | 莫队算法 | 计划 | `data-structures/mo-algorithm.md` |
 | *990305 | 线段树二分与树上下降 | 计划 | `data-structures/segment-tree-descent.md` |
 | *990306 | 可持久化线段树 | 计划 | `data-structures/persistent-segment-tree.md` |
 | *990307 | 动态开点线段树 | 计划 | `data-structures/dynamic-segment-tree.md` |
 | *990308 | Segment Tree Beats | 计划 | `data-structures/segment-tree-beats.md` |
-| *990309 | 树状数组的区间修改变体 | 计划 | `data-structures/fenwick-range-updates.md` |
-| *990310 | 树状数组维护区间最值 | 计划 | `data-structures/fenwick-range-extrema.md` |
-| *990311 | 左偏树 | 计划 | `data-structures/leftist-tree.md` |
-| *990312 | Treap 与随机平衡树 | 计划 | `data-structures/treap.md` |
-| *990313 | Splay | 计划 | `data-structures/splay.md` |
-| *990314 | B 树与 B+ 树 | 计划 | `data-structures/b-tree-and-b-plus-tree.md` |
-| *990315 | 笛卡尔树 | 计划 | `data-structures/cartesian-tree.md` |
-| *990316 | Wavelet Matrix | 计划 | `data-structures/wavelet-matrix.md` |
-| *990317 | 启发式合并（small-to-large） | 计划 | `data-structures/small-to-large-merging.md` |
-| 050104 | 二叉树的遍历：前序、中序与后序 | 待审阅 | [binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
-| 050105 | 二叉搜索树的概念与构造 | 待审阅 | [binary-search-tree-construction.md](data-structures/binary-search-tree-construction.md) |
-| *990318 | 斜堆 | 计划 | `data-structures/skew-heap.md` |
-| *990319 | 配对堆 | 计划 | `data-structures/pairing-heap.md` |
-| *990320 | 可持久化并查集 | 计划 | `data-structures/persistent-disjoint-set-union.md` |
 | *990321 | 线段树：合并 | 计划 | `data-structures/segment-tree-merging.md` |
-| *990322 | 树套树：线段树套线段树 | 计划 | `data-structures/segment-tree-of-segment-trees.md` |
-| *990323 | 树套树：线段树套平衡树 | 计划 | `data-structures/segment-tree-of-balanced-trees.md` |
-| *990324 | 可持久化平衡树 | 计划 | `data-structures/persistent-balanced-tree.md` |
-| *990325 | 替罪羊树 | 计划 | `data-structures/scapegoat-tree.md` |
-| *990326 | 动态树：Link-Cut Tree | 计划 | `data-structures/link-cut-tree.md` |
-| *990327 | KD 树 | 计划 | `data-structures/kd-tree.md` |
+
+### 稀疏表
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 060303 | 稀疏表（ST 表） | 待审阅 | [sparse-table.md](data-structures/sparse-table.md) |
+
+### 分块与莫队
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990303 | 分块 | 计划 | `data-structures/square-root-decomposition.md` |
+| *990304 | 莫队算法 | 计划 | `data-structures/mo-algorithm.md` |
 | *990328 | 链上分块 | 计划 | `data-structures/chain-block-decomposition.md` |
 | *990329 | 树上分块 | 计划 | `data-structures/tree-block-decomposition.md` |
+
+### 堆
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 050201 | 二叉堆 | 待审阅 | [binary-heap.md](algorithm-basics/binary-heap.md) |
+| 050202 | priority_queue | 待审阅 | [priority-queue.md](cpp/priority-queue.md) |
+| *990311 | 左偏树 | 计划 | `data-structures/leftist-tree.md` |
+| *990318 | 斜堆 | 计划 | `data-structures/skew-heap.md` |
+| *990319 | 配对堆 | 计划 | `data-structures/pairing-heap.md` |
+
+### 平衡树
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990312 | Treap 与随机平衡树 | 计划 | `data-structures/treap.md` |
+| *990313 | Splay | 计划 | `data-structures/splay.md` |
+| *990325 | 替罪羊树 | 计划 | `data-structures/scapegoat-tree.md` |
+| *990314 | B 树与 B+ 树 | 计划 | `data-structures/b-tree-and-b-plus-tree.md` |
+| *990324 | 可持久化平衡树 | 计划 | `data-structures/persistent-balanced-tree.md` |
+
+### 可持久化数据结构
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990306 | 可持久化线段树 | 计划 | `data-structures/persistent-segment-tree.md` |
+| *990320 | 可持久化并查集 | 计划 | `data-structures/persistent-disjoint-set-union.md` |
+| *990324 | 可持久化平衡树 | 计划 | `data-structures/persistent-balanced-tree.md` |
+
+### 树上数据结构
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 070501 | 树上数据结构：树链剖分 | 计划 | `graph-theory/heavy-light-decomposition.md` |
+| *990428 | 长链剖分 | 计划 | `graph-theory/long-chain-decomposition.md` |
+| *990317 | 启发式合并（small-to-large） | 计划 | `data-structures/small-to-large-merging.md` |
+| *990326 | 动态树：Link-Cut Tree | 计划 | `data-structures/link-cut-tree.md` |
+| *990328 | 链上分块 | 计划 | `data-structures/chain-block-decomposition.md` |
+| *990329 | 树上分块 | 计划 | `data-structures/tree-block-decomposition.md` |
+
+### 字典树
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 062004 | 字符串：Trie | 计划 | `strings/trie.md` |
+
+### 复合与空间数据结构
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990322 | 树套树：线段树套线段树 | 计划 | `data-structures/segment-tree-of-segment-trees.md` |
+| *990323 | 树套树：线段树套平衡树 | 计划 | `data-structures/segment-tree-of-balanced-trees.md` |
+| *990327 | KD 树 | 计划 | `data-structures/kd-tree.md` |
+| *990315 | 笛卡尔树 | 计划 | `data-structures/cartesian-tree.md` |
+| *990316 | Wavelet Matrix | 计划 | `data-structures/wavelet-matrix.md` |
 
 ## 04 图论
 
