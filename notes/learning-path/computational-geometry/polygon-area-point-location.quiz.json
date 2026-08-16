@@ -1,0 +1,74 @@
+[
+  {
+    "id": "closing-edge",
+    "prompt": "枚举多边形边时，为什么要额外处理 `P[n] -> P[1]`？",
+    "options": [
+      { "id": "a", "text": "它让边界从最后顶点闭合回第一个顶点" },
+      { "id": "b", "text": "它会删除第一个顶点" },
+      { "id": "c", "text": "它只用于凸多边形" },
+      { "id": "d", "text": "它保证面积为整数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "多边形边界是闭合折线，最后一条边不能遗漏。"
+  },
+  {
+    "id": "signed-area",
+    "prompt": "鞋带公式求和为负数通常说明什么？",
+    "options": [
+      { "id": "a", "text": "多边形没有面积" },
+      { "id": "b", "text": "顶点顺序与正方向约定相反，实际面积取绝对值" },
+      { "id": "c", "text": "多边形一定自交" },
+      { "id": "d", "text": "坐标不能是整数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "有向面积符号记录边界绕行方向，不改变普通面积大小。"
+  },
+  {
+    "id": "twice-area",
+    "prompt": "为什么常保存多边形的两倍面积？",
+    "options": [
+      { "id": "a", "text": "避免整数坐标产生的半整数面积被过早截断" },
+      { "id": "b", "text": "因为面积一定是偶数" },
+      { "id": "c", "text": "为了让顶点数量减半" },
+      { "id": "d", "text": "因为叉积等于周长" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "叉积和天然给出精确整数的两倍面积。"
+  },
+  {
+    "id": "boundary-first",
+    "prompt": "点位置查询为什么先检查是否在边界上？",
+    "options": [
+      { "id": "a", "text": "边界点没有坐标" },
+      { "id": "b", "text": "为了把边界都视为外部" },
+      { "id": "c", "text": "射线经过顶点或水平边时，边界结果容易依赖计数细节" },
+      { "id": "d", "text": "因为内部点不能做叉积" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "先确定 Boundary，后续穿越规则只需区分严格内部与外部。"
+  },
+  {
+    "id": "half-open-crossing",
+    "prompt": "射线计数对边的高度范围使用半开条件，主要避免什么？",
+    "options": [
+      { "id": "a", "text": "同一个顶点被相邻两条边重复计数" },
+      { "id": "b", "text": "多边形面积过大" },
+      { "id": "c", "text": "顶点顺序改变" },
+      { "id": "d", "text": "查询点坐标为负" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "共享顶点只归其中一条跨越边处理，奇偶或环绕数才稳定。"
+  },
+  {
+    "id": "winding-result",
+    "prompt": "简单多边形中，完成边界检查后，环绕数不为 0 表示什么？",
+    "options": [
+      { "id": "a", "text": "查询点严格在多边形内部" },
+      { "id": "b", "text": "查询点一定是顶点" },
+      { "id": "c", "text": "多边形顶点数为奇数" },
+      { "id": "d", "text": "多边形面积为 0" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "边界绕查询点产生非零净环绕，说明该点位于内部。"
+  }
+]
