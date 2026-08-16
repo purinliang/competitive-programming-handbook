@@ -995,7 +995,7 @@
 | 070403 | 直线、线段与相交判定 | 待审阅 | [lines-segments-intersections.md](computational-geometry/lines-segments-intersections.md) |
 | 070404 | 多边形面积与点的位置 | 待审阅 | [polygon-area-point-location.md](computational-geometry/polygon-area-point-location.md) |
 | 070405 | 凸包 | 待审阅 | [convex-hull.md](computational-geometry/convex-hull.md) |
-| 080502 | 圆：位置关系与交点 | 计划 | `computational-geometry/circles.md` |
+| 080502 | 圆：位置关系与交点 | 待审阅 | [computational-geometry/circles.md](computational-geometry/circles.md) |
 | *990602 | 旋转卡壳 | 推迟 | `computational-geometry/rotating-calipers.md` |
 | *990603 | 几何扫描线 | 计划 | `computational-geometry/geometric-sweep-line.md` |
 | *990604 | 最近点对 | 计划 | `computational-geometry/closest-pair-of-points.md` |

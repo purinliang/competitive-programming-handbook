@@ -1,0 +1,62 @@
+[
+  {
+    "id": "two-intersections",
+    "prompt": "两个圆在什么条件下有两个不同交点？",
+    "options": [
+      { "id": "a", "text": "`d > r1+r2`" },
+      { "id": "b", "text": "`|r1-r2| < d < r1+r2`" },
+      { "id": "c", "text": "`d = 0` 且半径相等" },
+      { "id": "d", "text": "`d < |r1-r2|`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "圆心距离严格位于半径差与半径和之间时，两条圆周互相穿过。"
+  },
+  {
+    "id": "coincident",
+    "prompt": "两个圆重合需要满足什么条件？",
+    "options": [
+      { "id": "a", "text": "圆心相同且半径相同" },
+      { "id": "b", "text": "圆心相同即可" },
+      { "id": "c", "text": "半径相同即可" },
+      { "id": "d", "text": "圆心距离等于半径和" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "圆心和半径共同决定一个圆，二者都相同才有无穷多个公共点。"
+  },
+  {
+    "id": "projection-distance",
+    "prompt": "交点向圆心连线作垂线后，`a=|O1H|` 怎样得到？",
+    "options": [
+      { "id": "a", "text": "直接令 a 等于两个半径之和" },
+      { "id": "b", "text": "对两个圆的周长取平均" },
+      { "id": "c", "text": "将两个直角三角形的勾股等式相减，消去 h" },
+      { "id": "d", "text": "只根据交点的 x 坐标判断" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "两式共享 h^2，相减后得到关于 a 的一次方程。"
+  },
+  {
+    "id": "tangent-height",
+    "prompt": "两个圆相切时，交点公式中的垂直距离 h 是多少？",
+    "options": [
+      { "id": "a", "text": "r1+r2" },
+      { "id": "b", "text": "圆心距离 d" },
+      { "id": "c", "text": "无法确定" },
+      { "id": "d", "text": "0" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "相切交点就在圆心连线上，垂足与交点重合，因此上下两个解合并。"
+  },
+  {
+    "id": "clamp-order",
+    "prompt": "为什么只能在确认两圆应当相交或相切后，才把微小负的 `h^2` 截成 0？",
+    "options": [
+      { "id": "a", "text": "否则可能把真正相离或内含的情况伪装成相切" },
+      { "id": "b", "text": "否则圆心坐标会自动变成整数" },
+      { "id": "c", "text": "否则无法计算圆心距离" },
+      { "id": "d", "text": "因为 max 只能调用一次" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "截断只用于修正理论上应为零的舍入误差，不能替代几何位置判断。"
+  }
+]
