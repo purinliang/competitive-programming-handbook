@@ -784,6 +784,13 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 071204 | 最长重复子串 | 字符串 | `strings/longest-repeated-substring.md` |
 | 071205 | 最长公共子串 | 字符串 | `strings/longest-common-substring.md` |
 
+### 单元 13：数据结构：平衡树
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 071301 | Treap | 数据结构 | `data-structures/treap.md` |
+| 071302 | 无旋 Treap | 数据结构 | `data-structures/fhq-treap.md` |
+
 完成 06 高中进阶后，读者已经具备独立阅读题解、按题目补充专题和判断新算法依赖的能力。这里不把高中竞赛一等奖与大学竞赛奖牌、Codeforces rating 做机械换算。
 
 ## 扩展阅读索引
@@ -866,7 +873,6 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990309 | 树状数组的区间修改变体 | `data-structures/fenwick-range-updates.md` |
 | *990310 | 树状数组维护区间最值 | `data-structures/fenwick-range-extrema.md` |
 | *990311 | 左偏树 | `data-structures/leftist-tree.md` |
-| *990312 | Treap 与随机平衡树 | `data-structures/treap.md` |
 | *990313 | Splay | `data-structures/splay.md` |
 | *990314 | B 树与 B+ 树 | `data-structures/b-tree-and-b-plus-tree.md` |
 | *990315 | 笛卡尔树 | `data-structures/cartesian-tree.md` |
@@ -878,7 +884,6 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *990321 | 线段树：合并 | `data-structures/segment-tree-merging.md` |
 | *990322 | 树套树：线段树套线段树 | `data-structures/segment-tree-of-segment-trees.md` |
 | *990323 | 树套树：线段树套平衡树 | `data-structures/segment-tree-of-balanced-trees.md` |
-| *990324 | 可持久化平衡树 | `data-structures/persistent-balanced-tree.md` |
 | *990325 | 替罪羊树 | `data-structures/scapegoat-tree.md` |
 | *990326 | 动态树：Link-Cut Tree | `data-structures/link-cut-tree.md` |
 | *990327 | KD 树 | `data-structures/kd-tree.md` |

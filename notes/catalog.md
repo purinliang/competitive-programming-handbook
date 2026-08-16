@@ -526,11 +526,12 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| *990312 | Treap 与随机平衡树 | 计划 | `data-structures/treap.md` |
+| 071301 | Treap | 计划 | `data-structures/treap.md` |
+| 071302 | 无旋 Treap | 计划 | `data-structures/fhq-treap.md` |
 | *990313 | Splay | 计划 | `data-structures/splay.md` |
 | *990325 | 替罪羊树 | 计划 | `data-structures/scapegoat-tree.md` |
 | *990314 | B 树与 B+ 树 | 计划 | `data-structures/b-tree-and-b-plus-tree.md` |
-| *990324 | 可持久化平衡树 | 计划 | `data-structures/persistent-balanced-tree.md` |
+| *071302e1 | 可持久化无旋 Treap | 计划 | `data-structures/persistent-fhq-treap.md` |
 
 ### 可持久化数据结构
 
@@ -538,7 +539,7 @@
 | --- | --- | --- | --- |
 | *990306 | 可持久化线段树 | 计划 | `data-structures/persistent-segment-tree.md` |
 | *990320 | 可持久化并查集 | 计划 | `data-structures/persistent-disjoint-set-union.md` |
-| *990324 | 可持久化平衡树 | 计划 | `data-structures/persistent-balanced-tree.md` |
+| *071302e1 | 可持久化无旋 Treap | 计划 | `data-structures/persistent-fhq-treap.md` |
 
 ### 树上数据结构
 
