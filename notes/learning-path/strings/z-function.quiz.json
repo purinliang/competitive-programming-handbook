@@ -1,0 +1,74 @@
+[
+  {
+    "id": "z-definition",
+    "prompt": "`z[i]` 表示什么？",
+    "options": [
+      { "id": "a", "text": "`s` 与后缀 `s[i..n]` 的最长公共前缀长度" },
+      { "id": "b", "text": "以 `i` 结尾的最长回文长度" },
+      { "id": "c", "text": "`s[1..i]` 的不同字符数量" },
+      { "id": "d", "text": "从 `i` 到结尾的字符总和" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Z 函数始终拿每个后缀的开头与整个字符串的开头比较。"
+  },
+  {
+    "id": "z-box-meaning",
+    "prompt": "维护的 Z 区间 `[l, r]` 满足什么关系？",
+    "options": [
+      { "id": "a", "text": "`s[l..r]` 一定是回文" },
+      { "id": "b", "text": "`s[l..r]` 等于同长度的字符串前缀" },
+      { "id": "c", "text": "区间内字符两两不同" },
+      { "id": "d", "text": "`l + r = n`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Z 区间是一段已经确认等于前缀的副本。"
+  },
+  {
+    "id": "copy-limit",
+    "prompt": "当 `i <= r` 时，为什么初始化为 `min(r-i+1, z[i-l+1])`？",
+    "options": [
+      { "id": "a", "text": "为了让 `z[i]` 永远等于 0" },
+      { "id": "b", "text": "为了跳过整个字符串" },
+      { "id": "c", "text": "只能复制对应前缀信息与当前已知区间共同覆盖的部分" },
+      { "id": "d", "text": "因为两个数一定相等" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "超过 r 的字符尚未确认，不能直接从旧 z 值复制。"
+  },
+  {
+    "id": "separator-purpose",
+    "prompt": "使用 `pattern#text` 做模式匹配时，分隔符的主要作用是什么？",
+    "options": [
+      { "id": "a", "text": "把文本转换成数字" },
+      { "id": "b", "text": "让模式串自动倒序" },
+      { "id": "c", "text": "减少字符串长度" },
+      { "id": "d", "text": "阻止匹配跨过模式串与文本串的边界" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "分隔符不在输入字符集中，前缀匹配到边界时必然停止。"
+  },
+  {
+    "id": "occurrence-position",
+    "prompt": "1-based 拼接串中 `z[i] >= m` 时，对应文本起点是什么？",
+    "options": [
+      { "id": "a", "text": "`i - m - 1`" },
+      { "id": "b", "text": "`i - m`" },
+      { "id": "c", "text": "`i + m + 1`" },
+      { "id": "d", "text": "`m - i + 1`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "拼接位置前面有 m 个模式字符和一个分隔符。"
+  },
+  {
+    "id": "linear-expansion",
+    "prompt": "Z 函数中所有向右扩展为什么合计是 $O(n)$？",
+    "options": [
+      { "id": "a", "text": "因为每个 `z[i]` 都不超过 1" },
+      { "id": "b", "text": "成功越过已知区间的比较会推动 `r`，而 `r` 只会右移" },
+      { "id": "c", "text": "因为字符串必须全部相同" },
+      { "id": "d", "text": "因为没有使用循环" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "已知区间内部直接复用信息，新增成功比较总数受 r 的单调移动限制。"
+  }
+]
