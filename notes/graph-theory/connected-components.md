@@ -1,6 +1,6 @@
 # 连通块
 
-> 最近修订：2026-08-16 15:06 +10:00（未审阅）
+> 最近修订：2026-08-16 16:24 +10:00（未审阅）
 
 一张道路图中可能存在互不相通的若干片区域。题目不仅可能询问区域数量，还可能反复询问两座城市能否互相到达、某座城市所在区域有多少座城市。
 
@@ -137,29 +137,29 @@ component_size[component_id[u]]
 
 孤立点也会从外层循环开始一次 DFS。它没有未访问邻点，计数增加一次后立即返回，所以所在连通块大小正确地等于 `1`。
 
-## 状态封装
+## 题目共享状态
 
-邻接表、连通块编号、大小和总数都属于同一次预处理，并由加边、遍历和查询操作共同使用，因此封装成一个对象：
+点数、邻接表、连通块编号、大小和总数都是这道题全局唯一，并且会被输入、DFS、预处理和查询共同使用的状态，因此按照一次性竞赛题解的写法保存为全局变量：
 
 ```cpp
-struct ConnectedComponents {
-    int n;
-    int component_count;
-    vector<vector<int>> g;
-    vector<int> component_id;
-    vector<int> component_size;
-
-    ConnectedComponents(int size) {
-        n = size;
-        component_count = 0;
-        g.resize(n + 5);
-        component_id.resize(n + 5, 0);
-        component_size.resize(n + 5, 0);
-    }
-};
+int n;
+int component_count;
+vector<vector<int>> g;
+vector<int> component_id;
+vector<int> component_size;
 ```
 
 图中真实点使用 `1..n`，位置 `0` 不保存真实点；`component_id[u] == 0` 因而可以无歧义地表示尚未分类。
+
+读入点数以后统一分配并清空：
+
+```cpp
+g.assign(n + 5, {});
+component_id.assign(n + 5, 0);
+component_size.assign(n + 5, 0);
+```
+
+`assign` 同时确定容器长度并重设全部元素，所以再次调用 `solve` 时不会保留上一组图或编号。
 
 无向边必须向邻接表加入两个方向：
 
@@ -170,14 +170,14 @@ void add_edge(int u, int v) {
 }
 ```
 
-所有边加入完成后才能执行 `build()`。若预处理以后又增加边，两个原本不同的连通块可能合并，旧编号就不再有效；必须重新构建，或改用后续的并查集处理动态加边。
+所有边加入完成后才能执行 `build_components()`。若预处理以后又增加边，两个原本不同的连通块可能合并，旧编号就不再有效；必须重新构建，或改用后续的并查集处理动态加边。
 
 ## 查询接口
 
 预处理以后，两点是否连通只需比较编号：
 
 ```cpp
-bool same_component(int u, int v) const {
+bool same_component(int u, int v) {
     return component_id[u] == component_id[v];
 }
 ```
@@ -185,12 +185,12 @@ bool same_component(int u, int v) const {
 点 `u` 所在连通块大小也只需两次数组访问：
 
 ```cpp
-int size_of(int u) const {
+int size_of(int u) {
     return component_size[component_id[u]];
 }
 ```
 
-这两个查询都是 $O(1)$。它们要求已经执行 `build()`；构建前所有真实点编号都是 `0`，直接比较会错误地认为任意两点属于同一块。
+这两个查询都是 $O(1)$。它们要求已经执行 `build_components()`；构建前所有真实点编号都是 `0`，直接比较会错误地认为任意两点属于同一块。
 
 ## 正确性
 
@@ -220,85 +220,78 @@ q 次查询 u v
 #include <bits/stdc++.h>
 using namespace std;
 
-struct ConnectedComponents {
-    int n;
-    int component_count;
-    vector<vector<int>> g;
-    vector<int> component_id;
-    vector<int> component_size;
+int n;
+int component_count;
+vector<vector<int>> g;
+vector<int> component_id;
+vector<int> component_size;
 
-    ConnectedComponents(int size) {
-        n = size;
-        component_count = 0;
-        g.resize(n + 5);
-        component_id.resize(n + 5, 0);
-        component_size.resize(n + 5, 0);
+void add_edge(int u, int v) {
+    g[u].push_back(v);
+    g[v].push_back(u);
+}
+
+void dfs(int u, int id) {
+    component_id[u] = id;
+    component_size[id]++;
+
+    for (int v : g[u]) {
+        if (component_id[v] != 0) {
+            continue;
+        }
+        dfs(v, id);
     }
+}
 
-    void add_edge(int u, int v) {
-        g[u].push_back(v);
-        g[v].push_back(u);
-    }
+void build_components() {
+    component_count = 0;
+    fill(component_id.begin(), component_id.end(), 0);
+    fill(component_size.begin(), component_size.end(), 0);
 
-    void dfs(int u, int id) {
-        component_id[u] = id;
-        component_size[id]++;
-
-        for (int v : g[u]) {
-            if (component_id[v] != 0) {
-                continue;
-            }
-            dfs(v, id);
+    for (int u = 1; u <= n; u++) {
+        if (component_id[u] == 0) {
+            component_count++;
+            dfs(u, component_count);
         }
     }
+}
 
-    void build() {
-        component_count = 0;
-        fill(component_id.begin(), component_id.end(), 0);
-        fill(component_size.begin(), component_size.end(), 0);
+bool same_component(int u, int v) {
+    return component_id[u] == component_id[v];
+}
 
-        for (int u = 1; u <= n; u++) {
-            if (component_id[u] == 0) {
-                component_count++;
-                dfs(u, component_count);
-            }
-        }
-    }
-
-    bool same_component(int u, int v) const {
-        return component_id[u] == component_id[v];
-    }
-
-    int size_of(int u) const {
-        return component_size[component_id[u]];
-    }
-};
+int size_of(int u) {
+    return component_size[component_id[u]];
+}
 
 void solve() {
-    int n, m, q;
+    int m, q;
     scanf("%d%d%d", &n, &m, &q);
 
-    ConnectedComponents components(n);
+    g.assign(n + 5, {});
+    component_id.assign(n + 5, 0);
+    component_size.assign(n + 5, 0);
+
     for (int i = 1; i <= m; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
-        components.add_edge(u, v);
+        add_edge(u, v);
     }
 
-    components.build();
+    build_components();
 
-    printf("%d\n", components.component_count);
+    printf("%d\n", component_count);
     for (int u = 1; u <= n; u++) {
-        printf("%d%c", components.component_id[u], u == n ? '\n' : ' ');
+        printf("%d%c", component_id[u], u == n ? '\n' : ' ');
     }
     for (int u = 1; u <= n; u++) {
-        printf("%d%c", components.size_of(u), u == n ? '\n' : ' ');
+        printf("%d%c", size_of(u), u == n ? '\n' : ' ');
     }
 
     for (int i = 1; i <= q; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
-        printf("%s\n", components.same_component(u, v) ? "Yes" : "No");
+        printf("%s\n", same_component(u, v) ? "Yes" : "No");
     }
 }
 
@@ -409,5 +402,3 @@ $$
 9. 本篇代码为什么不能直接求有向图的强连通分量？
 
 动态图中的加边连通性适合使用并查集；强连通分量、点双连通分量和边双连通分量具有额外定义与算法，不属于本篇基础目标。
-
-[无根树](unrooted-trees.md) 会研究只有一个连通块且不含环的特殊无向图。
