@@ -1,0 +1,62 @@
+[
+  {
+    "id": "dfn-meaning",
+    "prompt": "`dfn[u]` 表示什么？",
+    "options": [
+      { "id": "a", "text": "节点 u 的父节点" },
+      { "id": "b", "text": "节点 u 第一次被 DFS 到达时得到的序列位置" },
+      { "id": "c", "text": "节点 u 的度数" },
+      { "id": "d", "text": "节点 u 到根的距离" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "本篇 DFS 序在第一次进入每个节点时编号。"
+  },
+  {
+    "id": "subtree-interval",
+    "prompt": "节点 u 的子树对应哪个闭区间？",
+    "options": [
+      { "id": "a", "text": "$[dfn[u],dfn[u]+siz[u]-1]$" },
+      { "id": "b", "text": "$[1,siz[u]]$" },
+      { "id": "c", "text": "$[dep[u],dfn[u]]$" },
+      { "id": "d", "text": "$[par[u],u]$" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "区间从 u 第一次出现的位置开始，长度恰好是整棵子树大小。"
+  },
+  {
+    "id": "size-initialization",
+    "prompt": "进入节点 u 时，为什么先令 `siz[u]=1`？",
+    "options": [
+      { "id": "a", "text": "因为所有节点都有一个儿子" },
+      { "id": "b", "text": "因为根节点编号是 1" },
+      { "id": "c", "text": "因为子树必须把节点 u 自己计入" },
+      { "id": "d", "text": "为了跳过父节点" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "子树大小等于自身一个节点加上所有儿子子树大小。"
+  },
+  {
+    "id": "ancestor-test",
+    "prompt": "怎样利用 DFS 序判断 u 是否为 v 的祖先？",
+    "options": [
+      { "id": "a", "text": "检查 `u < v`" },
+      { "id": "b", "text": "检查 `dep[u] == dep[v]`" },
+      { "id": "c", "text": "检查 `siz[u] > siz[v]` 即可" },
+      { "id": "d", "text": "检查 v 的 dfn 是否落在 u 的子树区间" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "u 的后代恰好占据其 DFS 序子树区间。"
+  },
+  {
+    "id": "flattening-purpose",
+    "prompt": "把节点权值放到 `order_value[dfn[u]]` 的主要作用是什么？",
+    "options": [
+      { "id": "a", "text": "把子树维护转换成数组区间维护" },
+      { "id": "b", "text": "让树变成完全图" },
+      { "id": "c", "text": "删除所有父子关系" },
+      { "id": "d", "text": "把所有边权变成零" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "同一子树在 DFS 序中连续，因此可以交给前缀和、树状数组或线段树。"
+  }
+]
