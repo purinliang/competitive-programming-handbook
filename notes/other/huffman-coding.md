@@ -1,12 +1,12 @@
 # 哈夫曼编码
 
-> 最近修订：2026-08-14 02:27 +10:00（未审阅）
+> 最近修订：2026-08-16 15:27 +10:00（未审阅）
 
 假设一段数据只包含若干种符号，但它们出现频率差异很大。若每个符号都使用相同数量的二进制位，出现一次和出现一万次的符号仍然占用同样长度。我们希望让高频符号使用较短编码、低频符号使用较长编码，从而缩短整段数据。
 
 随意使用不同长度会导致无法分割。哈夫曼编码（Huffman coding）先把可唯一解码的编码表示成二叉树，再反复合并频率最小的两棵树，得到带权路径长度最小的前缀编码。
 
-本篇需要已经了解 [容器适配器：priority_queue](../cpp/priority-queue.md) 和 [二叉树的结构与存储](../data-structures/binary-tree-structure-and-storage.md)。
+本篇需要已经了解 [`priority_queue`](../cpp/priority-queue.md) 和 [二叉树的结构与存储](../data-structures/binary-tree-structure-and-storage.md)。
 
 ## 等长编码
 
@@ -136,6 +136,16 @@ struct HuffmanNode {
 };
 ```
 
+符号数量、频率、树节点和最终码表会被构树、DFS 与输出共同使用，因此把它们保存为题目级共享状态：
+
+```cpp
+int n, node_count;
+ll encoded_bits;
+vector<ll> frequency;
+vector<HuffmanNode> nodes;
+vector<string> codes;
+```
+
 叶节点没有孩子，左右编号都为 `0`：
 
 ```cpp
@@ -180,19 +190,18 @@ encoded_bits += weight_sum;
 合并结束时，小根堆中唯一节点就是根。从根进行 DFS，向左加入字符 `'0'`，返回时撤销，再向右加入 `'1'`：
 
 ```cpp
-void build_codes(int u, int symbol_count, const vector<HuffmanNode>& nodes,
-                 string& code, vector<string>& codes) {
-    if (u <= symbol_count) {
+void build_codes(int u, string& code) {
+    if (u <= n) {
         codes[u] = code;
         return;
     }
 
     code.push_back('0');
-    build_codes(nodes[u].left, symbol_count, nodes, code, codes);
+    build_codes(nodes[u].left, code);
     code.pop_back();
 
     code.push_back('1');
-    build_codes(nodes[u].right, symbol_count, nodes, code, codes);
+    build_codes(nodes[u].right, code);
     code.pop_back();
 }
 ```
@@ -267,29 +276,32 @@ struct HuffmanNode {
     int right;
 };
 
-struct HuffmanResult {
-    ll encoded_bits;
-    vector<string> codes;
-};
+int n, node_count;
+ll encoded_bits;
+vector<string> symbols;
+vector<ll> frequency;
+vector<HuffmanNode> nodes;
+vector<string> codes;
 
-void build_codes(int u, int symbol_count, const vector<HuffmanNode>& nodes,
-                 string& code, vector<string>& codes) {
-    if (u <= symbol_count) {
+void build_codes(int u, string& code) {
+    if (u <= n) {
         codes[u] = code;
         return;
     }
 
     code.push_back('0');
-    build_codes(nodes[u].left, symbol_count, nodes, code, codes);
+    build_codes(nodes[u].left, code);
     code.pop_back();
 
     code.push_back('1');
-    build_codes(nodes[u].right, symbol_count, nodes, code, codes);
+    build_codes(nodes[u].right, code);
     code.pop_back();
 }
 
-HuffmanResult huffman_coding(int n, const vector<ll>& frequency) {
-    vector<HuffmanNode> nodes(2 * n + 5);
+void huffman_coding() {
+    nodes.assign(2 * n + 5, {});
+    codes.assign(n + 5, "");
+
     priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>>
         q;
 
@@ -298,14 +310,14 @@ HuffmanResult huffman_coding(int n, const vector<ll>& frequency) {
         q.push({frequency[i], i});
     }
 
-    vector<string> codes(n + 5);
     if (n == 1) {
         codes[1] = "0";
-        return {frequency[1], codes};
+        encoded_bits = frequency[1];
+        return;
     }
 
-    int node_count = n;
-    ll encoded_bits = 0;
+    node_count = n;
+    encoded_bits = 0;
     while (q.size() > 1) {
         auto [weight_x, x] = q.top();
         q.pop();
@@ -321,27 +333,29 @@ HuffmanResult huffman_coding(int n, const vector<ll>& frequency) {
 
     int root = q.top().second;
     string code;
-    build_codes(root, n, nodes, code, codes);
-    return {encoded_bits, codes};
+    build_codes(root, code);
 }
 
-int main() {
-    int n;
+void solve() {
     scanf("%d", &n);
 
-    vector<string> symbols(n + 5);
-    vector<ll> frequency(n + 5);
+    symbols.assign(n + 5, "");
+    frequency.assign(n + 5, 0);
     for (int i = 1; i <= n; i++) {
         char buffer[105];
         scanf("%100s%lld", buffer, &frequency[i]);
         symbols[i] = buffer;
     }
 
-    HuffmanResult result = huffman_coding(n, frequency);
-    printf("%lld\n", result.encoded_bits);
+    huffman_coding();
+    printf("%lld\n", encoded_bits);
     for (int i = 1; i <= n; i++) {
-        printf("%s %s\n", symbols[i].c_str(), result.codes[i].c_str());
+        printf("%s %s\n", symbols[i].c_str(), codes[i].c_str());
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -433,7 +447,3 @@ DFS 从左子树返回后要删除刚加入的 `'0'`，再进入右子树；否�
 8. `priority_queue` 为什么必须是小根堆？队列项为什么还保存节点编号？
 9. 同权值为什么可能产生不同码表？哪些量仍然相同？
 10. 只有一个符号时，数学空码字与程序约定有什么区别？
-
-## 下一篇
-
-下一篇 [格雷码](gray-code.md) 会构造相邻两个编码恰好只有一个二进制位不同的等长编码序列。

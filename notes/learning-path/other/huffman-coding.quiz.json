@@ -1,0 +1,146 @@
+[
+  {
+    "id": "fixed-length-cost",
+    "prompt": "有 $k$ 种符号时，等长二进制编码至少需要多少位表示一个符号？",
+    "options": [
+      { "id": "a", "text": "$k$" },
+      { "id": "b", "text": "$\\lfloor \\log_2 k \\rfloor$" },
+      { "id": "c", "text": "$\\lceil \\log_2 k \\rceil$" },
+      { "id": "d", "text": "$2^k$" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "$L$ 位最多区分 $2^L$ 种符号，因此要取满足 $2^L \\ge k$ 的最小整数 $L$。"
+  },
+  {
+    "id": "prefix-code",
+    "prompt": "前缀编码的核心限制是什么？",
+    "options": [
+      { "id": "a", "text": "任何完整码字都不是另一个码字的前缀" },
+      { "id": "b", "text": "所有码字长度必须相同" },
+      { "id": "c", "text": "每个码字都必须以 1 开头" },
+      { "id": "d", "text": "所有符号必须出现相同次数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "这个限制让解码器到达一个完整码字时即可确定边界，不需要额外分隔符。"
+  },
+  {
+    "id": "tree-leaves",
+    "prompt": "为什么前缀编码树把符号放在叶节点？",
+    "options": [
+      { "id": "a", "text": "叶节点的权值一定相同" },
+      { "id": "b", "text": "叶节点一定处于同一深度" },
+      { "id": "c", "text": "这样树中不需要内部节点" },
+      { "id": "d", "text": "叶节点不会成为另一个叶节点的祖先，对应码字不会互为前缀" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "根到叶的路径在另一个叶处不可能继续向下，因此天然满足前缀条件。"
+  },
+  {
+    "id": "weighted-path-length",
+    "prompt": "符号 $i$ 的频率为 $f_i$、码长为 $d_i$ 时，总编码位数怎样计算？",
+    "options": [
+      { "id": "a", "text": "$\\sum_i(f_i+d_i)$" },
+      { "id": "b", "text": "$\\sum_i f_i d_i$" },
+      { "id": "c", "text": "$\\max_i f_i d_i$" },
+      { "id": "d", "text": "$\\sum_i f_i/d_i$" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每次出现符号 $i$ 都要写出 $d_i$ 位，共出现 $f_i$ 次，因此贡献为 $f_i d_i$。"
+  },
+  {
+    "id": "greedy-choice",
+    "prompt": "哈夫曼算法每次合并哪两个候选权值？",
+    "options": [
+      { "id": "a", "text": "最大的两个" },
+      { "id": "b", "text": "编号最小的两个" },
+      { "id": "c", "text": "任意两个" },
+      { "id": "d", "text": "当前最小的两个" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "最小的两个权值可以被安排为最深的一对兄弟叶，合并后得到同类子问题。"
+  },
+  {
+    "id": "merged-weight",
+    "prompt": "合并权值 $x$ 与 $y$ 后，为什么新父节点的权值是 $x+y$？",
+    "options": [
+      { "id": "a", "text": "两个子树中的所有符号都比父节点再深一层，总频率为 $x+y$" },
+      { "id": "b", "text": "为了让树成为完全二叉树" },
+      { "id": "c", "text": "因为堆只能存储和" },
+      { "id": "d", "text": "为了让左右孩子权值相同" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "父节点代表两个子树中全部符号的总频率，之后每再加深一层都增加 $x+y$ 的代价。"
+  },
+  {
+    "id": "sum-of-merges",
+    "prompt": "只想求最小带权路径长度时，为什么累加每次合并的新权值即可？",
+    "options": [
+      { "id": "a", "text": "每个新权值都是树高" },
+      { "id": "b", "text": "每次合并都会删除一条边" },
+      { "id": "c", "text": "合并使两个子树中的每个叶都加深一层，增加的总贡献正是新权值" },
+      { "id": "d", "text": "这是 priority_queue 自动维护的答案" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "所有合并造成的逐层增量相加，恰好覆盖每个叶的频率乘最终深度。"
+  },
+  {
+    "id": "min-heap",
+    "prompt": "C++ 模板为什么给 `priority_queue` 使用 `greater`？",
+    "options": [
+      { "id": "a", "text": "为了按符号名称排序" },
+      { "id": "b", "text": "为了构造小根堆，反复取出最小权值" },
+      { "id": "c", "text": "为了去除重复权值" },
+      { "id": "d", "text": "为了限制堆的大小" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "默认 priority_queue 是大根堆，而哈夫曼算法需要每次取出当前最小的两项。"
+  },
+  {
+    "id": "tie-breaking",
+    "prompt": "多个候选权值相同时，选择顺序不同通常会怎样？",
+    "options": [
+      { "id": "a", "text": "一定导致编码无法解码" },
+      { "id": "b", "text": "一定改变最小总位数" },
+      { "id": "c", "text": "一定生成完全相同的码字" },
+      { "id": "d", "text": "可能改变树形和码字，但不改变最优带权路径长度" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "哈夫曼编码一般不唯一；通信双方需要共享同一棵树或码表。"
+  },
+  {
+    "id": "single-symbol",
+    "prompt": "只有一种符号时，本文模板为什么约定码字为 `0`？",
+    "options": [
+      { "id": "a", "text": "为了避免程序输出空码字；这是接口约定" },
+      { "id": "b", "text": "因为数学定义要求码长必须为 1" },
+      { "id": "c", "text": "因为该符号频率必须为 0" },
+      { "id": "d", "text": "为了让哈夫曼树拥有两个叶节点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "数学上唯一根叶可以对应空码字；程序使用 0 是为了形成便于输出和传输的非空表示。"
+  },
+  {
+    "id": "code-dfs-backtrack",
+    "prompt": "DFS 生成码字时，从左子树返回后为什么要 `code.pop_back()`？",
+    "options": [
+      { "id": "a", "text": "为了删除已经生成的码字" },
+      { "id": "b", "text": "为了让递归提前结束" },
+      { "id": "c", "text": "为了撤销左边的路径选择，避免污染右子树路径" },
+      { "id": "d", "text": "为了改变节点权值" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "code 表示当前根到节点的路径，离开一条边时必须同步撤销对应字符。"
+  },
+  {
+    "id": "complexity",
+    "prompt": "使用小根堆构造含 $n$ 个符号的哈夫曼树，构树时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(1)$" },
+      { "id": "b", "text": "$O(n\\log n)$" },
+      { "id": "c", "text": "$O(n^2)$" },
+      { "id": "d", "text": "$O(2^n)$" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "共有 $n-1$ 次合并，每次进行常数次 $O(\\log n)$ 的堆操作。"
+  }
+]
