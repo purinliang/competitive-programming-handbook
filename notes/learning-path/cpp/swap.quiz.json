@@ -1,0 +1,50 @@
+[
+  {
+    "id": "swap-result",
+    "prompt": "若最初 `a = 3`、`b = 5`，执行 `swap(a, b);` 后结果是什么？",
+    "options": [
+      { "id": "a", "text": "`a = 3, b = 5`" },
+      { "id": "b", "text": "`a = 3, b = 3`" },
+      { "id": "c", "text": "`a = 5, b = 3`" },
+      { "id": "d", "text": "`a = 5, b = 5`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`swap` 交换两个对象保存的值，因此两个变量分别得到对方原来的值。"
+  },
+  {
+    "id": "swap-manual-temporary",
+    "prompt": "手工交换两个变量时，为什么需要临时变量？",
+    "options": [
+      { "id": "a", "text": "保存第一次赋值会覆盖的旧值" },
+      { "id": "b", "text": "把两个整数都转换成浮点数" },
+      { "id": "c", "text": "让编译器跳过赋值" },
+      { "id": "d", "text": "临时变量会自动排序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "若不先保存一个旧值，第一次赋值就会覆盖它，后续无法恢复。"
+  },
+  {
+    "id": "swap-array-elements",
+    "prompt": "`swap(a[i], a[j]);` 交换的是什么？",
+    "options": [
+      { "id": "a", "text": "数组 `a` 与另一个数组" },
+      { "id": "b", "text": "下标 `i` 与 `j` 的数值" },
+      { "id": "c", "text": "整个程序的输入与输出" },
+      { "id": "d", "text": "数组中下标 `i` 与 `j` 对应的两个元素" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "传入的是两个元素表达式，所以被修改的是 `a[i]` 和 `a[j]` 保存的值。"
+  },
+  {
+    "id": "swap-avoid-tricks",
+    "prompt": "为什么通常不使用加减法技巧交换两个整数？",
+    "options": [
+      { "id": "a", "text": "C++ 不支持整数加法" },
+      { "id": "b", "text": "中间结果可能溢出，而且写法更难理解、适用范围更窄" },
+      { "id": "c", "text": "`swap` 只能交换字符串" },
+      { "id": "d", "text": "临时变量一定占用超过内存限制的空间" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "标准库 `swap` 意图明确；算术技巧可能溢出，也不能自然推广到一般对象。"
+  }
+]
