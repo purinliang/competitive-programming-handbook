@@ -1,63 +1,74 @@
 [
   {
     "id": "division-direction",
-    "prompt": "高精度除以低精度整数时，为什么要从最高数字块向最低数字块处理？",
+    "prompt": "高精度除以低精度整数时，为什么从最高十进制位开始？",
     "options": [
-      { "id": "a", "text": "因为低位数字块不能做除法" },
-      { "id": "b", "text": "下一块需要使用更高块留下的余数" },
-      { "id": "c", "text": "因为 vector 只能反向遍历" },
-      { "id": "d", "text": "这样才能把时间复杂度降为 O(1)" }
+      { "id": "a", "text": "低位数字不能参与除法" },
+      { "id": "b", "text": "下一位需要使用更高位处理后留下的余数" },
+      { "id": "c", "text": "vector 不能正向遍历" },
+      { "id": "d", "text": "为了把复杂度降为 O(1)" }
     ],
     "correctOptionId": "b",
-    "explanation": "竖式除法必须先确定更高位的商和余数，再把下一块放下来。"
+    "explanation": "竖式必须先确定高位商和余数，才能继续放下下一位。"
   },
   {
-    "id": "current-dividend",
-    "prompt": "处理数字块 `d[i]` 时，临时被除数应怎样计算？",
+    "id": "bring-down-digit",
+    "prompt": "一格一位的十进制表示中，放下 `d[i]` 后的临时被除数是什么？",
     "options": [
       { "id": "a", "text": "remainder + d[i]" },
-      { "id": "b", "text": "remainder / BASE + d[i]" },
-      { "id": "c", "text": "remainder * BASE + d[i]" },
+      { "id": "b", "text": "remainder / 10 + d[i]" },
+      { "id": "c", "text": "remainder * 10 + d[i]" },
       { "id": "d", "text": "d[i] * divisor" }
     ],
     "correctOptionId": "c",
-    "explanation": "把一个以 BASE 为基数的数字块放下来，相当于旧余数左移一块后再加当前块。"
+    "explanation": "放下一位相当于让旧余数左移一个十进制位，再加当前数字。"
+  },
+  {
+    "id": "quotient-digit-range",
+    "prompt": "为什么每一步得到的商位一定在 `[0,9]`？",
+    "options": [
+      { "id": "a", "text": "因为放下一位前余数小于除数，放下后 current 小于 divisor*10" },
+      { "id": "b", "text": "因为除数一定小于 10" },
+      { "id": "c", "text": "因为被除数最多一位" },
+      { "id": "d", "text": "因为商始终等于余数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "current/divisor 严格小于 10，恰好能放入一个十进制数字位。"
   },
   {
     "id": "result-types",
-    "prompt": "高精度非负整数除以正的 `int` 后，商和余数分别适合使用什么类型？",
+    "prompt": "非负高精度整数除以正 `int` 后，商和余数分别适合用什么类型？",
     "options": [
-      { "id": "a", "text": "商用 bigint，余数用 int" },
-      { "id": "b", "text": "商和余数都只能用 bigint" },
-      { "id": "c", "text": "商用 int，余数用 bigint" },
-      { "id": "d", "text": "商和余数都只能用 double" }
+      { "id": "a", "text": "商用 int，余数用 bigint" },
+      { "id": "b", "text": "两者都必须用 double" },
+      { "id": "c", "text": "两者都只能用 bigint" },
+      { "id": "d", "text": "商用 bigint，余数用 int" }
     ],
-    "correctOptionId": "a",
-    "explanation": "商可能仍有数百位；余数严格小于低精度除数，所以 int 足够。"
+    "correctOptionId": "d",
+    "explanation": "商可能仍很长；余数严格小于低精度除数。"
   },
   {
     "id": "division-invariant",
-    "prompt": "除数为正数时，最终商 `q` 与余数 `r` 必须满足哪组条件？",
+    "prompt": "正除数 `b` 下，最终商 `q` 与余数 `r` 必须满足什么？",
     "options": [
-      { "id": "a", "text": "a = q + r，并且 r 可以任意大" },
-      { "id": "b", "text": "a = divisor * r + q，并且 q < divisor" },
-      { "id": "c", "text": "a = divisor / q + r" },
-      { "id": "d", "text": "a = divisor * q + r，并且 0 <= r < divisor" }
+      { "id": "a", "text": "a=b+q+r" },
+      { "id": "b", "text": "a=b*q+r，并且 0<=r<b" },
+      { "id": "c", "text": "a=b*r+q，并且 q<b" },
+      { "id": "d", "text": "a=b/q+r" }
     ],
-    "correctOptionId": "d",
-    "explanation": "这是商和余数的定义，也是检查除法结果最直接的不变量。"
+    "correctOptionId": "b",
+    "explanation": "这是整数除法中商和余数的定义。"
   },
   {
-    "id": "trim-quotient",
-    "prompt": "计算结束后为什么要对商调用 `trim()`？",
+    "id": "intermediate-type",
+    "prompt": "为什么 `current` 使用 64 位整数，即使除数类型只是 `int`？",
     "options": [
-      { "id": "a", "text": "去掉最高位无意义的零块，同时保留一个零块表示 0" },
-      { "id": "b", "text": "把余数复制到商中" },
-      { "id": "c", "text": "把商改成负数" },
-      { "id": "d", "text": "把 BASE 改成 10" }
+      { "id": "a", "text": "为了保存整个高精度商" },
+      { "id": "b", "text": "因为每个数字位大于 64 位" },
+      { "id": "c", "text": "remainder*10 可能超过 32 位整数范围" },
+      { "id": "d", "text": "因为字符只能转换成 long long" }
     ],
-    "correctOptionId": "a",
-    "explanation": "最高若干商块可能为零；规范化后比较和输出才能继续沿用统一表示。"
+    "correctOptionId": "c",
+    "explanation": "余数可以接近 int 上界，乘以十后需要更宽的中间类型。"
   }
 ]
-
