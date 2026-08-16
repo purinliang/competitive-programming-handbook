@@ -77,7 +77,7 @@
     "options": [
       { "id": "a", "text": "$O(n+m)$" },
       { "id": "b", "text": "$O(nm)$" },
-      { "id": "c", "text": "$O(\log n)$" },
+      { "id": "c", "text": "$O(\\log n)$" },
       { "id": "d", "text": "$O(1)$" }
     ],
     "correctOptionId": "b",

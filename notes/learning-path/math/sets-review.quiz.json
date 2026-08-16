@@ -33,7 +33,7 @@
       { "id": "d", "text": "只有确定讨论范围，才能知道哪些不属于 `A` 的对象应被包含" }
     ],
     "correctOptionId": "d",
-    "explanation": "补集是 `U \ A`；不同全集会得到不同结果。"
+    "explanation": "补集是 `U \\ A`；不同全集会得到不同结果。"
   },
   {
     "id": "sets-inclusion-exclusion-two",

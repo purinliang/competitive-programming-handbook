@@ -63,7 +63,7 @@
     "id": "doubling-complexity",
     "prompt": "预处理 n 个点、最大步数为 K 的倍增表后，一次查询复杂度是什么？",
     "options": [
-      { "id": "a", "text": "$O(\log K)$" },
+      { "id": "a", "text": "$O(\\log K)$" },
       { "id": "b", "text": "$O(K)$" },
       { "id": "c", "text": "$O(nK)$" },
       { "id": "d", "text": "$O(1)$ 且无需预处理" }

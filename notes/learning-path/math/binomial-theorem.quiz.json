@@ -25,7 +25,7 @@
   },
   {
     "id": "coefficient-sum",
-    "prompt": "为什么 $\sum_{k=0}^{n}C(n,k)=2^n$？",
+    "prompt": "为什么 $\\sum_{k=0}^{n}C(n,k)=2^n$？",
     "options": [
       { "id": "a", "text": "因为每个组合数都等于 2" },
       { "id": "b", "text": "因为 n! 恒等于 2^n" },
@@ -60,4 +60,3 @@
     "explanation": "C++ 没有通用乘方运算符；^ 是按位异或。"
   }
 ]
-
