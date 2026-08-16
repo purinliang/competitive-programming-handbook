@@ -1,6 +1,6 @@
 # 图的遍历：深度优先搜索（DFS）
 
-> 最近修订：2026-08-16 14:22 +10:00（未审阅）
+> 最近修订：2026-08-16 16:45 +10:00（未审阅）
 
 [图的存储：邻接表（vector 实现）](vector-adjacency-list.md) 告诉我们一个点能够沿哪些边继续前进。深度优先搜索（depth-first search，DFS）从起点出发，每次先沿一条尚未探索的分支不断深入，再在走不下去时返回。一般图可能有环，也可能不连通，因此还要记录哪些点已经访问过，并在每个尚未访问的连通块重新开始搜索。
 
@@ -21,13 +21,13 @@
 使用 `visited[u]` 记录点 $u$ 是否已经访问：
 
 ```cpp
-vector<bool> visited(n + 5);
+vector<bool> visited;
 ```
 
 第一次进入点 `u` 时立刻标记，再处理它的所有相邻点：
 
 ```cpp
-void dfs(int u, const vector<vector<int>>& g, vector<bool>& visited) {
+void dfs(int u) {
     visited[u] = true;
     printf("%d ", u);
 
@@ -35,7 +35,7 @@ void dfs(int u, const vector<vector<int>>& g, vector<bool>& visited) {
         if (visited[v]) {
             continue;
         }
-        dfs(v, g, visited);
+        dfs(v);
     }
 }
 ```
@@ -59,7 +59,7 @@ void dfs(int u, const vector<vector<int>>& g, vector<bool>& visited) {
 ```cpp
 for (int u = 1; u <= n; u++) {
     if (!visited[u]) {
-        dfs(u, g, visited);
+        dfs(u);
     }
 }
 ```
@@ -92,7 +92,12 @@ for (int u = 1; u <= n; u++) {
 #include <bits/stdc++.h>
 using namespace std;
 
-void dfs(int u, const vector<vector<int>>& g, vector<bool>& visited) {
+int n;
+int m;
+vector<vector<int>> g;
+vector<bool> visited;
+
+void dfs(int u) {
     visited[u] = true;
     printf("%d ", u);
 
@@ -100,15 +105,16 @@ void dfs(int u, const vector<vector<int>>& g, vector<bool>& visited) {
         if (visited[v]) {
             continue;
         }
-        dfs(v, g, visited);
+        dfs(v);
     }
 }
 
 void solve() {
-    int n, m;
     scanf("%d%d", &n, &m);
 
-    vector<vector<int>> g(n + 5);
+    g.resize(n + 5);
+    visited.resize(n + 5);
+
     for (int i = 1; i <= m; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
@@ -116,12 +122,11 @@ void solve() {
         g[v].push_back(u);
     }
 
-    vector<bool> visited(n + 5);
     int component_count = 0;
     for (int u = 1; u <= n; u++) {
         if (!visited[u]) {
             component_count++;
-            dfs(u, g, visited);
+            dfs(u);
         }
     }
 
@@ -133,6 +138,10 @@ int main() {
     return 0;
 }
 ```
+
+`n`、`m`、`g` 和 `visited` 描述整道题共享的输入与搜索状态，因此放在全局；
+`dfs` 只接收当前点 `u`。这样以后在 DFS 中继续维护父节点、进入时间或其他题目
+信息时，不需要把同一批容器逐层加入参数列表。
 
 对应上图的输入是：
 
