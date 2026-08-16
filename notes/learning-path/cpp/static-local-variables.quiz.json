@@ -3,36 +3,36 @@
     "id": "ordinary-local-reset",
     "prompt": "普通局部变量为什么不会自然记住上一次函数调用留下的值？",
     "options": [
-      { "id": "a", "text": "每次执行声明都会创建并初始化本次调用的对象" },
-      { "id": "b", "text": "局部变量不能保存整数" },
+      { "id": "a", "text": "局部变量不能保存整数" },
+      { "id": "b", "text": "每次执行声明都会创建并初始化本次调用的对象" },
       { "id": "c", "text": "函数调用结束后所有全局变量都会清零" },
       { "id": "d", "text": "`return` 会把所有变量改成 `0`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "普通局部对象随每次执行声明而创建，离开代码块时销毁，下一次调用使用的是新对象。"
   },
   {
     "id": "static-local-scope",
     "prompt": "函数中的 `static int count` 在名称可见范围上有什么特点？",
     "options": [
-      { "id": "a", "text": "名称仍然只在声明它的局部作用域中可见" },
+      { "id": "a", "text": "名称只能在 `main` 中使用" },
       { "id": "b", "text": "名称自动在所有源文件中可见" },
-      { "id": "c", "text": "名称只能在 `main` 中使用" },
+      { "id": "c", "text": "名称仍然只在声明它的局部作用域中可见" },
       { "id": "d", "text": "名称没有作用域" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "`static` 改变对象的存储期，不会把局部名称移到全局作用域。"
   },
   {
     "id": "static-local-storage",
     "prompt": "多次调用同一个函数时，其中的 `static` 局部变量会怎样？",
     "options": [
-      { "id": "a", "text": "继续使用同一个对象和上一次留下的状态" },
+      { "id": "a", "text": "第一次调用结束后就不能再访问" },
       { "id": "b", "text": "每次都创建一个相互无关的新对象" },
       { "id": "c", "text": "每次调用前都必须由输入初始化" },
-      { "id": "d", "text": "第一次调用结束后就不能再访问" }
+      { "id": "d", "text": "继续使用同一个对象和上一次留下的状态" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "`static` 局部变量具有静态存储期，整个程序运行期间对应同一个对象。"
   },
   {
@@ -51,24 +51,24 @@
     "id": "global-comparison",
     "prompt": "`static` 局部变量与全局变量的关键区别之一是什么？",
     "options": [
-      { "id": "a", "text": "两者都能长期存在，但名称可见范围不同" },
-      { "id": "b", "text": "只有全局变量能够保存整数" },
+      { "id": "a", "text": "只有全局变量能够保存整数" },
+      { "id": "b", "text": "两者都能长期存在，但名称可见范围不同" },
       { "id": "c", "text": "`static` 局部变量每次调用都会清零" },
       { "id": "d", "text": "全局变量没有初始化" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "两类对象都具有静态存储期；局部 `static` 的名称仍受局部作用域限制。"
   },
   {
     "id": "multiple-test-cases",
     "prompt": "为什么单组测试专属的状态通常不应声明为 `static` 局部变量？",
     "options": [
-      { "id": "a", "text": "下一组测试可能继续读到上一组留下的状态" },
+      { "id": "a", "text": "`static` 变量只能保存字符" },
       { "id": "b", "text": "`static` 变量不能参与计算" },
-      { "id": "c", "text": "`static` 变量只能保存字符" },
+      { "id": "c", "text": "下一组测试可能继续读到上一组留下的状态" },
       { "id": "d", "text": "多组测试禁止调用函数" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "`static` 局部变量跨调用保留状态，不会因为下一次进入 `solve()` 自动重置。"
   }
 ]

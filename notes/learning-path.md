@@ -197,6 +197,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *020901 | 竞赛程序的常见内存分区 | C++ | [cpp/competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
 | *020902 | static 局部变量 | C++ | [cpp/static-local-variables.md](cpp/static-local-variables.md) |
 | *020903 | 对象生命周期 | C++ | [cpp/object-lifetime.md](cpp/object-lifetime.md) |
+| *020904 | 初始化 | C++ | [cpp/initialization.md](cpp/initialization.md) |
 
 本章仍只从 C++ 竞赛代码的需要解释这些机制，不代替计算机组成、体系结构、操作
 系统或编译原理课程。变量、联合体、枚举、字面量、`inline` 和 `volatile` 等没有
@@ -742,6 +743,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *020901 | 竞赛程序的常见内存分区 | [cpp/competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
 | *020902 | static 局部变量 | [cpp/static-local-variables.md](cpp/static-local-variables.md) |
 | *020903 | 对象生命周期 | [cpp/object-lifetime.md](cpp/object-lifetime.md) |
+| *020904 | 初始化 | [cpp/initialization.md](cpp/initialization.md) |
 | *030305 | array | [cpp/array.md](cpp/array.md) |
 | *990101 | 变量 | [cpp/variable.md](cpp/variable.md) |
 | *990102 | 字面量 | [cpp/literals.md](cpp/literals.md) |

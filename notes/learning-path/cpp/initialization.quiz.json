@@ -1,0 +1,98 @@
+[
+  {
+    "id": "local-built-in-initialization",
+    "prompt": "函数内写 `int value;` 后，在任何写入以前读取 `value` 是否安全？",
+    "options": [
+      { "id": "a", "text": "不安全，普通局部内置整数不会自动得到可依赖的零" },
+      { "id": "b", "text": "安全，它一定是零" },
+      { "id": "c", "text": "安全，它一定等于上一次函数调用的值" },
+      { "id": "d", "text": "只有输出时不安全，计算时安全" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "普通局部内置对象没有初始化器时不会自动获得确定值，先读后写会产生未定义行为。"
+  },
+  {
+    "id": "static-zero-initialization",
+    "prompt": "没有显式初值的全局 `int value;` 最初是什么？",
+    "options": [
+      { "id": "a", "text": "不允许声明" },
+      { "id": "b", "text": "先零初始化，因此最初是 `0`" },
+      { "id": "c", "text": "必定是 `-1`" },
+      { "id": "d", "text": "与输入的第一个整数相同" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "全局对象具有静态存储期；普通整数在程序开始阶段先进行零初始化。"
+  },
+  {
+    "id": "empty-brace-array",
+    "prompt": "函数内的 `int a[4]{};` 建立后，四个元素是什么？",
+    "options": [
+      { "id": "a", "text": "都没有确定值" },
+      { "id": "b", "text": "依次是 `0, 1, 2, 3`" },
+      { "id": "c", "text": "全部是 `0`" },
+      { "id": "d", "text": "数组长度因此变成零" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "空花括号使本篇涉及的普通整数数组元素进行值初始化，结果全部为零。"
+  },
+  {
+    "id": "default-constructed-containers",
+    "prompt": "`string text; vector<int> values;` 执行后，哪项正确？",
+    "options": [
+      { "id": "a", "text": "两个对象都不能在赋值前调用成员函数" },
+      { "id": "b", "text": "二者都含有一个随机元素" },
+      { "id": "c", "text": "只有 `string` 为空，`vector` 未初始化" },
+      { "id": "d", "text": "二者都完成默认构造，当前长度为零" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "这两个标准库类型都提供默认构造，建立的是合法空对象。"
+  },
+  {
+    "id": "sized-vector-initialization",
+    "prompt": "`vector<int> values(5);` 建立了什么？",
+    "options": [
+      { "id": "a", "text": "五个值初始化为零的 `int` 元素" },
+      { "id": "b", "text": "零个元素和恰好五字节容量" },
+      { "id": "c", "text": "五个值为 `-1` 的元素" },
+      { "id": "d", "text": "一个整数元素，其值为 `5`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "构造参数是元素个数，五个 `int` 元素进行值初始化并得到零。"
+  },
+  {
+    "id": "reserve-does-not-create-elements",
+    "prompt": "空 `vector<int> values;` 执行 `values.reserve(5);` 后，`values.size()` 是多少？",
+    "options": [
+      { "id": "a", "text": "`5`" },
+      { "id": "b", "text": "`0`" },
+      { "id": "c", "text": "一定是 `10`" },
+      { "id": "d", "text": "结果未定义" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`reserve` 只预留容量，不创建元素，也不改变容器长度。"
+  },
+  {
+    "id": "resize-versus-assign",
+    "prompt": "哪项准确区分 `resize(n)` 与 `assign(n, value)`？",
+    "options": [
+      { "id": "a", "text": "二者都只改变容量" },
+      { "id": "b", "text": "`resize` 会清空全部旧元素，`assign` 保留全部旧元素" },
+      { "id": "c", "text": "`resize` 保留未删除的旧元素，`assign` 用统一值重建全部元素" },
+      { "id": "d", "text": "二者都不能改变 `size()`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`resize` 调整长度并保留仍在范围内的元素；`assign` 则把内容替换成指定数量的统一值。"
+  },
+  {
+    "id": "aggregate-member-initialization",
+    "prompt": "只含两个 `int` 成员且没有构造函数的 `Point`，怎样声明能让两个成员都为零？",
+    "options": [
+      { "id": "a", "text": "`Point point;`" },
+      { "id": "b", "text": "`Point;`" },
+      { "id": "c", "text": "`Point point = nullptr;`" },
+      { "id": "d", "text": "`Point point{};`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "空花括号会让聚合中的普通整数成员进行值初始化；只写局部 `Point point;` 不保证成员为零。"
+  }
+]

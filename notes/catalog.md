@@ -162,9 +162,10 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| *020902 | static 局部变量 | 待审阅 | [static-local-variables.md](cpp/static-local-variables.md) |
 | *020901 | 竞赛程序的常见内存分区 | 待审阅 | [competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
+| *020902 | static 局部变量 | 待审阅 | [static-local-variables.md](cpp/static-local-variables.md) |
 | *020903 | 对象生命周期 | 待审阅 | [object-lifetime.md](cpp/object-lifetime.md) |
+| *020904 | 初始化 | 待审阅 | [initialization.md](cpp/initialization.md) |
 | *990109 | volatile | 待审阅 | [volatile.md](cpp/volatile.md) |
 
 ### 专题：标准库基础
