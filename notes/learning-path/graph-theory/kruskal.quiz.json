@@ -1,0 +1,62 @@
+[
+  {
+    "id": "spanning-tree-edges",
+    "prompt": "含 n 个点的生成树有多少条边？",
+    "options": [
+      { "id": "a", "text": "n 条" },
+      { "id": "b", "text": "n-1 条" },
+      { "id": "c", "text": "m 条" },
+      { "id": "d", "text": "n+1 条" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "生成树连通且无环；含 n 个点的树恰好有 n-1 条边。"
+  },
+  {
+    "id": "selection-condition",
+    "prompt": "Kruskal 在什么情况下选择当前边 $(u,v,w)$？",
+    "options": [
+      { "id": "a", "text": "u 与 v 当前属于不同连通分量" },
+      { "id": "b", "text": "u 的编号小于 v" },
+      { "id": "c", "text": "w 必须大于零" },
+      { "id": "d", "text": "当前边是输入中的第一条边" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "连接不同分量会减少一个连通分量且不成环；两端已连通则会形成环。"
+  },
+  {
+    "id": "negative-edge",
+    "prompt": "Kruskal 能否处理负权边？",
+    "options": [
+      { "id": "a", "text": "不能，任何负边都会破坏正确性" },
+      { "id": "b", "text": "只能处理一条负边" },
+      { "id": "c", "text": "只有图是有向图时可以" },
+      { "id": "d", "text": "可以；负边正常排序，只要不成环就可选择" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "最小生成树不要求边权非负，算法只依赖边权顺序和连通分量。"
+  },
+  {
+    "id": "disconnected",
+    "prompt": "扫描完全部边后只选中了少于 n-1 条边，说明什么？",
+    "options": [
+      { "id": "a", "text": "边权排序方向错误" },
+      { "id": "b", "text": "最小生成树总权值为零" },
+      { "id": "c", "text": "原图不连通，不存在覆盖全部点的生成树" },
+      { "id": "d", "text": "图中一定有负环" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每次选边只合并两个分量；不足 n-1 次成功合并就无法变成一个连通分量。"
+  },
+  {
+    "id": "complexity",
+    "prompt": "Kruskal 的主要时间开销来自什么？",
+    "options": [
+      { "id": "a", "text": "按边权排序全部边" },
+      { "id": "b", "text": "枚举所有点对" },
+      { "id": "c", "text": "建立邻接矩阵" },
+      { "id": "d", "text": "反复运行 Floyd–Warshall" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "排序需要 $O(m\\log m)$；优化后的并查集操作总成本更低。"
+  }
+]
