@@ -250,4 +250,6 @@ $$
 
 ## 下一步
 
-[数论：线性不定方程（正文待写）](../catalog.md#05-数学)、[数论：线性同余方程（正文待写）](../catalog.md#05-数学)和[模逆元（正文待写）](../catalog.md#05-数学)会分别使用这组裴蜀系数解决具体问题；[数论：中国剩余定理（CRT）](chinese-remainder-theorem.md)会用它合并同余条件。
+[线性不定方程](linear-diophantine-equations.md)、[线性同余方程](linear-congruences.md) 和
+[模逆元](modular-inverse.md) 会分别使用这组裴蜀系数解决具体问题；
+[中国剩余定理](chinese-remainder-theorem.md) 会用它合并同余条件。
