@@ -144,7 +144,7 @@ answer = answer / p * (p - 1);
 
 ## 一边分解一边计算
 
-使用[质因数分解](prime-factorization.md)的试除过程，只在第一次发现质因数 `p` 时更新答案：
+使用 [质因数分解](prime-factorization.md) 的试除过程，只在第一次发现质因数 `p` 时更新答案：
 
 ```cpp
 ll phi(ll n) {

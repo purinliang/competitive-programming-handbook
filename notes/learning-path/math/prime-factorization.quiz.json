@@ -1,0 +1,98 @@
+[
+  {
+    "id": "divide-repeatedly",
+    "prompt": "发现候选因数 p 后，为什么要反复相除直到不能整除？",
+    "options": [
+      { "id": "a", "text": "为了让候选 p 自动变成质数" },
+      { "id": "b", "text": "为了求出 p 的完整指数，并从剩余值中除尽 p" },
+      { "id": "c", "text": "为了让所有因数只出现奇数次" },
+      { "id": "d", "text": "为了避免保存任何分解结果" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "只除一次会漏掉重复质因数，也会让后续剩余值继续含有已经处理过的 p。"
+  },
+  {
+    "id": "recorded-candidate-prime",
+    "prompt": "逐个尝试整数作为候选时，真正被记录的候选为什么一定是质数？",
+    "options": [
+      { "id": "a", "text": "因为所有偶数都是质数" },
+      { "id": "b", "text": "因为循环会主动跳过所有合数" },
+      { "id": "c", "text": "因为剩余值始终小于候选" },
+      { "id": "d", "text": "因为合数的较小质因数早已从剩余值中除尽" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "若合数 p 还能整除剩余值，它的某个更小质因数也能整除，与已经除尽较小质因数矛盾。"
+  },
+  {
+    "id": "trial-bound",
+    "prompt": "试除循环为什么只需继续到当前 remaining 的平方根？",
+    "options": [
+      { "id": "a", "text": "合数一定有一个不超过自身平方根的因数" },
+      { "id": "b", "text": "平方根以上的整数都不是质数" },
+      { "id": "c", "text": "所有质因数都不超过原数的一半" },
+      { "id": "d", "text": "平方根总是一个整数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "若 remaining=ab 且两个因数都大于平方根，乘积就会大于 remaining。"
+  },
+  {
+    "id": "last-prime-factor",
+    "prompt": "循环退出后 remaining>1 时，应当怎样处理它？",
+    "options": [
+      { "id": "a", "text": "忽略它，因为它一定是 1" },
+      { "id": "b", "text": "把它当作指数为 2 的合数" },
+      { "id": "c", "text": "把它作为指数为 1 的最后一个质因数" },
+      { "id": "d", "text": "重新从 2 开始分解原数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "退出时 remaining 已无不超过平方根的因数，因此大于 1 时只能是质数；若指数至少为 2，循环也不会已经退出。"
+  },
+  {
+    "id": "factorize-one",
+    "prompt": "质因数分解函数收到 n=1 时，最合理的返回结果是什么？",
+    "options": [
+      { "id": "a", "text": "一条 (1, 1) 记录" },
+      { "id": "b", "text": "空的质因数记录序列" },
+      { "id": "c", "text": "一条 (0, 1) 记录" },
+      { "id": "d", "text": "任意选取一个质数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "1 没有质因数，它对应空乘积，不能把 1 当作质数记录。"
+  },
+  {
+    "id": "overflow-safe-bound",
+    "prompt": "边界写成 p <= remaining / p，主要避免了什么问题？",
+    "options": [
+      { "id": "a", "text": "整数除法产生小数" },
+      { "id": "b", "text": "remaining 被循环修改" },
+      { "id": "c", "text": "p 无法自增" },
+      { "id": "d", "text": "p * p 在 64 位整数范围外溢出" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "在正整数范围内它与 p*p<=remaining 等价，却不需要先计算可能溢出的乘积。"
+  },
+  {
+    "id": "trial-complexity",
+    "prompt": "单个整数的基础试除分解最坏时间复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "O(sqrt(n))，所以接近 10^18 的大质数仍可能太慢" },
+      { "id": "b", "text": "O(1)，只要使用 64 位整数即可" },
+      { "id": "c", "text": "O(log n)，因为每个候选都会成功相除" },
+      { "id": "d", "text": "O(n^2)，因为代码有两层循环" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "质数输入会让候选一直尝试到平方根；能存下输入并不代表运行时间可行。"
+  },
+  {
+    "id": "factor-record",
+    "prompt": "一条 PrimeFactor 记录最需要保存哪两个量？",
+    "options": [
+      { "id": "a", "text": "原数和它的平方根" },
+      { "id": "b", "text": "候选编号和循环次数" },
+      { "id": "c", "text": "质因数 prime 和出现次数 exponent" },
+      { "id": "d", "text": "商和余数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "质因数决定底数，指数决定该质数在唯一分解中出现多少次。"
+  }
+]

@@ -1,6 +1,6 @@
-# 数论：质因数分解
+# 质因数分解
 
-> 最近修订：2026-08-13 22:00 +10:00（未审阅）
+> 最近修订：2026-08-16 11:30 +10:00（未审阅）
 
 [算术基本定理](fundamental-theorem-of-arithmetic.md) 说明每个大于 $1$ 的正整数都有唯一的质因数分解。许多后续问题并不只需要知道分解存在，还要真正求出每个质数出现多少次：
 
@@ -9,7 +9,18 @@
 - 计算欧拉函数；
 - 比较多个整数在同一质数上的指数。
 
-本篇用试除法分解单个正整数，返回按质数递增排列的 `(质因数, 指数)`。它适合数值不太大的单次或少量查询，不处理接近 64 位上限的大质数分解。
+本篇用试除法分解单个正整数，返回按质数递增排列的质因数记录。它适合数值不太大的单次或少量查询，不处理接近 64 位上限的大质数分解。
+
+每条记录需要同时保存质因数和指数。`pair` 要到后续文章才会学习，本篇先用字段含义更明确的结构体：
+
+```cpp
+struct PrimeFactor {
+    ll prime;
+    int exponent;
+};
+```
+
+质因数本身使用 64 位整数，指数最多只有对数数量级，用 `int` 足够。
 
 ## 从一个因数开始
 
@@ -55,8 +66,6 @@ if (exponent > 0) {
     factors.push_back({p, exponent});
 }
 ```
-
-`pair<ll, int>` 的第一个值是质因数，第二个值是指数。质因数本身使用 64 位整数，指数最多只有对数数量级，用 `int` 足够。
 
 对 `756` 处理完 `2` 后：
 
@@ -185,8 +194,8 @@ $$
 ## 完整分解函数
 
 ```cpp
-vector<pair<ll, int>> factorize(ll n) {
-    vector<pair<ll, int>> factors;
+vector<PrimeFactor> factorize(ll n) {
+    vector<PrimeFactor> factors;
     ll remaining = n;
 
     for (ll p = 2; p <= remaining / p; p++) {
@@ -246,8 +255,13 @@ using namespace std;
 
 typedef long long ll;
 
-vector<pair<ll, int>> factorize(ll n) {
-    vector<pair<ll, int>> factors;
+struct PrimeFactor {
+    ll prime;
+    int exponent;
+};
+
+vector<PrimeFactor> factorize(ll n) {
+    vector<PrimeFactor> factors;
     ll remaining = n;
 
     for (ll p = 2; p <= remaining / p; p++) {
@@ -268,17 +282,21 @@ vector<pair<ll, int>> factorize(ll n) {
     return factors;
 }
 
-int main() {
+void solve() {
     ll n;
     scanf("%lld", &n);
 
-    vector<pair<ll, int>> factors = factorize(n);
+    vector<PrimeFactor> factors = factorize(n);
     int count = factors.size();
 
     printf("%d\n", count);
-    for (auto [prime, exponent] : factors) {
-        printf("%lld %d\n", prime, exponent);
+    for (PrimeFactor factor : factors) {
+        printf("%lld %d\n", factor.prime, factor.exponent);
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -352,6 +370,4 @@ int main() {
 
 试除质因数分解只解决单个中等整数。筛法、最小质因数预处理、正因数个数与正因数和会在各自文章中复用本篇的指数表示；Miller–Rabin 与 Pollard–Rho 属于更大整数上的高级工具，不要求当前理解或记忆。
 
-## 下一篇
-
-下一篇 [数论：最大公约数与最小公倍数](greatest-common-divisor-and-least-common-multiple.md) 会把两个整数的质因数指数分别取 `min` 和 `max`，得到 `gcd` 与 `lcm`。
+[最大公约数与最小公倍数](greatest-common-divisor-and-least-common-multiple.md) 会把两个整数的质因数指数分别取 `min` 和 `max`，得到 `gcd` 与 `lcm`。
