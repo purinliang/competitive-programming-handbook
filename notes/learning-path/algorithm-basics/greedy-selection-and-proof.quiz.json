@@ -1,146 +1,74 @@
 [
   {
     "id": "greedy-choice",
-    "prompt": "基础贪心算法的局部选择需要满足什么，才能构成正确算法？",
+    "prompt": "贪心算法的局部选择需要满足什么，才能构成正确算法？",
     "options": [
       { "id": "a", "text": "在样例中看起来最好即可" },
       { "id": "b", "text": "能够证明做出它后仍至少保留一组全局最优解" },
-      { "id": "c", "text": "每一步都选择数值最大的元素" },
+      { "id": "c", "text": "每一步都选数值最大的元素" },
       { "id": "d", "text": "必须枚举所有后续选择" }
     ],
     "correctOptionId": "b",
-    "explanation": "局部直觉不是证明；需要说明选择不会排除全部全局最优方案。"
+    "explanation": "局部直觉不是证明；必须说明当前选择不会排除全部全局最优方案。"
   },
   {
-    "id": "subset-enumeration",
-    "prompt": "枚举 n 个区间的全部选择子集，方案数量是多少？",
+    "id": "largest-denomination",
+    "prompt": "在面额 `100`、`10`、`1` 中，为什么可以先使用尽量多的 `100` 元纸币？",
     "options": [
-      { "id": "a", "text": "$n$" },
-      { "id": "b", "text": "$n^2$" },
-      { "id": "c", "text": "$n!$" },
-      { "id": "d", "text": "$2^n$" }
-    ],
-    "correctOptionId": "d",
-    "explanation": "每个区间都有选择或不选择两种状态，组合后共有 2^n 个子集。"
-  },
-  {
-    "id": "earliest-start-counterexample",
-    "prompt": "为什么最多不重叠区间问题不能贪心选择最早开始的区间？",
-    "options": [
-      { "id": "a", "text": "它可能结束很晚，挡住许多后续短区间" },
-      { "id": "b", "text": "左端点不能排序" },
-      { "id": "c", "text": "最早开始的区间一定最长" },
-      { "id": "d", "text": "它只适用于开区间" }
-    ],
-    "correctOptionId": "a",
-    "explanation": "开始得早没有控制释放后续空间的时间，一个很长区间可能让答案显著变差。"
-  },
-  {
-    "id": "shortest-counterexample",
-    "prompt": "为什么选择长度最短的区间也不一定正确？",
-    "options": [
-      { "id": "a", "text": "短区间不能参与答案" },
-      { "id": "b", "text": "区间长度无法计算" },
-      { "id": "c", "text": "一个居中的短区间可能同时挡住左右两个本可共同选择的区间" },
-      { "id": "d", "text": "最短区间一定右端最大" }
+      { "id": "a", "text": "因为 `100` 是偶数" },
+      { "id": "b", "text": "因为大面额纸币的输入位置更靠前" },
+      { "id": "c", "text": "十张 `10` 元可换成一张 `100` 元，金额不变而张数减少" },
+      { "id": "d", "text": "因为所有面额系统都有这个性质" }
     ],
     "correctOptionId": "c",
-    "explanation": "长度只描述自身占用范围，没有说明选择后从哪里开始保留未来候选。"
-  },
-  {
-    "id": "earliest-finish",
-    "prompt": "无权最多不重叠区间问题的正确贪心规则是什么？",
-    "options": [
-      { "id": "a", "text": "优先选择左端最大的区间" },
-      { "id": "b", "text": "优先选择当前右端最小、结束最早的区间" },
-      { "id": "c", "text": "优先选择长度最大的区间" },
-      { "id": "d", "text": "保持输入顺序，遇到第一个就选" }
-    ],
-    "correctOptionId": "b",
-    "explanation": "最早结束会最早释放右侧空间，保留的后续候选不会少于选择其他第一项。"
-  },
-  {
-    "id": "sort-key",
-    "prompt": "实现最早结束规则时，排序的关键字段是什么？",
-    "options": [
-      { "id": "a", "text": "区间编号" },
-      { "id": "b", "text": "左端点" },
-      { "id": "c", "text": "区间长度" },
-      { "id": "d", "text": "右端点非递减" }
-    ],
-    "correctOptionId": "d",
-    "explanation": "右端相同时的其他字段只用于固定顺序，不影响最大选择数量。"
-  },
-  {
-    "id": "closed-interval-compatibility",
-    "prompt": "本文使用闭区间；上一个已选右端为 `last_right` 时，当前区间何时兼容？",
-    "options": [
-      { "id": "a", "text": "`current.l > last_right`" },
-      { "id": "b", "text": "`current.l >= last_right`" },
-      { "id": "c", "text": "`current.r < last_right`" },
-      { "id": "d", "text": "`current.l <= last_right`" }
-    ],
-    "correctOptionId": "a",
-    "explanation": "闭区间端点相等时共享该点，仍然算重叠；题目若允许时间衔接才改用大于等于。"
-  },
-  {
-    "id": "has-selected",
-    "prompt": "为什么代码使用 `has_selected`，而不把 `last_right` 初始化为一个很小的常量？",
-    "options": [
-      { "id": "a", "text": "布尔变量会加速排序" },
-      { "id": "b", "text": "last_right 不能保存负数" },
-      { "id": "c", "text": "避免哨兵数值与合法端点范围冲突，直接表达尚未选择" },
-      { "id": "d", "text": "闭区间必须使用两个状态变量" }
-    ],
-    "correctOptionId": "c",
-    "explanation": "输入可能覆盖任意 64 位端点，单独的布尔状态不会占用某个合法数值。"
+    "explanation": "交换保持总金额不变，却严格减少纸币数量，因此最优解不会拒绝这个大面额。"
   },
   {
     "id": "exchange-argument",
-    "prompt": "交换论证怎样证明最早结束的区间可以作为第一项？",
+    "prompt": "本篇的交换证明在交换前后保持了什么？",
     "options": [
-      { "id": "a", "text": "证明所有最优答案本来都包含它" },
-      { "id": "b", "text": "把某组最优答案的第一项换成它，合法性和答案数量都不变" },
-      { "id": "c", "text": "枚举全部排序并选择最短的" },
-      { "id": "d", "text": "假设它的左端也是最小" }
+      { "id": "a", "text": "纸币总张数" },
+      { "id": "b", "text": "支付的总金额" },
+      { "id": "c", "text": "每种面额的张数" },
+      { "id": "d", "text": "纸币的输入顺序" }
     ],
     "correctOptionId": "b",
-    "explanation": "贪心区间右端不晚于原第一项，因此原来所有后续区间在替换后仍然兼容。"
+    "explanation": "十张小面额换成一张大面额时金额不变，而目标量——纸币张数——严格减少。"
   },
   {
     "id": "same-subproblem",
-    "prompt": "选择最早结束区间后，为什么可以重复同一贪心规则？",
+    "prompt": "确定 `100` 元纸币的张数后，为什么可以继续处理剩余金额？",
     "options": [
-      { "id": "a", "text": "因为剩余区间自动按长度排序" },
-      { "id": "b", "text": "因为答案已经唯一" },
-      { "id": "c", "text": "因为所有剩余区间互不重叠" },
-      { "id": "d", "text": "剩余目标仍是在右侧候选中选最多个互不重叠区间，是同类问题" }
+      { "id": "a", "text": "剩余金额必定为 `0`" },
+      { "id": "b", "text": "剩余问题不再追求最小张数" },
+      { "id": "c", "text": "剩余金额必定小于 `10`" },
+      { "id": "d", "text": "剩余部分仍是用更小面额支付指定金额且张数最少的同类问题" }
     ],
     "correctOptionId": "d",
-    "explanation": "安全确定第一项后，删除冲突项得到规模更小但结构不变的子问题。"
+    "explanation": "当前安全选择被固定后，候选面额减少，但目标和问题结构没有改变。"
   },
   {
-    "id": "complexity",
-    "prompt": "排序后扫描求最多不重叠区间，总时间复杂度是什么？",
+    "id": "counterexample",
+    "prompt": "面额为 `4`、`3`、`1`，支付 `6` 时，什么说明优先选最大面额不一定正确？",
     "options": [
-      { "id": "a", "text": "$O(n\\log n)$" },
-      { "id": "b", "text": "$O(2^n)$" },
-      { "id": "c", "text": "$O(n^2)$" },
-      { "id": "d", "text": "$O(1)$" }
+      { "id": "a", "text": "`4 + 1 + 1` 用三枚，`3 + 3` 只用两枚" },
+      { "id": "b", "text": "`4 + 3` 大于 `6`" },
+      { "id": "c", "text": "`1` 是最小面额" },
+      { "id": "d", "text": "金额 `6` 是偶数" }
     ],
     "correctOptionId": "a",
-    "explanation": "排序需要 O(n log n)，线性扫描需要 O(n)，前者决定总复杂度。"
+    "explanation": "这是一个直接反例：贪心方案可行但不最优，说明原面额系统的证明不能随意迁移。"
   },
   {
-    "id": "weighted-intervals",
-    "prompt": "每个区间具有不同收益、目标改为最大总收益时，最早结束规则怎样？",
+    "id": "fixed-denomination-complexity",
+    "prompt": "对固定的三种面额从大到小处理一次，总时间复杂度可以写成什么？",
     "options": [
-      { "id": "a", "text": "仍然必定最优" },
-      { "id": "b", "text": "只需把区间倒序扫描" },
-      { "id": "c", "text": "不再保证最优，通常需要带权区间调度动态规划" },
-      { "id": "d", "text": "只需改成最早开始" }
+      { "id": "a", "text": "$O(amount)$" },
+      { "id": "b", "text": "$O(1)$" },
+      { "id": "c", "text": "$O(amount^2)$" },
+      { "id": "d", "text": "$O(2^{amount})$" }
     ],
-    "correctOptionId": "c",
-    "explanation": "选择数量与收益总和是不同目标，原交换论证没有证明收益保持不变。"
+    "correctOptionId": "b",
+    "explanation": "面额数量固定为三，每种只做常数次运算；若把面额数量记为 k，一般扫描成本是 O(k)。"
   }
 ]
