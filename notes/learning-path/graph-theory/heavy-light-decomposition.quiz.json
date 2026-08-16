@@ -1,0 +1,74 @@
+[
+  {
+    "id": "heavy-child",
+    "prompt": "节点 `u` 的重儿子怎样选择？",
+    "options": [
+      { "id": "a", "text": "边权最大的儿子" },
+      { "id": "b", "text": "编号最小的儿子" },
+      { "id": "c", "text": "深度最大的儿子" },
+      { "id": "d", "text": "子树节点数最大的儿子" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "轻重划分依据子树大小，与树边权值无关。"
+  },
+  {
+    "id": "heavy-first",
+    "prompt": "第二遍 DFS 为什么要优先访问重儿子？",
+    "options": [
+      { "id": "a", "text": "让同一条重链获得连续的 `dfn` 编号" },
+      { "id": "b", "text": "让所有轻边消失" },
+      { "id": "c", "text": "保证树变成二叉树" },
+      { "id": "d", "text": "重新计算子树大小" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "重儿子紧跟父节点编号，连续下去才能形成数组区间。"
+  },
+  {
+    "id": "light-child-top",
+    "prompt": "访问轻儿子 `v` 时，`top[v]` 应怎样设置？",
+    "options": [
+      { "id": "a", "text": "继承根节点编号" },
+      { "id": "b", "text": "设为 `v`，开始一条新重链" },
+      { "id": "c", "text": "设为 0" },
+      { "id": "d", "text": "设为重儿子" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "轻边切断原重链，儿子自身成为新链顶部。"
+  },
+  {
+    "id": "different-chains",
+    "prompt": "`top[u] != top[v]` 时，先处理哪一侧？",
+    "options": [
+      { "id": "a", "text": "节点编号更小的一侧" },
+      { "id": "b", "text": "子树更大的一侧" },
+      { "id": "c", "text": "链顶深度更大的一侧" },
+      { "id": "d", "text": "固定只处理 `u`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "更深链整段必在路径上，处理后跳到链顶父亲逐渐靠近 LCA。"
+  },
+  {
+    "id": "light-edge-count",
+    "prompt": "根到任意节点的路径为什么只有 $O(\\log n)$ 条轻边？",
+    "options": [
+      { "id": "a", "text": "每经过轻边，所在子树大小至少减半" },
+      { "id": "b", "text": "树中最多有两条轻边" },
+      { "id": "c", "text": "轻边不能连续出现" },
+      { "id": "d", "text": "所有轻边长度为 0" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "正整数规模最多连续减半对数次。"
+  },
+  {
+    "id": "division-of-work",
+    "prompt": "树链剖分与底层数据结构如何分工？",
+    "options": [
+      { "id": "a", "text": "两者都只负责读入树" },
+      { "id": "b", "text": "剖分把路径拆成区间，数据结构维护这些数组区间" },
+      { "id": "c", "text": "剖分计算边权，数据结构删除树" },
+      { "id": "d", "text": "二者完全互相替代" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "剖分解决几何形状，树状数组或线段树解决区间更新查询。"
+  }
+]
