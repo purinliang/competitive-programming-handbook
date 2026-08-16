@@ -1,0 +1,86 @@
+[
+  {
+    "id": "fifo-layers",
+    "prompt": "树上 BFS 为什么使用先进先出的队列？",
+    "options": [
+      { "id": "a", "text": "让较早发现的浅层节点先展开" },
+      { "id": "b", "text": "让编号最大的节点永远先处理" },
+      { "id": "c", "text": "让每条边自动获得权值" },
+      { "id": "d", "text": "让无向边只保存一个方向" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "浅层节点先被发现并排在队首，它们产生的下一层节点加入队尾，因此层次不会倒退。"
+  },
+  {
+    "id": "skip-parent",
+    "prompt": "输入保证为树时，枚举 `g[u]` 为什么只需跳过 `par[u]`？",
+    "options": [
+      { "id": "a", "text": "因为所有节点的父节点都是零" },
+      { "id": "b", "text": "因为树中没有无向边" },
+      { "id": "c", "text": "树中除父边外的邻边分别通向尚未访问的子树" },
+      { "id": "d", "text": "因为队列会自动删除环" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "树连通且无环；若还能从另一条边到达已发现节点，就会形成环。"
+  },
+  {
+    "id": "enqueue-depth",
+    "prompt": "从 `u` 第一次发现子节点 `v` 时，应怎样确定层级信息？",
+    "options": [
+      { "id": "a", "text": "`par[u] = v; dep[v] = dep[u] - 1;`" },
+      { "id": "b", "text": "`par[v] = u; dep[v] = dep[u] + 1;`" },
+      { "id": "c", "text": "只在整棵树遍历结束后设置" },
+      { "id": "d", "text": "令 `dep[v] = v`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "根到 v 的唯一路径是在根到 u 的路径后再经过一条边，发现时即可确定。"
+  },
+  {
+    "id": "general-graph-limit",
+    "prompt": "为什么同样的“只跳过父节点”写法不能直接用于一般图？",
+    "options": [
+      { "id": "a", "text": "一般图必须使用递归" },
+      { "id": "b", "text": "一般图不能使用 queue" },
+      { "id": "c", "text": "一般图的所有点深度都相同" },
+      { "id": "d", "text": "一般图可能从非父边再次到达已经发现的点" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "环和多条路径会让同一点被重复发现，所以一般图需要 dist 或 vis 标记。"
+  },
+  {
+    "id": "repeat-call-reset",
+    "prompt": "为什么 `bfs(s)` 每次开始都要重置 `par`、`dep` 和 `order`？",
+    "options": [
+      { "id": "a", "text": "因为 vector 每次只能保存一个整数" },
+      { "id": "b", "text": "更换根后，上一轮的层级关系和顺序已经失去含义" },
+      { "id": "c", "text": "为了删除当前树的边" },
+      { "id": "d", "text": "为了把 BFS 改成 DFS" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "初始化属于算法入口的职责，使同一棵树可以安全地连续从不同根执行 BFS。"
+  },
+  {
+    "id": "subtree-size-timing",
+    "prompt": "为什么 BFS 第一次取出 `u` 时通常还不能直接得到 `siz[u]`？",
+    "options": [
+      { "id": "a", "text": "子树大小一定等于深度" },
+      { "id": "b", "text": "队列不能保存整数" },
+      { "id": "c", "text": "更深的后代尚未全部处理完成" },
+      { "id": "d", "text": "树中不存在子树" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "子树信息需要从深层向浅层合并；递归返回或反向处理遍历顺序更适合这个方向。"
+  },
+  {
+    "id": "tree-bfs-complexity",
+    "prompt": "使用邻接表 BFS 一棵有 `n` 个节点的树，时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "$O(2^n)$" },
+      { "id": "b", "text": "$O(n^2)$" },
+      { "id": "c", "text": "$O(\\log n)$" },
+      { "id": "d", "text": "$O(n)$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每个节点入队出队一次，每条无向边对应的两个邻接项各检查一次。"
+  }
+]
