@@ -1,0 +1,50 @@
+[
+  {
+    "id": "keyword-role",
+    "prompt": "C++ 关键字与普通标识符的主要区别是什么？",
+    "options": [
+      { "id": "a", "text": "关键字必须全部使用小写字母" },
+      { "id": "b", "text": "关键字由语言保留并具有语法作用" },
+      { "id": "c", "text": "关键字只能出现在 `main` 中" },
+      { "id": "d", "text": "关键字一定比普通标识符更短" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "关键字是 C++ 语言语法的一部分，不能再用作自己创建的普通名称。"
+  },
+  {
+    "id": "keyword-as-name",
+    "prompt": "下面哪一行会因为使用关键字作为变量名而无法通过编译？",
+    "options": [
+      { "id": "a", "text": "`int score = 0;`" },
+      { "id": "b", "text": "`int solve = 0;`" },
+      { "id": "c", "text": "`int return = 0;`" },
+      { "id": "d", "text": "`int answer = 0;`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`return` 是 C++ 关键字，不能重新用作变量标识符。"
+  },
+  {
+    "id": "common-names",
+    "prompt": "下面哪个名称是 C++ 关键字？",
+    "options": [
+      { "id": "a", "text": "`main`" },
+      { "id": "b", "text": "`cout`" },
+      { "id": "c", "text": "`vector`" },
+      { "id": "d", "text": "`while`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "`while` 由 C++ 语言保留用于循环；其余三个都是常见标识符。"
+  },
+  {
+    "id": "learning-keywords",
+    "prompt": "初学 C++ 时应当怎样学习关键字？",
+    "options": [
+      { "id": "a", "text": "在对应语法主题中逐个理解，需要应试时再集中复习列表" },
+      { "id": "b", "text": "先背完全部关键字，才能写第一行程序" },
+      { "id": "c", "text": "只需要记住所有关键字都表示类型" },
+      { "id": "d", "text": "把标准库中的所有名称也当成关键字背诵" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "关键字的具体作用属于各自语法主题；主线先掌握分类和常见词，不必在开始时背完列表。"
+  }
+]

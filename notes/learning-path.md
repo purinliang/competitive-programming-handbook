@@ -77,7 +77,8 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0171 | 关键字与标识符 | C++ | [cpp/keywords-and-identifiers.md](cpp/keywords-and-identifiers.md) |
+| 0171 | 标识符 | C++ | [cpp/keywords-and-identifiers.md](cpp/keywords-and-identifiers.md) |
+| 0190 | 关键字 | C++ | [cpp/keywords.md](cpp/keywords.md) |
 | 0114 | 作用域 | C++ | [cpp/scope.md](cpp/scope.md) |
 | 0153* | 命名空间与 std | C++ | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
 | 0160* | typedef 类型别名 | C++ | [cpp/type-aliases.md](cpp/type-aliases.md) |
