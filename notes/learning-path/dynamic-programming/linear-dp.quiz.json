@@ -1,0 +1,98 @@
+[
+  {
+    "id": "linear-dp-order",
+    "prompt": "线性动态规划最稳定的共同特征是什么？",
+    "options": [
+      { "id": "a", "text": "状态只能使用一维数组" },
+      { "id": "b", "text": "每个状态只能依赖前一个状态" },
+      { "id": "c", "text": "状态沿输入的线性顺序逐步推进" },
+      { "id": "d", "text": "答案一定是最后一个状态" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "线性描述的是输入和阶段的推进顺序，不限制状态维数或依赖数量。"
+  },
+  {
+    "id": "insufficient-prefix-best",
+    "prompt": "为什么“前 `i` 个元素中的最大子段和”不能单独支持下一步转移？",
+    "options": [
+      { "id": "a", "text": "它没有说明最优子段是否贴着当前前缀的右端点" },
+      { "id": "b", "text": "它不能保存负数" },
+      { "id": "c", "text": "它只能用于字符串" },
+      { "id": "d", "text": "它会改变原数组" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "只有恰好以当前位置结尾的子段才能在保持连续的前提下接上新元素。"
+  },
+  {
+    "id": "ending-state",
+    "prompt": "定义 `dp[i]` 为“恰好以 `i` 结尾的最大非空子段和”保留了什么信息？",
+    "options": [
+      { "id": "a", "text": "数组中负数的个数" },
+      { "id": "b", "text": "所有子段的左右端点" },
+      { "id": "c", "text": "前 `i` 个元素的总和" },
+      { "id": "d", "text": "当前最优候选能够继续向右延伸" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "右端点限制让 dp[i] 可以无歧义地接上 a[i + 1]，这是后续转移真正需要的信息。"
+  },
+  {
+    "id": "two-transitions",
+    "prompt": "以 `i` 结尾的非空连续子段为什么只有两类候选？",
+    "options": [
+      { "id": "a", "text": "因为数组中只有两个元素" },
+      { "id": "b", "text": "它要么从 `a[i]` 重新开始，要么延续以 `i - 1` 结尾的子段" },
+      { "id": "c", "text": "因为负数和正数必须交替出现" },
+      { "id": "d", "text": "因为每个子段长度都不超过 2" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "连续性决定了包含更早元素的候选删除 a[i] 后必然以 i - 1 结尾。"
+  },
+  {
+    "id": "nonempty-initialization",
+    "prompt": "为什么 `dp[1]` 和 `answer` 都不能初始化为 `0`？",
+    "options": [
+      { "id": "a", "text": "题目要求选择非空子段，全负数组的答案也必须来自真实元素" },
+      { "id": "b", "text": "整数 0 不能保存在 64 位整数中" },
+      { "id": "c", "text": "位置 1 一定是正数" },
+      { "id": "d", "text": "初始化为 0 会让复杂度变成平方级" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "用 0 初始化会偷偷允许选择空子段，使全负数组错误地得到 0。"
+  },
+  {
+    "id": "global-answer",
+    "prompt": "最终答案为什么是 `max(dp[1..n])` 而不是 `dp[n]`？",
+    "options": [
+      { "id": "a", "text": "因为 `dp[n]` 从未被计算" },
+      { "id": "b", "text": "因为最后一个元素不能属于任何子段" },
+      { "id": "c", "text": "因为最大子段的右端点可以是任意位置" },
+      { "id": "d", "text": "因为 `max` 会自动恢复左右端点" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "dp[i] 只覆盖以 i 结尾的候选；全局答案必须比较所有可能右端点。"
+  },
+  {
+    "id": "negative-element",
+    "prompt": "遇到负数 `a[i]` 时，为什么不能机械地令 `dp[i] = a[i]`？",
+    "options": [
+      { "id": "a", "text": "因为负数不能参加加法" },
+      { "id": "b", "text": "因为负数在输入中会被忽略" },
+      { "id": "c", "text": "因为所有负数都必须改成 0" },
+      { "id": "d", "text": "此前可延伸子段加上它以后仍可能优于重新开始" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "转移比较两个完整候选，而不是只根据当前元素的正负作决定。"
+  },
+  {
+    "id": "time-complexity",
+    "prompt": "线性转移为什么把最大子段和的时间复杂度降到 $O(n)$？",
+    "options": [
+      { "id": "a", "text": "因为程序不再读取输入数组" },
+      { "id": "b", "text": "每个右端点只读取前一状态并进行常数次运算" },
+      { "id": "c", "text": "因为只计算正数位置" },
+      { "id": "d", "text": "因为使用 64 位整数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "dp[i - 1] 已把所有可能左端点压缩成一个可延伸的最优值，不必再次枚举。"
+  }
+]
