@@ -1,0 +1,86 @@
+[
+  {
+    "id": "adjacent-inversion",
+    "prompt": "升序目标下，相邻元素满足什么条件时需要交换？",
+    "options": [
+      { "id": "a", "text": "`a[j] < a[j+1]`" },
+      { "id": "b", "text": "`a[j] > a[j+1]`" },
+      { "id": "c", "text": "两者相等时一定交换" },
+      { "id": "d", "text": "只要 j 是偶数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "前大后小是相邻逆序；交换后较小值在左、较大值在右。"
+  },
+  {
+    "id": "one-pass-maximum",
+    "prompt": "一次从左到右的完整扫描结束后，当前范围的什么元素被确定？",
+    "options": [
+      { "id": "a", "text": "最大值到达最右端" },
+      { "id": "b", "text": "最小值一定到达最右端" },
+      { "id": "c", "text": "所有元素立刻全部有序" },
+      { "id": "d", "text": "中间元素被删除" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "当前较大值会继续向右比较，扫描完后范围最大值被送到末端。"
+  },
+  {
+    "id": "sorted-suffix-invariant",
+    "prompt": "外层变量为 `end` 时，每轮开始前保持的核心不变量是什么？",
+    "options": [
+      { "id": "a", "text": "前缀 `a[1..end]` 已全部正确" },
+      { "id": "b", "text": "数组中没有重复值" },
+      { "id": "c", "text": "后缀 `a[end+1..n]` 已在最终位置" },
+      { "id": "d", "text": "所有元素都等于最大值" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每轮再把未确定前缀的最大值放到 a[end]，使正确后缀向左扩大。"
+  },
+  {
+    "id": "early-stop",
+    "prompt": "一整轮没有发生交换时，为什么可以结束？",
+    "options": [
+      { "id": "a", "text": "未确定范围已经不存在相邻逆序" },
+      { "id": "b", "text": "数组长度自动变成 0" },
+      { "id": "c", "text": "所有元素被改成同一个值" },
+      { "id": "d", "text": "下一轮一定越界" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "所有相邻对都非递减就能推出整个前缀非递减，已有后缀也保持正确。"
+  },
+  {
+    "id": "swapped-reset",
+    "prompt": "`swapped` 为什么要在每轮外层循环开始时设为 `false`？",
+    "options": [
+      { "id": "a", "text": "它只记录当前轮是否交换" },
+      { "id": "b", "text": "bool 变量只能读取一次" },
+      { "id": "c", "text": "这样能让最坏复杂度变成 O(1)" },
+      { "id": "d", "text": "否则数组下标会改成 0-based" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "沿用旧的 true 会掩盖当前轮没有交换的事实，导致无法提前停止。"
+  },
+  {
+    "id": "bubble-complexity",
+    "prompt": "带提前结束的冒泡排序，最好与最坏时间复杂度分别是什么？",
+    "options": [
+      { "id": "a", "text": "最好 O(1)，最坏 O(n)" },
+      { "id": "b", "text": "最好 O(n²)，最坏 O(n²)" },
+      { "id": "c", "text": "最好 O(log n)，最坏 O(n log n)" },
+      { "id": "d", "text": "最好 O(n)，最坏 O(n²)" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "有序输入一轮扫描后结束；逆序输入需要平方数量级的比较与交换。"
+  },
+  {
+    "id": "bubble-stability",
+    "prompt": "本篇冒泡排序为什么稳定？",
+    "options": [
+      { "id": "a", "text": "因为使用了额外 O(n) 数组" },
+      { "id": "b", "text": "因为只在严格前大后小时交换，相等元素不会跨越" },
+      { "id": "c", "text": "因为所有排序算法都稳定" },
+      { "id": "d", "text": "因为比较条件使用了 >=" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "相等元素不交换，原来的相对顺序得以保留；改成 >= 会破坏这一性质。"
+  }
+]

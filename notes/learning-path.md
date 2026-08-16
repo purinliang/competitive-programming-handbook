@@ -171,9 +171,14 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0203 | 排序：基础排序 | 算法基础 | [algorithm-basics/sorting.md](algorithm-basics/sorting.md) |
+| 0203 | 冒泡排序 | 算法基础 | [algorithm-basics/sorting.md](algorithm-basics/sorting.md) |
+| 0257 | 选择排序 | 算法基础 | `algorithm-basics/selection-sort.md` |
+| 0258 | 插入排序 | 算法基础 | `algorithm-basics/insertion-sort.md` |
+| 0259 | 计数排序 | 算法基础 | `algorithm-basics/counting-sort.md` |
 | 0231 | 排序：快速排序 | 算法基础 | [algorithm-basics/quicksort.md](algorithm-basics/quicksort.md) |
 | 0232 | 排序：归并排序 | 算法基础 | [algorithm-basics/merge-sort.md](algorithm-basics/merge-sort.md) |
+| 0260 | 排序方法比较 | 算法基础 | `algorithm-basics/sorting-comparison.md` |
+| 0206 | 离散化 | 算法基础 | [algorithm-basics/coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
 
 ### 学习单元：分治
 
@@ -191,13 +196,17 @@
 | 0219 | 二分答案 | 算法基础 | [algorithm-basics/binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |
 | 0252 | 浮点数二分 | 算法基础 | `algorithm-basics/floating-point-binary-search.md` |
 
-### 学习单元：序列处理技巧
+### 学习单元：双指针与滑动窗口
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0205 | 双指针 | 算法基础 | [algorithm-basics/two-pointers.md](algorithm-basics/two-pointers.md) |
 | 0220 | 双指针：滑动窗口 | 算法基础 | [algorithm-basics/sliding-window.md](algorithm-basics/sliding-window.md) |
-| 0206 | 离散化 | 算法基础 | [algorithm-basics/coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
+
+### 学习单元：前缀和与差分
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0207 | 前缀和 | 算法基础 | [algorithm-basics/prefix-sums.md](algorithm-basics/prefix-sums.md) |
 | 0221 | 差分 | 算法基础 | [algorithm-basics/difference-array.md](algorithm-basics/difference-array.md) |
 

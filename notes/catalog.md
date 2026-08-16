@@ -159,7 +159,7 @@
 | 0201 | 复杂度 | 待审阅 | [complexity.md](algorithm-basics/complexity.md) |
 | 0201e1 | 复杂度：渐近记号 | 待审阅 | [asymptotic-notation.md](algorithm-basics/asymptotic-notation.md) |
 | 0202 | 递推 | 待审阅 | [recurrence.md](algorithm-basics/recurrence.md) |
-| 0203 | 排序：基础排序 | 待审阅 | [sorting.md](algorithm-basics/sorting.md) |
+| 0203 | 冒泡排序 | 待审阅 | [sorting.md](algorithm-basics/sorting.md) |
 | 0204 | 查找：二分查找 | 待审阅 | [binary-search.md](algorithm-basics/binary-search.md) |
 | 0205 | 双指针 | 待审阅 | [two-pointers.md](algorithm-basics/two-pointers.md) |
 | 0206 | 离散化 | 待审阅 | [coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
@@ -213,6 +213,10 @@
 | 0254 | 从代码分析复杂度 | 待审阅 | [complexity-analysis.md](algorithm-basics/complexity-analysis.md) |
 | 0255 | 均摊复杂度 | 计划 | `algorithm-basics/amortized-complexity.md` |
 | 0256 | 均摊复杂度：势能法 | 计划 | `algorithm-basics/potential-method.md` |
+| 0257 | 选择排序 | 计划 | `algorithm-basics/selection-sort.md` |
+| 0258 | 插入排序 | 计划 | `algorithm-basics/insertion-sort.md` |
+| 0259 | 计数排序 | 计划 | `algorithm-basics/counting-sort.md` |
+| 0260 | 排序方法比较 | 计划 | `algorithm-basics/sorting-comparison.md` |
 
 ## 03 数据结构
 
