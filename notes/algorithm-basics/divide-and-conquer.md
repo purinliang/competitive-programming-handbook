@@ -1,10 +1,10 @@
 # 分治
 
-> 最近修订：2026-08-16 12:30 +10:00（未审阅）
+> 最近修订：2026-08-17 10:04 +10:00（未审阅）
 
-[快速排序](quicksort.md) 和 [归并排序](merge-sort.md) 都把一个区间变成规模更小的
-同类区间，再递归处理。这里把它们共同使用的思路单独抽出来：分治
-（divide-and-conquer）。
+后面的 [快速排序](quicksort.md) 和 [归并排序](merge-sort.md) 都会把一个区间变成
+规模更小的同类区间，再递归处理。这里先把它们共同使用的思路单独抽出
+来：分治（divide-and-conquer）。
 
 分治不是“只要从中间递归就是更快”。它必须说明怎样划分子问题、子问题返回什么答案，以及怎样由这些答案恢复原问题的答案。本篇用最大子段和完整推导这三个部分。
 
@@ -43,7 +43,9 @@ for (int l = 1; l <= n; l++) {
     ll sum = 0;
     for (int r = l; r <= n; r++) {
         sum += a[r];
-        answer = max(answer, sum);
+        if (sum > answer) {
+            answer = sum;
+        }
     }
 }
 ```
@@ -74,10 +76,10 @@ a[l..mid]    a[mid+1..r]
 
 ## 最小区间
 
-把函数定义为：
+数组 `a` 是整道题共享的输入，不必在每层递归中重复传递。把函数定义为：
 
 ```cpp
-ll maximum_subarray(const vector<ll>& a, int l, int r)
+ll maximum_subarray(int l, int r)
 ```
 
 它返回闭区间 `a[l..r]` 内的最大非空子段和。
@@ -99,8 +101,8 @@ if (l == r) {
 ```cpp
 int mid = l + (r - l) / 2;
 
-ll left_answer = maximum_subarray(a, l, mid);
-ll right_answer = maximum_subarray(a, mid + 1, r);
+ll left_answer = maximum_subarray(l, mid);
+ll right_answer = maximum_subarray(mid + 1, r);
 ```
 
 两个递归区间都比 `a[l..r]` 更短。不断划分后，每条递归路径最终都会到达 `l == r`，不会无限递归。
@@ -124,7 +126,9 @@ ll sum = 0;
 
 for (int i = mid; i >= l; i--) {
     sum += a[i];
-    left_suffix = max(left_suffix, sum);
+    if (sum > left_suffix) {
+        left_suffix = sum;
+    }
 }
 ```
 
@@ -138,7 +142,9 @@ sum = 0;
 
 for (int i = mid + 1; i <= r; i++) {
     sum += a[i];
-    right_prefix = max(right_prefix, sum);
+    if (sum > right_prefix) {
+        right_prefix = sum;
+    }
 }
 ```
 
@@ -155,37 +161,55 @@ ll cross_answer = left_suffix + right_prefix;
 所有合法子段已经被三类情况完整覆盖，因此当前区间的答案是三者最大值：
 
 ```cpp
-return max(max(left_answer, right_answer), cross_answer);
+ll answer = left_answer;
+if (right_answer > answer) {
+    answer = right_answer;
+}
+if (cross_answer > answer) {
+    answer = cross_answer;
+}
+return answer;
 ```
 
 完整递归函数为：
 
 ```cpp
-ll maximum_subarray(const vector<ll>& a, int l, int r) {
+ll maximum_subarray(int l, int r) {
     if (l == r) {
         return a[l];
     }
 
     int mid = l + (r - l) / 2;
-    ll left_answer = maximum_subarray(a, l, mid);
-    ll right_answer = maximum_subarray(a, mid + 1, r);
+    ll left_answer = maximum_subarray(l, mid);
+    ll right_answer = maximum_subarray(mid + 1, r);
 
     ll left_suffix = a[mid];
     ll sum = 0;
     for (int i = mid; i >= l; i--) {
         sum += a[i];
-        left_suffix = max(left_suffix, sum);
+        if (sum > left_suffix) {
+            left_suffix = sum;
+        }
     }
 
     ll right_prefix = a[mid + 1];
     sum = 0;
     for (int i = mid + 1; i <= r; i++) {
         sum += a[i];
-        right_prefix = max(right_prefix, sum);
+        if (sum > right_prefix) {
+            right_prefix = sum;
+        }
     }
 
     ll cross_answer = left_suffix + right_prefix;
-    return max(max(left_answer, right_answer), cross_answer);
+    ll answer = left_answer;
+    if (right_answer > answer) {
+        answer = right_answer;
+    }
+    if (cross_answer > answer) {
+        answer = cross_answer;
+    }
+    return answer;
 }
 ```
 
@@ -240,7 +264,7 @@ ll maximum_subarray(const vector<ll>& a, int l, int r) {
 
 ## 正确性
 
-可以按照区间长度归纳 `maximum_subarray(a, l, r)` 的返回值。
+可以按照区间长度归纳 `maximum_subarray(l, r)` 的返回值。
 
 - 当区间长度为 `1` 时，函数返回唯一元素，也就是唯一非空子段的和；
 - 假设所有更短区间都能返回正确答案；
@@ -270,7 +294,8 @@ $$
 
 ## 完整代码
 
-下面的程序读入一个非空数组，输出最大非空连续子段和。输入保证任意连续子段和都能使用 64 位整数保存。
+下面的程序读入一个非空数组，输出最大非空连续子段和。输入保证
+$1\le n\le2\times10^5$，任意连续子段和都能使用 64 位整数保存。
 
 ```cpp
 #include <bits/stdc++.h>
@@ -278,43 +303,57 @@ using namespace std;
 
 typedef long long ll;
 
-ll maximum_subarray(const vector<ll>& a, int l, int r) {
+const int MAXN = 2e5 + 5;
+
+int n;
+ll a[MAXN];
+
+ll maximum_subarray(int l, int r) {
     if (l == r) {
         return a[l];
     }
 
     int mid = l + (r - l) / 2;
-    ll left_answer = maximum_subarray(a, l, mid);
-    ll right_answer = maximum_subarray(a, mid + 1, r);
+    ll left_answer = maximum_subarray(l, mid);
+    ll right_answer = maximum_subarray(mid + 1, r);
 
     ll left_suffix = a[mid];
     ll sum = 0;
     for (int i = mid; i >= l; i--) {
         sum += a[i];
-        left_suffix = max(left_suffix, sum);
+        if (sum > left_suffix) {
+            left_suffix = sum;
+        }
     }
 
     ll right_prefix = a[mid + 1];
     sum = 0;
     for (int i = mid + 1; i <= r; i++) {
         sum += a[i];
-        right_prefix = max(right_prefix, sum);
+        if (sum > right_prefix) {
+            right_prefix = sum;
+        }
     }
 
     ll cross_answer = left_suffix + right_prefix;
-    return max(max(left_answer, right_answer), cross_answer);
+    ll answer = left_answer;
+    if (right_answer > answer) {
+        answer = right_answer;
+    }
+    if (cross_answer > answer) {
+        answer = cross_answer;
+    }
+    return answer;
 }
 
 void solve() {
-    int n;
     cin >> n;
 
-    vector<ll> a(n + 5);
     for (int i = 1; i <= n; i++) {
         cin >> a[i];
     }
 
-    cout << maximum_subarray(a, 1, n) << '\n';
+    cout << maximum_subarray(1, n) << '\n';
 }
 
 int main() {
@@ -344,7 +383,8 @@ int main() {
 
 ### 遗漏跨中点情况
 
-只返回 `max(left_answer, right_answer)` 会丢失同时使用左右两边的子段。划分以后必须检查：有没有合法答案跨越子问题边界？若有，合并步骤就要恢复它。
+只比较 `left_answer` 和 `right_answer` 会丢失同时使用左右两边的子段。
+划分以后必须检查：有没有合法答案跨越子问题边界？若有，合并步骤就要恢复它。
 
 ### 把任意左子段与右子段相加
 
