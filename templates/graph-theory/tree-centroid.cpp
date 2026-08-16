@@ -1,5 +1,5 @@
 // 随机验证：../verification/tree-centroid-random.cpp
-// 求无权树的全部重心，以及删除重心后最大连通块的最小大小。
+// 求无权树的全部重心，以及删除重心后最大连通分量的最小大小。
 
 #include <bits/stdc++.h>
 

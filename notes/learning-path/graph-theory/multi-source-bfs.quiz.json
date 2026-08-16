@@ -97,12 +97,12 @@
   },
   {
     "id": "unreachable-component",
-    "prompt": "某个连通块中没有任何起点时，其中的点最终保存什么？",
+    "prompt": "某个连通分量中没有任何起点时，其中的点最终保存什么？",
     "options": [
       { "id": "a", "text": "`dist` 与 `nearest` 都保持 -1" },
       { "id": "b", "text": "距离自动设为 0" },
       { "id": "c", "text": "归属编号最大的起点" },
-      { "id": "d", "text": "距离等于连通块大小" }
+      { "id": "d", "text": "距离等于连通分量大小" }
     ],
     "correctOptionId": "a",
     "explanation": "没有来自起点集合的路径，就不会被任何波前发现。"

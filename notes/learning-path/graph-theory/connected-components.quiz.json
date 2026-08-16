@@ -21,31 +21,31 @@
       { "id": "d", "text": "它的点数必须大于所有其他分量" }
     ],
     "correctOptionId": "c",
-    "explanation": "一小段路径虽然连通，但若还能加入同组点，就只是连通子图而不是完整连通块。"
+    "explanation": "一小段路径虽然连通，但若还能加入同组点，就只是连通子图而不是完整连通分量。"
   },
   {
     "id": "isolated-component",
-    "prompt": "一个没有任何边的孤立点构成怎样的连通块？",
+    "prompt": "一个没有任何边的孤立点构成怎样的连通分量？",
     "options": [
-      { "id": "a", "text": "大小为 1 的连通块" },
-      { "id": "b", "text": "不属于任何连通块" },
+      { "id": "a", "text": "大小为 1 的连通分量" },
+      { "id": "b", "text": "不属于任何连通分量" },
       { "id": "c", "text": "必须并入编号最小的块" },
-      { "id": "d", "text": "大小为 0 的连通块" }
+      { "id": "d", "text": "大小为 0 的连通分量" }
     ],
     "correctOptionId": "a",
     "explanation": "点与自己通过长度为 0 的路径连通，因此孤立点独自形成一个极大连通子图。"
   },
   {
     "id": "zero-sentinel",
-    "prompt": "从 1 开始给连通块编号时，component_id[u]==0 表示什么？",
+    "prompt": "从 1 开始给连通分量编号时，component_id[u]==0 表示什么？",
     "options": [
       { "id": "a", "text": "u 一定是孤立点" },
-      { "id": "b", "text": "u 已属于第一个连通块" },
+      { "id": "b", "text": "u 已属于第一个连通分量" },
       { "id": "c", "text": "u 的度数为 0" },
       { "id": "d", "text": "u 尚未被遍历并分类" }
     ],
     "correctOptionId": "d",
-    "explanation": "真实连通块编号从 1 开始，0 可以无歧义地兼作未访问标记。"
+    "explanation": "真实连通分量编号从 1 开始，0 可以无歧义地兼作未访问标记。"
   },
   {
     "id": "new-component",
@@ -57,7 +57,7 @@
       { "id": "d", "text": "查询两个点不相同时" }
     ],
     "correctOptionId": "b",
-    "explanation": "此前搜索无法到达该点，它必属于一个尚未发现的新连通块；同次 DFS 内其他点沿用同一编号。"
+    "explanation": "此前搜索无法到达该点，它必属于一个尚未发现的新连通分量；同次 DFS 内其他点沿用同一编号。"
   },
   {
     "id": "constant-query",
@@ -73,7 +73,7 @@
   },
   {
     "id": "id-not-order",
-    "prompt": "改变点或邻边的遍历顺序后，连通块编号可能变化；什么保持不变？",
+    "prompt": "改变点或邻边的遍历顺序后，连通分量编号可能变化；什么保持不变？",
     "options": [
       { "id": "a", "text": "每个块一定仍使用原编号" },
       { "id": "b", "text": "DFS 的访问顺序" },

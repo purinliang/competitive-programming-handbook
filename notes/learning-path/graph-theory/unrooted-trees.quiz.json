@@ -61,7 +61,7 @@
   },
   {
     "id": "forest-edge-count",
-    "prompt": "一片森林有 n 个节点和 c 个连通块，它有多少条边？",
+    "prompt": "一片森林有 n 个节点和 c 个连通分量，它有多少条边？",
     "options": [
       { "id": "a", "text": "n+c" },
       { "id": "b", "text": "n*c" },
@@ -69,6 +69,6 @@
       { "id": "d", "text": "c-1" }
     ],
     "correctOptionId": "c",
-    "explanation": "每个树形连通块分别满足边数等于节点数减一，相加时共减去 c。"
+    "explanation": "每个树形连通分量分别满足边数等于节点数减一，相加时共减去 c。"
   }
 ]

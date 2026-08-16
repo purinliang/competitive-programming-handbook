@@ -1,4 +1,4 @@
-// 用并查集验证 DFS 的连通块数量，并检查每个点恰好访问一次。
+// 用并查集验证 DFS 的连通分量数量，并检查每个点恰好访问一次。
 
 #define main graph_depth_first_search_template_main
 #include "../graph-theory/graph-depth-first-search.cpp"

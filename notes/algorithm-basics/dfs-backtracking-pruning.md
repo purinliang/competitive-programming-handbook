@@ -2,7 +2,7 @@
 
 > 最近修订：2026-08-16 16:11 +10:00（未审阅）
 
-[状态空间与隐式图](../algorithm-basics/state-space-and-implicit-graphs.md) 已经把部分方案看成点、把下一次选择看成边；[排列枚举](../algorithm-basics/permutation-enumeration.md) 又通过选择、递归和撤销维护了当前路径的占用状态。
+[状态空间与隐式图](state-space-and-implicit-graphs.md) 已经把部分方案看成点、把下一次选择看成边；[排列枚举](permutation-enumeration.md) 又通过选择、递归和撤销维护了当前路径的占用状态。
 
 本篇不再重新定义隐式搜索树，而是用 N 皇后回答两个新的问题：怎样判断当前部分方案已经不可能完成，以及为什么可以安全地跳过它的全部后代。这个过程把回溯从“避免重复选择”推进到一般的可行性剪枝。
 

@@ -1,5 +1,5 @@
 // 随机验证：../verification/graph-depth-first-search-random.cpp
-// 无向图 DFS；遍历所有连通块并记录访问顺序。
+// 无向图 DFS；遍历所有连通分量并记录访问顺序。
 
 #include <bits/stdc++.h>
 

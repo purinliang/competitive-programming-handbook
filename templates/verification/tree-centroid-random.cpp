@@ -1,4 +1,4 @@
-// 逐个删点并搜索剩余连通块，验证树重心模板。
+// 逐个删点并搜索剩余连通分量，验证树重心模板。
 
 #define main tree_centroid_template_main
 #include "../graph-theory/tree-centroid.cpp"

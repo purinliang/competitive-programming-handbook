@@ -80,8 +80,9 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 010503 | if 与 else | 待审阅 | [if-and-else.md](cpp/if-and-else.md) |
-| 010504 | switch | 待审阅 | [switch.md](cpp/switch.md) |
+| 010503 | 条件运算符 | 计划 | `cpp/conditional-operator.md` |
+| 010504 | if 与 else | 待审阅 | [if-and-else.md](cpp/if-and-else.md) |
+| 010505 | switch | 待审阅 | [switch.md](cpp/switch.md) |
 | 010601 | while | 待审阅 | [while.md](cpp/while.md) |
 | 010602 | for | 待审阅 | [for.md](cpp/for.md) |
 | 010604 | do while | 待审阅 | [do-while.md](cpp/do-while.md) |
@@ -106,7 +107,7 @@
 | 010702 | 一维数组 | 待审阅 | [one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
 | 010703 | 多维数组 | 待审阅 | [multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
 | *010703e1 | 多维数组的布局与参数传递 | 待审阅 | [multidimensional-array-layout-and-parameters.md](cpp/multidimensional-array-layout-and-parameters.md) |
-| *030305 | array | 待审阅 | [array.md](cpp/array.md) |
+| 030402 | array | 待审阅 | [array.md](cpp/array.md) |
 
 ### 专题：字符串
 
@@ -155,8 +156,8 @@
 | 020501 | 结构体 | 待审阅 | [struct.md](cpp/struct.md) |
 | 020502 | 结构体指针与箭头运算符 | 待审阅 | [struct-pointers-and-arrow.md](cpp/struct-pointers-and-arrow.md) |
 | *020501e1 | 结构体的内存布局 | 待审阅 | [struct-memory-layout.md](cpp/struct-memory-layout.md) |
-| *990107 | 联合体 | 待审阅 | [union.md](cpp/union.md) |
-| *990108 | 枚举 | 待审阅 | [enum.md](cpp/enum.md) |
+| *021001 | 联合体 | 待审阅 | [union.md](cpp/union.md) |
+| *021002 | 枚举 | 待审阅 | [enum.md](cpp/enum.md) |
 
 ### 专题：内存与存储期
 
@@ -174,11 +175,13 @@
 | --- | --- | --- | --- |
 | 030303 | pair | 待审阅 | [pair.md](cpp/pair.md) |
 | 030304 | tuple | 待审阅 | [tuple.md](cpp/tuple.md) |
-| *030305 | array | 待审阅 | [array.md](cpp/array.md) |
+| 030305 | min 与 max | 计划 | `cpp/min-and-max.md` |
+| 030306 | swap | 计划 | `cpp/swap.md` |
+| 030402 | array | 待审阅 | [array.md](cpp/array.md) |
 | 030301 | vector | 待审阅 | [vector.md](cpp/vector.md) |
-| 030306 | sort | 待审阅 | [sort.md](cpp/sort.md) |
-| 030307 | unique | 待审阅 | [unique.md](cpp/unique.md) |
-| 030603 | 标准库二分查找 | 待审阅 | [stl-binary-search.md](cpp/stl-binary-search.md) |
+| 030307 | sort | 待审阅 | [sort.md](cpp/sort.md) |
+| 030308 | unique | 待审阅 | [unique.md](cpp/unique.md) |
+| 030703 | 标准库二分查找 | 待审阅 | [stl-binary-search.md](cpp/stl-binary-search.md) |
 | 030302 | fill | 待审阅 | [fill.md](cpp/fill.md) |
 | 010902 | string | 待审阅 | [string.md](cpp/string.md) |
 
@@ -186,21 +189,20 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 040304 | deque | 待审阅 | [deque.md](cpp/deque.md) |
-| 040202 | stack | 待审阅 | [stack.md](cpp/stack.md) |
-| 040302 | queue | 待审阅 | [queue.md](cpp/queue.md) |
-| 050401 | priority_queue | 待审阅 | [priority-queue.md](cpp/priority-queue.md) |
+| 040108 | deque | 待审阅 | [deque.md](cpp/deque.md) |
+| 040102 | stack | 待审阅 | [stack.md](cpp/stack.md) |
+| 040106 | queue | 待审阅 | [queue.md](cpp/queue.md) |
 
 ### 专题：标准库关联容器
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 050402 | set | 待审阅 | [set.md](cpp/set.md) |
+| 050401 | set | 待审阅 | [set.md](cpp/set.md) |
+| 050402 | map | 待审阅 | [map.md](cpp/map.md) |
 | 050403 | multiset | 待审阅 | [multiset.md](cpp/multiset.md) |
-| 050404 | map | 待审阅 | [map.md](cpp/map.md) |
-| 050405 | multimap | 待审阅 | [multimap.md](cpp/multimap.md) |
-| 050406 | unordered_set | 待审阅 | [unordered-set.md](cpp/unordered-set.md) |
-| 050407 | unordered_map | 待审阅 | [unordered-map.md](cpp/unordered-map.md) |
+| 050404 | multimap | 待审阅 | [multimap.md](cpp/multimap.md) |
+| 050405 | unordered_set | 待审阅 | [unordered-set.md](cpp/unordered-set.md) |
+| 050406 | unordered_map | 待审阅 | [unordered-map.md](cpp/unordered-map.md) |
 
 ### 专题：其他标准库工具
 
@@ -217,8 +219,10 @@
 | *020702 | 预处理：#include | 待审阅 | [include.md](cpp/include.md) |
 | *020703 | 预处理：#define | 待审阅 | [define.md](cpp/define.md) |
 | *020704 | 条件编译 | 待审阅 | [conditional-compilation.md](cpp/conditional-compilation.md) |
-| *020705 | 编译 | 待审阅 | [compilation.md](cpp/compilation.md) |
-| *020706 | 链接 | 待审阅 | [linking.md](cpp/linking.md) |
+| *020705 | 编译器与解释器 | 计划 | `cpp/compiler-and-interpreter.md` |
+| *020706 | 编译 | 待审阅 | [compilation.md](cpp/compilation.md) |
+| *020707 | 链接 | 待审阅 | [linking.md](cpp/linking.md) |
+| *020708 | 调试与调试器 | 计划 | `cpp/debugging-and-debuggers.md` |
 
 ### 专题：类
 
@@ -253,68 +257,71 @@
 | --- | --- | --- | --- |
 | 030201 | 枚举 | 待审阅 | [enumeration.md](algorithm-basics/enumeration.md) |
 | 030202 | 模拟 | 待审阅 | [simulation.md](algorithm-basics/simulation.md) |
-| 030203 | 递归与问题分解 | 待审阅 | [recursive-problem-solving.md](algorithm-basics/recursive-problem-solving.md) |
+| 030203 | 贪心选择与正确性证明 | 待审阅 | [greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
 | 030204 | 递推 | 待审阅 | [recurrence.md](algorithm-basics/recurrence.md) |
-| 030205 | 分治 | 待审阅 | [divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
-| 030206 | 贪心选择与正确性证明 | 待审阅 | [greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
+| *030204e1 | 格雷码 | 待审阅 | [gray-code.md](other/gray-code.md) |
+| 030205 | 递归与问题分解 | 待审阅 | [recursive-problem-solving.md](algorithm-basics/recursive-problem-solving.md) |
+| 030206 | 分治 | 待审阅 | [divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
 
 ### 专题：枚举
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 030201 | 枚举 | 待审阅 | [enumeration.md](algorithm-basics/enumeration.md) |
-| 040703 | 子集与位掩码枚举 | 待审阅 | [subset-bitmask-enumeration.md](algorithm-basics/subset-bitmask-enumeration.md) |
+| 040501 | 状态空间与隐式图 | 待审阅 | [state-space-and-implicit-graphs.md](algorithm-basics/state-space-and-implicit-graphs.md) |
+| 040502 | 子集与位掩码枚举 | 待审阅 | [subset-bitmask-enumeration.md](algorithm-basics/subset-bitmask-enumeration.md) |
+| 040503 | 排列枚举 | 待审阅 | [permutation-enumeration.md](algorithm-basics/permutation-enumeration.md) |
+| 040504 | 组合枚举 | 待审阅 | [combination-enumeration.md](algorithm-basics/combination-enumeration.md) |
+| 040505 | DFS、回溯与剪枝 | 待审阅 | [dfs-backtracking-pruning.md](algorithm-basics/dfs-backtracking-pruning.md) |
 | 070101 | 枚举：Meet-in-the-Middle | 计划 | `algorithm-basics/meet-in-the-middle.md` |
-| 040704 | 排列枚举 | 待审阅 | [permutation-enumeration.md](algorithm-basics/permutation-enumeration.md) |
-| 040705 | 组合枚举 | 待审阅 | [combination-enumeration.md](algorithm-basics/combination-enumeration.md) |
-| 040702 | 状态空间与隐式图 | 待审阅 | [state-space-and-implicit-graphs.md](algorithm-basics/state-space-and-implicit-graphs.md) |
 
 ### 专题：前缀和
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 030401 | 前缀和 | 定稿 | [prefix-sums.md](algorithm-basics/prefix-sums.md) |
-| 030402 | 差分 | 待审阅 | [difference-array.md](algorithm-basics/difference-array.md) |
+| 030501 | 前缀和 | 定稿 | [prefix-sums.md](algorithm-basics/prefix-sums.md) |
+| 030502 | 差分 | 待审阅 | [difference-array.md](algorithm-basics/difference-array.md) |
 
 ### 专题：排序
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 030501 | 冒泡排序 | 待审阅 | [bubble-sort.md](algorithm-basics/bubble-sort.md) |
-| 030502 | 选择排序 | 待审阅 | [selection-sort.md](algorithm-basics/selection-sort.md) |
-| 030503 | 插入排序 | 待审阅 | [insertion-sort.md](algorithm-basics/insertion-sort.md) |
-| 030504 | 计数排序 | 待审阅 | [counting-sort.md](algorithm-basics/counting-sort.md) |
-| 030507 | 排序方法比较 | 待审阅 | [sorting-comparison.md](algorithm-basics/sorting-comparison.md) |
-| 030505 | 快速排序 | 待审阅 | [quicksort.md](algorithm-basics/quicksort.md) |
-| 030506 | 归并排序 | 待审阅 | [merge-sort.md](algorithm-basics/merge-sort.md) |
-| *030506e1 | 用归并排序统计逆序对 | 计划 | `algorithm-basics/merge-sort-inversion-count.md` |
+| 030601 | 冒泡排序 | 待审阅 | [bubble-sort.md](algorithm-basics/bubble-sort.md) |
+| 030602 | 选择排序 | 待审阅 | [selection-sort.md](algorithm-basics/selection-sort.md) |
+| 030603 | 插入排序 | 待审阅 | [insertion-sort.md](algorithm-basics/insertion-sort.md) |
+| 030604 | 计数排序 | 待审阅 | [counting-sort.md](algorithm-basics/counting-sort.md) |
+| 030607 | 排序方法比较 | 待审阅 | [sorting-comparison.md](algorithm-basics/sorting-comparison.md) |
+| 030605 | 快速排序 | 待审阅 | [quicksort.md](algorithm-basics/quicksort.md) |
+| 030606 | 归并排序 | 待审阅 | [merge-sort.md](algorithm-basics/merge-sort.md) |
+| *030606e1 | 用归并排序统计逆序对 | 计划 | `algorithm-basics/merge-sort-inversion-count.md` |
 
 ### 专题：分治
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 030205 | 分治 | 待审阅 | [divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
-| 030505 | 快速排序 | 待审阅 | [quicksort.md](algorithm-basics/quicksort.md) |
-| 030506 | 归并排序 | 待审阅 | [merge-sort.md](algorithm-basics/merge-sort.md) |
-| *030506e1 | 用归并排序统计逆序对 | 计划 | `algorithm-basics/merge-sort-inversion-count.md` |
+| 030206 | 分治 | 待审阅 | [divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
+| 030605 | 快速排序 | 待审阅 | [quicksort.md](algorithm-basics/quicksort.md) |
+| 030606 | 归并排序 | 待审阅 | [merge-sort.md](algorithm-basics/merge-sort.md) |
+| *030606e1 | 用归并排序统计逆序对 | 计划 | `algorithm-basics/merge-sort-inversion-count.md` |
 | *990201 | CDQ 分治 | 计划 | `algorithm-basics/cdq-divide-and-conquer.md` |
 
 ### 专题：其他排序
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| *050202 | 堆排序 | 待审阅 | [heap-sort.md](algorithm-basics/heap-sort.md) |
-| *030508 | 基数排序 | 计划 | `algorithm-basics/radix-sort.md` |
-| *030509 | 桶排序 | 计划 | `algorithm-basics/bucket-sort.md` |
+| *050204 | 堆排序 | 待审阅 | [heap-sort.md](algorithm-basics/heap-sort.md) |
+| *030608 | 基数排序 | 计划 | `algorithm-basics/radix-sort.md` |
+| *030609 | 桶排序 | 计划 | `algorithm-basics/bucket-sort.md` |
 
 ### 专题：二分与数值搜索
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 030601 | 二分查找 | 待审阅 | [binary-search.md](algorithm-basics/binary-search.md) |
-| 030602 | 二分边界 | 待审阅 | [binary-search-boundaries.md](algorithm-basics/binary-search-boundaries.md) |
-| 030604 | 二分答案 | 待审阅 | [binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |
-| 030605 | 浮点数二分 | 待审阅 | [floating-point-binary-search.md](algorithm-basics/floating-point-binary-search.md) |
+| 030701 | 二分查找 | 待审阅 | [binary-search.md](algorithm-basics/binary-search.md) |
+| 030702 | 二分边界 | 待审阅 | [binary-search-boundaries.md](algorithm-basics/binary-search-boundaries.md) |
+| 030704 | 二分答案 | 待审阅 | [binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |
+| 030705 | 浮点数二分 | 待审阅 | [floating-point-binary-search.md](algorithm-basics/floating-point-binary-search.md) |
+| 030706 | 倍增 | 待审阅 | [doubling.md](algorithm-basics/doubling.md) |
 | *990202 | 三分搜索 | 计划 | `algorithm-basics/ternary-search.md` |
 | *990203 | 整体二分与并行二分 | 计划 | `algorithm-basics/parallel-binary-search.md` |
 
@@ -322,7 +329,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 030701 | 离散化 | 待审阅 | [coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
+| 030801 | 离散化 | 待审阅 | [coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
 | 070201 | 离线算法 | 计划 | `algorithm-basics/offline-algorithms.md` |
 | 070202 | 扫描线与事件排序 | 计划 | `algorithm-basics/sweep-line.md` |
 | *990201 | CDQ 分治 | 计划 | `algorithm-basics/cdq-divide-and-conquer.md` |
@@ -331,59 +338,73 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 040101 | 数组 | 待审阅 | [array.md](algorithm-basics/array.md) |
-| 040102 | 链表 | 待审阅 | [linked-list.md](algorithm-basics/linked-list.md) |
+| 030401 | 数组 | 待审阅 | [array.md](algorithm-basics/array.md) |
+| 030403 | 链表的基本概念 | 待审阅 | [linked-list.md](algorithm-basics/linked-list.md) |
+| 030404 | 单向链表 | 计划 | `algorithm-basics/singly-linked-list.md` |
+| 030405 | 双向链表 | 计划 | `algorithm-basics/doubly-linked-list.md` |
+| 030406 | 循环链表 | 计划 | `algorithm-basics/circular-linked-list.md` |
+| 030407 | list | 计划 | `cpp/list.md` |
 
 ### 专题：栈
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 040201 | 栈 | 待审阅 | [stack.md](algorithm-basics/stack.md) |
+| 040101 | 栈 | 待审阅 | [stack.md](algorithm-basics/stack.md) |
 | 060501 | 单调栈 | 待审阅 | [monotonic-stack.md](algorithm-basics/monotonic-stack.md) |
-| 040203 | 出栈序列判定 | 待审阅 | [stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
-| 040204 | 表达式求值 | 待审阅 | [expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
+| 040103 | 出栈序列判定 | 待审阅 | [stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
+| 040104 | 表达式求值 | 待审阅 | [expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
 
 ### 专题：队列
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 040301 | 队列 | 待审阅 | [queue.md](algorithm-basics/queue.md) |
-| 040303 | 双端队列 | 待审阅 | [deque.md](algorithm-basics/deque.md) |
+| 040105 | 队列 | 待审阅 | [queue.md](algorithm-basics/queue.md) |
+| 040107 | 双端队列 | 待审阅 | [deque.md](algorithm-basics/deque.md) |
 | 060502 | 单调队列 | 待审阅 | [monotonic-queue.md](algorithm-basics/monotonic-queue.md) |
 
-### 专题：二叉堆与哈希表
+### 专题：二叉堆
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 050201 | 二叉堆 | 待审阅 | [binary-heap.md](algorithm-basics/binary-heap.md) |
-| 050301 | 哈希表 | 待审阅 | [hash-table.md](algorithm-basics/hash-table.md) |
+| 050202 | priority_queue | 待审阅 | [priority-queue.md](cpp/priority-queue.md) |
+| 050203 | 哈夫曼编码 | 待审阅 | [huffman-coding.md](other/huffman-coding.md) |
+| *050204 | 堆排序 | 待审阅 | [heap-sort.md](algorithm-basics/heap-sort.md) |
+
+### 专题：哈希与哈希表
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 050301 | 哈希 | 计划 | `algorithm-basics/hashing.md` |
+| 050302 | 哈希表 | 待审阅 | [hash-table.md](algorithm-basics/hash-table.md) |
 
 ### 专题：双指针
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 030801 | 双指针 | 待审阅 | [two-pointers.md](algorithm-basics/two-pointers.md) |
-| 030802 | 滑动窗口 | 待审阅 | [sliding-window.md](algorithm-basics/sliding-window.md) |
+| 030901 | 双指针 | 待审阅 | [two-pointers.md](algorithm-basics/two-pointers.md) |
+| 030902 | 滑动窗口 | 待审阅 | [sliding-window.md](algorithm-basics/sliding-window.md) |
 
 ### 专题：贪心策略
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 030206 | 贪心选择与正确性证明 | 待审阅 | [greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
-| 040401 | 邻项交换证明 | 待审阅 | [greedy-adjacent-exchange.md](algorithm-basics/greedy-adjacent-exchange.md) |
-| 040402 | 反悔贪心 | 待审阅 | [greedy-regret.md](algorithm-basics/greedy-regret.md) |
+| 030203 | 贪心选择与正确性证明 | 待审阅 | [greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
+| 040601 | 邻项交换证明 | 待审阅 | [greedy-adjacent-exchange.md](algorithm-basics/greedy-adjacent-exchange.md) |
+| 040602 | 反悔贪心 | 待审阅 | [greedy-regret.md](algorithm-basics/greedy-regret.md) |
 
 ### 专题：倍增
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 060601 | 倍增：基础 | 待审阅 | [doubling.md](algorithm-basics/doubling.md) |
+| 030706 | 倍增 | 待审阅 | [doubling.md](algorithm-basics/doubling.md) |
 
 ### 专题：搜索与状态空间
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 040702 | 状态空间与隐式图 | 待审阅 | [state-space-and-implicit-graphs.md](algorithm-basics/state-space-and-implicit-graphs.md) |
+| 040501 | 状态空间与隐式图 | 待审阅 | [state-space-and-implicit-graphs.md](algorithm-basics/state-space-and-implicit-graphs.md) |
+| 040505 | DFS、回溯与剪枝 | 待审阅 | [dfs-backtracking-pruning.md](algorithm-basics/dfs-backtracking-pruning.md) |
 | *990204 | 搜索：迭代加深 | 计划 | `algorithm-basics/iterative-deepening.md` |
 | *990205 | 搜索：A* | 计划 | `algorithm-basics/a-star.md` |
 | *990206 | 精确覆盖：Dancing Links（DLX） | 计划 | `algorithm-basics/dancing-links.md` |
@@ -413,7 +434,9 @@
 | 060303 | 稀疏表（ST 表） | 待审阅 | [sparse-table.md](data-structures/sparse-table.md) |
 | 070301 | 并查集：扩展域 | 计划 | `data-structures/extended-domain-disjoint-set.md` |
 | 070302 | 并查集：带权 | 计划 | `data-structures/weighted-disjoint-set.md` |
-| 050101 | 二叉树的结构与存储 | 待审阅 | [binary-tree-structure-and-storage.md](data-structures/binary-tree-structure-and-storage.md) |
+| 050101 | 二叉树的基本概念 | 待审阅 | [binary-tree-concepts.md](data-structures/binary-tree-concepts.md) |
+| 050102 | 二叉树的存储 | 待审阅 | [binary-tree-storage.md](data-structures/binary-tree-storage.md) |
+| 050103 | 完全二叉树 | 待审阅 | [complete-binary-tree.md](data-structures/complete-binary-tree.md) |
 | *990302 | 可撤销并查集 | 计划 | `data-structures/rollback-disjoint-set.md` |
 | *990303 | 分块 | 计划 | `data-structures/square-root-decomposition.md` |
 | *990304 | 莫队算法 | 计划 | `data-structures/mo-algorithm.md` |
@@ -430,7 +453,8 @@
 | *990315 | 笛卡尔树 | 计划 | `data-structures/cartesian-tree.md` |
 | *990316 | Wavelet Matrix | 计划 | `data-structures/wavelet-matrix.md` |
 | *990317 | 启发式合并（small-to-large） | 计划 | `data-structures/small-to-large-merging.md` |
-| 050102 | 二叉树的遍历：前序、中序与后序 | 待审阅 | [binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
+| 050104 | 二叉树的遍历：前序、中序与后序 | 待审阅 | [binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
+| 050105 | 二叉搜索树的概念与构造 | 计划 | `data-structures/binary-search-tree-construction.md` |
 | *990318 | 斜堆 | 计划 | `data-structures/skew-heap.md` |
 | *990319 | 配对堆 | 计划 | `data-structures/pairing-heap.md` |
 | *990320 | 可持久化并查集 | 计划 | `data-structures/persistent-disjoint-set-union.md` |
@@ -448,26 +472,28 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 040601 | 点与边 | 待审阅 | [vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
-| 040604 | 图的存储：基础概念 | 待审阅 | [graph-representation.md](graph-theory/graph-representation.md) |
-| 061704 | 树上查询：倍增 LCA | 定稿 | [lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
-| 040802 | 连通块 | 待审阅 | [connected-components.md](graph-theory/connected-components.md) |
-| 061401 | 有向无环图：拓扑排序 | 待审阅 | [topological-sort.md](graph-theory/topological-sort.md) |
-| 050601 | 多源 BFS | 待审阅 | [multi-source-bfs.md](graph-theory/multi-source-bfs.md) |
-| 061501 | 最短路：Dijkstra | 计划 | `graph-theory/dijkstra.md` |
-| 061502 | 最短路：Bellman–Ford 与负环 | 计划 | `graph-theory/bellman-ford.md` |
-| 061503 | 最短路：Floyd–Warshall | 计划 | `graph-theory/floyd-warshall.md` |
-| 061601 | 最小生成树：Kruskal | 计划 | `graph-theory/kruskal.md` |
-| 050602 | 二分图：判定 | 待审阅 | [bipartite-graph.md](graph-theory/bipartite-graph.md) |
+| 040301 | 点与边 | 待审阅 | [vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
+| 040304 | 图的存储：基础概念 | 待审阅 | [graph-representation.md](graph-theory/graph-representation.md) |
+| 040305 | 图的存储：邻接矩阵 | 计划 | `graph-theory/adjacency-matrix.md` |
+| 061604 | 树上查询：倍增 LCA | 定稿 | [lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
+| 040309 | 连通分量 | 待审阅 | [connected-components.md](graph-theory/connected-components.md) |
+| 061301 | 有向无环图：拓扑排序 | 待审阅 | [topological-sort.md](graph-theory/topological-sort.md) |
+| 040310 | 泛洪算法（Flood Fill） | 计划 | `graph-theory/flood-fill.md` |
+| 040311 | 多源 BFS | 待审阅 | [multi-source-bfs.md](graph-theory/multi-source-bfs.md) |
+| 061401 | 最短路：Dijkstra | 计划 | `graph-theory/dijkstra.md` |
+| 061402 | 最短路：Bellman–Ford 与负环 | 计划 | `graph-theory/bellman-ford.md` |
+| 061403 | 最短路：Floyd–Warshall | 计划 | `graph-theory/floyd-warshall.md` |
+| 061501 | 最小生成树：Kruskal | 计划 | `graph-theory/kruskal.md` |
+| 040312 | 二分图：判定 | 待审阅 | [bipartite-graph.md](graph-theory/bipartite-graph.md) |
 | *990401 | 二分图：最大匹配 | 计划 | `graph-theory/bipartite-matching.md` |
 | *990401e1 | 二分图最大匹配：Hopcroft–Karp | 计划 | `graph-theory/hopcroft-karp.md` |
 | *990401e2 | 二分图最大权匹配：Kuhn–Munkres（KM） | 计划 | `graph-theory/kuhn-munkres.md` |
 | 070401 | 有向图：强连通分量 | 计划 | `graph-theory/strongly-connected-components.md` |
 | 070402 | 无向图：割点与桥 | 计划 | `graph-theory/articulation-points-bridges.md` |
 | *990402 | 无向图：双连通分量与圆方树 | 计划 | `graph-theory/biconnected-components-block-cut-tree.md` |
-| 061901 | 欧拉问题：路径、回路与图 | 定稿 | [eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
-| 061701 | 树：直径与中心 | 待审阅 | [tree-diameter-center.md](graph-theory/tree-diameter-center.md) |
-| 061703 | 树的遍历：DFS 序与子树区间 | 计划 | `graph-theory/tree-euler-tour.md` |
+| 061801 | 欧拉问题：路径、回路与图 | 定稿 | [eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
+| 061601 | 树：直径与中心 | 待审阅 | [tree-diameter-center.md](graph-theory/tree-diameter-center.md) |
+| 061603 | 树的遍历：DFS 序与子树区间 | 计划 | `graph-theory/tree-euler-tour.md` |
 | 070501 | 树上数据结构：树链剖分 | 计划 | `graph-theory/heavy-light-decomposition.md` |
 | *990403 | 2-SAT | 计划 | `graph-theory/two-sat.md` |
 | *990404 | 网络流：Dinic | 计划 | `graph-theory/dinic-max-flow.md` |
@@ -475,30 +501,29 @@
 | *990406 | 虚树 | 计划 | `graph-theory/virtual-tree.md` |
 | *990407 | 点分治 | 计划 | `graph-theory/centroid-decomposition.md` |
 | *990408 | SPFA 与队列优化最短路 | 计划 | `graph-theory/spfa.md` |
-| 061801 | 图：基环树 | 计划 | `graph-theory/unicyclic-graph.md` |
+| 061701 | 图：基环树 | 计划 | `graph-theory/unicyclic-graph.md` |
 | *990409 | DSU on Tree | 计划 | `graph-theory/dsu-on-tree.md` |
 | *990410 | 差分约束 | 计划 | `graph-theory/difference-constraints.md` |
 | 070601 | 最短路：分层图与状态图 | 计划 | `graph-theory/layered-state-shortest-path.md` |
 | *990411 | 树哈希 | 计划 | `graph-theory/tree-hashing.md` |
-| 040602 | 路径与环 | 待审阅 | [paths-and-cycles.md](graph-theory/paths-and-cycles.md) |
-| 040603 | 度数 | 待审阅 | [vertex-degrees.md](graph-theory/vertex-degrees.md) |
-| 040901 | 无根树 | 待审阅 | [unrooted-trees.md](graph-theory/unrooted-trees.md) |
-| 040903 | 树的遍历：深度优先搜索（DFS） | 待审阅 | [tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
-| 040904 | 树的遍历：广度优先搜索（BFS） | 待审阅 | [tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
-| 040701 | 图的遍历：深度优先搜索（DFS） | 待审阅 | [graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
-| 040801 | 图的遍历：广度优先搜索（BFS） | 待审阅 | [graph-breadth-first-search.md](graph-theory/graph-breadth-first-search.md) |
-| 061902 | 哈密顿问题：路径、回路与图 | 定稿 | [hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
-| *061902e1 | 哈密顿问题：小规模回溯 | 定稿 | [hamiltonian-backtracking.md](graph-theory/hamiltonian-backtracking.md) |
-| 040605 | 图的存储：邻接表（`vector` 实现） | 待审阅 | [vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
-| 061302 | 图的存储：邻接表（链式前向星实现） | 定稿 | [chained-forward-star.md](graph-theory/chained-forward-star.md) |
-| 061301 | 图的存储：边集 | 定稿 | [edge-list.md](graph-theory/edge-list.md) |
-| 040902 | 有根树 | 待审阅 | [rooted-trees.md](graph-theory/rooted-trees.md) |
-| 040706 | DFS、回溯与剪枝 | 待审阅 | [dfs-backtracking-pruning.md](graph-theory/dfs-backtracking-pruning.md) |
-| 061504 | 最短路：0-1 BFS | 待审阅 | [zero-one-bfs.md](graph-theory/zero-one-bfs.md) |
-| 061702 | 树：重心 | 待审阅 | [tree-centroid.md](graph-theory/tree-centroid.md) |
+| 040302 | 路径与环 | 待审阅 | [paths-and-cycles.md](graph-theory/paths-and-cycles.md) |
+| 040303 | 度数 | 待审阅 | [vertex-degrees.md](graph-theory/vertex-degrees.md) |
+| 040401 | 无根树 | 待审阅 | [unrooted-trees.md](graph-theory/unrooted-trees.md) |
+| 040403 | 树的遍历：深度优先搜索（DFS） | 待审阅 | [tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
+| 040404 | 树的遍历：广度优先搜索（BFS） | 待审阅 | [tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
+| 040307 | 图的遍历：深度优先搜索（DFS） | 待审阅 | [graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
+| 040308 | 图的遍历：广度优先搜索（BFS） | 待审阅 | [graph-breadth-first-search.md](graph-theory/graph-breadth-first-search.md) |
+| 061802 | 哈密顿问题：路径、回路与图 | 定稿 | [hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
+| *061802e1 | 哈密顿问题：小规模回溯 | 定稿 | [hamiltonian-backtracking.md](graph-theory/hamiltonian-backtracking.md) |
+| 040306 | 图的存储：邻接表（`vector` 实现） | 待审阅 | [vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
+| 061202 | 图的存储：邻接表（链式前向星实现） | 定稿 | [chained-forward-star.md](graph-theory/chained-forward-star.md) |
+| 061201 | 图的存储：边集 | 定稿 | [edge-list.md](graph-theory/edge-list.md) |
+| 040402 | 有根树 | 待审阅 | [rooted-trees.md](graph-theory/rooted-trees.md) |
+| 061404 | 最短路：0-1 BFS | 待审阅 | [zero-one-bfs.md](graph-theory/zero-one-bfs.md) |
+| 061602 | 树：重心 | 待审阅 | [tree-centroid.md](graph-theory/tree-centroid.md) |
 | 070502 | 树上技巧：树上差分 | 计划 | `graph-theory/tree-difference.md` |
-| 061802 | 图：函数图 | 计划 | `graph-theory/functional-graph.md` |
-| 061602 | 最小生成树：Prim | 计划 | `graph-theory/prim.md` |
+| 061702 | 图：函数图 | 计划 | `graph-theory/functional-graph.md` |
+| 061502 | 最小生成树：Prim | 计划 | `graph-theory/prim.md` |
 | *990412 | 最短路：最短路树 | 计划 | `graph-theory/shortest-path-tree.md` |
 | *990413 | 最小生成树：Borůvka | 计划 | `graph-theory/boruvka.md` |
 | *990414 | 网络流：SAP | 计划 | `graph-theory/sap-max-flow.md` |
@@ -521,33 +546,33 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 040501 | 因数、倍数与整除 | 待审阅 | [divisibility.md](math/divisibility.md) |
-| 040502 | 质数 | 待审阅 | [prime-numbers.md](math/prime-numbers.md) |
-| 040503 | 试除法：质数检测 | 待审阅 | [trial-division-primality-test.md](math/trial-division-primality-test.md) |
-| 060703 | 数论：扩展欧几里得算法 | 待审阅 | [extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
-| 060701 | 模运算 | 待审阅 | [modular-arithmetic.md](math/modular-arithmetic.md) |
-| *060701e1 | 模运算：modint | 待审阅 | [mod-int.md](math/mod-int.md) |
-| 060702 | 模快速幂 | 待审阅 | [modular-exponentiation.md](math/modular-exponentiation.md) |
-| 040506 | 埃拉托斯特尼筛法 | 待审阅 | [sieve-of-eratosthenes.md](math/sieve-of-eratosthenes.md) |
-| 060707 | 模逆元 | 待审阅 | [modular-inverse.md](math/modular-inverse.md) |
-| *060707e1 | 模逆元：线性预处理 | 计划 | `math/linear-modular-inverses.md` |
-| *060707e2 | 模逆元：批量求逆 | 计划 | `math/batch-modular-inverses.md` |
-| 060904 | 组合数：定义与递推 | 待审阅 | [binomial-coefficients.md](math/binomial-coefficients.md) |
-| *060904e1 | 组合数：Lucas 定理 | 计划 | `math/lucas-theorem.md` |
-| *060904e2 | 组合数：扩展 Lucas 定理 | 计划 | `math/extended-lucas-theorem.md` |
-| 061001 | 欧拉函数 | 待审阅 | [euler-totient.md](math/euler-totient.md) |
-| *061001e1 | 扩展欧拉定理 | 计划 | `math/extended-euler-theorem.md` |
-| *061001e2 | 欧拉函数：筛法预处理 | 计划 | `math/euler-totient-sieve.md` |
-| 061101 | 矩阵：表示 | 待审阅 | [matrix-representation.md](math/matrix-representation.md) |
+| 040201 | 因数、倍数与整除 | 待审阅 | [divisibility.md](math/divisibility.md) |
+| 040202 | 质数 | 待审阅 | [prime-numbers.md](math/prime-numbers.md) |
+| 040203 | 试除法：质数检测 | 待审阅 | [trial-division-primality-test.md](math/trial-division-primality-test.md) |
+| 060603 | 数论：扩展欧几里得算法 | 待审阅 | [extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
+| 060601 | 模运算 | 待审阅 | [modular-arithmetic.md](math/modular-arithmetic.md) |
+| *060601e1 | 模运算：modint | 待审阅 | [mod-int.md](math/mod-int.md) |
+| 060602 | 模快速幂 | 待审阅 | [modular-exponentiation.md](math/modular-exponentiation.md) |
+| 040206 | 埃拉托斯特尼筛法 | 待审阅 | [sieve-of-eratosthenes.md](math/sieve-of-eratosthenes.md) |
+| 060607 | 模逆元 | 待审阅 | [modular-inverse.md](math/modular-inverse.md) |
+| *060607e1 | 模逆元：线性预处理 | 计划 | `math/linear-modular-inverses.md` |
+| *060607e2 | 模逆元：批量求逆 | 计划 | `math/batch-modular-inverses.md` |
+| 050604 | 组合数与二项式系数 | 待审阅 | [binomial-coefficients.md](math/binomial-coefficients.md) |
+| *050604e1 | 组合数：Lucas 定理 | 计划 | `math/lucas-theorem.md` |
+| *050604e2 | 组合数：扩展 Lucas 定理 | 计划 | `math/extended-lucas-theorem.md` |
+| 060901 | 欧拉函数 | 待审阅 | [euler-totient.md](math/euler-totient.md) |
+| *060901e1 | 扩展欧拉定理 | 计划 | `math/extended-euler-theorem.md` |
+| *060901e2 | 欧拉函数：筛法预处理 | 计划 | `math/euler-totient-sieve.md` |
+| 061001 | 矩阵：表示 | 待审阅 | [matrix-representation.md](math/matrix-representation.md) |
 | 070701 | 数论：中国剩余定理（CRT） | 待审阅 | [chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
-| 061105 | 矩阵快速幂 | 待审阅 | [matrix-exponentiation.md](math/matrix-exponentiation.md) |
-| 061201 | 概率与期望基础 | 计划 | `math/probability-expectation.md` |
+| 061005 | 矩阵快速幂 | 待审阅 | [matrix-exponentiation.md](math/matrix-exponentiation.md) |
+| 061101 | 概率与期望基础 | 计划 | `math/probability-expectation.md` |
 | *990501 | Nim、SG 函数与基础博弈论 | 计划 | `math/nim-sg-game-theory.md` |
 | *990502 | XOR 线性基 | 计划 | `math/xor-linear-basis.md` |
 | *990503 | 高斯消元 | 计划 | `math/gaussian-elimination.md` |
 | 070801 | 容斥原理 | 计划 | `math/inclusion-exclusion.md` |
 | *990504 | 多项式：NTT | 计划 | `math/ntt.md` |
-| 061003 | 莫比乌斯函数 | 待审阅 | [mobius-function.md](math/mobius-function.md) |
+| 060903 | 莫比乌斯函数 | 待审阅 | [mobius-function.md](math/mobius-function.md) |
 | *990505 | BSGS 与离散对数 | 计划 | `math/discrete-logarithm.md` |
 | *990505e1 | 离散对数：Pohlig–Hellman | 计划 | `math/pohlig-hellman.md` |
 | *990506 | 多项式：表示、加法与减法 | 计划 | `math/polynomial-representation-addition-subtraction.md` |
@@ -565,18 +590,19 @@
 | *990518 | 多项式：多点求值 | 计划 | `math/multipoint-evaluation.md` |
 | *990519 | 多项式：插值 | 计划 | `math/polynomial-interpolation.md` |
 | *990520 | 莫比乌斯反演 | 计划 | `math/mobius-inversion.md` |
-| 040504 | 算术基本定理 | 待审阅 | [fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
-| 040507 | 最大公约数与最小公倍数 | 待审阅 | [greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
-| 040508 | 欧几里得算法 | 待审阅 | [euclidean-algorithm.md](math/euclidean-algorithm.md) |
+| 040204 | 算术基本定理 | 待审阅 | [fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
+| 040207 | 最大公约数与最小公倍数 | 待审阅 | [greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
+| 040208 | 欧几里得算法 | 待审阅 | [euclidean-algorithm.md](math/euclidean-algorithm.md) |
 | 070702 | 数论：扩展中国剩余定理（exCRT） | 待审阅 | [extended-chinese-remainder-theorem.md](math/extended-chinese-remainder-theorem.md) |
-| 040505 | 质因数分解 | 待审阅 | [prime-factorization.md](math/prime-factorization.md) |
-| 060802 | 正因数个数 | 待审阅 | [divisor-count.md](math/divisor-count.md) |
-| 060803 | 正因数和 | 待审阅 | [divisor-sum.md](math/divisor-sum.md) |
-| 060704 | 线性不定方程 | 待审阅 | [linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
-| 060705 | 线性同余方程 | 待审阅 | [linear-congruences.md](math/linear-congruences.md) |
+| 040205 | 质因数分解 | 待审阅 | [prime-factorization.md](math/prime-factorization.md) |
+| 060702 | 正因数个数 | 待审阅 | [divisor-count.md](math/divisor-count.md) |
+| 060703 | 正因数和 | 待审阅 | [divisor-sum.md](math/divisor-sum.md) |
+| 060604 | 线性不定方程 | 待审阅 | [linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
+| 060605 | 线性同余方程 | 待审阅 | [linear-congruences.md](math/linear-congruences.md) |
 | 050501 | 高精度整数：加法、减法与乘法 | 待审阅 | [big-integer-addition-subtraction-multiplication.md](math/big-integer-addition-subtraction-multiplication.md) |
-| *050501e1 | 高精度整数：除法与余数 | 计划 | `math/big-integer-division-remainder.md` |
-| *050501e2 | 高精度整数：负数 | 计划 | `math/big-integer-negative-numbers.md` |
+| *050501e1 | 高精度整数：负数 | 计划 | `math/big-integer-negative-numbers.md` |
+| 050502 | 高精度整数：除以低精度整数 | 计划 | `math/big-integer-division-by-small-integer.md` |
+| *050502e1 | 高精度整数：除以高精度整数 | 计划 | `math/big-integer-division-remainder.md` |
 | *990521 | 素性测试：Miller–Rabin | 计划 | `math/miller-rabin.md` |
 | *990522 | 整数分解：Pollard–Rho | 计划 | `math/pollard-rho.md` |
 | *990523 | 原根 | 计划 | `math/primitive-roots.md` |
@@ -606,28 +632,34 @@
 | *990547 | 数值积分：Simpson 公式 | 计划 | `math/simpson-rule.md` |
 | *990548 | 数值积分：自适应 Simpson | 计划 | `math/adaptive-simpson.md` |
 | *990549 | 集合幂级数：FWT/FMT | 计划 | `math/fast-subset-transforms.md` |
-| 040509 | 快速幂 | 待审阅 | [fast-exponentiation.md](math/fast-exponentiation.md) |
-| 060706 | 费马小定理 | 待审阅 | [fermat-little-theorem.md](math/fermat-little-theorem.md) |
-| 060801 | 筛法：欧拉筛（线性筛） | 待审阅 | [euler-sieve.md](math/euler-sieve.md) |
-| *060801e1 | 杜教筛 | 计划 | `math/du-jiao-sieve.md` |
-| *060801e2 | Min_25 筛 | 计划 | `math/min-25-sieve.md` |
+| 040209 | 快速幂 | 待审阅 | [fast-exponentiation.md](math/fast-exponentiation.md) |
+| 060606 | 费马小定理 | 待审阅 | [fermat-little-theorem.md](math/fermat-little-theorem.md) |
+| 060701 | 筛法：欧拉筛（线性筛） | 待审阅 | [euler-sieve.md](math/euler-sieve.md) |
+| *060701e1 | 杜教筛 | 计划 | `math/du-jiao-sieve.md` |
+| *060701e2 | Min_25 筛 | 计划 | `math/min-25-sieve.md` |
 | *990550 | 筛法：分段筛 | 计划 | `math/segmented-sieve.md` |
-| 060901 | 计数原理：加法原理 | 待审阅 | [addition-principle.md](math/addition-principle.md) |
-| 060902 | 计数原理：乘法原理 | 待审阅 | [multiplication-principle.md](math/multiplication-principle.md) |
-| 060903 | 排列数 | 待审阅 | [permutations-count.md](math/permutations-count.md) |
-| 060905 | 组合数：阶乘与逆元预处理 | 待审阅 | [binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
-| 061002 | 欧拉定理 | 待审阅 | [euler-theorem.md](math/euler-theorem.md) |
-| 061102 | 矩阵：加法与减法 | 待审阅 | [matrix-addition-subtraction.md](math/matrix-addition-subtraction.md) |
-| 061103 | 矩阵：乘法 | 待审阅 | [matrix-multiplication.md](math/matrix-multiplication.md) |
-| 061104 | 线性变换：矩阵表示 | 待审阅 | [linear-transformations-as-matrices.md](math/linear-transformations-as-matrices.md) |
-| *061104e1 | 线性变换：齐次坐标与仿射变换 | 待审阅 | [homogeneous-coordinates-affine-transformations.md](math/homogeneous-coordinates-affine-transformations.md) |
+| *041001 | 数系：自然数、整数、有理数与实数 | 计划 | `math/number-systems-review.md` |
+| *041002 | 集合：基本概念与交、并、补 | 计划 | `math/sets-review.md` |
+| *041003 | 代数：方程与不等式 | 计划 | `math/equations-and-inequalities-review.md` |
+| *041004 | 初等平面几何 | 计划 | `math/elementary-plane-geometry-review.md` |
+| 050601 | 加法原理 | 待审阅 | [addition-principle.md](math/addition-principle.md) |
+| 050602 | 乘法原理 | 待审阅 | [multiplication-principle.md](math/multiplication-principle.md) |
+| 050603 | 排列数 | 待审阅 | [permutations-count.md](math/permutations-count.md) |
+| 050605 | 二项式定理 | 计划 | `math/binomial-theorem.md` |
+| 050606 | 杨辉三角 | 计划 | `math/pascal-triangle.md` |
+| 060801 | 组合数：阶乘与逆元预处理 | 待审阅 | [binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
+| 060902 | 欧拉定理 | 待审阅 | [euler-theorem.md](math/euler-theorem.md) |
+| 061002 | 矩阵：加法与减法 | 待审阅 | [matrix-addition-subtraction.md](math/matrix-addition-subtraction.md) |
+| 061003 | 矩阵：乘法 | 待审阅 | [matrix-multiplication.md](math/matrix-multiplication.md) |
+| 061004 | 线性变换：矩阵表示 | 待审阅 | [linear-transformations-as-matrices.md](math/linear-transformations-as-matrices.md) |
+| *061004e1 | 线性变换：齐次坐标与仿射变换 | 待审阅 | [homogeneous-coordinates-affine-transformations.md](math/homogeneous-coordinates-affine-transformations.md) |
 
 ## 06 计算几何
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 062201 | 坐标、点、向量与精度 | 计划 | `computational-geometry/points-vectors-precision.md` |
-| 062202 | 点积、叉积与方向判断 | 计划 | `computational-geometry/dot-cross-orientation.md` |
+| 062101 | 坐标、点、向量与精度 | 计划 | `computational-geometry/points-vectors-precision.md` |
+| 062102 | 点积、叉积与方向判断 | 计划 | `computational-geometry/dot-cross-orientation.md` |
 | 070901 | 直线、线段与相交判定 | 计划 | `computational-geometry/lines-segments-intersections.md` |
 | 070902 | 多边形面积与点的位置 | 计划 | `computational-geometry/polygon-area-point-location.md` |
 | 070903 | 凸包 | 计划 | `computational-geometry/convex-hull.md` |
@@ -653,24 +685,24 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 041001 | 动态规划的状态与转移 | 待审阅 | [dp-state-transition.md](dynamic-programming/dp-state-transition.md) |
-| 041003 | 最大子段和 | 待审阅 | [maximum-subarray-sum.md](dynamic-programming/maximum-subarray-sum.md) |
-| 041101 | 0-1 背包 | 待审阅 | [zero-one-knapsack.md](dynamic-programming/zero-one-knapsack.md) |
-| 041004 | 最长上升子序列 | 待审阅 | [longest-increasing-subsequence.md](dynamic-programming/longest-increasing-subsequence.md) |
-| *041004e1 | 最长上升子序列：$O(n\log n)$ 优化 | 计划 | `dynamic-programming/lis-n-log-n.md` |
-| 062002 | 动态规划：区间 DP | 计划 | `dynamic-programming/interval-dp.md` |
-| 062003 | 动态规划：DAG 上的 DP | 计划 | `dynamic-programming/dag-dp.md` |
-| 062004 | 动态规划：树形 DP | 计划 | `dynamic-programming/tree-dp.md` |
-| 062005 | 动态规划：状压 DP | 计划 | `dynamic-programming/bitmask-dp.md` |
+| 040701 | 动态规划的状态与转移 | 待审阅 | [dp-state-transition.md](dynamic-programming/dp-state-transition.md) |
+| 040703 | 最大子段和 | 待审阅 | [maximum-subarray-sum.md](dynamic-programming/maximum-subarray-sum.md) |
+| 040801 | 0-1 背包 | 待审阅 | [zero-one-knapsack.md](dynamic-programming/zero-one-knapsack.md) |
+| 040704 | 最长上升子序列 | 待审阅 | [longest-increasing-subsequence.md](dynamic-programming/longest-increasing-subsequence.md) |
+| *040704e1 | 最长上升子序列：$O(n\log n)$ 优化 | 计划 | `dynamic-programming/lis-n-log-n.md` |
+| 050701 | 区间 DP | 计划 | `dynamic-programming/interval-dp.md` |
+| 061902 | 动态规划：DAG 上的 DP | 计划 | `dynamic-programming/dag-dp.md` |
+| 061903 | 动态规划：树形 DP | 计划 | `dynamic-programming/tree-dp.md` |
+| 061904 | 动态规划：状压 DP | 计划 | `dynamic-programming/bitmask-dp.md` |
 | 071001 | 动态规划：数位 DP | 计划 | `dynamic-programming/digit-dp.md` |
 | 071002 | 动态规划：概率与期望 | 计划 | `dynamic-programming/probability-expectation-dp.md` |
 | 071003 | 动态规划优化：单调队列 | 计划 | `dynamic-programming/monotone-queue-optimization.md` |
 | *990701 | 动态规划优化：斜率 | 计划 | `dynamic-programming/convex-hull-trick.md` |
 | *990702 | 动态规划优化：分治 | 计划 | `dynamic-programming/divide-conquer-optimization.md` |
 | *990703 | 动态规划：Slope Trick | 计划 | `dynamic-programming/slope-trick.md` |
-| 041102 | 完全背包 | 待审阅 | [complete-knapsack.md](dynamic-programming/complete-knapsack.md) |
-| 041103 | 多重背包 | 待审阅 | [multiple-knapsack.md](dynamic-programming/multiple-knapsack.md) |
-| 062001 | 状态机动态规划 | 待审阅 | [state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
+| 040802 | 完全背包 | 待审阅 | [complete-knapsack.md](dynamic-programming/complete-knapsack.md) |
+| 040803 | 多重背包 | 待审阅 | [multiple-knapsack.md](dynamic-programming/multiple-knapsack.md) |
+| 061901 | 状态机动态规划 | 待审阅 | [state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
 | *990704 | 记忆化搜索 | 计划 | `dynamic-programming/memoized-search.md` |
 | *990705 | 背包：分组背包 | 计划 | `dynamic-programming/group-knapsack.md` |
 | *990706 | 背包：混合背包 | 计划 | `dynamic-programming/mixed-knapsack.md` |
@@ -684,19 +716,20 @@
 | *990714 | 动态 DP | 计划 | `dynamic-programming/dynamic-dp.md` |
 | *990715 | 动态规划优化：单调栈 | 计划 | `dynamic-programming/monotone-stack-optimization.md` |
 | *990716 | 动态规划优化：四边形不等式 | 计划 | `dynamic-programming/quadrangle-inequality-optimization.md` |
-| 041002 | 数字三角形 | 待审阅 | [number-triangle.md](dynamic-programming/number-triangle.md) |
-| 041005 | 最长公共子序列 | 待审阅 | [longest-common-subsequence.md](dynamic-programming/longest-common-subsequence.md) |
+| 040702 | 数字三角形 | 待审阅 | [number-triangle.md](dynamic-programming/number-triangle.md) |
+| 040705 | 最长公共子序列 | 待审阅 | [longest-common-subsequence.md](dynamic-programming/longest-common-subsequence.md) |
 
 ## 08 字符串
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 041201 | 字符串比较与字典序 | 待审阅 | [comparison-and-lexicographic-order.md](strings/comparison-and-lexicographic-order.md) |
-| 041202 | 朴素字符串匹配 | 待审阅 | [naive-pattern-matching.md](strings/naive-pattern-matching.md) |
-| 062101 | 字符串：哈希 | 计划 | `strings/rolling-hash.md` |
-| 062102 | 字符串：KMP 与前缀函数 | 计划 | `strings/kmp-prefix-function.md` |
-| 062103 | 字符串：Z 函数 | 计划 | `strings/z-function.md` |
-| 062104 | 字符串：Trie | 计划 | `strings/trie.md` |
+| 040901 | 字符串的基本概念 | 计划 | `strings/string-concepts.md` |
+| 040902 | 字符串比较与字典序 | 待审阅 | [comparison-and-lexicographic-order.md](strings/comparison-and-lexicographic-order.md) |
+| 040903 | 朴素字符串匹配 | 待审阅 | [naive-pattern-matching.md](strings/naive-pattern-matching.md) |
+| 062001 | 字符串：哈希 | 计划 | `strings/rolling-hash.md` |
+| 062002 | 字符串：KMP 与前缀函数 | 计划 | `strings/kmp-prefix-function.md` |
+| 062003 | 字符串：Z 函数 | 计划 | `strings/z-function.md` |
+| 062004 | 字符串：Trie | 计划 | `strings/trie.md` |
 | *990801 | 字符串：AC 自动机 | 计划 | `strings/aho-corasick.md` |
 | *990802 | 字符串：Manacher | 计划 | `strings/manacher.md` |
 | *990803 | 字符串：后缀数组 | 计划 | `strings/suffix-array.md` |
@@ -712,5 +745,3 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 050701 | 哈夫曼编码 | 待审阅 | [huffman-coding.md](other/huffman-coding.md) |
-| 050702 | 格雷码 | 待审阅 | [gray-code.md](other/gray-code.md) |
