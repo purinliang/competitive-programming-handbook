@@ -1,0 +1,98 @@
+[
+  {
+    "id": "quicksort-pivot-meaning",
+    "prompt": "本篇代码中的 `pivot` 保存的是什么？",
+    "options": [
+      { "id": "a", "text": "一个始终不移动的最终下标" },
+      { "id": "b", "text": "区间中间位置元素的数值副本" },
+      { "id": "c", "text": "左区间的长度" },
+      { "id": "d", "text": "数组的最小值" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "分区交换可能移动原中间元素，但比较始终使用已经保存的基准数值。"
+  },
+  {
+    "id": "quicksort-left-scan",
+    "prompt": "左指针 `i` 在什么位置停止？",
+    "options": [
+      { "id": "a", "text": "第一个不小于 pivot 的位置" },
+      { "id": "b", "text": "第一个严格小于 pivot 的位置" },
+      { "id": "c", "text": "固定停在 l" },
+      { "id": "d", "text": "数组末尾之外" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "i 会跳过严格小于 pivot 的值，在 a[i] >= pivot 时停止。"
+  },
+  {
+    "id": "quicksort-strict-scans",
+    "prompt": "为什么扫描条件使用 `< pivot` 与 `> pivot`，不包含等号？",
+    "options": [
+      { "id": "a", "text": "为了忽略所有重复值" },
+      { "id": "b", "text": "为了让结果变成降序" },
+      { "id": "c", "text": "让等于 pivot 的位置能使扫描停止，并由下一轮继续推进" },
+      { "id": "d", "text": "因为 C++ 不支持 <= 和 >=" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "这保证全相等等输入也不会越过区间或停在原地无限循环。"
+  },
+  {
+    "id": "quicksort-partition-result",
+    "prompt": "本篇分区退出后保证什么？",
+    "options": [
+      { "id": "a", "text": "pivot 一定停在 j" },
+      { "id": "b", "text": "左右子区间内部都已经有序" },
+      { "id": "c", "text": "每个元素都互不相同" },
+      { "id": "d", "text": "a[l..j] 不大于 pivot，a[j+1..r] 不小于 pivot" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "分区只建立跨区间的大小关系，两个子区间内部仍交给递归排序。"
+  },
+  {
+    "id": "quicksort-recursion-ranges",
+    "prompt": "与本篇 Hoare 分区配套的递归区间是哪一组？",
+    "options": [
+      { "id": "a", "text": "`[l,j]` 与 `[j+1,r]`" },
+      { "id": "b", "text": "`[l,r]` 与 `[l,r]`" },
+      { "id": "c", "text": "`[l,j-1]` 与 `[j+2,r]`" },
+      { "id": "d", "text": "只递归左半区" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "退出条件、分界含义和递归边界是一套约定，不能与别的分区模板混用。"
+  },
+  {
+    "id": "quicksort-time",
+    "prompt": "本篇快速排序的平均和最坏时间复杂度分别是什么？",
+    "options": [
+      { "id": "a", "text": "O(n) 与 O(n)" },
+      { "id": "b", "text": "O(n log n) 与 O(n²)" },
+      { "id": "c", "text": "O(n²) 与 O(n log n)" },
+      { "id": "d", "text": "O(log n) 与 O(n)" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "均衡分区产生对数层；连续极不均衡分区可能产生线性层数。"
+  },
+  {
+    "id": "quicksort-space",
+    "prompt": "为什么原地分区的快速排序仍需要额外空间？",
+    "options": [
+      { "id": "a", "text": "每次比较都会复制整个数组" },
+      { "id": "b", "text": "vector 必须保存两份元素" },
+      { "id": "c", "text": "递归调用栈会保存尚未完成的区间" },
+      { "id": "d", "text": "pivot 必须占用 O(n) 空间" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "平均递归深度为 O(log n)，极端情况下可达到 O(n)。"
+  },
+  {
+    "id": "quicksort-stability",
+    "prompt": "本篇原地快速排序是否稳定？",
+    "options": [
+      { "id": "a", "text": "稳定，因为 pivot 来自中间" },
+      { "id": "b", "text": "稳定，因为使用严格比较" },
+      { "id": "c", "text": "不稳定，因为远距离交换可能改变相等记录的相对顺序" },
+      { "id": "d", "text": "只有负数输入时不稳定" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "稳定性取决于具体元素移动方式，原地分区可能让相等记录互相跨越。"
+  }
+]
