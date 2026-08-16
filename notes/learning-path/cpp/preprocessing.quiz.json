@@ -24,40 +24,28 @@
     "explanation": "头文件通过 include 进入源文件的翻译过程，不是自动独立加入程序。"
   },
   {
-    "id": "include-guard",
-    "prompt": "传统 include guard 为什么能阻止头内容重复包含？",
+    "id": "directive-semicolon",
+    "prompt": "预处理指令末尾为什么通常不写分号？",
     "options": [
-      { "id": "a", "text": "首次包含定义标志，以后 `#ifndef` 条件不再成立" },
-      { "id": "b", "text": "它会删除磁盘上的头文件" },
-      { "id": "c", "text": "它把所有类型改成静态" },
-      { "id": "d", "text": "它只允许程序运行一次" }
+      { "id": "a", "text": "它不是普通 C++ 语句" },
+      { "id": "b", "text": "分号只能用于浮点数" },
+      { "id": "c", "text": "井号已经代表循环结束" },
+      { "id": "d", "text": "分号只允许写在头文件中" }
     ],
     "correctOptionId": "a",
-    "explanation": "条件预处理让同一翻译单元后续遇到该头时排除守卫中的正文。"
+    "explanation": "预处理器先识别指令，随后产生交给 C++ 编译阶段处理的记号序列。"
   },
   {
-    "id": "conditional-stage",
-    "prompt": "`#if` 与普通 `if` 最根本的区别是什么？",
+    "id": "preprocess-output",
+    "prompt": "GNU C++ 的 `g++ -E main.cpp` 主要用于观察什么？",
     "options": [
-      { "id": "a", "text": "前者构建时保留代码，后者运行时选择执行路径" },
-      { "id": "b", "text": "二者完全相同" },
-      { "id": "c", "text": "`#if` 可以直接读取本次标准输入" },
-      { "id": "d", "text": "普通 `if` 不属于 C++" }
+      { "id": "a", "text": "头和宏处理后的预处理结果" },
+      { "id": "b", "text": "程序运行后的标准输入" },
+      { "id": "c", "text": "动态数组的内存地址" },
+      { "id": "d", "text": "链接器生成的数据库" }
     ],
     "correctOptionId": "a",
-    "explanation": "被条件编译排除的记号不会进入当前构建的普通语法和类型检查。"
-  },
-  {
-    "id": "excluded-code",
-    "prompt": "一段代码被当前 `#if` 分支排除，能否证明它已经编译通过？",
-    "options": [
-      { "id": "a", "text": "不能，需要在使该分支生效的配置下另行构建" },
-      { "id": "b", "text": "能，排除等同于完整测试" },
-      { "id": "c", "text": "能，预处理器会自动修复语法" },
-      { "id": "d", "text": "只有注释会被检查" }
-    ],
-    "correctOptionId": "a",
-    "explanation": "当前编译器根本没有看到这段 C++ 代码，隐藏分支可能长期积累错误。"
+    "explanation": "`-E` 只运行预处理，适合检查头怎样进入翻译单元以及宏最终怎样展开。"
   },
   {
     "id": "pragma-portability",

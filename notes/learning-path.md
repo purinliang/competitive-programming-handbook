@@ -138,6 +138,7 @@
 | 0176* | 预处理 | C++ | [cpp/preprocessing.md](cpp/preprocessing.md) |
 | 0152* | 预处理：#include | C++ | [cpp/include.md](cpp/include.md) |
 | 0159* | 预处理：#define | C++ | [cpp/define-macros.md](cpp/define-macros.md) |
+| 0189* | 条件编译 | C++ | [cpp/conditional-compilation.md](cpp/conditional-compilation.md) |
 | 0177* | 编译 | C++ | [cpp/compilation.md](cpp/compilation.md) |
 | 0178* | 链接 | C++ | [cpp/linking.md](cpp/linking.md) |
 
@@ -673,6 +674,7 @@
 | 0186* | 继承 | [cpp/inheritance.md](cpp/inheritance.md) |
 | 0187* | 多态 | [cpp/polymorphism.md](cpp/polymorphism.md) |
 | 0188* | using 类型别名 | [cpp/using-type-aliases.md](cpp/using-type-aliases.md) |
+| 0189* | 条件编译 | [cpp/conditional-compilation.md](cpp/conditional-compilation.md) |
 
 ### 02 算法基础
 

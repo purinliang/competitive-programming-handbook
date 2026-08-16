@@ -149,6 +149,7 @@
 | 0160* | typedef 类型别名 | 待审阅 | [type-aliases.md](cpp/type-aliases.md) |
 | 0188* | using 类型别名 | 待审阅 | [using-type-aliases.md](cpp/using-type-aliases.md) |
 | 0176* | 预处理 | 待审阅 | [preprocessing.md](cpp/preprocessing.md) |
+| 0189* | 条件编译 | 待审阅 | [conditional-compilation.md](cpp/conditional-compilation.md) |
 | 0177* | 编译 | 待审阅 | [compilation.md](cpp/compilation.md) |
 | 0178* | 链接 | 待审阅 | [linking.md](cpp/linking.md) |
 | 0179* | constexpr | 待审阅 | [constexpr.md](cpp/constexpr.md) |

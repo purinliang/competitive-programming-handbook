@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ifdef-definition",
+    "prompt": "写了 `#define LOCAL 0` 后，`#ifdef LOCAL` 是否成立？",
+    "options": [
+      { "id": "a", "text": "成立，因为它只判断宏是否已经定义" },
+      { "id": "b", "text": "不成立，因为替换值是零" },
+      { "id": "c", "text": "只有程序读入非零整数时成立" },
+      { "id": "d", "text": "只有在 `main` 中才成立" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`#ifdef` 不判断宏的替换值；如果要判断替换后的整数条件，应使用 `#if LOCAL`。"
+  },
+  {
+    "id": "defined-equivalence",
+    "prompt": "哪一个条件与 `#ifndef LOCAL` 等价？",
+    "options": [
+      { "id": "a", "text": "`#if !defined(LOCAL)`" },
+      { "id": "b", "text": "`#if LOCAL`" },
+      { "id": "c", "text": "`if (!LOCAL)`" },
+      { "id": "d", "text": "`#define !LOCAL`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`#ifndef` 检查宏尚未定义，`defined` 可以和预处理逻辑运算组合。"
+  },
+  {
+    "id": "if-stage",
+    "prompt": "`#if` 与普通 `if` 最根本的区别是什么？",
+    "options": [
+      { "id": "a", "text": "前者在预处理时保留代码，后者在运行时选择路径" },
+      { "id": "b", "text": "前者只能判断浮点数，后者只能判断整数" },
+      { "id": "c", "text": "前者可以读取标准输入，后者不能" },
+      { "id": "d", "text": "二者只是拼写不同" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "被 `#if` 排除的代码不进入本次编译；普通 `if` 的所有分支仍属于被编译的 C++ 程序。"
+  },
+  {
+    "id": "command-line-define",
+    "prompt": "GNU C++ 命令中的 `-DLOCAL` 表示什么？",
+    "options": [
+      { "id": "a", "text": "为本次构建预先定义宏 `LOCAL`" },
+      { "id": "b", "text": "删除源文件中的所有宏" },
+      { "id": "c", "text": "在运行时令变量 `LOCAL` 等于一" },
+      { "id": "d", "text": "强制程序读取本地文件" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`-D` 是 GNU 编译器的命令行接口，影响这一次预处理，不会修改源文件。"
+  },
+  {
+    "id": "excluded-code",
+    "prompt": "代码被当前条件分支排除后，能否证明它已经编译通过？",
+    "options": [
+      { "id": "a", "text": "不能，需要在使该分支生效的配置下另行构建" },
+      { "id": "b", "text": "能，预处理器会完整检查 C++ 类型" },
+      { "id": "c", "text": "能，排除等同于自动修复错误" },
+      { "id": "d", "text": "只有代码超过一行时不能" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "当前构建的编译器没有看到被排除的 C++ 记号，其他宏组合必须分别构建。"
+  },
+  {
+    "id": "include-guard",
+    "prompt": "传统 include guard 为什么能阻止头内容重复展开？",
+    "options": [
+      { "id": "a", "text": "首次保留正文并定义标志，以后 `#ifndef` 不再成立" },
+      { "id": "b", "text": "它会删除磁盘上的重复头文件" },
+      { "id": "c", "text": "它把每个结构体自动改成局部变量" },
+      { "id": "d", "text": "它只允许程序运行一次" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "条件编译根据守卫宏是否存在，决定同一翻译单元中后续包含是否保留正文。"
+  }
+]
