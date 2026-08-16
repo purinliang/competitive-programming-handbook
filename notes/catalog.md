@@ -1,6 +1,6 @@
 # 按模块浏览
 
-这里是教程正文的唯一知识注册表。六位文章 ID 编码权威学习入口，核心教程的推荐顺序见 [learning-path.md](learning-path.md)。同一篇文章可以同时属于多个专题；不同目录入口仍指向同一个稳定正文和阅读状态。
+这里是教程正文的唯一知识注册表。六位文章 ID 编码权威学习入口，核心教程的推荐顺序见 [learning-path.md](learning-path.md)。目录使用“模块 → 领域 → 可选专题 → 文章”：`###` 表示领域，只有确实形成文章家族时才用 `#### 专题：名称` 增加一层。同一篇文章可以同时属于多个领域、专题乃至模块；不同入口仍指向同一个稳定正文和阅读状态。
 
 六位 `CCUUPP` ID 表示核心教程的章、单元和篇序。`*` 前缀表示扩展阅读，难度通常更高或使用频率更低，暂时不学也不影响后续主线。不进入学习路线的独立扩展使用 `*99MMPP`；直接配套基础篇的附属扩展共享六位编号并追加 `e1`、`e2` 等后缀，例如 `*010201e1`。完整规则见 [文章编号与语义路径](../docs/article-identity.md)。`计划` 节点尚未创建文件，文件列只显示预定路径；已有正文的节点使用可点击链接。
 
@@ -14,14 +14,14 @@
 
 ## 01 C++
 
-### 专题：程序入门
+### 程序入门
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 010101 | Hello World! | 定稿 | [hello-world.md](cpp/hello-world.md) |
 | 010102 | A+B Problem | 待审阅 | [a-plus-b-problem.md](cpp/a-plus-b-problem.md) |
 
-### 专题：基本类型
+### 基本类型
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -34,7 +34,7 @@
 | 010401 | 布尔类型 | 待审阅 | [boolean-type.md](cpp/boolean-type.md) |
 | 010302 | 类型转换 | 待审阅 | [type-conversions.md](cpp/type-conversions.md) |
 
-### 专题：进制与机器表示
+### 进制与机器表示
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -45,7 +45,7 @@
 | *010301e1 | IEEE 754 浮点数表示 | 定稿 | [ieee-754.md](cpp/ieee-754.md) |
 | 020104 | 进制转换 | 待审阅 | [base-conversion.md](cpp/base-conversion.md) |
 
-### 专题：变量、常量与字面量
+### 变量、常量与字面量
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -54,7 +54,7 @@
 | *990102 | 字面量 | 待审阅 | [literals.md](cpp/literals.md) |
 | *990103 | constexpr | 待审阅 | [constexpr.md](cpp/constexpr.md) |
 
-### 专题：运算符
+### 运算符
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -67,7 +67,7 @@
 | 020202 | 移位运算 | 待审阅 | [shift-operators.md](cpp/shift-operators.md) |
 | *020608 | 运算符重载 | 待审阅 | [operator-overloading.md](cpp/operator-overloading.md) |
 
-### 专题：数值计算
+### 数值计算
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -76,7 +76,7 @@
 | 010302 | 类型转换 | 待审阅 | [type-conversions.md](cpp/type-conversions.md) |
 | 010303 | 数学函数 | 待审阅 | [cmath-functions.md](cpp/cmath-functions.md) |
 
-### 专题：控制流
+### 控制流
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -88,7 +88,7 @@
 | 010604 | do while | 待审阅 | [do-while.md](cpp/do-while.md) |
 | 010603 | 自增与自减运算符 | 待审阅 | [increment-decrement-operators.md](cpp/increment-decrement-operators.md) |
 
-### 专题：函数与递归
+### 函数与递归
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -100,7 +100,7 @@
 | *990104 | inline | 待审阅 | [inline.md](cpp/inline.md) |
 | *020607 | 函数重载 | 待审阅 | [function-overloading.md](cpp/function-overloading.md) |
 
-### 专题：数组
+### 数组
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -109,7 +109,7 @@
 | *010703e1 | 多维数组的布局与参数传递 | 待审阅 | [multidimensional-array-layout-and-parameters.md](cpp/multidimensional-array-layout-and-parameters.md) |
 | 030402 | array | 待审阅 | [array.md](cpp/array.md) |
 
-### 专题：字符串
+### 字符串
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -119,7 +119,7 @@
 | 010902 | string | 待审阅 | [string.md](cpp/string.md) |
 | 010903 | 整行输入 | 待审阅 | [whole-line-input.md](cpp/whole-line-input.md) |
 
-### 专题：输入输出
+### 输入输出
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -128,7 +128,7 @@
 | 011103 | 输出格式控制 | 待审阅 | [output-formatting.md](cpp/output-formatting.md) |
 | 011104 | 文件重定向 | 待审阅 | [file-redirection.md](cpp/file-redirection.md) |
 
-### 专题：名称与作用域
+### 名称与作用域
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -139,7 +139,7 @@
 | *020805 | typedef 类型别名 | 待审阅 | [typedef-type-alias.md](cpp/typedef-type-alias.md) |
 | *020806 | using 类型别名 | 待审阅 | [using-type-aliases.md](cpp/using-type-aliases.md) |
 
-### 专题：地址、指针与引用
+### 地址、指针与引用
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -149,7 +149,7 @@
 | *990106 | 指针与引用中的 const | 待审阅 | [const-pointers-and-references.md](cpp/const-pointers-and-references.md) |
 | 020402 | 参数传递 | 待审阅 | [parameter-passing.md](cpp/parameter-passing.md) |
 
-### 专题：复合类型
+### 复合类型
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -159,7 +159,7 @@
 | *021001 | 联合体 | 待审阅 | [union.md](cpp/union.md) |
 | *021002 | 枚举 | 待审阅 | [enum.md](cpp/enum.md) |
 
-### 专题：内存与存储期
+### 内存与存储期
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -169,7 +169,9 @@
 | *020904 | 初始化 | 待审阅 | [initialization.md](cpp/initialization.md) |
 | *990109 | volatile | 待审阅 | [volatile.md](cpp/volatile.md) |
 
-### 专题：标准库基础
+### 标准库
+
+#### 专题：基础工具
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -185,7 +187,7 @@
 | 030302 | fill | 待审阅 | [fill.md](cpp/fill.md) |
 | 010902 | string | 待审阅 | [string.md](cpp/string.md) |
 
-### 专题：序列容器与容器适配器
+#### 专题：序列容器与容器适配器
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -193,7 +195,7 @@
 | 040102 | stack | 待审阅 | [stack.md](cpp/stack.md) |
 | 040106 | queue | 待审阅 | [queue.md](cpp/queue.md) |
 
-### 专题：标准库关联容器
+#### 专题：关联容器
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -204,14 +206,14 @@
 | 050405 | unordered_set | 待审阅 | [unordered-set.md](cpp/unordered-set.md) |
 | 050406 | unordered_map | 待审阅 | [unordered-map.md](cpp/unordered-map.md) |
 
-### 专题：其他标准库工具
+#### 专题：其他工具
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 060201 | bitset | 待审阅 | [bitset.md](cpp/bitset.md) |
 | *990110 | order-statistics tree（GNU PBDS） | 计划 | `cpp/gnu-pbds.md` |
 
-### 专题：从源码到程序
+### 编译与调试
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -224,7 +226,9 @@
 | *020707 | 链接 | 待审阅 | [linking.md](cpp/linking.md) |
 | *020708 | 调试与调试器 | 待审阅 | [debugging-and-debuggers.md](cpp/debugging-and-debuggers.md) |
 
-### 专题：类
+### 面向对象
+
+#### 专题：类
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -241,7 +245,7 @@
 
 ## 02 算法基础
 
-### 专题：复杂度
+### 复杂度
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -251,7 +255,7 @@
 | 060101 | 均摊复杂度 | 待审阅 | [amortized-complexity.md](algorithm-basics/amortized-complexity.md) |
 | 060102 | 均摊复杂度：势能法 | 待审阅 | [potential-method.md](algorithm-basics/potential-method.md) |
 
-### 专题：算法设计思想
+### 算法设计思想
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -263,7 +267,7 @@
 | 030205 | 递归与问题分解 | 待审阅 | [recursive-problem-solving.md](algorithm-basics/recursive-problem-solving.md) |
 | 030206 | 分治 | 待审阅 | [divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
 
-### 专题：枚举
+### 枚举
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -275,14 +279,14 @@
 | 040505 | DFS、回溯与剪枝 | 待审阅 | [dfs-backtracking-pruning.md](algorithm-basics/dfs-backtracking-pruning.md) |
 | 070101 | 枚举：Meet-in-the-Middle | 计划 | `algorithm-basics/meet-in-the-middle.md` |
 
-### 专题：前缀和
+### 前缀和
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 030501 | 前缀和 | 定稿 | [prefix-sums.md](algorithm-basics/prefix-sums.md) |
 | 030502 | 差分 | 待审阅 | [difference-array.md](algorithm-basics/difference-array.md) |
 
-### 专题：排序
+### 排序
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -295,7 +299,7 @@
 | 030606 | 归并排序 | 待审阅 | [merge-sort.md](algorithm-basics/merge-sort.md) |
 | *030606e1 | 用归并排序统计逆序对 | 待审阅 | [merge-sort-inversion-count.md](algorithm-basics/merge-sort-inversion-count.md) |
 
-### 专题：分治
+### 分治
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -305,7 +309,7 @@
 | *030606e1 | 用归并排序统计逆序对 | 待审阅 | [merge-sort-inversion-count.md](algorithm-basics/merge-sort-inversion-count.md) |
 | *990201 | CDQ 分治 | 计划 | `algorithm-basics/cdq-divide-and-conquer.md` |
 
-### 专题：其他排序
+### 其他排序
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -313,7 +317,7 @@
 | *030608 | 基数排序 | 待审阅 | [radix-sort.md](algorithm-basics/radix-sort.md) |
 | *030609 | 桶排序 | 待审阅 | [bucket-sort.md](algorithm-basics/bucket-sort.md) |
 
-### 专题：二分与数值搜索
+### 二分与数值搜索
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -325,7 +329,7 @@
 | *990202 | 三分搜索 | 计划 | `algorithm-basics/ternary-search.md` |
 | *990203 | 整体二分与并行二分 | 计划 | `algorithm-basics/parallel-binary-search.md` |
 
-### 专题：离散化与离线处理
+### 离散化与离线处理
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -334,7 +338,7 @@
 | 070202 | 扫描线与事件排序 | 计划 | `algorithm-basics/sweep-line.md` |
 | *990201 | CDQ 分治 | 计划 | `algorithm-basics/cdq-divide-and-conquer.md` |
 
-### 专题：线性表
+### 线性表
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -345,7 +349,7 @@
 | 030406 | 循环链表 | 待审阅 | [circular-linked-list.md](algorithm-basics/circular-linked-list.md) |
 | 030407 | list | 待审阅 | [list.md](cpp/list.md) |
 
-### 专题：栈
+### 栈
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -354,7 +358,7 @@
 | 040103 | 出栈序列判定 | 待审阅 | [stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
 | 040104 | 表达式求值 | 待审阅 | [expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
 
-### 专题：队列
+### 队列
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -362,7 +366,7 @@
 | 040107 | 双端队列 | 待审阅 | [deque.md](algorithm-basics/deque.md) |
 | 060502 | 单调队列 | 待审阅 | [monotonic-queue.md](algorithm-basics/monotonic-queue.md) |
 
-### 专题：二叉堆
+### 二叉堆
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -371,21 +375,21 @@
 | 050203 | 哈夫曼编码 | 待审阅 | [huffman-coding.md](other/huffman-coding.md) |
 | *050204 | 堆排序 | 待审阅 | [heap-sort.md](algorithm-basics/heap-sort.md) |
 
-### 专题：哈希与哈希表
+### 哈希与哈希表
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 050301 | 哈希 | 待审阅 | [hashing.md](algorithm-basics/hashing.md) |
 | 050302 | 哈希表 | 待审阅 | [hash-table.md](algorithm-basics/hash-table.md) |
 
-### 专题：双指针
+### 双指针
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 030901 | 双指针 | 待审阅 | [two-pointers.md](algorithm-basics/two-pointers.md) |
 | 030902 | 滑动窗口 | 待审阅 | [sliding-window.md](algorithm-basics/sliding-window.md) |
 
-### 专题：贪心策略
+### 贪心策略
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -393,13 +397,13 @@
 | 040601 | 邻项交换证明 | 待审阅 | [greedy-adjacent-exchange.md](algorithm-basics/greedy-adjacent-exchange.md) |
 | 040602 | 反悔贪心 | 待审阅 | [greedy-regret.md](algorithm-basics/greedy-regret.md) |
 
-### 专题：倍增
+### 倍增
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 030706 | 倍增 | 待审阅 | [doubling.md](algorithm-basics/doubling.md) |
 
-### 专题：搜索与状态空间
+### 搜索与状态空间
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -409,7 +413,7 @@
 | *990205 | 搜索：A* | 计划 | `algorithm-basics/a-star.md` |
 | *990206 | 精确覆盖：Dancing Links（DLX） | 计划 | `algorithm-basics/dancing-links.md` |
 
-### 专题：随机化
+### 随机化
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -417,7 +421,7 @@
 | *990208 | 随机化：爬山法 | 计划 | `algorithm-basics/hill-climbing.md` |
 | *990209 | 随机化：模拟退火 | 计划 | `algorithm-basics/simulated-annealing.md` |
 
-### 专题：竞赛工程
+### 竞赛工程
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
@@ -544,117 +548,252 @@
 
 ## 05 数学
 
+### 常用
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 040207 | 最大公约数与最小公倍数 | 待审阅 | [greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
+| 040208 | 欧几里得算法 | 待审阅 | [euclidean-algorithm.md](math/euclidean-algorithm.md) |
+| 060601 | 模运算 | 待审阅 | [modular-arithmetic.md](math/modular-arithmetic.md) |
+| 060602 | 模快速幂 | 待审阅 | [modular-exponentiation.md](math/modular-exponentiation.md) |
+| 060607 | 模逆元 | 待审阅 | [modular-inverse.md](math/modular-inverse.md) |
+| 060701 | 筛法：欧拉筛（线性筛） | 待审阅 | [euler-sieve.md](math/euler-sieve.md) |
+| 050604 | 组合数与二项式系数 | 待审阅 | [binomial-coefficients.md](math/binomial-coefficients.md) |
+| 050501 | 高精度整数：加法、减法与乘法 | 待审阅 | [big-integer-addition-subtraction-multiplication.md](math/big-integer-addition-subtraction-multiplication.md) |
+| 050502 | 高精度整数：除以低精度整数 | 待审阅 | [big-integer-division-by-small-integer.md](math/big-integer-division-by-small-integer.md) |
+| 061001 | 矩阵：表示 | 待审阅 | [matrix-representation.md](math/matrix-representation.md) |
+| 061003 | 矩阵：乘法 | 待审阅 | [matrix-multiplication.md](math/matrix-multiplication.md) |
+| 061005 | 矩阵快速幂 | 待审阅 | [matrix-exponentiation.md](math/matrix-exponentiation.md) |
+
+### 数学基础
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *041001 | 数系：自然数、整数、有理数与实数 | 待审阅 | [number-systems-review.md](math/number-systems-review.md) |
+| *041002 | 集合：基本概念与交、并、补 | 待审阅 | [sets-review.md](math/sets-review.md) |
+| *041003 | 代数：方程与不等式 | 待审阅 | [equations-and-inequalities-review.md](math/equations-and-inequalities-review.md) |
+| *041004 | 几何：平面几何基础 | 待审阅 | [plane-geometry-basics.md](math/plane-geometry-basics.md) |
+
+### 数论
+
+#### 专题：整除、质数与因数
+
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 040201 | 因数、倍数与整除 | 待审阅 | [divisibility.md](math/divisibility.md) |
 | 040202 | 质数 | 待审阅 | [prime-numbers.md](math/prime-numbers.md) |
 | 040203 | 试除法：质数检测 | 待审阅 | [trial-division-primality-test.md](math/trial-division-primality-test.md) |
+| 040204 | 算术基本定理 | 待审阅 | [fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
+| 040205 | 质因数分解 | 待审阅 | [prime-factorization.md](math/prime-factorization.md) |
+
+#### 专题：最大公约数与欧几里得算法
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 040207 | 最大公约数与最小公倍数 | 待审阅 | [greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
+| 040208 | 欧几里得算法 | 待审阅 | [euclidean-algorithm.md](math/euclidean-algorithm.md) |
 | 060603 | 数论：扩展欧几里得算法 | 待审阅 | [extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
+| 060604 | 线性不定方程 | 待审阅 | [linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
+
+#### 专题：模运算与同余
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 040209 | 快速幂 | 待审阅 | [fast-exponentiation.md](math/fast-exponentiation.md) |
 | 060601 | 模运算 | 待审阅 | [modular-arithmetic.md](math/modular-arithmetic.md) |
 | *060601e1 | 模运算：modint | 待审阅 | [mod-int.md](math/mod-int.md) |
 | 060602 | 模快速幂 | 待审阅 | [modular-exponentiation.md](math/modular-exponentiation.md) |
-| 040206 | 埃拉托斯特尼筛法 | 待审阅 | [sieve-of-eratosthenes.md](math/sieve-of-eratosthenes.md) |
+| 060606 | 费马小定理 | 待审阅 | [fermat-little-theorem.md](math/fermat-little-theorem.md) |
+| 060902 | 欧拉定理 | 待审阅 | [euler-theorem.md](math/euler-theorem.md) |
+| *060901e1 | 扩展欧拉定理 | 计划 | `math/extended-euler-theorem.md` |
+| 060605 | 线性同余方程 | 待审阅 | [linear-congruences.md](math/linear-congruences.md) |
 | 060607 | 模逆元 | 待审阅 | [modular-inverse.md](math/modular-inverse.md) |
 | *060607e1 | 模逆元：线性预处理 | 计划 | `math/linear-modular-inverses.md` |
 | *060607e2 | 模逆元：批量求逆 | 计划 | `math/batch-modular-inverses.md` |
-| 050604 | 组合数与二项式系数 | 待审阅 | [binomial-coefficients.md](math/binomial-coefficients.md) |
-| *050604e1 | 组合数：Lucas 定理 | 计划 | `math/lucas-theorem.md` |
-| *050604e2 | 组合数：扩展 Lucas 定理 | 计划 | `math/extended-lucas-theorem.md` |
-| 060901 | 欧拉函数 | 待审阅 | [euler-totient.md](math/euler-totient.md) |
-| *060901e1 | 扩展欧拉定理 | 计划 | `math/extended-euler-theorem.md` |
-| *060901e2 | 欧拉函数：筛法预处理 | 计划 | `math/euler-totient-sieve.md` |
-| 061001 | 矩阵：表示 | 待审阅 | [matrix-representation.md](math/matrix-representation.md) |
-| 070701 | 数论：中国剩余定理（CRT） | 待审阅 | [chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
-| 061005 | 矩阵快速幂 | 待审阅 | [matrix-exponentiation.md](math/matrix-exponentiation.md) |
-| 061101 | 概率与期望基础 | 计划 | `math/probability-expectation.md` |
-| *990501 | Nim、SG 函数与基础博弈论 | 计划 | `math/nim-sg-game-theory.md` |
-| *990502 | XOR 线性基 | 计划 | `math/xor-linear-basis.md` |
-| *990503 | 高斯消元 | 计划 | `math/gaussian-elimination.md` |
-| 070801 | 容斥原理 | 计划 | `math/inclusion-exclusion.md` |
-| *990504 | 多项式：NTT | 计划 | `math/ntt.md` |
-| 060903 | 莫比乌斯函数 | 待审阅 | [mobius-function.md](math/mobius-function.md) |
-| *990505 | BSGS 与离散对数 | 计划 | `math/discrete-logarithm.md` |
-| *990505e1 | 离散对数：Pohlig–Hellman | 计划 | `math/pohlig-hellman.md` |
-| *990506 | 多项式：表示、加法与减法 | 计划 | `math/polynomial-representation-addition-subtraction.md` |
-| *990507 | 多项式：卷积与朴素乘法 | 计划 | `math/convolution-naive-multiplication.md` |
-| *990508 | 复数与单位根 | 计划 | `math/complex-numbers-roots-of-unity.md` |
-| *990509 | 多项式：FFT | 计划 | `math/fft.md` |
-| *990510 | 形式幂级数：求逆 | 计划 | `math/formal-power-series-inverse.md` |
-| *990511 | 形式幂级数：形式导数 | 计划 | `math/formal-derivative.md` |
-| *990512 | 形式幂级数：形式积分 | 计划 | `math/formal-integral.md` |
-| *990513 | 形式幂级数：对数 | 计划 | `math/formal-power-series-logarithm.md` |
-| *990514 | 形式幂级数：指数 | 计划 | `math/formal-power-series-exponential.md` |
-| *990515 | 形式幂级数：平方根 | 计划 | `math/formal-power-series-square-root.md` |
-| *990516 | 形式幂级数：幂 | 计划 | `math/formal-power-series-power.md` |
-| *990517 | 多项式：除法与余数 | 计划 | `math/polynomial-division-remainder.md` |
-| *990518 | 多项式：多点求值 | 计划 | `math/multipoint-evaluation.md` |
-| *990519 | 多项式：插值 | 计划 | `math/polynomial-interpolation.md` |
-| *990520 | 莫比乌斯反演 | 计划 | `math/mobius-inversion.md` |
-| 040204 | 算术基本定理 | 待审阅 | [fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
-| 040207 | 最大公约数与最小公倍数 | 待审阅 | [greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
-| 040208 | 欧几里得算法 | 待审阅 | [euclidean-algorithm.md](math/euclidean-algorithm.md) |
-| 070702 | 数论：扩展中国剩余定理（exCRT） | 待审阅 | [extended-chinese-remainder-theorem.md](math/extended-chinese-remainder-theorem.md) |
-| 040205 | 质因数分解 | 待审阅 | [prime-factorization.md](math/prime-factorization.md) |
+
+#### 专题：筛法与数论函数
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 040206 | 埃拉托斯特尼筛法 | 待审阅 | [sieve-of-eratosthenes.md](math/sieve-of-eratosthenes.md) |
+| 060701 | 筛法：欧拉筛（线性筛） | 待审阅 | [euler-sieve.md](math/euler-sieve.md) |
+| *990550 | 筛法：分段筛 | 计划 | `math/segmented-sieve.md` |
 | 060702 | 正因数个数 | 待审阅 | [divisor-count.md](math/divisor-count.md) |
 | 060703 | 正因数和 | 待审阅 | [divisor-sum.md](math/divisor-sum.md) |
-| 060604 | 线性不定方程 | 待审阅 | [linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
-| 060605 | 线性同余方程 | 待审阅 | [linear-congruences.md](math/linear-congruences.md) |
-| 050501 | 高精度整数：加法、减法与乘法 | 待审阅 | [big-integer-addition-subtraction-multiplication.md](math/big-integer-addition-subtraction-multiplication.md) |
-| *050501e1 | 高精度整数：负数 | 待审阅 | [big-integer-negative-numbers.md](math/big-integer-negative-numbers.md) |
-| *050501e2 | 压位高精度整数 | 待审阅 | [packed-big-integer.md](math/packed-big-integer.md) |
-| *050501e3 | 高精度整数：快速乘法 | 待审阅 | [big-integer-fast-multiplication.md](math/big-integer-fast-multiplication.md) |
-| 050502 | 高精度整数：除以低精度整数 | 待审阅 | [big-integer-division-by-small-integer.md](math/big-integer-division-by-small-integer.md) |
-| *050502e1 | 高精度整数：除以高精度整数 | 待审阅 | [big-integer-division-remainder.md](math/big-integer-division-remainder.md) |
-| *990521 | 素性测试：Miller–Rabin | 计划 | `math/miller-rabin.md` |
-| *990522 | 整数分解：Pollard–Rho | 计划 | `math/pollard-rho.md` |
+| 060901 | 欧拉函数 | 待审阅 | [euler-totient.md](math/euler-totient.md) |
+| *060901e2 | 欧拉函数：筛法预处理 | 计划 | `math/euler-totient-sieve.md` |
+| 060903 | 莫比乌斯函数 | 待审阅 | [mobius-function.md](math/mobius-function.md) |
+| *990520 | 莫比乌斯反演 | 计划 | `math/mobius-inversion.md` |
+| *060701e1 | 杜教筛 | 计划 | `math/du-jiao-sieve.md` |
+| *060701e2 | Min_25 筛 | 计划 | `math/min-25-sieve.md` |
+
+#### 专题：中国剩余定理
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 070701 | 数论：中国剩余定理（CRT） | 待审阅 | [chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
+| 070702 | 数论：扩展中国剩余定理（exCRT） | 待审阅 | [extended-chinese-remainder-theorem.md](math/extended-chinese-remainder-theorem.md) |
+
+#### 专题：原根与离散对数
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
 | *990523 | 原根 | 计划 | `math/primitive-roots.md` |
+| *990505 | BSGS 与离散对数 | 计划 | `math/discrete-logarithm.md` |
+| *990505e1 | 离散对数：Pohlig–Hellman | 计划 | `math/pohlig-hellman.md` |
+
+#### 专题：质数检测与整数分解
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990521 | 质数检测：Miller–Rabin | 计划 | `math/miller-rabin.md` |
+| *990522 | 整数分解：Pollard–Rho | 计划 | `math/pollard-rho.md` |
+
+#### 专题：数论方程与二次剩余
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
 | *990524 | 二次剩余与勒让德符号 | 计划 | `math/quadratic-residues-legendre-symbol.md` |
 | *990525 | 二次剩余：Cipolla 算法 | 计划 | `math/cipolla.md` |
 | *990526 | 佩尔方程 | 计划 | `math/pell-equation.md` |
-| *990527 | 线性代数：行列式 | 计划 | `math/determinant.md` |
-| *990528 | 线性递推：Berlekamp–Massey | 计划 | `math/berlekamp-massey.md` |
-| *990529 | 图论计数：矩阵树定理 | 计划 | `math/matrix-tree-theorem.md` |
-| *990530 | 欧拉回路计数：BEST 定理 | 计划 | `math/best-theorem.md` |
-| *990531 | 树的编码：Prüfer 序列 | 计划 | `math/prufer-sequence.md` |
-| *990532 | 路径计数：LGV 引理 | 计划 | `math/lindstrom-gessel-viennot-lemma.md` |
-| *990533 | 生成函数：基础 | 计划 | `math/generating-functions.md` |
-| *990534 | 群论：置换 | 计划 | `math/permutations.md` |
-| *990535 | 群作用计数：Burnside 引理 | 计划 | `math/burnside-lemma.md` |
-| *990536 | 群作用计数：Pólya 定理 | 计划 | `math/polya-enumeration.md` |
-| *990537 | 线性规划 | 计划 | `math/linear-programming.md` |
+
+### 高精度整数
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 050501 | 高精度整数：加法、减法与乘法 | 待审阅 | [big-integer-addition-subtraction-multiplication.md](math/big-integer-addition-subtraction-multiplication.md) |
+| *050501e1 | 高精度整数：负数 | 待审阅 | [big-integer-negative-numbers.md](math/big-integer-negative-numbers.md) |
+| *050501e2 | 压位高精度整数 | 待审阅 | [packed-big-integer.md](math/packed-big-integer.md) |
+| 050502 | 高精度整数：除以低精度整数 | 待审阅 | [big-integer-division-by-small-integer.md](math/big-integer-division-by-small-integer.md) |
+| *050502e1 | 高精度整数：除以高精度整数 | 待审阅 | [big-integer-division-remainder.md](math/big-integer-division-remainder.md) |
+| *050501e3 | 高精度整数：快速乘法 | 待审阅 | [big-integer-fast-multiplication.md](math/big-integer-fast-multiplication.md) |
+
+### 组合数学
+
+#### 专题：计数原理与二项式系数
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 050601 | 加法原理 | 待审阅 | [addition-principle.md](math/addition-principle.md) |
+| 050602 | 乘法原理 | 待审阅 | [multiplication-principle.md](math/multiplication-principle.md) |
+| 050603 | 排列数 | 待审阅 | [permutations-count.md](math/permutations-count.md) |
+| 050604 | 组合数与二项式系数 | 待审阅 | [binomial-coefficients.md](math/binomial-coefficients.md) |
+| 050605 | 二项式定理 | 待审阅 | [binomial-theorem.md](math/binomial-theorem.md) |
+| 050606 | 杨辉三角 | 待审阅 | [pascal-triangle.md](math/pascal-triangle.md) |
+| 060801 | 组合数：阶乘与逆元预处理 | 待审阅 | [binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
+| *050604e1 | 组合数：Lucas 定理 | 计划 | `math/lucas-theorem.md` |
+| *050604e2 | 组合数：扩展 Lucas 定理 | 计划 | `math/extended-lucas-theorem.md` |
 | *990538 | 组合计数：抽屉原理 | 计划 | `math/pigeonhole-principle.md` |
+
+#### 专题：容斥与反演
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 070801 | 容斥原理 | 计划 | `math/inclusion-exclusion.md` |
 | *990539 | 组合计数：最值容斥 | 计划 | `math/min-max-inclusion-exclusion.md` |
 | *990540 | 组合计数：二项式反演 | 计划 | `math/binomial-inversion.md` |
+
+#### 专题：常见数列
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
 | *990541 | 常见数列：错排数 | 计划 | `math/derangement-numbers.md` |
 | *990542 | 常见数列：Catalan 数 | 计划 | `math/catalan-numbers.md` |
 | *990543 | 常见数列：Stirling 数 | 计划 | `math/stirling-numbers.md` |
 | *990544 | 常见数列：Bell 数 | 计划 | `math/bell-numbers.md` |
 | *990545 | 常见数列：Bernoulli 数 | 计划 | `math/bernoulli-numbers.md` |
+
+#### 专题：群作用计数
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990534 | 群论：置换 | 计划 | `math/permutations.md` |
+| *990535 | 群作用计数：Burnside 引理 | 计划 | `math/burnside-lemma.md` |
+| *990536 | 群作用计数：Pólya 定理 | 计划 | `math/polya-enumeration.md` |
+
+#### 专题：图与路径计数
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990529 | 图论计数：矩阵树定理 | 计划 | `math/matrix-tree-theorem.md` |
+| *990530 | 欧拉回路计数：BEST 定理 | 计划 | `math/best-theorem.md` |
+| *990531 | 树的编码：Prüfer 序列 | 计划 | `math/prufer-sequence.md` |
+| *990532 | 路径计数：LGV 引理 | 计划 | `math/lindstrom-gessel-viennot-lemma.md` |
 | *990546 | 组合计数：杨表 | 计划 | `math/young-tableaux.md` |
-| *990547 | 数值积分：Simpson 公式 | 计划 | `math/simpson-rule.md` |
-| *990548 | 数值积分：自适应 Simpson | 计划 | `math/adaptive-simpson.md` |
-| *990549 | 集合幂级数：FWT/FMT | 计划 | `math/fast-subset-transforms.md` |
-| 040209 | 快速幂 | 待审阅 | [fast-exponentiation.md](math/fast-exponentiation.md) |
-| 060606 | 费马小定理 | 待审阅 | [fermat-little-theorem.md](math/fermat-little-theorem.md) |
-| 060701 | 筛法：欧拉筛（线性筛） | 待审阅 | [euler-sieve.md](math/euler-sieve.md) |
-| *060701e1 | 杜教筛 | 计划 | `math/du-jiao-sieve.md` |
-| *060701e2 | Min_25 筛 | 计划 | `math/min-25-sieve.md` |
-| *990550 | 筛法：分段筛 | 计划 | `math/segmented-sieve.md` |
-| *041001 | 数系：自然数、整数、有理数与实数 | 待审阅 | [number-systems-review.md](math/number-systems-review.md) |
-| *041002 | 集合：基本概念与交、并、补 | 待审阅 | [sets-review.md](math/sets-review.md) |
-| *041003 | 代数：方程与不等式 | 待审阅 | [equations-and-inequalities-review.md](math/equations-and-inequalities-review.md) |
-| *041004 | 几何：平面几何基础 | 待审阅 | [plane-geometry-basics.md](math/plane-geometry-basics.md) |
-| 050601 | 加法原理 | 待审阅 | [addition-principle.md](math/addition-principle.md) |
-| 050602 | 乘法原理 | 待审阅 | [multiplication-principle.md](math/multiplication-principle.md) |
-| 050603 | 排列数 | 待审阅 | [permutations-count.md](math/permutations-count.md) |
-| 050605 | 二项式定理 | 待审阅 | [binomial-theorem.md](math/binomial-theorem.md) |
-| 050606 | 杨辉三角 | 待审阅 | [pascal-triangle.md](math/pascal-triangle.md) |
-| 060801 | 组合数：阶乘与逆元预处理 | 待审阅 | [binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
-| 060902 | 欧拉定理 | 待审阅 | [euler-theorem.md](math/euler-theorem.md) |
+
+#### 专题：生成函数
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990533 | 生成函数：基础 | 计划 | `math/generating-functions.md` |
+
+### 线性代数
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 061001 | 矩阵：表示 | 待审阅 | [matrix-representation.md](math/matrix-representation.md) |
 | 061002 | 矩阵：加法与减法 | 待审阅 | [matrix-addition-subtraction.md](math/matrix-addition-subtraction.md) |
 | 061003 | 矩阵：乘法 | 待审阅 | [matrix-multiplication.md](math/matrix-multiplication.md) |
 | 061004 | 线性变换：矩阵表示 | 待审阅 | [linear-transformations-as-matrices.md](math/linear-transformations-as-matrices.md) |
 | *061004e1 | 线性变换：齐次坐标与仿射变换 | 待审阅 | [homogeneous-coordinates-affine-transformations.md](math/homogeneous-coordinates-affine-transformations.md) |
+| 061005 | 矩阵快速幂 | 待审阅 | [matrix-exponentiation.md](math/matrix-exponentiation.md) |
+| *990502 | XOR 线性基 | 计划 | `math/xor-linear-basis.md` |
+| *990503 | 高斯消元 | 计划 | `math/gaussian-elimination.md` |
+| *990527 | 线性代数：行列式 | 计划 | `math/determinant.md` |
+
+### 概率与期望
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 061101 | 概率与期望基础 | 计划 | `math/probability-expectation.md` |
+
+### 博弈论
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990501 | Nim、SG 函数与基础博弈论 | 计划 | `math/nim-sg-game-theory.md` |
+
+### 多项式与形式幂级数
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990506 | 多项式：表示、加法与减法 | 计划 | `math/polynomial-representation-addition-subtraction.md` |
+| *990507 | 多项式：卷积与朴素乘法 | 计划 | `math/convolution-naive-multiplication.md` |
+| *990508 | 复数与单位根 | 计划 | `math/complex-numbers-roots-of-unity.md` |
+| *990509 | 多项式：FFT | 计划 | `math/fft.md` |
+| *990504 | 多项式：NTT | 计划 | `math/ntt.md` |
+| *050501e3 | 高精度整数：快速乘法 | 待审阅 | [big-integer-fast-multiplication.md](math/big-integer-fast-multiplication.md) |
+| *990517 | 多项式：除法与余数 | 计划 | `math/polynomial-division-remainder.md` |
+| *990518 | 多项式：多点求值 | 计划 | `math/multipoint-evaluation.md` |
+| *990519 | 多项式：插值 | 计划 | `math/polynomial-interpolation.md` |
+| *990511 | 形式幂级数：形式导数 | 计划 | `math/formal-derivative.md` |
+| *990512 | 形式幂级数：形式积分 | 计划 | `math/formal-integral.md` |
+| *990510 | 形式幂级数：求逆 | 计划 | `math/formal-power-series-inverse.md` |
+| *990513 | 形式幂级数：对数 | 计划 | `math/formal-power-series-logarithm.md` |
+| *990514 | 形式幂级数：指数 | 计划 | `math/formal-power-series-exponential.md` |
+| *990515 | 形式幂级数：平方根 | 计划 | `math/formal-power-series-square-root.md` |
+| *990516 | 形式幂级数：幂 | 计划 | `math/formal-power-series-power.md` |
+| *990533 | 生成函数：基础 | 计划 | `math/generating-functions.md` |
+| *990528 | 线性递推：Berlekamp–Massey | 计划 | `math/berlekamp-massey.md` |
+
+### 集合幂级数
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990549 | 集合幂级数：FWT/FMT | 计划 | `math/fast-subset-transforms.md` |
+
+### 数值方法
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990547 | 数值积分：Simpson 公式 | 计划 | `math/simpson-rule.md` |
+| *990548 | 数值积分：自适应 Simpson | 计划 | `math/adaptive-simpson.md` |
+
+### 优化
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990537 | 线性规划 | 计划 | `math/linear-programming.md` |
 
 ## 06 计算几何
 
