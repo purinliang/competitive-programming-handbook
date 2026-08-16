@@ -80,7 +80,7 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 010801 | 字符类型 | C++ | [cpp/character-type.md](cpp/character-type.md) |
-| 010802 | 字符分类与转换 | C++ | `cpp/character-classification-and-conversion.md` |
+| 010802 | 字符分类与转换 | C++ | [cpp/character-classification-and-conversion.md](cpp/character-classification-and-conversion.md) |
 
 ### 单元 09：字符串
 

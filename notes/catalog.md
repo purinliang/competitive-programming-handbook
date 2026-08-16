@@ -30,6 +30,7 @@
 | 010301 | 浮点类型 | 定稿 | [floating-point-types.md](cpp/floating-point-types.md) |
 | *010301e1 | IEEE 754 浮点数表示 | 定稿 | [ieee-754.md](cpp/ieee-754.md) |
 | 010801 | 字符类型 | 待审阅 | [character-type.md](cpp/character-type.md) |
+| 010802 | 字符分类与转换 | 待审阅 | [character-classification-and-conversion.md](cpp/character-classification-and-conversion.md) |
 | 010401 | 布尔类型 | 待审阅 | [boolean-type.md](cpp/boolean-type.md) |
 | 010302 | 类型转换 | 待审阅 | [type-conversions.md](cpp/type-conversions.md) |
 
@@ -112,7 +113,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 010801 | 字符类型 | 待审阅 | [character-type.md](cpp/character-type.md) |
-| 010802 | 字符分类与转换 | 计划 | `cpp/character-classification-and-conversion.md` |
+| 010802 | 字符分类与转换 | 待审阅 | [character-classification-and-conversion.md](cpp/character-classification-and-conversion.md) |
 | 010901 | C 字符串 | 待审阅 | [c-strings.md](cpp/c-strings.md) |
 | 010902 | string | 待审阅 | [string.md](cpp/string.md) |
 | 010903 | 整行输入 | 待审阅 | [whole-line-input.md](cpp/whole-line-input.md) |

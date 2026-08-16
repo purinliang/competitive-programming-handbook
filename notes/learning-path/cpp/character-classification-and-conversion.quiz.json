@@ -1,0 +1,50 @@
+[
+  {
+    "id": "classification-result",
+    "prompt": "下面哪种写法能正确判断 `ch` 是否为数字字符？",
+    "options": [
+      { "id": "a", "text": "`isdigit(ch) == 1`" },
+      { "id": "b", "text": "`isdigit(ch)`" },
+      { "id": "c", "text": "`ch == 0`" },
+      { "id": "d", "text": "`ch - '0'`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`isdigit` 返回零表示假、任意非零值表示真；直接把结果用作条件即可，不能假设真值恰好等于 `1`。"
+  },
+  {
+    "id": "read-whitespace",
+    "prompt": "题目需要把输入中的下一个空格也读入 `char ch`，本篇应使用哪条语句？",
+    "options": [
+      { "id": "a", "text": "`cin >> ch;`" },
+      { "id": "b", "text": "`cout << ch;`" },
+      { "id": "c", "text": "`isdigit(ch);`" },
+      { "id": "d", "text": "`cin.get(ch);`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "`cin >> ch` 会跳过前导空白；`cin.get(ch)` 读取下一个字符而不跳过空格、换行或制表符。"
+  },
+  {
+    "id": "case-conversion-non-letter",
+    "prompt": "在本篇的 ASCII 语境中，`tolower('7')` 会得到什么？",
+    "options": [
+      { "id": "a", "text": "仍然是字符 `'7'`" },
+      { "id": "b", "text": "整数 `7`" },
+      { "id": "c", "text": "字符 `'0'`" },
+      { "id": "d", "text": "程序一定报错" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "大小写转换函数只改变相应英文字母；不需要转换的字符保持不变。"
+  },
+  {
+    "id": "digit-character-value",
+    "prompt": "已经知道 `ch` 是 `'0'` 到 `'9'` 的数字字符，怎样得到它表示的整数？",
+    "options": [
+      { "id": "a", "text": "`ch + '0'`" },
+      { "id": "b", "text": "`ch == '0'`" },
+      { "id": "c", "text": "`ch - '0'`" },
+      { "id": "d", "text": "`tolower(ch)`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "数字字符连续排列；减去字符 `'0'` 得到相对起点的偏移，也就是对应的整数。"
+  }
+]
