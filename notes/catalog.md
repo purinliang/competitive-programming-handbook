@@ -264,7 +264,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 0401 | 图：点与边 | 定稿 | [vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
+| 0401 | 点与边 | 待审阅 | [vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
 | 0402 | 图的存储：基础概念 | 定稿 | [graph-representation.md](graph-theory/graph-representation.md) |
 | 0403 | 树上查询：倍增 LCA | 定稿 | [lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
 | 0404 | 图的遍历：连通块 | 待审阅 | [connected-components.md](graph-theory/connected-components.md) |

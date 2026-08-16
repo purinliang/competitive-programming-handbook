@@ -1,0 +1,74 @@
+[
+  {
+    "id": "graph-components",
+    "prompt": "一张图 G=(V,E) 由哪两部分组成？",
+    "options": [
+      { "id": "a", "text": "点集 V 和边集 E" },
+      { "id": "b", "text": "数组和链表" },
+      { "id": "c", "text": "起点和终点各一个" },
+      { "id": "d", "text": "点权和边权，二者都必须存在" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "图保留对象组成的点集以及对象关系组成的边集；点权、边权都是可选附加信息。"
+  },
+  {
+    "id": "vertex-wording",
+    "prompt": "本书在图论正文中通常怎样称呼 vertex？",
+    "options": [
+      { "id": "a", "text": "只能称为节点，不能简称" },
+      { "id": "b", "text": "正式名称是顶点，正文通常简称点" },
+      { "id": "c", "text": "统一称为数组元素" },
+      { "id": "d", "text": "统一称为边端" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "vertex 的正式译名是顶点；竞赛图论语境中“点”最自然，数据结构语境才更常说节点。"
+  },
+  {
+    "id": "directed-edge",
+    "prompt": "有向边 u→v 与 v→u 为什么通常是两条不同的边？",
+    "options": [
+      { "id": "a", "text": "因为点的编号不同" },
+      { "id": "b", "text": "因为所有边都必须成对出现" },
+      { "id": "c", "text": "因为有向边区分起点与终点，两个端点有顺序" },
+      { "id": "d", "text": "因为边权一定不同" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "箭头方向是关系的一部分；交换端点会同时交换起点与终点。"
+  },
+  {
+    "id": "weights",
+    "prompt": "点权或边权上的数字应当怎样解释？",
+    "options": [
+      { "id": "a", "text": "点权永远表示人口，边权永远表示距离" },
+      { "id": "b", "text": "所有权值都表示点编号" },
+      { "id": "c", "text": "只要数值相同，意义就相同" },
+      { "id": "d", "text": "它们附在不同对象上，具体含义由题目定义" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "权值只是题目数据；同一个数字可以表示人口、费用、距离、容量等完全不同的量。"
+  },
+  {
+    "id": "isolated-vertex",
+    "prompt": "一个没有连接任何边的孤立点是否仍属于图？",
+    "options": [
+      { "id": "a", "text": "属于，它仍在点集中" },
+      { "id": "b", "text": "不属于，因为图上没有线" },
+      { "id": "c", "text": "只有带点权时才属于" },
+      { "id": "d", "text": "只有有向图中才属于" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "点是否属于图由点集决定；没有关联边不会把点从点集中删除。"
+  },
+  {
+    "id": "self-loop",
+    "prompt": "自环是什么？",
+    "options": [
+      { "id": "a", "text": "连接两个不同点的两条平行边" },
+      { "id": "b", "text": "两个端点是同一个点的特殊边，也是只含一条边的特殊环" },
+      { "id": "c", "text": "没有起点的有向边" },
+      { "id": "d", "text": "任何经过三个点的路径" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "self-loop 从一个点出发又回到同一个点，因此既是一种特殊边，也构成最小的环。"
+  }
+]
