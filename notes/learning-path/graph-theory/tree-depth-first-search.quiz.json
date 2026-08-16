@@ -1,0 +1,86 @@
+[
+  {
+    "id": "skip-parent",
+    "prompt": "无向树的 DFS 为什么必须跳过当前节点的父节点？",
+    "options": [
+      { "id": "a", "text": "否则会沿同一条无向边来回递归" },
+      { "id": "b", "text": "否则邻接表会自动删除这条边" },
+      { "id": "c", "text": "因为父节点一定是叶节点" },
+      { "id": "d", "text": "因为父节点的编号总是更大" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "无向边在邻接表中保存两个方向；进入子节点后仍会再次看见来时的父节点。"
+  },
+  {
+    "id": "tree-no-visited",
+    "prompt": "输入保证是树时，为什么跳过父节点后不再需要 `visited`？",
+    "options": [
+      { "id": "a", "text": "树中没有边" },
+      { "id": "b", "text": "根到每个节点的路径唯一，不会从另一条边绕回已访问点" },
+      { "id": "c", "text": "递归函数会自动记录所有访问状态" },
+      { "id": "d", "text": "只有有向图才能使用 `visited`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "树连通且无环；除父边外的邻接边分别通向尚未访问的子树。"
+  },
+  {
+    "id": "recursive-arguments",
+    "prompt": "当前位于 `u`，准备进入邻居 `v` 时，递归调用应当怎样写？",
+    "options": [
+      { "id": "a", "text": "`dfs(v, u)`" },
+      { "id": "b", "text": "`dfs(u, v)`" },
+      { "id": "c", "text": "`dfs(p, v)`" },
+      { "id": "d", "text": "`dfs(v, v)`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "进入后 `v` 成为当前节点，原来的当前节点 `u` 成为它的父节点。"
+  },
+  {
+    "id": "depth-update",
+    "prompt": "从节点 `u` 进入其子节点 `v` 前，应怎样计算 `depth[v]`？",
+    "options": [
+      { "id": "a", "text": "`depth[v] = depth[u] + 1`" },
+      { "id": "b", "text": "`depth[v] = depth[u] - 1`" },
+      { "id": "c", "text": "`depth[v] = subtree_size[u]`" },
+      { "id": "d", "text": "`depth[v] = v`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "子节点到根的唯一路径比父节点多经过一条边。"
+  },
+  {
+    "id": "subtree-return",
+    "prompt": "为什么要在 `dfs(v, u)` 返回以后再累加 `subtree_size[v]`？",
+    "options": [
+      { "id": "a", "text": "返回时 `v` 的整棵子树才已经统计完成" },
+      { "id": "b", "text": "递归以前不能访问任何数组" },
+      { "id": "c", "text": "返回会把 `v` 自动改成叶节点" },
+      { "id": "d", "text": "这样可以改变邻接表顺序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "子树大小依赖所有后代；递归返回表示这些后代已经全部处理完。"
+  },
+  {
+    "id": "adjacency-order",
+    "prompt": "只交换同一节点邻接表中两个子节点的顺序，哪项可能改变？",
+    "options": [
+      { "id": "a", "text": "DFS 的进入顺序" },
+      { "id": "b", "text": "树的节点数量" },
+      { "id": "c", "text": "每个节点的子树大小" },
+      { "id": "d", "text": "任意两节点之间是否连通" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "DFS 按邻接项顺序选择下一棵子树；树的结构与由固定根决定的层级关系不变。"
+  },
+  {
+    "id": "tree-dfs-complexity",
+    "prompt": "使用邻接表 DFS 一棵有 n 个节点的树，时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "`O(n)`" },
+      { "id": "b", "text": "`O(n^2)`" },
+      { "id": "c", "text": "`O(log n)`" },
+      { "id": "d", "text": "`O(2^n)`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每个节点进入一次，每条无向边对应的两个邻接项各检查一次。"
+  }
+]
