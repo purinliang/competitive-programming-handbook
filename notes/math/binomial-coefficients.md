@@ -341,5 +341,5 @@ $$
 
 ## 扩展阅读
 
-[组合数：阶乘与逆元预处理（正文待写）](../catalog.md#05-数学) 会在固定质数模下
+[组合数：阶乘与逆元预处理](binomial-coefficients-factorials.md) 会在固定质数模下
 预处理 `factorial` 与 `inverse_factorial`，支持大量 $C(n,k)$ 查询。
