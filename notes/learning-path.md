@@ -186,7 +186,6 @@
 | 0231 | 快速排序 | 算法基础 | [algorithm-basics/quicksort.md](algorithm-basics/quicksort.md) |
 | 0232 | 归并排序 | 算法基础 | [algorithm-basics/merge-sort.md](algorithm-basics/merge-sort.md) |
 | 0260 | 排序方法比较 | 算法基础 | [algorithm-basics/sorting-comparison.md](algorithm-basics/sorting-comparison.md) |
-| 0206 | 离散化 | 算法基础 | [algorithm-basics/coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
 
 ### 学习单元：分治
 
@@ -201,6 +200,7 @@
 | 0204 | 二分查找 | 算法基础 | [algorithm-basics/binary-search.md](algorithm-basics/binary-search.md) |
 | 0251 | 二分边界 | 算法基础 | [algorithm-basics/binary-search-boundaries.md](algorithm-basics/binary-search-boundaries.md) |
 | 0162 | STL 二分查找 | C++ | [cpp/stl-binary-search.md](cpp/stl-binary-search.md) |
+| 0206 | 离散化 | 算法基础 | [algorithm-basics/coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
 | 0219 | 二分答案 | 算法基础 | [algorithm-basics/binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |
 | 0252 | 浮点数二分 | 算法基础 | [algorithm-basics/floating-point-binary-search.md](algorithm-basics/floating-point-binary-search.md) |
 
@@ -218,7 +218,7 @@
 | 0205 | 双指针 | 算法基础 | [algorithm-basics/two-pointers.md](algorithm-basics/two-pointers.md) |
 | 0220 | 滑动窗口 | 算法基础 | [algorithm-basics/sliding-window.md](algorithm-basics/sliding-window.md) |
 
-本阶段先独立建立复杂度，再学习后续代码马上需要的 `vector`、`sort` 和 `unique`。这里只学习基础 STL 的真实用途，不预先背诵全部容器。数组、链表、栈、队列和双端队列连同对应标准库接口放在初中基础；`pair` 等到图的带权邻接表以前再学习。
+本阶段先独立建立复杂度，再学习后续代码马上需要的 `vector`、`fill`、`sort` 和 `unique`。枚举与模拟随后作为最直接的基线方法；排序、二分、前缀和、差分和双指针则依次利用前面已经建立的工具。这里只学习基础 STL 的真实用途，不预先背诵全部容器。数组、链表、栈、队列和双端队列连同对应标准库接口放在初中基础；`pair` 等到图的带权邻接表以前再学习。
 
 ## 03 初中基础
 
