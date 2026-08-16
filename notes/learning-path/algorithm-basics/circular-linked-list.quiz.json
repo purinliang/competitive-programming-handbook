@@ -1,0 +1,50 @@
+[
+  {
+    "id": "circular-tail-next",
+    "prompt": "非空单向循环链表的尾节点 `next` 应指向哪里？",
+    "options": [
+      { "id": "a", "text": "首节点" },
+      { "id": "b", "text": "编号 `0`" },
+      { "id": "c", "text": "任意新节点" },
+      { "id": "d", "text": "尾节点的前驱" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "尾节点重新连接首节点，才形成闭合的循环顺序。"
+  },
+  {
+    "id": "circular-single-node",
+    "prompt": "只有一个节点 `u` 的循环链表中，`nodes[u].next` 是什么？",
+    "options": [
+      { "id": "a", "text": "一定是 `0`" },
+      { "id": "b", "text": "未初始化的随机值" },
+      { "id": "c", "text": "虚拟头节点" },
+      { "id": "d", "text": "节点 `u` 自己" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "单节点同时是首尾节点，尾节点指向首节点就表现为自指。"
+  },
+  {
+    "id": "circular-traversal-stop",
+    "prompt": "遍历非空循环链表一圈时，合适的停止条件是什么？",
+    "options": [
+      { "id": "a", "text": "当前节点的值变成 `0`" },
+      { "id": "b", "text": "移动后重新回到本次遍历的起点" },
+      { "id": "c", "text": "每访问一个节点都立即停止" },
+      { "id": "d", "text": "等待 `next` 自动消失" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "循环链表没有普通尾端；重新回到起点表示已经完整走过一圈。"
+  },
+  {
+    "id": "circular-empty-state",
+    "prompt": "删除循环链表中的唯一节点后，应恢复成什么状态？",
+    "options": [
+      { "id": "a", "text": "`head` 保持旧节点，`tail = 0`" },
+      { "id": "b", "text": "`head = tail =` 旧节点" },
+      { "id": "c", "text": "`head = 0` 且 `tail = 0`" },
+      { "id": "d", "text": "建立两个新节点" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "删除唯一真实节点后链表为空，入口和尾节点都不存在。"
+  }
+]
