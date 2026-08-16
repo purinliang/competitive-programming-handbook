@@ -1,6 +1,6 @@
-# 背包：0-1 背包
+# 0-1 背包
 
-> 最近修订：2026-08-13 22:33 +10:00（未审阅）
+> 最近修订：2026-08-16 14:22 +10:00（未审阅）
 
 有一个最多承受 `capacity` 重量的背包，以及 `n` 件物品。第 `i` 件物品具有重量 `weight[i]` 和价值 `value[i]`，每件物品只能选择一次或不选。要求总重量不超过背包容量，并让总价值最大。
 
@@ -208,18 +208,22 @@ c = 6：dp[6] = dp[3] + 5 = 10
 
 初始数组全为 `0`，对应不使用任何物品。按照物品编号归纳，处理完全部物品后 `dp[capacity]` 就是原问题答案。
 
-## 函数接口
+## 题目级状态
 
-0-1 背包的计算只依赖本次传入的重量、价值、物品数和容量，没有需要跨调用共享的持续对象状态，因此使用普通函数：
+`n`、`capacity`、`weight` 和 `value` 共同描述当前题目，并且输入过程与背包算法都
+需要使用它们，因此保存为题目级全局状态：
 
 ```cpp
-ll zero_one_knapsack(const vector<int>& weight, const vector<ll>& value, int n,
-                     int capacity)
+int n, capacity;
+vector<int> weight;
+vector<ll> value;
 ```
 
 `weight` 与 `value` 都按照物品编号使用 `1..n`，位置 `0` 留空。容量状态从 `0` 开始，因为“没有可用容量”具有真实边界语义。
 
-函数内部只建立一维 `dp`，返回最大价值；输入输出保留在 `main` 中，不让算法函数依赖具体题目格式。
+`zero_one_knapsack()` 只建立本次计算使用的一维 `dp` 并返回最大价值。这样既不需要
+在函数之间反复传递四个题目级参数，也没有把只在算法内部使用的临时状态扩散到
+全局作用域。
 
 ## 完整代码
 
@@ -238,8 +242,11 @@ using namespace std;
 
 typedef long long ll;
 
-ll zero_one_knapsack(const vector<int>& weight, const vector<ll>& value, int n,
-                     int capacity) {
+int n, capacity;
+vector<int> weight;
+vector<ll> value;
+
+ll zero_one_knapsack() {
     vector<ll> dp(capacity + 5, 0);
 
     for (int i = 1; i <= n; i++) {
@@ -250,17 +257,21 @@ ll zero_one_knapsack(const vector<int>& weight, const vector<ll>& value, int n,
     return dp[capacity];
 }
 
-int main() {
-    int n, capacity;
+void solve() {
     scanf("%d%d", &n, &capacity);
 
-    vector<int> weight(n + 5);
-    vector<ll> value(n + 5);
+    weight.assign(n + 5, 0);
+    value.assign(n + 5, 0);
+
     for (int i = 1; i <= n; i++) {
         scanf("%d%lld", &weight[i], &value[i]);
     }
 
-    printf("%lld\n", zero_one_knapsack(weight, value, n, capacity));
+    printf("%lld\n", zero_one_knapsack());
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -339,7 +350,3 @@ int main() {
 10. 为什么 `O(n * capacity)` 被称为伪多项式复杂度？
 
 物品恰好装满、求方案数、恢复具体方案、按价值设计状态和各种额外限制都会改变状态语义或答案。本篇只固定最基础的“总重量不超过容量、每件至多一次、最大总价值”模型。
-
-## 下一篇
-
-下一篇 [背包：完全背包](complete-knapsack.md) 会允许每种物品选择任意多次，并解释为什么一维容量循环随之改为正序。
