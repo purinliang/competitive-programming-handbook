@@ -1,6 +1,6 @@
 # 归并排序
 
-> 最近修订：2026-08-16 11:30 +10:00（未审阅）
+> 最近修订：2026-08-16 18:18 +10:00（未审阅）
 
 [快速排序](quicksort.md) 先把原区间分到基准值两侧，再递归排序两个仍然无序的
 部分。归并排序采用另一种分治顺序：先递归把左右两半分别排好，再把两个有序区间
@@ -101,10 +101,14 @@ for (int k = l; k <= r; k++) {
 }
 ```
 
-一次 `merge` 的完整实现是：
+原数组 `a` 和临时数组 `temporary` 都是整道题共享的状态，只需要各自建立一次；
+`l`、`mid`、`r` 只描述当前合并的区间，继续作为参数。一次 `merge` 的完整实现是：
 
 ```cpp
-void merge(vector<int>& a, vector<int>& temporary, int l, int mid, int r) {
+vector<int> a;
+vector<int> temporary;
+
+void merge(int l, int mid, int r) {
     int i = l;
     int j = mid + 1;
     int position = l;
@@ -149,15 +153,15 @@ void merge(vector<int>& a, vector<int>& temporary, int l, int mid, int r) {
 - 合并两个已经有序的半区。
 
 ```cpp
-void merge_sort(vector<int>& a, vector<int>& temporary, int l, int r) {
+void merge_sort(int l, int r) {
     if (l >= r) {
         return;
     }
 
     int mid = l + (r - l) / 2;
-    merge_sort(a, temporary, l, mid);
-    merge_sort(a, temporary, mid + 1, r);
-    merge(a, temporary, l, mid, r);
+    merge_sort(l, mid);
+    merge_sort(mid + 1, r);
+    merge(l, mid, r);
 }
 ```
 
@@ -199,7 +203,9 @@ $$
 O(n)+O(\log n)=O(n)
 $$
 
-临时数组应当在最外层只建立一次，并通过引用传给所有递归调用。若在每个 `merge_sort` 调用中重新建立与区间同长的 `vector`，不仅增加分配开销，也让实现的真实空间行为更难分析。
+临时数组应当只建立一次，作为所有递归调用共享的工作区。若在每个 `merge_sort`
+调用中重新建立与区间同长的 `vector`，不仅增加分配开销，也让实现的真实空间行为
+更难分析。
 
 ## 为什么适合链表
 
@@ -231,13 +237,17 @@ $O(n\log n)$ 时间，并自然扩展到逆序对计数、链表排序和外部�
 ## 完整代码
 
 下面的程序使用共享临时数组，对 1-based 闭区间 `a[1..n]` 进行归并排序。空数组
-调用 `merge_sort(a, temporary, 1, 0)` 时立即返回。
+调用 `merge_sort(1, 0)` 时立即返回。
 
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-void merge(vector<int>& a, vector<int>& temporary, int l, int mid, int r) {
+int n;
+vector<int> a;
+vector<int> temporary;
+
+void merge(int l, int mid, int r) {
     int i = l;
     int j = mid + 1;
     int position = l;
@@ -262,36 +272,35 @@ void merge(vector<int>& a, vector<int>& temporary, int l, int mid, int r) {
     }
 }
 
-void merge_sort(vector<int>& a, vector<int>& temporary, int l, int r) {
+void merge_sort(int l, int r) {
     if (l >= r) {
         return;
     }
 
     int mid = l + (r - l) / 2;
-    merge_sort(a, temporary, l, mid);
-    merge_sort(a, temporary, mid + 1, r);
-    merge(a, temporary, l, mid, r);
+    merge_sort(l, mid);
+    merge_sort(mid + 1, r);
+    merge(l, mid, r);
 }
 
 void solve() {
-    int n;
-    cin >> n;
+    scanf("%d", &n);
 
-    vector<int> a(n + 5);
-    vector<int> temporary(n + 5);
+    a.assign(n + 5, 0);
+    temporary.assign(n + 5, 0);
     for (int i = 1; i <= n; i++) {
-        cin >> a[i];
+        scanf("%d", &a[i]);
     }
 
-    merge_sort(a, temporary, 1, n);
+    merge_sort(1, n);
 
     for (int i = 1; i <= n; i++) {
         if (i > 1) {
-            cout << ' ';
+            printf(" ");
         }
-        cout << a[i];
+        printf("%d", a[i]);
     }
-    cout << '\n';
+    printf("\n");
 }
 
 int main() {
@@ -333,7 +342,8 @@ int main() {
 
 ### 每层重新分配临时数组
 
-在 `main` 中建立一次 `temporary(n + 5)`，所有递归调用通过引用复用。不要在每个递归节点重新分配大型容器。
+在 `solve` 中使用 `assign` 建立一次 `temporary`，所有递归调用共享它。不要在每个
+递归节点重新分配大型容器。
 
 ### 混淆闭区间边界
 
