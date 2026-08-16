@@ -255,7 +255,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 030302 | fill | C++ | [cpp/fill.md](cpp/fill.md) |
 | 030303 | pair | C++ | [cpp/pair.md](cpp/pair.md) |
 | 030304 | tuple | C++ | [cpp/tuple.md](cpp/tuple.md) |
-| 030305 | min 与 max | C++ | `cpp/min-and-max.md` |
+| 030305 | min 与 max | C++ | [cpp/min-and-max.md](cpp/min-and-max.md) |
 | 030306 | swap | C++ | `cpp/swap.md` |
 | 030307 | sort | C++ | [cpp/sort.md](cpp/sort.md) |
 | 030308 | unique | C++ | [cpp/unique.md](cpp/unique.md) |

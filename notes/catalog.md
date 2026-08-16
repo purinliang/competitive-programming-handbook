@@ -175,7 +175,7 @@
 | --- | --- | --- | --- |
 | 030303 | pair | 待审阅 | [pair.md](cpp/pair.md) |
 | 030304 | tuple | 待审阅 | [tuple.md](cpp/tuple.md) |
-| 030305 | min 与 max | 计划 | `cpp/min-and-max.md` |
+| 030305 | min 与 max | 待审阅 | [min-and-max.md](cpp/min-and-max.md) |
 | 030306 | swap | 计划 | `cpp/swap.md` |
 | 030402 | array | 待审阅 | [array.md](cpp/array.md) |
 | 030301 | vector | 待审阅 | [vector.md](cpp/vector.md) |

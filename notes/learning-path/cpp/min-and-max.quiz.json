@@ -1,0 +1,50 @@
+[
+  {
+    "id": "min-max-values",
+    "prompt": "执行 `int x = min(7, 4); int y = max(7, 4);` 后，`x` 和 `y` 分别是多少？",
+    "options": [
+      { "id": "a", "text": "`7` 和 `4`" },
+      { "id": "b", "text": "`4` 和 `7`" },
+      { "id": "c", "text": "`4` 和 `4`" },
+      { "id": "d", "text": "`7` 和 `7`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`min` 选择较小值 `4`，`max` 选择较大值 `7`。"
+  },
+  {
+    "id": "min-max-do-not-modify",
+    "prompt": "调用 `max(a, b)` 后，原来的 `a` 和 `b` 会怎样？",
+    "options": [
+      { "id": "a", "text": "保持不变，函数只产生较大值" },
+      { "id": "b", "text": "自动按升序排列" },
+      { "id": "c", "text": "都变成较大值" },
+      { "id": "d", "text": "互相交换" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`max` 读取参数并返回选择结果，不负责修改或交换原变量。"
+  },
+  {
+    "id": "min-mixed-types",
+    "prompt": "为什么 `min(10, 20LL)` 通常无法通过编译？",
+    "options": [
+      { "id": "a", "text": "`min` 不能比较正数" },
+      { "id": "b", "text": "`20LL` 超出了 `long long`" },
+      { "id": "c", "text": "两个参数分别是 `int` 和 `long long`，无法推导同一个模板类型" },
+      { "id": "d", "text": "所有字面量都必须先保存进数组" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "两个参数版本通常要求参数类型一致；可写成 `min(10LL, 20LL)`。"
+  },
+  {
+    "id": "min-max-clamp",
+    "prompt": "当 `lower <= upper` 时，哪个表达式能把 `x` 限制在闭区间 `[lower, upper]`？",
+    "options": [
+      { "id": "a", "text": "`min(lower, min(x, upper))`" },
+      { "id": "b", "text": "`max(upper, max(x, lower))`" },
+      { "id": "c", "text": "`min(lower, max(x, upper))`" },
+      { "id": "d", "text": "`max(lower, min(x, upper))`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "内层先压住上界，外层再托住下界，结果一定落在闭区间内。"
+  }
+]
