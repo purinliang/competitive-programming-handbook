@@ -1,0 +1,50 @@
+[
+  {
+    "id": "definition",
+    "prompt": "a 在模 m 下的逆元 x 满足什么？",
+    "options": [
+      { "id": "a", "text": "`a+x≡1 (mod m)`" },
+      { "id": "b", "text": "`a*x≡1 (mod m)`" },
+      { "id": "c", "text": "`a/x≡0 (mod m)`" },
+      { "id": "d", "text": "`x=m-a`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "模逆元是乘法逆元，使乘积回到模乘法单位元 1。"
+  },
+  {
+    "id": "existence",
+    "prompt": "a 模 m 的逆元存在的充要条件是什么？",
+    "options": [
+      { "id": "a", "text": "`gcd(a,m)=1`" },
+      { "id": "b", "text": "a 小于 m" },
+      { "id": "c", "text": "m 必须是偶数" },
+      { "id": "d", "text": "a 必须是质数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "ax+my=1 有整数解恰好等价于 gcd(a,m)=1。"
+  },
+  {
+    "id": "prime-method",
+    "prompt": "质数模 p 下，什么时候可以用 `a^(p-2)` 求逆元？",
+    "options": [
+      { "id": "a", "text": "任意 a，包括 p 的倍数" },
+      { "id": "b", "text": "只要 p 大于 a" },
+      { "id": "c", "text": "a 不被 p 整除" },
+      { "id": "d", "text": "只有 a=1" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "此时 gcd(a,p)=1，费马小定理才能给出 a^(p-1)≡1。"
+  },
+  {
+    "id": "modular-division",
+    "prompt": "模意义下计算 `a/b`，在 b 可逆时应怎样做？",
+    "options": [
+      { "id": "a", "text": "使用普通整数 `a/b` 后取模" },
+      { "id": "b", "text": "计算 `a+b`" },
+      { "id": "c", "text": "计算 `b/a`" },
+      { "id": "d", "text": "计算 `a*inverse(b) mod m`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "模除法被定义为乘以除数的模逆元；逆元不存在时不能这样除。"
+  }
+]
