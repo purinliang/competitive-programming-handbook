@@ -1,0 +1,50 @@
+[
+  {
+    "id": "congruence",
+    "prompt": "`a` 与 `b` 模 `mod` 同余表示什么？",
+    "options": [
+      { "id": "a", "text": "a 与 b 必须相等" },
+      { "id": "b", "text": "a-b 能被 mod 整除" },
+      { "id": "c", "text": "a+b 小于 mod" },
+      { "id": "d", "text": "a 与 b 都是质数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "同余表示二者相差模数的整数倍，也等价于规范余数相同。"
+  },
+  {
+    "id": "stepwise-modulo",
+    "prompt": "为什么加法和乘法可以在每一步取模？",
+    "options": [
+      { "id": "a", "text": "用同余的余数替换操作数不会改变最终同余类" },
+      { "id": "b", "text": "取模会让所有数变成 0" },
+      { "id": "c", "text": "只有最后一步的结果需要正确" },
+      { "id": "d", "text": "C++ 会自动补回原值" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "若 a 与 a mod m 同余，则参与加法和乘法后仍保持相同的模结果。"
+  },
+  {
+    "id": "negative-remainder",
+    "prompt": "C++ 中 `x%mod` 可能为负，怎样规范到 `[0,mod-1]`？",
+    "options": [
+      { "id": "a", "text": "`x/mod`" },
+      { "id": "b", "text": "`abs(x)%mod`" },
+      { "id": "c", "text": "`(x%mod+mod)%mod`" },
+      { "id": "d", "text": "`x+1`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "第一次 % 把结果限制在 (-mod,mod)，加一次 mod 后再取余即可规范。"
+  },
+  {
+    "id": "modular-division",
+    "prompt": "模意义下为什么不能把除以 b 直接写成普通整数 `/b`？",
+    "options": [
+      { "id": "a", "text": "模运算不允许出现字母 b" },
+      { "id": "b", "text": "除法总会得到浮点数" },
+      { "id": "c", "text": "普通除法的商可能超过模数" },
+      { "id": "d", "text": "模除法需要乘以存在的模逆元，普通整除不是同一运算" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "只有 b 在该模数下可逆时，除法才对应乘 b 的模逆元。"
+  }
+]
