@@ -457,6 +457,7 @@ $$
 5. 先应用 `B` 再应用 `A` 时，合成矩阵是什么？
 6. `apply_transformation` 中的双重循环怎样对应每个输出的线性组合？
 
-下一篇 [矩阵快速幂](matrix-exponentiation.md) 会把一次状态转移写成矩阵，并用快速幂一次合成大量相同转移。
+[矩阵快速幂](matrix-exponentiation.md) 会把一次状态转移写成矩阵，并用快速幂
+一次合成大量相同转移。
 
 需要把平移也放进矩阵时，可以继续阅读 [线性变换：齐次坐标与仿射变换](homogeneous-coordinates-affine-transformations.md)。
