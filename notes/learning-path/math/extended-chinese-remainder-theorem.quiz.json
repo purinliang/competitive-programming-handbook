@@ -1,0 +1,50 @@
+[
+  {
+    "id": "parameterization",
+    "prompt": "满足 `x≡a1 (mod m1)` 的所有整数怎样表示？",
+    "options": [
+      { "id": "a", "text": "`x=a1+m1*t`，t 为任意整数" },
+      { "id": "b", "text": "`x=a1/m1`" },
+      { "id": "c", "text": "`x=m1+a1*t^2`" },
+      { "id": "d", "text": "只有 x=a1" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "同一余数类中的任意两个数相差模数 m1 的整数倍。"
+  },
+  {
+    "id": "merge-equation",
+    "prompt": "把 `x=a1+m1*t` 代入第二个条件后，需要解什么同余方程？",
+    "options": [
+      { "id": "a", "text": "`a1*t≡m1 (mod m2)`" },
+      { "id": "b", "text": "`m1*t≡a2-a1 (mod m2)`" },
+      { "id": "c", "text": "`m2*t≡a1+a2 (mod m1)`" },
+      { "id": "d", "text": "`t≡0 (mod m1*m2)`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "要求 a1+m1*t 与 a2 模 m2 同余，移项即可得到该式。"
+  },
+  {
+    "id": "solvability",
+    "prompt": "两个同余条件能够合并的充要条件是什么？",
+    "options": [
+      { "id": "a", "text": "m1 与 m2 必须互质" },
+      { "id": "b", "text": "a1 必须等于 a2" },
+      { "id": "c", "text": "`gcd(m1,m2)` 能整除 `a2-a1`" },
+      { "id": "d", "text": "两个模数都必须是质数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "它正是线性同余方程 m1*t≡a2-a1 mod m2 的可解条件。"
+  },
+  {
+    "id": "merged-modulus",
+    "prompt": "两个可兼容同余条件合并后，新模数是什么？",
+    "options": [
+      { "id": "a", "text": "m1+m2" },
+      { "id": "b", "text": "gcd(m1,m2)" },
+      { "id": "c", "text": "始终是 m1*m2" },
+      { "id": "d", "text": "lcm(m1,m2)" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "同时保持两个余数不变所需的最小正周期是两个模数的最小公倍数。"
+  }
+]
