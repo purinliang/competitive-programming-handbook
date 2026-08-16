@@ -523,16 +523,35 @@ async function renderQuizInline(markdown) {
   return paragraph[1];
 }
 
-function searchableText(markdown, articleTitles) {
+function cleanSearchText(markdown, articleTitles) {
   return markdown
-    .replace(/^>\s*(?:最近修订|状态)：.*$/gm, "")
-    .replace(/^##\s+(?:上一篇|下一篇|返回[^\n]*)\s*$[\s\S]*$/gm, "")
-    .replace(/(?:上一篇|下一篇|返回基础篇)/g, " ")
     .replace(/```[^\n]*\n?/g, " ")
     .replace(/!?\[([^\]]*)\]\([^)]*\)/g, (_, label) => articleTitles.has(label.trim()) ? " " : label)
     .replace(/[`*_>#|$\\]/g, " ")
     .replace(/\s+/g, " ")
-    .trim();
+    .trim()
+    .toLocaleLowerCase("zh-CN");
+}
+
+function searchableParts(markdown, articleTitles) {
+  const content = markdown
+    .replace(/^>\s*(?:最近修订|状态)：.*$/gm, "")
+    .replace(/^##\s+(?:上一篇|下一篇|返回[^\n]*)\s*$[\s\S]*$/gm, "")
+    .replace(/(?:上一篇|下一篇|返回基础篇)/g, " ");
+  const headingText = content
+    .split("\n")
+    .filter((line) => /^#{2,3}\s+/u.test(line))
+    .map((line) => line.replace(/^#{2,3}\s+/u, ""))
+    .join(" ");
+  const bodyText = content
+    .split("\n")
+    .filter((line) => !/^#{1,3}\s+/u.test(line))
+    .join("\n");
+
+  return {
+    bodyText: cleanSearchText(bodyText, articleTitles),
+    headingText: cleanSearchText(headingText, articleTitles),
+  };
 }
 
 async function compileLearningQuiz(articleKey, source) {
@@ -653,6 +672,7 @@ async function loadArticleVariant(article, variant, sourcePath, title, markdown,
 
 for (const article of publishedArticles) {
   const markdown = await readFile(path.join(notesRoot, article.sourcePath), "utf8");
+  const searchText = searchableParts(markdown, articleTitles);
   const catalogRendered = await loadArticleVariant(
     article,
     "catalog",
@@ -687,7 +707,8 @@ for (const article of publishedArticles) {
     moduleTitle: article.moduleTitle,
     route: article.catalogRoute,
     status: article.status,
-    text: searchableText(markdown, articleTitles),
+    bodyText: searchText.bodyText,
+    headingText: searchText.headingText,
   });
 }
 

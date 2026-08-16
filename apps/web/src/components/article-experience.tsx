@@ -6,6 +6,7 @@ import { ArticleNeighborsView } from "./article-neighbors-view";
 import { ArticleTableOfContents } from "./article-table-of-contents";
 import { CodeBlockEnhancements } from "./code-block-enhancements";
 import { CollaborativeArticle } from "./collaborative-article";
+import { ContextualSiteHeader } from "./contextual-site-header";
 import {
   ContextualArticleNavigation,
   ContextualArticleNeighbors,
@@ -16,8 +17,10 @@ import { SiteHeader } from "./site-header";
 
 import {
   getArticle,
+  getCatalogDirectoryFallback,
   getArticleLearningNavigations,
   getArticleModuleNavigations,
+  getLearningDirectoryFallback,
 } from "@/lib/content/catalog";
 import { getLearningQuiz, getRenderedArticle } from "@/lib/content/compiled";
 
@@ -29,9 +32,9 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
     notFound();
   }
 
-  const navigations = mode === "learning-path"
-    ? getArticleLearningNavigations(article.articleKey)
-    : getArticleModuleNavigations(article.articleKey);
+  const learningNavigations = getArticleLearningNavigations(article.articleKey);
+  const moduleNavigations = getArticleModuleNavigations(article.articleKey);
+  const navigations = mode === "learning-path" ? learningNavigations : moduleNavigations;
   const defaultNavigation = navigations[0];
   if (!defaultNavigation) {
     notFound();
@@ -59,7 +62,20 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
 
   return (
     <>
-      <SiteHeader activeSection={mode} />
+      <Suspense fallback={<SiteHeader activeSection={mode} />}>
+        <ContextualSiteHeader
+          articleKey={article.articleKey}
+          catalogEntryKeys={moduleNavigations.map((navigation) => (
+            navigation.activeEntryKey
+          ))}
+          catalogFallback={getCatalogDirectoryFallback(article.articleKey)}
+          learningEntryKeys={learningNavigations.map((navigation) => (
+            navigation.activeEntryKey
+          ))}
+          learningFallback={getLearningDirectoryFallback(article.articleKey)}
+          mode={mode}
+        />
+      </Suspense>
       <div className="docs-layout">
         <Suspense
           fallback={<ArticleNavigationView mode={mode} navigation={defaultNavigation} />}

@@ -44,6 +44,9 @@ jobs:
       - name: 检查内容身份
         run: pnpm test:content-identity
 
+      - name: 检查搜索规则
+        run: pnpm test:search
+
       - name: 部署到 Cloudflare
         run: pnpm deploy
         env:

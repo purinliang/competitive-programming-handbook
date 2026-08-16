@@ -1,6 +1,11 @@
 export type ArticleStatus = "计划" | "待审阅" | "已审阅" | "草稿" | "定稿";
 export type NavigationMode = "learning-path" | "catalog";
 
+export interface DirectoryReturnTarget {
+  kind: "area" | "entry" | "group" | "section";
+  key: string;
+}
+
 export interface CatalogPlacement {
   key: string;
   moduleKey: string;

@@ -27,7 +27,12 @@ export function ArticleLink({
   const unavailable = !article.exists || article.status === "计划";
   if (unavailable) {
     return (
-      <span className="article-link is-planned" title="正文尚在计划中">
+      <span
+        className="article-link is-planned"
+        data-article-key={article.articleKey}
+        data-entry-key={entryKey}
+        title="正文尚在计划中"
+      >
         <span>{title}</span>
         <small>计划</small>
       </span>
@@ -38,6 +43,8 @@ export function ArticleLink({
     <Link
       aria-current={active ? "page" : undefined}
       className={`article-link${active ? " is-active" : ""}`}
+      data-article-key={article.articleKey}
+      data-entry-key={entryKey}
       href={href}
     >
       <span>{title}</span>

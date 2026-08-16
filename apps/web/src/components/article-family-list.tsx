@@ -31,7 +31,12 @@ export function ArticleFamilyList({ groups, activeEntryKey, navigation }: Articl
     }
 
     return (
-      <details className="article-family" open={active} key={`${group.entryKeys[0]}:${index}`}>
+      <details
+        className="article-family"
+        data-group-key={group.entryKeys[0]}
+        open={active}
+        key={`${group.entryKeys[0]}:${index}`}
+      >
         <summary>
           <span>{group.title}{group.continued ? "（继续）" : ""}</span>
           <ArticleGroupProgress articleKeys={group.articles.map((article) => article.articleKey)} />

@@ -7,9 +7,17 @@ type HeaderSection = "learning-path" | "catalog" | "search";
 
 interface SiteHeaderProps {
   activeSection?: HeaderSection;
+  catalogHref?: string;
+  learningPathHref?: string;
+  searchHref?: string;
 }
 
-export function SiteHeader({ activeSection }: SiteHeaderProps) {
+export function SiteHeader({
+  activeSection,
+  catalogHref = "/catalog/",
+  learningPathHref = "/learning-path/",
+  searchHref = "/search/",
+}: SiteHeaderProps) {
   function linkClass(section: Exclude<HeaderSection, "article">) {
     if (activeSection === section) {
       return "is-active";
@@ -25,9 +33,9 @@ export function SiteHeader({ activeSection }: SiteHeaderProps) {
           <span>算法竞赛手册</span>
         </Link>
         <nav className="site-nav" aria-label="主导航">
-          <Link className={linkClass("learning-path")} href="/learning-path/">学习路线</Link>
-          <Link className={linkClass("catalog")} href="/catalog/">模块目录</Link>
-          <Link className={linkClass("search")} href="/search/">搜索</Link>
+          <Link className={linkClass("learning-path")} href={learningPathHref}>学习路线</Link>
+          <Link className={linkClass("catalog")} href={catalogHref}>模块目录</Link>
+          <Link className={linkClass("search")} href={searchHref}>搜索</Link>
         </nav>
         <AccountControl />
       </div>

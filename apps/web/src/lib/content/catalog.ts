@@ -9,6 +9,7 @@ import type {
   ArticleNavigationTarget,
   ArticleRecord,
   CatalogArea,
+  DirectoryReturnTarget,
   LearningStage,
   ModuleRecord,
 } from "./types";
@@ -93,6 +94,69 @@ function findLearningPlacement(articleKey: string, requestedEntryKey?: string) {
     const unit = stage.units.find((item) => item.entryKeys.includes(current.entryKey));
     return { current, stage, unit };
   }
+  return undefined;
+}
+
+function learningGroupTarget(
+  articleKey: string,
+): DirectoryReturnTarget | undefined {
+  const placement = findLearningPlacement(articleKey);
+  const groupKey = placement?.unit?.entryKeys[0];
+  return groupKey ? { kind: "group", key: groupKey } : undefined;
+}
+
+function normalizedCatalogId(catalogId: string): string {
+  return catalogId.startsWith("*") ? catalogId.slice(1) : catalogId;
+}
+
+export function getLearningDirectoryFallback(
+  articleKey: string,
+): DirectoryReturnTarget | undefined {
+  const article = getArticle(articleKey);
+  if (!article) return undefined;
+
+  const exactGroup = learningGroupTarget(articleKey);
+  if (exactGroup) return exactGroup;
+
+  const catalogId = normalizedCatalogId(article.catalogId);
+  const attachedMatch = catalogId.match(/^(.+)e\d+$/);
+  if (attachedMatch) {
+    const baseArticle = getArticles().find((candidate) => (
+      normalizedCatalogId(candidate.catalogId) === attachedMatch[1]
+    ));
+    const baseGroup = baseArticle
+      ? learningGroupTarget(baseArticle.articleKey)
+      : undefined;
+    if (baseGroup) return baseGroup;
+  }
+
+  const stageMatch = catalogId.match(/^(0[1-8])(\d{2})\d{2}/);
+  const stageNumber = stageMatch?.[1];
+  if (stageNumber) {
+    const stageKey = `stage-${stageNumber}`;
+    const stage = getLearningStages().find((candidate) => (
+      candidate.key === stageKey
+    ));
+    const unit = stage?.units.find((candidate) => (
+      candidate.number === stageMatch?.[2]
+    ));
+    const groupKey = unit?.entryKeys[0];
+    if (groupKey) return { kind: "group", key: groupKey };
+    if (stage) {
+      return { kind: "section", key: stage.key };
+    }
+  }
+
+  for (const stage of getLearningStages()) {
+    for (const unit of stage.units) {
+      const related = unit.articleKeys.some((key) => (
+        getArticle(key)?.moduleKey === article.moduleKey
+      ));
+      const groupKey = unit.entryKeys[0];
+      if (related && groupKey) return { kind: "group", key: groupKey };
+    }
+  }
+
   return undefined;
 }
 
@@ -309,6 +373,29 @@ export function getCatalogGroups(
   articles: ArticleRecord[],
 ): ArticleFamily[] {
   return getCatalogAreas(moduleKey, articles).flatMap((area) => area.groups);
+}
+
+export function getCatalogDirectoryFallback(
+  articleKey: string,
+): DirectoryReturnTarget | undefined {
+  const navigation = getArticleModuleNavigations(articleKey)[0];
+  if (!navigation) return undefined;
+
+  const group = navigation.groups.find((candidate) => (
+    candidate.entryKeys.includes(navigation.activeEntryKey)
+  ));
+  if (group?.grouped && group.entryKeys[0]) {
+    return { kind: "group", key: group.entryKeys[0] };
+  }
+
+  const area = navigation.areas?.find((candidate) => (
+    candidate.groups.some((candidateGroup) => (
+      candidateGroup.entryKeys.includes(navigation.activeEntryKey)
+    ))
+  ));
+  if (area) return { kind: "area", key: area.key };
+
+  return { kind: "section", key: getArticle(articleKey)?.moduleAnchor ?? "" };
 }
 
 export function getLearningUnitGroups(stage: LearningStage): ArticleFamily[] {

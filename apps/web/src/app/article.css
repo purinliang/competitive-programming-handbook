@@ -221,42 +221,99 @@
 }
 
 .article-family > div .article-link {
-  padding-left: 28px;
+  padding-left: 48px;
 }
 
 .catalog-area + .catalog-area {
   border-top: 1px solid var(--divider-border);
 }
 
-.catalog-area > h3 {
-  margin: 0;
+.catalog-area > summary {
+  display: flex;
+  gap: 10px;
+  align-items: center;
   padding: 11px 16px 9px;
   color: var(--primary-text);
   font-size: 13px;
   font-weight: 600;
   line-height: 1.5;
+  cursor: pointer;
+  list-style: none;
+}
+
+.article-family > summary.is-selection-guarded,
+.catalog-area > summary.is-selection-guarded {
+  user-select: none;
+}
+
+.catalog-area > summary::-webkit-details-marker {
+  display: none;
+}
+
+.catalog-area > summary::before {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 6px solid currentColor;
+  content: "";
+  transition: transform 120ms ease;
+}
+
+.catalog-area[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.catalog-area > summary:hover {
+  color: var(--primary-text);
+  background: var(--panel-hover-bg);
+}
+
+.catalog-area-entries {
+  border-top: 1px solid var(--divider-border);
 }
 
 .catalog-area-entries > .article-link {
-  padding-left: 24px;
+  padding-left: 48px;
 }
 
-.catalog-area-list.is-sidebar .catalog-area > h3 {
+.catalog-area-entries > .article-family > summary {
+  padding-left: 32px;
+}
+
+.catalog-area-entries > .article-family > div .article-link {
+  padding-left: 64px;
+}
+
+.catalog-area-list.is-sidebar .catalog-area > summary {
   padding: 9px 12px 7px;
   color: var(--secondary-text);
   font-size: 12px;
 }
 
 .catalog-area-list.is-sidebar .catalog-area-entries > .article-link {
-  padding-left: 20px;
+  padding-left: 44px;
 }
 
-.catalog-area-list.is-sidebar .article-family > summary {
-  padding-left: 20px;
+.catalog-area-list.is-sidebar .catalog-area-entries > .article-family > summary {
+  padding-left: 28px;
 }
 
-.catalog-area-list.is-sidebar .article-family > div .article-link {
-  padding-left: 36px;
+.catalog-area-list.is-sidebar .catalog-area-entries > .article-family > div .article-link {
+  padding-left: 60px;
+}
+
+.sidebar-list > .article-family > div .article-link {
+  padding-left: 44px;
+}
+
+.article-link.is-return-target,
+.article-family > summary.is-return-target,
+.catalog-area > summary.is-return-target {
+  color: var(--accent-text);
+  background: var(--secondary-hover-bg);
+  font-weight: 600;
+  scroll-margin-top: 96px;
 }
 
 .directory-layout {
@@ -1431,6 +1488,21 @@
 
   .markdown-body {
     font-size: 15px;
+  }
+
+  .markdown-body pre,
+  .markdown-body pre code,
+  .markdown-body pre code > [data-line],
+  .markdown-body pre code span {
+    font-size: 13px !important;
+  }
+
+  .markdown-body pre code > [data-line] {
+    padding-right: 0;
+  }
+
+  .code-copy-button {
+    display: none;
   }
 
   .article-neighbors {

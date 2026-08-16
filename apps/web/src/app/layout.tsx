@@ -7,6 +7,7 @@ import "./styles.css";
 import "./article.css";
 
 import { BrowserFocusReset } from "@/components/browser-focus-reset";
+import { DisclosureSelectionGuard } from "@/components/disclosure-selection-guard";
 
 export const metadata: Metadata = {
   title: {
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="zh-CN" data-scroll-behavior="smooth">
       <body>
         <BrowserFocusReset />
+        <DisclosureSelectionGuard />
         {children}
       </body>
     </html>
