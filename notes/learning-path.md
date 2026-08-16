@@ -187,7 +187,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *020705 | 编译器与解释器 | C++ | [cpp/compiler-and-interpreter.md](cpp/compiler-and-interpreter.md) |
 | *020706 | 编译 | C++ | [cpp/compilation.md](cpp/compilation.md) |
 | *020707 | 链接 | C++ | [cpp/linking.md](cpp/linking.md) |
-| *020708 | 调试与调试器 | C++ | `cpp/debugging-and-debuggers.md` |
+| *020708 | 调试与调试器 | C++ | [cpp/debugging-and-debuggers.md](cpp/debugging-and-debuggers.md) |
 
 ### 单元 08：*名称
 
@@ -787,7 +787,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *020705 | 编译器与解释器 | [cpp/compiler-and-interpreter.md](cpp/compiler-and-interpreter.md) |
 | *020706 | 编译 | [cpp/compilation.md](cpp/compilation.md) |
 | *020707 | 链接 | [cpp/linking.md](cpp/linking.md) |
-| *020708 | 调试与调试器 | `cpp/debugging-and-debuggers.md` |
+| *020708 | 调试与调试器 | [cpp/debugging-and-debuggers.md](cpp/debugging-and-debuggers.md) |
 | *020801 | 关键字 | [cpp/keywords.md](cpp/keywords.md) |
 | *020802 | 标识符 | [cpp/identifiers.md](cpp/identifiers.md) |
 | *020803 | 作用域 | [cpp/scope.md](cpp/scope.md) |

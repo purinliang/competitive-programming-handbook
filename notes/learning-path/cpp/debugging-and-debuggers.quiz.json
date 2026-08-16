@@ -1,0 +1,50 @@
+[
+  {
+    "id": "debugging-error-types",
+    "prompt": "程序成功运行到结束，但输出了错误答案，这通常属于哪类错误？",
+    "options": [
+      { "id": "a", "text": "链接错误" },
+      { "id": "b", "text": "语法错误" },
+      { "id": "c", "text": "逻辑错误" },
+      { "id": "d", "text": "源文件不存在" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "逻辑错误不会阻止程序构建和运行，但算法或实现产生了错误结果，在线评测常表现为 WA。"
+  },
+  {
+    "id": "debugging-small-input",
+    "prompt": "调试错误循环时，为什么优先使用能够复现问题的最小输入？",
+    "options": [
+      { "id": "a", "text": "每一步容易手算和核对，异常位置更清楚" },
+      { "id": "b", "text": "最小输入一定能证明算法正确" },
+      { "id": "c", "text": "调试器不能运行较大输入" },
+      { "id": "d", "text": "最小输入会自动修正代码" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "小数据减少无关状态，让我们能够逐步比较实际值与预期值；它用于定位问题，不代替完整验证。"
+  },
+  {
+    "id": "debugger-step-into",
+    "prompt": "当前行调用了一个可疑函数，想进入函数内部逐步检查，应使用什么操作？",
+    "options": [
+      { "id": "a", "text": "步出" },
+      { "id": "b", "text": "删除断点" },
+      { "id": "c", "text": "结束程序" },
+      { "id": "d", "text": "步入" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "步入会进入当前行调用的函数；步过会执行调用但不进入函数内部。"
+  },
+  {
+    "id": "debugger-call-stack",
+    "prompt": "调试器的调用栈视图主要能告诉我们什么？",
+    "options": [
+      { "id": "a", "text": "源文件占用的磁盘空间" },
+      { "id": "b", "text": "当前函数由哪些函数逐层调用，以及各层位置和状态" },
+      { "id": "c", "text": "所有测试数据的标准答案" },
+      { "id": "d", "text": "编译器一定采用了哪些优化" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "调用栈记录当前活动的函数调用链，尤其适合检查递归、错误参数和崩溃位置。"
+  }
+]
