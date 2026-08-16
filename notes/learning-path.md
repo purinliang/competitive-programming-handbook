@@ -323,7 +323,7 @@
 | 0701 | 动态规划的状态与转移 | 动态规划 | [dynamic-programming/dp-state-transition.md](dynamic-programming/dp-state-transition.md) |
 | 0702 | 线性动态规划 | 动态规划 | [dynamic-programming/linear-dp.md](dynamic-programming/linear-dp.md) |
 | 0704 | 最长上升子序列 | 动态规划 | [dynamic-programming/longest-increasing-subsequence.md](dynamic-programming/longest-increasing-subsequence.md) |
-| 0717 | 动态规划：状态机 DP | 动态规划 | [dynamic-programming/state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
+| 0717 | 状态机动态规划 | 动态规划 | [dynamic-programming/state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
 | 0703 | 背包：0-1 背包 | 动态规划 | [dynamic-programming/zero-one-knapsack.md](dynamic-programming/zero-one-knapsack.md) |
 | 0715 | 背包：完全背包 | 动态规划 | [dynamic-programming/complete-knapsack.md](dynamic-programming/complete-knapsack.md) |
 | 0716 | 背包：多重背包 | 动态规划 | [dynamic-programming/multiple-knapsack.md](dynamic-programming/multiple-knapsack.md) |

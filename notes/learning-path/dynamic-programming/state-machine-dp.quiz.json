@@ -1,0 +1,98 @@
+[
+  {
+    "id": "extra-state",
+    "prompt": "股票问题为什么不能只用“已经处理到第几天”作为状态？",
+    "options": [
+      { "id": "a", "text": "因为天数不能作为数组下标" },
+      { "id": "b", "text": "因为股票价格每天都相同" },
+      { "id": "c", "text": "因为每一天只能进行一次循环" },
+      { "id": "d", "text": "同一天持股与未持股时，未来允许的操作不同" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "未来行为不同的历史不能合并，持股状态因此必须成为状态的一部分。"
+  },
+  {
+    "id": "state-meaning",
+    "prompt": "`holding[i]` 保存的是什么？",
+    "options": [
+      { "id": "a", "text": "第 `i` 天的股票价格" },
+      { "id": "b", "text": "第 `i` 天结束后持有一股时的最大现金净额" },
+      { "id": "c", "text": "前 `i` 天最多可以买入的股票数量" },
+      { "id": "d", "text": "第 `i` 天已经实现的利润与股票市值之和" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "持有状态中的股票市值尚未计入现金；状态值只比较当前现金净额。"
+  },
+  {
+    "id": "unreachable-initialization",
+    "prompt": "为什么 `holding[0]` 应初始化为足够小的 `NEG_INF`？",
+    "options": [
+      { "id": "a", "text": "第零天持有股票不可达，不能让它被最大值转移误选" },
+      { "id": "b", "text": "股票价格一定是负数" },
+      { "id": "c", "text": "为了让所有状态最终都等于负无穷" },
+      { "id": "d", "text": "因为数组位置 0 不能保存 0" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "若错误写成 0，第一天就能从一股凭空得到的股票卖出获利。"
+  },
+  {
+    "id": "not-holding-transition",
+    "prompt": "第 `i` 天结束后不持股的状态来自哪两类操作？",
+    "options": [
+      { "id": "a", "text": "昨天持股后继续买入，或昨天未持股后卖出" },
+      { "id": "b", "text": "今天先买入再卖出，或先卖出再买入" },
+      { "id": "c", "text": "昨天未持股并保持，或昨天持股并在今天卖出" },
+      { "id": "d", "text": "只可能来自昨天未持股" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "列出终止状态的最后操作，就得到保持未持有和从持有卖出两条转移。"
+  },
+  {
+    "id": "holding-transition",
+    "prompt": "从未持股转移到持股时，现金净额怎样变化？",
+    "options": [
+      { "id": "a", "text": "增加 `price[i]`" },
+      { "id": "b", "text": "保持不变" },
+      { "id": "c", "text": "直接变为 0" },
+      { "id": "d", "text": "减少 `price[i]`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "买入需要支付当天价格，所以候选为 not_holding[i - 1] - price[i]。"
+  },
+  {
+    "id": "previous-day-only",
+    "prompt": "为什么两条第 `i` 天的转移都只读取第 `i - 1` 天？",
+    "options": [
+      { "id": "a", "text": "因为第 `i` 天没有股票价格" },
+      { "id": "b", "text": "为了表达每天最多执行一次操作的题目限制" },
+      { "id": "c", "text": "因为状态数组只能保存前一天" },
+      { "id": "d", "text": "为了禁止什么都不做" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "若读取当天刚更新的状态，就可能在同一天连续执行多次状态变化。"
+  },
+  {
+    "id": "terminal-state",
+    "prompt": "最终答案为什么是 `not_holding[n]`？",
+    "options": [
+      { "id": "a", "text": "题目要求最后一天结束时不持股" },
+      { "id": "b", "text": "`holding[n]` 一定是负数" },
+      { "id": "c", "text": "两个状态的值总是相等" },
+      { "id": "d", "text": "所有动态规划都输出第一个状态" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "答案位置由终止条件决定，尚未卖出的持股状态不符合本题要求。"
+  },
+  {
+    "id": "space-compression",
+    "prompt": "把两条状态数组压缩成变量时，为什么应先保存全部旧状态？",
+    "options": [
+      { "id": "a", "text": "否则变量不能使用 64 位整数" },
+      { "id": "b", "text": "否则时间复杂度会变成指数级" },
+      { "id": "c", "text": "避免后一条转移误读前一条刚写出的当天状态" },
+      { "id": "d", "text": "避免读取当天价格" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "压缩空间不能改变依赖关系；两个新状态都应由同一组前一天状态计算。"
+  }
+]

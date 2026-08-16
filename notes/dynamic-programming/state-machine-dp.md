@@ -1,10 +1,10 @@
-# 动态规划：状态机 DP
+# 状态机动态规划
 
-> 最近修订：2026-08-13 22:51 +10:00（未审阅）
+> 最近修订：2026-08-16 14:18 +10:00（未审阅）
 
 有些线性问题处理到同一个位置时，未来允许的操作仍取决于当前处境。例如股票交易中，持有股票时可以卖出却不能再次买入；没有持股时可以买入却不能卖出。
 
-若只用“已经处理到第几天”作为状态，就会把未来操作集合不同的历史错误合并。状态机 DP 在每个输入位置额外区分若干种互斥状态，并只沿题目允许的状态变化进行转移。
+若只用“已经处理到第几天”作为状态，就会把未来操作集合不同的历史错误合并。状态机动态规划（状态机 DP）在每个输入位置额外区分若干种互斥状态，并只沿题目允许的状态变化进行转移。
 
 本篇用最基础的股票交易模型推导两个状态、不可达初始化、逐日转移和最终状态选择。
 
@@ -200,17 +200,22 @@ typedef long long ll;
 
 const ll NEG_INF = -(1LL << 60);
 
-int main() {
-    int n;
+int n;
+vector<ll> price;
+vector<ll> not_holding;
+vector<ll> holding;
+
+void solve() {
     scanf("%d", &n);
 
-    vector<ll> price(n + 5);
+    price.assign(n + 5, 0);
+    not_holding.assign(n + 5, NEG_INF);
+    holding.assign(n + 5, NEG_INF);
+
     for (int i = 1; i <= n; i++) {
         scanf("%lld", &price[i]);
     }
 
-    vector<ll> not_holding(n + 5, NEG_INF);
-    vector<ll> holding(n + 5, NEG_INF);
     not_holding[0] = 0;
 
     for (int i = 1; i <= n; i++) {
@@ -219,6 +224,10 @@ int main() {
     }
 
     printf("%lld\n", not_holding[n]);
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -312,7 +321,3 @@ holding = max(holding, not_holding - price[i]);
 9. 什么样的问题适合在同一位置设置多个互斥状态？
 
 状态机 DP 没有固定的状态数量。状态应当恰好保存未来合法操作所需的信息；过少会错误合并历史，过多则会制造无用复杂度。
-
-## 下一篇
-
-下一篇 [动态规划：最长上升子序列](longest-increasing-subsequence.md) 会把“恰好以位置 `i` 结尾”的状态推广到需要枚举所有更早位置的转移。
