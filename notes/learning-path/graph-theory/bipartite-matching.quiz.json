@@ -1,0 +1,62 @@
+[
+  {
+    "id": "matching-definition",
+    "prompt": "二分图中的匹配必须满足什么条件？",
+    "options": [
+      { "id": "a", "text": "选中的任意两条边没有公共端点" },
+      { "id": "b", "text": "必须选择图中的全部边" },
+      { "id": "c", "text": "所有边都连接同一个点" },
+      { "id": "d", "text": "左右两侧点数必须相等" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每个对象最多参与一次配对，因此选中边不能共享端点。"
+  },
+  {
+    "id": "occupied-project",
+    "prompt": "搜索时遇到已经匹配的右部点，为什么还要递归尝试？",
+    "options": [
+      { "id": "a", "text": "为了删除整个图" },
+      { "id": "b", "text": "原匹配左部点可能换到别处，从而腾出当前右部点" },
+      { "id": "c", "text": "因为一个右部点可以匹配无限多人" },
+      { "id": "d", "text": "为了改变二分图的左右分组" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "递归寻找的是一整条重新安排路径，而不是只寻找当前空位。"
+  },
+  {
+    "id": "visited-reset",
+    "prompt": "`visited` 为什么要在每个新的左部点开始搜索前清空？",
+    "options": [
+      { "id": "a", "text": "因为右部点编号会改变" },
+      { "id": "b", "text": "因为边会被全部删除" },
+      { "id": "c", "text": "前一轮可能修改了匹配，新一轮需要重新探索交替路径" },
+      { "id": "d", "text": "因为 visited 只能存一个元素" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "轮内去重仍然必要，但不同增广尝试面对的是已经变化的匹配状态。"
+  },
+  {
+    "id": "augmenting-effect",
+    "prompt": "翻转一条增广路上的匹配状态后，匹配边数怎样变化？",
+    "options": [
+      { "id": "a", "text": "减少 2" },
+      { "id": "b", "text": "保持不变" },
+      { "id": "c", "text": "增加路径长度" },
+      { "id": "d", "text": "恰好增加 1" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "增广路以未匹配边开始和结束，未匹配边比已匹配边恰好多一条。"
+  },
+  {
+    "id": "recognition",
+    "prompt": "下面哪个问题最直接对应二分图最大匹配？",
+    "options": [
+      { "id": "a", "text": "学生与项目之间存在允许关系，每人和每项目至多配对一次" },
+      { "id": "b", "text": "一个数组反复求区间和" },
+      { "id": "c", "text": "计算一个整数的质因数" },
+      { "id": "d", "text": "所有任务都可以无限次选择同一机器" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两类对象、跨类允许边和每点至多使用一次正是二分图匹配模型。"
+  }
+]
