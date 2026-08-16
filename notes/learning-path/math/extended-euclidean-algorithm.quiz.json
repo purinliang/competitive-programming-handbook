@@ -1,0 +1,50 @@
+[
+  {
+    "id": "returned-values",
+    "prompt": "扩展欧几里得算法在 gcd 之外还返回什么？",
+    "options": [
+      { "id": "a", "text": "一组 x、y，使 `ax+by=gcd(a,b)`" },
+      { "id": "b", "text": "a 与 b 的全部质因数" },
+      { "id": "c", "text": "a/b 的浮点商" },
+      { "id": "d", "text": "唯一的最小非负 x、y" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "x、y 是一组裴蜀系数；它们通常不唯一，也不自动满足非负限制。"
+  },
+  {
+    "id": "base-case",
+    "prompt": "当 `b=0` 时，为什么可以返回 `g=a,x=1,y=0`？",
+    "options": [
+      { "id": "a", "text": "因为 a 必须等于 1" },
+      { "id": "b", "text": "因为 `a*1+0*0=a`" },
+      { "id": "c", "text": "因为 y 不能取其他值" },
+      { "id": "d", "text": "因为递归还会继续" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "这一组系数直接满足基例的裴蜀等式，并终止递归。"
+  },
+  {
+    "id": "coefficient-meaning",
+    "prompt": "算法返回的 x、y 应怎样理解？",
+    "options": [
+      { "id": "a", "text": "它们一定是方程的全部解" },
+      { "id": "b", "text": "它们是 a、b 的最大质因数" },
+      { "id": "c", "text": "它们是把 gcd 写成 a、b 整数线性组合的一组系数" },
+      { "id": "d", "text": "它们一定落在 `[0,b)`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "exgcd 给出一组可用系数，后续问题再按需要缩放和规范化。"
+  },
+  {
+    "id": "typical-use",
+    "prompt": "扩展欧几里得算法最直接支持哪类问题？",
+    "options": [
+      { "id": "a", "text": "字符串匹配" },
+      { "id": "b", "text": "最短路" },
+      { "id": "c", "text": "平面凸包" },
+      { "id": "d", "text": "线性不定方程、线性同余与一般模逆元" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "这些问题都需要构造整数线性组合，而不只是知道 gcd 的数值。"
+  }
+]
