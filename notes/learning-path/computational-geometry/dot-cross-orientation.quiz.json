@@ -1,0 +1,74 @@
+[
+  {
+    "id": "dot-angle",
+    "prompt": "两个非零向量的点积小于 0，说明它们的夹角怎样？",
+    "options": [
+      { "id": "a", "text": "一定等于 $0^\\circ$" },
+      { "id": "b", "text": "一定等于 $90^\\circ$" },
+      { "id": "c", "text": "小于 $90^\\circ$" },
+      { "id": "d", "text": "大于 $90^\\circ$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "点积等于两向量长度乘以夹角余弦，负数对应负余弦。"
+  },
+  {
+    "id": "cross-direction",
+    "prompt": "在 $x$ 轴向右、$y$ 轴向上的坐标系中，`cross(a, b) > 0` 表示什么？",
+    "options": [
+      { "id": "a", "text": "从 `a` 转向 `b` 是逆时针" },
+      { "id": "b", "text": "两个向量一定同向" },
+      { "id": "c", "text": "从 `a` 转向 `b` 是顺时针" },
+      { "id": "d", "text": "两个向量长度相同" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "二维叉积的正负在标准坐标系中分别对应逆时针和顺时针。"
+  },
+  {
+    "id": "orientation-formula",
+    "prompt": "判断 $A,B,C$ 三点方向，应计算哪个式子？",
+    "options": [
+      { "id": "a", "text": "`cross(A, B)`" },
+      { "id": "b", "text": "`cross(B - A, C - A)`" },
+      { "id": "c", "text": "`dot(B - A, C - A)`" },
+      { "id": "d", "text": "`cross(B, C)`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "两条方向向量必须从共同起点 A 发出。"
+  },
+  {
+    "id": "cross-swap",
+    "prompt": "交换叉积的两个参数会发生什么？",
+    "options": [
+      { "id": "a", "text": "结果不变" },
+      { "id": "b", "text": "结果变成平方" },
+      { "id": "c", "text": "结果改变符号" },
+      { "id": "d", "text": "结果一定变成 0" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "a×b = -(b×a)，因此方向也随之反转。"
+  },
+  {
+    "id": "twice-area",
+    "prompt": "为什么整数坐标题常保存三角形的两倍面积？",
+    "options": [
+      { "id": "a", "text": "它恰好等于叉积绝对值，可保持整数精确计算" },
+      { "id": "b", "text": "因为真实面积一定是偶数" },
+      { "id": "c", "text": "因为叉积只能计算周长" },
+      { "id": "d", "text": "为了让坐标自动缩小" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "叉积给平行四边形面积，三角形面积是其一半。"
+  },
+  {
+    "id": "integer-range",
+    "prompt": "几何代码选择整数类型时，为什么要估算中间值？",
+    "options": [
+      { "id": "a", "text": "因为最终答案范围与类型完全无关" },
+      { "id": "b", "text": "坐标差的乘积可能远大于单个坐标和最终结果" },
+      { "id": "c", "text": "因为 `ll` 不能做减法" },
+      { "id": "d", "text": "因为所有叉积都超过 64 位" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "溢出发生在表达式求值阶段，即使最终结果较小也无法挽回。"
+  }
+]
