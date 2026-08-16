@@ -1,0 +1,146 @@
+[
+  {
+    "id": "length-in-type",
+    "prompt": "`array<int, 5>` 中的 `5` 有什么含义？",
+    "options": [
+      { "id": "a", "text": "只是初始容量，之后可以自动增长" },
+      { "id": "b", "text": "它是编译期确定的元素个数，也是类型的一部分" },
+      { "id": "c", "text": "它表示最后一个有效下标" },
+      { "id": "d", "text": "它表示每个元素占用的字节数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`array<int, 5>` 与 `array<int, 7>` 是两种不同类型，长度不能在运行时读入。"
+  },
+  {
+    "id": "partial-initialization",
+    "prompt": "`array<int, 5> values = {3, 1};` 中剩余三个元素是什么？",
+    "options": [
+      { "id": "a", "text": "未定义的随机值" },
+      { "id": "b", "text": "都等于 1" },
+      { "id": "c", "text": "不存在，size 只有 2" },
+      { "id": "d", "text": "都经过值初始化，整数结果为 0" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "花括号初始化提供的值不足时，剩余元素会进行值初始化。"
+  },
+  {
+    "id": "uninitialized-local",
+    "prompt": "局部声明 `array<int, 5> values;` 后，能否立刻读取其中的整数？",
+    "options": [
+      { "id": "a", "text": "不能；不带初始式的局部整数元素不会自动清零" },
+      { "id": "b", "text": "可以，所有元素一定是 0" },
+      { "id": "c", "text": "只能读取第一个元素" },
+      { "id": "d", "text": "只有使用 at 时可以" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "需要零初始化时应使用空花括号 `array<int, 5> values = {};`。"
+  },
+  {
+    "id": "indexing",
+    "prompt": "`array<int, 5>` 的有效下标是什么？",
+    "options": [
+      { "id": "a", "text": "1..5" },
+      { "id": "b", "text": "0..5" },
+      { "id": "c", "text": "0..4" },
+      { "id": "d", "text": "由运行时决定" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "array 保留标准库原生的 0-based 接口，长度为 5 时最后一个位置是 4。"
+  },
+  {
+    "id": "size",
+    "prompt": "怎样取得一个 `array` 的元素个数？",
+    "options": [
+      { "id": "a", "text": "`capacity()`" },
+      { "id": "b", "text": "`size()`" },
+      { "id": "c", "text": "`length` 成员变量" },
+      { "id": "d", "text": "必须另外保存 n" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "array 提供标准容器接口 size；它返回模板参数中固定的元素个数。"
+  },
+  {
+    "id": "front-back",
+    "prompt": "对非空 `array` 调用 `front()` 和 `back()` 会得到什么？",
+    "options": [
+      { "id": "a", "text": "首尾元素的副本，不能修改" },
+      { "id": "b", "text": "首尾元素的下标" },
+      { "id": "c", "text": "首尾迭代器" },
+      { "id": "d", "text": "首尾元素的引用，可以用于读写" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "它们分别对应下标 0 和 size()-1 的元素，并返回引用。"
+  },
+  {
+    "id": "member-fill",
+    "prompt": "`distance.fill(-1);` 会怎样处理 `array`？",
+    "options": [
+      { "id": "a", "text": "逐个把所有元素赋值为 -1" },
+      { "id": "b", "text": "只修改第一个元素" },
+      { "id": "c", "text": "把 array 长度改成 -1" },
+      { "id": "d", "text": "只按字节修改一部分对象" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "这是 array 的成员函数，按元素赋值，不是 memset 的按字节填充。"
+  },
+  {
+    "id": "copy",
+    "prompt": "执行 `array<int, 3> b = a;` 后再修改 `b[0]`，会怎样？",
+    "options": [
+      { "id": "a", "text": "a[0] 一定同步变化" },
+      { "id": "b", "text": "程序无法编译，因为 array 不能复制" },
+      { "id": "c", "text": "b 拥有自己的元素副本，a[0] 不变" },
+      { "id": "d", "text": "只有全局 array 才能复制" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "相同类型的 array 是完整对象，可以整体复制和赋值。"
+  },
+  {
+    "id": "comparison",
+    "prompt": "两个相同类型的 `array` 怎样比较大小？",
+    "options": [
+      { "id": "a", "text": "只比较长度" },
+      { "id": "b", "text": "按字典序，从第一个不同元素决定大小" },
+      { "id": "c", "text": "比较底层地址" },
+      { "id": "d", "text": "array 不支持比较" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "长度本来就是类型的一部分；相同类型之间按元素字典序比较。"
+  },
+  {
+    "id": "const-reference",
+    "prompt": "函数只读取一个较大的 `array` 时，为什么通常传 `const` 引用？",
+    "options": [
+      { "id": "a", "text": "因为 array 只能通过引用访问" },
+      { "id": "b", "text": "为了让长度可以在运行时变化" },
+      { "id": "c", "text": "为了把元素移动到堆上" },
+      { "id": "d", "text": "避免按值复制全部元素，同时禁止函数修改原对象" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "array 按值传递会复制 N 个元素；const 引用只绑定原对象并保留只读语义。"
+  },
+  {
+    "id": "storage",
+    "prompt": "局部 `array<int, 2000005>` 为什么仍可能导致栈溢出？",
+    "options": [
+      { "id": "a", "text": "array 直接包含全部元素，不会因为是标准容器就自动改用堆存储" },
+      { "id": "b", "text": "array 会同时保存两份元素" },
+      { "id": "c", "text": "array 的每个 int 都占用 64 位" },
+      { "id": "d", "text": "只有标准库容器会使用调用栈" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "局部 array 与同等大小的局部内置数组具有相近的存储位置风险。"
+  },
+  {
+    "id": "choose-vector",
+    "prompt": "元素数量在运行时读入时，通常应选择什么？",
+    "options": [
+      { "id": "a", "text": "把运行时 n 写进 array 模板参数" },
+      { "id": "b", "text": "固定声明 array<int, 1>" },
+      { "id": "c", "text": "使用 vector 等支持运行时长度的容器" },
+      { "id": "d", "text": "放弃保存这些元素" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "array 的长度必须在编译期确定，运行时长度是 vector 的典型使用场景。"
+  }
+]
