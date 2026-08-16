@@ -520,7 +520,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 040501 | 整除 | 待审阅 | [divisibility.md](math/divisibility.md) |
+| 040501 | 因数、倍数与整除 | 待审阅 | [divisibility.md](math/divisibility.md) |
 | 040502 | 质数 | 待审阅 | [prime-numbers.md](math/prime-numbers.md) |
 | 040503 | 试除法：质数检测 | 待审阅 | [trial-division-primality-test.md](math/trial-division-primality-test.md) |
 | 060702 | 数论：扩展欧几里得算法 | 待审阅 | [extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |

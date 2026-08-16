@@ -330,7 +330,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 040501 | 整除 | 数学 | [math/divisibility.md](math/divisibility.md) |
+| 040501 | 因数、倍数与整除 | 数学 | [math/divisibility.md](math/divisibility.md) |
 | 040502 | 质数 | 数学 | [math/prime-numbers.md](math/prime-numbers.md) |
 | 040503 | 试除法：质数检测 | 数学 | [math/trial-division-primality-test.md](math/trial-division-primality-test.md) |
 | 040504 | 算术基本定理 | 数学 | [math/fundamental-theorem-of-arithmetic.md](math/fundamental-theorem-of-arithmetic.md) |
