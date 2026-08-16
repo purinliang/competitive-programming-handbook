@@ -1,0 +1,62 @@
+[
+  {
+    "id": "interval-split",
+    "prompt": "一个跨越多块的区间应当怎样处理？",
+    "options": [
+      { "id": "a", "text": "两端零散部分逐项处理，中间完整块整体处理" },
+      { "id": "b", "text": "无论区间多大都只处理左端点" },
+      { "id": "c", "text": "必须重新排序整个数组" },
+      { "id": "d", "text": "只处理完整块，忽略两端" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "分块的核心就是区分整块与零散部分；前者用块统计，后者直接处理。"
+  },
+  {
+    "id": "real-value",
+    "prompt": "本文约定中，位置 `i` 的真实值是什么？",
+    "options": [
+      { "id": "a", "text": "`sum[belong[i]]`" },
+      { "id": "b", "text": "`value[i] + lazy[belong[i]]`" },
+      { "id": "c", "text": "`value[i] * block_size`" },
+      { "id": "d", "text": "`lazy[i]`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "value 保存局部基础值，lazy 保存所属块尚未逐项写回的统一加值。"
+  },
+  {
+    "id": "full-block-update",
+    "prompt": "一个长度为 `len` 的完整块每个元素加 `delta` 时，块和怎样变化？",
+    "options": [
+      { "id": "a", "text": "只增加 `delta`" },
+      { "id": "b", "text": "保持不变" },
+      { "id": "c", "text": "增加 `delta * len`" },
+      { "id": "d", "text": "变成 `lazy`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "块内 len 个元素各自增加 delta，总和因此增加 delta*len。"
+  },
+  {
+    "id": "block-size-balance",
+    "prompt": "块长为什么通常取 `sqrt(n)` 附近？",
+    "options": [
+      { "id": "a", "text": "因为数组长度必须是完全平方数" },
+      { "id": "b", "text": "因为块数必须等于元素值" },
+      { "id": "c", "text": "因为这会把任意操作变成 `O(1)`" },
+      { "id": "d", "text": "它平衡了零散元素数 `O(B)` 与完整块数 `O(n/B)`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "一次操作的主要代价是 B+n/B；两项同阶时取得根号级别的平衡。"
+  },
+  {
+    "id": "same-block-case",
+    "prompt": "`l` 和 `r` 在同一块时，为什么要单独处理？",
+    "options": [
+      { "id": "a", "text": "整个区间都是一段零散部分，若再拆成左右两端会重复处理" },
+      { "id": "b", "text": "同一块内不允许修改" },
+      { "id": "c", "text": "同一块内的元素一定相等" },
+      { "id": "d", "text": "只有同一块时才能使用 `lazy`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "跨块时才有两个不重叠的端点部分；同块区间应直接遍历一次。"
+  }
+]
