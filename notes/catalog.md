@@ -293,7 +293,7 @@
 | 030607 | 排序方法比较 | 待审阅 | [sorting-comparison.md](algorithm-basics/sorting-comparison.md) |
 | 030605 | 快速排序 | 待审阅 | [quicksort.md](algorithm-basics/quicksort.md) |
 | 030606 | 归并排序 | 待审阅 | [merge-sort.md](algorithm-basics/merge-sort.md) |
-| *030606e1 | 用归并排序统计逆序对 | 计划 | `algorithm-basics/merge-sort-inversion-count.md` |
+| *030606e1 | 用归并排序统计逆序对 | 待审阅 | [merge-sort-inversion-count.md](algorithm-basics/merge-sort-inversion-count.md) |
 
 ### 专题：分治
 
@@ -302,7 +302,7 @@
 | 030206 | 分治 | 待审阅 | [divide-and-conquer.md](algorithm-basics/divide-and-conquer.md) |
 | 030605 | 快速排序 | 待审阅 | [quicksort.md](algorithm-basics/quicksort.md) |
 | 030606 | 归并排序 | 待审阅 | [merge-sort.md](algorithm-basics/merge-sort.md) |
-| *030606e1 | 用归并排序统计逆序对 | 计划 | `algorithm-basics/merge-sort-inversion-count.md` |
+| *030606e1 | 用归并排序统计逆序对 | 待审阅 | [merge-sort-inversion-count.md](algorithm-basics/merge-sort-inversion-count.md) |
 | *990201 | CDQ 分治 | 计划 | `algorithm-basics/cdq-divide-and-conquer.md` |
 
 ### 专题：其他排序
