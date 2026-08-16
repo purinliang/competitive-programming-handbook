@@ -340,7 +340,7 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0701 | 动态规划的状态与转移 | 动态规划 | [dynamic-programming/dp-state-transition.md](dynamic-programming/dp-state-transition.md) |
-| 0731 | 数字三角形 | 动态规划 | `dynamic-programming/number-triangle.md` |
+| 0731 | 数字三角形 | 动态规划 | [dynamic-programming/number-triangle.md](dynamic-programming/number-triangle.md) |
 | 0702 | 最大子段和 | 动态规划 | [dynamic-programming/linear-dp.md](dynamic-programming/linear-dp.md) |
 | 0704 | 最长上升子序列 | 动态规划 | [dynamic-programming/longest-increasing-subsequence.md](dynamic-programming/longest-increasing-subsequence.md) |
 | 0732 | 最长公共子序列 | 动态规划 | `dynamic-programming/longest-common-subsequence.md` |
