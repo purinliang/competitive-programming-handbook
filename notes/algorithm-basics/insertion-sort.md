@@ -1,6 +1,6 @@
 # 插入排序
 
-> 最近修订：2026-08-16 10:35 +10:00（未审阅）
+> 最近修订：2026-08-16 18:00 +10:00（未审阅）
 
 整理扑克牌时，我们常把新拿到的一张牌插入手中已经排好序的牌：先为它向左寻找
 位置，把更大的牌依次右移，再放进留下的空位。插入排序把这个过程应用到数组。
@@ -63,10 +63,14 @@ a[j + 1] = key;
 
 ## 不断扩大有序前缀
 
-完整函数为：
+`n` 和 `a` 是整道题共享的输入状态，放在全局；`i`、`j` 和 `key` 只描述当前
+一轮插入，保留为函数内部的局部状态。完整函数为：
 
 ```cpp
-void insertion_sort(vector<int>& a, int n) {
+int n;
+vector<int> a;
+
+void insertion_sort() {
     for (int i = 2; i <= n; i++) {
         int key = a[i];
         int j = i - 1;
@@ -136,7 +140,10 @@ $$
 #include <bits/stdc++.h>
 using namespace std;
 
-void insertion_sort(vector<int>& a, int n) {
+int n;
+vector<int> a;
+
+void insertion_sort() {
     for (int i = 2; i <= n; i++) {
         int key = a[i];
         int j = i - 1;
@@ -151,23 +158,22 @@ void insertion_sort(vector<int>& a, int n) {
 }
 
 void solve() {
-    int n;
-    cin >> n;
+    scanf("%d", &n);
 
-    vector<int> a(n + 5);
+    a.assign(n + 5, 0);
     for (int i = 1; i <= n; i++) {
-        cin >> a[i];
+        scanf("%d", &a[i]);
     }
 
-    insertion_sort(a, n);
+    insertion_sort();
 
     for (int i = 1; i <= n; i++) {
         if (i > 1) {
-            cout << ' ';
+            printf(" ");
         }
-        cout << a[i];
+        printf("%d", a[i]);
     }
-    cout << '\n';
+    printf("\n");
 }
 
 int main() {
