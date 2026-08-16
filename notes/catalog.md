@@ -474,7 +474,7 @@
 | --- | --- | --- | --- |
 | 040301 | 点与边 | 待审阅 | [vertices-and-edges.md](graph-theory/vertices-and-edges.md) |
 | 040304 | 图的存储：基础概念 | 待审阅 | [graph-representation.md](graph-theory/graph-representation.md) |
-| 040305 | 图的存储：邻接矩阵 | 计划 | `graph-theory/adjacency-matrix.md` |
+| 040305 | 图的存储：邻接矩阵 | 待审阅 | [adjacency-matrix.md](graph-theory/adjacency-matrix.md) |
 | 061604 | 树上查询：倍增 LCA | 定稿 | [lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
 | 040309 | 连通分量 | 待审阅 | [connected-components.md](graph-theory/connected-components.md) |
 | 061301 | 有向无环图：拓扑排序 | 待审阅 | [topological-sort.md](graph-theory/topological-sort.md) |

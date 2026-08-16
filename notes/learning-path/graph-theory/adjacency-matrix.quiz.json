@@ -1,0 +1,50 @@
+[
+  {
+    "id": "matrix-undirected-edge",
+    "prompt": "在无权无向图的邻接矩阵中加入边 `(u, v)`，应怎样更新？",
+    "options": [
+      { "id": "a", "text": "只令 `g[u][u] = 1`" },
+      { "id": "b", "text": "只令 `g[u][v] = 1`" },
+      { "id": "c", "text": "同时令 `g[u][v] = 1` 和 `g[v][u] = 1`" },
+      { "id": "d", "text": "清空矩阵的第 `u` 行" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "无向边可以从两端通行，因此矩阵中的两个对称方向都要存在。"
+  },
+  {
+    "id": "matrix-weight-no-edge",
+    "prompt": "带权图为什么通常不使用 `0` 表示没有边？",
+    "options": [
+      { "id": "a", "text": "边权 `0` 可能是合法值，会与不存在混淆" },
+      { "id": "b", "text": "矩阵不能保存整数零" },
+      { "id": "c", "text": "所有边权必须为负数" },
+      { "id": "d", "text": "使用零会自动建立自环" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "需要让“没有边”的哨兵值与所有合法边权区分，常使用足够大的 `INF`。"
+  },
+  {
+    "id": "matrix-edge-query-complexity",
+    "prompt": "邻接矩阵判断指定有向边 `u -> v` 是否存在的时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "`O(n^2)`" },
+      { "id": "b", "text": "`O(n)`" },
+      { "id": "c", "text": "`O(log n)`" },
+      { "id": "d", "text": "`O(1)`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "直接读取 `g[u][v]` 就能得到指定点对的连边状态。"
+  },
+  {
+    "id": "matrix-direct-versus-reachable",
+    "prompt": "无权图中 `g[u][v] == 0` 能说明什么？",
+    "options": [
+      { "id": "a", "text": "`u` 和 `v` 一定属于不同图" },
+      { "id": "b", "text": "没有直接边，但仍可能通过其他点形成路径" },
+      { "id": "c", "text": "`u` 一定没有任何出边" },
+      { "id": "d", "text": "从 `u` 到 `v` 的最短路一定是零" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "邻接矩阵格子只记录直接关系；可达性需要沿一条或多条边判断。"
+  }
+]

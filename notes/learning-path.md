@@ -374,7 +374,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 040302 | 路径与环 | 图论 | [graph-theory/paths-and-cycles.md](graph-theory/paths-and-cycles.md) |
 | 040303 | 度数 | 图论 | [graph-theory/vertex-degrees.md](graph-theory/vertex-degrees.md) |
 | 040304 | 图的存储：基础概念 | 图论 | [graph-theory/graph-representation.md](graph-theory/graph-representation.md) |
-| 040305 | 图的存储：邻接矩阵 | 图论 | `graph-theory/adjacency-matrix.md` |
+| 040305 | 图的存储：邻接矩阵 | 图论 | [graph-theory/adjacency-matrix.md](graph-theory/adjacency-matrix.md) |
 | 040306 | 图的存储：邻接表（`vector` 实现） | 图论 | [graph-theory/vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
 | 040307 | 图的遍历：深度优先搜索（DFS） | 图论 | [graph-theory/graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
 | 040308 | 图的遍历：广度优先搜索（BFS） | 图论 | [graph-theory/graph-breadth-first-search.md](graph-theory/graph-breadth-first-search.md) |
