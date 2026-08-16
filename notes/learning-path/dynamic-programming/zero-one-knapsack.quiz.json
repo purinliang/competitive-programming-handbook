@@ -13,7 +13,7 @@
   },
   {
     "id": "two-dimensions",
-    "prompt": "二维状态 `dp[i][c]` 中，`i` 和 `c` 分别限制什么？",
+    "prompt": "二维表 `dp[i][c]` 中，阶段 `i` 和容量状态 `c` 分别限制什么？",
     "options": [
       { "id": "a", "text": "已经选择的物品数量与恰好使用的重量" },
       { "id": "b", "text": "物品总价值与剩余价值" },
@@ -21,7 +21,7 @@
       { "id": "d", "text": "当前物品编号与必须选择的物品数量" }
     ],
     "correctOptionId": "c",
-    "explanation": "i 隔离物品使用次数，c 区分不同容量限制；状态值才是最大价值。"
+    "explanation": "i 表示已经处理前多少件物品，c 区分不同容量限制；状态值才是最大价值。"
   },
   {
     "id": "take-transition",
