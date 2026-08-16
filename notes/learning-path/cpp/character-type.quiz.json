@@ -65,10 +65,10 @@
     "options": [
       { "id": "a", "text": "中文字符只能保存在整数数组中" },
       { "id": "b", "text": "中文字符不能被计算机编码" },
-      { "id": "c", "text": "一个 UTF-8 中文字符通常由多个字节组成" },
-      { "id": "d", "text": "`char` 只能保存数字字符" }
+      { "id": "c", "text": "`char` 只能保存数字字符" },
+      { "id": "d", "text": "一个 UTF-8 中文字符通常由多个字节组成" }
     ],
-    "correctOptionId": "c",
+    "correctOptionId": "d",
     "explanation": "`char` 只保存一个字节，而 UTF-8 中的一个中文字符通常由多个字节共同编码。"
   }
 ]

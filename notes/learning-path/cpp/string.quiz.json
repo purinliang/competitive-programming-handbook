@@ -3,36 +3,36 @@
     "id": "managed-length",
     "prompt": "与 C 字符串相比，`string` 最直接替我们管理了什么？",
     "options": [
-      { "id": "a", "text": "当前长度和随内容变化所需的存储空间" },
+      { "id": "a", "text": "程序的运行时间限制" },
       { "id": "b", "text": "所有算法题的答案" },
       { "id": "c", "text": "每个字符的自然语言含义" },
-      { "id": "d", "text": "程序的运行时间限制" }
+      { "id": "d", "text": "当前长度和随内容变化所需的存储空间" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "`string` 保存长度并自动管理容量，使用者不必手动维护末尾空字符或固定 `MAXL`。"
   },
   {
     "id": "size-complexity",
     "prompt": "为什么 `string::size()` 通常是 `O(1)`？",
     "options": [
-      { "id": "a", "text": "`string` 对象已经保存了自己的长度" },
+      { "id": "a", "text": "它每次都跳过所有字符" },
       { "id": "b", "text": "它只适用于长度为一的字符串" },
-      { "id": "c", "text": "它每次都跳过所有字符" },
+      { "id": "c", "text": "`string` 对象已经保存了自己的长度" },
       { "id": "d", "text": "它返回的是数组最大容量" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "与需要扫描空字符的 `strlen` 不同，`string` 能直接返回已经维护的字符数量。"
   },
   {
     "id": "word-versus-line",
     "prompt": "读取可能包含空格的一整行到 `string s`，应使用什么？",
     "options": [
-      { "id": "a", "text": "`getline(cin, s)`" },
-      { "id": "b", "text": "`cin >> s`" },
+      { "id": "a", "text": "`cin >> s`" },
+      { "id": "b", "text": "`getline(cin, s)`" },
       { "id": "c", "text": "`cout << s`" },
       { "id": "d", "text": "`strlen(s)`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "`cin >> s` 以空白分隔，只读取一个单词；`getline` 保留行内空格。"
   },
   {
@@ -51,36 +51,36 @@
     "id": "string-copy",
     "prompt": "执行 `string b = a;` 后修改 `b[0]`，通常会怎样？",
     "options": [
-      { "id": "a", "text": "只修改 `b`，不会修改 `a`" },
+      { "id": "a", "text": "字符串不允许整体复制" },
       { "id": "b", "text": "`a` 与 `b` 必须同时改变" },
       { "id": "c", "text": "两个字符串都会立刻变空" },
-      { "id": "d", "text": "字符串不允许整体复制" }
+      { "id": "d", "text": "只修改 `b`，不会修改 `a`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "`string` 可以像普通值对象一样复制，副本拥有自己的字符串内容。"
   },
   {
     "id": "substring-count",
     "prompt": "`string s = \"abcdefgh\"; s.substr(2, 3)` 得到什么？",
     "options": [
-      { "id": "a", "text": "`cde`" },
+      { "id": "a", "text": "`def`" },
       { "id": "b", "text": "`cd`" },
-      { "id": "c", "text": "`def`" },
+      { "id": "c", "text": "`cde`" },
       { "id": "d", "text": "`abc`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "从 0-based 下标 `2` 开始复制三个字符，即 `c`、`d`、`e`。"
   },
   {
     "id": "find-not-found",
     "prompt": "`s.find(pattern)` 没有找到模式串时返回什么？",
     "options": [
-      { "id": "a", "text": "`string::npos`" },
-      { "id": "b", "text": "一定返回 `-1` 类型的 `int`" },
+      { "id": "a", "text": "一定返回 `-1` 类型的 `int`" },
+      { "id": "b", "text": "`string::npos`" },
       { "id": "c", "text": "空字符串" },
       { "id": "d", "text": "字符串长度的一半" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "位置接口使用特殊常量 `string::npos` 表示没有找到，应直接与它比较。"
   },
   {

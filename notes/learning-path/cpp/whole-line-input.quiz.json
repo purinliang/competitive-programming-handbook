@@ -3,36 +3,36 @@
     "id": "formatted-string-input",
     "prompt": "用 `cin >> s` 读取 `hello world` 时，`s` 通常先得到什么？",
     "options": [
-      { "id": "a", "text": "`hello`" },
-      { "id": "b", "text": "`hello world`" },
+      { "id": "a", "text": "`hello world`" },
+      { "id": "b", "text": "`hello`" },
       { "id": "c", "text": "一个换行符" },
       { "id": "d", "text": "空字符串" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "字符串的 `>>` 读入以空白分隔，只读取下一个单词；整行文本应使用 `getline`。"
   },
   {
     "id": "getline-newline",
     "prompt": "`getline(cin, s)` 读到行末时怎样处理换行符？",
     "options": [
-      { "id": "a", "text": "从输入中取走换行，但不把它保存在 `s` 中" },
+      { "id": "a", "text": "把换行转换成空格" },
       { "id": "b", "text": "把换行保存在 `s` 的末尾" },
-      { "id": "c", "text": "把换行转换成空格" },
+      { "id": "c", "text": "从输入中取走换行，但不把它保存在 `s` 中" },
       { "id": "d", "text": "遇到换行就让程序编译失败" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "`getline` 以换行为分隔符，取走分隔符但不把它加入结果字符串。"
   },
   {
     "id": "leftover-newline",
     "prompt": "`cin >> n` 后立刻调用 `getline(cin, s)`，为什么可能得到空字符串？",
     "options": [
-      { "id": "a", "text": "整数后的换行仍在输入中，被 `getline` 当成当前行结尾" },
+      { "id": "a", "text": "`n` 必须先转换成字符" },
       { "id": "b", "text": "整数变量会清空所有字符串" },
       { "id": "c", "text": "`getline` 不能在循环外使用" },
-      { "id": "d", "text": "`n` 必须先转换成字符" }
+      { "id": "d", "text": "整数后的换行仍在输入中，被 `getline` 当成当前行结尾" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "格式化读入在数字结束处停止，残留换行会让下一次整行读取立即结束。"
   },
   {
@@ -51,36 +51,36 @@
     "id": "char-array-function",
     "prompt": "哪种写法直接把整行读入字符数组 `s`？",
     "options": [
-      { "id": "a", "text": "`cin.getline(s, MAXL)`" },
-      { "id": "b", "text": "`getline(cin, s)`，其中 `s` 是字符数组" },
+      { "id": "a", "text": "`getline(cin, s)`，其中 `s` 是字符数组" },
+      { "id": "b", "text": "`cin.getline(s, MAXL)`" },
       { "id": "c", "text": "`cin >> sizeof(s)`" },
       { "id": "d", "text": "`cout.getline(s)`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "`cin.getline` 接收字符数组和容量；自由函数 `getline` 接收 `string`。"
   },
   {
     "id": "fgets-newline",
     "prompt": "关于 `fgets(s, MAXL, stdin)`，下面哪项正确？",
     "options": [
-      { "id": "a", "text": "若本轮读到行末且空间足够，换行会保存在 `s` 中" },
+      { "id": "a", "text": "它最多读取 `MAXL` 个普通字符再额外补零" },
       { "id": "b", "text": "它永远不会补末尾空字符" },
-      { "id": "c", "text": "它最多读取 `MAXL` 个普通字符再额外补零" },
+      { "id": "c", "text": "若本轮读到行末且空间足够，换行会保存在 `s` 中" },
       { "id": "d", "text": "它只能读取不含空格的单词" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "`fgets` 最多读取 `MAXL - 1` 个字符并补零；实际读到的行末换行会作为内容保留。"
   },
   {
     "id": "safe-newline-removal",
     "prompt": "删除 `fgets` 结果末尾的换行前为什么必须先检查？",
     "options": [
-      { "id": "a", "text": "最后一行或过长的一行可能没有在本轮读到换行" },
+      { "id": "a", "text": "`strlen` 总是返回负数" },
       { "id": "b", "text": "换行一定在字符串开头" },
       { "id": "c", "text": "字符数组不能修改" },
-      { "id": "d", "text": "`strlen` 总是返回负数" }
+      { "id": "d", "text": "最后一行或过长的一行可能没有在本轮读到换行" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "只有末尾确实是 `\\n` 才能删除，否则会误删真实文本的最后一个字符。"
   }
 ]

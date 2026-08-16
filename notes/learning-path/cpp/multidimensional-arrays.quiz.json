@@ -3,36 +3,36 @@
     "id": "rows-columns-elements",
     "prompt": "`int a[3][4]` 声明了多少行、多少列和多少个 `int` 元素？",
     "options": [
-      { "id": "a", "text": "3 行、4 列、12 个元素" },
-      { "id": "b", "text": "4 行、3 列、7 个元素" },
+      { "id": "a", "text": "4 行、3 列、7 个元素" },
+      { "id": "b", "text": "3 行、4 列、12 个元素" },
       { "id": "c", "text": "3 行、4 列、4 个元素" },
       { "id": "d", "text": "12 行、1 列、12 个元素" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "第一维选择三行，每行是含四个 `int` 的数组，总元素数为 `3 * 4 = 12`。"
   },
   {
     "id": "native-last-element",
     "prompt": "使用 C++ 原生 0-based 下标时，`int a[3][4]` 的右下角元素是哪一个？",
     "options": [
-      { "id": "a", "text": "`a[2][3]`" },
+      { "id": "a", "text": "`a[2][4]`" },
       { "id": "b", "text": "`a[3][4]`" },
-      { "id": "c", "text": "`a[2][4]`" },
+      { "id": "c", "text": "`a[2][3]`" },
       { "id": "d", "text": "`a[3][3]`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "三行的最后下标是 `2`，四列的最后下标是 `3`。"
   },
   {
     "id": "nested-loop-bounds",
     "prompt": "1-based 的 `n` 行 `m` 列表格，按行遍历应使用哪组循环边界？",
     "options": [
-      { "id": "a", "text": "外层 `i = 1..n`，内层 `j = 1..m`" },
+      { "id": "a", "text": "只需要一层循环到 `max(n, m)`" },
       { "id": "b", "text": "外层 `i = 1..m`，内层 `j = 1..n`，任何题都一样" },
       { "id": "c", "text": "两个循环都只能到 `n + m`" },
-      { "id": "d", "text": "只需要一层循环到 `max(n, m)`" }
+      { "id": "d", "text": "外层 `i = 1..n`，内层 `j = 1..m`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "外层固定行，内层走完这一行的所有列；循环体总共执行 `n * m` 次。"
   },
   {
@@ -51,36 +51,36 @@
     "id": "row-major-layout",
     "prompt": "C++ 内置二维数组按什么顺序连续排列？",
     "options": [
-      { "id": "a", "text": "先放完整的一行，再放下一行" },
-      { "id": "b", "text": "先放完整的一列，再放下一列" },
+      { "id": "a", "text": "先放完整的一列，再放下一列" },
+      { "id": "b", "text": "先放完整的一行，再放下一行" },
       { "id": "c", "text": "元素位置每次运行随机排列" },
       { "id": "d", "text": "只连续存放主对角线" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "二维内置数组是数组的数组，完整的行依次连续存放，这称为行优先。"
   },
   {
     "id": "two-index-validity",
     "prompt": "访问 `a[i][j]` 时，下面哪项检查是完整的？",
     "options": [
-      { "id": "a", "text": "行下标和列下标都必须落在各自合法范围内" },
+      { "id": "a", "text": "只要 `i + j` 不为零就合法" },
       { "id": "b", "text": "只要 `i` 合法，`j` 可以任意" },
-      { "id": "c", "text": "只要 `i + j` 不为零就合法" },
+      { "id": "c", "text": "行下标和列下标都必须落在各自合法范围内" },
       { "id": "d", "text": "二维数组会自动修正所有越界下标" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "每一维都参与选择元素，任意一维越界都会导致非法访问。"
   },
   {
     "id": "higher-dimensional-size",
     "prompt": "`int state[10][20][30]` 一共包含多少个 `int` 元素？",
     "options": [
-      { "id": "a", "text": "6000" },
+      { "id": "a", "text": "200" },
       { "id": "b", "text": "60" },
       { "id": "c", "text": "600" },
-      { "id": "d", "text": "200" }
+      { "id": "d", "text": "6000" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "多维数组的总元素数是各维容量的乘积，即 `10 * 20 * 30 = 6000`。"
   }
 ]
