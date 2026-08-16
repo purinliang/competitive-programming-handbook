@@ -1,0 +1,50 @@
+[
+  {
+    "id": "centroid-definition",
+    "prompt": "树的重心最小化什么量？",
+    "options": [
+      { "id": "a", "text": "到所有节点的距离之和" },
+      { "id": "b", "text": "删除该节点后最大连通分量的大小" },
+      { "id": "c", "text": "该节点的深度" },
+      { "id": "d", "text": "经过该节点的边数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "重心衡量删除节点后树被分得是否均衡，不是最小化距离。"
+  },
+  {
+    "id": "child-component",
+    "prompt": "删除节点 u 后，某个子节点 v 方向的连通分量大小是多少？",
+    "options": [
+      { "id": "a", "text": "`subtree_size[v]`" },
+      { "id": "b", "text": "`subtree_size[u]`" },
+      { "id": "c", "text": "`n-subtree_size[v]`" },
+      { "id": "d", "text": "`degree[v]`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "以当前 DFS 根观察，子节点 v 的整棵子树会成为一个连通分量。"
+  },
+  {
+    "id": "parent-component",
+    "prompt": "删除 u 后，父节点方向的连通分量大小为什么是 `n-subtree_size[u]`？",
+    "options": [
+      { "id": "a", "text": "父节点方向只含根节点" },
+      { "id": "b", "text": "因为每棵树都有 n 条边" },
+      { "id": "c", "text": "它恰好包含 u 的子树以外全部节点" },
+      { "id": "d", "text": "这是重心的定义" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "切断 u 后，所有不在 u 子树中的节点仍从父方向连在一起。"
+  },
+  {
+    "id": "center-vs-centroid",
+    "prompt": "树的中心与重心有什么区别？",
+    "options": [
+      { "id": "a", "text": "二者永远是同一节点" },
+      { "id": "b", "text": "中心只存在于有向树" },
+      { "id": "c", "text": "重心最小化最远距离" },
+      { "id": "d", "text": "中心最小化离心率，重心最小化删除后的最大分量" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "它们使用不同的平衡标准，不能因名称相近而混用。"
+  }
+]
