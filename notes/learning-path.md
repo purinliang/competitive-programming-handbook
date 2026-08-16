@@ -313,7 +313,7 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0436 | 图的遍历：深度优先搜索（DFS） | 图论 | [graph-theory/graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
-| 0261 | 状态空间与隐式图 | 算法基础 | `algorithm-basics/state-space-and-implicit-graphs.md` |
+| 0261 | 状态空间与隐式图 | 算法基础 | [algorithm-basics/state-space-and-implicit-graphs.md](algorithm-basics/state-space-and-implicit-graphs.md) |
 | 0211 | 子集与位掩码枚举 | 算法基础 | [algorithm-basics/subset-bitmask-enumeration.md](algorithm-basics/subset-bitmask-enumeration.md) |
 | 0262 | 排列枚举 | 算法基础 | `algorithm-basics/permutation-enumeration.md` |
 | 0263 | 组合枚举 | 算法基础 | `algorithm-basics/combination-enumeration.md` |

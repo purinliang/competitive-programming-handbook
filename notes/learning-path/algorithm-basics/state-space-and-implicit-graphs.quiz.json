@@ -1,0 +1,74 @@
+[
+  {
+    "id": "implicit-graph",
+    "prompt": "在隐式图中，程序通常怎样得到当前状态的相邻状态？",
+    "options": [
+      { "id": "a", "text": "根据问题允许的操作即时生成" },
+      { "id": "b", "text": "必须先读入完整邻接矩阵" },
+      { "id": "c", "text": "只能从文件中读取点编号" },
+      { "id": "d", "text": "把所有状态随机排列" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "隐式图的点和边由问题规则定义，遍历到状态时再根据合法操作生成后继，不必预先保存整张图。"
+  },
+  {
+    "id": "state-meaning",
+    "prompt": "在长度为 `n` 的 01 序列枚举中，进入 `dfs(position)` 时状态表示什么？",
+    "options": [
+      { "id": "a", "text": "只有 `position` 这个数，前缀内容可以忽略" },
+      { "id": "b", "text": "前 `position - 1` 位已经确定，下一步决定第 `position` 位" },
+      { "id": "c", "text": "整个长度为 `n` 的序列已经完成" },
+      { "id": "d", "text": "只剩第一个位置没有决定" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "状态由已经确定的前缀和下一次要处理的位置共同描述。"
+  },
+  {
+    "id": "termination",
+    "prompt": "为什么程序在 `position == n + 1` 时输出序列？",
+    "options": [
+      { "id": "a", "text": "因为数组下标必须从 `0` 开始" },
+      { "id": "b", "text": "因为这一层需要再选择一个额外字符" },
+      { "id": "c", "text": "因为位置 `1..n` 已经全部在此前层中确定" },
+      { "id": "d", "text": "因为此时递归深度一定为 `2^n`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`position` 表示下一次要处理的位置；它到达 `n + 1` 时，最后一个真实位置 `n` 已经选完。"
+  },
+  {
+    "id": "visited-marker",
+    "prompt": "本篇的 01 序列状态树为什么不需要访问标记？",
+    "options": [
+      { "id": "a", "text": "所有隐式图都没有环" },
+      { "id": "b", "text": "DFS 从来不使用访问标记" },
+      { "id": "c", "text": "序列只包含两个不同字符" },
+      { "id": "d", "text": "每次转移都增加前缀长度，而且每个前缀只有唯一父状态" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "状态只能向更长前缀移动，无法形成环；同一个前缀也不会由两条路径重复到达。"
+  },
+  {
+    "id": "dfs-vs-explicit-graph",
+    "prompt": "DFS 枚举与显式图 DFS 最核心的共同点是什么？",
+    "options": [
+      { "id": "a", "text": "都必须使用整数点编号" },
+      { "id": "b", "text": "都从当前状态访问每种下一步，再继续处理到达的状态" },
+      { "id": "c", "text": "都必须把所有边存进 `g[u]`" },
+      { "id": "d", "text": "都只能遍历二叉树" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "两者都沿状态之间的边深度优先推进；区别是边来自已存邻接表还是由选择规则即时生成。"
+  },
+  {
+    "id": "output-complexity",
+    "prompt": "输出全部长度为 `n` 的 01 序列为什么仍需指数时间？",
+    "options": [
+      { "id": "a", "text": "因为递归函数一定比循环慢指数倍" },
+      { "id": "b", "text": "因为 `vector` 的下标访问是指数复杂度" },
+      { "id": "c", "text": "因为本来就有 `2^n` 个答案需要输出" },
+      { "id": "d", "text": "因为每个状态都必须建立邻接矩阵" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "算法至少要写出全部 `2^n` 个答案；DFS 只统一生成过程，不会减少输出数量。"
+  }
+]
