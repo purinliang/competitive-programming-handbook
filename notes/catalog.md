@@ -454,7 +454,7 @@
 | *990316 | Wavelet Matrix | 计划 | `data-structures/wavelet-matrix.md` |
 | *990317 | 启发式合并（small-to-large） | 计划 | `data-structures/small-to-large-merging.md` |
 | 050104 | 二叉树的遍历：前序、中序与后序 | 待审阅 | [binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
-| 050105 | 二叉搜索树的概念与构造 | 计划 | `data-structures/binary-search-tree-construction.md` |
+| 050105 | 二叉搜索树的概念与构造 | 待审阅 | [binary-search-tree-construction.md](data-structures/binary-search-tree-construction.md) |
 | *990318 | 斜堆 | 计划 | `data-structures/skew-heap.md` |
 | *990319 | 配对堆 | 计划 | `data-structures/pairing-heap.md` |
 | *990320 | 可持久化并查集 | 计划 | `data-structures/persistent-disjoint-set-union.md` |

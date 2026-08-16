@@ -462,7 +462,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 050102 | 二叉树的存储 | 数据结构 | [data-structures/binary-tree-storage.md](data-structures/binary-tree-storage.md) |
 | 050103 | 完全二叉树 | 数据结构 | [data-structures/complete-binary-tree.md](data-structures/complete-binary-tree.md) |
 | 050104 | 二叉树的遍历：前序、中序与后序 | 数据结构 | [data-structures/binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
-| 050105 | 二叉搜索树的概念与构造 | 数据结构 | `data-structures/binary-search-tree-construction.md` |
+| 050105 | 二叉搜索树的概念与构造 | 数据结构 | [data-structures/binary-search-tree-construction.md](data-structures/binary-search-tree-construction.md) |
 
 ### 单元 02：数据结构：二叉堆
 

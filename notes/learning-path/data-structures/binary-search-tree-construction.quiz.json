@@ -1,0 +1,50 @@
+[
+  {
+    "id": "bst-order-rule",
+    "prompt": "本篇采用严格键值规则时，二叉搜索树节点 `u` 的左右子树满足什么？",
+    "options": [
+      { "id": "a", "text": "左右子树所有键都等于 `key[u]`" },
+      { "id": "b", "text": "左子树所有键更小，右子树所有键更大" },
+      { "id": "c", "text": "左子树所有键更大，右子树所有键更小" },
+      { "id": "d", "text": "只要求两个直接孩子有序" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "顺序约束作用于整棵左右子树，并且子树自身还要继续满足同一规则。"
+  },
+  {
+    "id": "bst-duplicate-policy",
+    "prompt": "本篇怎样处理重复键？",
+    "options": [
+      { "id": "a", "text": "不建立重复节点，在已有节点增加 `frequency`" },
+      { "id": "b", "text": "随机放入任意子树" },
+      { "id": "c", "text": "删除整棵树" },
+      { "id": "d", "text": "把键改成浮点数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "这样不同节点仍保持严格左小右大，频次单独记录重复出现次数。"
+  },
+  {
+    "id": "bst-worst-height",
+    "prompt": "按升序把不同键逐个插入普通二叉搜索树，最坏可能得到什么？",
+    "options": [
+      { "id": "a", "text": "高度永远为 `1` 的树" },
+      { "id": "b", "text": "自动完成平衡的树" },
+      { "id": "c", "text": "所有键都进入根节点" },
+      { "id": "d", "text": "高度为 `O(n)` 的单链形树" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每个更大键都沿右侧插入，普通 BST 没有旋转或平衡规则阻止退化。"
+  },
+  {
+    "id": "bst-inorder",
+    "prompt": "为什么二叉搜索树的中序遍历按键有序？",
+    "options": [
+      { "id": "a", "text": "中序遍历会先调用 `sort`" },
+      { "id": "b", "text": "节点编号总按键递增" },
+      { "id": "c", "text": "中序依次访问更小的左子树、当前键和更大的右子树" },
+      { "id": "d", "text": "所有二叉树的中序遍历都天然有序" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "遍历顺序与 BST 的键值不变量配合，递归地得到递增的不同键。"
+  }
+]
