@@ -1,0 +1,74 @@
+[
+  {
+    "id": "bridge-condition",
+    "prompt": "DFS 树边 `u-v` 成为桥的条件是什么？",
+    "options": [
+      { "id": "a", "text": "`low[v] > dfn[u]`" },
+      { "id": "b", "text": "`low[v] < dfn[u]`" },
+      { "id": "c", "text": "`low[u] == low[v]`" },
+      { "id": "d", "text": "`dfn[v] == 0`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "v 子树无法通过其他边回到 u 或更早祖先时，删除树边会断开图。"
+  },
+  {
+    "id": "cut-condition",
+    "prompt": "非根点 `u` 成为割点的子树条件是什么？",
+    "options": [
+      { "id": "a", "text": "每个孩子都满足 `low[v] < dfn[u]`" },
+      { "id": "b", "text": "存在孩子满足 `low[v] >= dfn[u]`" },
+      { "id": "c", "text": "`u` 的原图度数恰好为 1" },
+      { "id": "d", "text": "`u` 没有 DFS 孩子" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "该孩子子树无法绕过 u 到达 u 的祖先，删除 u 后会分离。"
+  },
+  {
+    "id": "root-rule",
+    "prompt": "DFS 根成为割点的条件是什么？",
+    "options": [
+      { "id": "a", "text": "原图度数至少为 1" },
+      { "id": "b", "text": "`low[root] == dfn[root]`" },
+      { "id": "c", "text": "拥有至少两个 DFS 树孩子" },
+      { "id": "d", "text": "没有父边" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "删除根后，不同 DFS 孩子子树会彼此分离。"
+  },
+  {
+    "id": "parallel-edges",
+    "prompt": "为什么 DFS 应跳过父边编号，而不是所有指向父节点的边？",
+    "options": [
+      { "id": "a", "text": "父节点可能不存在" },
+      { "id": "b", "text": "边编号一定等于点编号" },
+      { "id": "c", "text": "这样可以减少数组大小" },
+      { "id": "d", "text": "另一条平行边是有效绕行道路，不能一并跳过" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "只排除刚走来的同一条无向边，才能正确处理重边。"
+  },
+  {
+    "id": "low-meaning",
+    "prompt": "`low[v]` 很小说明什么？",
+    "options": [
+      { "id": "a", "text": "`v` 子树能通过非树边回到较早祖先" },
+      { "id": "b", "text": "`v` 一定是叶子" },
+      { "id": "c", "text": "`v` 的编号很小" },
+      { "id": "d", "text": "所有相邻边都是桥" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "low 记录子树能够绕行到达的最早 DFS 时间戳。"
+  },
+  {
+    "id": "disconnected-graph",
+    "prompt": "原图不连通时应怎样处理？",
+    "options": [
+      { "id": "a", "text": "只从点 1 DFS" },
+      { "id": "b", "text": "为每个未访问点启动 DFS，并分别应用根规则" },
+      { "id": "c", "text": "先把所有分量任意连起来" },
+      { "id": "d", "text": "割点和桥没有定义" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "DFS 森林中的每棵树都可能包含割点和桥。"
+  }
+]
