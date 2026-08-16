@@ -396,7 +396,7 @@ int main() {
 
 ## 扩展阅读
 
-[高精度整数：负数（正文待写）](../catalog.md#05-数学) 会增加符号、绝对值比较、
+[高精度整数：负数](big-integer-negative-numbers.md) 会增加符号、绝对值比较、
 带符号运算分派和负零归一化。
 
 [压位高精度](packed-big-integer.md) 会把若干十进制数字合并成一个数字块，严格
