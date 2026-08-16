@@ -1,0 +1,50 @@
+[
+  {
+    "id": "topological-order",
+    "prompt": "DAG 上的 DP 为什么通常按拓扑序处理？",
+    "options": [
+      { "id": "a", "text": "拓扑序保证每条边的起点先于终点" },
+      { "id": "b", "text": "拓扑序让所有边权变成正数" },
+      { "id": "c", "text": "拓扑序会删除所有点" },
+      { "id": "d", "text": "拓扑序按节点编号排序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "所有前驱状态都会在后继状态被处理以前完成。"
+  },
+  {
+    "id": "longest-transition",
+    "prompt": "边 $u\\to v$ 权值为 w 时，DAG 最长路怎样转移？",
+    "options": [
+      { "id": "a", "text": "`dist[v]=min(dist[v],w)`" },
+      { "id": "b", "text": "`dist[u]=dist[v]+w`" },
+      { "id": "c", "text": "`dist[v]=max(dist[v],dist[u]+w)`" },
+      { "id": "d", "text": "`dist[v]=0`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "经过 u 到达 v 的候选路径长度是 dist[u]+w，最长路保留较大值。"
+  },
+  {
+    "id": "unreachable-initialization",
+    "prompt": "除起点外的状态为什么初始化为负无穷？",
+    "options": [
+      { "id": "a", "text": "为了缩短拓扑序" },
+      { "id": "b", "text": "为了表示尚无从起点出发的真实路径" },
+      { "id": "c", "text": "为了禁止负边" },
+      { "id": "d", "text": "为了让图变成无向图" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "初始化为零会把每个点误认为都可作为新起点，并可能覆盖负权路径。"
+  },
+  {
+    "id": "negative-edges",
+    "prompt": "DAG 最长路能否处理负边？",
+    "options": [
+      { "id": "a", "text": "不能，任何负边都会形成负环" },
+      { "id": "b", "text": "只能处理一条负边" },
+      { "id": "c", "text": "只能在无向图中处理" },
+      { "id": "d", "text": "可以，无环性保证路径有限" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "DAG 没有环，不能反复利用边；拓扑顺序仍然有效。"
+  }
+]
