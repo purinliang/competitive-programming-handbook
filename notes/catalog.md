@@ -1134,7 +1134,7 @@
 | 040903 | 朴素字符串匹配 | 待审阅 | [naive-pattern-matching.md](strings/naive-pattern-matching.md) |
 | 062001 | 字符串：哈希 | 待审阅 | [rolling-hash.md](strings/rolling-hash.md) |
 | 062002 | 字符串：KMP 与前缀函数 | 待审阅 | [kmp-prefix-function.md](strings/kmp-prefix-function.md) |
-| 062003 | 字符串：Z 函数 | 待审阅 | [z-function.md](strings/z-function.md) |
+| *062003 | 字符串：Z 函数 | 待审阅 | [z-function.md](strings/z-function.md) |
 | 062004 | 字符串：Trie | 待审阅 | [trie.md](strings/trie.md) |
 | 062005 | 字符串构造 | 计划 | `strings/string-construction.md` |
 | 071101 | 字符串：AC 自动机 | 计划 | `strings/aho-corasick.md` |
@@ -1167,7 +1167,7 @@
 | --- | --- | --- | --- |
 | 040903 | 朴素字符串匹配 | 待审阅 | [naive-pattern-matching.md](strings/naive-pattern-matching.md) |
 | 062002 | 字符串：KMP 与前缀函数 | 待审阅 | [kmp-prefix-function.md](strings/kmp-prefix-function.md) |
-| 062003 | 字符串：Z 函数 | 待审阅 | [z-function.md](strings/z-function.md) |
+| *062003 | 字符串：Z 函数 | 待审阅 | [z-function.md](strings/z-function.md) |
 
 ### 前缀结构
 
@@ -1181,7 +1181,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 071102 | 字符串：Manacher | 计划 | `strings/manacher.md` |
-| 071105 | 字符串：回文树 | 计划 | `strings/palindromic-tree.md` |
+| *071105 | 字符串：回文自动机 | 计划 | `strings/palindromic-tree.md` |
 
 ### 后缀结构
 

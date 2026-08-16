@@ -677,7 +677,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | --- | --- | --- | --- |
 | 062001 | 字符串：哈希 | 字符串 | [strings/rolling-hash.md](strings/rolling-hash.md) |
 | 062002 | 字符串：KMP 与前缀函数 | 字符串 | [strings/kmp-prefix-function.md](strings/kmp-prefix-function.md) |
-| 062003 | 字符串：Z 函数 | 字符串 | [strings/z-function.md](strings/z-function.md) |
+| *062003 | 字符串：Z 函数 | 字符串 | [strings/z-function.md](strings/z-function.md) |
 | 062004 | 字符串：Trie | 字符串 | [strings/trie.md](strings/trie.md) |
 | 062005 | 字符串构造 | 字符串 | `strings/string-construction.md` |
 
@@ -772,7 +772,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 071102 | 字符串：Manacher | 字符串 | `strings/manacher.md` |
 | 071103 | 字符串：后缀数组 | 字符串 | `strings/suffix-array.md` |
 | 071104 | 字符串：后缀自动机 | 字符串 | `strings/suffix-automaton.md` |
-| 071105 | 字符串：回文树 | 字符串 | `strings/palindromic-tree.md` |
+| *071105 | 字符串：回文自动机 | 字符串 | `strings/palindromic-tree.md` |
 
 ### 单元 12：字符串：子串问题
 
@@ -1027,6 +1027,8 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
+| *062003 | 字符串：Z 函数 | [strings/z-function.md](strings/z-function.md) |
+| *071105 | 字符串：回文自动机 | `strings/palindromic-tree.md` |
 | *990806 | 字符串：后缀树 | `strings/suffix-tree.md` |
 | *990807 | 最小表示法 | `strings/minimum-representation.md` |
 | *990808 | Lyndon 分解 | `strings/lyndon-factorization.md` |
