@@ -1,0 +1,74 @@
+[
+  {
+    "id": "window-recurrence",
+    "prompt": "转移 `dp[i]=a[i]+max(dp[j])` 的合法前驱窗口是什么？",
+    "options": [
+      { "id": "a", "text": "`1 <= j <= n`" },
+      { "id": "b", "text": "`i-k <= j < i`" },
+      { "id": "c", "text": "`i < j <= i+k`" },
+      { "id": "d", "text": "只有 `j=i`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每次最多向右跳 k 步，前驱必须位于当前点之前的长度 k 窗口。"
+  },
+  {
+    "id": "store-indices",
+    "prompt": "单调队列为什么保存候选下标？",
+    "options": [
+      { "id": "a", "text": "同时需要访问候选值并判断它何时过期" },
+      { "id": "b", "text": "因为 `dp` 不能保存数值" },
+      { "id": "c", "text": "为了打乱窗口顺序" },
+      { "id": "d", "text": "为了让队列永远为空" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "下标连接了 dp 值与滑动窗口的有效范围。"
+  },
+  {
+    "id": "maximum-order",
+    "prompt": "维护窗口最大值时，队列中的 `dp` 值保持什么顺序？",
+    "options": [
+      { "id": "a", "text": "严格递增" },
+      { "id": "b", "text": "随机顺序" },
+      { "id": "c", "text": "严格递减，最大值位于队首" },
+      { "id": "d", "text": "全部相等" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "加入时删除不优队尾，队首自然保留当前最大值。"
+  },
+  {
+    "id": "dominated-candidate",
+    "prompt": "新状态 `i` 为什么能删除队尾满足 `dp[j] <= dp[i]` 的旧状态 `j`？",
+    "options": [
+      { "id": "a", "text": "`i` 的值不小且下标更大、过期更晚" },
+      { "id": "b", "text": "因为 `j` 一定已经过期" },
+      { "id": "c", "text": "因为所有负数都应删除" },
+      { "id": "d", "text": "因为 `i` 与 `j` 必须相邻" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "新候选在数值和有效期限上都不差，旧候选以后不会成为最优。"
+  },
+  {
+    "id": "iteration-order",
+    "prompt": "计算 `dp[i]` 前首先应做什么？",
+    "options": [
+      { "id": "a", "text": "把 `i` 立即加入队首" },
+      { "id": "b", "text": "从队首删除小于 `i-k` 的过期下标" },
+      { "id": "c", "text": "清空整个队列" },
+      { "id": "d", "text": "删除所有比 `i` 小的下标" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "读取最大值以前必须保证队首仍属于合法窗口。"
+  },
+  {
+    "id": "linear-amortized",
+    "prompt": "含多个 `while` 的单调队列为什么总时间仍是 $O(n)$？",
+    "options": [
+      { "id": "a", "text": "`while` 会被编译器忽略" },
+      { "id": "b", "text": "每个下标只入队一次，删除后不会重新加入" },
+      { "id": "c", "text": "窗口长度必须等于 1" },
+      { "id": "d", "text": "所有 `dp` 值必须递增" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "把全部弹出操作摊到各自被永久删除的下标上，总数是线性的。"
+  }
+]
