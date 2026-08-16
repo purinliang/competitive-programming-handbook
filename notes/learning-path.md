@@ -226,7 +226,7 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0223 | 线性结构：数组 | 算法基础 | [algorithm-basics/array.md](algorithm-basics/array.md) |
+| 0223 | 数组 | 算法基础 | [algorithm-basics/array.md](algorithm-basics/array.md) |
 | 0224 | 链表 | 算法基础 | [algorithm-basics/linked-list.md](algorithm-basics/linked-list.md) |
 | 0225 | 栈 | 算法基础 | [algorithm-basics/stack.md](algorithm-basics/stack.md) |
 | 0142 | stack | C++ | [cpp/stack.md](cpp/stack.md) |
