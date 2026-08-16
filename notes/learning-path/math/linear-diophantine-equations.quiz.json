@@ -1,0 +1,50 @@
+[
+  {
+    "id": "solvability",
+    "prompt": "整数方程 `ax+by=c` 有解的充要条件是什么？",
+    "options": [
+      { "id": "a", "text": "a 能整除 c" },
+      { "id": "b", "text": "b 能整除 c" },
+      { "id": "c", "text": "`gcd(a,b)` 能整除 c" },
+      { "id": "d", "text": "a 与 b 必须互质" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "a、b 的所有整数线性组合恰好是 gcd(a,b) 的整数倍。"
+  },
+  {
+    "id": "scale-solution",
+    "prompt": "exgcd 得到 `ax0+by0=g` 后，怎样得到右侧为 c 的一组解？",
+    "options": [
+      { "id": "a", "text": "x0、y0 都乘以 `c/g`" },
+      { "id": "b", "text": "x0、y0 都加上 c" },
+      { "id": "c", "text": "只把 x0 乘以 c" },
+      { "id": "d", "text": "交换 x0 与 y0" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "整个等式按相同倍数缩放，右侧从 g 变为 c。"
+  },
+  {
+    "id": "all-solutions",
+    "prompt": "已知一组解 `(x0,y0)`，全部整数解怎样变化？",
+    "options": [
+      { "id": "a", "text": "x、y 同时加 k" },
+      { "id": "b", "text": "`x=x0+(b/g)k, y=y0-(a/g)k`" },
+      { "id": "c", "text": "只有这一组解" },
+      { "id": "d", "text": "x、y 同时乘 k" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "两个增量代入 ax+by 后恰好互相抵消，并给出全部同余类解。"
+  },
+  {
+    "id": "range-constraint",
+    "prompt": "exgcd 返回的一组整数解是否自动满足 x、y 非负？",
+    "options": [
+      { "id": "a", "text": "只要 c 为正就满足" },
+      { "id": "b", "text": "只要 a、b 互质就满足" },
+      { "id": "c", "text": "至少有一个变量自动非负" },
+      { "id": "d", "text": "不一定，需要在通解参数中另外选择合法 k" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "存在整数解与满足题目上下界是两层问题，不能混为一谈。"
+  }
+]
