@@ -182,9 +182,9 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 ## 03 算法入门
 
-本阶段只完成进入正式解题以前的三项准备：先学会用复杂度评价做法，再认识几种常见
-算法设计思想，最后掌握后续代码马上需要的标准库基础。具体排序、二分、前缀和、
-双指针与贪心应用从第 04 章开始完整展开。
+本章先用复杂度、算法设计思想和标准库基础建立共同语言，再完整学习前缀和、排序、
+二分、离散化和双指针。后五个单元是读者第一次从问题出发推导并实现一类完整算法；
+具体枚举、贪心以及需要线性数据结构的应用从第 04 章开始展开。
 
 ### 单元：复杂度
 
@@ -218,22 +218,16 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 枚举、模拟、递归、递推、分治和贪心在这里组成方法地图。普通循环枚举与最小示例留
 在本阶段；子集、排列、组合和 DFS 枚举等学过状态空间与深度优先搜索以后再展开。
-快速排序、归并排序、邻项交换和反悔贪心也分别进入第 04 章的具体单元。
+快速排序与归并排序在本章正式回访分治；邻项交换和反悔贪心进入第 04 章。
 
-## 04 初中基础
-
-本章第一次完整展开能够独立解决一类问题的算法与数据结构。前缀和先利用数组的
-累计关系，排序和二分随后建立有序性；线性表、栈与队列提供基本存储模型，双指针和
-贪心再利用这些基础组织候选。后半章建立数论、图、树、动态规划与字符串主干。
-
-### 单元：算法基础：前缀和
+### 单元：前缀和
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0207 | 前缀和 | 算法基础 | [algorithm-basics/prefix-sums.md](algorithm-basics/prefix-sums.md) |
 | 0221 | 差分 | 算法基础 | [algorithm-basics/difference-array.md](algorithm-basics/difference-array.md) |
 
-### 单元：算法基础：排序
+### 单元：排序
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -247,7 +241,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | *0234 | 基数排序 | 算法基础 | `algorithm-basics/0234-radix-sort.md` |
 | *0235 | 桶排序 | 算法基础 | `algorithm-basics/0235-bucket-sort.md` |
 
-### 单元：算法基础：二分与离散化
+### 单元：二分
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -256,7 +250,25 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 0162 | 标准库二分查找 | C++ | [cpp/stl-binary-search.md](cpp/stl-binary-search.md) |
 | 0219 | 二分答案 | 算法基础 | [algorithm-basics/binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |
 | 0252 | 浮点数二分 | 算法基础 | [algorithm-basics/floating-point-binary-search.md](algorithm-basics/floating-point-binary-search.md) |
+
+### 单元：离散化
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0206 | 离散化 | 算法基础 | [algorithm-basics/coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
+
+### 单元：双指针
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0205 | 双指针 | 算法基础 | [algorithm-basics/two-pointers.md](algorithm-basics/two-pointers.md) |
+| 0220 | 滑动窗口 | 算法基础 | [algorithm-basics/sliding-window.md](algorithm-basics/sliding-window.md) |
+
+## 04 初中基础
+
+本章从线性表、栈与队列开始建立基本存储模型，再展开贪心、数论、图、树、动态规划
+与字符串等能够独立解决问题的初中竞赛主干。第 03 章已经完整学习的前缀和、排序、
+二分、离散化和双指针不在这里重复登记。
 
 ### 单元：数据结构：线性表
 
@@ -282,13 +294,6 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | 0143 | queue | C++ | [cpp/queue.md](cpp/queue.md) |
 | 0253 | 双端队列 | 算法基础 | [algorithm-basics/deque.md](algorithm-basics/deque.md) |
 | 0139 | deque | C++ | [cpp/deque.md](cpp/deque.md) |
-
-### 单元：算法基础：双指针
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0205 | 双指针 | 算法基础 | [algorithm-basics/two-pointers.md](algorithm-basics/two-pointers.md) |
-| 0220 | 滑动窗口 | 算法基础 | [algorithm-basics/sliding-window.md](algorithm-basics/sliding-window.md) |
 
 ### 单元：算法基础：贪心
 
