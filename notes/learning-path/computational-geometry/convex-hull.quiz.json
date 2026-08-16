@@ -1,0 +1,74 @@
+[
+  {
+    "id": "convex-definition",
+    "prompt": "集合是凸的，表示什么？",
+    "options": [
+      { "id": "a", "text": "任取其中两点，它们之间整条线段仍在集合内" },
+      { "id": "b", "text": "所有点必须共线" },
+      { "id": "c", "text": "所有边长度相等" },
+      { "id": "d", "text": "顶点数量必须为偶数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两点间线段不离开集合是凸性的定义。"
+  },
+  {
+    "id": "sorting-purpose",
+    "prompt": "Andrew 单调链算法为什么先按 `(x,y)` 排序？",
+    "options": [
+      { "id": "a", "text": "为了计算所有点的平均值" },
+      { "id": "b", "text": "让点能从左到右构造下壳、从右到左构造上壳" },
+      { "id": "c", "text": "为了把所有点变成整数" },
+      { "id": "d", "text": "为了保证所有点在凸包上" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "单调横坐标顺序使上下边界能够用栈式过程维护。"
+  },
+  {
+    "id": "pop-condition",
+    "prompt": "本篇不保留边中间共线点，构造下凸壳时何时弹出末尾点？",
+    "options": [
+      { "id": "a", "text": "`orientation > 0`" },
+      { "id": "b", "text": "只在三点完全相同时" },
+      { "id": "c", "text": "`orientation <= 0`" },
+      { "id": "d", "text": "永远不弹出" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "右转产生凹陷，共线中间点也不是本约定下的凸包拐角。"
+  },
+  {
+    "id": "duplicate-extremes",
+    "prompt": "拼接上下凸壳前为什么各删除最后一个点？",
+    "options": [
+      { "id": "a", "text": "为了让凸包少两个随机点" },
+      { "id": "b", "text": "为了改变遍历方向" },
+      { "id": "c", "text": "为了删除所有共线点" },
+      { "id": "d", "text": "左右两个极端点分别在上下壳中重复出现" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "去掉每段末端后再拼接，两个公共端点各只保留一次。"
+  },
+  {
+    "id": "all-collinear",
+    "prompt": "全部输入点共线且使用 `<= 0` 弹出时，凸包保留什么？",
+    "options": [
+      { "id": "a", "text": "两个最远端点" },
+      { "id": "b", "text": "全部共线点各两次" },
+      { "id": "c", "text": "空集合" },
+      { "id": "d", "text": "任意三个点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "中间共线点不断被替换，只剩排序方向上的两个极端点。"
+  },
+  {
+    "id": "linear-after-sort",
+    "prompt": "排序以后构造上下壳为什么是 $O(n)$？",
+    "options": [
+      { "id": "a", "text": "因为只检查第一个点" },
+      { "id": "b", "text": "每个点在每个壳中至多入栈、出栈各一次" },
+      { "id": "c", "text": "因为叉积是 $O(n)$" },
+      { "id": "d", "text": "因为所有点都不会弹出" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "while 虽然嵌套，但每次弹出都会永久移除一个已入栈点。"
+  }
+]
