@@ -1,0 +1,50 @@
+[
+  {
+    "id": "list-data-structure",
+    "prompt": "C++ 标准库的 `list` 使用什么数据结构？",
+    "options": [
+      { "id": "a", "text": "连续静态数组" },
+      { "id": "b", "text": "双向链表" },
+      { "id": "c", "text": "二叉堆" },
+      { "id": "d", "text": "哈希表" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`list` 的节点保存前后链接，支持双向遍历与已知位置的常数时间增删。"
+  },
+  {
+    "id": "list-no-index",
+    "prompt": "为什么 `list` 不提供 `values[i]`？",
+    "options": [
+      { "id": "a", "text": "节点不连续，必须沿链接寻找逻辑位置" },
+      { "id": "b", "text": "`list` 只能保存字符" },
+      { "id": "c", "text": "所有下标都由编译器保密" },
+      { "id": "d", "text": "双向链表不能遍历" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "链表无法由整数位置直接计算节点地址，因此不支持随机下标访问。"
+  },
+  {
+    "id": "list-erase-loop",
+    "prompt": "遍历 `list` 时删除当前元素，为什么常写 `it = values.erase(it);`？",
+    "options": [
+      { "id": "a", "text": "为了重新建立整个容器" },
+      { "id": "b", "text": "为了把元素改成零" },
+      { "id": "c", "text": "为了取得被删元素之后的有效迭代器" },
+      { "id": "d", "text": "为了自动撤销删除" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "原迭代器随元素删除而失效，`erase` 返回继续遍历所需的后继位置。"
+  },
+  {
+    "id": "list-sort-member",
+    "prompt": "怎样对 `list<int> values` 升序排序？",
+    "options": [
+      { "id": "a", "text": "`sort(values.begin(), values.end())`" },
+      { "id": "b", "text": "`values[0].sort()`" },
+      { "id": "c", "text": "`sort(values)`" },
+      { "id": "d", "text": "`values.sort()`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "普通 `sort` 需要随机访问迭代器；`list` 提供适配链表结构的成员函数 `sort()`。"
+  }
+]

@@ -343,7 +343,7 @@
 | 030404 | 单向链表 | 待审阅 | [singly-linked-list.md](algorithm-basics/singly-linked-list.md) |
 | 030405 | 双向链表 | 待审阅 | [doubly-linked-list.md](algorithm-basics/doubly-linked-list.md) |
 | 030406 | 循环链表 | 待审阅 | [circular-linked-list.md](algorithm-basics/circular-linked-list.md) |
-| 030407 | list | 计划 | `cpp/list.md` |
+| 030407 | list | 待审阅 | [list.md](cpp/list.md) |
 
 ### 专题：栈
 
