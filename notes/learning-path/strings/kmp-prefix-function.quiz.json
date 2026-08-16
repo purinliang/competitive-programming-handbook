@@ -1,0 +1,74 @@
+[
+  {
+    "id": "prefix-function-definition",
+    "prompt": "`pi[i]` 表示什么？",
+    "options": [
+      { "id": "a", "text": "`pattern[1..i]` 的最长重复字符数量" },
+      { "id": "b", "text": "整个模式串在文本中的出现次数" },
+      { "id": "c", "text": "`pattern[1..i]` 的最长相等真前缀与真后缀长度" },
+      { "id": "d", "text": "从位置 `i` 开始的最长回文长度" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "前缀函数只描述模式串自身每个前缀的最长 border。"
+  },
+  {
+    "id": "fallback-target",
+    "prompt": "已有 `j` 个模式字符匹配但下一位失配时，为什么先令 `j = pi[j]`？",
+    "options": [
+      { "id": "a", "text": "它给出仍可能接在当前文本后缀上的最长更短模式前缀" },
+      { "id": "b", "text": "它会让文本下标回到开头" },
+      { "id": "c", "text": "它保证下一次字符一定相同" },
+      { "id": "d", "text": "它把模式串长度增加一倍" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "新候选必须同时是当前匹配的后缀和模式前缀，pi[j] 正是最长者。"
+  },
+  {
+    "id": "text-movement",
+    "prompt": "KMP 扫描文本时，文本位置怎样移动？",
+    "options": [
+      { "id": "a", "text": "每次失配都回到上一个起点" },
+      { "id": "b", "text": "只向右移动，失配时缩短模式匹配长度" },
+      { "id": "c", "text": "在文本中随机跳转" },
+      { "id": "d", "text": "找到匹配后倒序扫描" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "KMP 复用已经扫描的文本后缀，文本指针不需要回退。"
+  },
+  {
+    "id": "match-position",
+    "prompt": "扫描到文本位置 `i` 时得到 `j == m`，匹配起点是什么？",
+    "options": [
+      { "id": "a", "text": "`i + m - 1`" },
+      { "id": "b", "text": "`m - i + 1`" },
+      { "id": "c", "text": "`i - m`" },
+      { "id": "d", "text": "`i - m + 1`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "i 是长度为 m 的闭区间右端点，因此左端点是 i - m + 1。"
+  },
+  {
+    "id": "overlap-after-match",
+    "prompt": "记录一次完整匹配后，为什么令 `j = pi[j]` 而不是清零？",
+    "options": [
+      { "id": "a", "text": "为了重新读入当前文本字符" },
+      { "id": "b", "text": "为了改变模式串内容" },
+      { "id": "c", "text": "完整匹配的后缀可能成为下一次重叠匹配的前缀" },
+      { "id": "d", "text": "因为 `j` 不能等于 0" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "保留最长可复用前后缀，才能发现彼此重叠的出现。"
+  },
+  {
+    "id": "linear-time",
+    "prompt": "前缀函数中含有 `while`，总复杂度为什么仍是 $O(m)$？",
+    "options": [
+      { "id": "a", "text": "循环实际从不执行" },
+      { "id": "b", "text": "`j` 的总增加和严格减小次数都是线性的" },
+      { "id": "c", "text": "因为模式串必须没有重复字符" },
+      { "id": "d", "text": "因为编译器会删除 `while`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每次回退都消耗此前积累的匹配长度，不能无限重复。"
+  }
+]
