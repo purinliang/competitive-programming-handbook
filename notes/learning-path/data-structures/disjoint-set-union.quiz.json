@@ -1,0 +1,50 @@
+[
+  {
+    "id": "representative",
+    "prompt": "并查集怎样判断两个节点属于同一集合？",
+    "options": [
+      { "id": "a", "text": "比较节点编号是否相邻" },
+      { "id": "b", "text": "比较二者查找到的代表元是否相同" },
+      { "id": "c", "text": "比较节点度数" },
+      { "id": "d", "text": "恢复原图路径" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每个集合由唯一根代表，parent[root]=root。"
+  },
+  {
+    "id": "path-compression",
+    "prompt": "路径压缩在 `find` 中做了什么？",
+    "options": [
+      { "id": "a", "text": "把查找路径上的节点直接连接到代表元" },
+      { "id": "b", "text": "删除集合中的所有边" },
+      { "id": "c", "text": "把较大集合拆开" },
+      { "id": "d", "text": "按节点编号重新排序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "后续查找会跳过中间父节点，使树链迅速变短。"
+  },
+  {
+    "id": "merge-roots",
+    "prompt": "合并两个节点前为什么必须先查找各自代表元？",
+    "options": [
+      { "id": "a", "text": "只有根之间连接才是在合并两个完整集合" },
+      { "id": "b", "text": "普通节点不能保存整数" },
+      { "id": "c", "text": "这样能恢复最短路径" },
+      { "id": "d", "text": "代表元一定是输入节点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "直接修改原始节点的 parent 可能只移动局部树枝，破坏集合表示。"
+  },
+  {
+    "id": "boundary",
+    "prompt": "基础并查集不适合直接解决什么问题？",
+    "options": [
+      { "id": "a", "text": "只加边过程中的连通性" },
+      { "id": "b", "text": "合并两个集合" },
+      { "id": "c", "text": "查询集合大小" },
+      { "id": "d", "text": "删除边后的动态连通性与原图具体路径" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "并查集只保留集合划分，不能从父指针恢复原图结构，也不支持普通删边。"
+  }
+]
