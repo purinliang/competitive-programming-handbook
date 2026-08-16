@@ -1,0 +1,50 @@
+[
+  {
+    "id": "edge-count",
+    "prompt": "一张连通基环树有 n 个点时，通常有多少条边？",
+    "options": [
+      { "id": "a", "text": "n-2 条" },
+      { "id": "b", "text": "n-1 条" },
+      { "id": "c", "text": "n 条" },
+      { "id": "d", "text": "n+1 条" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "树有 n-1 条边；再加入一条形成唯一环后共有 n 条边。"
+  },
+  {
+    "id": "peeling-start",
+    "prompt": "用剥叶法寻找基环时，初始应把哪些点加入队列？",
+    "options": [
+      { "id": "a", "text": "当前度数为 1 的全部点" },
+      { "id": "b", "text": "点编号为 1 的点" },
+      { "id": "c", "text": "当前度数为 2 的全部点" },
+      { "id": "d", "text": "任意一个环点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "环外树枝从叶子开始逐层删除。"
+  },
+  {
+    "id": "cycle-survival",
+    "prompt": "为什么基环上的点不会在剥叶过程中被删除？",
+    "options": [
+      { "id": "a", "text": "它们的编号总是更小" },
+      { "id": "b", "text": "它们没有邻居" },
+      { "id": "c", "text": "它们的所有边权都为零" },
+      { "id": "d", "text": "它们始终保留两个环上邻居，当前度数不会降到 1" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "挂树被删除后，环点仍有环的左右两个邻居。"
+  },
+  {
+    "id": "remaining-meaning",
+    "prompt": "剥叶队列结束后，`on_cycle[u]` 为真的点是什么？",
+    "options": [
+      { "id": "a", "text": "所有叶子" },
+      { "id": "b", "text": "唯一基环上的全部点" },
+      { "id": "c", "text": "距离根最远的点" },
+      { "id": "d", "text": "所有偶数编号点" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "所有环外树点最终被剥掉，环点全部保留。"
+  }
+]
