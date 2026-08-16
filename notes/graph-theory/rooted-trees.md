@@ -2,7 +2,7 @@
 
 > 状态：定稿
 
-[树：无根树](unrooted-trees.md) 只规定节点与边的关系，没有上下层级。从树中指定一个节点作为根节点（root），就得到一棵有根树（rooted tree）。
+[无根树](unrooted-trees.md) 只规定节点与边的关系，没有上下层级。从树中指定一个节点作为根节点（root），就得到一棵有根树（rooted tree）。
 
 ![以节点 1 为根的有根树](../assets/graph-theory/tree-rooted.svg)
 

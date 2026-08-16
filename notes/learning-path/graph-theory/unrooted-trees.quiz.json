@@ -1,0 +1,74 @@
+[
+  {
+    "id": "tree-definition",
+    "prompt": "树作为无向图应同时满足哪两个条件？",
+    "options": [
+      { "id": "a", "text": "连通且没有环" },
+      { "id": "b", "text": "不连通且有环" },
+      { "id": "c", "text": "每个点度数都为 2" },
+      { "id": "d", "text": "必须指定根节点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "根不是树的图论定义所必需；连通保证能互相到达，无环排除多余闭合关系。"
+  },
+  {
+    "id": "tree-edge-count",
+    "prompt": "一棵含 n 个节点的树有多少条边？",
+    "options": [
+      { "id": "a", "text": "n" },
+      { "id": "b", "text": "n+1" },
+      { "id": "c", "text": "2n" },
+      { "id": "d", "text": "n-1" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "反复删除叶节点时，每减少一个节点恰好减少一条边，最终剩一个节点和零条边。"
+  },
+  {
+    "id": "unique-path",
+    "prompt": "树中任意两个节点之间有多少条路径？",
+    "options": [
+      { "id": "a", "text": "可能没有路径" },
+      { "id": "b", "text": "恰好一条" },
+      { "id": "c", "text": "至少两条" },
+      { "id": "d", "text": "条数等于边数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "连通保证至少一条；若有两条不同路径，它们分开再汇合的部分会形成环。"
+  },
+  {
+    "id": "unrooted-leaf",
+    "prompt": "无根树中怎样定义叶节点？",
+    "options": [
+      { "id": "a", "text": "编号最大的节点" },
+      { "id": "b", "text": "没有父节点的节点" },
+      { "id": "c", "text": "度数不超过 1 的节点" },
+      { "id": "d", "text": "所有带点权的节点" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "一般树的末端度数为 1；单节点树的唯一节点度数为 0，也应视为叶节点。"
+  },
+  {
+    "id": "add-edge-cycle",
+    "prompt": "在一棵树的两个已有节点之间再加入一条新边，为什么一定出现环？",
+    "options": [
+      { "id": "a", "text": "因为树中两点本来已有唯一一条路径，新边与它闭合" },
+      { "id": "b", "text": "因为新边会删除一个节点" },
+      { "id": "c", "text": "因为所有新边都是自环" },
+      { "id": "d", "text": "因为边数会变成 0" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "原有唯一路径加上连接同一对端点的新边，直接构成一个闭合环。"
+  },
+  {
+    "id": "forest-edge-count",
+    "prompt": "一片森林有 n 个节点和 c 个连通块，它有多少条边？",
+    "options": [
+      { "id": "a", "text": "n+c" },
+      { "id": "b", "text": "n*c" },
+      { "id": "c", "text": "n-c" },
+      { "id": "d", "text": "c-1" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每个树形连通块分别满足边数等于节点数减一，相加时共减去 c。"
+  }
+]
