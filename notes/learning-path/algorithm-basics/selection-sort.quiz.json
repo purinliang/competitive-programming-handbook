@@ -1,0 +1,74 @@
+[
+  {
+    "id": "selection-current-range",
+    "prompt": "选择排序第 `i` 轮应在哪个范围寻找最小值？",
+    "options": [
+      { "id": "a", "text": "`a[1..i]`" },
+      { "id": "b", "text": "`a[i..n]`" },
+      { "id": "c", "text": "只有 `a[n]`" },
+      { "id": "d", "text": "已经确定的前缀" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "a[1..i-1] 已经确定，本轮只需在未排序后缀 a[i..n] 中选择最小值。"
+  },
+  {
+    "id": "minimum-position",
+    "prompt": "变量 `min_pos` 保存的是什么？",
+    "options": [
+      { "id": "a", "text": "目前找到的最小值本身" },
+      { "id": "b", "text": "已经比较的次数" },
+      { "id": "c", "text": "目前找到的最小值下标" },
+      { "id": "d", "text": "未排序区间的长度" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "需要保留下标，整轮寻找结束后才能把该位置与 a[i] 交换。"
+  },
+  {
+    "id": "selection-invariant",
+    "prompt": "第 `i` 轮开始前，选择排序的核心不变量是什么？",
+    "options": [
+      { "id": "a", "text": "`a[1..i-1]` 已在最终位置" },
+      { "id": "b", "text": "`a[i..n]` 已经全部相等" },
+      { "id": "c", "text": "数组没有重复元素" },
+      { "id": "d", "text": "最后一个元素一定最小" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每轮从剩余后缀选出最小值放到 a[i]，让正确前缀扩大一格。"
+  },
+  {
+    "id": "selection-comparisons",
+    "prompt": "朴素选择排序在数组已经有序时，时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "O(1)" },
+      { "id": "b", "text": "O(log n)" },
+      { "id": "c", "text": "O(n)" },
+      { "id": "d", "text": "O(n²)" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每轮仍要扫描整个未排序后缀，比较次数固定为 n(n-1)/2。"
+  },
+  {
+    "id": "selection-swaps",
+    "prompt": "为什么“至多交换 `n-1` 次”不能推出选择排序是 O(n)？",
+    "options": [
+      { "id": "a", "text": "因为还要进行 O(n²) 次比较" },
+      { "id": "b", "text": "因为一次交换必定需要 O(n)" },
+      { "id": "c", "text": "因为交换不属于算法操作" },
+      { "id": "d", "text": "因为 n 只能取负数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "复杂度要统计主要工作总量；寻找每轮最小值的比较仍是平方数量级。"
+  },
+  {
+    "id": "selection-stability",
+    "prompt": "本篇朴素选择排序为什么不稳定？",
+    "options": [
+      { "id": "a", "text": "它不能处理重复值" },
+      { "id": "b", "text": "它使用了严格小于号" },
+      { "id": "c", "text": "远距离交换可能让相等记录改变相对顺序" },
+      { "id": "d", "text": "它需要额外数组" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "例如 2a 2b 1 的第一次交换会得到 1 2b 2a。"
+  }
+]

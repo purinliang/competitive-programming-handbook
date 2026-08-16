@@ -172,7 +172,7 @@
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0203 | 冒泡排序 | 算法基础 | [algorithm-basics/sorting.md](algorithm-basics/sorting.md) |
-| 0257 | 选择排序 | 算法基础 | `algorithm-basics/selection-sort.md` |
+| 0257 | 选择排序 | 算法基础 | [algorithm-basics/selection-sort.md](algorithm-basics/selection-sort.md) |
 | 0258 | 插入排序 | 算法基础 | `algorithm-basics/insertion-sort.md` |
 | 0259 | 计数排序 | 算法基础 | `algorithm-basics/counting-sort.md` |
 | 0231 | 排序：快速排序 | 算法基础 | [algorithm-basics/quicksort.md](algorithm-basics/quicksort.md) |
