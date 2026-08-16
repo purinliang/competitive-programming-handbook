@@ -3,36 +3,36 @@
     "id": "preprocessing-directive",
     "prompt": "为什么 `#include <iostream>` 的末尾不写分号？",
     "options": [
-      { "id": "a", "text": "它是预处理指令，不是普通 C++ 语句" },
-      { "id": "b", "text": "尖括号已经代替了分号" },
+      { "id": "a", "text": "尖括号已经代替了分号" },
+      { "id": "b", "text": "它是预处理指令，不是普通 C++ 语句" },
       { "id": "c", "text": "所有文件第一行都不能写分号" },
       { "id": "d", "text": "只有使用 `cout` 时可以省略分号" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "`#include` 在翻译早期由预处理机制处理，不遵循普通语句末尾写分号的语法。"
   },
   {
     "id": "direct-header-dependency",
     "prompt": "程序使用 `vector` 和 `sort` 时，为什么可移植代码应分别包含它们规定的标准头？",
     "options": [
-      { "id": "a", "text": "其他头的间接包含不是接口保证" },
+      { "id": "a", "text": "标准头之间不能同时出现" },
       { "id": "b", "text": "一个头文件只能提供一个名字" },
-      { "id": "c", "text": "标准头之间不能同时出现" },
+      { "id": "c", "text": "其他头的间接包含不是接口保证" },
       { "id": "d", "text": "编译器不会搜索尖括号中的头" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "某个实现可能碰巧间接包含另一个头，但这种关系可以变化；程序应直接声明自己的依赖。"
   },
   {
     "id": "header-search-form",
     "prompt": "标准库头和项目自己的头通常分别使用哪种写法？",
     "options": [
-      { "id": "a", "text": "标准库用 `<...>`，项目头用 `\"...\"`" },
+      { "id": "a", "text": "二者都必须带 `.h` 后缀" },
       { "id": "b", "text": "标准库用 `\"...\"`，项目头用 `<...>`" },
       { "id": "c", "text": "二者都必须使用圆括号" },
-      { "id": "d", "text": "二者都必须带 `.h` 后缀" }
+      { "id": "d", "text": "标准库用 `<...>`，项目头用 `\"...\"`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "尖括号通常用于实现配置的系统或标准头搜索位置，双引号通常用于用户自己的头文件。"
   },
   {
@@ -51,12 +51,12 @@
     "id": "bits-portability",
     "prompt": "关于 `<bits/stdc++.h>`，哪项说法正确？",
     "options": [
-      { "id": "a", "text": "它常见于 GNU 竞赛环境，但不是 C++17 标准头" },
-      { "id": "b", "text": "它是所有 C++17 实现必须提供的唯一标准头" },
+      { "id": "a", "text": "它是所有 C++17 实现必须提供的唯一标准头" },
+      { "id": "b", "text": "它常见于 GNU 竞赛环境，但不是 C++17 标准头" },
       { "id": "c", "text": "它只能包含输入输出接口" },
       { "id": "d", "text": "使用它以后不能使用 `std` 命名空间" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "本仓库因目标评测环境使用 GNU C++17 而采用它；移植到其他实现时可能需要改为显式标准头。"
   }
 ]

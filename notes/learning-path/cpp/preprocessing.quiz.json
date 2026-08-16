@@ -15,36 +15,36 @@
     "id": "translation-unit",
     "prompt": "一个 cpp 与它包含的头经过预处理后，形成供编译器处理的什么？",
     "options": [
-      { "id": "a", "text": "翻译单元" },
-      { "id": "b", "text": "数据库事务" },
+      { "id": "a", "text": "数据库事务" },
+      { "id": "b", "text": "翻译单元" },
       { "id": "c", "text": "运行时调用栈" },
       { "id": "d", "text": "动态数组元素" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "头文件通过 include 进入源文件的翻译过程，不是自动独立加入程序。"
   },
   {
     "id": "directive-semicolon",
     "prompt": "预处理指令末尾为什么通常不写分号？",
     "options": [
-      { "id": "a", "text": "它不是普通 C++ 语句" },
+      { "id": "a", "text": "井号已经代表循环结束" },
       { "id": "b", "text": "分号只能用于浮点数" },
-      { "id": "c", "text": "井号已经代表循环结束" },
+      { "id": "c", "text": "它不是普通 C++ 语句" },
       { "id": "d", "text": "分号只允许写在头文件中" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "预处理器先识别指令，随后产生交给 C++ 编译阶段处理的记号序列。"
   },
   {
     "id": "preprocess-output",
     "prompt": "GNU C++ 的 `g++ -E main.cpp` 主要用于观察什么？",
     "options": [
-      { "id": "a", "text": "头和宏处理后的预处理结果" },
+      { "id": "a", "text": "链接器生成的数据库" },
       { "id": "b", "text": "程序运行后的标准输入" },
       { "id": "c", "text": "动态数组的内存地址" },
-      { "id": "d", "text": "链接器生成的数据库" }
+      { "id": "d", "text": "头和宏处理后的预处理结果" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "`-E` 只运行预处理，适合检查头怎样进入翻译单元以及宏最终怎样展开。"
   },
   {

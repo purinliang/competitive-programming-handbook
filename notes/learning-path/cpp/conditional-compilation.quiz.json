@@ -3,12 +3,12 @@
     "id": "ifdef-definition",
     "prompt": "写了 `#define LOCAL 0` 后，`#ifdef LOCAL` 是否成立？",
     "options": [
-      { "id": "a", "text": "成立，因为它只判断宏是否已经定义" },
+      { "id": "a", "text": "只有在 `main` 中才成立" },
       { "id": "b", "text": "不成立，因为替换值是零" },
       { "id": "c", "text": "只有程序读入非零整数时成立" },
-      { "id": "d", "text": "只有在 `main` 中才成立" }
+      { "id": "d", "text": "成立，因为它只判断宏是否已经定义" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "`#ifdef` 不判断宏的替换值；如果要判断替换后的整数条件，应使用 `#if LOCAL`。"
   },
   {
@@ -27,36 +27,36 @@
     "id": "if-stage",
     "prompt": "`#if` 与普通 `if` 最根本的区别是什么？",
     "options": [
-      { "id": "a", "text": "前者在预处理时保留代码，后者在运行时选择路径" },
-      { "id": "b", "text": "前者只能判断浮点数，后者只能判断整数" },
+      { "id": "a", "text": "前者只能判断浮点数，后者只能判断整数" },
+      { "id": "b", "text": "前者在预处理时保留代码，后者在运行时选择路径" },
       { "id": "c", "text": "前者可以读取标准输入，后者不能" },
       { "id": "d", "text": "二者只是拼写不同" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "被 `#if` 排除的代码不进入本次编译；普通 `if` 的所有分支仍属于被编译的 C++ 程序。"
   },
   {
     "id": "command-line-define",
     "prompt": "GNU C++ 命令中的 `-DLOCAL` 表示什么？",
     "options": [
-      { "id": "a", "text": "为本次构建预先定义宏 `LOCAL`" },
+      { "id": "a", "text": "在运行时令变量 `LOCAL` 等于一" },
       { "id": "b", "text": "删除源文件中的所有宏" },
-      { "id": "c", "text": "在运行时令变量 `LOCAL` 等于一" },
+      { "id": "c", "text": "为本次构建预先定义宏 `LOCAL`" },
       { "id": "d", "text": "强制程序读取本地文件" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "`-D` 是 GNU 编译器的命令行接口，影响这一次预处理，不会修改源文件。"
   },
   {
     "id": "excluded-code",
     "prompt": "代码被当前条件分支排除后，能否证明它已经编译通过？",
     "options": [
-      { "id": "a", "text": "不能，需要在使该分支生效的配置下另行构建" },
+      { "id": "a", "text": "只有代码超过一行时不能" },
       { "id": "b", "text": "能，预处理器会完整检查 C++ 类型" },
       { "id": "c", "text": "能，排除等同于自动修复错误" },
-      { "id": "d", "text": "只有代码超过一行时不能" }
+      { "id": "d", "text": "不能，需要在使该分支生效的配置下另行构建" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "当前构建的编译器没有看到被排除的 C++ 记号，其他宏组合必须分别构建。"
   },
   {

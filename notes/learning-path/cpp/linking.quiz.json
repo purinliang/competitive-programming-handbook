@@ -3,36 +3,36 @@
     "id": "linker-purpose",
     "prompt": "链接器的核心任务是什么？",
     "options": [
-      { "id": "a", "text": "组合目标文件与库，解析符号并产生最终程序" },
-      { "id": "b", "text": "读取竞赛输入并计算答案" },
+      { "id": "a", "text": "读取竞赛输入并计算答案" },
+      { "id": "b", "text": "组合目标文件与库，解析符号并产生最终程序" },
       { "id": "c", "text": "检查所有数组是否越界" },
       { "id": "d", "text": "把 Markdown 转成网页" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "目标文件中的外部引用和地址仍待处理，链接器把各实现组成可执行产物。"
   },
   {
     "id": "declaration-definition",
     "prompt": "为什么只有 `int add(int, int);` 仍可能编译成功却链接失败？",
     "options": [
-      { "id": "a", "text": "声明足以检查调用接口，但没有提供最终函数实现" },
+      { "id": "a", "text": "链接器不能处理函数参数" },
       { "id": "b", "text": "声明会自动产生两个定义" },
-      { "id": "c", "text": "链接器不能处理函数参数" },
+      { "id": "c", "text": "声明足以检查调用接口，但没有提供最终函数实现" },
       { "id": "d", "text": "函数声明只能写在注释中" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "某个参与链接的目标文件或库还必须提供签名匹配的定义。"
   },
   {
     "id": "undefined-reference",
     "prompt": "下面哪项可能导致 `undefined reference`？",
     "options": [
-      { "id": "a", "text": "忘记把定义所在的目标文件加入链接" },
+      { "id": "a", "text": "代码中有一行注释" },
       { "id": "b", "text": "在运行时输入了负数" },
       { "id": "c", "text": "数组使用从 1 开始的逻辑下标" },
-      { "id": "d", "text": "代码中有一行注释" }
+      { "id": "d", "text": "忘记把定义所在的目标文件加入链接" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "签名不一致、漏链接库或条件编译排除定义也可能让外部符号无法解析。"
   },
   {
@@ -51,36 +51,36 @@
     "id": "odr",
     "prompt": "关于单一定义规则，哪项正确？",
     "options": [
-      { "id": "a", "text": "允许多处定义的实体仍要满足严格的一致性条件" },
-      { "id": "b", "text": "所有同名定义都可以拥有不同含义" },
+      { "id": "a", "text": "所有同名定义都可以拥有不同含义" },
+      { "id": "b", "text": "允许多处定义的实体仍要满足严格的一致性条件" },
       { "id": "c", "text": "只要链接器没报错，任何违反都合法" },
       { "id": "d", "text": "它只适用于局部循环变量" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "有些 ODR 违反不要求实现诊断，但程序仍不可靠，不能只依赖链接结果判断。"
   },
   {
     "id": "scope-versus-linkage",
     "prompt": "作用域与链接属性分别描述什么？",
     "options": [
-      { "id": "a", "text": "名称在哪里可见，以及不同声明是否指向同一实体" },
+      { "id": "a", "text": "分别描述时间与空间复杂度" },
       { "id": "b", "text": "二者都只描述对象大小" },
-      { "id": "c", "text": "分别描述时间与空间复杂度" },
+      { "id": "c", "text": "名称在哪里可见，以及不同声明是否指向同一实体" },
       { "id": "d", "text": "二者完全等同" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "它们还不同于对象生命周期和存储期，不能用一个词替代全部概念。"
   },
   {
     "id": "static-meanings",
     "prompt": "命名空间作用域与函数内的 `static` 重点分别可能影响什么？",
     "options": [
-      { "id": "a", "text": "前者可影响链接属性，后者让局部对象跨调用存在" },
+      { "id": "a", "text": "二者都表示静态库" },
       { "id": "b", "text": "二者都只表示动态数组" },
       { "id": "c", "text": "二者都会创建虚函数" },
-      { "id": "d", "text": "二者都表示静态库" }
+      { "id": "d", "text": "前者可影响链接属性，后者让局部对象跨调用存在" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "同一个关键字在不同声明位置参与不同规则，必须结合语境理解。"
   }
 ]
