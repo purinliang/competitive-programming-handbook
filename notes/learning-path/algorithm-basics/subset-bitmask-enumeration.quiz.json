@@ -1,0 +1,98 @@
+[
+  {
+    "id": "subset-count",
+    "prompt": "n 个元素各自独立选择或不选择，一共有多少个下标子集？",
+    "options": [
+      { "id": "a", "text": "n" },
+      { "id": "b", "text": "n²" },
+      { "id": "c", "text": "2^n" },
+      { "id": "d", "text": "log n" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每个位置有两种独立选择，乘法原理得到 2^n。"
+  },
+  {
+    "id": "element-bit-mapping",
+    "prompt": "1-based 元素 `a[i]` 对应掩码中的哪一位？",
+    "options": [
+      { "id": "a", "text": "第 i-1 位" },
+      { "id": "b", "text": "第 i+1 位" },
+      { "id": "c", "text": "固定第 0 位" },
+      { "id": "d", "text": "不对应任何位" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "数组按 1 开始，二进制位按 0 开始，因此接口处相差 1。"
+  },
+  {
+    "id": "all-mask-range",
+    "prompt": "全部 n 位掩码的枚举范围是什么？",
+    "options": [
+      { "id": "a", "text": "`[1,n]`" },
+      { "id": "b", "text": "`[0,2^n)`" },
+      { "id": "c", "text": "`[0,n²)`" },
+      { "id": "d", "text": "只有 `2^n`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "0 表示空集，2^n-1 表示低 n 位全为 1 的全集。"
+  },
+  {
+    "id": "bit-selected-test",
+    "prompt": "怎样判断掩码是否选择了 `a[i]`？",
+    "options": [
+      { "id": "a", "text": "`mask + (1 << i)`" },
+      { "id": "b", "text": "`mask == i`" },
+      { "id": "c", "text": "`(mask & (1 << (i-1))) != 0`" },
+      { "id": "d", "text": "`mask / 0`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "单个位掩码只保留第 i-1 位，非零就表示该位原本为 1。"
+  },
+  {
+    "id": "empty-subset",
+    "prompt": "空集由哪个掩码表示？",
+    "options": [
+      { "id": "a", "text": "0" },
+      { "id": "b", "text": "1" },
+      { "id": "c", "text": "n" },
+      { "id": "d", "text": "-1" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "所有选择位都为 0；目标和为 0 时不能擅自遗漏这个合法子集。"
+  },
+  {
+    "id": "subset-bijection",
+    "prompt": "位掩码枚举为什么不漏不重？",
+    "options": [
+      { "id": "a", "text": "不同子集可能使用相同掩码" },
+      { "id": "b", "text": "每个位置的选择状态与一个二进制位一一对应" },
+      { "id": "c", "text": "循环会随机补充遗漏" },
+      { "id": "d", "text": "因为只枚举非空集" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "子集能唯一写成 n 位真假序列，掩码也能唯一恢复这组选择。"
+  },
+  {
+    "id": "subset-complexity",
+    "prompt": "每个掩码扫描 n 个位置时，总时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "O(n log n)" },
+      { "id": "b", "text": "O(n²)" },
+      { "id": "c", "text": "O(2n)" },
+      { "id": "d", "text": "O(n2^n)" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "外层有 2^n 个候选，每个候选检查 n 个选择位。"
+  },
+  {
+    "id": "subset-mask-width",
+    "prompt": "为什么换成更宽整数不能自动让大 n 的子集枚举可行？",
+    "options": [
+      { "id": "a", "text": "整数宽度只能解决表示位数，候选数量仍为 2^n" },
+      { "id": "b", "text": "宽整数不能做位运算" },
+      { "id": "c", "text": "宽整数会删除所有子集" },
+      { "id": "d", "text": "n 与运行时间无关" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "表示能力与枚举时间是两项独立限制，都必须检查。"
+  }
+]
