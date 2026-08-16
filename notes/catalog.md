@@ -577,7 +577,7 @@
 | *990322 | 树套树：线段树套线段树 | 推迟 | `data-structures/segment-tree-of-segment-trees.md` |
 | *990323 | 树套树：线段树套平衡树 | 推迟 | `data-structures/segment-tree-of-balanced-trees.md` |
 | *990327 | KD 树 | 推迟 | `data-structures/kd-tree.md` |
-| 080108 | 笛卡尔树 | 计划 | `data-structures/cartesian-tree.md` |
+| 080108 | 笛卡尔树 | 待审阅 | [data-structures/cartesian-tree.md](data-structures/cartesian-tree.md) |
 | *990316 | Wavelet Matrix | 推迟 | `data-structures/wavelet-matrix.md` |
 
 ## 04 图论

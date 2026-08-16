@@ -1,0 +1,62 @@
+[
+  {
+    "id": "two-properties",
+    "prompt": "最小笛卡尔树同时满足哪两条核心性质？",
+    "options": [
+      { "id": "a", "text": "前序遍历有序，且是大根堆" },
+      { "id": "b", "text": "中序遍历还原数组顺序，且父亲值不大于儿子值" },
+      { "id": "c", "text": "所有叶子值相等，且树必须完全" },
+      { "id": "d", "text": "节点编号满足二叉堆编号公式" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "中序顺序保存位置关系，小根堆性质保存区间最小值的层次关系。"
+  },
+  {
+    "id": "last-popped",
+    "prompt": "构造时最后一个被弹出的节点 `last` 应成为新节点 `i` 的什么？",
+    "options": [
+      { "id": "a", "text": "左儿子" },
+      { "id": "b", "text": "右儿子" },
+      { "id": "c", "text": "父亲" },
+      { "id": "d", "text": "没有关系" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "last 所代表的区间位于 i 左侧且值更大，因此整体接到 i 的左边。"
+  },
+  {
+    "id": "subarray-count",
+    "prompt": "节点 `u` 的左右子树大小分别为 `L` 和 `R` 时，它代表多少个子数组的最小值？",
+    "options": [
+      { "id": "a", "text": "`L + R`" },
+      { "id": "b", "text": "`L * R`" },
+      { "id": "c", "text": "`(L + 1) * (R + 1)`" },
+      { "id": "d", "text": "`n`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "左端点可从 u 与左子树中选择，右端点可从 u 与右子树中选择。"
+  },
+  {
+    "id": "equal-values",
+    "prompt": "本文使用 `>` 而不是 `>=` 弹栈，主要确定了什么？",
+    "options": [
+      { "id": "a", "text": "数组必须没有重复值" },
+      { "id": "b", "text": "相等最小值出现时选择较早位置作为代表的约定" },
+      { "id": "c", "text": "所有节点都成为根" },
+      { "id": "d", "text": "构造复杂度变成平方级" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "相等元素不弹出，使较早位置留在祖先方向，从而统一处理重复最小值。"
+  },
+  {
+    "id": "iterative-traversal",
+    "prompt": "完整代码为什么使用显式栈反向计算子树大小？",
+    "options": [
+      { "id": "a", "text": "笛卡尔树可能退化成长链，递归可能超过调用栈限制" },
+      { "id": "b", "text": "二叉树不允许递归" },
+      { "id": "c", "text": "显式栈会把复杂度降到 `O(1)`" },
+      { "id": "d", "text": "为了修改原数组的顺序" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "单调数组会产生深度为 n 的树；迭代遍历避免递归深度风险。"
+  }
+]
