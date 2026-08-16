@@ -1,8 +1,8 @@
-# 背包：完全背包
+# 完全背包
 
-> 最近修订：2026-08-13 22:39 +10:00（未审阅）
+> 最近修订：2026-08-16 14:26 +10:00（未审阅）
 
-[背包：0-1 背包](zero-one-knapsack.md) 中每件物品至多选择一次。现在给出 `n` 种物品，第 `i` 种物品的单件重量为 `weight[i]`、单件价值为 `value[i]`，每种物品都有任意多件，可以选择 `0,1,2,...` 件。要求总重量不超过 `capacity`，并让总价值最大。
+[0-1 背包](zero-one-knapsack.md) 中每件物品至多选择一次。现在给出 `n` 种物品，第 `i` 种物品的单件重量为 `weight[i]`、单件价值为 `value[i]`，每种物品都有任意多件，可以选择 `0,1,2,...` 件。要求总重量不超过 `capacity`，并让总价值最大。
 
 这种模型称为完全背包（complete knapsack，英文资料也常称 unbounded knapsack）。状态定义可以沿用 0-1 背包，但允许重复选择会改变转移读取的是上一行还是当前行，最终使一维容量循环从倒序变成正序。
 
@@ -220,16 +220,20 @@ c = 6：dp[6] = dp[3] + 5 = 10
 
 二者取最大以后，`dp[c]` 成为允许使用前 `i` 种物品的正确答案。完成整轮正序更新后，一维数组等价于二维表的第 `i` 行。
 
-## 函数接口
+## 题目级状态
 
-计算只依赖本次输入的物品种类和容量，没有跨调用状态，使用普通函数：
+与 0-1 背包相同，`n`、`capacity`、`weight` 和 `value` 由输入过程与算法共同
+使用，保存为题目级全局状态：
 
 ```cpp
-ll complete_knapsack(const vector<int>& weight, const vector<ll>& value, int n,
-                     int capacity)
+int n, capacity;
+vector<int> weight;
+vector<ll> value;
 ```
 
 物品种类使用 `1..n`，位置 `0` 留空；容量使用 `0..capacity`，其中 `0` 是真实边界状态。
+
+`complete_knapsack()` 内部的一维 `dp` 只服务于当前一次计算，仍然保留为局部变量。
 
 ## 完整代码
 
@@ -248,8 +252,11 @@ using namespace std;
 
 typedef long long ll;
 
-ll complete_knapsack(const vector<int>& weight, const vector<ll>& value, int n,
-                     int capacity) {
+int n, capacity;
+vector<int> weight;
+vector<ll> value;
+
+ll complete_knapsack() {
     vector<ll> dp(capacity + 5, 0);
 
     for (int i = 1; i <= n; i++) {
@@ -260,17 +267,21 @@ ll complete_knapsack(const vector<int>& weight, const vector<ll>& value, int n,
     return dp[capacity];
 }
 
-int main() {
-    int n, capacity;
+void solve() {
     scanf("%d%d", &n, &capacity);
 
-    vector<int> weight(n + 5);
-    vector<ll> value(n + 5);
+    weight.assign(n + 5, 0);
+    value.assign(n + 5, 0);
+
     for (int i = 1; i <= n; i++) {
         scanf("%d%lld", &weight[i], &value[i]);
     }
 
-    printf("%lld\n", complete_knapsack(weight, value, n, capacity));
+    printf("%lld\n", complete_knapsack());
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -349,7 +360,3 @@ int main() {
 9. 从件数枚举优化到同一行转移后，时间复杂度怎样变化？
 
 本篇只处理每种物品数量无限、总重量不超过容量、最大总价值的基础模型。具体数量受到上限时，需要在下一篇多重背包中重新处理选择次数。
-
-## 下一篇
-
-下一篇 [背包：多重背包](multiple-knapsack.md) 会为每种物品增加有限数量上限，并用二进制拆分减少需要处理的组合物品数量。

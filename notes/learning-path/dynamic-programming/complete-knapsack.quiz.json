@@ -1,0 +1,98 @@
+[
+  {
+    "id": "unlimited-copies",
+    "prompt": "完全背包与 0-1 背包的核心区别是什么？",
+    "options": [
+      { "id": "a", "text": "完全背包不限制总重量" },
+      { "id": "b", "text": "完全背包只允许一种物品" },
+      { "id": "c", "text": "完全背包允许每种物品选择任意非负件" },
+      { "id": "d", "text": "完全背包不计算总价值" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "容量限制仍然存在，变化的是每种物品可使用的副本数量。"
+  },
+  {
+    "id": "enumerate-count",
+    "prompt": "直接枚举第 `i` 种物品的件数 `k` 时，为什么最坏会达到 $O(n\\cdot capacity^2)$？",
+    "options": [
+      { "id": "a", "text": "每个物品与容量状态还可能枚举 $O(capacity)$ 个件数" },
+      { "id": "b", "text": "因为每个状态都要排序" },
+      { "id": "c", "text": "因为输入需要读取两次" },
+      { "id": "d", "text": "因为价值使用 64 位整数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "当物品重量为 1 时，一个容量状态可能检查从 0 到 c 的全部件数。"
+  },
+  {
+    "id": "same-row-transition",
+    "prompt": "至少选择一件第 `i` 种物品后，剩余问题为什么是 `dp[i][c - weight[i]]`？",
+    "options": [
+      { "id": "a", "text": "因为当前种类必须立刻删除" },
+      { "id": "b", "text": "因为容量不需要减少" },
+      { "id": "c", "text": "因为剩余问题只能使用更早种类" },
+      { "id": "d", "text": "因为剩余问题仍然允许继续选择第 `i` 种物品" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "无限副本使取出一件后的剩余状态仍属于当前行，从而消除件数枚举。"
+  },
+  {
+    "id": "ascending-capacity",
+    "prompt": "一维完全背包为什么正序枚举容量？",
+    "options": [
+      { "id": "a", "text": "为了让物品按价值排序" },
+      { "id": "b", "text": "让较小容量先更新，从而能在本轮继续复用当前物品" },
+      { "id": "c", "text": "为了避免使用当前物品" },
+      { "id": "d", "text": "为了把容量状态减半" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "正序时 dp[c - weight[i]] 已经是当前行状态，可以再加一件当前物品。"
+  },
+  {
+    "id": "descending-effect",
+    "prompt": "完全背包若倒序枚举容量，代码会退化成什么模型？",
+    "options": [
+      { "id": "a", "text": "多重背包" },
+      { "id": "b", "text": "最长上升子序列" },
+      { "id": "c", "text": "0-1 背包" },
+      { "id": "d", "text": "最短路" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "倒序让较小容量保持上一行，当前种类在一轮中最多被加入一次。"
+  },
+  {
+    "id": "row-difference",
+    "prompt": "0-1 背包与完全背包的二维选择转移最本质的差异是什么？",
+    "options": [
+      { "id": "a", "text": "剩余状态分别来自上一行和当前行" },
+      { "id": "b", "text": "一个使用最大值，另一个使用最小值" },
+      { "id": "c", "text": "一个有容量，另一个没有容量" },
+      { "id": "d", "text": "一个使用数组，另一个使用队列" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "来源行直接表达取出一件以后，剩余问题还能否再次使用当前种类。"
+  },
+  {
+    "id": "zero-weight",
+    "prompt": "为什么正价值、零重量的物品会让完全背包没有有限最大值？",
+    "options": [
+      { "id": "a", "text": "因为它不能被选择" },
+      { "id": "b", "text": "因为它会让容量变成负数" },
+      { "id": "c", "text": "因为零不能作为数组下标" },
+      { "id": "d", "text": "可以无限选择而不增加重量，价值却持续增加" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "重量不增长意味着容量无法限制副本数，正价值会无限累加。"
+  },
+  {
+    "id": "optimized-complexity",
+    "prompt": "消除件数枚举后，完全背包的时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "$O(2^n)$" },
+      { "id": "b", "text": "$O(n\\cdot capacity)$" },
+      { "id": "c", "text": "$O(capacity^2)$" },
+      { "id": "d", "text": "$O(1)$" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每种物品只需正序扫描一次全部容量状态。"
+  }
+]
