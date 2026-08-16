@@ -1,0 +1,50 @@
+[
+  {
+    "id": "singly-dummy-head",
+    "prompt": "虚拟头节点最主要的作用是什么？",
+    "options": [
+      { "id": "a", "text": "让链表自动排序" },
+      { "id": "b", "text": "让首节点也拥有统一的前驱，从而减少边界分支" },
+      { "id": "c", "text": "让第 `k` 个位置能够随机访问" },
+      { "id": "d", "text": "保存尾节点的数据" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "虚拟头节点不属于逻辑数据，但为首节点提供固定前驱 `0`。"
+  },
+  {
+    "id": "singly-insert-order",
+    "prompt": "把新节点 `v` 插到 `u` 后面时，为什么先令 `v` 指向旧后继？",
+    "options": [
+      { "id": "a", "text": "否则先覆盖 `u.next` 会丢失旧后继" },
+      { "id": "b", "text": "C++ 要求按节点编号递增赋值" },
+      { "id": "c", "text": "这样可以跳过建立节点" },
+      { "id": "d", "text": "这样能让值自动变小" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "必须先保存原链表出口，再把前驱改为指向新节点。"
+  },
+  {
+    "id": "singly-tail-limit",
+    "prompt": "单向链表保存 `tail` 后，哪项操作最坏仍需要 `O(n)`？",
+    "options": [
+      { "id": "a", "text": "在尾部追加新节点" },
+      { "id": "b", "text": "读取尾节点编号" },
+      { "id": "c", "text": "删除尾节点并寻找它的前驱" },
+      { "id": "d", "text": "判断链表是否为空" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "单向链表没有从尾节点指向前驱的链接，仍需从入口寻找倒数第二个节点。"
+  },
+  {
+    "id": "singly-logical-deletion",
+    "prompt": "索引实现中，节点从链表断开后为什么 `nodes.size()` 不会减小？",
+    "options": [
+      { "id": "a", "text": "删除操作会复制全部节点" },
+      { "id": "b", "text": "`next` 不能修改" },
+      { "id": "c", "text": "所有删除都只是修改节点值" },
+      { "id": "d", "text": "逻辑删除只修改链接，底层存储格仍然存在" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "节点变得不可从链表入口到达，但并没有从保存所有节点的 `vector` 中擦除。"
+  }
+]
