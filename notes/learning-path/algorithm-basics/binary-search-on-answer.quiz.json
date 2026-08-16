@@ -1,0 +1,98 @@
+[
+  {
+    "id": "answer-binary-transformation",
+    "prompt": "二分答案怎样把优化问题转换成可搜索问题？",
+    "options": [
+      { "id": "a", "text": "逐个随机猜答案" },
+      { "id": "b", "text": "为候选答案编写可行性判定并寻找真假分界" },
+      { "id": "c", "text": "把所有答案存进哈希表" },
+      { "id": "d", "text": "只检查输入数组中点" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "优化值不必显式成表，只要候选区间有序且判定结果单调。"
+  },
+  {
+    "id": "rope-feasibility",
+    "prompt": "候选段长为 `length` 时，一根长度 `a[i]` 的绳子能贡献多少段？",
+    "options": [
+      { "id": "a", "text": "`a[i] / length` 的整数商" },
+      { "id": "b", "text": "`a[i] + length`" },
+      { "id": "c", "text": "始终为 1" },
+      { "id": "d", "text": "`length / a[i]`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每段长 length，剩余不足一段的部分丢弃，正好取整数商。"
+  },
+  {
+    "id": "rope-monotonicity",
+    "prompt": "切绳问题的可行性从短长度到长长度呈什么形状？",
+    "options": [
+      { "id": "a", "text": "false 后永远 true" },
+      { "id": "b", "text": "真假任意交替" },
+      { "id": "c", "text": "先 true，分界后全 false" },
+      { "id": "d", "text": "全部必须相同" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "缩短绳段不会减少段数，所以可行长度形成一个前缀。"
+  },
+  {
+    "id": "last-true-update",
+    "prompt": "寻找最后一个可行值时，`mid` 可行后应怎样更新？",
+    "options": [
+      { "id": "a", "text": "保存 mid，并令 l = mid + 1" },
+      { "id": "b", "text": "令 r = mid - 1，不保存" },
+      { "id": "c", "text": "立即返回 0" },
+      { "id": "d", "text": "保持区间不变" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "mid 是当前候选，但仍要向右寻找是否存在更大的可行值。"
+  },
+  {
+    "id": "first-true-update",
+    "prompt": "寻找第一个可行值时，`mid` 可行后应向哪边继续？",
+    "options": [
+      { "id": "a", "text": "结束整个程序" },
+      { "id": "b", "text": "向右找更大值" },
+      { "id": "c", "text": "同时丢弃两边" },
+      { "id": "d", "text": "保存 mid，并向左找更小可行值" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "可行中点可能不是最早分界，保存后令 r = mid - 1。"
+  },
+  {
+    "id": "rope-zero-boundary",
+    "prompt": "为什么切绳判定的候选范围不能包含 0？",
+    "options": [
+      { "id": "a", "text": "0 不是整数" },
+      { "id": "b", "text": "判定中要计算 a[i] / length，会除以零" },
+      { "id": "c", "text": "0 一定是最大答案" },
+      { "id": "d", "text": "vector 下标必须大于 5" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "0 可以作为不存在正答案的哨兵，但不能传入判定函数。"
+  },
+  {
+    "id": "answer-binary-complexity",
+    "prompt": "一次判定为 O(T)、候选范围宽度为 M 时，总时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "O(T log M)" },
+      { "id": "b", "text": "O(T + M)" },
+      { "id": "c", "text": "O(log T)" },
+      { "id": "d", "text": "O(M²)" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "二分进行 O(log M) 轮，每轮调用一次成本为 O(T) 的判定。"
+  },
+  {
+    "id": "feasible-early-return",
+    "prompt": "段数达到 `required` 后立即返回有什么作用？",
+    "options": [
+      { "id": "a", "text": "改变可行性的定义" },
+      { "id": "b", "text": "让候选范围变成无序" },
+      { "id": "c", "text": "避免无用计算并降低继续累加溢出的风险" },
+      { "id": "d", "text": "把时间复杂度固定成 O(1)" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "判定只关心是否达到门槛，不需要超过门槛后的精确总数。"
+  }
+]
