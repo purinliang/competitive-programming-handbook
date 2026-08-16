@@ -1,6 +1,6 @@
 # 模拟
 
-> 最近修订：2026-08-16 17:10 +10:00（未审阅）
+> 最近修订：2026-08-17 09:56 +10:00（未审阅）
 
 有些题目已经完整规定了对象的初始状态和每一种操作，只要求依次执行操作后报告最终结果。这类题目通常不需要寻找隐藏公式，而是需要把规则准确翻译成状态更新。这种按照题意重现过程的方法称为模拟。
 
@@ -32,14 +32,12 @@ FFRFFLFF
 
 `L` 与 `R` 只需要当前朝向；`F` 需要当前坐标和朝向。过去命令的具体内容已经通过这些量反映在当前状态中，不必完整回看历史。
 
-因此状态由三个量组成：
+因此状态由三个变量组成：
 
 ```cpp
-struct robot {
-    ll x;
-    ll y;
-    int direction;
-};
+ll x;
+ll y;
+int direction;
 ```
 
 - `x`：当前横坐标；
@@ -49,7 +47,9 @@ struct robot {
 初始状态是：
 
 ```cpp
-robot state = {0, 0, 0};
+x = 0;
+y = 0;
+direction = 0;
 ```
 
 坐标使用 64 位整数。题目仍需保证执行全部前进命令后的坐标可以在 64 位整数中保存。
@@ -90,7 +90,7 @@ robot state = {0, 0, 0};
 先加一，再对四取余即可回到范围 `0..3`：
 
 ```cpp
-state.direction = (state.direction + 1) % 4;
+direction = (direction + 1) % 4;
 ```
 
 例如西方编号为 `3`，右转后 `(3 + 1) % 4 == 0`，回到北方。
@@ -106,7 +106,7 @@ state.direction = (state.direction + 1) % 4;
 不能直接依赖 `(direction - 1) % 4`。在 C++ 中，`0 - 1` 对 `4` 取余会得到 `-1`，不能作为方向编号。先加上一个完整周期再取余：
 
 ```cpp
-state.direction = (state.direction + 3) % 4;
+direction = (direction + 3) % 4;
 ```
 
 加 `3` 与减 `1` 在模 `4` 的循环中表示同一个变化，同时结果始终位于 `0..3`。
@@ -123,60 +123,37 @@ const int dy[4] = {1, 0, -1, 0};
 `dx[direction]` 是当前方向的横坐标增量，`dy[direction]` 是纵坐标增量。因此 `F` 命令只需要：
 
 ```cpp
-state.x += dx[state.direction];
-state.y += dy[state.direction];
+x += dx[direction];
+y += dy[direction];
 ```
 
 这两个长度为四的数组是由方向状态编号访问的固定查找表。它们把四段几乎相同的坐标判断压缩成一次统一更新，避免某个方向漏改或正负号写反。
 
 ## 逐条处理命令
 
-输入命令保存在 1-based 数组 `commands[1..m]` 中。按照原顺序扫描：
+若题目不需要回看命令，读入一个字符后就可以立即执行：
 
 ```cpp
 for (int i = 1; i <= m; i++) {
-    char command = commands[i];
+    char command;
+    cin >> command;
 
     if (command == 'F') {
-        state.x += dx[state.direction];
-        state.y += dy[state.direction];
+        x += dx[direction];
+        y += dy[direction];
     } else if (command == 'L') {
-        state.direction = (state.direction + 3) % 4;
+        direction = (direction + 3) % 4;
     } else if (command == 'R') {
-        state.direction = (state.direction + 1) % 4;
+        direction = (direction + 1) % 4;
     }
 }
 ```
 
 题目保证命令只包含 `F`、`L`、`R`。若题面允许非法命令，就必须另外规定忽略、报错还是执行其他行为，不能自行猜测。
 
-把状态建立、方向表和命令循环合在一个函数中：
-
-```cpp
-robot simulate(const vector<char>& commands, int m) {
-    const int dx[4] = {0, 1, 0, -1};
-    const int dy[4] = {1, 0, -1, 0};
-
-    robot state = {0, 0, 0};
-
-    for (int i = 1; i <= m; i++) {
-        char command = commands[i];
-
-        if (command == 'F') {
-            state.x += dx[state.direction];
-            state.y += dy[state.direction];
-        } else if (command == 'L') {
-            state.direction = (state.direction + 3) % 4;
-        } else if (command == 'R') {
-            state.direction = (state.direction + 1) % 4;
-        }
-    }
-
-    return state;
-}
-```
-
-三个返回值共同描述一个机器人状态，因此使用专门的 `struct` 返回，而不是通过三个输出引用参数修改调用者变量。
+循环结束后，`x`、`y` 和 `direction` 就是最终状态。本篇先使用三个已经学过的
+基本类型变量，不提前使用可跳过的结构体和后面才学习的 `vector`。真正复杂的
+模拟题中，状态量很多时再用结构体把它们组织在一起。
 
 ## 手动过程
 
@@ -198,25 +175,25 @@ robot simulate(const vector<char>& commands, int m) {
 
 ## 循环不变量
 
-进入第 `i` 轮循环以前，`state` 恰好等于机器人执行前 `i - 1` 条命令后的状态。
+进入第 `i` 轮循环以前，`x`、`y` 和 `direction` 恰好等于机器人执行前
+`i - 1` 条命令后的状态。
 
 - 循环开始前还没有执行命令，初始化值正是题面初始状态；
 - 若第 `i` 条是 `F`，程序按照当前朝向增加对应坐标，结果与前进一步相同；
 - 若第 `i` 条是 `L` 或 `R`，程序只更新循环方向编号，坐标保持不变，与原地转弯相同；
-- 因此本轮结束后，`state` 恰好是执行前 `i` 条命令后的状态。
+- 因此本轮结束后，三个变量恰好表示执行前 `i` 条命令后的状态。
 
-按顺序重复到 `i == m`，函数返回的就是执行全部命令后的状态。
+按顺序重复到 `i == m`，三个变量保存的就是执行全部命令后的状态。
 
 模拟的正确性通常来自这种逐步对应：先保证初始状态一致，再证明每种操作都把正确的旧状态变成正确的新状态。
 
 ## 时间与空间复杂度
 
-每条命令只处理一次，每次只进行固定次数的比较和整数运算，所以模拟函数的时间复杂度是 $O(m)$。
+每条命令只处理一次，每次只进行固定次数的比较和整数运算，所以时间复杂度是
+$O(m)$。
 
-除调用者提供的命令数组外，函数只保存机器人状态和两个固定长度方向表，额外空间
-复杂度是 $O(1)$。完整程序为了保存全部输入命令使用 $O(m)$ 空间；若题目不需要
-回看或复用命令，也可以在读入每个字符后立即执行，把整个程序的额外空间降为
-$O(1)$。
+程序读入一条命令后立即执行，只保存机器人状态和两个固定长度方向表，
+额外空间复杂度是 $O(1)$。
 
 ## 完整代码
 
@@ -228,48 +205,34 @@ using namespace std;
 
 typedef long long ll;
 
-struct robot {
-    ll x;
-    ll y;
-    int direction;
-};
-
-robot simulate(const vector<char>& commands, int m) {
-    const int dx[4] = {0, 1, 0, -1};
-    const int dy[4] = {1, 0, -1, 0};
-
-    robot state = {0, 0, 0};
-
-    for (int i = 1; i <= m; i++) {
-        char command = commands[i];
-
-        if (command == 'F') {
-            state.x += dx[state.direction];
-            state.y += dy[state.direction];
-        } else if (command == 'L') {
-            state.direction = (state.direction + 3) % 4;
-        } else if (command == 'R') {
-            state.direction = (state.direction + 1) % 4;
-        }
-    }
-
-    return state;
-}
-
 void solve() {
     int m;
     cin >> m;
 
-    vector<char> commands(m + 5);
-    for (int i = 1; i <= m; i++) {
-        cin >> commands[i];
-    }
-
-    robot answer = simulate(commands, m);
+    const int dx[4] = {0, 1, 0, -1};
+    const int dy[4] = {1, 0, -1, 0};
     const char direction_name[4] = {'N', 'E', 'S', 'W'};
 
-    cout << answer.x << ' ' << answer.y << ' ';
-    cout << direction_name[answer.direction] << '\n';
+    ll x = 0;
+    ll y = 0;
+    int direction = 0;
+
+    for (int i = 1; i <= m; i++) {
+        char command;
+        cin >> command;
+
+        if (command == 'F') {
+            x += dx[direction];
+            y += dy[direction];
+        } else if (command == 'L') {
+            direction = (direction + 3) % 4;
+        } else if (command == 'R') {
+            direction = (direction + 1) % 4;
+        }
+    }
+
+    cout << x << ' ' << y << ' ';
+    cout << direction_name[direction] << '\n';
 }
 
 int main() {
