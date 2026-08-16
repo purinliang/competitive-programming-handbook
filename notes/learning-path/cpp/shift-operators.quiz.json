@@ -1,0 +1,50 @@
+[
+  {
+    "id": "left-shift-multiplication",
+    "prompt": "对能表示结果的非负整数，`x << k` 对应哪项数学运算？",
+    "options": [
+      { "id": "a", "text": "`x + k`" },
+      { "id": "b", "text": "$x\\times 2^k$" },
+      { "id": "c", "text": "$x\\div 2^k$" },
+      { "id": "d", "text": "$x^k$" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每向左移动一位，所有保留下来的位权乘以 2；不发生范围问题时，左移 `k` 位对应乘以 2 的 `k` 次方。"
+  },
+  {
+    "id": "unsigned-right-shift",
+    "prompt": "对无符号整数，右移 `k` 位对应哪种除法结果？",
+    "options": [
+      { "id": "a", "text": "除以 `k` 后四舍五入" },
+      { "id": "b", "text": "除以 `k` 后向上取整" },
+      { "id": "c", "text": "除以 $2^k$ 后向上取整" },
+      { "id": "d", "text": "除以 $2^k$ 后向下取整" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "右移丢弃最低的 `k` 位；对无符号整数，这正是除以 2 的 `k` 次方后向下取整。"
+  },
+  {
+    "id": "left-operand-width",
+    "prompt": "为什么需要 64 位无符号掩码时应写 `1ULL << k`？",
+    "options": [
+      { "id": "a", "text": "让左操作数在移位前就是 64 位无符号整数" },
+      { "id": "b", "text": "让 `k` 自动变成浮点数" },
+      { "id": "c", "text": "因为结果变量会反过来改变左操作数" },
+      { "id": "d", "text": "因为 `ULL` 是二进制输入格式" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "移位根据左操作数的类型执行；事后保存进更宽变量，无法补救已经按 `int` 完成的运算。"
+  },
+  {
+    "id": "shift-count-range",
+    "prompt": "对常见 32 位 `unsigned int x` 执行 `x << k`，`k` 应满足什么范围？",
+    "options": [
+      { "id": "a", "text": "`k <= 32`" },
+      { "id": "b", "text": "`k < 0`" },
+      { "id": "c", "text": "`0 <= k && k < 32`" },
+      { "id": "d", "text": "任意整数都可以" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "移动位数必须非负并严格小于左操作数类型的位数；等于 32 也不合法。"
+  }
+]

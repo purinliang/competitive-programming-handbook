@@ -130,8 +130,8 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 020201 | 位运算符 | C++ | [cpp/bitwise-operators.md](cpp/bitwise-operators.md) |
-| 020202 | 移位运算符 | C++ | `cpp/shift-operators.md` |
+| 020201 | 按位运算 | C++ | [cpp/bitwise-operators.md](cpp/bitwise-operators.md) |
+| 020202 | 移位运算 | C++ | [cpp/shift-operators.md](cpp/shift-operators.md) |
 
 ### 单元 03：指针
 

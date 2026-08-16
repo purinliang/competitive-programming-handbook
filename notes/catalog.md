@@ -63,8 +63,8 @@
 | 010502 | 逻辑运算符 | 待审阅 | [logical-operators.md](cpp/logical-operators.md) |
 | 010603 | 自增与自减运算符 | 待审阅 | [increment-decrement-operators.md](cpp/increment-decrement-operators.md) |
 | 010203 | 复合赋值运算符 | 待审阅 | [compound-assignment-operators.md](cpp/compound-assignment-operators.md) |
-| 020201 | 位运算符 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
-| 020202 | 移位运算符 | 计划 | `cpp/shift-operators.md` |
+| 020201 | 按位运算 | 待审阅 | [bitwise-operators.md](cpp/bitwise-operators.md) |
+| 020202 | 移位运算 | 待审阅 | [shift-operators.md](cpp/shift-operators.md) |
 | *020608 | 运算符重载 | 待审阅 | [operator-overloading.md](cpp/operator-overloading.md) |
 
 ### 专题：数值计算

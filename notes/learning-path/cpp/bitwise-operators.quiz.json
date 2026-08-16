@@ -3,25 +3,25 @@
     "id": "bit-numbering",
     "prompt": "二进制位通常从哪一侧开始以 `0` 编号？",
     "options": [
-      { "id": "a", "text": "从最右侧的最低位开始" },
-      { "id": "b", "text": "从最左侧的最高位开始" },
-      { "id": "c", "text": "从小数点开始" },
-      { "id": "d", "text": "编号方向由变量名决定" }
+      { "id": "a", "text": "从最左侧的最高位开始" },
+      { "id": "b", "text": "从最右侧的最低位开始" },
+      { "id": "c", "text": "从第一个为 `1` 的位置开始" },
+      { "id": "d", "text": "编号方向由变量类型决定" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "最右侧最低位编号为 0，向左依次为 1、2、3；第 `k` 位的权值是 2 的 `k` 次方。"
   },
   {
-    "id": "and-or-xor",
-    "prompt": "哪个位运算在同一位置的两个位不同时得到 `1`？",
+    "id": "different-bits",
+    "prompt": "哪个运算在同一位置的两个位不同时得到 `1`，相同时得到 `0`？",
     "options": [
-      { "id": "a", "text": "`&`" },
-      { "id": "b", "text": "`|`" },
-      { "id": "c", "text": "`^`" },
-      { "id": "d", "text": "`~`" }
+      { "id": "a", "text": "按位与 `&`" },
+      { "id": "b", "text": "按位或 `|`" },
+      { "id": "c", "text": "按位异或 `^`" },
+      { "id": "d", "text": "按位取反 `~`" }
     ],
     "correctOptionId": "c",
-    "explanation": "按位异或 `^` 在两个位不同时得到 1，相同时得到 0。"
+    "explanation": "按位异或检查两个位是否不同；不同得到 1，相同得到 0。"
   },
   {
     "id": "bitwise-not-width",
@@ -29,70 +29,22 @@
     "options": [
       { "id": "a", "text": "`~` 会翻转参与运算类型的全部位" },
       { "id": "b", "text": "`~` 只处理十进制数字" },
-      { "id": "c", "text": "高位永远都是字符" },
-      { "id": "d", "text": "取反会把类型改成 `double`" }
+      { "id": "c", "text": "取反会把类型改成 `double`" },
+      { "id": "d", "text": "高位会自动变成字符" }
     ],
     "correctOptionId": "a",
-    "explanation": "图示只隐藏了没有画出的高位，变量仍有完整类型宽度；按位取反会处理这些高位。"
+    "explanation": "图示只是省略了高位；变量仍有完整类型宽度，按位取反会处理其中每一位。"
   },
   {
-    "id": "single-bit-mask",
-    "prompt": "怎样构造一个只有第 `k` 位为 `1` 的 32 位无符号掩码？",
+    "id": "clear-mask",
+    "prompt": "怎样把 `mask` 选中的位置在 `state` 中全部清为 `0`？",
     "options": [
-      { "id": "a", "text": "`1u << k`" },
-      { "id": "b", "text": "`1u >> k`" },
-      { "id": "c", "text": "`k << 0`" },
-      { "id": "d", "text": "`1u && k`" }
+      { "id": "a", "text": "`state |= mask;`" },
+      { "id": "b", "text": "`state ^= mask;`" },
+      { "id": "c", "text": "`state &= mask;`" },
+      { "id": "d", "text": "`state &= ~mask;`" }
     ],
-    "correctOptionId": "a",
-    "explanation": "从最低位为 1 的 `1u` 出发，向左移动 `k` 位，就只留下第 `k` 位为 1。"
-  },
-  {
-    "id": "query-bit-parentheses",
-    "prompt": "下面哪项能正确判断 `mask` 的第 `k` 位是否为 `1`？",
-    "options": [
-      { "id": "a", "text": "`(mask & (1u << k)) != 0`" },
-      { "id": "b", "text": "`mask && (1u << k)`" },
-      { "id": "c", "text": "`mask | (1u << k)`" },
-      { "id": "d", "text": "`mask ^ 0`" }
-    ],
-    "correctOptionId": "a",
-    "explanation": "按位与先只保留目标位，再检查结果是否非零；括号保证位运算先于比较执行。"
-  },
-  {
-    "id": "modify-single-bit",
-    "prompt": "若 `bit = 1u << k`，怎样把 `mask` 的第 `k` 位清为 `0`？",
-    "options": [
-      { "id": "a", "text": "`mask |= bit;`" },
-      { "id": "b", "text": "`mask &= ~bit;`" },
-      { "id": "c", "text": "`mask ^= bit;`" },
-      { "id": "d", "text": "`mask += bit;`" }
-    ],
-    "correctOptionId": "b",
-    "explanation": "`~bit` 只在目标位为 0；与它按位与会清除目标位，同时保留其他位置。"
-  },
-  {
-    "id": "wide-shift-literal",
-    "prompt": "生成常见 64 位无符号掩码时，为什么从 `1ULL << k` 开始？",
-    "options": [
-      { "id": "a", "text": "让左操作数在移位以前就具有 64 位无符号类型" },
-      { "id": "b", "text": "让 `k` 自动变成浮点数" },
-      { "id": "c", "text": "因为 `ULL` 表示二进制字面量" },
-      { "id": "d", "text": "因为结果变量的类型会反过来改变左操作数" }
-    ],
-    "correctOptionId": "a",
-    "explanation": "移位先根据左操作数的类型执行；事后把 `1 << k` 保存进更大变量，无法补救已经按 `int` 完成的移位。"
-  },
-  {
-    "id": "shift-count-range",
-    "prompt": "对常见 32 位 `unsigned int x` 执行 `x << k`，`k` 应满足什么范围？",
-    "options": [
-      { "id": "a", "text": "`0 <= k && k < 32`" },
-      { "id": "b", "text": "`0 <= k && k <= 32`" },
-      { "id": "c", "text": "`k < 0`" },
-      { "id": "d", "text": "任意整数都可以" }
-    ],
-    "correctOptionId": "a",
-    "explanation": "移动位数必须非负并严格小于左操作数类型的位数；等于或超过 32 都不合法。"
+    "correctOptionId": "d",
+    "explanation": "`~mask` 只在目标位置为 0；与它按位与会清除这些位置，同时保留其他位置。"
   }
 ]
