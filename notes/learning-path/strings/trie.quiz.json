@@ -1,0 +1,74 @@
+[
+  {
+    "id": "shared-prefix",
+    "prompt": "Trie 为什么适合维护大量字符串的前缀？",
+    "options": [
+      { "id": "a", "text": "它会把所有字符串排序成相同内容" },
+      { "id": "b", "text": "拥有相同前缀的字符串会共享从根开始的一段路径" },
+      { "id": "c", "text": "它只保存每个字符串的最后一个字符" },
+      { "id": "d", "text": "它保证所有字符串长度相同" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "相同前缀只建一次路径，分歧字符才产生分支。"
+  },
+  {
+    "id": "terminal-marker",
+    "prompt": "为什么仅有孩子关系还不能判断 `app` 是否作为完整单词插入过？",
+    "options": [
+      { "id": "a", "text": "因为 `app` 对应节点也可能只是 `apple` 的中间节点" },
+      { "id": "b", "text": "因为 Trie 不能保存字符 `p`" },
+      { "id": "c", "text": "因为所有叶子都必须代表空串" },
+      { "id": "d", "text": "因为根节点必须是单词结尾" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "路径存在只说明某个已插入单词经过这里，需要终点计数区分完整单词。"
+  },
+  {
+    "id": "zero-node",
+    "prompt": "本篇 Trie 中节点编号 0 表示什么？",
+    "options": [
+      { "id": "a", "text": "根节点" },
+      { "id": "b", "text": "第一个插入的单词" },
+      { "id": "c", "text": "这条孩子边不存在" },
+      { "id": "d", "text": "任意单词的结尾" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "真实节点从 1 开始，0 统一作为空节点标记。"
+  },
+  {
+    "id": "two-counts",
+    "prompt": "`terminal_count[u]` 与 `prefix_count[u]` 的区别是什么？",
+    "options": [
+      { "id": "a", "text": "两者永远完全相同" },
+      { "id": "b", "text": "前者记录孩子数，后者记录父亲编号" },
+      { "id": "c", "text": "前者只用于删除，后者只用于插入" },
+      { "id": "d", "text": "前者统计在此结束的单词，后者统计经过此前缀的单词" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "完整单词与拥有某个前缀是两个不同查询。"
+  },
+  {
+    "id": "operation-complexity",
+    "prompt": "固定小写字母表时，插入长度为 $L$ 的单词需要多少时间？",
+    "options": [
+      { "id": "a", "text": "$O(L)$" },
+      { "id": "b", "text": "$O(26^L)$" },
+      { "id": "c", "text": "$O(L^2)$" },
+      { "id": "d", "text": "$O(1)$" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每个字符只对应一次常数时间的孩子数组访问。"
+  },
+  {
+    "id": "maximum-nodes",
+    "prompt": "插入字符串的总长度为 $S$ 时，Trie 最多新建多少个真实节点？",
+    "options": [
+      { "id": "a", "text": "恰好 26 个" },
+      { "id": "b", "text": "不超过 $S+1$ 个，包含根节点" },
+      { "id": "c", "text": "至少 $S^2$ 个" },
+      { "id": "d", "text": "节点数与输入无关" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "根节点占一个，每处理一个字符最多新建一个节点。"
+  }
+]
