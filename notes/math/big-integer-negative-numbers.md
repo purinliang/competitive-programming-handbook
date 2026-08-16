@@ -199,10 +199,9 @@ c.sign = a.sign * b.sign;
 quotient.sign = a.sign * (divisor < 0 ? -1 : 1);
 ```
 
-当除数可能占满 64 位整数时，`remainder * 10 + digit` 不能继续假设一定能放进
-64 位整数；`LLONG_MIN` 也不能先在 64 位整数中取绝对值。因此完整代码用
-`__int128` 保存正除数、当前值和非负余数，最终余数仍然严格小于除数的绝对值，
-可以安全返回为 64 位整数。
+本篇沿用基础篇的“低精度整数”约定，让除数使用 `int`。进入每一步以前
+`remainder<|divisor|`，所以 `remainder * 10 + digit` 能安全放入 64 位整数。
+不要为了覆盖题目没有要求的 64 位除数，把基础接口扩大成更复杂的宽整数实现。
 
 ## 完整代码
 
@@ -381,28 +380,25 @@ bigint multiply(const bigint& a, const bigint& b) {
     return c;
 }
 
-pair<bigint, ll> divide(const bigint& a, ll divisor) {
+pair<bigint, int> divide(const bigint& a, int divisor) {
     assert(divisor != 0);
 
-    __int128 positive_divisor = divisor;
-    if (positive_divisor < 0) {
-        positive_divisor = -positive_divisor;
-    }
+    ll positive_divisor = abs((ll)divisor);
 
     bigint quotient;
     quotient.sign = a.sign * (divisor < 0 ? -1 : 1);
     quotient.n = a.n;
     quotient.d.assign(quotient.n + 5, 0);
 
-    __int128 remainder = 0;
+    ll remainder = 0;
     for (int i = a.n; i >= 1; i--) {
-        __int128 current = remainder * 10 + a.d[i];
+        ll current = remainder * 10 + a.d[i];
         quotient.d[i] = current / positive_divisor;
         remainder = current % positive_divisor;
     }
     quotient.normalize();
 
-    ll signed_remainder = remainder;
+    int signed_remainder = remainder;
     if (a.sign < 0) {
         signed_remainder = -signed_remainder;
     }
@@ -411,7 +407,7 @@ pair<bigint, ll> divide(const bigint& a, ll divisor) {
 
 int main() {
     string sa, sb;
-    ll divisor;
+    int divisor;
     cin >> sa >> sb >> divisor;
 
     bigint a(sa);
@@ -483,7 +479,7 @@ C++ 向零取整的带符号除法语义。
 5. 异号相加的结果采用谁的符号？
 6. 怎样把带符号减法化成加法？
 7. 除以低精度整数时，商和余数的符号分别怎样确定？
-8. 为什么实现使用 `__int128` 保存竖式中的当前值？
+8. 为什么 `int` 除数配合 64 位中间变量不会溢出？
 
 ## 扩展阅读
 
