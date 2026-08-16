@@ -27,48 +27,48 @@
     "id": "definition-does-not-run",
     "prompt": "程序读到一个普通函数定义时会立刻执行函数体吗？",
     "options": [
-      { "id": "a", "text": "不会，函数体只在调用时执行" },
+      { "id": "a", "text": "会，一直执行到程序结束" },
       { "id": "b", "text": "会，并且只执行一次" },
-      { "id": "c", "text": "会，一直执行到程序结束" },
+      { "id": "c", "text": "不会，函数体只在调用时执行" },
       { "id": "d", "text": "由函数名长度决定" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "定义建立函数的操作内容；真正进入函数体必须来自一次函数调用。"
   },
   {
     "id": "solve-convention",
     "prompt": "关于竞赛代码中的 `solve()`，下面哪项正确？",
     "options": [
-      { "id": "a", "text": "它通常组织一道题的输入、计算和输出，但不是 C++ 强制名称" },
+      { "id": "a", "text": "它只能输出固定文字" },
       { "id": "b", "text": "它必须由操作系统直接调用" },
       { "id": "c", "text": "每个程序必须定义两个 `solve`" },
-      { "id": "d", "text": "它只能输出固定文字" }
+      { "id": "d", "text": "它通常组织一道题的输入、计算和输出，但不是 C++ 强制名称" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "`main` 才是程序入口；`solve` 是竞赛中用来分离题目逻辑的稳定代码习惯。"
   },
   {
     "id": "program-entry",
     "prompt": "普通 C++ 程序从哪个函数开始执行？",
     "options": [
-      { "id": "a", "text": "`solve`" },
-      { "id": "b", "text": "`main`" },
+      { "id": "a", "text": "`main`" },
+      { "id": "b", "text": "`solve`" },
       { "id": "c", "text": "`print_separator`" },
       { "id": "d", "text": "源文件中最后一个函数" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "a",
     "explanation": "`main` 是 C++ 程序入口；它可以再调用 `solve` 和其他辅助函数。"
   },
   {
     "id": "declaration-vs-definition",
     "prompt": "如果函数定义写在首次调用以后，通常应在调用以前补什么？",
     "options": [
-      { "id": "a", "text": "匹配的函数声明" },
-      { "id": "b", "text": "第二个 `main`" },
+      { "id": "a", "text": "第二个 `main`" },
+      { "id": "b", "text": "匹配的函数声明" },
       { "id": "c", "text": "一个循环" },
       { "id": "d", "text": "一个字符串字面量" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "编译器在检查调用前至少要知道函数名、返回类型和参数形式；声明可以先提供这些信息。"
   }
 ]

@@ -3,36 +3,36 @@
     "id": "redirection-effect",
     "prompt": "文件重定向主要改变什么？",
     "options": [
-      { "id": "a", "text": "标准输入和标准输出实际连接的目标" },
-      { "id": "b", "text": "加法和乘法的计算规则" },
+      { "id": "a", "text": "加法和乘法的计算规则" },
+      { "id": "b", "text": "标准输入和标准输出实际连接的目标" },
       { "id": "c", "text": "源代码中所有变量的类型" },
       { "id": "d", "text": "程序使用的 C++ 标准版本" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "重定向后题目主体仍使用普通输入输出接口，只是数据来源或写出目标变成文件。"
   },
   {
     "id": "input-redirection",
     "prompt": "哪条语句把标准输入重定向到 `sum.in`？",
     "options": [
-      { "id": "a", "text": "`freopen(\"sum.in\", \"r\", stdin);`" },
+      { "id": "a", "text": "`printf(\"sum.in\");`" },
       { "id": "b", "text": "`freopen(\"sum.in\", \"w\", stdout);`" },
-      { "id": "c", "text": "`printf(\"sum.in\");`" },
+      { "id": "c", "text": "`freopen(\"sum.in\", \"r\", stdin);`" },
       { "id": "d", "text": "`scanf(\"sum.in\");`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "输入文件以读取模式 `r` 打开，并替换标准输入流 `stdin`。"
   },
   {
     "id": "output-redirection",
     "prompt": "哪条语句把标准输出重定向到 `sum.out`？",
     "options": [
-      { "id": "a", "text": "`freopen(\"sum.out\", \"w\", stdout);`" },
+      { "id": "a", "text": "`cout << stdout;`" },
       { "id": "b", "text": "`freopen(\"sum.out\", \"r\", stdin);`" },
       { "id": "c", "text": "`cin >> sum.out;`" },
-      { "id": "d", "text": "`cout << stdout;`" }
+      { "id": "d", "text": "`freopen(\"sum.out\", \"w\", stdout);`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "输出文件以写入模式 `w` 打开，并替换标准输出流 `stdout`。"
   },
   {
@@ -51,24 +51,24 @@
     "id": "placement",
     "prompt": "`freopen` 最稳妥地放在什么位置？",
     "options": [
-      { "id": "a", "text": "`main` 开头、第一次输入输出和调用 `solve()` 以前" },
-      { "id": "b", "text": "所有答案输出完成以后" },
+      { "id": "a", "text": "所有答案输出完成以后" },
+      { "id": "b", "text": "`main` 开头、第一次输入输出和调用 `solve()` 以前" },
       { "id": "c", "text": "源文件的注释中" },
       { "id": "d", "text": "只放在循环的最后一次迭代" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "重定向必须先建立，后续输入输出才能使用新的文件目标。"
   },
   {
     "id": "working-directory",
     "prompt": "文件名拼写正确却仍然读不到 `sum.in` 时，还应优先检查什么？",
     "options": [
-      { "id": "a", "text": "程序运行时的当前工作目录" },
+      { "id": "a", "text": "是否删除了所有换行" },
       { "id": "b", "text": "整数是否都改成 `double`" },
-      { "id": "c", "text": "是否删除了所有换行" },
+      { "id": "c", "text": "程序运行时的当前工作目录" },
       { "id": "d", "text": "函数名是否恰好叫作 `sum`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "只写相对文件名时，程序会在运行时的当前工作目录中查找文件。"
   }
 ]

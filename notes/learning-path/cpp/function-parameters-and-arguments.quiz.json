@@ -3,36 +3,36 @@
     "id": "formal-parameter",
     "prompt": "在 `int add(int a, int b)` 中，`a` 和 `b` 是什么？",
     "options": [
-      { "id": "a", "text": "形参" },
-      { "id": "b", "text": "实参" },
+      { "id": "a", "text": "实参" },
+      { "id": "b", "text": "形参" },
       { "id": "c", "text": "返回值" },
       { "id": "d", "text": "函数调用" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "形参位于函数定义中，规定调用需要提供的数据，并给它们函数内部使用的名称。"
   },
   {
     "id": "actual-argument",
     "prompt": "在 `add(x + 1, 5)` 这次调用中，实参是哪两个表达式？",
     "options": [
-      { "id": "a", "text": "`x + 1` 和 `5`" },
+      { "id": "a", "text": "`int` 和 `add`" },
       { "id": "b", "text": "`a` 和 `b`" },
-      { "id": "c", "text": "`int` 和 `add`" },
+      { "id": "c", "text": "`x + 1` 和 `5`" },
       { "id": "d", "text": "只有 `x`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "实参位于具体调用的圆括号中；它可以是字面量、变量或更一般的表达式。"
   },
   {
     "id": "positional-matching",
     "prompt": "调用 `subtract(b, a)` 时，实参与形参怎样对应？",
     "options": [
-      { "id": "a", "text": "第一个实参 `b` 对应第一个形参，第二个实参 `a` 对应第二个形参" },
+      { "id": "a", "text": "两个实参总会交换位置" },
       { "id": "b", "text": "调用处的 `a` 自动寻找函数内同名的 `a`" },
       { "id": "c", "text": "编译器按照变量值的大小决定顺序" },
-      { "id": "d", "text": "两个实参总会交换位置" }
+      { "id": "d", "text": "第一个实参 `b` 对应第一个形参，第二个实参 `a` 对应第二个形参" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "实参与形参按位置对应，调用处和函数内的名称不会改变这条规则。"
   },
   {
@@ -51,24 +51,24 @@
     "id": "value-parameter-copy",
     "prompt": "`void add_one(int x) { x++; }` 被调用为 `add_one(value)` 后，为什么 `value` 不变？",
     "options": [
-      { "id": "a", "text": "`x` 是用 `value` 的值初始化的局部副本" },
-      { "id": "b", "text": "自增运算符不能在函数中使用" },
+      { "id": "a", "text": "自增运算符不能在函数中使用" },
+      { "id": "b", "text": "`x` 是用 `value` 的值初始化的局部副本" },
       { "id": "c", "text": "所有函数都会撤销内部修改" },
       { "id": "d", "text": "形参与实参必须使用相同名称" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "普通 `int` 值参数是这次调用自己的局部变量，修改副本不会修改调用处对象。"
   },
   {
     "id": "argument-conversion",
     "prompt": "把 `3.9` 作为实参提供给 `int` 形参时，首先会发生什么？",
     "options": [
-      { "id": "a", "text": "按照类型转换规则向零截去小数部分" },
+      { "id": "a", "text": "自动改写函数返回类型" },
       { "id": "b", "text": "自动四舍五入为 `4`" },
-      { "id": "c", "text": "自动改写函数返回类型" },
+      { "id": "c", "text": "按照类型转换规则向零截去小数部分" },
       { "id": "d", "text": "把小数转换成字符串" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "实参需要初始化对应形参；浮点值转换成 `int` 时向零截去小数部分。"
   }
 ]

@@ -15,36 +15,36 @@
     "id": "call-state",
     "prompt": "一次函数调用通常需要保留哪些语义信息？",
     "options": [
-      { "id": "a", "text": "参数、局部状态和返回后继续执行的位置" },
-      { "id": "b", "text": "源文件中的所有注释" },
+      { "id": "a", "text": "源文件中的所有注释" },
+      { "id": "b", "text": "参数、局部状态和返回后继续执行的位置" },
       { "id": "c", "text": "其他程序的变量名称" },
       { "id": "d", "text": "OJ 的全部测试答案" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "调用返回时必须恢复调用者，因此每层需要保留本次调用的数据与返回位置。"
   },
   {
     "id": "nested-order",
     "prompt": "`main` 调用 `solve`，`solve` 再调用 `add`，正常返回顺序是什么？",
     "options": [
-      { "id": "a", "text": "`add -> solve -> main`" },
+      { "id": "a", "text": "三个调用同时随机结束" },
       { "id": "b", "text": "`main -> solve -> add`" },
-      { "id": "c", "text": "三个调用同时随机结束" },
+      { "id": "c", "text": "`add -> solve -> main`" },
       { "id": "d", "text": "只有 `main` 会结束" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "最后进入的 `add` 位于栈顶，先返回给 `solve`，再由 `solve` 返回给 `main`。"
   },
   {
     "id": "independent-calls",
     "prompt": "两次调用同一个函数时，普通局部变量是什么关系？",
     "options": [
-      { "id": "a", "text": "每次调用拥有自己独立的一份局部状态" },
+      { "id": "a", "text": "局部变量会自动变成全局变量" },
       { "id": "b", "text": "所有调用永久共享同一个局部变量" },
       { "id": "c", "text": "第二次调用会删除第一次的返回值" },
-      { "id": "d", "text": "局部变量会自动变成全局变量" }
+      { "id": "d", "text": "每次调用拥有自己独立的一份局部状态" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "函数代码相同，但每次未结束的调用分别保存参数、局部对象和返回位置。"
   },
   {
@@ -63,24 +63,24 @@
     "id": "stack-overflow-causes",
     "prompt": "下面哪两类情况容易导致调用栈溢出？",
     "options": [
-      { "id": "a", "text": "单层过大的局部对象与过深的调用嵌套" },
-      { "id": "b", "text": "输出一个换行与读取一个整数" },
+      { "id": "a", "text": "输出一个换行与读取一个整数" },
+      { "id": "b", "text": "单层过大的局部对象与过深的调用嵌套" },
       { "id": "c", "text": "使用短变量名与长变量名" },
       { "id": "d", "text": "比较两个布尔值与整数相加" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "栈空间既受每层大小影响，也受同时存在的栈帧层数影响。"
   },
   {
     "id": "frame-implementation",
     "prompt": "为什么不应背诵所有平台通用的固定栈帧字节布局？",
     "options": [
-      { "id": "a", "text": "寄存器、优化和调用约定会改变具体实现" },
+      { "id": "a", "text": "C++ 禁止调用函数" },
       { "id": "b", "text": "栈帧没有任何状态" },
-      { "id": "c", "text": "C++ 禁止调用函数" },
+      { "id": "c", "text": "寄存器、优化和调用约定会改变具体实现" },
       { "id": "d", "text": "每次调用都必须占一个字节" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "语义模型稳定，但参数和局部值具体放在栈还是寄存器属于实现细节。"
   }
 ]
