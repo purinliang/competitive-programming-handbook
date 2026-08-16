@@ -1,0 +1,62 @@
+[
+  {
+    "id": "empty-case",
+    "prompt": "错位排列递推中为什么定义 `D[0] = 1`？",
+    "options": [
+      { "id": "a", "text": "空排列是一种组合结构，并使递推边界自然成立" },
+      { "id": "b", "text": "因为零个人有一顶帽子" },
+      { "id": "c", "text": "因为所有 D[n] 都等于 1" },
+      { "id": "d", "text": "为了让模数变成质数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "空结构作为一种方案，使两人互换对应的 D[0] 正确贡献 1。"
+  },
+  {
+    "id": "choice-count",
+    "prompt": "第 n 个人拿到别人的帽子共有多少种对象选择？",
+    "options": [
+      { "id": "a", "text": "1" },
+      { "id": "b", "text": "n-1" },
+      { "id": "c", "text": "n!" },
+      { "id": "d", "text": "2^n" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "他不能拿自己的帽子，可以从其余 n-1 顶中选择。"
+  },
+  {
+    "id": "two-cycle",
+    "prompt": "若第 n 个人与第 j 个人互换帽子，剩余方案数为什么是 `D[n-2]`？",
+    "options": [
+      { "id": "a", "text": "两人已经组成合法二元环，剩余 n-2 人仍需全部错位" },
+      { "id": "b", "text": "因为所有帽子都已经发完" },
+      { "id": "c", "text": "因为 j 必须等于 n" },
+      { "id": "d", "text": "因为剩余人可以拿自己的帽子" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "固定这对交换后，它们与剩余错位排列彼此独立。"
+  },
+  {
+    "id": "recurrence",
+    "prompt": "错位排列的正确递推式是什么？",
+    "options": [
+      { "id": "a", "text": "`D[n] = D[n-1] + D[n-2]`" },
+      { "id": "b", "text": "`D[n] = n * D[n-1]`" },
+      { "id": "c", "text": "`D[n] = (n-1) * (D[n-1] + D[n-2])`" },
+      { "id": "d", "text": "`D[n] = 2^n`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "固定帽子去向有 n-1 种，对每种去向再分为二元环和非二元环两类。"
+  },
+  {
+    "id": "model-boundary",
+    "prompt": "下面哪种情况不再是纯错位排列模型？",
+    "options": [
+      { "id": "a", "text": "每个人都不能拿自己的不同物品" },
+      { "id": "b", "text": "每个人除自己外还各有不同的额外禁配对象" },
+      { "id": "c", "text": "物品与人一一对应" },
+      { "id": "d", "text": "要求排列没有固定点" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "额外且不统一的禁配关系破坏标准错位排列的对称结构，需要其他方法。"
+  }
+]
