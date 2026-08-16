@@ -88,7 +88,7 @@ typedef bool (*Compare)(int, int);
 ```
 
 这里的 `Compare` 表示“指向一个接收两个 `int`、返回 `bool` 的函数的指针”。
-复杂声明不要求在主线背诵；需要时可以改用下一篇的
+复杂声明不要求在主线背诵；需要时可以改用
 [`using` 类型别名](using-type-aliases.md)，让别名与原类型的边界更直观。
 
 ## 别名的作用域
