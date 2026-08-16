@@ -153,7 +153,7 @@ p++;    // 现在指向 a[1]
 
 ## scanf 中的地址
 
-[标准输入](standard-input.md) 中的代码已经多次使用：
+[`scanf` 与 `printf`](scanf-and-printf.md) 中的代码已经多次使用：
 
 ```cpp
 int x;

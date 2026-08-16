@@ -1,0 +1,74 @@
+[
+  {
+    "id": "scanf-formats",
+    "prompt": "`scanf` 依次读入 `int a`、`long long b` 和 `double c` 时，哪组格式正确？",
+    "options": [
+      { "id": "a", "text": "`scanf(\"%d%lld%lf\", &a, &b, &c);`" },
+      { "id": "b", "text": "`scanf(\"%f%f%f\", &a, &b, &c);`" },
+      { "id": "c", "text": "`scanf(\"%d%d%d\", a, b, c);`" },
+      { "id": "d", "text": "`scanf(\"%lld%d%f\", &a, &b, &c);`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`int`、`long long` 和 `double` 的 `scanf` 格式依次是 `%d`、`%lld` 和 `%lf`，普通变量要传入地址。"
+  },
+  {
+    "id": "scanf-character-whitespace",
+    "prompt": "题目要跳过空格与换行，再读取下一个操作字符，应怎样写？",
+    "options": [
+      { "id": "a", "text": "`scanf(\"%s\", &ch);`" },
+      { "id": "b", "text": "`scanf(\" %c\", &ch);`" },
+      { "id": "c", "text": "`scanf(\"%d\", &ch);`" },
+      { "id": "d", "text": "`printf(\"%c\", ch);`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`%c` 本身不跳过空白；格式中的前导空格先略过空白，再由 `%c` 读取操作字符。"
+  },
+  {
+    "id": "scanf-return-value",
+    "prompt": "`scanf(\"%d%d\", &a, &b)` 返回 `2` 表示什么？",
+    "options": [
+      { "id": "a", "text": "输入中恰好只有两个字符" },
+      { "id": "b", "text": "两个变量的和等于 `2`" },
+      { "id": "c", "text": "两个变量都成功得到赋值" },
+      { "id": "d", "text": "程序已经输出两行" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "`scanf` 返回成功赋值的变量数量；同时读取两个值时，返回 `2` 才表示两项都成功。"
+  },
+  {
+    "id": "printf-double-format",
+    "prompt": "`printf` 输出一个 `double value` 时使用哪个基本格式控制符？",
+    "options": [
+      { "id": "a", "text": "`%d`" },
+      { "id": "b", "text": "`%lld`" },
+      { "id": "c", "text": "`%lf`" },
+      { "id": "d", "text": "`%f`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "`printf` 输出 `double` 使用 `%f`；`%lf` 是 `scanf` 读入 `double` 时使用的格式。"
+  },
+  {
+    "id": "literal-percent",
+    "prompt": "使用 `printf` 输出文字 `100%` 时，格式字符串应怎样写？",
+    "options": [
+      { "id": "a", "text": "`printf(\"100%%\");`" },
+      { "id": "b", "text": "`printf(\"100%\");`" },
+      { "id": "c", "text": "`printf(\"%100\");`" },
+      { "id": "d", "text": "`printf(100%);`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "百分号会开始格式控制符，因此要用 `%%` 表示一个普通百分号。"
+  },
+  {
+    "id": "choose-one-family",
+    "prompt": "一份正式竞赛程序已经使用 `scanf` 读入，通常应配合哪种输出？",
+    "options": [
+      { "id": "a", "text": "任意混合，缓冲规则永远相同" },
+      { "id": "b", "text": "使用 `printf`，让整份程序保持同一接口家族" },
+      { "id": "c", "text": "只能写入文件，不能使用标准输出" },
+      { "id": "d", "text": "必须关闭 C++ 流同步以后使用 `cout`" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`scanf` 与 `printf` 属于同一组接口；保持一致更容易推理格式、缓冲和错误状态。"
+  }
+]

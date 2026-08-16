@@ -96,7 +96,7 @@ cin.get(ch);
 ```
 
 这里先把 `cin.get(ch)` 当作“连空白也读取”的输入接口。各种输入方式的区别会在
-[标准输入](standard-input.md) 中统一整理。
+[`cin` 与 `cout`](cin-and-cout.md) 中统一整理。
 
 ## 大小写转换
 

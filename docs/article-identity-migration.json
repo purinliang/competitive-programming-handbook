@@ -771,17 +771,17 @@
       "old_id": "0115",
       "new_id": "011101",
       "extension": false,
-      "title": "标准输入",
+      "title": "`scanf` 与 `printf`",
       "old_path": "cpp/standard-input.md",
-      "new_path": "cpp/standard-input.md"
+      "new_path": "cpp/scanf-and-printf.md"
     },
     {
       "old_id": "0116",
       "new_id": "011102",
       "extension": false,
-      "title": "标准输出",
+      "title": "`cin` 与 `cout`",
       "old_path": "cpp/standard-output.md",
-      "new_path": "cpp/standard-output.md"
+      "new_path": "cpp/cin-and-cout.md"
     },
     {
       "old_id": "0172",

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "formatted-whitespace",
+    "prompt": "对 `cin >> a >> b` 读取两个整数而言，两个数之间使用空格还是换行通常有区别吗？",
+    "options": [
+      { "id": "a", "text": "通常没有，格式化数值输入会跳过普通空白" },
+      { "id": "b", "text": "有，换行会结束整个程序" },
+      { "id": "c", "text": "有，空格会被保存进 `a`" },
+      { "id": "d", "text": "只有负数之间能使用换行" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "对普通数值的 `>>` 输入，空格、换行和制表符都充当分隔用空白。"
+  },
+  {
+    "id": "explicit-output-separator",
+    "prompt": "执行 `cout << a << b;` 时，两个整数之间会自动出现空格吗？",
+    "options": [
+      { "id": "a", "text": "会，总是自动加入一个空格" },
+      { "id": "b", "text": "不会，需要显式输出 `' '` 或其他分隔符" },
+      { "id": "c", "text": "只在 `a == b` 时会" },
+      { "id": "d", "text": "会自动换行，但不会加空格" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每个 `<<` 只输出给定值；空格和换行都必须作为字符或字符串明确写出。"
+  },
+  {
+    "id": "newline-choice",
+    "prompt": "普通竞赛输出为什么优先使用 `\\n` 而不是每次都使用 `endl`？",
+    "options": [
+      { "id": "a", "text": "`endl` 不能换行" },
+      { "id": "b", "text": "`\\n` 会自动关闭程序" },
+      { "id": "c", "text": "`endl` 还会刷新缓冲，频繁使用可能更慢" },
+      { "id": "d", "text": "`endl` 只能输出整数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "两者都能换行，但 `endl` 还会强制刷新输出缓冲；普通非交互题不需要每行刷新。"
+  },
+  {
+    "id": "read-until-eof",
+    "prompt": "哪种写法能用 `cin` 持续读取整数直到输入结束？",
+    "options": [
+      { "id": "a", "text": "`if (x) cin;`" },
+      { "id": "b", "text": "`while (x) cout << x;`" },
+      { "id": "c", "text": "`for (cin; x; cout) {}`" },
+      { "id": "d", "text": "`while (cin >> x) { ... }`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "流提取表达式能在条件中表示本次读入是否成功；到达文件结束时循环停止。"
+  },
+  {
+    "id": "stream-setup-placement",
+    "prompt": "关闭同步与解除绑定的两行设置应放在哪里？",
+    "options": [
+      { "id": "a", "text": "第一次输入输出以前" },
+      { "id": "b", "text": "程序已经输出答案以后" },
+      { "id": "c", "text": "每次 `cin` 以后重复执行" },
+      { "id": "d", "text": "只能放在循环体内部" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "输入输出配置应在流开始工作以前完成，通常写在 `main` 开头、调用 `solve` 以前。"
+  },
+  {
+    "id": "no-mixed-io-after-unsync",
+    "prompt": "调用 `ios::sync_with_stdio(false)` 后，哪种习惯最稳妥？",
+    "options": [
+      { "id": "a", "text": "交替使用 `cin` 与 `scanf`" },
+      { "id": "b", "text": "整份程序只使用 `cin` 与 `cout`" },
+      { "id": "c", "text": "所有输出都改成 `endl`" },
+      { "id": "d", "text": "不再检查任何输入" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "关闭同步后，C 与 C++ 两套缓冲的先后关系不再可靠；整份程序应保持一个接口家族。"
+  }
+]

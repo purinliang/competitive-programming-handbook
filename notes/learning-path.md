@@ -104,8 +104,8 @@
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 011101 | 标准输入 | C++ | [cpp/standard-input.md](cpp/standard-input.md) |
-| 011102 | 标准输出 | C++ | [cpp/standard-output.md](cpp/standard-output.md) |
+| 011101 | `scanf` 与 `printf` | C++ | [cpp/scanf-and-printf.md](cpp/scanf-and-printf.md) |
+| 011102 | `cin` 与 `cout` | C++ | [cpp/cin-and-cout.md](cpp/cin-and-cout.md) |
 | 011103 | 输出格式控制 | C++ | [cpp/output-formatting.md](cpp/output-formatting.md) |
 | 011104 | 文件重定向 | C++ | [cpp/file-redirection.md](cpp/file-redirection.md) |
 
