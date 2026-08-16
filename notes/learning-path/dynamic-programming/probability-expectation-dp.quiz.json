@@ -1,0 +1,74 @@
+[
+  {
+    "id": "probability-transition",
+    "prompt": "状态 `u` 以概率 `p_i` 进入 `v_i` 时，最终成功概率怎样转移？",
+    "options": [
+      { "id": "a", "text": "取所有 `probability[v_i]` 的最大值" },
+      { "id": "b", "text": "计算 $\\sum p_i\\,probability[v_i]$" },
+      { "id": "c", "text": "把所有概率直接设为 1" },
+      { "id": "d", "text": "只保留最小概率分支" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "下一步结果互斥，按照每类发生概率加权其后续成功概率。"
+  },
+  {
+    "id": "expectation-cost",
+    "prompt": "每一步代价为 1 时，为什么期望转移通常有一个额外的 `+1`？",
+    "options": [
+      { "id": "a", "text": "它表示当前必定先执行的一步" },
+      { "id": "b", "text": "它表示成功概率" },
+      { "id": "c", "text": "它用于数组下标转成 1-based" },
+      { "id": "d", "text": "它让所有期望变成整数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "后继期望只包含进入下一状态后的剩余代价。"
+  },
+  {
+    "id": "terminal-state",
+    "prompt": "已经到达终点时，剩余投掷次数的期望是多少？",
+    "options": [
+      { "id": "a", "text": "1" },
+      { "id": "b", "text": "骰子面数" },
+      { "id": "c", "text": "0" },
+      { "id": "d", "text": "无穷大" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "过程已经结束，不再需要执行任何一步。"
+  },
+  {
+    "id": "calculation-order",
+    "prompt": "骰子走棋盘的 `dp[i]` 为什么从右向左计算？",
+    "options": [
+      { "id": "a", "text": "因为输入从右向左给出" },
+      { "id": "b", "text": "因为浮点数只能倒序处理" },
+      { "id": "c", "text": "因为终点编号必须最小" },
+      { "id": "d", "text": "`dp[i]` 依赖位置更大的后继状态" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "填表顺序必须保证所有被依赖状态已经计算。"
+  },
+  {
+    "id": "self-loop",
+    "prompt": "期望方程右侧出现 `pE[u]` 自环项时应怎样做？",
+    "options": [
+      { "id": "a", "text": "把含 `E[u]` 的项移到左侧后代数求解" },
+      { "id": "b", "text": "直接把 `E[u]` 当成 0" },
+      { "id": "c", "text": "忽略这条转移" },
+      { "id": "d", "text": "把概率 `p` 改成 1" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "自环使状态形成方程，不能按未计算的普通后继值读取。"
+  },
+  {
+    "id": "unequal-probabilities",
+    "prompt": "下一步各结果概率不相等时，怎样合并后继期望？",
+    "options": [
+      { "id": "a", "text": "仍然做不带权平均" },
+      { "id": "b", "text": "按照各结果概率加权" },
+      { "id": "c", "text": "只选择概率最大的结果" },
+      { "id": "d", "text": "把所有概率取整" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "期望按真实概率分布加权，不一定是算术平均。"
+  }
+]
