@@ -17,7 +17,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - 文章运行时身份使用相对模块路径与文件名组成的 `article_key`，不使用六位目录编号。
 - Next.js 继续静态导出，Markdown、目录和 Shiki 只在构建期运行；Cloudflare 使用 Static Assets 分发 `out/`，轻量 Worker 只处理 `/api/*`，不部署 Next.js 运行时。
 - 用户进度、作答与留言通过独立的 `/api/*` Worker 边界叠加，不能迫使静态正文按请求重新渲染，也不能把出版内容复制进 D1。
-- UI 以 `docs/UI-DESIGN.md` 为准，并继承 Arctic Aria 的共享组件体系。`../arctic-aria` 是只读设计来源，不得在 handbook 工作中修改。
+- UI 以 `docs/ui-design.md` 为准，并继承 Arctic Aria 的共享组件体系。`../arctic-aria` 是只读设计来源，不得在 handbook 工作中修改。
 - 新的重复交互先进入共享组件，不在页面中创建局部按钮、面板、列表、表单、弹窗、通知或颜色系统。
 - Markdown 渲染必须继续支持 GFM、LaTeX、代码块、相对文章链接和 `notes/assets/` 中的 SVG，并保留内容修订与段落定位元数据。
 - 用户评论允许 GFM 与 LaTeX，但必须忽略原始 HTML，并在输出前完成危险链接与身份信息隔离；不能把未受信任字符串直接传给 `dangerouslySetInnerHTML`。
