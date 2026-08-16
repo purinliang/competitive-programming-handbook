@@ -1,0 +1,74 @@
+[
+  {
+    "id": "state-necessity",
+    "prompt": "为什么同一个原图点 `u` 要拆成 `(u,0)` 和 `(u,1)`？",
+    "options": [
+      { "id": "a", "text": "两种状态拥有不同的未来可用操作" },
+      { "id": "b", "text": "为了把无向图变成树" },
+      { "id": "c", "text": "因为每个点必须复制两次" },
+      { "id": "d", "text": "为了删除边权" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "免费机会是否已用会决定以后还能否使用跨层转移。"
+  },
+  {
+    "id": "normal-transition",
+    "prompt": "正常支付边权经过 `u-v,w` 时，状态怎样变化？",
+    "options": [
+      { "id": "a", "text": "`used` 保持不变，距离增加 `w`" },
+      { "id": "b", "text": "`used` 一定变成 0" },
+      { "id": "c", "text": "距离减少 `w`" },
+      { "id": "d", "text": "直接到达终点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "没有使用特殊机会，资源状态不变。"
+  },
+  {
+    "id": "free-transition",
+    "prompt": "在哪种状态下可以免费经过当前边？",
+    "options": [
+      { "id": "a", "text": "仅 `used == 1`" },
+      { "id": "b", "text": "仅 `used == 0`，并转到状态 1" },
+      { "id": "c", "text": "任意状态且保持不变" },
+      { "id": "d", "text": "只能在终点" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "跨层一次后不能返回，正好限制机会至多使用一次。"
+  },
+  {
+    "id": "dijkstra-condition",
+    "prompt": "状态图为什么仍能运行 Dijkstra？",
+    "options": [
+      { "id": "a", "text": "因为状态数恰好为 2" },
+      { "id": "b", "text": "因为原图无向" },
+      { "id": "c", "text": "展开后的所有转移费用仍然非负" },
+      { "id": "d", "text": "因为免费边会被删除" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "Dijkstra 关心状态图边权非负，不关心节点是否来自分层。"
+  },
+  {
+    "id": "at-most-answer",
+    "prompt": "至多免费一次时，终点答案为什么取两层最小值？",
+    "options": [
+      { "id": "a", "text": "可以选择完全不用机会，也可以已经使用一次" },
+      { "id": "b", "text": "因为两层距离一定相等" },
+      { "id": "c", "text": "为了把答案除以 2" },
+      { "id": "d", "text": "因为状态 0 不合法" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "“至多”包含零次和一次两种合法终点状态。"
+  },
+  {
+    "id": "state-design",
+    "prompt": "设计状态时最合理的原则是什么？",
+    "options": [
+      { "id": "a", "text": "保存到达当前位置的完整路径" },
+      { "id": "b", "text": "只保存所有会影响未来合法操作和费用的信息" },
+      { "id": "c", "text": "状态越多越正确" },
+      { "id": "d", "text": "完全不保存资源状态" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "足够决定未来而不记录无关历史，才能兼顾正确性与状态规模。"
+  }
+]
