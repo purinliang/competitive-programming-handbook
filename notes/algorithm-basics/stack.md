@@ -1,10 +1,10 @@
 # 栈
 
-> 最近修订：2026-08-13 05:13 +10:00（未审阅）
+> 最近修订：2026-08-16 11:00 +10:00（未审阅）
 
 数组和链表允许从许多位置读取或修改元素，但有些问题只关心“最后放进去、还没有取出来”的那一项：
 
-- 程序进入一层 [函数调用](../cpp/function-call-stack.md) 后，要先结束最内层调用才能返回外层；
+- 程序进入一层 [调用栈](../cpp/function-call-stack.md) 后，要先结束最内层调用才能返回外层；
 - 编辑器撤销时，最后完成的操作最先被撤销；
 - 扫描括号时，右括号必须先匹配最近一个尚未匹配的左括号。
 
@@ -42,7 +42,7 @@ int value = top();
 pop();
 ```
 
-本篇先理解这些操作为什么足够表示后进先出。阶段 3 的 [容器适配器：stack](../cpp/stack.md) 会教授标准库中完全对应的接口。
+本篇先理解这些操作为什么足够表示后进先出。[stack](../cpp/stack.md) 会教授标准库中完全对应的接口。
 
 ## 数组实现
 
@@ -166,11 +166,11 @@ if (top_index > 0) {
 根据数组实现，可以把括号匹配需要的字符栈封装为一个对象：
 
 ```cpp
-struct char_stack {
+struct CharStack {
     vector<char> a;
     int top_index;
 
-    char_stack(int capacity) {
+    CharStack(int capacity) {
         a.resize(capacity + 5);
         top_index = 0;
     }
@@ -193,7 +193,7 @@ struct char_stack {
 };
 ```
 
-`char_stack` 只暴露栈操作，不让括号算法依赖内部下标。构造时以字符串长度为容量，因为每个字符最多导致一次压栈。
+`CharStack` 只暴露栈操作，不让括号算法依赖内部下标。构造时以字符串长度为容量，因为每个字符最多导致一次压栈。
 
 ## 完整代码
 
@@ -203,11 +203,11 @@ struct char_stack {
 #include <bits/stdc++.h>
 using namespace std;
 
-struct char_stack {
+struct CharStack {
     vector<char> a;
     int top_index;
 
-    char_stack(int capacity) {
+    CharStack(int capacity) {
         a.resize(capacity + 5);
         top_index = 0;
     }
@@ -241,7 +241,7 @@ bool matches(char opening, char closing) {
 
 bool is_valid(const string& s) {
     int n = s.size();
-    char_stack st(n);
+    CharStack st(n);
 
     for (char c : s) {
         if (is_opening(c)) {
@@ -258,10 +258,14 @@ bool is_valid(const string& s) {
     return st.empty();
 }
 
-int main() {
+void solve() {
     string s;
     getline(cin, s);
     cout << (is_valid(s) ? "Yes" : "No") << '\n';
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -321,8 +325,4 @@ Yes
 8. 扫描右括号和扫描结束时分别要检查哪些条件？
 9. 长度为 $n$ 的括号匹配需要多少时间和空间？
 
-表达式求值、单调栈和标准库容器适配器接口不属于本篇基础目标。它们会在已经理解后进先出以后各自成篇；函数如何利用调用栈保存尚未完成的工作见 [函数：调用栈](../cpp/function-call-stack.md)。
-
-## 下一篇
-
-下一篇 [队列](queue.md) 会把加入位置和删除位置分到两端，得到先进先出的处理顺序。
+表达式求值、单调栈和标准库容器适配器接口不属于本篇基础目标。它们会在已经理解后进先出以后各自成篇；函数如何利用调用栈保存尚未完成的工作见 [调用栈](../cpp/function-call-stack.md)。

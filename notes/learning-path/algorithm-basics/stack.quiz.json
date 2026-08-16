@@ -1,0 +1,194 @@
+[
+  {
+    "id": "lifo-order",
+    "prompt": "依次把 3、5、8 压入空栈后，第一次弹出的元素是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "3"
+      },
+      {
+        "id": "b",
+        "text": "5"
+      },
+      {
+        "id": "c",
+        "text": "8"
+      },
+      {
+        "id": "d",
+        "text": "无法确定"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "栈遵循后进先出，最后压入的 8 位于栈顶并最先离开。"
+  },
+  {
+    "id": "read-and-remove",
+    "prompt": "要取出并删除栈顶元素，正确的抽象操作顺序是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "先 `top()` 保存，再 `pop()`"
+      },
+      {
+        "id": "b",
+        "text": "先 `pop()`，再 `top()`"
+      },
+      {
+        "id": "c",
+        "text": "只调用 `empty()`"
+      },
+      {
+        "id": "d",
+        "text": "直接读取栈底"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "top 读取但不删除，pop 删除但不负责返回原栈顶，所以必须先保存。"
+  },
+  {
+    "id": "array-stack-state",
+    "prompt": "1-based 数组栈中的 `top_index = 0` 表示什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "栈顶保存了数值 0"
+      },
+      {
+        "id": "b",
+        "text": "数组容量为 0"
+      },
+      {
+        "id": "c",
+        "text": "下一次 push 必须写入 a[0]"
+      },
+      {
+        "id": "d",
+        "text": "有效前缀为空，当前没有栈顶元素"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "有效元素是 a[1..top_index]；上界为 0 时这个区间为空。"
+  },
+  {
+    "id": "stack-underflow",
+    "prompt": "空栈上的 `top` 或 `pop` 应怎样处理？",
+    "options": [
+      {
+        "id": "a",
+        "text": "它们一定自动返回 0"
+      },
+      {
+        "id": "b",
+        "text": "调用前由题意保证非空，或先显式判空"
+      },
+      {
+        "id": "c",
+        "text": "连续调用两次就会恢复"
+      },
+      {
+        "id": "d",
+        "text": "只有链表栈需要判空"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "空栈没有合法栈顶；必须由前置条件或 empty 判断阻止下溢。"
+  },
+  {
+    "id": "restricted-interface",
+    "prompt": "栈为什么故意不提供任意中间位置的访问？",
+    "options": [
+      {
+        "id": "a",
+        "text": "为了表达算法只依赖后进先出规则"
+      },
+      {
+        "id": "b",
+        "text": "因为数组无法访问中间位置"
+      },
+      {
+        "id": "c",
+        "text": "为了让所有操作变成 O(n)"
+      },
+      {
+        "id": "d",
+        "text": "因为栈只能保存一个元素"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "受限接口保留问题真正需要的语义，也允许更换底层实现而不改变算法。"
+  },
+  {
+    "id": "bracket-nearest",
+    "prompt": "括号匹配遇到右括号时，为什么只检查最近的未匹配左括号？",
+    "options": [
+      {
+        "id": "a",
+        "text": "更早的左括号已经全部删除"
+      },
+      {
+        "id": "b",
+        "text": "右括号只能与相同下标配对"
+      },
+      {
+        "id": "c",
+        "text": "嵌套结构总是先结束最内层，符合后进先出"
+      },
+      {
+        "id": "d",
+        "text": "这样可以忽略括号类型"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "最晚打开而尚未关闭的一层必须最先关闭，正好位于栈顶。"
+  },
+  {
+    "id": "bracket-final-check",
+    "prompt": "扫描 `((` 时没有遇到多余右括号，为什么最终仍判为不合法？",
+    "options": [
+      {
+        "id": "a",
+        "text": "字符串长度必须是奇数"
+      },
+      {
+        "id": "b",
+        "text": "左括号不能压栈"
+      },
+      {
+        "id": "c",
+        "text": "第一个字符必须是右括号"
+      },
+      {
+        "id": "d",
+        "text": "扫描结束后栈非空，仍有左括号未匹配"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "过程判错负责发现多余或错配的右括号，最终判空负责发现剩余左括号。"
+  },
+  {
+    "id": "bracket-complexity",
+    "prompt": "长度为 n 的括号序列验证，其时间和最坏空间复杂度分别是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "O(1) 与 O(n)"
+      },
+      {
+        "id": "b",
+        "text": "O(n) 与 O(n)"
+      },
+      {
+        "id": "c",
+        "text": "O(n²) 与 O(1)"
+      },
+      {
+        "id": "d",
+        "text": "O(log n) 与 O(log n)"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每个字符只进行常数次栈操作；全是左括号时栈会保存 n 个字符。"
+  }
+]
