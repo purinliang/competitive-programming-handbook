@@ -225,7 +225,7 @@
 | --- | --- | --- | --- |
 | *020601 | 类 | 待审阅 | [class.md](cpp/class.md) |
 | *020602 | 类的成员 | 待审阅 | [class-members.md](cpp/class-members.md) |
-| *020603 | 封装 | 计划 | `cpp/encapsulation.md` |
+| *020603 | 封装 | 待审阅 | [encapsulation.md](cpp/encapsulation.md) |
 | *020604 | 访问权限 | 待审阅 | [access-control.md](cpp/access-control.md) |
 | *020605 | 构造函数 | 待审阅 | [constructors.md](cpp/constructors.md) |
 | *020606 | 析构函数 | 待审阅 | [destructors.md](cpp/destructors.md) |

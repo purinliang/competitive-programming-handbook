@@ -159,7 +159,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | --- | --- | --- | --- |
 | *020601 | 类 | C++ | [cpp/class.md](cpp/class.md) |
 | *020602 | 类的成员 | C++ | [cpp/class-members.md](cpp/class-members.md) |
-| *020603 | 封装 | C++ | `cpp/encapsulation.md` |
+| *020603 | 封装 | C++ | [cpp/encapsulation.md](cpp/encapsulation.md) |
 | *020604 | 访问权限 | C++ | [cpp/access-control.md](cpp/access-control.md) |
 | *020605 | 构造函数 | C++ | [cpp/constructors.md](cpp/constructors.md) |
 | *020606 | 析构函数 | C++ | [cpp/destructors.md](cpp/destructors.md) |
@@ -717,7 +717,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | --- | --- | --- |
 | *020601 | 类 | [cpp/class.md](cpp/class.md) |
 | *020602 | 类的成员 | [cpp/class-members.md](cpp/class-members.md) |
-| *020603 | 封装 | `cpp/encapsulation.md` |
+| *020603 | 封装 | [cpp/encapsulation.md](cpp/encapsulation.md) |
 | *020604 | 访问权限 | [cpp/access-control.md](cpp/access-control.md) |
 | *020605 | 构造函数 | [cpp/constructors.md](cpp/constructors.md) |
 | *020606 | 析构函数 | [cpp/destructors.md](cpp/destructors.md) |

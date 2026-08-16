@@ -1,0 +1,50 @@
+[
+  {
+    "id": "encapsulation-purpose",
+    "prompt": "封装最核心的目的是什么？",
+    "options": [
+      { "id": "a", "text": "把所有变量改成全局变量" },
+      { "id": "b", "text": "组织相关状态与操作，并通过接口维护对象规则" },
+      { "id": "c", "text": "让每个算法都变成 $O(1)$" },
+      { "id": "d", "text": "禁止类拥有成员函数" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "封装让状态、操作和不变量形成边界；调用者使用公开接口，不必直接依赖全部实现细节。"
+  },
+  {
+    "id": "private-is-not-enough",
+    "prompt": "为什么把字段设为 `private` 后，为每个字段机械提供写函数仍可能没有良好封装？",
+    "options": [
+      { "id": "a", "text": "因为 `private` 字段不能保存整数" },
+      { "id": "b", "text": "因为成员函数不能修改字段" },
+      { "id": "c", "text": "因为类外永远不能调用公开函数" },
+      { "id": "d", "text": "因为分开的写操作仍可能绕过需要共同维护的不变量" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "隐藏访问只是工具；公开接口还必须围绕完整操作设计，避免调用者把相关状态分别改成互相矛盾的值。"
+  },
+  {
+    "id": "interval-invariant",
+    "prompt": "用 `left` 和 `right` 表示闭区间时，最基本的不变量是什么？",
+    "options": [
+      { "id": "a", "text": "`left <= right`" },
+      { "id": "b", "text": "`left == 0`" },
+      { "id": "c", "text": "`right < 0`" },
+      { "id": "d", "text": "`left + right == 0`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "闭区间左端点不能位于右端点右侧；所有成功的公开修改都应保持 `left <= right`。"
+  },
+  {
+    "id": "struct-encapsulation",
+    "prompt": "关于 `struct` 与封装，下面哪项正确？",
+    "options": [
+      { "id": "a", "text": "只有 `class` 才能把状态与操作放在一起" },
+      { "id": "b", "text": "`struct` 不能拥有成员函数" },
+      { "id": "c", "text": "`struct` 也能封装竞赛数据结构；关键在于状态、操作和规则的边界" },
+      { "id": "d", "text": "使用 `struct` 会自动破坏所有不变量" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "C++ 的 `struct` 同样能拥有成员和成员函数；竞赛代码常用它封装数据结构，是否封装不能只看关键字。"
+  }
+]
