@@ -1,6 +1,6 @@
 # 选择排序
 
-> 最近修订：2026-08-16 10:20 +10:00（未审阅）
+> 最近修订：2026-08-16 17:59 +10:00（未审阅）
 
 [冒泡排序](sorting.md) 每轮通过许多次相邻交换把最大值送到右端。若我们先在
 未排序部分找出最小值，再只交换一次，就得到选择排序。
@@ -55,10 +55,14 @@ swap(a[i], a[min_pos]);
 
 ## 正确前缀
 
-完整循环为：
+`n` 和 `a` 是整道题共享的输入状态，因此放在全局；排序函数只接收通过局部循环
+产生的位置，不重复传递整份数组。完整循环为：
 
 ```cpp
-void selection_sort(vector<int>& a, int n) {
+int n;
+vector<int> a;
+
+void selection_sort() {
     for (int i = 1; i < n; i++) {
         int min_pos = i;
 
@@ -128,7 +132,10 @@ $$
 #include <bits/stdc++.h>
 using namespace std;
 
-void selection_sort(vector<int>& a, int n) {
+int n;
+vector<int> a;
+
+void selection_sort() {
     for (int i = 1; i < n; i++) {
         int min_pos = i;
 
@@ -143,23 +150,22 @@ void selection_sort(vector<int>& a, int n) {
 }
 
 void solve() {
-    int n;
-    cin >> n;
+    scanf("%d", &n);
 
-    vector<int> a(n + 5);
+    a.assign(n + 5, 0);
     for (int i = 1; i <= n; i++) {
-        cin >> a[i];
+        scanf("%d", &a[i]);
     }
 
-    selection_sort(a, n);
+    selection_sort();
 
     for (int i = 1; i <= n; i++) {
         if (i > 1) {
-            cout << ' ';
+            printf(" ");
         }
-        cout << a[i];
+        printf("%d", a[i]);
     }
-    cout << '\n';
+    printf("\n");
 }
 
 int main() {
