@@ -208,7 +208,7 @@
 | 0248* | 工程：对拍 | 计划 | `algorithm-basics/stress-testing.md` |
 | 0250 | 递归与问题分解 | 待审阅 | [recursive-problem-solving.md](algorithm-basics/recursive-problem-solving.md) |
 | 0251 | 二分边界 | 待审阅 | [binary-search-boundaries.md](algorithm-basics/binary-search-boundaries.md) |
-| 0252 | 浮点数二分 | 计划 | `algorithm-basics/floating-point-binary-search.md` |
+| 0252 | 浮点数二分 | 待审阅 | [floating-point-binary-search.md](algorithm-basics/floating-point-binary-search.md) |
 | 0253 | 双端队列 | 计划 | `algorithm-basics/deque.md` |
 | 0254 | 从代码分析复杂度 | 待审阅 | [complexity-analysis.md](algorithm-basics/complexity-analysis.md) |
 | 0255 | 均摊复杂度 | 计划 | `algorithm-basics/amortized-complexity.md` |

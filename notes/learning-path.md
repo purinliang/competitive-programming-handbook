@@ -194,7 +194,7 @@
 | 0251 | 二分边界 | 算法基础 | [algorithm-basics/binary-search-boundaries.md](algorithm-basics/binary-search-boundaries.md) |
 | 0162 | STL 二分查找 | C++ | [cpp/stl-binary-search.md](cpp/stl-binary-search.md) |
 | 0219 | 二分答案 | 算法基础 | [algorithm-basics/binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |
-| 0252 | 浮点数二分 | 算法基础 | `algorithm-basics/floating-point-binary-search.md` |
+| 0252 | 浮点数二分 | 算法基础 | [algorithm-basics/floating-point-binary-search.md](algorithm-basics/floating-point-binary-search.md) |
 
 ### 学习单元：双指针与滑动窗口
 

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "floating-no-adjacent",
+    "prompt": "浮点数二分为什么不能照搬整数的 `mid + 1` 与 `mid - 1`？",
+    "options": [
+      { "id": "a", "text": "double 不能比较大小" },
+      { "id": "b", "text": "实数候选之间没有相邻整数式的固定一步" },
+      { "id": "c", "text": "浮点数只能为负" },
+      { "id": "d", "text": "加减 1 会自动排序" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "两个不同实数之间仍有其他实数，边界应直接更新为 mid。"
+  },
+  {
+    "id": "sqrt-monotone-check",
+    "prompt": "求非负平方根时，本篇使用什么判定？",
+    "options": [
+      { "id": "a", "text": "`mid * mid <= x`" },
+      { "id": "b", "text": "`mid == x`" },
+      { "id": "c", "text": "`mid < 0`" },
+      { "id": "d", "text": "`x / 0`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "候选从小到大时，该判定先 true 后 false，分界就是平方根。"
+  },
+  {
+    "id": "sqrt-right-boundary",
+    "prompt": "为什么平方根搜索右端使用 `max(1.0,x)`？",
+    "options": [
+      { "id": "a", "text": "x 小于 1 时，sqrt(x) 可能大于 x" },
+      { "id": "b", "text": "平方根一定大于 10^18" },
+      { "id": "c", "text": "为了让输入变成整数" },
+      { "id": "d", "text": "因为 max 会计算平方根" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "例如 sqrt(0.25)=0.5，大于 0.25，但仍位于 [0,1]。"
+  },
+  {
+    "id": "floating-fixed-iterations",
+    "prompt": "固定迭代次数的主要优点是什么？",
+    "options": [
+      { "id": "a", "text": "保证所有实数都被精确表示" },
+      { "id": "b", "text": "让复杂度变成 O(n²)" },
+      { "id": "c", "text": "保证终止并让区间缩小程度可预测" },
+      { "id": "d", "text": "不再需要证明单调性" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每轮长度减半，次数直接决定相对初始宽度的缩小比例。"
+  },
+  {
+    "id": "floating-equality",
+    "prompt": "为什么不应普遍等待 `mid * mid == x` 才结束？",
+    "options": [
+      { "id": "a", "text": "乘法在 C++ 中不存在" },
+      { "id": "b", "text": "浮点表示和运算有舍入，精确等式可能永远不成立" },
+      { "id": "c", "text": "所有平方根都是整数" },
+      { "id": "d", "text": "等号表示赋值" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "浮点算法通常控制误差，而不是要求内部值与数学实数逐位相同。"
+  },
+  {
+    "id": "setprecision-role",
+    "prompt": "`fixed << setprecision(10)` 的作用是什么？",
+    "options": [
+      { "id": "a", "text": "把 double 改成任意精度实数" },
+      { "id": "b", "text": "自动修复二分边界" },
+      { "id": "c", "text": "让判定函数单调" },
+      { "id": "d", "text": "按小数点后 10 位格式化输出" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "它只影响文本显示，不增加内部计算精度。"
+  },
+  {
+    "id": "floating-iteration-count",
+    "prompt": "初始宽度为 W，要缩到不超过 ε，需要多少数量级的轮数？",
+    "options": [
+      { "id": "a", "text": "`O(Wε)`" },
+      { "id": "b", "text": "`O(log(W/ε))`" },
+      { "id": "c", "text": "`O(W²)`" },
+      { "id": "d", "text": "与 W 和 ε 都无关" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "每轮宽度除以 2，解 W/2^t <= ε 得到对数轮数。"
+  }
+]
