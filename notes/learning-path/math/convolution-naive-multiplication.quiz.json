@@ -1,0 +1,62 @@
+[
+  {
+    "id": "coefficient-formula",
+    "prompt": "多项式乘积中，第 k 项系数怎样计算？",
+    "options": [
+      { "id": "a", "text": "累加所有满足 i+j=k 的 a[i]*b[j]" },
+      { "id": "b", "text": "只计算 a[k]*b[k]" },
+      { "id": "c", "text": "累加所有满足 i*j=k 的下标" },
+      { "id": "d", "text": "取两个系数数组最大值" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "单项式指数相加，因此所有下标和为 k 的乘积共同构成该系数。"
+  },
+  {
+    "id": "result-length",
+    "prompt": "长度分别为 p 和 q 的两个非空系数数组卷积后，结果数组应有多长？",
+    "options": [
+      { "id": "a", "text": "p+q" },
+      { "id": "b", "text": "p+q-1" },
+      { "id": "c", "text": "p*q" },
+      { "id": "d", "text": "max(p,q)" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "最高下标为 (p-1)+(q-1)，所以元素数量是 p+q-1。"
+  },
+  {
+    "id": "pair-sum",
+    "prompt": "频次数组卷积为什么能统计两组数的配对和？",
+    "options": [
+      { "id": "a", "text": "值 i 与值 j 的配对数量为 a[i]*b[j]，并贡献到和 i+j" },
+      { "id": "b", "text": "卷积会删除所有重复数" },
+      { "id": "c", "text": "任何配对的和都为零" },
+      { "id": "d", "text": "频次数组必须只含 0 和 1" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "乘法原理给出一对数值的选择数，下标相加给出这对选择的结果。"
+  },
+  {
+    "id": "naive-choice",
+    "prompt": "下面哪种情况通常应优先考虑朴素乘法而不是 FFT/NTT？",
+    "options": [
+      { "id": "a", "text": "两边都长达数百万" },
+      { "id": "b", "text": "一边很短，直接乘加次数只有几百万" },
+      { "id": "c", "text": "必须进行很多次同长度卷积" },
+      { "id": "d", "text": "朴素乘法结果不正确" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "快速变换有固定常数；规模小或一边很短时，O(nm) 更直接也常常更快。"
+  },
+  {
+    "id": "different-convolution",
+    "prompt": "若两个选择组合后的结果下标是 `i XOR j`，应怎样理解？",
+    "options": [
+      { "id": "a", "text": "仍然是普通指数加法卷积" },
+      { "id": "b", "text": "不需要统计配对" },
+      { "id": "c", "text": "这是不同的位运算卷积，不能直接套普通多项式乘法" },
+      { "id": "d", "text": "把 XOR 改成 max 即可" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "卷积类型由下标合并规则决定；普通多项式乘法只对应 i+j。"
+  }
+]

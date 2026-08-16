@@ -950,7 +950,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 080311 | 多项式：表示、加法与减法 | 待审阅 | [math/polynomial-representation-addition-subtraction.md](math/polynomial-representation-addition-subtraction.md) |
-| 080312 | 多项式：卷积与朴素乘法 | 计划 | `math/convolution-naive-multiplication.md` |
+| 080312 | 多项式：卷积与朴素乘法 | 待审阅 | [math/convolution-naive-multiplication.md](math/convolution-naive-multiplication.md) |
 | 080313 | 多项式：FFT | 计划 | `math/fft.md` |
 | 080314 | 多项式：NTT | 计划 | `math/ntt.md` |
 | *050501e3 | 高精度整数：快速乘法 | 待审阅 | [big-integer-fast-multiplication.md](math/big-integer-fast-multiplication.md) |
