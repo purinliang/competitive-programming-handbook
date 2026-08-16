@@ -1,0 +1,146 @@
+[
+  {
+    "id": "duplicate-keys",
+    "prompt": "向 `multimap<int, int>` 连续插入三条键相同的记录会怎样？",
+    "options": [
+      { "id": "a", "text": "只保留第一条" },
+      { "id": "b", "text": "只保留最后一条" },
+      { "id": "c", "text": "第二次插入开始抛出异常" },
+      { "id": "d", "text": "三条记录都会保留" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "`multimap` 允许等价键重复，每次插入都新增一个完整键值对。"
+  },
+  {
+    "id": "insert-result",
+    "prompt": "`multimap::insert({key, value})` 返回什么？",
+    "options": [
+      { "id": "a", "text": "指向新记录的迭代器" },
+      { "id": "b", "text": "迭代器与是否插入组成的 pair" },
+      { "id": "c", "text": "该键目前的记录数量" },
+      { "id": "d", "text": "映射值的引用" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "重复键不会阻止插入，因此不需要额外返回是否新增的布尔量。"
+  },
+  {
+    "id": "no-subscript",
+    "prompt": "为什么 `multimap` 不提供 `operator[]`？",
+    "options": [
+      { "id": "a", "text": "因为它不能保存整数键" },
+      { "id": "b", "text": "因为它不允许读取映射值" },
+      { "id": "c", "text": "一个键可能对应多个映射值，无法唯一决定返回哪一个" },
+      { "id": "d", "text": "因为所有元素都必须通过下标访问" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "加入记录使用 insert；读取一个键的整组记录应使用 equal_range。"
+  },
+  {
+    "id": "find-one-record",
+    "prompt": "`records.find(key)` 对重复键承诺什么？",
+    "options": [
+      { "id": "a", "text": "返回该键映射值最小的记录" },
+      { "id": "b", "text": "返回某一条等价键记录；处理全部记录要改用 equal_range" },
+      { "id": "c", "text": "返回整个同键区间" },
+      { "id": "d", "text": "只有键唯一时才能调用" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "`find` 只需定位一个匹配位置，不应依赖它在同键组中具体选中哪条记录。"
+  },
+  {
+    "id": "equal-range-records",
+    "prompt": "`equal_range(key)` 返回的区间包含什么？",
+    "options": [
+      { "id": "a", "text": "从 `lower_bound(key)` 到 `upper_bound(key)` 以前的全部同键记录" },
+      { "id": "b", "text": "全部映射值等于 key 的记录" },
+      { "id": "c", "text": "容器中的全部记录" },
+      { "id": "d", "text": "只有最早插入的一条记录" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "等价键在有序容器中连续，两个边界恰好围住整个键组。"
+  },
+  {
+    "id": "erase-specific-pair",
+    "prompt": "怎样只删除第一条同时匹配 `key` 与 `value` 的记录？",
+    "options": [
+      { "id": "a", "text": "直接调用 `records.erase(key)`" },
+      { "id": "b", "text": "修改比较器，让 value 临时参与排序" },
+      { "id": "c", "text": "调用 `records[key].erase(value)`" },
+      { "id": "d", "text": "遍历 `equal_range(key)`，找到匹配 value 的迭代器后删除并停止" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "容器只按键定位，映射值需要在同键区间内线性检查；break 保证只删一条。"
+  },
+  {
+    "id": "erase-key-group",
+    "prompt": "`records.erase(key)` 会删除什么？",
+    "options": [
+      { "id": "a", "text": "随机一条该键记录" },
+      { "id": "b", "text": "只有映射值为 0 的记录" },
+      { "id": "c", "text": "该键的全部记录，并返回删除数量" },
+      { "id": "d", "text": "所有键大于 key 的记录" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "按键重载覆盖完整等值区间；只删一条时应传入具体迭代器。"
+  },
+  {
+    "id": "modifiable-field",
+    "prompt": "通过 `multimap` 迭代器可以直接修改哪个字段？",
+    "options": [
+      { "id": "a", "text": "只能修改 `first`" },
+      { "id": "b", "text": "可以修改 `second`，不能修改决定排列的 `first`" },
+      { "id": "c", "text": "两个字段都可随意修改" },
+      { "id": "d", "text": "两个字段都不能修改" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "键是只读的，映射值不参与排序，可以在定位具体记录后修改。"
+  },
+  {
+    "id": "same-key-order",
+    "prompt": "C++17 中，等价键记录在仍存留期间按什么相对顺序遍历？",
+    "options": [
+      { "id": "a", "text": "保持它们的相对插入顺序" },
+      { "id": "b", "text": "自动按映射值升序" },
+      { "id": "c", "text": "自动按映射值降序" },
+      { "id": "d", "text": "标准要求每次遍历随机打乱" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "全局只按键排列；同键组内部不使用映射值二次排序。"
+  },
+  {
+    "id": "secondary-sort-key",
+    "prompt": "若要求“先按分数，再按选手编号”排序并去除完全重复记录，哪种表示通常更直接？",
+    "options": [
+      { "id": "a", "text": "`multimap<int, int>`，因为 second 会自动参与排序" },
+      { "id": "b", "text": "`map<int, int>`，因为它允许同分多人" },
+      { "id": "c", "text": "`queue<pair<int, int>>`" },
+      { "id": "d", "text": "`set<pair<int, int>>`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "把两个字段都放入键后，pair 字典序同时决定排序和唯一性。"
+  },
+  {
+    "id": "grouped-values",
+    "prompt": "读入后主要按键整组访问全部映射值时，哪种表示往往更直观？",
+    "options": [
+      { "id": "a", "text": "`set<int>`" },
+      { "id": "b", "text": "`priority_queue<int>`" },
+      { "id": "c", "text": "`map<Key, vector<Value>>`" },
+      { "id": "d", "text": "`multiset<Value>`" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每个键直接映射到连续保存的一组值，方括号即可取得整组；是否使用 multimap 应由操作需求决定。"
+  },
+  {
+    "id": "count-complexity",
+    "prompt": "含有 n 条记录、键 key 有 k 条记录时，`records.count(key)` 的复杂度是什么？",
+    "options": [
+      { "id": "a", "text": "$O(1)$" },
+      { "id": "b", "text": "$O(\\log n+k)$" },
+      { "id": "c", "text": "$O(\\log k)$" },
+      { "id": "d", "text": "$O(n\\log n)$" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "定位同键区间需要 O(log n)，数出其中 k 条记录还要进行 O(k) 次迭代器移动。"
+  }
+]
