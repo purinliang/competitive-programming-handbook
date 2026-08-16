@@ -64,7 +64,7 @@ unsigned int bit = 1u << k;
 00001000
 ```
 
-得到 `bit` 以后，就能把上一篇的按位运算应用到一个准确位置：
+得到 `bit` 以后，就能把[按位运算](bitwise-operators.md)应用到一个准确位置：
 
 ```cpp
 bool enabled = (mask & bit) != 0;
