@@ -1,0 +1,194 @@
+[
+  {
+    "id": "queue-declaration",
+    "prompt": "哪一行声明了一个保存整数的空 `queue`？",
+    "options": [
+      {
+        "id": "a",
+        "text": "`queue values<int>;`"
+      },
+      {
+        "id": "b",
+        "text": "`int<queue> values;`"
+      },
+      {
+        "id": "c",
+        "text": "`queue<int> values;`"
+      },
+      {
+        "id": "d",
+        "text": "`deque<queue> values;`"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "queue 是类模板，元素类型 int 写在尖括号中。"
+  },
+  {
+    "id": "push-location",
+    "prompt": "`q.push(value)` 会把新元素放到哪里？",
+    "options": [
+      {
+        "id": "a",
+        "text": "队尾"
+      },
+      {
+        "id": "b",
+        "text": "队首以前"
+      },
+      {
+        "id": "c",
+        "text": "按数值排序后的位置"
+      },
+      {
+        "id": "d",
+        "text": "随机位置"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "queue 固定从队尾加入、从队首删除，因此保持先进先出。"
+  },
+  {
+    "id": "front-back-effects",
+    "prompt": "非空队列上调用 `front()` 或 `back()` 会怎样改变队列？",
+    "options": [
+      {
+        "id": "a",
+        "text": "分别删除队首和队尾"
+      },
+      {
+        "id": "b",
+        "text": "把队列清空"
+      },
+      {
+        "id": "c",
+        "text": "把元素数量加一"
+      },
+      {
+        "id": "d",
+        "text": "都只返回引用，不会删除元素"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "front 与 back 是访问接口；pop 才负责删除队首。"
+  },
+  {
+    "id": "pop-front-value",
+    "prompt": "要保存并删除队首值，正确写法是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "`int value = q.pop();`"
+      },
+      {
+        "id": "b",
+        "text": "先复制 `q.front()`，再调用 `q.pop()`"
+      },
+      {
+        "id": "c",
+        "text": "先 `q.pop()`，再读取 `q.back()`"
+      },
+      {
+        "id": "d",
+        "text": "只调用 `q.size()`"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "pop 返回 void 并删除原队首，需要值时必须先复制。"
+  },
+  {
+    "id": "container-adaptor",
+    "prompt": "`queue` 被称为容器适配器，核心含义是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "它提供全部 deque 接口"
+      },
+      {
+        "id": "b",
+        "text": "它把元素自动转换成字符串"
+      },
+      {
+        "id": "c",
+        "text": "它限制底层容器，只暴露先进先出所需操作"
+      },
+      {
+        "id": "d",
+        "text": "它只能保存另一个 queue"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "受限接口把底层两端操作映射为 push、front、back 与 pop。"
+  },
+  {
+    "id": "vector-not-underlying",
+    "prompt": "为什么 `vector` 不能直接作为 `queue` 的底层容器？",
+    "options": [
+      {
+        "id": "a",
+        "text": "它没有 `pop_front()`，不能提供队首删除"
+      },
+      {
+        "id": "b",
+        "text": "它不能保存整数"
+      },
+      {
+        "id": "c",
+        "text": "它没有末尾加入操作"
+      },
+      {
+        "id": "d",
+        "text": "它的所有操作都是 O(n²)"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "queue 需要底层从开头删除；vector 只提供末尾 pop_back。"
+  },
+  {
+    "id": "restricted-interface",
+    "prompt": "算法需要随机访问中间元素或从队尾删除时，应怎样选择？",
+    "options": [
+      {
+        "id": "a",
+        "text": "仍然假设 queue 支持下标"
+      },
+      {
+        "id": "b",
+        "text": "复制 queue 就能获得下标"
+      },
+      {
+        "id": "c",
+        "text": "把 pop 改名为 pop_back"
+      },
+      {
+        "id": "d",
+        "text": "改用真正提供所需接口的 deque 或 vector"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "queue 的受限接口是在表达 FIFO；需要其他操作说明问题结构不同。"
+  },
+  {
+    "id": "queue-versus-priority",
+    "prompt": "`queue` 与 `priority_queue` 的取出顺序有什么根本差别？",
+    "options": [
+      {
+        "id": "a",
+        "text": "两者都固定取最小值"
+      },
+      {
+        "id": "b",
+        "text": "queue 按进入先后，priority_queue 按比较规则的优先级"
+      },
+      {
+        "id": "c",
+        "text": "queue 按优先级，priority_queue 按进入先后"
+      },
+      {
+        "id": "d",
+        "text": "两者没有任何顺序语义"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "名称相近不代表顺序相同；一个是 FIFO，一个动态维护最高优先级。"
+  }
+]

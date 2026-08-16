@@ -94,7 +94,7 @@ indegree[v]++;
 
 ## 所有零入度点
 
-第一次扫描 `1..n`，把所有初始入度为零的点加入 [容器适配器：queue](../cpp/queue.md)：
+第一次扫描 `1..n`，把所有初始入度为零的点加入 [`queue`](../cpp/queue.md)：
 
 ```cpp
 queue<int> q;

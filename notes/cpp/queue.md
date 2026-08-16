@@ -1,6 +1,6 @@
-# 容器适配器：queue
+# queue
 
-> 最近修订：2026-08-13 21:56 +10:00（未审阅）
+> 最近修订：2026-08-16 11:19 +10:00（未审阅）
 
 [队列](../algorithm-basics/queue.md) 已经解释先进先出（FIFO）、线性数组和循环数组实现。[deque](deque.md) 又提供了两端都能高效操作的标准库容器。
 
@@ -20,7 +20,7 @@ queue<int> q;
 
 ```cpp
 queue<string> messages;
-queue<pair<int, int>> positions;
+queue<char> characters;
 ```
 
 标准头文件是 `<queue>`。本仓库完整竞赛代码使用 `#include <bits/stdc++.h>`，不需要另行列出。
@@ -155,13 +155,7 @@ if (!q.empty()) {
 
 `queue<int>` 默认使用 `deque<int>`。`deque` 的 `push_back`、`front`、`back`、`pop_front` 都是 $O(1)$，恰好满足普通队列需要。
 
-也可以使用满足这些接口的其他底层容器，例如：
-
-```cpp
-queue<int, list<int>> q;
-```
-
-普通竞赛代码没有明确原因时保留默认 `queue<int>`。底层实现不是算法语义的一部分。
+也可以使用满足这些接口的其他底层容器，但普通竞赛代码没有明确原因时保留默认 `queue<int>`。底层实现不是算法语义的一部分。
 
 与 `stack` 不同，`vector` 不能直接作为 `queue` 的底层容器：
 
@@ -224,7 +218,7 @@ printf("%d\n", value);
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+void solve() {
     int operation_count;
     scanf("%d", &operation_count);
 
@@ -252,7 +246,10 @@ int main() {
             printf("%d\n", values.empty());
         }
     }
+}
 
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -338,7 +335,7 @@ int main() {
 
 ## 需要记住什么
 
-1. 怎样声明保存 `int`、`string` 或 `pair<int, int>` 的 `queue`？
+1. 怎样声明保存 `int`、`string` 或 `char` 的 `queue`？
 2. `push`、`front`、`back`、`pop`、`empty`、`size` 分别做什么？
 3. 为什么取出并删除队首必须先 `front()` 再 `pop()`？
 4. 哪三个接口要求队列非空？前置条件由什么保证？
