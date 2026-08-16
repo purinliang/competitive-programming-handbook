@@ -12,18 +12,6 @@
     "explanation": "`typedef` 先写原类型，最后写新别名；它没有创建对象。"
   },
   {
-    "id": "using-equivalence",
-    "prompt": "哪一行与 `typedef long long ll;` 表示相同的类型别名？",
-    "options": [
-      { "id": "a", "text": "`using ll = long long;`" },
-      { "id": "b", "text": "`using namespace ll;`" },
-      { "id": "c", "text": "`long long = ll;`" },
-      { "id": "d", "text": "`#include <ll>`" }
-    ],
-    "correctOptionId": "a",
-    "explanation": "using 类型别名采用 `using 别名 = 原类型;` 的顺序。"
-  },
-  {
     "id": "alias-identity",
     "prompt": "`Score` 和 `Distance` 都是 `long long` 的别名时，哪项正确？",
     "options": [
@@ -37,7 +25,7 @@
   },
   {
     "id": "expression-type",
-    "prompt": "`int a, b; ll product = a * b;` 为什么仍可能发生 32 位整数溢出？",
+    "prompt": "`int a, b; ll product = a * b;` 为什么仍可能溢出？",
     "options": [
       { "id": "a", "text": "乘法先按两个操作数的 `int` 类型计算" },
       { "id": "b", "text": "`ll` 只能保存负数" },
@@ -48,27 +36,15 @@
     "explanation": "结果类型不会反向改变子表达式；可写 `1LL * a * b` 先把计算提升到 `long long`。"
   },
   {
-    "id": "using-forms",
-    "prompt": "`using Name = Type;` 与 `using namespace name;` 的关系是什么？",
-    "options": [
-      { "id": "a", "text": "前者声明类型别名，后者影响未限定名称查找" },
-      { "id": "b", "text": "二者都声明整数变量" },
-      { "id": "c", "text": "二者都包含头文件" },
-      { "id": "d", "text": "二者完全等同，可以任意互换" }
-    ],
-    "correctOptionId": "a",
-    "explanation": "它们使用同一个关键字，却是不同的语法形式，解决不同问题。"
-  },
-  {
     "id": "alias-versus-macro",
     "prompt": "为什么本仓库不用 `#define ll long long`？",
     "options": [
-      { "id": "a", "text": "宏只是文本替换，类型别名才能由 C++ 类型规则理解" },
+      { "id": "a", "text": "宏只是文本替换，类型别名由 C++ 类型规则理解" },
       { "id": "b", "text": "宏不能包含任何英文字符" },
       { "id": "c", "text": "`long long` 只能写在函数外" },
       { "id": "d", "text": "`typedef` 会让算法复杂度更低" }
     ],
     "correctOptionId": "a",
-    "explanation": "使用正式类型别名能保留类型语义并避免宏在意外位置替换同名记号。"
+    "explanation": "正式类型别名能保留类型语义，并避免宏在意外位置替换同名记号。"
   }
 ]

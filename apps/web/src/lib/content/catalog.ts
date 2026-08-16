@@ -55,20 +55,18 @@ export function getLearningArticles(): ArticleRecord[] {
 
 function getCoreLearningArticles(): ArticleRecord[] {
   const articles = new Map(getArticles().map((article) => [article.articleKey, article]));
-  return getLearningStages().flatMap((stage) => {
-    const articleKeys = stage.units.length === 0
-      ? stage.articleKeys
-      : stage.units.filter((unit) => unit.kind === "core").flatMap((unit) => unit.articleKeys);
-    return articleKeys.map((articleKey) => articles.get(articleKey)).filter((article): article is ArticleRecord => Boolean(article));
-  });
+  return getLearningStages().flatMap((stage) => stage.articleKeys
+    .map((articleKey) => articles.get(articleKey))
+    .filter((article): article is ArticleRecord => article?.kind === "core"));
 }
 
 export function getArticleLearningNeighbors(articleKey: string): { previous?: ArticleRecord; next?: ArticleRecord } {
   const stage = getLearningStages().find((item) => item.articleKeys.includes(articleKey));
   const unit = stage?.units.find((item) => item.articleKeys.includes(articleKey));
   const articles = new Map(getArticles().map((article) => [article.articleKey, article]));
-  const route = unit?.kind === "extension"
-    ? unit.articleKeys.map((key) => articles.get(key)).filter((article): article is ArticleRecord => Boolean(article?.exists && article.status !== "计划"))
+  const current = articles.get(articleKey);
+  const route = current?.kind === "extension"
+    ? (unit?.articleKeys ?? []).map((key) => articles.get(key)).filter((article): article is ArticleRecord => Boolean(article?.exists && article.status !== "计划"))
     : getCoreLearningArticles().filter((article) => article.exists && article.status !== "计划");
   const index = route.findIndex((article) => article.articleKey === articleKey);
 
@@ -89,7 +87,9 @@ export function getArticleModuleNeighbors(articleKey: string): { previous?: Arti
   }
 
   const route = getArticles().filter(
-    (candidate) => candidate.moduleKey === article.moduleKey && candidate.exists && candidate.status !== "计划",
+    (candidate) => candidate.moduleKey === article.moduleKey
+      && candidate.exists
+      && candidate.status !== "计划",
   );
   const index = route.findIndex((candidate) => candidate.articleKey === articleKey);
   return index < 0 ? {} : { previous: route[index - 1], next: route[index + 1] };

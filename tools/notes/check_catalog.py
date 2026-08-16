@@ -24,13 +24,14 @@ MODULE_PREFIXES = {
     "computational-geometry": "06",
     "dynamic-programming": "07",
     "strings": "08",
+    "other": "09",
 }
 ARTICLE_ID_PATTERN = r"\d{4}(?:e\d+)?"
 CATALOG_ROW = re.compile(
     rf"^\|\s*({ARTICLE_ID_PATTERN})(\*)?\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
 )
 PATH_ROW = re.compile(
-    r"^\|\s*(\d{4})\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
+    rf"^\|\s*({ARTICLE_ID_PATTERN})(\*)?\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
 )
 EXTENSION_INDEX_ROW = re.compile(
     rf"^\|\s*({ARTICLE_ID_PATTERN})(\*)?\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|$"
@@ -57,6 +58,7 @@ class Entry:
 @dataclass(frozen=True)
 class RouteEntry:
     article_id: str
+    extension_marker: bool
     title: str
     module: str
     path: str
@@ -68,6 +70,7 @@ class RouteEntry:
 @dataclass(frozen=True)
 class ExtensionIndexEntry:
     article_id: str
+    extension_marker: bool
     title: str
     path: str
     linked: bool
@@ -111,11 +114,11 @@ class Checker:
             title = title.strip()
             status = status.strip()
             raw_file = raw_file.strip()
-            kind = (
-                "扩展专题"
-                if extension_marker or re.fullmatch(r"\d{4}e\d+", article_id)
-                else "核心教程"
-            )
+            if re.fullmatch(r"\d{4}e\d+", article_id) and not extension_marker:
+                self.error(
+                    f"catalog.md:{line_number}: attached extensions must also use *"
+                )
+            kind = "扩展专题" if extension_marker else "核心教程"
             path, linked = self.parse_file_cell(
                 raw_file, f"catalog.md:{line_number}"
             )
@@ -163,7 +166,7 @@ class Checker:
                 extension_match = EXTENSION_INDEX_ROW.match(line)
                 if not extension_match:
                     continue
-                article_id, _marker, title, raw_file = (
+                article_id, marker, title, raw_file = (
                     part.strip() if part else part
                     for part in extension_match.groups()
                 )
@@ -176,14 +179,21 @@ class Checker:
                     raw_file, f"learning-path.md:{line_number}"
                 )
                 extension_index.append(
-                    ExtensionIndexEntry(article_id, title, path, linked, section)
+                    ExtensionIndexEntry(
+                        article_id,
+                        bool(marker),
+                        title,
+                        path,
+                        linked,
+                        section,
+                    )
                 )
                 continue
             match = PATH_ROW.match(line)
             if not match:
                 continue
-            article_id, title, module, raw_file = (
-                part.strip() for part in match.groups()
+            article_id, marker, title, module, raw_file = (
+                part.strip() if part else part for part in match.groups()
             )
             link = FILE_LINK.fullmatch(raw_file)
             if link and link.group(1) != link.group(2).split("#", 1)[0]:
@@ -193,7 +203,18 @@ class Checker:
             path, linked = self.parse_file_cell(
                 raw_file, f"learning-path.md:{line_number}"
             )
-            route.append(RouteEntry(article_id, title, module, path, linked, stage, section))
+            route.append(
+                RouteEntry(
+                    article_id,
+                    bool(marker),
+                    title,
+                    module,
+                    path,
+                    linked,
+                    stage,
+                    section,
+                )
+            )
         if not route:
             self.error("learning-path.md: no learning-path entries found")
         if not extension_index:
@@ -286,12 +307,11 @@ class Checker:
             if not entry:
                 self.error(f"{location}: ID is absent from catalog.md")
                 continue
-            is_extension_unit = item.section.startswith("扩展单元：")
-            if is_extension_unit and entry.kind != "扩展专题":
-                self.error(f"{location}: core articles must not enter an extension unit")
-            if not is_extension_unit and entry.kind != "核心教程":
-                self.error(f"{location}: extension articles must not enter a core learning unit")
-            if not is_extension_unit:
+            if item.extension_marker != (entry.kind == "扩展专题"):
+                self.error(f"{location}: extension marker differs from catalog")
+            if re.fullmatch(r"\d{4}e\d+", item.article_id):
+                self.error(f"{location}: attached extensions must not enter stage directories")
+            if entry.kind == "核心教程":
                 route_ids.append(item.article_id)
             logical_path = item.path.removeprefix("learning-path/")
             if logical_path != entry.path:
@@ -308,7 +328,7 @@ class Checker:
         if extra:
             self.error("learning-path.md: non-core IDs present: " + ", ".join(extra))
 
-        stages = list(dict.fromkeys(item.stage for item in route if not item.section.startswith("扩展单元：")))
+        stages = list(dict.fromkeys(item.stage for item in route))
         expected_stages = [
             "01 C++ 基础",
             "02 算法基础",
@@ -343,6 +363,10 @@ class Checker:
                 continue
             if entry.kind != "扩展专题":
                 self.error(f"{location}: core article must stay in stages 1–6")
+            if not item.extension_marker:
+                self.error(f"{location}: extension index entries must use *")
+            if re.fullmatch(r"\d{4}e\d+", item.article_id):
+                self.error(f"{location}: attached extensions must not enter the public index")
             if item.title != entry.title:
                 self.error(
                     f"{location}: title differs from catalog ({item.title!r} != {entry.title!r})"
@@ -362,6 +386,7 @@ class Checker:
                 article_id
                 for article_id, entry in entries.items()
                 if entry.kind == "扩展专题"
+                and not re.fullmatch(r"\d{4}e\d+", article_id)
             ),
             key=lambda article_id: (
                 module_order[Path(entries[article_id].path).parts[0]],

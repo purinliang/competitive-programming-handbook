@@ -37,7 +37,6 @@ export interface LearningStage {
 
 export interface LearningUnit {
   title: string;
-  kind: "core" | "extension";
   articleKeys: string[];
 }
 

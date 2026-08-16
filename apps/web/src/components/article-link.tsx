@@ -5,12 +5,13 @@ import { NavigationLink as Link } from "./navigation-link";
 
 export function ArticleLink({ article, active = false, label, navigation }: { article: ArticleRecord; active?: boolean; label?: string; navigation?: NavigationMode }) {
   const visibleTitle = label ?? (navigation === "learning-path" ? article.learningTitle : article.title);
+  const title = `${visibleTitle}${article.kind === "extension" ? "*" : ""}`;
   const href = navigation === "learning-path" ? article.learningPathRoute : article.catalogRoute;
   const unavailable = !article.exists || article.status === "计划";
   if (unavailable) {
     return (
       <span className="article-link is-planned" title="正文尚在计划中">
-        <span>{visibleTitle}</span>
+        <span>{title}</span>
         <small>计划</small>
       </span>
     );
@@ -18,7 +19,7 @@ export function ArticleLink({ article, active = false, label, navigation }: { ar
 
   return (
     <Link className={`article-link${active ? " is-active" : ""}`} href={href} aria-current={active ? "page" : undefined}>
-      <span>{visibleTitle}</span>
+      <span>{title}</span>
       <small>{getArticleStatusLabel(article.status)}</small>
     </Link>
   );

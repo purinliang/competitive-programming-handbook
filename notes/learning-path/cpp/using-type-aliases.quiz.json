@@ -1,0 +1,50 @@
+[
+  {
+    "id": "using-alias-order",
+    "prompt": "哪一行把 `ll` 声明为 `long long` 的类型别名？",
+    "options": [
+      { "id": "a", "text": "`using ll = long long;`" },
+      { "id": "b", "text": "`using long long = ll;`" },
+      { "id": "c", "text": "`using namespace ll;`" },
+      { "id": "d", "text": "`long long using ll;`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "`using` 类型别名采用 `using 别名 = 原类型;` 的顺序。"
+  },
+  {
+    "id": "using-versus-typedef",
+    "prompt": "`using ll = long long;` 与 `typedef long long ll;` 的关系是什么？",
+    "options": [
+      { "id": "a", "text": "在这个例子中声明相同的类型别名" },
+      { "id": "b", "text": "前者声明变量，后者声明函数" },
+      { "id": "c", "text": "前者是 32 位整数，后者是 64 位整数" },
+      { "id": "d", "text": "二者都会创建一个新的整数类型" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两种语法都让 `ll` 成为 `long long` 的另一个名称。"
+  },
+  {
+    "id": "using-forms",
+    "prompt": "哪一种 `using` 写法声明的是类型别名？",
+    "options": [
+      { "id": "a", "text": "`using Edge = pair<int, int>;`" },
+      { "id": "b", "text": "`using std::cin;`" },
+      { "id": "c", "text": "`using namespace std;`" },
+      { "id": "d", "text": "`using <vector>;`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "带等号的形式声明别名；另外两种合法写法处理命名空间中的名称。"
+  },
+  {
+    "id": "alias-template",
+    "prompt": "哪一种写法可以直接声明带模板参数的类型别名？",
+    "options": [
+      { "id": "a", "text": "`using` 别名声明" },
+      { "id": "b", "text": "传统 `typedef`" },
+      { "id": "c", "text": "`using namespace` 指令" },
+      { "id": "d", "text": "`#include` 指令" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "C++11 的 `using` 可以直接声明别名模板，传统 `typedef` 不可以。"
+  }
+]

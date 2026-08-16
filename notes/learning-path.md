@@ -1,8 +1,8 @@
 # 分阶段学习路线
 
-这条路线从 C++ 基础出发，到高中竞赛一等奖常见的知识主干为止。它给出 [模块目录](catalog.md) 中核心教程的大致教学顺序，不试图在正文尚未写完时维护一张精确的前置依赖图。
+这条路线从 C++ 基础出发，到高中竞赛一等奖常见的知识主干为止。它给出 [模块目录](catalog.md) 中核心教程的教学顺序，也把适合在当前阶段阅读的独立扩展放回对应学习单元；不试图在正文尚未写完时维护一张精确的前置依赖图。
 
-路线会逐步整理成学习单元；目前先以 01 C++ 基础作为样板，其余部分仍保留原有顺序，等待对应正文和教学边界一起审查。单元表示一次相对完整的学习任务，文章仍然保持足够小且聚焦；同一单元可以把需要共同理解或反复对照的不同知识族放在一起。路线允许先学会最小用法、以后再回访底层规则，不承诺所有概念都能排成一条没有交叉的直线。
+路线使用学习单元表示一次相对完整的学习任务，文章仍然保持足够小且聚焦；同一单元可以把需要共同理解或反复对照的不同知识族放在一起。路线允许先学会最小用法、以后再回访底层规则，不承诺所有概念都能排成一条没有交叉的直线。单元边界按阶段逐章审计，不能为了表面整齐把只有前置关系的主题强行合并。
 
 标为代码路径的文章尚在计划中；可点击链接表示已经存在正文。高中进阶之后不再虚构统一的难度顺序，目录中的其余内容统一收录在文末的 [扩展阅读索引](#扩展阅读索引) 中。
 
@@ -40,8 +40,10 @@
 | 0106 | 变量 | C++ | [cpp/variable-declaration-initialization.md](cpp/variable-declaration-initialization.md) |
 | 0128 | 常量 | C++ | [cpp/const.md](cpp/const.md) |
 | 0161 | 字面量 | C++ | [cpp/literals.md](cpp/literals.md) |
+| 0179* | constexpr | C++ | [cpp/constexpr.md](cpp/constexpr.md) |
+| 0155* | volatile | C++ | [cpp/volatile.md](cpp/volatile.md) |
 
-### 学习单元：表达式与控制流
+### 学习单元：表达式
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -51,6 +53,11 @@
 | 0164 | 自增与自减运算符 | C++ | [cpp/increment-decrement-operators.md](cpp/increment-decrement-operators.md) |
 | 0165 | 复合赋值运算符 | C++ | [cpp/compound-assignment-operators.md](cpp/compound-assignment-operators.md) |
 | 0133 | 位运算符 | C++ | [cpp/bitwise-operators.md](cpp/bitwise-operators.md) |
+
+### 学习单元：控制流
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0111 | if 与 else | C++ | [cpp/conditional-branches.md](cpp/conditional-branches.md) |
 | 0166 | switch | C++ | [cpp/switch.md](cpp/switch.md) |
 | 0167 | while | C++ | [cpp/while.md](cpp/while.md) |
@@ -67,6 +74,7 @@
 | 0171 | 关键字与标识符 | C++ | [cpp/keywords-and-identifiers.md](cpp/keywords-and-identifiers.md) |
 | 0114 | 作用域 | C++ | [cpp/scope.md](cpp/scope.md) |
 | 0129 | static 局部变量 | C++ | [cpp/static-local-variables.md](cpp/static-local-variables.md) |
+| 0154* | inline | C++ | [cpp/inline.md](cpp/inline.md) |
 
 ### 学习单元：输入输出
 
@@ -77,17 +85,23 @@
 | 0172 | 输出格式控制 | C++ | [cpp/output-formatting.md](cpp/output-formatting.md) |
 | 0117 | 文件重定向 | C++ | [cpp/file-redirection.md](cpp/file-redirection.md) |
 
-### 学习单元：数组、字符串与结构体
+### 学习单元：数组
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0118 | 一维数组 | C++ | [cpp/one-dimensional-arrays.md](cpp/one-dimensional-arrays.md) |
 | 0119 | 多维数组 | C++ | [cpp/multidimensional-arrays.md](cpp/multidimensional-arrays.md) |
+| 0136* | array | C++ | [cpp/array.md](cpp/array.md) |
+
+### 学习单元：字符串
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0120 | C 字符串 | C++ | [cpp/c-strings.md](cpp/c-strings.md) |
 | 0137 | string | C++ | [cpp/string.md](cpp/string.md) |
 | 0173 | 整行输入 | C++ | [cpp/whole-line-input.md](cpp/whole-line-input.md) |
 
-### 学习单元：地址、别名与参数
+### 学习单元：地址、指针与引用
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -97,50 +111,56 @@
 | 0174 | 指针与引用中的 const | C++ | [cpp/const-pointers-and-references.md](cpp/const-pointers-and-references.md) |
 | 0127 | 参数传递 | C++ | [cpp/parameter-passing.md](cpp/parameter-passing.md) |
 
-### 学习单元：结构体
+### 学习单元：结构体、联合体与枚举
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0121 | struct | C++ | [cpp/struct.md](cpp/struct.md) |
+| 0121 | 结构体 | C++ | [cpp/struct.md](cpp/struct.md) |
 | 0175 | 结构体指针与箭头运算符 | C++ | [cpp/struct-pointers-and-arrow.md](cpp/struct-pointers-and-arrow.md) |
+| 0122* | 联合体 | C++ | [cpp/union.md](cpp/union.md) |
+| 0123* | 枚举 | C++ | [cpp/enum.md](cpp/enum.md) |
 
 ### 学习单元：内存、调用栈与递归
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0130 | 竞赛程序的常见内存分区 | C++ | [cpp/competitive-program-memory-layout.md](cpp/competitive-program-memory-layout.md) |
+| 0157* | 对象生命周期 | C++ | [cpp/object-lifetime.md](cpp/object-lifetime.md) |
 | 0131 | 调用栈 | C++ | [cpp/function-call-stack.md](cpp/function-call-stack.md) |
 | 0132 | 递归 | C++ | [cpp/recursion.md](cpp/recursion.md) |
 
 本阶段只讲从 C++ 视角写程序所需的语言知识和少量机器直觉，不代替计算机组成、体系结构、操作系统或编译原理课程。`include`、命名空间和对象生命周期等不影响入门主线的细节放在扩展阅读中。
 
-### 扩展单元：C++ 扩展阅读
-
-这一单元不属于主线的上一篇/下一篇顺序。它集中收录竞赛中很少主动使用、但可能在阅读代码或基础考试中遇到的语言机制。
+### 学习单元：从源码到程序
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0176* | 预处理 | C++ | [cpp/preprocessing.md](cpp/preprocessing.md) |
+| 0152* | 预处理：#include | C++ | [cpp/include.md](cpp/include.md) |
+| 0159* | 预处理：#define | C++ | [cpp/define-macros.md](cpp/define-macros.md) |
 | 0177* | 编译 | C++ | [cpp/compilation.md](cpp/compilation.md) |
 | 0178* | 链接 | C++ | [cpp/linking.md](cpp/linking.md) |
-| 0179* | constexpr | C++ | [cpp/constexpr.md](cpp/constexpr.md) |
-| 0152* | #include | C++ | [cpp/include.md](cpp/include.md) |
+
+### 学习单元：命名空间与类型别名
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0153* | 命名空间与 std | C++ | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
-| 0159* | #define 宏 | C++ | [cpp/define-macros.md](cpp/define-macros.md) |
-| 0160* | typedef 与 using 类型别名 | C++ | [cpp/type-aliases.md](cpp/type-aliases.md) |
-| 0121e2 | class 与对象 | C++ | [cpp/class.md](cpp/class.md) |
-| 0121e3 | 类的成员 | C++ | [cpp/class-members.md](cpp/class-members.md) |
-| 0121e4 | 访问权限与 friend | C++ | [cpp/class-access-control.md](cpp/class-access-control.md) |
-| 0121e5 | 构造函数 | C++ | [cpp/constructors.md](cpp/constructors.md) |
-| 0121e6 | 析构函数 | C++ | [cpp/destructors.md](cpp/destructors.md) |
-| 0121e7 | 函数重载与运算符重载 | C++ | [cpp/overloading.md](cpp/overloading.md) |
-| 0121e8 | 继承 | C++ | [cpp/inheritance.md](cpp/inheritance.md) |
-| 0121e9 | 多态 | C++ | [cpp/polymorphism.md](cpp/polymorphism.md) |
-| 0122* | union | C++ | [cpp/union.md](cpp/union.md) |
-| 0123* | enum | C++ | [cpp/enum.md](cpp/enum.md) |
-| 0154* | inline | C++ | [cpp/inline.md](cpp/inline.md) |
-| 0155* | volatile | C++ | [cpp/volatile.md](cpp/volatile.md) |
-| 0157* | 对象生命周期 | C++ | [cpp/object-lifetime.md](cpp/object-lifetime.md) |
+| 0160* | typedef 类型别名 | C++ | [cpp/type-aliases.md](cpp/type-aliases.md) |
+| 0188* | using 类型别名 | C++ | [cpp/using-type-aliases.md](cpp/using-type-aliases.md) |
+
+### 学习单元：类与对象
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0180* | 类与对象 | C++ | [cpp/class.md](cpp/class.md) |
+| 0181* | 类的成员 | C++ | [cpp/class-members.md](cpp/class-members.md) |
+| 0182* | 访问权限 | C++ | [cpp/class-access-control.md](cpp/class-access-control.md) |
+| 0183* | 构造函数 | C++ | [cpp/constructors.md](cpp/constructors.md) |
+| 0184* | 析构函数 | C++ | [cpp/destructors.md](cpp/destructors.md) |
+| 0185* | 函数重载与运算符重载 | C++ | [cpp/overloading.md](cpp/overloading.md) |
+| 0186* | 继承 | C++ | [cpp/inheritance.md](cpp/inheritance.md) |
+| 0187* | 多态 | C++ | [cpp/polymorphism.md](cpp/polymorphism.md) |
 
 ## 02 算法基础
 
@@ -151,12 +171,14 @@
 | 0201 | 复杂度 | 算法基础 | [algorithm-basics/complexity.md](algorithm-basics/complexity.md) |
 | 0254 | 从代码分析复杂度 | 算法基础 | [algorithm-basics/complexity-analysis.md](algorithm-basics/complexity-analysis.md) |
 
-### 学习单元：基础 STL
+### 学习单元：标准库基础
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0138 | vector | C++ | [cpp/vector.md](cpp/vector.md) |
 | 0163 | fill | C++ | [cpp/fill.md](cpp/fill.md) |
+| 0134 | pair | C++ | [cpp/pair.md](cpp/pair.md) |
+| 0135 | tuple | C++ | [cpp/tuple.md](cpp/tuple.md) |
 | 0140 | sort | C++ | [cpp/sorting.md](cpp/sorting.md) |
 | 0141 | unique | C++ | [cpp/deduplication.md](cpp/deduplication.md) |
 
@@ -186,6 +208,9 @@
 | 0231 | 快速排序 | 算法基础 | [algorithm-basics/quicksort.md](algorithm-basics/quicksort.md) |
 | 0232 | 归并排序 | 算法基础 | [algorithm-basics/merge-sort.md](algorithm-basics/merge-sort.md) |
 | 0260 | 排序方法比较 | 算法基础 | [algorithm-basics/sorting-comparison.md](algorithm-basics/sorting-comparison.md) |
+| 0234* | 基数排序 | 算法基础 | `algorithm-basics/0234-radix-sort.md` |
+| 0235* | 桶排序 | 算法基础 | `algorithm-basics/0235-bucket-sort.md` |
+| 0206 | 离散化 | 算法基础 | [algorithm-basics/coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
 
 ### 学习单元：分治
 
@@ -199,12 +224,11 @@
 | --- | --- | --- | --- |
 | 0204 | 二分查找 | 算法基础 | [algorithm-basics/binary-search.md](algorithm-basics/binary-search.md) |
 | 0251 | 二分边界 | 算法基础 | [algorithm-basics/binary-search-boundaries.md](algorithm-basics/binary-search-boundaries.md) |
-| 0162 | STL 二分查找 | C++ | [cpp/stl-binary-search.md](cpp/stl-binary-search.md) |
-| 0206 | 离散化 | 算法基础 | [algorithm-basics/coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
+| 0162 | 标准库二分查找 | C++ | [cpp/stl-binary-search.md](cpp/stl-binary-search.md) |
 | 0219 | 二分答案 | 算法基础 | [algorithm-basics/binary-search-on-answer.md](algorithm-basics/binary-search-on-answer.md) |
 | 0252 | 浮点数二分 | 算法基础 | [algorithm-basics/floating-point-binary-search.md](algorithm-basics/floating-point-binary-search.md) |
 
-### 学习单元：前缀和与差分
+### 学习单元：前缀和
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -218,26 +242,46 @@
 | 0205 | 双指针 | 算法基础 | [algorithm-basics/two-pointers.md](algorithm-basics/two-pointers.md) |
 | 0220 | 滑动窗口 | 算法基础 | [algorithm-basics/sliding-window.md](algorithm-basics/sliding-window.md) |
 
-本阶段先独立建立复杂度，再学习后续代码马上需要的 `vector`、`fill`、`sort` 和 `unique`。枚举与模拟随后作为最直接的基线方法；排序、二分、前缀和、差分和双指针则依次利用前面已经建立的工具。这里只学习基础 STL 的真实用途，不预先背诵全部容器。数组、链表、栈、队列和双端队列连同对应标准库接口放在初中基础；`pair` 等到图的带权邻接表以前再学习。
+### 学习单元：贪心
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0208 | 贪心选择与正确性证明 | 算法基础 | [algorithm-basics/greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
+| 0238 | 邻项交换证明 | 算法基础 | `algorithm-basics/greedy-adjacent-exchange.md` |
+| 0239 | 反悔贪心 | 算法基础 | `algorithm-basics/greedy-regret.md` |
+
+本阶段先独立建立复杂度，再学习后续代码马上需要的标准库基础。枚举与模拟提供最直接的基线方法；递归与递推建立较小问题之间的关系。排序之后由快速排序和归并排序归纳分治，再进入二分、前缀和、双指针和贪心。差分作为前缀和的逆过程放在同一单元；滑动窗口作为双指针维护连续区间的形式放在同一单元。
 
 ## 03 初中基础
 
-### 学习单元：线性结构与对应接口
+本阶段开始把语法、基础算法与数据结构组合成完整的问题模型。线性表先比较数组与链表两种存储，再分别学习栈和队列。随后建立数论、图与树的基础，最后完成动态规划和朴素字符串算法的第一次系统学习。
+
+### 学习单元：数据结构：线性表
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0223 | 数组 | 算法基础 | [algorithm-basics/array.md](algorithm-basics/array.md) |
 | 0224 | 链表 | 算法基础 | [algorithm-basics/linked-list.md](algorithm-basics/linked-list.md) |
+
+### 学习单元：数据结构：栈
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0225 | 栈 | 算法基础 | [algorithm-basics/stack.md](algorithm-basics/stack.md) |
 | 0142 | stack | C++ | [cpp/stack.md](cpp/stack.md) |
 | 0236 | 出栈序列判定 | 算法基础 | [algorithm-basics/stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
 | 0237 | 表达式求值 | 算法基础 | [algorithm-basics/expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
+
+### 学习单元：数据结构：队列
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0226 | 队列 | 算法基础 | [algorithm-basics/queue.md](algorithm-basics/queue.md) |
+| 0143 | queue | C++ | [cpp/queue.md](cpp/queue.md) |
 | 0253 | 双端队列 | 算法基础 | [algorithm-basics/deque.md](algorithm-basics/deque.md) |
 | 0139 | deque | C++ | [cpp/deque.md](cpp/deque.md) |
-| 0143 | queue | C++ | [cpp/queue.md](cpp/queue.md) |
 
-### 学习单元：整除、质数与最大公约数
+### 学习单元：数学：数论基础
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -248,19 +292,7 @@
 | 0536 | 最大公约数与最小公倍数 | 数学 | [math/greatest-common-divisor-and-least-common-multiple.md](math/greatest-common-divisor-and-least-common-multiple.md) |
 | 0537 | 欧几里得算法 | 数学 | [math/euclidean-algorithm.md](math/euclidean-algorithm.md) |
 
-### 学习单元：哈希表
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0228 | 哈希表 | 算法基础 | [algorithm-basics/hash-table.md](algorithm-basics/hash-table.md) |
-
-### 学习单元：pair
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0134 | pair | C++ | [cpp/pair.md](cpp/pair.md) |
-
-### 学习单元：图的概念与存储
+### 学习单元：图论：图
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -269,17 +301,12 @@
 | 0432 | 度数 | 图论 | [graph-theory/vertex-degrees.md](graph-theory/vertex-degrees.md) |
 | 0402 | 图的存储：基础概念 | 图论 | [graph-theory/graph-representation.md](graph-theory/graph-representation.md) |
 | 0439 | 图的存储：邻接表（vector 实现） | 图论 | [graph-theory/vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
-
-### 学习单元：图的搜索与连通性
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
 | 0436 | 图的遍历：深度优先搜索（DFS） | 图论 | [graph-theory/graph-depth-first-search.md](graph-theory/graph-depth-first-search.md) |
 | 0443 | DFS、回溯与剪枝 | 图论 | [graph-theory/dfs-backtracking-pruning.md](graph-theory/dfs-backtracking-pruning.md) |
 | 0437 | 图的遍历：广度优先搜索（BFS） | 图论 | [graph-theory/graph-breadth-first-search.md](graph-theory/graph-breadth-first-search.md) |
 | 0404 | 连通块 | 图论 | [graph-theory/connected-components.md](graph-theory/connected-components.md) |
 
-### 学习单元：树的概念与遍历
+### 学习单元：图论：树
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -288,7 +315,7 @@
 | 0434 | 树的遍历：深度优先搜索（DFS） | 图论 | [graph-theory/tree-depth-first-search.md](graph-theory/tree-depth-first-search.md) |
 | 0435 | 树的遍历：广度优先搜索（BFS） | 图论 | [graph-theory/tree-breadth-first-search.md](graph-theory/tree-breadth-first-search.md) |
 
-### 学习单元：动态规划入门
+### 学习单元：动态规划：基础
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -296,16 +323,11 @@
 | 0702 | 动态规划：线性 DP | 动态规划 | [dynamic-programming/linear-dp.md](dynamic-programming/linear-dp.md) |
 | 0704 | 动态规划：最长上升子序列 | 动态规划 | [dynamic-programming/longest-increasing-subsequence.md](dynamic-programming/longest-increasing-subsequence.md) |
 | 0717 | 动态规划：状态机 DP | 动态规划 | [dynamic-programming/state-machine-dp.md](dynamic-programming/state-machine-dp.md) |
-
-### 学习单元：背包动态规划
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
 | 0703 | 背包：0-1 背包 | 动态规划 | [dynamic-programming/zero-one-knapsack.md](dynamic-programming/zero-one-knapsack.md) |
 | 0715 | 背包：完全背包 | 动态规划 | [dynamic-programming/complete-knapsack.md](dynamic-programming/complete-knapsack.md) |
 | 0716 | 背包：多重背包 | 动态规划 | [dynamic-programming/multiple-knapsack.md](dynamic-programming/multiple-knapsack.md) |
 
-### 学习单元：字符串比较与朴素匹配
+### 学习单元：字符串：基础算法
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -314,80 +336,78 @@
 
 ## 04 初中进阶
 
-### 学习单元：堆与 priority_queue
+本阶段加入依赖更完整背景或适用范围更专门的工具。二叉树先提供左右孩子、遍历与完全二叉树编号，随后分别学习二叉堆与哈希表原理。标准库进阶集中比较 `priority_queue`、有序关联容器与无序关联容器；前一阶段的反悔贪心可以在这里回访，并把线性查找最不合适选项的步骤替换成优先队列。图搜索应用、高精度整数和编码各自保持清楚的主题边界。
 
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0227 | 二叉堆 | 算法基础 | [algorithm-basics/binary-heap.md](algorithm-basics/binary-heap.md) |
-| 0144 | priority_queue | C++ | [cpp/priority-queue.md](cpp/priority-queue.md) |
-
-### 学习单元：贪心
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0208 | 贪心：选择与证明 | 算法基础 | [algorithm-basics/greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
-| 0238 | 贪心证明：邻项交换 | 算法基础 | `algorithm-basics/greedy-adjacent-exchange.md` |
-| 0239 | 贪心：反悔 | 算法基础 | `algorithm-basics/greedy-regret.md` |
-
-### 学习单元：有序关联容器
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0145 | set | C++ | [cpp/set.md](cpp/set.md) |
-| 0146 | multiset | C++ | [cpp/multiset.md](cpp/multiset.md) |
-| 0147 | map | C++ | [cpp/map.md](cpp/map.md) |
-| 0148 | multimap | C++ | [cpp/multimap.md](cpp/multimap.md) |
-
-### 学习单元：哈希容器
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0149 | unordered_set | C++ | [cpp/unordered-set.md](cpp/unordered-set.md) |
-| 0150 | unordered_map | C++ | [cpp/unordered-map.md](cpp/unordered-map.md) |
-
-### 学习单元：高精度整数
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0544 | 高精度整数：加法、减法与乘法 | 数学 | [math/big-integer-addition-subtraction-multiplication.md](math/big-integer-addition-subtraction-multiplication.md) |
-
-### 学习单元：BFS 扩展与二分图
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 0406 | 图的遍历：多源 BFS | 图论 | [graph-theory/multi-source-bfs.md](graph-theory/multi-source-bfs.md) |
-| 0411 | 二分图：判定 | 图论 | [graph-theory/bipartite-graph.md](graph-theory/bipartite-graph.md) |
-
-### 学习单元：二叉树的存储与遍历
+### 学习单元：数据结构：二叉树
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0311 | 二叉树：结构与存储 | 数据结构 | [data-structures/binary-tree-structure-and-storage.md](data-structures/binary-tree-structure-and-storage.md) |
 | 0328 | 二叉树的遍历：前序、中序与后序 | 数据结构 | [data-structures/binary-tree-traversals.md](data-structures/binary-tree-traversals.md) |
 
-### 学习单元：编码与树形表示
+### 学习单元：数据结构：二叉堆
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 0240 | 编码：哈夫曼编码 | 算法基础 | [algorithm-basics/huffman-coding.md](algorithm-basics/huffman-coding.md) |
-| 0241 | 编码：格雷码 | 算法基础 | [algorithm-basics/gray-code.md](algorithm-basics/gray-code.md) |
+| 0227 | 二叉堆 | 算法基础 | [algorithm-basics/binary-heap.md](algorithm-basics/binary-heap.md) |
+| 0233* | 堆排序 | 算法基础 | `algorithm-basics/0233-heap-sort.md` |
+
+### 学习单元：数据结构：哈希表
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0228 | 哈希表 | 算法基础 | [algorithm-basics/hash-table.md](algorithm-basics/hash-table.md) |
+
+### 学习单元：标准库进阶
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0144 | priority_queue | C++ | [cpp/priority-queue.md](cpp/priority-queue.md) |
+| 0145 | set | C++ | [cpp/set.md](cpp/set.md) |
+| 0146 | multiset | C++ | [cpp/multiset.md](cpp/multiset.md) |
+| 0147 | map | C++ | [cpp/map.md](cpp/map.md) |
+| 0148 | multimap | C++ | [cpp/multimap.md](cpp/multimap.md) |
+| 0149 | unordered_set | C++ | [cpp/unordered-set.md](cpp/unordered-set.md) |
+| 0150 | unordered_map | C++ | [cpp/unordered-map.md](cpp/unordered-map.md) |
+
+### 学习单元：数学：高精度整数
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0544 | 高精度整数：加法、减法与乘法 | 数学 | [math/big-integer-addition-subtraction-multiplication.md](math/big-integer-addition-subtraction-multiplication.md) |
+
+### 学习单元：图论：图搜索的应用
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0406 | 图的遍历：多源 BFS | 图论 | [graph-theory/multi-source-bfs.md](graph-theory/multi-source-bfs.md) |
+| 0411 | 二分图：判定 | 图论 | [graph-theory/bipartite-graph.md](graph-theory/bipartite-graph.md) |
+
+### 学习单元：编码：哈夫曼编码与格雷码
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 0901 | 哈夫曼编码 | 其他 | [other/huffman-coding.md](other/huffman-coding.md) |
+| 0902 | 格雷码 | 其他 | [other/gray-code.md](other/gray-code.md) |
 
 ## 05 高中基础
 
-### 学习单元：复杂度进阶
+本阶段进入高中竞赛一等奖常见主干：先补充均摊分析和标准库位集合，再学习区间查询、并查集、单调结构与倍增；随后系统推进模运算、筛法、计数、数论函数和矩阵，并完成最短路、生成树、树上基础问题、常见动态规划模型、经典字符串算法与计算几何基础。
+
+### 学习单元：算法基础：复杂度进阶
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0255 | 均摊复杂度 | 算法基础 | `algorithm-basics/amortized-complexity.md` |
 | 0256 | 均摊复杂度：势能法 | 算法基础 | `algorithm-basics/potential-method.md` |
 
-### 学习单元：bitset
+### 学习单元：标准库：位集合
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0151 | bitset | C++ | [cpp/bitset.md](cpp/bitset.md) |
 
-### 学习单元：区间查询数据结构
+### 学习单元：数据结构：区间查询
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -395,33 +415,38 @@
 | 0306 | 树状数组：基础 | 数据结构 | [data-structures/fenwick-tree.md](data-structures/fenwick-tree.md) |
 | 0308 | 稀疏表（ST 表） | 数据结构 | [data-structures/sparse-table.md](data-structures/sparse-table.md) |
 
-### 学习单元：并查集
+### 学习单元：数据结构：并查集
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0307 | 并查集：基础 | 数据结构 | [data-structures/disjoint-set-union.md](data-structures/disjoint-set-union.md) |
 
-### 学习单元：单调结构与倍增
+### 学习单元：数据结构：单调结构
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0229 | 单调栈 | 算法基础 | [algorithm-basics/monotonic-stack.md](algorithm-basics/monotonic-stack.md) |
 | 0230 | 单调队列 | 算法基础 | [algorithm-basics/monotonic-queue.md](algorithm-basics/monotonic-queue.md) |
+
+### 学习单元：算法基础：倍增
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0242 | 倍增：基础 | 算法基础 | [algorithm-basics/doubling.md](algorithm-basics/doubling.md) |
 
-### 学习单元：模运算与线性同余
+### 学习单元：数学：模运算与线性同余
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0504 | 模运算 | 数学 | [math/modular-arithmetic.md](math/modular-arithmetic.md) |
 | 0574 | 快速幂 | 数学 | [math/fast-power.md](math/fast-power.md) |
-| 0575 | 费马小定理 | 数学 | [math/fermat-little-theorem.md](math/fermat-little-theorem.md) |
 | 0503 | 数论：扩展欧几里得算法 | 数学 | [math/extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
 | 0542 | 线性不定方程 | 数学 | [math/linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
 | 0543 | 线性同余方程 | 数学 | [math/linear-congruences.md](math/linear-congruences.md) |
+| 0575 | 费马小定理 | 数学 | [math/fermat-little-theorem.md](math/fermat-little-theorem.md) |
 | 0506 | 模逆元 | 数学 | [math/modular-inverse.md](math/modular-inverse.md) |
 
-### 学习单元：筛法与因数函数
+### 学习单元：数学：筛法与因数函数
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -430,7 +455,7 @@
 | 0540 | 正因数个数 | 数学 | [math/divisor-count.md](math/divisor-count.md) |
 | 0541 | 正因数和 | 数学 | [math/divisor-sum.md](math/divisor-sum.md) |
 
-### 学习单元：基础计数与组合数
+### 学习单元：数学：计数原理与组合数
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -440,7 +465,7 @@
 | 0507 | 组合数：定义与递推 | 数学 | [math/binomial-coefficients.md](math/binomial-coefficients.md) |
 | 0581 | 组合数：阶乘与逆元预处理 | 数学 | [math/binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
 
-### 学习单元：欧拉函数与莫比乌斯函数
+### 学习单元：数学：数论函数
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -448,7 +473,7 @@
 | 0582 | 欧拉定理 | 数学 | [math/euler-theorem.md](math/euler-theorem.md) |
 | 0518 | 莫比乌斯函数 | 数学 | [math/mobius-function.md](math/mobius-function.md) |
 
-### 学习单元：矩阵与线性变换
+### 学习单元：数学：矩阵与线性变换
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -458,37 +483,42 @@
 | 0585 | 线性变换：矩阵表示 | 数学 | [math/linear-transformations-as-matrices.md](math/linear-transformations-as-matrices.md) |
 | 0511 | 矩阵快速幂 | 数学 | [math/matrix-exponentiation.md](math/matrix-exponentiation.md) |
 
-### 学习单元：概率与期望
+### 学习单元：数学：概率与期望
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0512 | 概率与期望基础 | 数学 | `math/0512-probability-expectation.md` |
 
-### 学习单元：图的存储实现
+### 学习单元：图论：图的存储实现
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0441 | 图的存储：边集 | 图论 | [graph-theory/edge-list.md](graph-theory/edge-list.md) |
 | 0440 | 图的存储：邻接表（链式前向星实现） | 图论 | [graph-theory/chained-forward-star.md](graph-theory/chained-forward-star.md) |
 
-### 学习单元：拓扑排序与最短路
+### 学习单元：图论：拓扑排序
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0405 | 有向无环图：拓扑排序 | 图论 | [graph-theory/topological-sort.md](graph-theory/topological-sort.md) |
+
+### 学习单元：图论：最短路
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0407 | 最短路：Dijkstra | 图论 | `graph-theory/0407-dijkstra.md` |
 | 0408 | 最短路：Bellman–Ford 与负环 | 图论 | `graph-theory/0408-bellman-ford.md` |
 | 0409 | 最短路：Floyd–Warshall | 图论 | `graph-theory/0409-floyd-warshall.md` |
 | 0444 | 最短路：0-1 BFS | 图论 | [graph-theory/zero-one-bfs.md](graph-theory/zero-one-bfs.md) |
 
-### 学习单元：最小生成树
+### 学习单元：图论：最小生成树
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0410 | 最小生成树：Kruskal | 图论 | `graph-theory/0410-kruskal.md` |
 | 0448 | 最小生成树：Prim | 图论 | `graph-theory/0448-prim.md` |
 
-### 学习单元：树的路径与子树
+### 学习单元：图论：树上基础问题
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -497,16 +527,21 @@
 | 0418 | 树的遍历：DFS 序与子树区间 | 图论 | `graph-theory/0418-tree-euler-tour.md` |
 | 0403 | 树上查询：倍增 LCA | 图论 | [graph-theory/lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
 
-### 学习单元：特殊图结构与路径问题
+### 学习单元：图论：特殊图结构
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0426 | 图：基环树 | 图论 | `graph-theory/0426-unicyclic-graph.md` |
 | 0447 | 图：函数图 | 图论 | `graph-theory/0447-functional-graph.md` |
+
+### 学习单元：图论：欧拉与哈密顿问题
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0416 | 欧拉问题：路径、回路与图 | 图论 | [graph-theory/eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
 | 0438 | 哈密顿问题：路径、回路与图 | 图论 | [graph-theory/hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
 
-### 学习单元：常见动态规划模型
+### 学习单元：动态规划：常见模型
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -515,7 +550,7 @@
 | 0707 | 动态规划：树形 DP | 动态规划 | `dynamic-programming/0707-tree-dp.md` |
 | 0708 | 动态规划：状压 DP | 动态规划 | `dynamic-programming/0708-bitmask-dp.md` |
 
-### 学习单元：字符串算法基础
+### 学习单元：字符串：经典算法
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -524,7 +559,7 @@
 | 0805 | 字符串：Z 函数 | 字符串 | `strings/0805-z-function.md` |
 | 0806 | 字符串：Trie | 字符串 | `strings/0806-trie.md` |
 
-### 学习单元：计算几何基础
+### 学习单元：计算几何：基础
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -533,50 +568,62 @@
 
 ## 06 高中进阶
 
-### 学习单元：折半枚举与离线处理
+本阶段在前面的稳定模型上继续组合技巧：折半枚举与离线处理扩展候选组织方式，并查集、图连通性和树上数据结构增加维护能力；状态图最短路、中国剩余定理、容斥、平面几何与进阶动态规划分别完成高中竞赛主干中更专门的专题。
+
+### 学习单元：算法基础：折半枚举
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0212 | 枚举：Meet-in-the-Middle | 算法基础 | `algorithm-basics/0212-meet-in-the-middle.md` |
+
+### 学习单元：算法基础：离线处理
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0213 | 离线算法 | 算法基础 | `algorithm-basics/0213-offline-algorithms.md` |
 | 0214 | 扫描线与事件排序 | 算法基础 | `algorithm-basics/0214-sweep-line.md` |
 
-### 学习单元：并查集扩展
+### 学习单元：数据结构：并查集扩展
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0309 | 并查集：扩展域 | 数据结构 | `data-structures/extended-domain-disjoint-set.md` |
 | 0310 | 并查集：带权 | 数据结构 | `data-structures/weighted-disjoint-set.md` |
 
-### 学习单元：图的连通性与树上数据结构
+### 学习单元：图论：连通性
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0413 | 有向图：强连通分量 | 图论 | `graph-theory/0413-strongly-connected-components.md` |
 | 0414 | 无向图：割点与桥 | 图论 | `graph-theory/0414-articulation-points-bridges.md` |
+
+### 学习单元：图论：树上数据结构
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
 | 0419 | 树上数据结构：树链剖分 | 图论 | `graph-theory/0419-heavy-light-decomposition.md` |
 | 0446 | 树上技巧：树上差分 | 图论 | `graph-theory/0446-tree-difference.md` |
 
-### 学习单元：状态图最短路
+### 学习单元：图论：状态图最短路
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0429 | 最短路：分层图与状态图 | 图论 | `graph-theory/0429-layered-state-shortest-path.md` |
 
-### 学习单元：中国剩余定理
+### 学习单元：数学：中国剩余定理
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0510 | 数论：中国剩余定理（CRT） | 数学 | [math/chinese-remainder-theorem.md](math/chinese-remainder-theorem.md) |
 | 0538 | 数论：扩展中国剩余定理（exCRT） | 数学 | [math/extended-chinese-remainder-theorem.md](math/extended-chinese-remainder-theorem.md) |
 
-### 学习单元：容斥原理
+### 学习单元：数学：容斥原理
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 0516 | 容斥原理 | 数学 | `math/0516-inclusion-exclusion.md` |
 
-### 学习单元：平面几何算法
+### 学习单元：计算几何：平面几何算法
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -584,7 +631,7 @@
 | 0604 | 多边形面积与点的位置 | 计算几何 | `computational-geometry/0604-polygon-area-point-location.md` |
 | 0605 | 凸包 | 计算几何 | `computational-geometry/0605-convex-hull.md` |
 
-### 学习单元：动态规划进阶
+### 学习单元：动态规划：进阶
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
@@ -596,56 +643,48 @@
 
 ## 扩展阅读索引
 
-以下内容不属于 01–06 的必学顺序，其中一部分可能明显高于高中竞赛一等奖的常见范围。它们按模块和 ID 排列，便于查找；开始某篇之前可以回到 [模块目录](catalog.md) 查看状态和所属模块。
+以下独立扩展不属于 01–06 的必学顺序，其中一部分可能明显高于高中竞赛一等奖的常见范围。它们按模块和 ID 排列，便于查找；开始某篇之前可以回到 [模块目录](catalog.md) 查看状态和所属模块。使用 `e1*`、`e2*` 等编号的附属扩展只从对应基础文章进入，不在这里重复平铺。
 
 ### 01 C++
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| 0102e1 | 位、字节与存储单位 | [cpp/bits-bytes-and-storage-units.md](cpp/bits-bytes-and-storage-units.md) |
-| 0102e2 | 整数的二进制表示 | [cpp/signed-integer-representations.md](cpp/signed-integer-representations.md) |
-| 0102e3 | 整数类型的位宽与平台差异 | [cpp/integer-type-widths.md](cpp/integer-type-widths.md) |
-| 0103e1 | IEEE 754 浮点数表示 | [cpp/ieee-754.md](cpp/ieee-754.md) |
-| 0119e1 | 多维数组的布局与参数传递 | [cpp/multidimensional-array-layout-and-parameters.md](cpp/multidimensional-array-layout-and-parameters.md) |
-| 0121e1 | struct 的内存布局 | [cpp/struct-memory-layout.md](cpp/struct-memory-layout.md) |
-| 0121e2 | class 与对象 | [cpp/class.md](cpp/class.md) |
-| 0121e3 | 类的成员 | [cpp/class-members.md](cpp/class-members.md) |
-| 0121e4 | 访问权限与 friend | [cpp/class-access-control.md](cpp/class-access-control.md) |
-| 0121e5 | 构造函数 | [cpp/constructors.md](cpp/constructors.md) |
-| 0121e6 | 析构函数 | [cpp/destructors.md](cpp/destructors.md) |
-| 0121e7 | 函数重载与运算符重载 | [cpp/overloading.md](cpp/overloading.md) |
-| 0121e8 | 继承 | [cpp/inheritance.md](cpp/inheritance.md) |
-| 0121e9 | 多态 | [cpp/polymorphism.md](cpp/polymorphism.md) |
-| 0122* | union | [cpp/union.md](cpp/union.md) |
-| 0123* | enum | [cpp/enum.md](cpp/enum.md) |
-| 0135* | tuple | [cpp/tuple.md](cpp/tuple.md) |
+| 0122* | 联合体 | [cpp/union.md](cpp/union.md) |
+| 0123* | 枚举 | [cpp/enum.md](cpp/enum.md) |
 | 0136* | array | [cpp/array.md](cpp/array.md) |
-| 0152* | #include | [cpp/include.md](cpp/include.md) |
+| 0152* | 预处理：#include | [cpp/include.md](cpp/include.md) |
 | 0153* | 命名空间与 std | [cpp/namespace-and-std.md](cpp/namespace-and-std.md) |
 | 0154* | inline | [cpp/inline.md](cpp/inline.md) |
 | 0155* | volatile | [cpp/volatile.md](cpp/volatile.md) |
 | 0156* | order-statistics tree（GNU PBDS） | `cpp/gnu-pbds.md` |
 | 0157* | 对象生命周期 | [cpp/object-lifetime.md](cpp/object-lifetime.md) |
-| 0159* | #define 宏 | [cpp/define-macros.md](cpp/define-macros.md) |
-| 0160* | typedef 与 using 类型别名 | [cpp/type-aliases.md](cpp/type-aliases.md) |
+| 0159* | 预处理：#define | [cpp/define-macros.md](cpp/define-macros.md) |
+| 0160* | typedef 类型别名 | [cpp/type-aliases.md](cpp/type-aliases.md) |
 | 0176* | 预处理 | [cpp/preprocessing.md](cpp/preprocessing.md) |
 | 0177* | 编译 | [cpp/compilation.md](cpp/compilation.md) |
 | 0178* | 链接 | [cpp/linking.md](cpp/linking.md) |
 | 0179* | constexpr | [cpp/constexpr.md](cpp/constexpr.md) |
+| 0180* | 类与对象 | [cpp/class.md](cpp/class.md) |
+| 0181* | 类的成员 | [cpp/class-members.md](cpp/class-members.md) |
+| 0182* | 访问权限 | [cpp/class-access-control.md](cpp/class-access-control.md) |
+| 0183* | 构造函数 | [cpp/constructors.md](cpp/constructors.md) |
+| 0184* | 析构函数 | [cpp/destructors.md](cpp/destructors.md) |
+| 0185* | 函数重载与运算符重载 | [cpp/overloading.md](cpp/overloading.md) |
+| 0186* | 继承 | [cpp/inheritance.md](cpp/inheritance.md) |
+| 0187* | 多态 | [cpp/polymorphism.md](cpp/polymorphism.md) |
+| 0188* | using 类型别名 | [cpp/using-type-aliases.md](cpp/using-type-aliases.md) |
 
 ### 02 算法基础
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| 0201e1 | 复杂度：渐近记号 | [algorithm-basics/asymptotic-notation.md](algorithm-basics/asymptotic-notation.md) |
 | 0215* | 三分搜索 | `algorithm-basics/0215-ternary-search.md` |
 | 0216* | 随机化算法 | `algorithm-basics/0216-randomized-algorithms.md` |
 | 0217* | 整体二分与并行二分 | `algorithm-basics/0217-parallel-binary-search.md` |
 | 0218* | CDQ 分治 | `algorithm-basics/0218-cdq-divide-and-conquer.md` |
-| 0232e1 | 归并排序：逆序对计数 | `algorithm-basics/merge-sort-inversion-count.md` |
-| 0233* | 排序：堆排序 | `algorithm-basics/0233-heap-sort.md` |
-| 0234* | 排序：基数排序 | `algorithm-basics/0234-radix-sort.md` |
-| 0235* | 排序：桶排序 | `algorithm-basics/0235-bucket-sort.md` |
+| 0233* | 堆排序 | `algorithm-basics/0233-heap-sort.md` |
+| 0234* | 基数排序 | `algorithm-basics/0234-radix-sort.md` |
+| 0235* | 桶排序 | `algorithm-basics/0235-bucket-sort.md` |
 | 0243* | 搜索：迭代加深 | `algorithm-basics/iterative-deepening.md` |
 | 0244* | 搜索：A* | `algorithm-basics/a-star.md` |
 | 0245* | 精确覆盖：Dancing Links（DLX） | `algorithm-basics/dancing-links.md` |
@@ -692,8 +731,6 @@
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
 | 0412* | 二分图：最大匹配 | `graph-theory/0412-bipartite-matching.md` |
-| 0412e1 | 二分图最大匹配：Hopcroft–Karp | `graph-theory/hopcroft-karp.md` |
-| 0412e2 | 二分图最大权匹配：Kuhn–Munkres（KM） | `graph-theory/kuhn-munkres.md` |
 | 0415* | 无向图：双连通分量与圆方树 | `graph-theory/0415-biconnected-components-block-cut-tree.md` |
 | 0420* | 2-SAT | `graph-theory/0420-two-sat.md` |
 | 0421* | 网络流：Dinic | `graph-theory/0421-dinic-max-flow.md` |
@@ -704,7 +741,6 @@
 | 0427* | DSU on Tree | `graph-theory/0427-dsu-on-tree.md` |
 | 0428* | 差分约束 | `graph-theory/0428-difference-constraints.md` |
 | 0430* | 树哈希 | `graph-theory/0430-tree-hashing.md` |
-| 0438e1 | 哈密顿问题：小规模回溯 | [graph-theory/hamiltonian-backtracking.md](graph-theory/hamiltonian-backtracking.md) |
 | 0449* | 最短路：最短路树 | `graph-theory/shortest-path-tree.md` |
 | 0450* | 最小生成树：Borůvka | `graph-theory/boruvka.md` |
 | 0451* | 网络流：SAP | `graph-theory/sap-max-flow.md` |
@@ -727,21 +763,11 @@
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| 0504e1 | 模运算：modint | [math/mod-int.md](math/mod-int.md) |
-| 0505e1 | 杜教筛 | `math/du-jiao-sieve.md` |
-| 0505e2 | Min_25 筛 | `math/min-25-sieve.md` |
-| 0506e1 | 模逆元：线性预处理 | `math/linear-modular-inverses.md` |
-| 0506e2 | 模逆元：批量求逆 | `math/batch-modular-inverses.md` |
-| 0507e1 | 组合数：Lucas 定理 | `math/lucas-theorem.md` |
-| 0507e2 | 组合数：扩展 Lucas 定理 | `math/extended-lucas-theorem.md` |
-| 0508e1 | 扩展欧拉定理 | `math/extended-euler-theorem.md` |
-| 0508e2 | 欧拉函数：筛法预处理 | `math/euler-totient-sieve.md` |
 | 0513* | Nim、SG 函数与基础博弈论 | `math/0513-nim-sg-game-theory.md` |
 | 0514* | XOR 线性基 | `math/0514-xor-linear-basis.md` |
 | 0515* | 高斯消元 | `math/0515-gaussian-elimination.md` |
 | 0517* | 多项式：NTT | `math/0517-ntt.md` |
 | 0519* | BSGS 与离散对数 | `math/0519-discrete-logarithm.md` |
-| 0519e1 | 离散对数：Pohlig–Hellman | `math/pohlig-hellman.md` |
 | 0520* | 多项式：表示、加法与减法 | `math/0520-polynomial-representation-addition-subtraction.md` |
 | 0521* | 多项式：卷积与朴素乘法 | `math/0521-convolution-naive-multiplication.md` |
 | 0522* | 复数与单位根 | `math/0522-complex-numbers-roots-of-unity.md` |
@@ -757,8 +783,6 @@
 | 0532* | 多项式：多点求值 | `math/0532-multipoint-evaluation.md` |
 | 0533* | 多项式：插值 | `math/0533-polynomial-interpolation.md` |
 | 0534* | 莫比乌斯反演 | `math/0534-mobius-inversion.md` |
-| 0544e1 | 高精度整数：除法与余数 | `math/big-integer-division-remainder.md` |
-| 0544e2 | 高精度整数：负数 | `math/big-integer-negative-numbers.md` |
 | 0545* | 素性测试：Miller–Rabin | `math/miller-rabin.md` |
 | 0546* | 整数分解：Pollard–Rho | `math/pollard-rho.md` |
 | 0547* | 原根 | `math/primitive-roots.md` |
@@ -789,7 +813,6 @@
 | 0572* | 数值积分：自适应 Simpson | `math/adaptive-simpson.md` |
 | 0573* | 集合幂级数：FWT/FMT | `math/fast-subset-transforms.md` |
 | 0577* | 筛法：分段筛 | `math/segmented-sieve.md` |
-| 0585e1 | 线性变换：齐次坐标与仿射变换 | [math/homogeneous-coordinates-affine-transformations.md](math/homogeneous-coordinates-affine-transformations.md) |
 
 ### 06 计算几何
 
@@ -817,7 +840,6 @@
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| 0704e1 | 最长上升子序列：$O(n\log n)$ 优化 | `dynamic-programming/lis-n-log-n.md` |
 | 0712* | 动态规划优化：斜率 | `dynamic-programming/0712-convex-hull-trick.md` |
 | 0713* | 动态规划优化：分治 | `dynamic-programming/0713-divide-conquer-optimization.md` |
 | 0714* | 动态规划：Slope Trick | `dynamic-programming/0714-slope-trick.md` |

@@ -1,4 +1,4 @@
-# #define 宏
+# 预处理：`#define`
 
 > 最近修订：2026-08-16 12:39 +10:00（未审阅）
 
@@ -209,7 +209,8 @@ int main() {
 ### 用宏代替类型别名
 
 `#define ll long long` 仍然是文本替换。类型别名应使用 `typedef` 或 `using`；
-后续“typedef 与 using 类型别名”会比较两种写法。
+后续 [`typedef` 类型别名](type-aliases.md) 与
+[`using` 类型别名](using-type-aliases.md) 会分别解释两种写法。
 
 ## 需要记住什么
 
