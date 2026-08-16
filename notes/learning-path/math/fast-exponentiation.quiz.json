@@ -1,0 +1,74 @@
+[
+  {
+    "id": "binary-decomposition",
+    "prompt": "快速幂为什么只需要准备指数为 1、2、4、8……的幂？",
+    "options": [
+      { "id": "a", "text": "因为只有这些指数不会溢出" },
+      { "id": "b", "text": "因为任意非负整数都能表示成不同的 2 的幂之和" },
+      { "id": "c", "text": "因为所有指数本身都是 2 的幂" },
+      { "id": "d", "text": "因为乘法每次都会把指数减一" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "指数的二进制表示决定选择哪些 2 的幂；选中幂的乘积就是原指数次幂。"
+  },
+  {
+    "id": "current-base",
+    "prompt": "循环中的 base 表示什么？",
+    "options": [
+      { "id": "a", "text": "已经得到的最终答案" },
+      { "id": "b", "text": "已经处理完的指数" },
+      { "id": "c", "text": "当前最低二进制位对应的原始底数幂" },
+      { "id": "d", "text": "输入指数的平方" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "base 依次表示原始底数的 1、2、4、8……次幂，供当前指数位选择。"
+  },
+  {
+    "id": "test-before-divide",
+    "prompt": "为什么每轮要先判断 exponent 的奇偶，再执行 exponent /= 2？",
+    "options": [
+      { "id": "a", "text": "除以 2 会删除当前最低二进制位" },
+      { "id": "b", "text": "除以 2 会把底数变成负数" },
+      { "id": "c", "text": "奇数不能执行整数除法" },
+      { "id": "d", "text": "这样能把时间复杂度降为 O(1)" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "当前最低位决定是否乘入 base；先除以 2 会让这一位永久丢失。"
+  },
+  {
+    "id": "loop-invariant",
+    "prompt": "设原问题为 B^E，哪条关系是普通快速幂的循环不变量？",
+    "options": [
+      { "id": "a", "text": "result + base + exponent = B + E" },
+      { "id": "b", "text": "result = base^exponent" },
+      { "id": "c", "text": "base * exponent = E" },
+      { "id": "d", "text": "result * base^exponent = B^E" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "奇数时先取出一个 base，随后平方 base 并把 exponent 减半，两种奇偶情况都保持这条关系。"
+  },
+  {
+    "id": "zero-exponent",
+    "prompt": "本文实现收到 exponent=0 时返回什么？",
+    "options": [
+      { "id": "a", "text": "0" },
+      { "id": "b", "text": "1" },
+      { "id": "c", "text": "base" },
+      { "id": "d", "text": "-1" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "循环不执行，result 保持乘法单位元 1；0^0 是否另有含义由具体题目决定。"
+  },
+  {
+    "id": "overflow",
+    "prompt": "普通快速幂把乘法次数降到对数级后，哪项说法仍然正确？",
+    "options": [
+      { "id": "a", "text": "所有结果都会自动进入 64 位整数范围" },
+      { "id": "b", "text": "只有指数为偶数时才可能溢出" },
+      { "id": "c", "text": "仍需证明每次整数乘法不会溢出" },
+      { "id": "d", "text": "发生溢出后再取模即可恢复正确值" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "快速幂只减少运算次数，不扩大类型范围；有符号整数溢出仍是未定义行为。"
+  }
+]

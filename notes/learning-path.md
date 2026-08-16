@@ -507,11 +507,12 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 060701 | 模运算 | 数学 | [math/modular-arithmetic.md](math/modular-arithmetic.md) |
-| 060702 | 数论：扩展欧几里得算法 | 数学 | [math/extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
-| 060703 | 线性不定方程 | 数学 | [math/linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
-| 060704 | 线性同余方程 | 数学 | [math/linear-congruences.md](math/linear-congruences.md) |
-| 060705 | 费马小定理 | 数学 | [math/fermat-little-theorem.md](math/fermat-little-theorem.md) |
-| 060706 | 模逆元 | 数学 | [math/modular-inverse.md](math/modular-inverse.md) |
+| 060702 | 模快速幂 | 数学 | [math/modular-exponentiation.md](math/modular-exponentiation.md) |
+| 060703 | 数论：扩展欧几里得算法 | 数学 | [math/extended-euclidean-algorithm.md](math/extended-euclidean-algorithm.md) |
+| 060704 | 线性不定方程 | 数学 | [math/linear-diophantine-equations.md](math/linear-diophantine-equations.md) |
+| 060705 | 线性同余方程 | 数学 | [math/linear-congruences.md](math/linear-congruences.md) |
+| 060706 | 费马小定理 | 数学 | [math/fermat-little-theorem.md](math/fermat-little-theorem.md) |
+| 060707 | 模逆元 | 数学 | [math/modular-inverse.md](math/modular-inverse.md) |
 
 ### 单元 08：数学：筛法与因数函数
 

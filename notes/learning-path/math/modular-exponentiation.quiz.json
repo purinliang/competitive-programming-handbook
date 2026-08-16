@@ -1,0 +1,74 @@
+[
+  {
+    "id": "reduce-every-product",
+    "prompt": "模快速幂为什么要在每次乘法后立即取模？",
+    "options": [
+      { "id": "a", "text": "同余类不变，同时避免保存完整的巨大整数幂" },
+      { "id": "b", "text": "取模会把指数自动减半" },
+      { "id": "c", "text": "这样可以让任意模数下的乘法都不溢出" },
+      { "id": "d", "text": "只有最后一次取模才符合同余规则" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "乘法与取模相容，可以随时替换成同余代表值；乘法本身是否溢出仍取决于模数和类型。"
+  },
+  {
+    "id": "negative-base",
+    "prompt": "固定正模数 MOD 下，负底数进入循环前通常怎样规范化？",
+    "options": [
+      { "id": "a", "text": "直接把指数改成负数" },
+      { "id": "b", "text": "删掉底数的负号" },
+      { "id": "c", "text": "先 base%=MOD，若仍为负再加 MOD" },
+      { "id": "d", "text": "令 base=MOD" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "C++ 余数可能为负；再加一次正模数可得到区间 [0,MOD-1] 中的同余代表值。"
+  },
+  {
+    "id": "mod-product-range",
+    "prompt": "为什么 MOD=10^9+7 时可以直接用 64 位整数计算两个标准余数的乘积？",
+    "options": [
+      { "id": "a", "text": "因为取模会在乘法以前自动发生" },
+      { "id": "b", "text": "因为 32 位整数永远不会溢出" },
+      { "id": "c", "text": "因为指数小于 MOD" },
+      { "id": "d", "text": "因为乘积小于约 10^18，仍在 64 位整数范围内" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "代码必须先完成乘法再取模；固定模数的大小保证这次中间乘积可以保存。"
+  },
+  {
+    "id": "mod-one",
+    "prompt": "把函数改成一般正模数时，为什么初始值最好写成 1%mod？",
+    "options": [
+      { "id": "a", "text": "为了把指数改成 1" },
+      { "id": "b", "text": "模数为 1 时唯一的标准代表值是 0" },
+      { "id": "c", "text": "为了跳过所有奇数位" },
+      { "id": "d", "text": "因为 result 不能使用整数类型" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "普通乘法单位元是 1，但模 1 的同余类只能用 0 表示；1%1 正好得到 0。"
+  },
+  {
+    "id": "modular-invariant",
+    "prompt": "模快速幂相对普通快速幂，循环不变量发生了什么变化？",
+    "options": [
+      { "id": "a", "text": "等式改为模 MOD 意义下的同余关系" },
+      { "id": "b", "text": "result 不再表示任何已经选中的幂" },
+      { "id": "c", "text": "exponent 每次需要除以 MOD" },
+      { "id": "d", "text": "奇数指数不再需要乘入 base" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "指数拆分和状态含义不变，只把完整整数相等改为同余代表值相等。"
+  },
+  {
+    "id": "negative-exponent",
+    "prompt": "模快速幂能否直接让负指数进入当前循环？",
+    "options": [
+      { "id": "a", "text": "可以，整数除以 2 会自动求逆" },
+      { "id": "b", "text": "可以，只需去掉取模" },
+      { "id": "c", "text": "不能；需先确认模逆元存在并转换为非负指数" },
+      { "id": "d", "text": "不能，因为负数没有二进制表示" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "负指数对应逆元；逆元可能不存在，因此不能把它当作普通非负指数处理。"
+  }
+]
