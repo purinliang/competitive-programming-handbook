@@ -57,6 +57,6 @@
       { "id": "d", "text": "删除外层循环" }
     ],
     "correctOptionId": "a",
-    "explanation": "倒序更新避免本轮刚加入的 part 被再次使用，对应 0/1 背包。"
+    "explanation": "倒序更新避免本轮刚加入的 part 被再次使用，对应 0-1 背包。"
   }
 ]
