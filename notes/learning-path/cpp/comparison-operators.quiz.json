@@ -70,5 +70,17 @@
     ],
     "correctOptionId": "d",
     "explanation": "每个比较运算符只连接左右两个操作数；正确写法要拆成 `0 <= x` 与 `x <= 10` 两个条件。"
+  },
+  {
+    "id": "safe-positive-ceiling-division",
+    "prompt": "若 `a >= 0` 且 `b > 0`，下面哪项能避免计算 `a + b - 1`，并得到向上整除结果？",
+    "options": [
+      { "id": "a", "text": "`a / b`" },
+      { "id": "b", "text": "`a % b`" },
+      { "id": "c", "text": "`a / b - (a % b != 0)`" },
+      { "id": "d", "text": "`a / b + (a % b != 0)`" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "整数商给出完整组数；只要余数非零，就还需要一组，因此再加 `1`。"
   }
 ]
