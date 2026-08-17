@@ -82,17 +82,5 @@
     ],
     "correctOptionId": "d",
     "explanation": "存储大小与类型允许的取值数量不是同一个概念；`bool` 通常占一个字节，但逻辑值仍只有两种。"
-  },
-  {
-    "id": "double-logical-negation",
-    "prompt": "整数 `x` 为 `0`、`7` 和 `-7` 时，表达式 `!!x` 依次得到什么？",
-    "options": [
-      { "id": "a", "text": "`true`、`false`、`false`" },
-      { "id": "b", "text": "`false`、`false`、`true`" },
-      { "id": "c", "text": "`false`、`true`、`true`" },
-      { "id": "d", "text": "`0`、`7`、`-7`，完全不变" }
-    ],
-    "correctOptionId": "c",
-    "explanation": "第一次 `!` 取反整数对应的真假，第二次再取反回来，因此 `!!x` 等价于把零变成 `false`、非零变成 `true`。"
   }
 ]
