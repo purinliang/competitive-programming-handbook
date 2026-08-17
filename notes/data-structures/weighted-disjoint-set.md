@@ -1,6 +1,6 @@
 # 并查集：带权
 
-> 最近修订：2026-08-17 05:51 +10:00（未审阅）
+> 最近修订：2026-08-17 11:24 +10:00（未审阅）
 
 普通并查集只能回答两个元素是否连通。若题目不断给出：
 
@@ -231,7 +231,7 @@ struct WeightedDSU {
     vector<ll> dist;
 
     void init(int n) {
-        parent.resize(n + 5);
+        parent.assign(n + 5, 0);
         component_size.assign(n + 5, 1);
         dist.assign(n + 5, 0);
 
@@ -351,4 +351,3 @@ int main() {
 - 怎样从 `value[v]-value[u]=w` 推导两个根的差值？
 - 反转合并方向时为什么必须给关系取反？
 - 同一集合内怎样查询差值并判断新约束是否矛盾？
-

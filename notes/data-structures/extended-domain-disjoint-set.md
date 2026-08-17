@@ -1,6 +1,6 @@
 # 并查集：扩展域
 
-> 最近修订：2026-08-17 05:38 +10:00（未审阅）
+> 最近修订：2026-08-17 11:24 +10:00（未审阅）
 
 [并查集](disjoint-set-union.md) 只能维护“两个元素是否属于同一集合”。
 有些题目给出的却是互斥关系：
@@ -164,7 +164,7 @@ struct DSU {
     vector<int> component_size;
 
     void init(int n) {
-        parent.resize(n + 5);
+        parent.assign(n + 5, 0);
         component_size.assign(n + 5, 1);
 
         for (int u = 1; u <= n; u++) {
