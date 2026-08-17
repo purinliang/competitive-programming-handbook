@@ -63,7 +63,7 @@
     "id": "array-parameter-adjustment",
     "prompt": "内置数组写成函数参数 `int a[]` 后，会调整成什么？",
     "options": [
-      { "id": "a", "text": "自动扩容的 `vector`" },
+      { "id": "a", "text": "自动扩容的动态数组" },
       { "id": "b", "text": "复制整个数组的值参数" },
       { "id": "c", "text": "保存数组长度的整数" },
       { "id": "d", "text": "指向首元素的指针参数" }
