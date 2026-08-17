@@ -255,7 +255,7 @@ diameter_result find_diameter_and_center() {
 }
 ```
 
-## 完整程序
+## 完整代码
 
 下面读入一棵无权树，依次输出直径长度、一条直径路径和中心节点：
 
