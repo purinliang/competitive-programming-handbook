@@ -1,6 +1,6 @@
 # 二叉树的存储
 
-> 最近修订：2026-08-16 14:43 +10:00（未审阅）
+> 最近修订：2026-08-17 11:18 +10:00（未审阅）
 
 [二叉树的基本概念](binary-tree-concepts.md) 已经说明：左、右位置本身就是二叉树
 结构的一部分。现在换到数据结构视角，让每个节点明确保存自己的值、左子节点和右
@@ -85,14 +85,14 @@ Node root = {8, nullptr, nullptr};
 
 ```cpp
 if (left_child[u] != 0) {
-    is_child[left_child[u]] = true;
+    is_child[left_child[u]] = 1;
 }
 if (right_child[u] != 0) {
-    is_child[right_child[u]] = true;
+    is_child[right_child[u]] = 1;
 }
 ```
 
-最后唯一满足 `is_child[u] == false` 的真实节点就是根。这个方法依赖输入确实是一棵
+最后唯一满足 `is_child[u] == 0` 的真实节点就是根。这个方法依赖输入确实是一棵
 合法二叉树；若存在多个未被标记的节点，输入表示的是多棵树或不连通结构。
 
 ## 叶节点
@@ -126,16 +126,16 @@ void solve() {
     value.assign(n + 5, 0);
     left_child.assign(n + 5, 0);
     right_child.assign(n + 5, 0);
-    is_child.assign(n + 5, false);
+    is_child.assign(n + 5, 0);
 
     for (int u = 1; u <= n; u++) {
         scanf("%d%d%d", &value[u], &left_child[u], &right_child[u]);
 
         if (left_child[u] != 0) {
-            is_child[left_child[u]] = true;
+            is_child[left_child[u]] = 1;
         }
         if (right_child[u] != 0) {
-            is_child[right_child[u]] = true;
+            is_child[right_child[u]] = 1;
         }
     }
 
@@ -154,7 +154,7 @@ void solve() {
     }
 
     printf("root = %d\n", root);
-    int leaf_count = leaves.size();
+    int leaf_count = (int)leaves.size();
     printf("leaves = %d\n", leaf_count);
     for (int u : leaves) {
         printf("%d %d\n", u, value[u]);
@@ -193,7 +193,7 @@ leaves = 3
 ## 基础练习
 
 1. 遍历孩子数组，统计左右孩子都为 `0` 的叶节点数量。
-2. 输入没有直接给出根节点时，用一个布尔数组标记哪些节点曾作为孩子出现，找出唯一没有父节点的根。
+2. 输入没有直接给出根节点时，用一个 0-1 数组标记哪些节点曾作为孩子出现，找出唯一没有父节点的根。
 3. 检查输入中是否存在一个孩子被两个不同节点引用；解释这种输入为什么不是一棵树。
 
 ## 需要记住什么
