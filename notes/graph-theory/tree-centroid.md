@@ -1,6 +1,6 @@
 # 树的重心
 
-> 最近修订：2026-08-14 02:21 +10:00（未审阅）
+> 最近修订：2026-08-17 11:42 +10:00（未审阅）
 
 [树的直径与中心](tree-diameter-center.md) 选择一个节点，使它到最远节点的距离尽量小。现在换一种“平衡”要求：若删除一个节点以及与它相连的边，原树会分成若干连通分量；我们希望其中最大的连通分量尽量小。
 
@@ -146,31 +146,28 @@ sort(centroids.begin(), centroids.end());
 
 若恰好有两个重心，删除连接它们的边会把树分成大小都为 `n / 2` 的两部分，所以它们必然相邻，且只会在 `n` 为偶数时出现。
 
-## 状态封装
+## 题目共享状态
 
-节点数、邻接表、子树大小和当前候选共同属于同一次求解。使用 `CentroidFinder` 把它们放在一起，避免为一次 DFS 建立多组全局变量：
+节点数、邻接表、子树大小和最终候选会被输入、DFS 与输出共同使用，都是这道题全局
+唯一的共享状态。完整竞赛代码直接把它们声明为全局变量，不在每次递归时传递整份
+图或多组数组：
 
 ```cpp
-struct CentroidFinder {
-    int n;
-    const vector<vector<int>>& g;
-    vector<int> subtree_size;
-    int best_balance;
-    vector<int> centroids;
-
-    CentroidFinder(int node_count, const vector<vector<int>>& graph)
-        : n(node_count), g(graph), subtree_size(node_count + 5),
-          best_balance(node_count) {}
-};
+int n;
+vector<vector<int>> g;
+vector<int> siz;
+int best_balance;
+vector<int> centroids;
 ```
 
-`g` 是只读引用：求重心不会修改输入树，也不需要复制整份邻接表。
+最终代码把前文用于解释的 `subtree_size` 缩写为竞赛中常用的 `siz`。当前递归位置
+才通过参数传入，因此 DFS 接口只保留当前节点 `u` 和父节点 `p`。
 
 完整 DFS 为：
 
 ```cpp
 void dfs(int u, int p) {
-    subtree_size[u] = 1;
+    siz[u] = 1;
     int largest_component = 0;
 
     for (int v : g[u]) {
@@ -178,11 +175,11 @@ void dfs(int u, int p) {
             continue;
         }
         dfs(v, u);
-        subtree_size[u] += subtree_size[v];
-        largest_component = max(largest_component, subtree_size[v]);
+        siz[u] += siz[v];
+        largest_component = max(largest_component, siz[v]);
     }
 
-    largest_component = max(largest_component, n - subtree_size[u]);
+    largest_component = max(largest_component, n - siz[u]);
     if (largest_component < best_balance) {
         best_balance = largest_component;
         centroids = {u};
@@ -207,51 +204,42 @@ if (v == p)
 
 using namespace std;
 
-struct CentroidFinder {
-    int n;
-    const vector<vector<int>>& g;
-    vector<int> subtree_size;
-    int best_balance;
-    vector<int> centroids;
+int n;
+vector<vector<int>> g;
+vector<int> siz;
+int best_balance;
+vector<int> centroids;
 
-    CentroidFinder(int node_count, const vector<vector<int>>& graph)
-        : n(node_count), g(graph), subtree_size(node_count + 5),
-          best_balance(node_count) {}
+void dfs(int u, int p) {
+    siz[u] = 1;
+    int largest_component = 0;
 
-    void dfs(int u, int p) {
-        subtree_size[u] = 1;
-        int largest_component = 0;
-
-        for (int v : g[u]) {
-            if (v == p) {
-                continue;
-            }
-            dfs(v, u);
-            subtree_size[u] += subtree_size[v];
-            largest_component = max(largest_component, subtree_size[v]);
+    for (int v : g[u]) {
+        if (v == p) {
+            continue;
         }
-
-        largest_component = max(largest_component, n - subtree_size[u]);
-        if (largest_component < best_balance) {
-            best_balance = largest_component;
-            centroids = {u};
-        } else if (largest_component == best_balance) {
-            centroids.push_back(u);
-        }
+        dfs(v, u);
+        siz[u] += siz[v];
+        largest_component = max(largest_component, siz[v]);
     }
 
-    pair<int, vector<int>> solve() {
-        dfs(1, 0);
-        sort(centroids.begin(), centroids.end());
-        return {best_balance, centroids};
+    largest_component = max(largest_component, n - siz[u]);
+    if (largest_component < best_balance) {
+        best_balance = largest_component;
+        centroids = {u};
+    } else if (largest_component == best_balance) {
+        centroids.push_back(u);
     }
-};
+}
 
-int main() {
-    int n;
+void solve() {
     scanf("%d", &n);
 
-    vector<vector<int>> g(n + 5);
+    g.assign(n + 5, {});
+    siz.assign(n + 5, 0);
+    best_balance = n;
+    centroids.clear();
+
     for (int i = 1; i < n; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
@@ -259,12 +247,17 @@ int main() {
         g[v].push_back(u);
     }
 
-    CentroidFinder finder(n, g);
-    auto [balance, centroids] = finder.solve();
-    printf("%d\n", balance);
+    dfs(1, 0);
+    sort(centroids.begin(), centroids.end());
+
+    printf("%d\n", best_balance);
     for (int i = 0; i < (int)centroids.size(); i++) {
         printf("%d%c", centroids[i], " \n"[i + 1 == (int)centroids.size()]);
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
