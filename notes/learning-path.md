@@ -62,8 +62,8 @@
 | --- | --- | --- | --- |
 | 010501 | 比较运算符 | C++ | [cpp/comparison-operators.md](cpp/comparison-operators.md) |
 | 010502 | 逻辑运算符 | C++ | [cpp/logical-operators.md](cpp/logical-operators.md) |
-| 010503 | 条件运算符 | C++ | [cpp/conditional-operator.md](cpp/conditional-operator.md) |
-| 010504 | if 与 else | C++ | [cpp/if-and-else.md](cpp/if-and-else.md) |
+| 010503 | if 与 else | C++ | [cpp/if-and-else.md](cpp/if-and-else.md) |
+| 010504 | 条件运算符 | C++ | [cpp/conditional-operator.md](cpp/conditional-operator.md) |
 | 010505 | switch | C++ | [cpp/switch.md](cpp/switch.md) |
 
 ### 单元 06：循环语句
