@@ -27,7 +27,7 @@
     "id": "nested-loop-bounds",
     "prompt": "1-based 的 `n` 行 `m` 列表格，按行遍历应使用哪组循环边界？",
     "options": [
-      { "id": "a", "text": "只需要一层循环到 `max(n, m)`" },
+      { "id": "a", "text": "只需要一层循环到 `n`" },
       { "id": "b", "text": "外层 `i = 1..m`，内层 `j = 1..n`，任何题都一样" },
       { "id": "c", "text": "两个循环都只能到 `n + m`" },
       { "id": "d", "text": "外层 `i = 1..n`，内层 `j = 1..m`" }
