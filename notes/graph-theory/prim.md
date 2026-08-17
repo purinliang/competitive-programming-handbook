@@ -1,6 +1,6 @@
 # 最小生成树：Prim
 
-> 最近修订：2026-08-17 05:39 +10:00（未审阅）
+> 最近修订：2026-08-17 11:07 +10:00（未审阅）
 
 Kruskal 从“边”出发，把所有边排序后不断合并连通分量。Prim 从“当前已经连通的
 点集”出发，每次选择一条最轻的边，把点集外的一个新点接进来。
@@ -58,15 +58,13 @@ if (!vis[v] && w < best[v]) {
 候选状态保存为：
 
 ```cpp
-pair<ll, int>{edge_weight, v}
+pair<ll, int> candidate = {edge_weight, v};
 ```
 
 并使用小根优先队列：
 
 ```cpp
-priority_queue<pair<ll, int>,
-               vector<pair<ll, int>>,
-               greater<pair<ll, int>>> q;
+priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> q;
 ```
 
 起点不需要接入边，把它的代价设为零：
@@ -191,15 +189,14 @@ const ll INF = 1LL << 62;
 int n, m;
 vector<vector<pair<int, ll>>> g;
 vector<ll> best;
-vector<bool> vis;
+vector<int> vis;
 
 pair<bool, ll> prim() {
     best.assign(n + 5, INF);
-    vis.assign(n + 5, false);
+    vis.assign(n + 5, 0);
 
-    priority_queue<pair<ll, int>,
-                   vector<pair<ll, int>>,
-                   greater<pair<ll, int>>> q;
+    priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>>
+        q;
     best[1] = 0;
     q.push({0, 1});
 
@@ -214,7 +211,7 @@ pair<bool, ll> prim() {
             continue;
         }
 
-        vis[u] = true;
+        vis[u] = 1;
         answer += edge_weight;
         vertex_count++;
 

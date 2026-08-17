@@ -1,6 +1,6 @@
 # 图的遍历：深度优先搜索（DFS）
 
-> 最近修订：2026-08-16 16:45 +10:00（未审阅）
+> 最近修订：2026-08-17 11:07 +10:00（未审阅）
 
 [图的存储：邻接表（vector 实现）](vector-adjacency-list.md) 告诉我们一个点能够沿哪些边继续前进。深度优先搜索（depth-first search，DFS）从起点出发，每次先沿一条尚未探索的分支不断深入，再在走不下去时返回。一般图可能有环，也可能不连通，因此还要记录哪些点已经访问过，并在每个尚未访问的连通分量重新开始搜索。
 
@@ -21,14 +21,17 @@
 使用 `vis[u]` 记录点 $u$ 是否已经访问：
 
 ```cpp
-vector<bool> vis;
+vector<int> vis;
 ```
+
+标记只需要保存 `0` 和 `1`。这里仍使用普通的 `vector<int>`，不使用行为经过特化的
+`vector<bool>`；多占用的少量空间换来与其他动态数组一致的元素访问语义。
 
 第一次进入点 `u` 时立刻标记，再处理它的所有相邻点：
 
 ```cpp
 void dfs(int u) {
-    vis[u] = true;
+    vis[u] = 1;
     printf("%d ", u);
 
     for (int v : g[u]) {
@@ -95,10 +98,10 @@ using namespace std;
 int n;
 int m;
 vector<vector<int>> g;
-vector<bool> vis;
+vector<int> vis;
 
 void dfs(int u) {
-    vis[u] = true;
+    vis[u] = 1;
     printf("%d ", u);
 
     for (int v : g[u]) {
@@ -113,7 +116,7 @@ void solve() {
     scanf("%d%d", &n, &m);
 
     g.assign(n + 5, {});
-    vis.assign(n + 5, false);
+    vis.assign(n + 5, 0);
 
     for (int i = 1; i <= m; i++) {
         int u, v;

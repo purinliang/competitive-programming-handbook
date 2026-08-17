@@ -1,6 +1,6 @@
 # 莫比乌斯函数
 
-> 最近修订：2026-08-16 01:15 +10:00（未审阅）
+> 最近修订：2026-08-17 11:07 +10:00（未审阅）
 
 有些计数问题要求两个整数互质。直接逐对计算最大公约数通常太慢，我们希望把条件：
 
@@ -215,7 +215,7 @@ using namespace std;
 vector<int> mobius_sieve(int n) {
     vector<int> mu(n + 5);
     vector<int> primes;
-    vector<bool> is_composite(n + 5);
+    vector<int> is_composite(n + 5, 0);
 
     mu[1] = 1;
     for (int i = 2; i <= n; i++) {
@@ -230,7 +230,7 @@ vector<int> mobius_sieve(int n) {
             }
 
             int value = i * p;
-            is_composite[value] = true;
+            is_composite[value] = 1;
             if (i % p == 0) {
                 mu[value] = 0;
                 break;

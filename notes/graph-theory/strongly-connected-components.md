@@ -1,6 +1,6 @@
 # 有向图：强连通分量
 
-> 最近修订：2026-08-17 06:04 +10:00（未审阅）
+> 最近修订：2026-08-17 11:07 +10:00（未审阅）
 
 无向图中，两点连通只需存在一条路径。有向图的边不能反向行走，从 `u` 能到
 `v`，不代表从 `v` 也能回到 `u`。
@@ -54,7 +54,7 @@ Tarjan 算法只进行一次 DFS。为每个点维护：
 ```cpp
 dfn[u] = low[u] = ++timer;
 stack.push_back(u);
-in_stack[u] = true;
+in_stack[u] = 1;
 ```
 
 栈中的点已经访问，但尚未归入任何确定的 SCC。它们仍可能通过后续边与当前点
@@ -115,7 +115,7 @@ component_count++;
 while (true) {
     int v = stack.back();
     stack.pop_back();
-    in_stack[v] = false;
+    in_stack[v] = 0;
     component[v] = component_count;
 
     if (v == u) {
@@ -156,14 +156,14 @@ vector<int> dfn;
 vector<int> low;
 vector<int> component;
 vector<int> stack_vertices;
-vector<bool> in_stack;
+vector<int> in_stack;
 int timer;
 int component_count;
 
 void tarjan(int u) {
     dfn[u] = low[u] = ++timer;
     stack_vertices.push_back(u);
-    in_stack[u] = true;
+    in_stack[u] = 1;
 
     for (int v : g[u]) {
         if (dfn[v] == 0) {
@@ -183,7 +183,7 @@ void tarjan(int u) {
     while (true) {
         int v = stack_vertices.back();
         stack_vertices.pop_back();
-        in_stack[v] = false;
+        in_stack[v] = 0;
         component[v] = component_count;
 
         if (v == u) {
@@ -206,7 +206,7 @@ void solve() {
     dfn.assign(n + 5, 0);
     low.assign(n + 5, 0);
     component.assign(n + 5, 0);
-    in_stack.assign(n + 5, false);
+    in_stack.assign(n + 5, 0);
     stack_vertices.clear();
     timer = 0;
     component_count = 0;

@@ -1,6 +1,6 @@
 # 无向图：割点与桥
 
-> 最近修订：2026-08-17 06:18 +10:00（未审阅）
+> 最近修订：2026-08-17 11:07 +10:00（未审阅）
 
 无向图已经连通，不代表连接同样可靠。删除某个关键点或某条关键边，图可能立刻
 断开：
@@ -78,7 +78,7 @@ $$
 
 ```cpp
 if (parent_edge != 0 && low[v] >= dfn[u]) {
-    is_cut[u] = true;
+    is_cut[u] = 1;
 }
 ```
 
@@ -92,7 +92,7 @@ DFS 根没有祖先，不能套用上面的条件。若根只有一个 DFS 孩�
 
 ```cpp
 if (parent_edge == 0 && child_count >= 2) {
-    is_cut[u] = true;
+    is_cut[u] = 1;
 }
 ```
 
@@ -159,7 +159,7 @@ vector<int> low;
 vector<int> edge_u;
 vector<int> edge_v;
 vector<int> bridges;
-vector<bool> is_cut;
+vector<int> is_cut;
 int timer;
 
 void dfs(int u, int parent_edge) {
@@ -178,9 +178,8 @@ void dfs(int u, int parent_edge) {
             dfs(v, edge.id);
             low[u] = min(low[u], low[v]);
 
-            if (parent_edge != 0 &&
-                low[v] >= dfn[u]) {
-                is_cut[u] = true;
+            if (parent_edge != 0 && low[v] >= dfn[u]) {
+                is_cut[u] = 1;
             }
 
             if (low[v] > dfn[u]) {
@@ -192,7 +191,7 @@ void dfs(int u, int parent_edge) {
     }
 
     if (parent_edge == 0 && child_count >= 2) {
-        is_cut[u] = true;
+        is_cut[u] = 1;
     }
 }
 
@@ -215,7 +214,7 @@ void solve() {
 
     dfn.assign(n + 5, 0);
     low.assign(n + 5, 0);
-    is_cut.assign(n + 5, false);
+    is_cut.assign(n + 5, 0);
     bridges.clear();
     timer = 0;
 
@@ -281,4 +280,3 @@ int main() {
 - DFS 根为什么必须单独按照孩子数量判断？
 - 为什么有平行边时必须传父边编号而不是父节点？
 - 有向图 SCC 与无向图割点、桥的 `low` 更新有什么不同？
-

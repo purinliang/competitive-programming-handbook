@@ -1,6 +1,6 @@
 # DFS、回溯与剪枝
 
-> 最近修订：2026-08-16 16:11 +10:00（未审阅）
+> 最近修订：2026-08-17 11:07 +10:00（未审阅）
 
 [状态空间与隐式图](state-space-and-implicit-graphs.md) 已经把部分方案看成点、把下一次选择看成边；[排列枚举](permutation-enumeration.md) 又通过选择、递归和撤销维护了当前路径的占用状态。
 
@@ -83,13 +83,13 @@ ll dfs(int row) {
 逐行放置已经保证任意两个皇后不在同一行。还需要知道某一列是否已经被前面的行使用：
 
 ```cpp
-vector<bool> used_column;
+vector<int> used_column;
 ```
 
 读入 `n` 后再分配并清空：
 
 ```cpp
-used_column.assign(n + 5, false);
+used_column.assign(n + 5, 0);
 ```
 
 尝试 `column` 前先判断：
@@ -103,22 +103,22 @@ if (used_column[column]) {
 若这一列空闲，就暂时占用它，再搜索下一行：
 
 ```cpp
-used_column[column] = true;
+used_column[column] = 1;
 ways += dfs(row + 1);
 ```
 
 无论下一层找到多少种方案，递归返回后都表示“当前选择的整条分支已经处理完”。接下来还要尝试当前行的其他列，所以必须撤销刚才的占用：
 
 ```cpp
-used_column[column] = false;
+used_column[column] = 0;
 ```
 
 完整顺序是：
 
 ```cpp
-used_column[column] = true;
+used_column[column] = 1;
 ways += dfs(row + 1);
-used_column[column] = false;
+used_column[column] = 0;
 ```
 
 这就是回溯（backtracking）：进入一个选择时修改共享状态，离开这个选择时把状态准确恢复到进入之前，让同一层的下一个分支从相同起点继续。
@@ -151,11 +151,11 @@ int sum_index = row + column;
 两个结果都能放入大小为 `2 * n + 5` 的标记数组：
 
 ```cpp
-vector<bool> used_difference_diagonal;
-vector<bool> used_sum_diagonal;
+vector<int> used_difference_diagonal;
+vector<int> used_sum_diagonal;
 
-used_difference_diagonal.assign(2 * n + 5, false);
-used_sum_diagonal.assign(2 * n + 5, false);
+used_difference_diagonal.assign(2 * n + 5, 0);
+used_sum_diagonal.assign(2 * n + 5, 0);
 ```
 
 名称直接说明下标来自差还是和，不依赖读者记住 `/` 与 `\` 分别对应哪一种坐标公式。
@@ -183,17 +183,17 @@ if (used_column[column] || used_difference_diagonal[difference_index] ||
 接受一个格子以后，需要同时标记列和两类对角线：
 
 ```cpp
-used_column[column] = true;
-used_difference_diagonal[difference_index] = true;
-used_sum_diagonal[sum_index] = true;
+used_column[column] = 1;
+used_difference_diagonal[difference_index] = 1;
+used_sum_diagonal[sum_index] = 1;
 ```
 
 递归返回后也必须同时撤销同一组三项：
 
 ```cpp
-used_column[column] = false;
-used_difference_diagonal[difference_index] = false;
-used_sum_diagonal[sum_index] = false;
+used_column[column] = 0;
+used_difference_diagonal[difference_index] = 0;
+used_sum_diagonal[sum_index] = 0;
 ```
 
 少撤销一项会让后续兄弟分支误以为某条线仍被占用；多撤销一项则可能破坏更早层仍然有效的选择。进入和退出必须严格成对。
@@ -217,17 +217,17 @@ N 皇后中的 `used_column[column]` 表示“当前递归路径已经使用这�
 
 ```cpp
 int n;
-vector<bool> used_column;
-vector<bool> used_difference_diagonal;
-vector<bool> used_sum_diagonal;
+vector<int> used_column;
+vector<int> used_difference_diagonal;
+vector<int> used_sum_diagonal;
 ```
 
 `solve` 读入 `n` 后使用 `assign` 同时分配并清空状态：
 
 ```cpp
-used_column.assign(n + 5, false);
-used_difference_diagonal.assign(2 * n + 5, false);
-used_sum_diagonal.assign(2 * n + 5, false);
+used_column.assign(n + 5, 0);
+used_difference_diagonal.assign(2 * n + 5, 0);
+used_sum_diagonal.assign(2 * n + 5, 0);
 ```
 
 这样 `dfs(row)` 只接收当前过程真正变化的行号，不必在每层重复传递同一份棋盘状态；再次调用 `solve` 时，旧标记也会被完整重置。若以后需要在同一个程序中同时维护多个独立棋盘求解器，再把这些状态封装为 `struct`，而不是为了形式感提前增加对象接口。
@@ -262,9 +262,9 @@ using namespace std;
 typedef long long ll;
 
 int n;
-vector<bool> used_column;
-vector<bool> used_difference_diagonal;
-vector<bool> used_sum_diagonal;
+vector<int> used_column;
+vector<int> used_difference_diagonal;
+vector<int> used_sum_diagonal;
 
 ll dfs(int row) {
     if (row == n + 1) {
@@ -281,15 +281,15 @@ ll dfs(int row) {
             continue;
         }
 
-        used_column[column] = true;
-        used_difference_diagonal[difference_index] = true;
-        used_sum_diagonal[sum_index] = true;
+        used_column[column] = 1;
+        used_difference_diagonal[difference_index] = 1;
+        used_sum_diagonal[sum_index] = 1;
 
         ways += dfs(row + 1);
 
-        used_column[column] = false;
-        used_difference_diagonal[difference_index] = false;
-        used_sum_diagonal[sum_index] = false;
+        used_column[column] = 0;
+        used_difference_diagonal[difference_index] = 0;
+        used_sum_diagonal[sum_index] = 0;
     }
     return ways;
 }
@@ -297,9 +297,9 @@ ll dfs(int row) {
 void solve() {
     scanf("%d", &n);
 
-    used_column.assign(n + 5, false);
-    used_difference_diagonal.assign(2 * n + 5, false);
-    used_sum_diagonal.assign(2 * n + 5, false);
+    used_column.assign(n + 5, 0);
+    used_difference_diagonal.assign(2 * n + 5, 0);
+    used_sum_diagonal.assign(2 * n + 5, 0);
 
     printf("%lld\n", dfs(1));
 }

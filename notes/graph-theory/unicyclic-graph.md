@@ -1,6 +1,6 @@
 # 基环树
 
-> 最近修订：2026-08-17 06:29 +10:00（未审阅）
+> 最近修订：2026-08-17 11:07 +10:00（未审阅）
 
 一棵含 `n` 个点的树有 `n-1` 条边，并且没有环。若在树上再加入一条连接已有
 两点的边，就会恰好产生一个环。
@@ -78,7 +78,7 @@ deg[v]++;
 开始时假设所有点都可能在环上：
 
 ```cpp
-on_cycle.assign(n + 5, true);
+on_cycle.assign(n + 5, 1);
 ```
 
 初始叶子入队：
@@ -94,7 +94,7 @@ for (int u = 1; u <= n; u++) {
 弹出点时把它标记为非环点，再更新仍未删除的邻居：
 
 ```cpp
-on_cycle[u] = false;
+on_cycle[u] = 0;
 for (int v : g[u]) {
     if (!on_cycle[v]) {
         continue;
@@ -171,11 +171,11 @@ using namespace std;
 int n;
 vector<vector<int>> g;
 vector<int> deg;
-vector<bool> on_cycle;
+vector<int> on_cycle;
 
 void find_cycle_vertices() {
     queue<int> q;
-    on_cycle.assign(n + 5, true);
+    on_cycle.assign(n + 5, 1);
 
     for (int u = 1; u <= n; u++) {
         if (deg[u] == 1) {
@@ -187,7 +187,7 @@ void find_cycle_vertices() {
         int u = q.front();
         q.pop();
 
-        on_cycle[u] = false;
+        on_cycle[u] = 0;
         for (int v : g[u]) {
             if (!on_cycle[v]) {
                 continue;

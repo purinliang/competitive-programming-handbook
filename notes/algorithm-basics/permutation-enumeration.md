@@ -1,8 +1,8 @@
 # 排列枚举
 
-> 最近修订：2026-08-16 16:05 +10:00（未审阅）
+> 最近修订：2026-08-17 11:07 +10:00（未审阅）
 
-[状态空间与隐式图](state-space-and-implicit-graphs.md) 通过逐位选择 `0` 或 `1`，生成了所有长度固定的 01 序列。现在仍然逐个位置做选择，但每个数只能使用一次：后面的合法选择将取决于前面已经选过什么。
+[状态空间与隐式图](state-space-and-implicit-graphs.md) 通过逐位选择 `0` 或 `1`，生成了所有长度固定的 0-1 序列。现在仍然逐个位置做选择，但每个数只能使用一次：后面的合法选择将取决于前面已经选过什么。
 
 本篇从“先生成再判重”的朴素方法出发，推导保存已用数字、选择、递归和撤销的排列枚举。
 
@@ -84,7 +84,7 @@ for (int value = 1; value <= n; value++) {
 
 ```cpp
 permutation[position] = value;
-used[value] = true;
+used[value] = 1;
 dfs(position + 1);
 ```
 
@@ -104,9 +104,9 @@ dfs(position + 1);
 
 ```cpp
 permutation[position] = value;
-used[value] = true;
+used[value] = 1;
 dfs(position + 1);
-used[value] = false;
+used[value] = 0;
 ```
 
 这个“选择—递归—撤销”的过程称为回溯。撤销以后，`used` 重新准确描述进入当前 `dfs(position)` 时的前缀，使循环中的下一个候选从同一个父状态出发。
@@ -190,7 +190,7 @@ using namespace std;
 
 int n;
 vector<int> permutation;
-vector<bool> used;
+vector<int> used;
 
 void dfs(int position) {
     if (position == n + 1) {
@@ -211,16 +211,16 @@ void dfs(int position) {
         }
 
         permutation[position] = value;
-        used[value] = true;
+        used[value] = 1;
         dfs(position + 1);
-        used[value] = false;
+        used[value] = 0;
     }
 }
 
 void solve() {
     scanf("%d", &n);
     permutation.assign(n + 5, 0);
-    used.assign(n + 5, false);
+    used.assign(n + 5, 0);
     dfs(1);
 }
 
