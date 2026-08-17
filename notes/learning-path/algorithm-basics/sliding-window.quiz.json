@@ -52,35 +52,35 @@
     "prompt": "外层 for 加内层 while 为什么总时间仍是 O(n)？",
     "options": [
       { "id": "a", "text": "内层 while 从不执行" },
-      { "id": "b", "text": "每个端点只向右，元素至多加入和删除各一次" },
-      { "id": "c", "text": "嵌套循环永远是 O(n)" },
+      { "id": "b", "text": "嵌套循环永远是 O(n)" },
+      { "id": "c", "text": "每个端点只向右，元素至多加入和删除各一次" },
       { "id": "d", "text": "n 在运行时等于 0" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "c",
     "explanation": "复杂度取决于整个执行过程的总移动次数，而不只看语法嵌套。"
   },
   {
     "id": "window-positive-condition",
     "prompt": "正数或非负数条件提供了什么关键性质？",
     "options": [
-      { "id": "a", "text": "扩展右端时和不减，删除左端时和不增" },
+      { "id": "a", "text": "答案一定为 1" },
       { "id": "b", "text": "所有窗口长度相同" },
       { "id": "c", "text": "数组自动有序" },
-      { "id": "d", "text": "答案一定为 1" }
+      { "id": "d", "text": "扩展右端时和不减，删除左端时和不增" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "这条单调性证明何时可以停止收缩且端点不必回退。"
   },
   {
     "id": "window-negative-counterexample",
     "prompt": "数组含负数时，本篇停止收缩的规则为什么可能失效？",
     "options": [
-      { "id": "a", "text": "删除负数反而可能让窗口和增大" },
+      { "id": "a", "text": "目标值必须为负" },
       { "id": "b", "text": "负数不能存进 vector" },
       { "id": "c", "text": "负数会改变数组长度" },
-      { "id": "d", "text": "目标值必须为负" }
+      { "id": "d", "text": "删除负数反而可能让窗口和增大" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "窗口当前不足时继续删除负数仍可能重新合法，原有单调证明不成立。"
   },
   {

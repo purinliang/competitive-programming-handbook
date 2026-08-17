@@ -76,23 +76,23 @@
     "prompt": "为什么无序数组不能直接使用本篇移动规则？",
     "options": [
       { "id": "a", "text": "无序数组不能访问下标" },
-      { "id": "b", "text": "当前端点和无法推出与中间元素组合的统一大小关系" },
+      { "id": "b", "text": "左右端点会自动相等" },
       { "id": "c", "text": "无序数组只能保存字符串" },
-      { "id": "d", "text": "左右端点会自动相等" }
+      { "id": "d", "text": "当前端点和无法推出与中间元素组合的统一大小关系" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "d",
     "explanation": "没有顺序就无法证明移动一个端点会安全排除它的全部组合。"
   },
   {
     "id": "two-pointers-wide-sum",
     "prompt": "为什么当前和使用 64 位整数？",
     "options": [
-      { "id": "a", "text": "两个 32 位整数相加可能超出 32 位范围" },
+      { "id": "a", "text": "只有 long long 能比较相等" },
       { "id": "b", "text": "下标必须是 long long" },
       { "id": "c", "text": "64 位整数会自动去重" },
-      { "id": "d", "text": "只有 long long 能比较相等" }
+      { "id": "d", "text": "两个 32 位整数相加可能超出 32 位范围" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "应在加法发生以前把表达式提升到 64 位。"
   }
 ]

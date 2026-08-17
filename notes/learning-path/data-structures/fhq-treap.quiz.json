@@ -53,10 +53,10 @@
     "options": [
       { "id": "a", "text": "先取前 l 个，再取 r 个" },
       { "id": "b", "text": "先取前 r 个，再取 l 个" },
-      { "id": "c", "text": "先取前 l-1 个，再从剩余部分取 r-l+1 个" },
-      { "id": "d", "text": "两次都取 n 个" }
+      { "id": "c", "text": "两次都取 n 个" },
+      { "id": "d", "text": "先取前 l-1 个，再从剩余部分取 r-l+1 个" }
     ],
-    "correctOptionId": "c",
+    "correctOptionId": "d",
     "explanation": "第一次分离区间前缀，第二次从剩余序列开头分离目标区间。"
   }
 ]

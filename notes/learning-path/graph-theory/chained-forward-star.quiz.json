@@ -27,12 +27,12 @@
     "id": "reverse-edge",
     "prompt": "为什么成对边从编号 0 开始连续插入后，可用 `i^1` 找反向边？",
     "options": [
-      { "id": "a", "text": "异或 1 会在偶数 2k 与奇数 2k+1 之间切换" },
+      { "id": "a", "text": "这是 vector 自动提供的接口" },
       { "id": "b", "text": "异或 1 会交换边的端点字段" },
       { "id": "c", "text": "所有边编号都等于 1" },
-      { "id": "d", "text": "这是 vector 自动提供的接口" }
+      { "id": "d", "text": "异或 1 会在偶数 2k 与奇数 2k+1 之间切换" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "约定依赖编号奇偶配对，插入额外单边会破坏这种关系。"
   },
   {

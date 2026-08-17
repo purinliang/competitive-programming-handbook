@@ -41,10 +41,10 @@
     "options": [
       { "id": "a", "text": "0" },
       { "id": "b", "text": "1" },
-      { "id": "c", "text": "2" },
-      { "id": "d", "text": "3" }
+      { "id": "c", "text": "3" },
+      { "id": "d", "text": "2" }
     ],
-    "correctOptionId": "c",
+    "correctOptionId": "d",
     "explanation": "mex 是没有出现在集合中的最小非负整数，0 和 1 已出现，2 未出现。"
   },
   {

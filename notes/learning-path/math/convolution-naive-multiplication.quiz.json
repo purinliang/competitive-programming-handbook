@@ -27,12 +27,12 @@
     "id": "pair-sum",
     "prompt": "频次数组卷积为什么能统计两组数的配对和？",
     "options": [
-      { "id": "a", "text": "值 i 与值 j 的配对数量为 a[i]*b[j]，并贡献到和 i+j" },
+      { "id": "a", "text": "频次数组必须只含 0 和 1" },
       { "id": "b", "text": "卷积会删除所有重复数" },
       { "id": "c", "text": "任何配对的和都为零" },
-      { "id": "d", "text": "频次数组必须只含 0 和 1" }
+      { "id": "d", "text": "值 i 与值 j 的配对数量为 a[i]*b[j]，并贡献到和 i+j" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "乘法原理给出一对数值的选择数，下标相加给出这对选择的结果。"
   },
   {

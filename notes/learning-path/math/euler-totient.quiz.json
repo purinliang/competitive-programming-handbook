@@ -27,12 +27,12 @@
     "id": "distinct-primes",
     "prompt": "计算一般 n 的欧拉函数时，为什么每个不同质因数只更新一次？",
     "options": [
-      { "id": "a", "text": "公式按是否被 p 整除排除，不按 p 的指数重复排除" },
+      { "id": "a", "text": "重复更新会让 n 变成质数" },
       { "id": "b", "text": "质因数指数总是 1" },
-      { "id": "c", "text": "重复更新会让 n 变成质数" },
+      { "id": "c", "text": "公式按是否被 p 整除排除，不按 p 的指数重复排除" },
       { "id": "d", "text": "欧拉函数只适用于平方自由数" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "公式 n*prod(1-1/p) 的乘积遍历 n 的不同质因数。"
   },
   {

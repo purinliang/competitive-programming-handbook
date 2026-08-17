@@ -64,11 +64,11 @@
     "prompt": "含多个 `while` 的单调队列为什么总时间仍是 $O(n)$？",
     "options": [
       { "id": "a", "text": "`while` 会被编译器忽略" },
-      { "id": "b", "text": "每个下标只入队一次，删除后不会重新加入" },
+      { "id": "b", "text": "所有 `dp` 值必须递增" },
       { "id": "c", "text": "窗口长度必须等于 1" },
-      { "id": "d", "text": "所有 `dp` 值必须递增" }
+      { "id": "d", "text": "每个下标只入队一次，删除后不会重新加入" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "d",
     "explanation": "把全部弹出操作摊到各自被永久删除的下标上，总数是线性的。"
   }
 ]

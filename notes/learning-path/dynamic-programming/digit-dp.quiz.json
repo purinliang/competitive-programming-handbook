@@ -64,11 +64,11 @@
     "prompt": "哪类性质通常需要额外记录 `started`？",
     "options": [
       { "id": "a", "text": "只计算数位和" },
-      { "id": "b", "text": "统计实际十进制表示中数字 0 的出现次数" },
+      { "id": "b", "text": "把答案存进 64 位整数" },
       { "id": "c", "text": "限制整数不超过 N" },
-      { "id": "d", "text": "把答案存进 64 位整数" }
+      { "id": "d", "text": "统计实际十进制表示中数字 0 的出现次数" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "d",
     "explanation": "必须区分补在左侧的前导零和数字真正开始后的零。"
   }
 ]

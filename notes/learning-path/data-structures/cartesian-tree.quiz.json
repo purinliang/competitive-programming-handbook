@@ -51,12 +51,12 @@
     "id": "iterative-traversal",
     "prompt": "完整代码为什么使用显式栈反向计算子树大小？",
     "options": [
-      { "id": "a", "text": "笛卡尔树可能退化成长链，递归可能超过调用栈限制" },
+      { "id": "a", "text": "为了修改原数组的顺序" },
       { "id": "b", "text": "二叉树不允许递归" },
       { "id": "c", "text": "显式栈会把复杂度降到 `O(1)`" },
-      { "id": "d", "text": "为了修改原数组的顺序" }
+      { "id": "d", "text": "笛卡尔树可能退化成长链，递归可能超过调用栈限制" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "单调数组会产生深度为 n 的树；迭代遍历避免递归深度风险。"
   }
 ]

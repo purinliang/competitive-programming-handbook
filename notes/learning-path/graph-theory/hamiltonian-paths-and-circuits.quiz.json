@@ -27,12 +27,12 @@
     "id": "hamiltonian-graph",
     "prompt": "什么样的图称为哈密顿图？",
     "options": [
-      { "id": "a", "text": "存在哈密顿回路的图" },
+      { "id": "a", "text": "只有一个点的图" },
       { "id": "b", "text": "存在欧拉路径的图" },
       { "id": "c", "text": "任意有向无环图" },
-      { "id": "d", "text": "只有一个点的图" }
+      { "id": "d", "text": "存在哈密顿回路的图" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "哈密顿图的定义要求存在经过每个点恰好一次并回到起点的回路。"
   },
   {

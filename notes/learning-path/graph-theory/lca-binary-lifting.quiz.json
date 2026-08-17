@@ -28,11 +28,11 @@
     "prompt": "对齐深度后，为什么只在 `up[u][k] != up[v][k]` 时同时跳？",
     "options": [
       { "id": "a", "text": "相等时说明 u 与 v 没有公共祖先" },
-      { "id": "b", "text": "不相等时可以安全接近 LCA 而不越过它" },
-      { "id": "c", "text": "这样能让深度增加" },
+      { "id": "b", "text": "这样能让深度增加" },
+      { "id": "c", "text": "不相等时可以安全接近 LCA 而不越过它" },
       { "id": "d", "text": "因为 k 只能取 0" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "c",
     "explanation": "若两个 2^k 祖先已经相同，跳过去可能越过最近公共祖先。"
   },
   {

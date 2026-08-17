@@ -75,12 +75,12 @@
     "id": "divide-time",
     "prompt": "本篇最大子段和分治为什么是 O(n log n)？",
     "options": [
-      { "id": "a", "text": "递归树每层总扫描 O(n)，共有 O(log n) 层" },
+      { "id": "a", "text": "所有递归算法都是 O(n log n)" },
       { "id": "b", "text": "一共只有一次函数调用" },
       { "id": "c", "text": "每个子段只包含一个元素" },
-      { "id": "d", "text": "所有递归算法都是 O(n log n)" }
+      { "id": "d", "text": "递归树每层总扫描 O(n)，共有 O(log n) 层" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "均匀二分产生对数层，每层跨中点扫描的区间总长仍为 n。"
   },
   {
@@ -88,11 +88,11 @@
     "prompt": "分治与递归的关系是什么？",
     "options": [
       { "id": "a", "text": "两者是完全相同的定义" },
-      { "id": "b", "text": "分治是一种问题分解思路，递归是常见实现方式" },
+      { "id": "b", "text": "递归必然包含两个子问题" },
       { "id": "c", "text": "分治禁止函数调用自身" },
-      { "id": "d", "text": "递归必然包含两个子问题" }
+      { "id": "d", "text": "分治是一种问题分解思路，递归是常见实现方式" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "d",
     "explanation": "递归描述程序调用结构；分治还要求划分子问题并正确合并答案。"
   }
 ]
