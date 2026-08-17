@@ -1,6 +1,6 @@
 # 埃拉托斯特尼筛法
 
-> 最近修订：2026-08-16 20:59 +10:00（未审阅）
+> 最近修订：2026-08-17 11:54 +10:00（未审阅）
 
 给定正整数 `n`，我们希望找出 `1..n` 中的全部质数。
 
@@ -13,12 +13,14 @@
 先假设 `2..n` 都可能是质数，再明确排除 `0` 和 `1`：
 
 ```cpp
-vector<char> is_prime(n + 5, true);
-is_prime[0] = false;
-is_prime[1] = false;
+vector<char> is_prime(n + 5, 1);
+is_prime[0] = 0;
+is_prime[1] = 0;
 ```
 
-这里使用 `char` 保存真假标记：`0` 表示已经确认不是质数，非 `0` 表示目前仍可能是质数。
+这里使用 `char` 保存 0-1 标记：`0` 表示已经确认不是质数，`1` 表示目前仍可能
+是质数。筛法可能一次建立很大的线性标记表，空间常数会直接限制能够处理的上界；
+因此本篇明确使用通常只占一个字节的 `char`，而不是默认的 `vector<int>`。
 
 从 `p=2` 开始扫描。如果 `is_prime[p]` 仍为真，说明没有任何更小的质数整除 `p`，所以 `p` 是质数。
 
@@ -32,7 +34,7 @@ $$
 
 ```cpp
 for (ll multiple = 2LL * p; multiple <= n; multiple += p) {
-    is_prime[multiple] = false;
+    is_prime[multiple] = 0;
 }
 ```
 
@@ -59,7 +61,7 @@ $$
 
 ```cpp
 for (ll multiple = 1LL * p * p; multiple <= n; multiple += p) {
-    is_prime[multiple] = false;
+    is_prime[multiple] = 0;
 }
 ```
 
@@ -83,7 +85,7 @@ for (int p = 2; p <= n / p; p++) {
         continue;
     }
     for (ll multiple = 1LL * p * p; multiple <= n; multiple += p) {
-        is_prime[multiple] = false;
+        is_prime[multiple] = 0;
     }
 }
 ```
@@ -148,16 +150,16 @@ using namespace std;
 typedef long long ll;
 
 vector<int> sieve(int n) {
-    vector<char> is_prime(n + 5, true);
-    is_prime[0] = false;
-    is_prime[1] = false;
+    vector<char> is_prime(n + 5, 1);
+    is_prime[0] = 0;
+    is_prime[1] = 0;
 
     for (int p = 2; p <= n / p; p++) {
         if (!is_prime[p]) {
             continue;
         }
         for (ll multiple = 1LL * p * p; multiple <= n; multiple += p) {
-            is_prime[multiple] = false;
+            is_prime[multiple] = 0;
         }
     }
 
@@ -229,7 +231,7 @@ $$
 
 ### 把 1 当作质数
 
-质数恰好有两个正因数，`1` 只有一个正因数，所以必须令 `is_prime[1]=false`。
+质数恰好有两个正因数，`1` 只有一个正因数，所以必须令 `is_prime[1]=0`。
 
 ### 从 p 开始标记
 
