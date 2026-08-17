@@ -48,18 +48,6 @@
     "explanation": "浮点数转换成整数时向零截去小数部分，不是四舍五入、向下取整或向上取整。"
   },
   {
-    "id": "nonzero-to-boolean",
-    "prompt": "整数 `0`、`8` 和 `-8` 转换成 `bool` 后依次是什么？",
-    "options": [
-      { "id": "a", "text": "`false`、`true`、`true`" },
-      { "id": "b", "text": "`false`、`true`、`false`" },
-      { "id": "c", "text": "`false`、`false`、`false`" },
-      { "id": "d", "text": "`true`、`true`、`true`" }
-    ],
-    "correctOptionId": "a",
-    "explanation": "零转换成 `false`，任何非零整数都转换成 `true`，正负号不影响这条规则。"
-  },
-  {
     "id": "narrowing-initialization",
     "prompt": "为什么 `int x{3.9};` 无法通过编译？",
     "options": [
