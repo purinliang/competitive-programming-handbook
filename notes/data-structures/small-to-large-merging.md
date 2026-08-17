@@ -76,7 +76,7 @@ $O(n\log^2 n)$。若使用散列表，可在通常情况下把单次插入视为
 if (colors[x].size() < colors[y].size()) {
     swap(x, y);
 }
-parent[y] = x;
+par[y] = x;
 ```
 
 此时让 `y` 的父亲变成 `x`，再把 `colors[y]` 搬入 `colors[x]`。并查集的根与
@@ -107,14 +107,14 @@ int y = find_root(v);
 using namespace std;
 
 int n, m;
-vector<int> parent;
+vector<int> par;
 vector<set<int>> colors;
 
 int find_root(int u) {
-    if (parent[u] == u) {
+    if (par[u] == u) {
         return u;
     }
-    return parent[u] = find_root(parent[u]);
+    return par[u] = find_root(par[u]);
 }
 
 int merge_components(int u, int v) {
@@ -129,7 +129,7 @@ int merge_components(int u, int v) {
         swap(x, y);
     }
 
-    parent[y] = x;
+    par[y] = x;
     for (int color : colors[y]) {
         colors[x].insert(color);
     }
@@ -141,14 +141,13 @@ int merge_components(int u, int v) {
 void solve() {
     cin >> n >> m;
 
-    parent.resize(n + 5);
-    colors.clear();
-    colors.resize(n + 5);
+    par.assign(n + 5, 0);
+    colors.assign(n + 5, {});
 
     for (int u = 1; u <= n; u++) {
         int color;
         cin >> color;
-        parent[u] = u;
+        par[u] = u;
         colors[u].insert(color);
     }
 
