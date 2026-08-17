@@ -340,17 +340,18 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 040101 | 栈 | 算法基础 | [algorithm-basics/stack.md](algorithm-basics/stack.md) |
-| 040102 | stack | C++ | [cpp/stack.md](cpp/stack.md) |
-| 040103 | 出栈序列判定 | 算法基础 | [algorithm-basics/stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
-| 040104 | 表达式求值 | 算法基础 | [algorithm-basics/expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
-| 040105 | 队列 | 算法基础 | [algorithm-basics/queue.md](algorithm-basics/queue.md) |
+| 040102 | 队列 | 算法基础 | [algorithm-basics/queue.md](algorithm-basics/queue.md) |
+| 040103 | 双端队列 | 算法基础 | [algorithm-basics/deque.md](algorithm-basics/deque.md) |
+| 040104 | deque | C++ | [cpp/deque.md](cpp/deque.md) |
+| 040105 | stack | C++ | [cpp/stack.md](cpp/stack.md) |
 | 040106 | queue | C++ | [cpp/queue.md](cpp/queue.md) |
-| 040107 | 双端队列 | 算法基础 | [algorithm-basics/deque.md](algorithm-basics/deque.md) |
-| 040108 | deque | C++ | [cpp/deque.md](cpp/deque.md) |
+| 040107 | 出栈序列判定 | 算法基础 | [algorithm-basics/stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
+| 040108 | 表达式求值 | 算法基础 | [algorithm-basics/expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
 
-栈、队列和双端队列先作为线性抽象结构学习；`stack` 与 `queue` 是容器适配器，
-`deque` 是序列容器，也是二者的默认底层容器。标准不规定 `deque` 的具体内部实现，
-常见实现使用分段连续存储，不能把它定义成链表。
+栈、队列和双端队列先作为线性抽象结构学习，再用 `deque` 认识能够直接操作两端的
+序列容器。此后学习的 `stack` 与 `queue` 是容器适配器，默认都以 `deque` 作为
+底层容器。标准不规定 `deque` 的具体内部实现；常见实现使用分段连续存储，不能把
+它定义成链表。
 
 ### 单元 02：数学：数论基础
 

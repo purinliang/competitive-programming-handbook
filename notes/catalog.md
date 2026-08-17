@@ -191,8 +191,8 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 040108 | deque | 待审阅 | [deque.md](cpp/deque.md) |
-| 040102 | stack | 待审阅 | [stack.md](cpp/stack.md) |
+| 040104 | deque | 待审阅 | [deque.md](cpp/deque.md) |
+| 040105 | stack | 待审阅 | [stack.md](cpp/stack.md) |
 | 040106 | queue | 待审阅 | [queue.md](cpp/queue.md) |
 
 #### 专题：关联容器
@@ -373,15 +373,15 @@
 | --- | --- | --- | --- |
 | 040101 | 栈 | 待审阅 | [stack.md](algorithm-basics/stack.md) |
 | 060204 | 单调栈 | 待审阅 | [monotonic-stack.md](algorithm-basics/monotonic-stack.md) |
-| 040103 | 出栈序列判定 | 待审阅 | [stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
-| 040104 | 表达式求值 | 待审阅 | [expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
+| 040107 | 出栈序列判定 | 待审阅 | [stack-pop-sequence-validation.md](algorithm-basics/stack-pop-sequence-validation.md) |
+| 040108 | 表达式求值 | 待审阅 | [expression-evaluation.md](algorithm-basics/expression-evaluation.md) |
 
 ### 队列
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 040105 | 队列 | 待审阅 | [queue.md](algorithm-basics/queue.md) |
-| 040107 | 双端队列 | 待审阅 | [deque.md](algorithm-basics/deque.md) |
+| 040102 | 队列 | 待审阅 | [queue.md](algorithm-basics/queue.md) |
+| 040103 | 双端队列 | 待审阅 | [deque.md](algorithm-basics/deque.md) |
 | 060205 | 单调队列 | 待审阅 | [monotonic-queue.md](algorithm-basics/monotonic-queue.md) |
 
 ### 二叉堆
