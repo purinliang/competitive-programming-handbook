@@ -37,7 +37,7 @@
   },
   {
     "id": "algorithm-choice",
-    "prompt": "边权分别为全 1、仅 0/1、一般非负数时，通常依次选择什么？",
+    "prompt": "边权分别为全 1、仅 0-1、一般非负数时，通常依次选择什么？",
     "options": [
       { "id": "a", "text": "Dijkstra、BFS、0-1 BFS" },
       { "id": "b", "text": "0-1 BFS、Dijkstra、BFS" },
