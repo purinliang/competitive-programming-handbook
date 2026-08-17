@@ -1,5 +1,5 @@
 // 随机验证：../verification/zero-one-bfs-random.cpp
-// 0-1 BFS；求起点到带 0/1 边权有向图中每个点的最短距离。
+// 0-1 BFS；求起点到带 0-1 边权有向图中每个点的最短距离。
 
 #include <bits/stdc++.h>
 

@@ -1,4 +1,4 @@
-// 穷举三点 0/1 带权有向图，并用 Bellman–Ford 对拍随机图。
+// 穷举三点 0-1 带权有向图，并用 Bellman–Ford 对拍随机图。
 
 #define main zero_one_bfs_template_main
 #include "../graph-theory/zero-one-bfs.cpp"
