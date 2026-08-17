@@ -68,8 +68,7 @@ int next_column = column + dc[direction];
 ### 没有越界
 
 ```cpp
-if (next_row < 1 || next_row > n ||
-    next_column < 1 || next_column > m) {
+if (next_row < 1 || next_row > n || next_column < 1 || next_column > m) {
     continue;
 }
 ```
@@ -91,7 +90,7 @@ if (grid[next_row][next_column] == '#') {
 ### 尚未访问
 
 ```cpp
-if (visited[next_row][next_column]) {
+if (vis[next_row][next_column]) {
     continue;
 }
 ```
@@ -105,7 +104,7 @@ if (visited[next_row][next_column]) {
 ```cpp
 queue<pair<int, int>> q;
 
-visited[start_row][start_column] = 1;
+vis[start_row][start_column] = 1;
 q.push({start_row, start_column});
 ```
 
@@ -128,7 +127,7 @@ while (!q.empty()) {
 一个邻格通过全部检查后，要在入队时立即标记：
 
 ```cpp
-visited[next_row][next_column] = 1;
+vis[next_row][next_column] = 1;
 q.push({next_row, next_column});
 ```
 
@@ -140,7 +139,7 @@ q.push({next_row, next_column});
 
 ```cpp
 void dfs(int row, int column) {
-    visited[row][column] = 1;
+    vis[row][column] = 1;
 
     for (int direction = 1; direction <= 4; direction++) {
         int next_row = row + dr[direction];
@@ -180,7 +179,7 @@ component_id[row][column] = id;
 grid[row][column] = new_color;
 ```
 
-如果新颜色与旧颜色不同，直接改色本身就可以充当访问标记：以后只继续进入旧颜色格子。但若新旧颜色可能相同，仍需要独立的 `visited`，否则无法区分是否访问过。
+如果新颜色与旧颜色不同，直接改色本身就可以充当访问标记：以后只继续进入旧颜色格子。但若新旧颜色可能相同，仍需要独立的 `vis`，否则无法区分是否访问过。
 
 ## 从一个区域到全部区域
 
@@ -189,8 +188,7 @@ grid[row][column] = new_color;
 ```cpp
 for (int row = 1; row <= n; row++) {
     for (int column = 1; column <= m; column++) {
-        if (grid[row][column] == '.' &&
-            !visited[row][column]) {
+        if (grid[row][column] == '.' && !vis[row][column]) {
             component_count++;
             flood_fill(row, column);
         }
@@ -206,7 +204,7 @@ for (int row = 1; row <= n; row++) {
 
 - 处理一个区域的时间与该区域格子数成正比；
 - 扫描并处理整个网格的时间是 $O(nm)$；
-- `visited` 与队列最坏使用 $O(nm)$ 空间。
+- `vis` 与队列最坏使用 $O(nm)$ 空间。
 
 四方向与八方向只改变常数，不改变渐进复杂度。
 
@@ -222,14 +220,13 @@ using namespace std;
 
 int n, m;
 vector<string> grid;
-vector<vector<int>> visited;
+vector<vector<int>> vis;
 
 int dr[5] = {0, -1, 0, 1, 0};
 int dc[5] = {0, 0, 1, 0, -1};
 
 bool inside(int row, int column) {
-    return 1 <= row && row <= n &&
-           1 <= column && column <= m;
+    return 1 <= row && row <= n && 1 <= column && column <= m;
 }
 
 int flood_fill(int start_row, int start_column) {
@@ -241,7 +238,7 @@ int flood_fill(int start_row, int start_column) {
     queue<pair<int, int>> q;
     int area = 1;
 
-    visited[start_row][start_column] = 1;
+    vis[start_row][start_column] = 1;
     q.push({start_row, start_column});
 
     while (!q.empty()) {
@@ -258,11 +255,11 @@ int flood_fill(int start_row, int start_column) {
             if (grid[next_row][next_column] == '#') {
                 continue;
             }
-            if (visited[next_row][next_column]) {
+            if (vis[next_row][next_column]) {
                 continue;
             }
 
-            visited[next_row][next_column] = 1;
+            vis[next_row][next_column] = 1;
             area++;
             q.push({next_row, next_column});
         }
@@ -275,7 +272,7 @@ void solve() {
     cin >> n >> m;
 
     grid.assign(n + 5, "");
-    visited.assign(n + 5, vector<int>(m + 5, 0));
+    vis.assign(n + 5, vector<int>(m + 5, 0));
 
     for (int row = 1; row <= n; row++) {
         string line;
