@@ -25,12 +25,12 @@
   },
   {
     "id": "visited-reset",
-    "prompt": "`visited` 为什么要在每个新的左部点开始搜索前清空？",
+    "prompt": "`vis` 为什么要在每个新的左部点开始搜索前清空？",
     "options": [
       { "id": "a", "text": "因为右部点编号会改变" },
       { "id": "b", "text": "因为边会被全部删除" },
       { "id": "c", "text": "前一轮可能修改了匹配，新一轮需要重新探索交替路径" },
-      { "id": "d", "text": "因为 visited 只能存一个元素" }
+      { "id": "d", "text": "因为 vis 只能存一个元素" }
     ],
     "correctOptionId": "c",
     "explanation": "轮内去重仍然必要，但不同增广尝试面对的是已经变化的匹配状态。"

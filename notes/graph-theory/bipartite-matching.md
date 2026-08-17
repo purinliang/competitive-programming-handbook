@@ -46,10 +46,10 @@
 ```cpp
 bool find_augmenting_path(int u) {
     for (int v : g[u]) {
-        if (visited[v]) {
+        if (vis[v]) {
             continue;
         }
-        visited[v] = true;
+        vis[v] = 1;
 
         if (match_right[v] == 0 || find_augmenting_path(match_right[v])) {
             match_right[v] = u;
@@ -72,10 +72,10 @@ bool find_augmenting_path(int u) {
 一轮搜索中，若项目 `v` 已经访问过，再次到达它时，后续能尝试的原匹配学生与
 出边都完全相同，不会产生新结果。重复访问还可能让递归在交替关系中来回绕圈。
 
-因此，每次从一个新的左部点开始寻找增广路前，将 `visited` 清空；同一次搜索
+因此，每次从一个新的左部点开始寻找增广路前，将 `vis` 清空；同一次搜索
 内，每个右部点最多访问一次。
 
-`visited` 不能在全部搜索间永久保留。前一轮修改匹配以后，同一个项目可能通过
+`vis` 不能在全部搜索间永久保留。前一轮修改匹配以后，同一个项目可能通过
 新的交替路径帮助后面的学生完成增广。
 
 ## 为什么找不到增广路就是最优
@@ -105,14 +105,14 @@ using namespace std;
 int n, m, e;
 vector<vector<int>> g;
 vector<int> match_right;
-vector<bool> visited;
+vector<int> vis;
 
 bool find_augmenting_path(int u) {
     for (int v : g[u]) {
-        if (visited[v]) {
+        if (vis[v]) {
             continue;
         }
-        visited[v] = true;
+        vis[v] = 1;
 
         if (match_right[v] == 0 || find_augmenting_path(match_right[v])) {
             match_right[v] = u;
@@ -128,7 +128,7 @@ int maximum_matching() {
     int matching_size = 0;
 
     for (int u = 1; u <= n; u++) {
-        visited.assign(m + 5, false);
+        vis.assign(m + 5, 0);
         if (find_augmenting_path(u)) {
             matching_size++;
         }
@@ -188,7 +188,7 @@ Hopcroft–Karp 算法。只有基础增广路成为真正瓶颈时，才值得�
 - 使用贪心占据第一个空右部点，却不允许原匹配重新安排；
 - 把 `match_right[v]` 误写成布尔值，丢失需要递归换位的原学生编号；
 - 一轮搜索中不记录访问点，造成重复搜索或递归环；
-- 全部左部点共用一份永久的 `visited`，错过匹配改变后的新增广路；
+- 全部左部点共用一份永久的 `vis`，错过匹配改变后的新增广路；
 - 递归成功后忘记执行 `match_right[v] = u`；
 - 已经找到一条增广路后仍继续修改其他项目；
 - 混淆最大匹配与极大匹配：无法直接再加一条边的匹配未必拥有最大边数；
@@ -199,6 +199,6 @@ Hopcroft–Karp 算法。只有基础增广路成为真正瓶颈时，才值得�
 - 匹配、最大匹配与增广路分别是什么？
 - 为什么已经占用的项目仍值得继续尝试？
 - 递归函数的返回值表示什么？
-- 为什么 `visited` 每轮清空、轮内不能重复访问？
+- 为什么 `vis` 每轮清空、轮内不能重复访问？
 - 为什么不存在增广路等价于当前匹配已经最大？
 - 基础增广路算法的复杂度是什么，什么时候才需要更快算法？
