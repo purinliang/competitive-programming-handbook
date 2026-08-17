@@ -1,6 +1,6 @@
 # `min` 与 `max`
 
-> 最近修订：2026-08-16 23:54 +10:00（未审阅）
+> 最近修订：2026-08-17 10:31 +10:00（未审阅）
 
 在两个值中选出较小值或较大值非常常见。我们可以用[条件运算符](conditional-operator.md)或 `if / else` 完成选择，但标准库已经提供了 `min` 与 `max`：
 
@@ -88,7 +88,28 @@ int largest = max({a, b, c});
 
 这种写法会依次比较列表中的元素。列表不能为空，并且其中的值仍应具有一致类型。
 
-如果数据本来保存在数组或 `vector` 中，不要把所有元素手工写进花括号。直接使用循环扫描，或者后续学习标准库的范围最值算法。
+如果数据本来保存在数组或 `vector` 中，不要把所有元素手工写进花括号。应当循环
+扫描，或使用下面的范围最值算法。
+
+## 范围中的最值
+
+`min_element(first, last)` 与 `max_element(first, last)` 接收一个左闭右开的
+迭代器区间，分别返回最小元素和最大元素所在位置。
+
+本书自定义的数组保存在 `values[1..n]` 时，对应范围是：
+
+```cpp
+auto minimum_position = min_element(
+    values.begin() + 1, values.begin() + n + 1);
+auto maximum_position = max_element(
+    values.begin() + 1, values.begin() + n + 1);
+
+int smallest = *minimum_position;
+int largest = *maximum_position;
+```
+
+两个算法都需要逐项查看整个范围，时间复杂度为 $O(n)$。若范围为空，它们会返回
+区间终点 `last`；这时不能解引用返回位置。本例假设 `n >= 1`。
 
 ## 限制到一个区间
 
@@ -165,5 +186,7 @@ int main() {
 1. `min(a, b)` 与 `max(a, b)` 分别产生什么结果？
 2. 调用它们会不会修改 `a` 和 `b`？
 3. 为什么 `min(10, 20LL)` 不能直接推导出统一类型？
-4. 怎样使用 `min` 和 `max` 把一个值限制在闭区间内？
-5. 多个待比较值已经存入数组时，为什么不应手工写成长花括号列表？
+4. `min_element` 与 `max_element` 返回元素值，还是元素所在位置？
+5. 怎样把逻辑闭区间 `values[1..n]` 转换成迭代器区间？
+6. 怎样使用 `min` 和 `max` 把一个值限制在闭区间内？
+7. 多个待比较值已经存入数组时，为什么不应手工写成长花括号列表？

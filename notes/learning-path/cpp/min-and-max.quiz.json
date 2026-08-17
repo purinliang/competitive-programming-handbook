@@ -36,6 +36,18 @@
     "explanation": "两个参数版本通常要求参数类型一致；可写成 `min(10LL, 20LL)`。"
   },
   {
+    "id": "range-minimum",
+    "prompt": "`values` 的真实元素位于 `1..n`。哪个区间恰好交给 `min_element` 检查全部真实元素？",
+    "options": [
+      { "id": "a", "text": "`values.begin() + 1` 到 `values.begin() + n + 1`" },
+      { "id": "b", "text": "`values.begin()` 到 `values.end()`" },
+      { "id": "c", "text": "`values.begin() + 1` 到 `values.begin() + n`" },
+      { "id": "d", "text": "`values.begin() + n` 到 `values.begin() + 1`" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "标准库迭代器范围左闭右开；逻辑闭区间 `1..n` 的终点应指向位置 `n` 的后一格。"
+  },
+  {
     "id": "min-max-clamp",
     "prompt": "当 `lower <= upper` 时，哪个表达式能把 `x` 限制在闭区间 `[lower, upper]`？",
     "options": [
