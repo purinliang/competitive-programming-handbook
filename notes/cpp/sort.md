@@ -218,7 +218,7 @@ sort(contestants.begin(), contestants.end());
 
 ## 标准复合类型的字典序
 
-以后学习的 `pair`、`tuple` 和 `array` 都已经定义了默认字典序：
+已经学习的 `pair`、`tuple`，以及线性表单元中的 `array`，都定义了默认字典序：
 
 - `pair` 先比较 `first`，相等时比较 `second`；
 - `tuple` 按元素位置从前到后比较；
