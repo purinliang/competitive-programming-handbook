@@ -28,11 +28,11 @@
     "prompt": "向 OJ 提交 A+B Problem 时，下面哪一种输出方式正确？",
     "options": [
       { "id": "a", "text": "先输出“请输入两个整数”，再输出答案" },
-      { "id": "b", "text": "只输出 `a + b` 的结果并换行" },
-      { "id": "c", "text": "同时输出样例输入和答案" },
+      { "id": "b", "text": "同时输出样例输入和答案" },
+      { "id": "c", "text": "只输出 `a + b` 的结果并换行" },
       { "id": "d", "text": "输出“答案是”以后再输出结果" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "c",
     "explanation": "OJ 会直接比较程序输出和标准答案；题目没有要求的提示文字会让答案不匹配。"
   },
   {
@@ -40,11 +40,11 @@
     "prompt": "一份代码成功编译，但运行时间超过题目限制。评测状态最可能是什么？",
     "options": [
       { "id": "a", "text": "`WA`" },
-      { "id": "b", "text": "`TLE`" },
+      { "id": "b", "text": "`RE`" },
       { "id": "c", "text": "`MLE`" },
-      { "id": "d", "text": "`RE`" }
+      { "id": "d", "text": "`TLE`" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "d",
     "explanation": "`TLE` 表示运行时间超过限制；`WA` 是答案错误，`MLE` 是内存超限，`RE` 是运行途中异常结束。"
   }
 ]
