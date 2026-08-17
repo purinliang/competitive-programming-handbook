@@ -8,7 +8,7 @@ C++ 标准库的 `list` 是一个**双向链表**容器。它替我们维护节�
 list<int> values;
 ```
 
-使用 `list` 以前应先理解[链表的基本概念](../algorithm-basics/linked-list.md)与[双向链表](../algorithm-basics/doubly-linked-list.md)：容器接口虽然隐藏了链接细节，却不会改变链表的复杂度性质。
+使用 `list` 以前应先理解 [链表的基本概念](../algorithm-basics/linked-list.md) 与 [双向链表](../algorithm-basics/doubly-linked-list.md)：容器接口虽然隐藏了链接细节，却不会改变链表的复杂度性质。
 
 ## 建立与遍历
 

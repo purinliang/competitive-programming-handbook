@@ -38,7 +38,7 @@ visited = true;
 
 `bool` 只保存当前状态，不会记录状态改变过多少次，也不会记录改变发生的时间。如果需要计数，就应该另用 `int`；如果只关心“是否发生过”，`bool` 才是准确类型。
 
-学习[数组](one-dimensional-arrays.md)以后，可以为每个编号分别保存一个布尔标记；DFS、BFS、筛法和许多模拟题都会使用这种做法。本篇先只处理一个独立状态，不提前使用数组语法。
+学习 [数组](one-dimensional-arrays.md) 以后，可以为每个编号分别保存一个布尔标记；DFS、BFS、筛法和许多模拟题都会使用这种做法。本篇先只处理一个独立状态，不提前使用数组语法。
 
 ## 判断的结果
 
@@ -201,8 +201,8 @@ false
 
 ## 布尔值会用在哪里
 
-布尔值经常决定一段代码是否执行。[比较运算符](comparison-operators.md)和
-[逻辑运算符](logical-operators.md)会产生或组合布尔值，[if 与 else](if-and-else.md)
+布尔值经常决定一段代码是否执行。[比较运算符](comparison-operators.md) 和
+[逻辑运算符](logical-operators.md) 会产生或组合布尔值，[if 与 else](if-and-else.md)
 再根据最终结果选择分支。本篇只负责建立 `bool`、`true` 和 `false` 的类型含义。
 
 ## 常见错误

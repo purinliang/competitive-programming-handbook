@@ -123,7 +123,7 @@ if (total_time > tasks[i].deadline) {
 ## 后续怎样加速
 
 线性扫描已经完整解决问题，但每次寻找最长任务可能需要检查整个已选数组。学习
-[二叉堆](binary-heap.md)与 [`priority_queue`](../cpp/priority-queue.md) 后，可以用
+[二叉堆](binary-heap.md) 与 [`priority_queue`](../cpp/priority-queue.md) 后，可以用
 大根堆维护当前最长时长，把一次寻找和删除从 $O(n)$ 降为 $O(\log n)$。
 
 这项替换只改变“怎样找到最长任务”，不改变先接受、冲突时撤销最长任务的决策，

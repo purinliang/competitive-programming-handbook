@@ -2,7 +2,7 @@
 
 > 最近修订：2026-08-16 00:00 +10:00（未审阅）
 
-[线性变换](linear-transformations-as-matrices.md)能表示缩放、旋转和分量交换，却不能用普通二维矩阵表示平移：
+[线性变换](linear-transformations-as-matrices.md) 能表示缩放、旋转和分量交换，却不能用普通二维矩阵表示平移：
 
 $$
 \begin{aligned}

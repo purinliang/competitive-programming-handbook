@@ -173,6 +173,6 @@ v 的表加入 u
 - `vector` 邻接表、前向星和链式前向星为什么仍然属于同一种基础存储方法？
 - 三种存储方法各自最适合哪类访问？
 
-[图的存储：邻接矩阵](adjacency-matrix.md)会先把点对存储落实为完整代码；随后
-[图的存储：邻接表（`vector` 实现）](vector-adjacency-list.md)会把邻接表落实为普通图
+[图的存储：邻接矩阵](adjacency-matrix.md) 会先把点对存储落实为完整代码；随后
+[图的存储：邻接表（`vector` 实现）](vector-adjacency-list.md) 会把邻接表落实为普通图
 算法最常用的代码。

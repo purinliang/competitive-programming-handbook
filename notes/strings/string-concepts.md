@@ -203,7 +203,7 @@ return true;
 text[start..start + pattern_length - 1]
 ```
 
-同一个模式可以在多个位置出现，出现区间也可能重叠。完整枚举与匹配过程属于后续[朴素字符串匹配](naive-pattern-matching.md)的内容。
+同一个模式可以在多个位置出现，出现区间也可能重叠。完整枚举与匹配过程属于后续 [朴素字符串匹配](naive-pattern-matching.md) 的内容。
 
 ## 完整代码
 

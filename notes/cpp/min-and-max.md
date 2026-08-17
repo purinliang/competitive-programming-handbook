@@ -2,7 +2,7 @@
 
 > 最近修订：2026-08-17 10:31 +10:00（未审阅）
 
-在两个值中选出较小值或较大值非常常见。我们可以用[条件运算符](conditional-operator.md)或 `if / else` 完成选择，但标准库已经提供了 `min` 与 `max`：
+在两个值中选出较小值或较大值非常常见。我们可以用 [条件运算符](conditional-operator.md) 或 `if / else` 完成选择，但标准库已经提供了 `min` 与 `max`：
 
 ```cpp
 int smaller = min(a, b);

@@ -137,7 +137,7 @@ $$
 
 ## 动态数组需要储存什么
 
-继续使用[均摊复杂度](amortized-complexity.md)中的动态数组模型：
+继续使用 [均摊复杂度](amortized-complexity.md) 中的动态数组模型：
 
 - 当前元素数为 $s$；
 - 当前容量为 $m$；

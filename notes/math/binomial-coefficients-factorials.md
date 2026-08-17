@@ -37,7 +37,7 @@ for (int i = 1; i <= max_n; i++) {
 
 就能立刻取得 `n!`、`k!` 与 `(n-k)!`。
 
-但是取模以后不能直接使用 C++ 的整数除法。要把除法改写成乘法，需要使用[模逆元](modular-inverse.md)：
+但是取模以后不能直接使用 C++ 的整数除法。要把除法改写成乘法，需要使用 [模逆元](modular-inverse.md)：
 
 $$
 C(n,k)\equiv n!\times(k!)^{-1}\times((n-k)!)^{-1}\pmod {MOD}.
@@ -69,7 +69,7 @@ $$
 
 按照定义逐个快速幂求每个逆阶乘，需要 `max_n` 次 $O(\log MOD)$ 运算。其实只需求一次逆元。
 
-先根据[费马小定理](fermat-little-theorem.md)，用快速幂求出最大阶乘的逆元：
+先根据 [费马小定理](fermat-little-theorem.md)，用快速幂求出最大阶乘的逆元：
 
 ```cpp
 inverse_factorial[max_n] = power(factorial[max_n], MOD - 2);

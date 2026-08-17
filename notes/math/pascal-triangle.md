@@ -163,7 +163,7 @@ $$
 
 ## 与二项式系数的关系
 
-根据[二项式定理](binomial-theorem.md)：
+根据 [二项式定理](binomial-theorem.md)：
 
 $$
 (x+y)^n=\sum_{k=0}^{n}C(n,k)x^{n-k}y^k.

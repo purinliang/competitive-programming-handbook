@@ -174,7 +174,7 @@ int main() {
 1. 手动写出计算 $\gcd(391,299)$ 时每一次参数变化，直到第二个参数成为 $0$。
 2. 分别用递归版和非递归版计算同一组输入，确认两者经过的数对完全相同。
 3. 解释为什么直接写 `a = b; b = a % b;` 会丢失哪一个旧值，并用临时变量修正。
-4. 测试 $\gcd(a,0)$、$\gcd(0,b)$ 和 $\gcd(0,0)$，检查它们是否符合[最大公约数与最小公倍数](greatest-common-divisor-and-least-common-multiple.md)中的边界约定。
+4. 测试 $\gcd(a,0)$、$\gcd(0,b)$ 和 $\gcd(0,0)$，检查它们是否符合 [最大公约数与最小公倍数](greatest-common-divisor-and-least-common-multiple.md) 中的边界约定。
 
 ## 需要记住什么
 

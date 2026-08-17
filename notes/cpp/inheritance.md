@@ -137,7 +137,7 @@ Person* pointer = &contestant;
 基类部分，没有复制对象。
 
 此时通过 `Person&` 或 `Person*` 只能直接使用基类接口。若基类函数是虚函数，
-调用可以根据实际派生对象选择实现；[多态](polymorphism.md)会解释这种行为。
+调用可以根据实际派生对象选择实现；[多态](polymorphism.md) 会解释这种行为。
 
 ## 对象切片
 

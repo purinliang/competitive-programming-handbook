@@ -65,7 +65,7 @@ int result = divisor != 0 ? value / divisor : 0;
 
 当 `divisor` 是 `0` 时，条件为假，程序只选择并计算右侧的 `0`，不会执行 `value / divisor`。
 
-这个行为与[逻辑运算符](logical-operators.md)的短路求值相似。不过，代码不应该依赖条件运算符悄悄修改多个变量；涉及明显副作用时，使用 `if` 与 `else` 会更容易理解。
+这个行为与 [逻辑运算符](logical-operators.md) 的短路求值相似。不过，代码不应该依赖条件运算符悄悄修改多个变量；涉及明显副作用时，使用 `if` 与 `else` 会更容易理解。
 
 ## 两个结果应当能够相容
 
@@ -75,7 +75,7 @@ int result = divisor != 0 ? value / divisor : 0;
 int selected = use_first ? first : second;
 ```
 
-如果两边类型不同，C++ 可能进行[类型转换](type-conversions.md)：
+如果两边类型不同，C++ 可能进行 [类型转换](type-conversions.md)：
 
 ```cpp
 double selected = use_integer ? 3 : 2.5;

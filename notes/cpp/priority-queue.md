@@ -8,7 +8,7 @@
 
 标准库 `priority_queue` 会维护一组元素，并让当前优先级最高的元素随时位于顶部。加入和删除顶部都是 $O(\log n)$，查看顶部是 $O(1)$。
 
-[二叉堆](../algorithm-basics/binary-heap.md)已经推导了这些复杂度从哪里来。本篇只学习 `priority_queue` 的竞赛常用接口和比较规则，把已经理解的操作对应到标准库实现。
+[二叉堆](../algorithm-basics/binary-heap.md) 已经推导了这些复杂度从哪里来。本篇只学习 `priority_queue` 的竞赛常用接口和比较规则，把已经理解的操作对应到标准库实现。
 
 ## 默认优先级
 

@@ -182,7 +182,7 @@ root = insert(root, value);
 
 ## 中序遍历为什么有序
 
-[二叉树的遍历](binary-tree-traversals.md)中，中序顺序是：
+[二叉树的遍历](binary-tree-traversals.md) 中，中序顺序是：
 
 ```text
 左子树 -> 当前节点 -> 右子树
