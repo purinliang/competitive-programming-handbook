@@ -43,7 +43,7 @@ for (int v : g[u]) {
 当 `path.size() == n` 时，所有点都已经恰好选择一次，因此找到了一条哈密顿路径：
 
 ```cpp
-if (path.size() == static_cast<size_t>(n)) {
+if ((int)path.size() == n) {
     return true;
 }
 ```
@@ -91,7 +91,7 @@ bool has_edge(int u, int target) {
 }
 
 bool search_cycle(int u, int start) {
-    if (path.size() == static_cast<size_t>(n)) {
+    if ((int)path.size() == n) {
         if (!has_edge(u, start)) {
             return false;
         }
@@ -137,9 +137,9 @@ int main() {
         return 0;
     }
 
-    for (int i = 0; i < static_cast<int>(path.size()); i++) {
+    for (int i = 0; i < (int)path.size(); i++) {
         printf("%d", path[i]);
-        if (i + 1 == static_cast<int>(path.size())) {
+        if (i + 1 == (int)path.size()) {
             printf("\n");
         } else {
             printf(" ");
