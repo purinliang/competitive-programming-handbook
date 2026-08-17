@@ -1,6 +1,6 @@
 # 度数
 
-> 最近修订：2026-08-16 13:03 +10:00（未审阅）
+> 最近修订：2026-08-17 11:48 +10:00（未审阅）
 
 只知道一张图有哪些点和边之后，我们经常还要描述某个点连接了多少条边。这个数量称为点的度数（degree）。
 
@@ -76,16 +76,16 @@ void solve() {
     int n, m;
     scanf("%d%d", &n, &m);
 
-    vector<int> degree(n + 5);
+    vector<int> deg(n + 5);
     for (int i = 1; i <= m; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
-        degree[u]++;
-        degree[v]++;
+        deg[u]++;
+        deg[v]++;
     }
 
     for (int u = 1; u <= n; u++) {
-        printf("%d%c", degree[u], u == n ? '\n' : ' ');
+        printf("%d%c", deg[u], u == n ? '\n' : ' ');
     }
 }
 
@@ -94,6 +94,9 @@ int main() {
     return 0;
 }
 ```
+
+正文推导使用完整名称 `degree` 表达含义；最终竞赛代码按照图论中的常见缩写写成
+`deg`。需要同时维护入度与出度时，相应使用 `indeg` 和 `outdeg`。
 
 输入：
 
