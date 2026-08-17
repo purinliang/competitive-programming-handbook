@@ -51,12 +51,12 @@
     "id": "precision-risk",
     "prompt": "为什么不能只凭 double 有约 15 位有效数字就断言任意整数卷积安全？",
     "options": [
-      { "id": "a", "text": "误差还取决于变换长度、中间量和大量运算的累积" },
+      { "id": "a", "text": "所有卷积答案都是负数" },
       { "id": "b", "text": "double 完全不能表示整数" },
       { "id": "c", "text": "FFT 不进行乘法" },
-      { "id": "d", "text": "所有卷积答案都是负数" }
+      { "id": "d", "text": "误差还取决于变换长度、中间量和大量运算的累积" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "中间频域数值和舍入累积共同决定误差，最终位数不是唯一安全标准。"
   }
 ]

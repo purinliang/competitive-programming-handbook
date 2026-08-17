@@ -51,12 +51,12 @@
     "id": "arbitrary-modulus",
     "prompt": "目标要求模 `1000000007` 的精确卷积时，为什么不能直接替换代码中的 MOD？",
     "options": [
-      { "id": "a", "text": "它的 MOD-1 不含足够大的 2 的幂因子，缺少所需单位根" },
+      { "id": "a", "text": "NTT 只能处理负数" },
       { "id": "b", "text": "它不是整数" },
       { "id": "c", "text": "它小于 998244353" },
-      { "id": "d", "text": "NTT 只能处理负数" }
+      { "id": "d", "text": "它的 MOD-1 不含足够大的 2 的幂因子，缺少所需单位根" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "NTT 可用长度由模乘法群结构决定，不能只修改模数常量而保留其他参数。"
   }
 ]

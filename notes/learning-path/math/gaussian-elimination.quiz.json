@@ -51,12 +51,12 @@
     "id": "epsilon",
     "prompt": "浮点实现为什么用 `abs(x) < EPS` 而不是 `x == 0`？",
     "options": [
-      { "id": "a", "text": "因为浮点运算会让理论零留下很小的舍入误差" },
+      { "id": "a", "text": "因为所有系数必须为正" },
       { "id": "b", "text": "因为 EPS 是未知数数量" },
       { "id": "c", "text": "因为等号不能用于 C++" },
-      { "id": "d", "text": "因为所有系数必须为正" }
+      { "id": "d", "text": "因为浮点运算会让理论零留下很小的舍入误差" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "经过多次除法和减法后，理论上的 0 往往只接近 0。"
   }
 ]

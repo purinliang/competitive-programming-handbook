@@ -27,12 +27,12 @@
     "id": "prefix-recurrence",
     "prompt": "前缀和的递推式是什么？",
     "options": [
-      { "id": "a", "text": "`prefix[i] = prefix[i-1] + a[i]`" },
-      { "id": "b", "text": "`prefix[i] = prefix[i+1]`" },
+      { "id": "a", "text": "`prefix[i] = prefix[i+1]`" },
+      { "id": "b", "text": "`prefix[i] = prefix[i-1] + a[i]`" },
       { "id": "c", "text": "`prefix[i] = a[i] - a[i-1]`" },
       { "id": "d", "text": "`prefix[i] = 0`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "当前前缀比前一个前缀恰好多包含新元素 a[i]。"
   },
   {
@@ -75,12 +75,12 @@
     "id": "prefix-static-data",
     "prompt": "普通前缀和最适合哪类操作？",
     "options": [
-      { "id": "a", "text": "数组建立后不修改，反复查询区间和" },
+      { "id": "a", "text": "在线删除任意节点" },
       { "id": "b", "text": "每次查询前随机修改全部元素" },
-      { "id": "c", "text": "在线删除任意节点" },
+      { "id": "c", "text": "数组建立后不修改，反复查询区间和" },
       { "id": "d", "text": "寻找图的最短路" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "一次修改会影响其后的许多前缀，普通前缀和主要用于静态数组。"
   }
 ]

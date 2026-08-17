@@ -4,11 +4,11 @@
     "prompt": "因为 12=2^2*3，mu(12) 等于多少？",
     "options": [
       { "id": "a", "text": "-1" },
-      { "id": "b", "text": "0" },
-      { "id": "c", "text": "1" },
+      { "id": "b", "text": "1" },
+      { "id": "c", "text": "0" },
       { "id": "d", "text": "不存在" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "c",
     "explanation": "12 含有质因数平方 2^2，因此按照定义 mu(12)=0。"
   },
   {
@@ -40,11 +40,11 @@
     "prompt": "欧拉筛生成 i*p 时，如果 i%p==0，为什么应令 mu(i*p)=0？",
     "options": [
       { "id": "a", "text": "因为 i*p 一定是质数" },
-      { "id": "b", "text": "因为 i*p 含有平方因子 p^2" },
+      { "id": "b", "text": "因为 i*p 一定超过筛法上界" },
       { "id": "c", "text": "因为 i*p 有奇数个不同质因数" },
-      { "id": "d", "text": "因为 i*p 一定超过筛法上界" }
+      { "id": "d", "text": "因为 i*p 含有平方因子 p^2" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "d",
     "explanation": "p 已经整除 i，再乘一个 p 后，i*p 至少含有 p^2，所以莫比乌斯函数值为 0。"
   }
 ]

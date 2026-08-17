@@ -51,12 +51,12 @@
     "id": "extra-constraints",
     "prompt": "为什么出现二叉树或括号不一定能直接套 Catalan 数？",
     "options": [
-      { "id": "a", "text": "额外标号、权值或高度限制可能破坏标准一一对应" },
+      { "id": "a", "text": "括号序列永远不合法" },
       { "id": "b", "text": "Catalan 数只能用于字符串" },
       { "id": "c", "text": "二叉树没有左右儿子" },
-      { "id": "d", "text": "括号序列永远不合法" }
+      { "id": "d", "text": "额外标号、权值或高度限制可能破坏标准一一对应" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "必须确认题目对象与标准 Catalan 结构之间存在无遗漏、无重复的一一对应。"
   }
 ]

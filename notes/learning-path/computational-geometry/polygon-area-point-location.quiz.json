@@ -51,24 +51,24 @@
     "id": "half-open-crossing",
     "prompt": "射线计数对边的高度范围使用半开条件，主要避免什么？",
     "options": [
-      { "id": "a", "text": "同一个顶点被相邻两条边重复计数" },
+      { "id": "a", "text": "查询点坐标为负" },
       { "id": "b", "text": "多边形面积过大" },
       { "id": "c", "text": "顶点顺序改变" },
-      { "id": "d", "text": "查询点坐标为负" }
+      { "id": "d", "text": "同一个顶点被相邻两条边重复计数" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "共享顶点只归其中一条跨越边处理，奇偶或环绕数才稳定。"
   },
   {
     "id": "winding-result",
     "prompt": "简单多边形中，完成边界检查后，环绕数不为 0 表示什么？",
     "options": [
-      { "id": "a", "text": "查询点严格在多边形内部" },
-      { "id": "b", "text": "查询点一定是顶点" },
+      { "id": "a", "text": "查询点一定是顶点" },
+      { "id": "b", "text": "查询点严格在多边形内部" },
       { "id": "c", "text": "多边形顶点数为奇数" },
       { "id": "d", "text": "多边形面积为 0" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "边界绕查询点产生非零净环绕，说明该点位于内部。"
   }
 ]

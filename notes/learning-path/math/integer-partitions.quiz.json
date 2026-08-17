@@ -51,12 +51,12 @@
     "id": "distinct-parts",
     "prompt": "若每个加数最多使用一次，一维内层循环应怎样改变？",
     "options": [
-      { "id": "a", "text": "从 n 向 part 递减" },
+      { "id": "a", "text": "删除外层循环" },
       { "id": "b", "text": "仍从 part 向 n 递增" },
       { "id": "c", "text": "只访问 dp[0]" },
-      { "id": "d", "text": "删除外层循环" }
+      { "id": "d", "text": "从 n 向 part 递减" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "倒序更新避免本轮刚加入的 part 被再次使用，对应 0-1 背包。"
   }
 ]

@@ -51,12 +51,12 @@
     "id": "zero-polynomial",
     "prompt": "本文为什么把零多项式保存为 `{0}` 而不是空 vector？",
     "options": [
-      { "id": "a", "text": "为了安全访问常数项并保持统一容器不变量" },
+      { "id": "a", "text": "因为 vector 不能为空" },
       { "id": "b", "text": "因为零多项式有一个非零项" },
       { "id": "c", "text": "为了让次数严格等于 1" },
-      { "id": "d", "text": "因为 vector 不能为空" }
+      { "id": "d", "text": "为了安全访问常数项并保持统一容器不变量" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "保留一个零系数让接口始终可安全访问；degree 返回 0 只是代码约定。"
   }
 ]

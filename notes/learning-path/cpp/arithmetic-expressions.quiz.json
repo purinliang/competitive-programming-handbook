@@ -16,11 +16,11 @@
     "prompt": "在 C++17 中，表达式 `-7 / 3` 的结果是多少？",
     "options": [
       { "id": "a", "text": "`-3`" },
-      { "id": "b", "text": "`-2`" },
+      { "id": "b", "text": "`2.333...`" },
       { "id": "c", "text": "`2`" },
-      { "id": "d", "text": "`2.333...`" }
+      { "id": "d", "text": "`-2`" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "d",
     "explanation": "两个操作数都是整数，商的小数部分向零截去；$-2.333\\ldots$ 因而得到 `-2`。"
   },
   {
@@ -63,12 +63,12 @@
     "id": "unary-or-binary-minus",
     "prompt": "在 `int opposite = -a;` 中，`-` 是什么运算符？",
     "options": [
-      { "id": "a", "text": "二元减法" },
-      { "id": "b", "text": "一元取负" },
+      { "id": "a", "text": "一元取负" },
+      { "id": "b", "text": "二元减法" },
       { "id": "c", "text": "比较运算" },
       { "id": "d", "text": "赋值运算" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "a",
     "explanation": "这里的 `-` 只有一个操作数 `a`，因此是一元取负；`a - b` 中的同一符号才是二元减法。"
   },
   {

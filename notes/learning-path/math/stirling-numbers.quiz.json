@@ -15,12 +15,12 @@
     "id": "second-coefficient",
     "prompt": "第二类递推中，新元素加入已有结构的系数为什么是 k？",
     "options": [
-      { "id": "a", "text": "因为有 k 个已有集合可供选择" },
-      { "id": "b", "text": "因为每个集合有 k 个元素" },
+      { "id": "a", "text": "因为每个集合有 k 个元素" },
+      { "id": "b", "text": "因为有 k 个已有集合可供选择" },
       { "id": "c", "text": "因为 n 永远等于 k" },
       { "id": "d", "text": "因为排列有 k 个位置" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "在一份具体的 k 组划分中，新元素可以加入其中任意一组。"
   },
   {
@@ -51,12 +51,12 @@
     "id": "descending-update",
     "prompt": "一维 Stirling 递推为什么让 group 从大到小？",
     "options": [
-      { "id": "a", "text": "为了让 group-1 保持上一层 n-1 的值" },
+      { "id": "a", "text": "因为数组不能正向遍历" },
       { "id": "b", "text": "因为 group 必须为负数" },
       { "id": "c", "text": "为了跳过所有状态" },
-      { "id": "d", "text": "因为数组不能正向遍历" }
+      { "id": "d", "text": "为了让 group-1 保持上一层 n-1 的值" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "倒序避免同一轮刚更新的状态再次使用第 i 个元素。"
   }
 ]
