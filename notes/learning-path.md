@@ -882,7 +882,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | *990426 | 树分治：边分治 | `graph-theory/edge-decomposition.md` |
 | *990427 | 树分治：动态点分治 | `graph-theory/dynamic-centroid-decomposition.md` |
 | *990428 | 长链剖分 | `graph-theory/long-chain-decomposition.md` |
-| *990429 | 图：函数图 | [graph-theory/functional-graph.md](graph-theory/functional-graph.md) |
+| *990429 | 函数图 | [graph-theory/functional-graph.md](graph-theory/functional-graph.md) |
 
 ### 05 数学
 

@@ -715,7 +715,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | *060407 | 基环树 | 待审阅 | [unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
-| *990429 | 图：函数图 | 待审阅 | [functional-graph.md](graph-theory/functional-graph.md) |
+| *990429 | 函数图 | 待审阅 | [functional-graph.md](graph-theory/functional-graph.md) |
 | *990417 | 竞赛图 | 计划 | `graph-theory/tournament-graph.md` |
 | *990419 | 仙人掌 | 推迟 | `graph-theory/cactus-graph.md` |
 | *990425 | 弦图 | 推迟 | `graph-theory/chordal-graph.md` |
