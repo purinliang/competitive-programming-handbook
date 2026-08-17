@@ -15,36 +15,36 @@
     "id": "tail-padding",
     "prompt": "结构体末尾为什么可能有尾部填充？",
     "options": [
-      { "id": "a", "text": "让结构体数组中下一个元素仍满足整体对齐" },
-      { "id": "b", "text": "让最后一个成员自动变成数组" },
+      { "id": "a", "text": "让最后一个成员自动变成数组" },
+      { "id": "b", "text": "让结构体数组中下一个元素仍满足整体对齐" },
       { "id": "c", "text": "为了保存析构函数代码" },
       { "id": "d", "text": "尾部填充会让 sizeof 变成成员大小之和" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "数组元素间距是 sizeof(struct)，因此总大小也要让每个后续元素正确对齐。"
   },
   {
     "id": "layout-queries",
     "prompt": "`alignof(T)` 与 `offsetof(T, member)` 分别查询什么？",
     "options": [
-      { "id": "a", "text": "类型对齐要求与成员相对对象起点的字节偏移" },
+      { "id": "a", "text": "函数参数数量与返回类型" },
       { "id": "b", "text": "对象值与成员名称长度" },
-      { "id": "c", "text": "函数参数数量与返回类型" },
+      { "id": "c", "text": "类型对齐要求与成员相对对象起点的字节偏移" },
       { "id": "d", "text": "算法时间与空间复杂度" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "offsetof 只应按其规则用于标准布局类型，具体数值仍依赖当前实现。"
   },
   {
     "id": "member-order-size",
     "prompt": "调整成员声明顺序为什么可能改变 sizeof(struct)？",
     "options": [
-      { "id": "a", "text": "不同排列可能需要不同数量的对齐空隙" },
+      { "id": "a", "text": "sizeof 只计算第一个成员" },
       { "id": "b", "text": "成员类型会随顺序自动改变" },
       { "id": "c", "text": "编译器会删除排在后面的成员" },
-      { "id": "d", "text": "sizeof 只计算第一个成员" }
+      { "id": "d", "text": "不同排列可能需要不同数量的对齐空隙" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "先放对齐较大的成员经常减少空隙，但可读性和外部格式约束仍应优先考虑。"
   },
   {
@@ -63,12 +63,12 @@
     "id": "padding-comparison",
     "prompt": "为什么不能普遍用 `memcmp` 判断两个结构体的成员值是否相等？",
     "options": [
-      { "id": "a", "text": "填充字节可能不同，而且不是有效成员值" },
-      { "id": "b", "text": "memcmp 只能比较浮点数" },
+      { "id": "a", "text": "memcmp 只能比较浮点数" },
+      { "id": "b", "text": "填充字节可能不同，而且不是有效成员值" },
       { "id": "c", "text": "结构体不能包含任何字节" },
       { "id": "d", "text": "成员声明顺序每次运行都会变化" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "稳定比较应逐成员进行；原始对象布局也不应直接当作跨平台文件格式。"
   }
 ]

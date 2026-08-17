@@ -15,36 +15,36 @@
     "id": "row-major-offset",
     "prompt": "0-based 的 `int a[n][m]` 中，`a[i][j]` 前面有多少个 int？",
     "options": [
-      { "id": "a", "text": "`i * m + j`" },
-      { "id": "b", "text": "`j * n + i`" },
+      { "id": "a", "text": "`j * n + i`" },
+      { "id": "b", "text": "`i * m + j`" },
       { "id": "c", "text": "`i + j`" },
       { "id": "d", "text": "`n * m`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "前面先有 i 个完整行，每行 m 个元素，再加当前行前面的 j 个元素。"
   },
   {
     "id": "function-parameter-dimension",
     "prompt": "二维内置数组作为参数时，为什么第二维通常不能省略？",
     "options": [
-      { "id": "a", "text": "编译器需要知道一整行大小，才能计算跨行地址" },
+      { "id": "a", "text": "第一维会自动变成字符串" },
       { "id": "b", "text": "第二维只能等于一" },
-      { "id": "c", "text": "第一维会自动变成字符串" },
+      { "id": "c", "text": "编译器需要知道一整行大小，才能计算跨行地址" },
       { "id": "d", "text": "函数不能接收二维数组" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "只调整最外层数组；参数实际指向一整行，而行类型必须包含后续维度。"
   },
   {
     "id": "not-int-double-pointer",
     "prompt": "为什么普通 `int a[MAXN][MAXM]` 不能作为 `int**` 传入？",
     "options": [
-      { "id": "a", "text": "前者连续保存各行整数，后者要求当前位置保存行指针" },
+      { "id": "a", "text": "强制转换会自动重排全部内存" },
       { "id": "b", "text": "二维数组不能存整数" },
       { "id": "c", "text": "`int**` 只能指向字符" },
-      { "id": "d", "text": "强制转换会自动重排全部内存" }
+      { "id": "d", "text": "前者连续保存各行整数，后者要求当前位置保存行指针" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "二者类型和布局都不同，强制转换不能凭空建立一张行指针表。"
   },
   {
@@ -63,12 +63,12 @@
     "id": "custom-grid-indexing",
     "prompt": "本书自定义 Grid 为什么分配 `+5` 余量并留空第 0 行、第 0 列？",
     "options": [
-      { "id": "a", "text": "保持自定义对象统一的 1-based 语义并预留边界空间" },
-      { "id": "b", "text": "因为 vector 原生下标从 1 开始" },
+      { "id": "a", "text": "因为 vector 原生下标从 1 开始" },
+      { "id": "b", "text": "保持自定义对象统一的 1-based 语义并预留边界空间" },
       { "id": "c", "text": "因为第 0 格无法存整数" },
       { "id": "d", "text": "为了改变元素类型" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "底层仍是 0-based vector；逻辑对象主动忽略第 0 格，只在接口边界保留 STL 原生规则。"
   }
 ]

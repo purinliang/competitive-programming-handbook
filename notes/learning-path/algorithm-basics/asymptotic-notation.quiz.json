@@ -15,36 +15,36 @@
     "id": "big-omega-bound",
     "prompt": "若 `f(n)` 最终不小于 `g(n)` 的某个固定正数倍，应使用哪个记号？",
     "options": [
-      { "id": "a", "text": "大 Ω" },
-      { "id": "b", "text": "大 O" },
+      { "id": "a", "text": "大 O" },
+      { "id": "b", "text": "大 Ω" },
       { "id": "c", "text": "小 o" },
       { "id": "d", "text": "等号" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "大 Ω 给出渐近下界；它说明 f 的增长最终至少达到 g 的某个固定常数倍。"
   },
   {
     "id": "theta-two-sided",
     "prompt": "`f(n) = Θ(g(n))` 表示什么？",
     "options": [
-      { "id": "a", "text": "f 同时具有 g 的渐近上界和下界" },
+      { "id": "a", "text": "f 严格低阶于 g" },
       { "id": "b", "text": "f 一定逐点等于 g" },
-      { "id": "c", "text": "f 严格低阶于 g" },
+      { "id": "c", "text": "f 同时具有 g 的渐近上界和下界" },
       { "id": "d", "text": "f 只在 n 很小时接近 g" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "Θ 表示增长同阶，允许两者相差固定常数倍，而不要求每个 n 上数值相同。"
   },
   {
     "id": "little-o-strict",
     "prompt": "下面哪一个关系成立？",
     "options": [
-      { "id": "a", "text": "$n=o(n^2)$" },
+      { "id": "a", "text": "$2^n=o(n^3)$" },
       { "id": "b", "text": "$n=o(n)$" },
       { "id": "c", "text": "$n^2=o(n)$" },
-      { "id": "d", "text": "$2^n=o(n^3)$" }
+      { "id": "d", "text": "$n=o(n^2)$" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "小 o 表示严格低阶。n 相对 n² 的比例趋近于 0，而 n 与自身不是严格低阶关系。"
   },
   {
@@ -63,12 +63,12 @@
     "id": "case-vs-bound",
     "prompt": "关于“最坏情况”和“大 O”，哪项说法正确？",
     "options": [
-      { "id": "a", "text": "先选定最坏代价函数，再用大 O 等记号描述它的增长" },
-      { "id": "b", "text": "大 O 在定义上就是最坏情况" },
+      { "id": "a", "text": "大 O 在定义上就是最坏情况" },
+      { "id": "b", "text": "先选定最坏代价函数，再用大 O 等记号描述它的增长" },
       { "id": "c", "text": "大 Ω 在定义上就是最好情况" },
       { "id": "d", "text": "渐近记号不能描述平均代价函数" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "情况分类选择分析哪个函数，上界、下界和同阶记号描述该函数；两组概念彼此独立。"
   }
 ]

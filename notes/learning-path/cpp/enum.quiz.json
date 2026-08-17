@@ -15,36 +15,36 @@
     "id": "implicit-enumerator-values",
     "prompt": "`enum Code { FIRST = 10, SECOND, THIRD };` 中后两项的值是什么？",
     "options": [
-      { "id": "a", "text": "`11` 与 `12`" },
-      { "id": "b", "text": "`0` 与 `1`" },
+      { "id": "a", "text": "`0` 与 `1`" },
+      { "id": "b", "text": "`11` 与 `12`" },
       { "id": "c", "text": "都等于 `10`" },
       { "id": "d", "text": "每次运行随机生成" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "未显式指定的后续枚举项在前一项整数值上增加一。"
   },
   {
     "id": "names-over-values",
     "prompt": "逻辑只关心状态区别时，为什么应优先使用枚举项名称？",
     "options": [
-      { "id": "a", "text": "名称直接表达状态，不必依赖默认整数编码" },
+      { "id": "a", "text": "枚举项只能在注释中使用" },
       { "id": "b", "text": "枚举项没有任何整数表示" },
-      { "id": "c", "text": "枚举项只能在注释中使用" },
+      { "id": "c", "text": "名称直接表达状态，不必依赖默认整数编码" },
       { "id": "d", "text": "名称会自动降低算法复杂度" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "只有题目协议或公式明确依赖编码时，才需要为枚举项指定具体整数值。"
   },
   {
     "id": "integer-to-enum",
     "prompt": "标准 C++17 能否直接写 `Result result = 1;`？",
     "options": [
-      { "id": "a", "text": "不能，应检查输入后映射到合法枚举项" },
+      { "id": "a", "text": "只有在联合体中能" },
       { "id": "b", "text": "能，任何整数都自动成为任意枚举" },
       { "id": "c", "text": "只有整数为负时能" },
-      { "id": "d", "text": "只有在联合体中能" }
+      { "id": "d", "text": "不能，应检查输入后映射到合法枚举项" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "普通枚举项可以转换为整数，但反方向不能靠普通隐式赋值跨过类型边界。"
   },
   {
@@ -63,24 +63,24 @@
     "id": "exclusive-versus-flags",
     "prompt": "对象可以同时“可见”和“可移动”时，为什么不宜把两项塞进一个普通枚举？",
     "options": [
-      { "id": "a", "text": "它们是可同时成立的独立开关，不是互斥状态" },
-      { "id": "b", "text": "枚举只能表示浮点数" },
+      { "id": "a", "text": "枚举只能表示浮点数" },
+      { "id": "b", "text": "它们是可同时成立的独立开关，不是互斥状态" },
       { "id": "c", "text": "布尔值不能作为对象成员" },
       { "id": "d", "text": "枚举项不能拥有名称" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "少量独立属性可分别使用 bool，数量多时可根据需求使用位掩码。"
   },
   {
     "id": "union-tag",
     "prompt": "枚举怎样帮助使用 union？",
     "options": [
-      { "id": "a", "text": "作为标签记录当前应该读取哪个联合体成员" },
+      { "id": "a", "text": "取消成员共享存储" },
       { "id": "b", "text": "让联合体全部成员同时有效" },
-      { "id": "c", "text": "取消成员共享存储" },
+      { "id": "c", "text": "作为标签记录当前应该读取哪个联合体成员" },
       { "id": "d", "text": "自动管理任意复杂成员的生命周期" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "标签与每次写入必须同步；枚举只命名状态，不会自动维护联合体不变量。"
   }
 ]

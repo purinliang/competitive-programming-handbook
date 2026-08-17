@@ -3,12 +3,12 @@
     "id": "declaration-parts",
     "prompt": "在声明 `int score;` 中，`int` 和 `score` 分别是什么？",
     "options": [
-      { "id": "a", "text": "初值和类型" },
-      { "id": "b", "text": "类型和变量名" },
+      { "id": "a", "text": "类型和变量名" },
+      { "id": "b", "text": "初值和类型" },
       { "id": "c", "text": "变量名和类型" },
       { "id": "d", "text": "运算符和字面量" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "a",
     "explanation": "`int` 指定变量的类型，`score` 是后续代码用来找到这个变量的名称。"
   },
   {
@@ -40,23 +40,23 @@
     "prompt": "函数内执行 `int answer; cout << answer;` 有什么问题？",
     "options": [
       { "id": "a", "text": "`answer` 会由语言保证为 `0`" },
-      { "id": "b", "text": "读取了未初始化的局部整数，会导致未定义行为" },
+      { "id": "b", "text": "变量必须命名为 `x`" },
       { "id": "c", "text": "`cout` 不能输出整数" },
-      { "id": "d", "text": "变量必须命名为 `x`" }
+      { "id": "d", "text": "读取了未初始化的局部整数，会导致未定义行为" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "d",
     "explanation": "普通局部基本类型变量不会自动得到可依赖的零值；任何读取都必须发生在初始化或其他写入以后。"
   },
   {
     "id": "input-before-read",
     "prompt": "为什么 `int n; cin >> n; cout << n;` 在 OJ 保证输入合法时可以安全使用？",
     "options": [
-      { "id": "a", "text": "声明会自动把 `n` 设为 `1`" },
-      { "id": "b", "text": "`cin` 在输出以前先给 `n` 写入了确定值" },
+      { "id": "a", "text": "`cin` 在输出以前先给 `n` 写入了确定值" },
+      { "id": "b", "text": "声明会自动把 `n` 设为 `1`" },
       { "id": "c", "text": "未初始化变量只在数组中危险" },
       { "id": "d", "text": "输出会忽略 `n` 的值" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "a",
     "explanation": "变量虽然没有在声明时初始化，但成功的输入操作先写入了它；后续输出没有读取未确定的值。"
   },
   {

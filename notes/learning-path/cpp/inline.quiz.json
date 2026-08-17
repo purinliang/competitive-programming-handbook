@@ -15,36 +15,36 @@
     "id": "header-definition",
     "prompt": "inline 函数在语言规则上的重要用途是什么？",
     "options": [
-      { "id": "a", "text": "允许相同定义按规则出现在多个翻译单元中" },
-      { "id": "b", "text": "允许不同文件写出行为不同的同名函数" },
+      { "id": "a", "text": "允许不同文件写出行为不同的同名函数" },
+      { "id": "b", "text": "允许相同定义按规则出现在多个翻译单元中" },
       { "id": "c", "text": "自动把所有参数改成引用" },
       { "id": "d", "text": "让函数只能声明在 main 中" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "这让短函数定义可以放进公共头文件，同时仍需满足单一定义规则。"
   },
   {
     "id": "class-inline",
     "prompt": "直接在类定义内部给出函数体的成员函数通常怎样？",
     "options": [
-      { "id": "a", "text": "已经隐式具有 inline 属性" },
+      { "id": "a", "text": "自动成为纯虚函数" },
       { "id": "b", "text": "一定无法被调用" },
-      { "id": "c", "text": "自动成为纯虚函数" },
+      { "id": "c", "text": "已经隐式具有 inline 属性" },
       { "id": "d", "text": "必须再写一次宏定义" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "重复写 inline 没有必要，而且这仍不保证实际机器代码一定展开。"
   },
   {
     "id": "inline-variable",
     "prompt": "C++17 的 inline 变量主要解决什么场景？",
     "options": [
-      { "id": "a", "text": "让头文件中的变量定义可由多个翻译单元共同使用" },
+      { "id": "a", "text": "强迫变量位于调用栈" },
       { "id": "b", "text": "让局部变量不占存储" },
       { "id": "c", "text": "把整数自动变成函数" },
-      { "id": "d", "text": "强迫变量位于调用栈" }
+      { "id": "d", "text": "让头文件中的变量定义可由多个翻译单元共同使用" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "它与 inline 函数一样具有多翻译单元的定义语义，不代表变量被展开。"
   },
   {

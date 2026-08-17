@@ -15,36 +15,36 @@
     "id": "active-member",
     "prompt": "先写 `number.integer`，再写 `number.decimal` 后，应读取哪个成员？",
     "options": [
-      { "id": "a", "text": "刚写入的 `decimal` 当前有效成员" },
-      { "id": "b", "text": "仍然读取 `integer` 并期待保留旧值" },
+      { "id": "a", "text": "仍然读取 `integer` 并期待保留旧值" },
+      { "id": "b", "text": "刚写入的 `decimal` 当前有效成员" },
       { "id": "c", "text": "两个成员会自动相加" },
       { "id": "d", "text": "任何成员都不能再读取" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "写入新成员会复用同一段存储；旧成员不再是当前有效值。"
   },
   {
     "id": "inactive-read",
     "prompt": "为什么不能把读取非当前成员当成普通位模式转换？",
     "options": [
-      { "id": "a", "text": "标准 C++ 中这种读取通常是未定义行为" },
+      { "id": "a", "text": "点运算符不能用于联合体" },
       { "id": "b", "text": "所有联合体成员必须类型相同" },
-      { "id": "c", "text": "点运算符不能用于联合体" },
+      { "id": "c", "text": "标准 C++ 中这种读取通常是未定义行为" },
       { "id": "d", "text": "写入成员不会修改存储" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "某些实现可能显示稳定字节结果，但可移植竞赛代码不能依赖这种类型双关。"
   },
   {
     "id": "tag-needed",
     "prompt": "联合体对象保存到以后再读取时，为什么通常还需要一个标签？",
     "options": [
-      { "id": "a", "text": "union 本身不会记录当前有效成员是哪一个" },
+      { "id": "a", "text": "没有标签就不能声明联合体类型" },
       { "id": "b", "text": "标签会给每个成员分配独立空间" },
       { "id": "c", "text": "标签能让所有成员同时有效" },
-      { "id": "d", "text": "没有标签就不能声明联合体类型" }
+      { "id": "d", "text": "union 本身不会记录当前有效成员是哪一个" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "程序必须让标签和每次成员切换保持同步，才能在读取时选择正确字段。"
   },
   {
@@ -63,24 +63,24 @@
     "id": "union-size",
     "prompt": "关于 `sizeof(union)`，哪项准确？",
     "options": [
-      { "id": "a", "text": "至少容纳最大成员并满足对齐，不是成员大小简单求和" },
-      { "id": "b", "text": "永远等于一字节" },
+      { "id": "a", "text": "永远等于一字节" },
+      { "id": "b", "text": "至少容纳最大成员并满足对齐，不是成员大小简单求和" },
       { "id": "c", "text": "永远等于所有成员大小之和" },
       { "id": "d", "text": "与成员类型完全无关" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "具体字节数依赖成员类型、对齐要求与实现，不能固定套用某个平台结果。"
   },
   {
     "id": "complex-member",
     "prompt": "为什么基础竞赛代码不直接在 union 中手动切换 `string`、`vector` 等成员？",
     "options": [
-      { "id": "a", "text": "还要正确管理当前对象的构造、析构与切换" },
+      { "id": "a", "text": "联合体只能保存字符" },
       { "id": "b", "text": "这些类型没有任何构造和析构行为" },
-      { "id": "c", "text": "联合体只能保存字符" },
+      { "id": "c", "text": "还要正确管理当前对象的构造、析构与切换" },
       { "id": "d", "text": "标准容器不能作为任何类型的成员" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "复杂成员的生命周期管理很容易出错；需要安全多选一对象时优先考虑 variant。"
   }
 ]
