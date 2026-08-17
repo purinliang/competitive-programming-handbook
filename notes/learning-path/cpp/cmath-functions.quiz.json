@@ -48,18 +48,6 @@
     "explanation": "`round` 在正好位于两个整数中间时向远离零的方向取整，所以 `-2.5` 得到 `-3.0`。"
   },
   {
-    "id": "safe-positive-ceiling-division",
-    "prompt": "若 `a >= 0` 且 `b > 0`，下面哪项能避免计算 `a + b - 1`，并得到向上整除结果？",
-    "options": [
-      { "id": "a", "text": "`a / b`" },
-      { "id": "b", "text": "`a % b`" },
-      { "id": "c", "text": "`a / b + (a % b != 0)`" },
-      { "id": "d", "text": "`a / b - (a % b != 0)`" }
-    ],
-    "correctOptionId": "c",
-    "explanation": "整数商给出完整组数；只要余数非零，就还需要一组，因此再加 `1`。"
-  },
-  {
     "id": "integer-power-precision",
     "prompt": "题目要求得到精确整数幂时，为什么不能直接把 `pow` 当作通用整数模板？",
     "options": [
