@@ -596,7 +596,7 @@
 | 060406 | 拓扑排序 | 待审阅 | [topological-sort.md](graph-theory/topological-sort.md) |
 | 060501 | 最短路：Dijkstra | 待审阅 | [dijkstra.md](graph-theory/dijkstra.md) |
 | 060603 | 最小生成树：Kruskal | 待审阅 | [kruskal.md](graph-theory/kruskal.md) |
-| 060404 | 倍增 LCA | 定稿 | [lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
+| 060404 | 倍增 LCA | 待审阅 | [lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
 
 ### 概念与存储
 
@@ -695,7 +695,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 060404 | 倍增 LCA | 定稿 | [lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
+| 060404 | 倍增 LCA | 待审阅 | [lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
 | 080107 | 重链剖分 | 待审阅 | [heavy-light-decomposition.md](graph-theory/heavy-light-decomposition.md) |
 | 060405 | 树上差分 | 待审阅 | [tree-difference.md](graph-theory/tree-difference.md) |
 | *990406 | 虚树 | 推迟 | `graph-theory/virtual-tree.md` |

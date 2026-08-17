@@ -1,6 +1,6 @@
 # 倍增 LCA
 
-> 状态：定稿
+> 最近修订：2026-08-17 10:56 +10:00（未审阅）
 
 在 [有根树](rooted-trees.md) 中，每个节点都有唯一的父节点链一直通向根。给定两个节点 `u` 和 `v`，树上路径、距离、差分和很多子树问题都需要找到它们向上走时第一次汇合的节点。
 
@@ -96,7 +96,7 @@ up[root][k] = root
 本篇使用 [树的遍历：广度优先搜索（BFS）](tree-breadth-first-search.md) 按深度从小到大遍历。先初始化根：
 
 ```cpp
-depth[root] = 0;
+dep[root] = 0;
 up[root][0] = root;
 for (int k = 1; k <= LOG; k++) {
     up[root][k] = root;
@@ -117,7 +117,7 @@ for (int v : g[u]) {
         continue;
     }
 
-    depth[v] = depth[u] + 1;
+    dep[v] = dep[u] + 1;
     up[v][0] = u;
     for (int k = 1; k <= LOG; k++) {
         up[v][k] = up[up[v][k - 1]][k - 1];
@@ -158,15 +158,15 @@ int jump(int u, int step) {
 查询 LCA 时，先确保 `u` 不比 `v` 浅。如果顺序相反，交换两者：
 
 ```cpp
-if (depth[u] < depth[v]) {
+if (dep[u] < dep[v]) {
     swap(u, v);
 }
 ```
 
-两者的深度差是 `depth[u] - depth[v]`，用 `jump` 将较深的 `u` 向上抬到同一深度：
+两者的深度差是 `dep[u] - dep[v]`，用 `jump` 将较深的 `u` 向上抬到同一深度：
 
 ```cpp
-u = jump(u, depth[u] - depth[v]);
+u = jump(u, dep[u] - dep[v]);
 ```
 
 如果此时 `u == v`，原来较浅的节点就是另一个节点的祖先，也是 LCA：
@@ -209,10 +209,10 @@ return up[u][0];
 
 ## LOG 的取值
 
-本篇让 `LOG` 表示祖先表中允许的最大指数，因此第二维声明为 `LOG + 1`，下标范围是 $0$ 到 `LOG`：
+本篇让 `LOG` 表示祖先表中允许的最大指数，因此每个节点保存 `LOG + 1` 个祖先，下标范围是 $0$ 到 `LOG`：
 
 ```cpp
-int up[MAXN][LOG + 1];
+vector<array<int, LOG + 1>> up;
 ```
 
 只要 $2^{LOG}$ 不小于题目允许的最大节点数，就一定能覆盖树中的最大深度差。例如：
@@ -227,11 +227,10 @@ int up[MAXN][LOG + 1];
 完整代码约定 $n \le 5 \times 10^5$，所以使用：
 
 ```cpp
-const int MAXN = 5e5 + 5;
 const int LOG = 19;
 ```
 
-`MAXN` 是留有额外位置的数组容量，`LOG` 根据题目真正的 $5 \times 10^5$ 节点上限计算。换题时要同时根据新上限调整两者，不要只复制祖先表的列数。
+`LOG` 根据题目真正的 $5 \times 10^5$ 节点上限计算。完整代码中的第一维按本次输入分配为 `n + 5`；换题时仍要根据新的节点上限重新检查 `LOG`，不能因为容量改成动态分配就忘记祖先表的列数。
 
 ## 完整代码
 
@@ -245,18 +244,17 @@ const int LOG = 19;
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 5e5 + 5;
 const int LOG = 19;
 
 int n;
 int q;
 int root;
-int depth[MAXN];
-int up[MAXN][LOG + 1];
-vector<int> g[MAXN];
+vector<int> dep;
+vector<array<int, LOG + 1>> up;
+vector<vector<int>> g;
 
-void build(int root) {
-    depth[root] = 0;
+void build() {
+    dep[root] = 0;
     up[root][0] = root;
     for (int k = 1; k <= LOG; k++) {
         up[root][k] = root;
@@ -275,7 +273,7 @@ void build(int root) {
                 continue;
             }
 
-            depth[v] = depth[u] + 1;
+            dep[v] = dep[u] + 1;
             up[v][0] = u;
             for (int k = 1; k <= LOG; k++) {
                 up[v][k] = up[up[v][k - 1]][k - 1];
@@ -295,11 +293,11 @@ int jump(int u, int step) {
 }
 
 int lca(int u, int v) {
-    if (depth[u] < depth[v]) {
+    if (dep[u] < dep[v]) {
         swap(u, v);
     }
 
-    u = jump(u, depth[u] - depth[v]);
+    u = jump(u, dep[u] - dep[v]);
     if (u == v) {
         return u;
     }
@@ -315,6 +313,11 @@ int lca(int u, int v) {
 
 int main() {
     scanf("%d%d%d", &n, &q, &root);
+
+    dep.assign(n + 5, 0);
+    up.assign(n + 5, {});
+    g.assign(n + 5, {});
+
     for (int i = 1; i < n; i++) {
         int u;
         int v;
@@ -323,7 +326,7 @@ int main() {
         g[v].push_back(u);
     }
 
-    build(root);
+    build();
 
     while (q--) {
         int u;
@@ -376,9 +379,9 @@ int main() {
 检查 LCA 模板时，按算法步骤分层排查：
 
 1. 检查根的 `up[root][k]` 是否全部是 `root`。
-2. 对每个非根节点，检查 `depth[v] == depth[up[v][0]] + 1`。
+2. 对每个非根节点，检查 `dep[v] == dep[up[v][0]] + 1`。
 3. 抽查转移是否满足 `up[u][k] == up[up[u][k - 1]][k - 1]`。
-4. 单独测试 `jump(u, 0)`、`jump(u, 1)` 和 `jump(u, depth[u])`。
+4. 单独测试 `jump(u, 0)`、`jump(u, 1)` 和 `jump(u, dep[u])`。
 5. 对齐深度后，检查是否立即处理 `u == v`。
 6. 同时跳跃时是否从 `LOG` 降到 $0$，并且只在两个 $2^k$ 祖先不同时跳跃。
 
@@ -396,8 +399,8 @@ int main() {
 ## 基础练习
 
 1. 在本文示例树上手算 `LCA(5, 6)`、`LCA(5, 7)`、`LCA(4, 9)` 和 `LCA(8, 10)`。
-2. 为一条以节点 $1$ 为根的 $8$ 个节点长链列出每个节点的 `depth`、`up[u][0]`、`up[u][1]`、`up[u][2]` 和 `up[u][3]`。
-3. 使用 `jump` 回答“节点 `u` 向上 `step` 步是哪个节点”，题目保证 `step <= depth[u]`。
+2. 为一条以节点 $1$ 为根的 $8$ 个节点长链列出每个节点的 `dep`、`up[u][0]`、`up[u][1]`、`up[u][2]` 和 `up[u][3]`。
+3. 使用 `jump` 回答“节点 `u` 向上 `step` 步是哪个节点”，题目保证 `step <= dep[u]`。
 4. 在完整代码的样例树上穷举所有节点对，用“逐层向上”的直接方法对拍倍增 LCA 的结果。
 
 ## 扩展阅读
