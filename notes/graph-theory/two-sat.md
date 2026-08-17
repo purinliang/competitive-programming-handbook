@@ -1,6 +1,6 @@
 # 2-SAT
 
-> 最近修订：2026-08-17 09:58 +10:00（未审阅）
+> 最近修订：2026-08-17 11:20 +10:00（未审阅）
 
 有 $n$ 个活动，每个活动必须从两个时段 `0` 和 `1` 中选择一个。某些活动的特定
 时段不能同时使用，例如：
@@ -111,11 +111,15 @@ answer[i] = component[literal(i, 1)] < component[literal(i, 0)];
 输入 `n m`，随后每行给出 `a x b y`，表示 `a=x` 与 `b=y` 不能同时选择。
 若无解输出 `NO`；否则输出 `YES` 和每个活动选择的 0/1 时段。
 
+求解函数直接返回选择数组。输入保证 `n >= 1`，因此空数组不会与合法答案冲突，
+可以用来表示无解，不需要再通过引用参数带回答案。
+
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-int n, m;
+int n;
+int m;
 int timer;
 int component_count;
 vector<vector<int>> g;
@@ -166,7 +170,7 @@ void tarjan(int u) {
     }
 }
 
-bool solve_two_sat(vector<int>& answer) {
+vector<int> solve_two_sat() {
     int vertex_count = 2 * n;
 
     dfn.assign(vertex_count + 5, 0);
@@ -183,49 +187,46 @@ bool solve_two_sat(vector<int>& answer) {
         }
     }
 
-    answer.assign(n + 5, 0);
+    vector<int> answer(n + 5, 0);
 
     for (int i = 1; i <= n; i++) {
         int zero = literal(i, 0);
         int one = literal(i, 1);
 
         if (component[zero] == component[one]) {
-            return false;
+            return {};
         }
 
         answer[i] = component[one] < component[zero];
     }
 
-    return true;
+    return answer;
 }
 
 void solve() {
-    cin >> n >> m;
+    scanf("%d%d", &n, &m);
 
     g.assign(2 * n + 5, {});
 
     for (int i = 1; i <= m; i++) {
         int a, x, b, y;
-        cin >> a >> x >> b >> y;
+        scanf("%d%d%d%d", &a, &x, &b, &y);
         add_conflict(a, x, b, y);
     }
 
-    vector<int> answer;
-    if (!solve_two_sat(answer)) {
-        cout << "NO\n";
+    vector<int> answer = solve_two_sat();
+    if (answer.empty()) {
+        printf("NO\n");
         return;
     }
 
-    cout << "YES\n";
+    printf("YES\n");
     for (int i = 1; i <= n; i++) {
-        cout << answer[i] << (i == n ? '\n' : ' ');
+        printf("%d%c", answer[i], " \n"[i == n]);
     }
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
     solve();
     return 0;
 }
@@ -254,6 +255,12 @@ int main() {
 禁配关系时，蕴含图模型才完整。目标若是最大化满足条件数量，而不只是判断是否
 存在可行解，也已经是另一类优化问题。
 
+## 复杂度
+
+蕴含图有 $2n$ 个点；每条禁配限制加入两条边，因此共有 $2m$ 条边。建立图、计算
+强连通分量和构造答案都只线性扫描这些点与边，时间复杂度为 $O(n+m)$，空间复杂度
+为 $O(n+m)$。
+
 ## 常见错误
 
 - 把“不能同时选择”只加成一条单向蕴含；
@@ -265,6 +272,14 @@ int main() {
 - 条件涉及三个变量同时约束时，仍强行加入两条边当作 2-SAT；
 - 递归 Tarjan 面对极深图时没有留意调用栈限制。
 
+## 基础练习
+
+1. 把“`a` 与 `b` 至少一个选择 1”改写成两条蕴含边。
+2. 为两个活动构造一组互相矛盾的禁配条件，画出蕴含图并找出包含相反文字的 SCC。
+3. 修改完整程序，使每个变量表示一道题选择方案 A 或方案 B，并输出一组可行选择。
+4. 随机生成至多 `12` 个变量的禁配条件，枚举全部 $2^n$ 种选择验证是否有解，再与
+   2-SAT 结果对拍。
+
 ## 需要记住什么
 
 - 一个变量为什么要建立两个图节点？
@@ -273,3 +288,4 @@ int main() {
 - 为什么一个变量的两个选择在同一 SCC 中就无解？
 - 构造答案时为什么必须理解 SCC 编号顺序，而不能死记比较符号？
 - 哪些二元逻辑条件属于 2-SAT，哪些更高元条件不能直接套用？
+- 蕴含图为什么只有 $O(n+m)$ 规模？

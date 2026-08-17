@@ -48,6 +48,18 @@
     "explanation": "赋值依赖缩点图的顺序，编号方向变化时大小关系也要随之变化。"
   },
   {
+    "id": "two-sat-complexity",
+    "prompt": "有 n 个变量、m 条二元禁配限制时，基础 2-SAT 的时间复杂度是多少？",
+    "options": [
+      { "id": "a", "text": "$O(n+m)$" },
+      { "id": "b", "text": "$O(2^n)$" },
+      { "id": "c", "text": "$O(nm)$" },
+      { "id": "d", "text": "$O(n!)$" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "蕴含图有 2n 个点和 2m 条边，建图、SCC 与赋值都线性扫描图。"
+  },
+  {
     "id": "not-two-sat",
     "prompt": "下面哪个限制通常不能直接用基础 2-SAT 的两条蕴含边完整表达？",
     "options": [
