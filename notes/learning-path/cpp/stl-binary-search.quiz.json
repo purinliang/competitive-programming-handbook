@@ -82,17 +82,5 @@
     ],
     "correctOptionId": "a",
     "explanation": "二分排除一侧的证明必须使用建立当前顺序的同一关系。"
-  },
-  {
-    "id": "associative-member-bound",
-    "prompt": "为什么 `set` 查询边界应优先使用成员函数？",
-    "options": [
-      { "id": "a", "text": "set 没有迭代器" },
-      { "id": "b", "text": "通用算法在非随机访问迭代器上的移动可能是线性的" },
-      { "id": "c", "text": "成员函数会返回数组下标" },
-      { "id": "d", "text": "通用算法只能查询字符串" }
-    ],
-    "correctOptionId": "b",
-    "explanation": "容器成员函数能直接利用内部有序结构达到对数时间。"
   }
 ]
