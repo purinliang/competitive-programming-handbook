@@ -1,28 +1,28 @@
 # `switch`
 
-> 最近修订：2026-08-16 08:11 +10:00（未审阅）
+> 最近修订：2026-08-17 10:08 +10:00（未审阅）
 
-当程序只需要根据一个整数、字符或枚举值的若干离散取值选择操作时，可以使用 `switch`。它把“计算一次选择值”和“列出每个可能值”分开书写。
+当程序只需要根据一个整数的若干离散取值选择操作时，可以使用 `switch`。它把“计算一次选择值”和“列出每个可能值”分开书写。
 
 ## case 分支
 
-下面的程序根据运算符字符选择计算：
+下面约定操作编号 `1`、`2`、`3` 分别表示加法、减法和乘法：
 
 ```cpp
-switch (op) {
-case '+':
+switch (operation) {
+case 1:
     cout << a + b << '\n';
     break;
-case '-':
+case 2:
     cout << a - b << '\n';
     break;
-case '*':
+case 3:
     cout << a * b << '\n';
     break;
 }
 ```
 
-`switch` 先计算圆括号中的 `op`，再跳到值与它相等的 `case`。`case` 后必须是编译时可以确定的整数、字符或枚举常量，不能写 `score >= 60` 这样的范围条件。
+`switch` 先计算圆括号中的 `operation`，再跳到值与它相等的 `case`。`case` 后必须是编译时可以确定的整数常量，不能写 `score >= 60` 这样的范围条件。
 
 ## default 分支
 
@@ -70,7 +70,7 @@ default:
 
 ## 与 if 的选择
 
-`switch` 只能匹配离散值；[if 与 else](if-and-else.md) 可以表达范围和任意布尔条件。分数段、大小关系和多个条件的组合使用 `if` 更自然，菜单编号或单个运算符字符才可能适合 `switch`。竞赛中 `if` 的使用频率明显更高。
+`switch` 只能匹配离散值；[if 与 else](if-and-else.md) 可以表达范围和任意布尔条件。分数段、大小关系和多个条件的组合使用 `if` 更自然，菜单编号才可能适合 `switch`。竞赛中 `if` 的使用频率明显更高。
 
 ## 完整代码
 
@@ -81,17 +81,17 @@ using namespace std;
 void solve() {
     int a;
     int b;
-    char op;
-    cin >> a >> op >> b;
+    int operation;
+    cin >> operation >> a >> b;
 
-    switch (op) {
-    case '+':
+    switch (operation) {
+    case 1:
         cout << a + b << '\n';
         break;
-    case '-':
+    case 2:
         cout << a - b << '\n';
         break;
-    case '*':
+    case 3:
         cout << a * b << '\n';
         break;
     default:
@@ -109,7 +109,7 @@ int main() {
 输入：
 
 ```text
-3 * 5
+3 3 5
 ```
 
 输出：
