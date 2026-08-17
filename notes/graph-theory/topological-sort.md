@@ -318,7 +318,9 @@ $$
 
 ## 指定选择顺序
 
-普通题目只要求任意拓扑序，`queue` 已经足够。如果题目明确要求字典序最小的拓扑序，就要在所有当前零入度点中选择编号最小者，可以把普通队列替换成 [容器适配器：priority_queue](../cpp/priority-queue.md) 中的小根堆：
+普通题目只要求任意拓扑序，`queue` 已经足够。如果题目明确要求字典序最小的拓扑
+序，就要在所有当前零入度点中选择编号最小者，可以把普通队列替换成
+[`priority_queue`](../cpp/priority-queue.md) 中的小根堆：
 
 ```cpp
 priority_queue<int, vector<int>, greater<int>> q;
