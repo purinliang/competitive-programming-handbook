@@ -247,9 +247,3 @@ $$
 3. 为什么把 $a\bmod b$ 换成 $a-(a/b)b$ 就能得到上一层系数？
 4. 回代后的 $x,y$ 分别是什么？
 5. 为什么裴蜀系数不唯一？本算法是否会自动返回最小非负解？
-
-## 典型应用
-
-[线性不定方程](linear-diophantine-equations.md)、[线性同余方程](linear-congruences.md) 和
-[模逆元](modular-inverse.md) 会分别使用这组裴蜀系数解决具体问题；
-[中国剩余定理](chinese-remainder-theorem.md) 会用它合并同余条件。
