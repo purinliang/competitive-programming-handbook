@@ -15,48 +15,48 @@
     "id": "robot-state-fields",
     "prompt": "四向机器人为什么必须同时保存坐标与朝向？",
     "options": [
-      { "id": "a", "text": "下一条 F 需要用朝向决定怎样改变坐标" },
-      { "id": "b", "text": "坐标和朝向永远相等" },
+      { "id": "a", "text": "坐标和朝向永远相等" },
+      { "id": "b", "text": "下一条 F 需要用朝向决定怎样改变坐标" },
       { "id": "c", "text": "转弯会删除坐标" },
       { "id": "d", "text": "最终只输出朝向" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "b",
     "explanation": "只保存坐标不足以确定下一次前进的方向。"
   },
   {
     "id": "right-turn-update",
     "prompt": "方向按 N、E、S、W 编号为 0..3 时，右转怎样更新？",
     "options": [
-      { "id": "a", "text": "`(direction + 1) % 4`" },
+      { "id": "a", "text": "`direction = 0`" },
       { "id": "b", "text": "`direction + 4`" },
-      { "id": "c", "text": "`direction = 0`" },
+      { "id": "c", "text": "`(direction + 1) % 4`" },
       { "id": "d", "text": "`direction / 0`" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "顺时针移动到下一个状态，西方再右转会通过取模回到北方。"
   },
   {
     "id": "left-turn-nonnegative",
     "prompt": "左转为什么使用 `(direction + 3) % 4`？",
     "options": [
-      { "id": "a", "text": "加 3 与模 4 下减 1 等价，并避免负余数" },
+      { "id": "a", "text": "这样会改变坐标" },
       { "id": "b", "text": "左转需要连续转三整圈" },
       { "id": "c", "text": "C++ 不支持减法" },
-      { "id": "d", "text": "这样会改变坐标" }
+      { "id": "d", "text": "加 3 与模 4 下减 1 等价，并避免负余数" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "C++ 中 (-1)%4 仍为 -1，先加一个等价的正偏移可保持编号合法。"
   },
   {
     "id": "direction-table-order",
     "prompt": "`dx`、`dy` 与方向名称必须满足什么条件？",
     "options": [
-      { "id": "a", "text": "长度必须为 n" },
-      { "id": "b", "text": "三张表按同一方向编号顺序排列" },
+      { "id": "a", "text": "三张表按同一方向编号顺序排列" },
+      { "id": "b", "text": "长度必须为 n" },
       { "id": "c", "text": "所有值必须为正" },
       { "id": "d", "text": "每次命令后随机重排" }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "a",
     "explanation": "同一个 direction 下标必须同时取得匹配的坐标变化和输出名称。"
   },
   {
@@ -75,24 +75,24 @@
     "id": "simulation-invariant",
     "prompt": "进入第 i 轮前，本文循环不变量是什么？",
     "options": [
-      { "id": "a", "text": "state 等于执行前 i-1 条命令后的状态" },
+      { "id": "a", "text": "机器人始终在原点" },
       { "id": "b", "text": "所有命令已经执行" },
-      { "id": "c", "text": "机器人始终在原点" },
+      { "id": "c", "text": "state 等于执行前 i-1 条命令后的状态" },
       { "id": "d", "text": "direction 始终为 0" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "c",
     "explanation": "每个分支把正确旧状态转换为执行当前命令后的新状态。"
   },
   {
     "id": "simulation-streaming",
     "prompt": "什么时候可以不保存全部命令，把额外空间降为 O(1)？",
     "options": [
-      { "id": "a", "text": "后续不需要回看命令，可以读一条立即执行" },
+      { "id": "a", "text": "输出不包含坐标" },
       { "id": "b", "text": "命令必须全部相同" },
       { "id": "c", "text": "m 必须为负数" },
-      { "id": "d", "text": "输出不包含坐标" }
+      { "id": "d", "text": "后续不需要回看命令，可以读一条立即执行" }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "d",
     "explanation": "当前状态已概括过去影响，若不需复用输入就能流式处理。"
   }
 ]
