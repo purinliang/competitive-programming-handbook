@@ -129,6 +129,6 @@
       { "id": "d", "text": "只有完全图" }
     ],
     "correctOptionId": "b",
-    "explanation": "0-1 权需要 deque，任意非负权通常需要 Dijkstra；多源初始化思想仍可复用。"
+    "explanation": "普通 BFS 的分层性质要求每条边代价相同；其他边权需要不同的更新规则。"
   }
 ]

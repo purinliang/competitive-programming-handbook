@@ -21,11 +21,11 @@
       { "id": "d", "text": "维护树的左右儿子" }
     ],
     "correctOptionId": "b",
-    "explanation": "Kruskal 等算法关心全体边的顺序，不要求按起点快速分组。"
+    "explanation": "需要整体扫描或排序时，算法关心全体边的顺序，不要求按起点快速分组。"
   },
   {
     "id": "undirected-kruskal",
-    "prompt": "Kruskal 使用无向边集时，为什么通常每条原始边只保存一次？",
+    "prompt": "逐条处理无向图的原始边时，为什么通常每条边只在边集中保存一次？",
     "options": [
       { "id": "a", "text": "无向边没有端点" },
       { "id": "b", "text": "保存两次会让边权变成两倍" },
