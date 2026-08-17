@@ -5,7 +5,7 @@
     "options": [
       { "id": "a", "text": "栈、队列和双端队列" },
       { "id": "b", "text": "边集、邻接矩阵和邻接表" },
-      { "id": "c", "text": "DFS、BFS 和二分" },
+      { "id": "c", "text": "排序、二分和枚举" },
       { "id": "d", "text": "点权、边权和度数" }
     ],
     "correctOptionId": "b",
@@ -73,7 +73,7 @@
   },
   {
     "id": "dfs-representation",
-    "prompt": "DFS 需要反复枚举当前点的出边时，通常优先使用哪种存储？",
+    "prompt": "一个算法需要反复枚举当前点的出边时，通常优先使用哪种存储？",
     "options": [
       { "id": "a", "text": "未经分组的普通边集" },
       { "id": "b", "text": "邻接矩阵，无论点数多大" },
@@ -81,7 +81,7 @@
       { "id": "d", "text": "只保存每个点的度数" }
     ],
     "correctOptionId": "c",
-    "explanation": "邻接表直接定位 g[u]，枚举成本与 u 的实际出度同阶，适合大多数图遍历。"
+    "explanation": "邻接表直接定位 g[u]，枚举成本与 u 的实际出度同阶，适合反复沿边访问其他点。"
   },
   {
     "id": "adjacency-implementations",

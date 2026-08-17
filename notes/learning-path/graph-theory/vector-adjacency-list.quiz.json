@@ -85,7 +85,7 @@
   },
   {
     "id": "representation-choice",
-    "prompt": "普通 DFS、BFS 只需枚举当前点出边时，为什么默认使用 vector 邻接表？",
+    "prompt": "只需反复枚举当前点出边时，为什么默认使用 vector 邻接表？",
     "options": [
       { "id": "a", "text": "它能保证所有边权非负" },
       { "id": "b", "text": "它会自动求出最短路" },
