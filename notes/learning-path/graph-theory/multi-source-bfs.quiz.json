@@ -84,18 +84,6 @@
     "explanation": "虚拟 BFS 中真实起点组成第一层；直接把它们初始化为距离 0，相当于省掉虚拟边。"
   },
   {
-    "id": "topological-difference",
-    "prompt": "多源 BFS 与 Kahn 拓扑排序虽然都可能初始入队多个点，核心区别是什么？",
-    "options": [
-      { "id": "a", "text": "只有多源 BFS 使用队列" },
-      { "id": "b", "text": "前者维护到给定起点集合的距离；后者维护剩余入度和约束顺序" },
-      { "id": "c", "text": "二者的起点都必须入度为零" },
-      { "id": "d", "text": "二者都必须删除无向边" }
-    ],
-    "correctOptionId": "b",
-    "explanation": "相同的队列外形不代表同一算法；初始点来源、状态和目标都不同。"
-  },
-  {
     "id": "unreachable-component",
     "prompt": "某个连通分量中没有任何起点时，其中的点最终保存什么？",
     "options": [
