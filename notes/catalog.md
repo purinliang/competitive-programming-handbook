@@ -609,7 +609,7 @@
 | 040305 | 图的存储：邻接矩阵 | 待审阅 | [adjacency-matrix.md](graph-theory/adjacency-matrix.md) |
 | 040306 | 图的存储：邻接表（`vector` 实现） | 待审阅 | [vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
 | 060601 | 图的存储：边集 | 定稿 | [edge-list.md](graph-theory/edge-list.md) |
-| 070204 | 图的存储：邻接表（链式前向星实现） | 定稿 | [chained-forward-star.md](graph-theory/chained-forward-star.md) |
+| 070204 | 图的存储：邻接表（链式前向星实现） | 待审阅 | [chained-forward-star.md](graph-theory/chained-forward-star.md) |
 
 ### 遍历
 
@@ -675,7 +675,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 070205 | 欧拉问题：路径、回路与图 | 定稿 | [eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
+| 070205 | 欧拉问题：路径、回路与图 | 待审阅 | [eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
 | 070206 | 哈密顿问题：路径、回路与图 | 定稿 | [hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
 | *070206e1 | 哈密顿问题：小规模回溯 | 定稿 | [hamiltonian-backtracking.md](graph-theory/hamiltonian-backtracking.md) |
 

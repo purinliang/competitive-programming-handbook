@@ -1,6 +1,6 @@
 # 欧拉问题：路径、回路与图
 
-> 状态：定稿
+> 最近修订：2026-08-17 10:58 +10:00（未审阅）
 
 普通路径关心经过哪些点；欧拉问题换了一个目标：图中的每条原始边都必须恰好使用一次。
 
@@ -146,7 +146,7 @@ reverse(answer.begin(), answer.end());
 using namespace std;
 
 const int MAXN = 2e5 + 5;
-const int MAXM = 4e5 + 5;
+const int MAXM = 2 * MAXN;
 
 struct Edge {
     int v;
@@ -155,7 +155,7 @@ struct Edge {
 
 Edge e[MAXM];
 int head[MAXN];
-int degree[MAXN];
+int deg[MAXN];
 bool used[MAXM];
 int cnt;
 
@@ -176,13 +176,13 @@ int main() {
         scanf("%d%d", &u, &v);
         add_edge(u, v);
         add_edge(v, u);
-        degree[u]++;
-        degree[v]++;
+        deg[u]++;
+        deg[v]++;
     }
 
     vector<int> odd;
     for (int u = 1; u <= n; u++) {
-        if (degree[u] % 2 == 1) {
+        if (deg[u] % 2 == 1) {
             odd.push_back(u);
         }
     }
@@ -197,7 +197,7 @@ int main() {
         start = odd[0];
     } else {
         for (int u = 1; u <= n; u++) {
-            if (degree[u] > 0) {
+            if (deg[u] > 0) {
                 start = u;
                 break;
             }
@@ -227,7 +227,7 @@ int main() {
         path_stack.push_back(e[i].v);
     }
 
-    if (answer.size() != static_cast<size_t>(m + 1)) {
+    if ((int)answer.size() != m + 1) {
         printf("No Euler path\n");
         return 0;
     }
