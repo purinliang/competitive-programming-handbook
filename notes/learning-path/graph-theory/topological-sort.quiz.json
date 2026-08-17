@@ -46,5 +46,17 @@
     ],
     "correctOptionId": "d",
     "explanation": "每一步在当前合法选择中取最小值，才保持全部先后约束并得到最小序。"
+  },
+  {
+    "id": "multi-source-bfs-difference",
+    "prompt": "Kahn 拓扑排序与多源 BFS 都可能在开始时入队多个点，二者的核心区别是什么？",
+    "options": [
+      { "id": "a", "text": "只有拓扑排序使用队列" },
+      { "id": "b", "text": "二者都会删除无向边并计算距离" },
+      { "id": "c", "text": "拓扑排序维护剩余入度和约束顺序，多源 BFS 维护到给定起点集合的距离" },
+      { "id": "d", "text": "二者的初始点都必须由题目直接指定" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "相同的队列外形不代表同一算法；它们的初始点来源、状态变化和目标都不同。"
   }
 ]
