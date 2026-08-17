@@ -1,6 +1,6 @@
 # 树的直径与中心
 
-> 最近修订：2026-08-14 02:15 +10:00（未审阅）
+> 最近修订：2026-08-17 11:05 +10:00（未审阅）
 
 [无根树](unrooted-trees.md) 中任意两个节点之间恰好只有一条路径。若要在一棵树上铺设一条覆盖范围尽量大的主干线路，自然会寻找树中最长的路径；若要设置一个服务点，让最远节点也尽量靠近，则需要寻找树的中心。
 
@@ -62,30 +62,30 @@ n 个起点 × 每次 O(n) = O(n²)
 任意起点 --BFS--> s --BFS--> t
 ```
 
-第二次 BFS 令 `parent[v]` 记录第一次发现 `v` 时来自哪个节点。完成以后，从 `t` 沿父节点回到 `s`，就能恢复整条直径路径。
+第二次 BFS 令 `par[v]` 记录第一次发现 `v` 时来自哪个节点。完成以后，从 `t` 沿
+父节点回到 `s`，就能恢复整条直径路径。
 
-## 一次 BFS 需要返回什么
+## 一次 BFS 需要维护什么
 
-定义一次 BFS 的结果：
+整道题只维护一棵输入树，邻接表 `g`、距离 `dist` 和父节点 `par` 都是题目级共享
+状态。一次 BFS 只需要返回最远节点：
 
 ```cpp
-struct bfs_result {
-    int farthest;
-    vector<int> dist;
-    vector<int> parent;
-};
+vector<vector<int>> g;
+vector<int> dist;
+vector<int> par;
 ```
 
 - `farthest` 是距离起点最远的一个节点；
 - `dist[u]` 是起点到 `u` 的距离，`-1` 表示尚未访问；
-- `parent[u]` 是 BFS 树中 `u` 的父节点，用于恢复路径。
+- `par[u]` 是 BFS 树中 `u` 的父节点，用于恢复路径。
 
 起点距离为 `0`，没有父节点：
 
 ```cpp
-int farthest = start;
-dist[start] = 0;
-q.push(start);
+int farthest = s;
+dist[s] = 0;
+q.push(s);
 ```
 
 每次取出节点 `u` 时，用已经算出的距离更新最远节点：
@@ -106,7 +106,7 @@ for (int v : g[u]) {
         continue;
     }
     dist[v] = dist[u] + 1;
-    parent[v] = u;
+    par[v] = u;
     q.push(v);
 }
 ```
@@ -114,14 +114,14 @@ for (int v : g[u]) {
 完整辅助函数为：
 
 ```cpp
-bfs_result bfs(int n, int start, const vector<vector<int>>& g) {
-    vector<int> dist(n + 5, -1);
-    vector<int> parent(n + 5, 0);
+int bfs(int s) {
+    dist.assign(n + 5, -1);
+    par.assign(n + 5, 0);
     queue<int> q;
 
-    int farthest = start;
-    dist[start] = 0;
-    q.push(start);
+    int farthest = s;
+    dist[s] = 0;
+    q.push(s);
 
     while (!q.empty()) {
         int u = q.front();
@@ -136,12 +136,12 @@ bfs_result bfs(int n, int start, const vector<vector<int>>& g) {
                 continue;
             }
             dist[v] = dist[u] + 1;
-            parent[v] = u;
+            par[v] = u;
             q.push(v);
         }
     }
 
-    return {farthest, dist, parent};
+    return farthest;
 }
 ```
 
@@ -152,21 +152,20 @@ bfs_result bfs(int n, int start, const vector<vector<int>>& g) {
 第一次 BFS 只需要端点 `s`：
 
 ```cpp
-int s = bfs(n, 1, g).farthest;
+int s = bfs(1);
 ```
 
-第二次 BFS 保留完整结果：
+第二次 BFS 返回另一端；此时全局 `dist` 与 `par` 保存的正是从 `s` 出发的结果：
 
 ```cpp
-bfs_result result = bfs(n, s, g);
-int t = result.farthest;
+int t = bfs(s);
 ```
 
-此时直径长度就是 `result.dist[t]`。从 `t` 沿父节点不断向上，直到 `s`：
+此时直径长度就是 `dist[t]`。从 `t` 沿父节点不断向上，直到 `s`：
 
 ```cpp
 vector<int> path;
-for (int u = t; u != 0; u = result.parent[u]) {
+for (int u = t; u != 0; u = par[u]) {
     path.push_back(u);
     if (u == s) {
         break;
@@ -179,7 +178,7 @@ for (int u = t; u != 0; u = result.parent[u]) {
 若直径长度为 `D`，路径恰好含有 `D + 1` 个节点，代码中应满足：
 
 ```cpp
-(int)path.size() == result.dist[t] + 1
+(int)path.size() == dist[t] + 1
 ```
 
 ## 树的中心
@@ -206,7 +205,7 @@ $$
 `path` 有 `D + 1` 个节点，使用 STL 下标 `0..D`。中间位置可以直接计算：
 
 ```cpp
-int length = result.dist[t];
+int length = dist[t];
 vector<int> centers = {path[length / 2]};
 if (length % 2 == 1) {
     centers.push_back(path[length / 2 + 1]);
@@ -235,20 +234,19 @@ struct diameter_result {
     vector<int> centers;
 };
 
-diameter_result find_diameter_and_center(int n, const vector<vector<int>>& g) {
-    int s = bfs(n, 1, g).farthest;
-    bfs_result result = bfs(n, s, g);
-    int t = result.farthest;
+diameter_result find_diameter_and_center() {
+    int s = bfs(1);
+    int t = bfs(s);
 
     vector<int> path;
-    for (int u = t; u != 0; u = result.parent[u]) {
+    for (int u = t; u != 0; u = par[u]) {
         path.push_back(u);
         if (u == s) {
             break;
         }
     }
 
-    int length = result.dist[t];
+    int length = dist[t];
     vector<int> centers = {path[length / 2]};
     if (length % 2 == 1) {
         centers.push_back(path[length / 2 + 1]);
@@ -263,23 +261,21 @@ diameter_result find_diameter_and_center(int n, const vector<vector<int>>& g) {
 
 ```cpp
 #include <bits/stdc++.h>
-
 using namespace std;
 
-struct bfs_result {
-    int farthest;
-    vector<int> dist;
-    vector<int> parent;
-};
+int n;
+vector<vector<int>> g;
+vector<int> dist;
+vector<int> par;
 
-bfs_result bfs(int n, int start, const vector<vector<int>>& g) {
-    vector<int> dist(n + 5, -1);
-    vector<int> parent(n + 5, 0);
+int bfs(int s) {
+    dist.assign(n + 5, -1);
+    par.assign(n + 5, 0);
     queue<int> q;
 
-    int farthest = start;
-    dist[start] = 0;
-    q.push(start);
+    int farthest = s;
+    dist[s] = 0;
+    q.push(s);
 
     while (!q.empty()) {
         int u = q.front();
@@ -294,12 +290,12 @@ bfs_result bfs(int n, int start, const vector<vector<int>>& g) {
                 continue;
             }
             dist[v] = dist[u] + 1;
-            parent[v] = u;
+            par[v] = u;
             q.push(v);
         }
     }
 
-    return {farthest, dist, parent};
+    return farthest;
 }
 
 struct diameter_result {
@@ -308,20 +304,19 @@ struct diameter_result {
     vector<int> centers;
 };
 
-diameter_result find_diameter_and_center(int n, const vector<vector<int>>& g) {
-    int s = bfs(n, 1, g).farthest;
-    bfs_result result = bfs(n, s, g);
-    int t = result.farthest;
+diameter_result find_diameter_and_center() {
+    int s = bfs(1);
+    int t = bfs(s);
 
     vector<int> path;
-    for (int u = t; u != 0; u = result.parent[u]) {
+    for (int u = t; u != 0; u = par[u]) {
         path.push_back(u);
         if (u == s) {
             break;
         }
     }
 
-    int length = result.dist[t];
+    int length = dist[t];
     vector<int> centers = {path[length / 2]};
     if (length % 2 == 1) {
         centers.push_back(path[length / 2 + 1]);
@@ -329,11 +324,10 @@ diameter_result find_diameter_and_center(int n, const vector<vector<int>>& g) {
     return {length, path, centers};
 }
 
-int main() {
-    int n;
+void solve() {
     scanf("%d", &n);
 
-    vector<vector<int>> g(n + 5);
+    g.assign(n + 5, {});
     for (int i = 1; i < n; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
@@ -341,7 +335,7 @@ int main() {
         g[v].push_back(u);
     }
 
-    diameter_result answer = find_diameter_and_center(n, g);
+    diameter_result answer = find_diameter_and_center();
     printf("%d\n", answer.length);
     for (int i = 0; i < (int)answer.path.size(); i++) {
         printf("%d%c", answer.path[i], " \n"[i + 1 == (int)answer.path.size()]);
@@ -350,6 +344,10 @@ int main() {
         printf("%d%c", answer.centers[i],
                " \n"[i + 1 == (int)answer.centers.size()]);
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -382,7 +380,9 @@ int main() {
 
 ## 正确性
 
-第一次 BFS 从任意节点找到最远节点 `s`。根据树的最远点性质，`s` 是某条直径的端点。第二次 BFS 从 `s` 找到最远节点 `t`，因此 `s` 到 `t` 的唯一路径达到树中最大距离，是一条直径；`parent` 恢复的正是这条路径。
+第一次 BFS 从任意节点找到最远节点 `s`。根据树的最远点性质，`s` 是某条直径的
+端点。第二次 BFS 从 `s` 找到最远节点 `t`，因此 `s` 到 `t` 的唯一路径达到树中
+最大距离，是一条直径；`par` 恢复的正是这条路径。
 
 直径中点到两个端点的最大距离是 $\lceil D/2\rceil$。若它到其他节点更远，就能把该节点与直径一端连接成更长路径；而任何候选中心到直径两端之一的距离都至少为 $\lceil D/2\rceil$。所以取出的一个或两个中间节点恰好是树的全部中心。
 
@@ -438,7 +438,7 @@ int main() {
 1. 树的直径长度和直径路径分别指什么？直径是否一定唯一？
 2. 为什么任意起点不能只进行一次 BFS 就得到直径？
 3. 两次 BFS 的起点与最远点怎样依次变化？
-4. 第二次 BFS 为什么需要保存 `parent`？
+4. 第二次 BFS 为什么需要保存 `par`？
 5. 直径长度 `D` 与路径节点数有什么关系？
 6. 树的中心按照什么量定义？
 7. `D` 为偶数或奇数时分别有几个中心？
