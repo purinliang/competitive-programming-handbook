@@ -1,6 +1,6 @@
 # 最短路：0-1 BFS
 
-> 最近修订：2026-08-14 02:01 +10:00（未审阅）
+> 最近修订：2026-08-17 10:53 +10:00（未审阅）
 
 普通 BFS 能在无权图中求最少边数，因为每经过一条边，路径长度都恰好增加 `1`。现在考虑一张带权图，每条边的权值只能是 `0` 或 `1`：权值 `0` 可以表示免费操作，权值 `1` 可以表示需要付出一次代价的操作。
 
@@ -23,12 +23,12 @@
 dist[u]
 ```
 
-表示从起点 `start` 到点 `u` 的最小边权和。尚未找到路径时使用一个足够大的 `INF`：
+表示从起点 `s` 到点 `u` 的最小边权和。尚未找到路径时使用一个足够大的 `INF`：
 
 ```cpp
 const int INF = 1e9;
 vector<int> dist(n + 5, INF);
-dist[start] = 0;
+dist[s] = 0;
 ```
 
 所有边权都非负，因此一条最短路不需要重复经过环；删除环不会增加总费用。简单路径最多经过 $n-1$ 条边，每条边权至多为 `1`，所以可达点的最短距离至多为 $n-1$。竞赛常见点数下，`int` 和 `INF = 1e9` 已经足够。
@@ -93,7 +93,7 @@ if (w == 0) {
 
 ```cpp
 deque<pair<int, int>> q;
-q.push_front({0, start});
+q.push_front({0, s});
 ```
 
 取出时命名两个部分：
@@ -218,13 +218,17 @@ using namespace std;
 
 const int INF = 1e9;
 
-vector<int> zero_one_bfs(int n, const vector<vector<pair<int, int>>>& g,
-                         int start) {
-    vector<int> dist(n + 5, INF);
+int n;
+int m;
+vector<vector<pair<int, int>>> g;
+vector<int> dist;
+
+void zero_one_bfs(int s) {
+    dist.assign(n + 5, INF);
     deque<pair<int, int>> q;
 
-    dist[start] = 0;
-    q.push_front({0, start});
+    dist[s] = 0;
+    q.push_front({0, s});
 
     while (!q.empty()) {
         auto [current_dist, u] = q.front();
@@ -248,26 +252,28 @@ vector<int> zero_one_bfs(int n, const vector<vector<pair<int, int>>>& g,
             }
         }
     }
-
-    return dist;
 }
 
-int main() {
-    int n, m, start;
-    scanf("%d%d%d", &n, &m, &start);
+void solve() {
+    int s;
+    scanf("%d%d%d", &n, &m, &s);
 
-    vector<vector<pair<int, int>>> g(n + 5);
+    g.assign(n + 5, {});
     for (int i = 1; i <= m; i++) {
         int u, v, w;
         scanf("%d%d%d", &u, &v, &w);
         g[u].push_back({v, w});
     }
 
-    vector<int> dist = zero_one_bfs(n, g, start);
+    zero_one_bfs(s);
     for (int u = 1; u <= n; u++) {
         int answer = dist[u] == INF ? -1 : dist[u];
         printf("%d%c", answer, " \n"[u == n]);
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -306,10 +312,11 @@ int main() {
 需要恢复一条最短路径时，在成功松弛点 `v` 的同一位置记录：
 
 ```cpp
-parent[v] = u;
+par[v] = u;
 ```
 
-距离后来再次改善时，`parent[v]` 也会被新的前驱覆盖。算法结束后，从终点沿 `parent` 回到起点并反转，就得到一条最小费用路径。
+距离后来再次改善时，`par[v]` 也会被新的前驱覆盖。算法结束后，从终点沿 `par`
+回到起点并反转，就得到一条最小费用路径。
 
 若存在多条费用相同的路径，严格松弛不会为相等费用替换父亲，最终保留哪一条取决于边和队列的处理顺序。
 
@@ -351,14 +358,15 @@ parent[v] = u;
 
 ### 把队列项解释成路径
 
-`deque` 只保存待处理状态，不直接保存完整路径。需要输出路径时另设 `parent`，并在成功松弛时同步修改。
+`deque` 只保存待处理状态，不直接保存完整路径。需要输出路径时另设 `par`，并在成功
+松弛时同步修改。
 
 ## 基础练习
 
 1. 手算示例中点 `2` 从距离 `1` 改进到 `0` 的过程，并指出旧队列项何时被跳过。
 2. 把示例中的边 `3 -> 2` 权值改成 `1`，重新计算全部最短距离和队列顺序。
 3. 给定一种免费移动和一种收费移动，建立 `0`、`1` 边并求最少收费次数。
-4. 增加 `parent` 数组，恢复从起点到指定终点的一条最小费用路径。
+4. 增加 `par` 数组，恢复从起点到指定终点的一条最小费用路径。
 5. 把模板改成无向图，并加入自环、重边和不可达点测试。
 6. 随机生成小规模 `0`、`1` 带权图，用 Bellman–Ford 反复松弛全部边，与 0-1 BFS 对拍。
 
