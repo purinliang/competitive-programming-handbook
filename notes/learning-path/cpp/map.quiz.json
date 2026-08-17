@@ -130,17 +130,5 @@
     ],
     "correctOptionId": "c",
     "explanation": "有序关联容器在动态维护顺序的同时，为常用单键操作提供对数复杂度。"
-  },
-  {
-    "id": "frequency-map-vs-multiset",
-    "prompt": "只关心每个数值的出现次数时，`map<value, count>` 相比 `multiset` 的主要优势是什么？",
-    "options": [
-      { "id": "a", "text": "能够让键自动无序" },
-      { "id": "b", "text": "每个不同键只存一项，查询次数不必遍历全部重复副本" },
-      { "id": "c", "text": "所有操作都变成 O(1)" },
-      { "id": "d", "text": "可以通过位置下标访问第 k 个键" }
-    ],
-    "correctOptionId": "b",
-    "explanation": "总元素很多但不同键较少时，显式计数可节省存储，并把一次次数查询保持为 O(log n)。"
   }
 ]
