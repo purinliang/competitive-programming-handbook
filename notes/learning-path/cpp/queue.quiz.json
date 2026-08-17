@@ -161,34 +161,10 @@
       },
       {
         "id": "d",
-        "text": "改用真正提供所需接口的 deque 或 vector"
+        "text": "承认普通队列不适合，并选择真正支持所需操作的结构"
       }
     ],
     "correctOptionId": "d",
     "explanation": "queue 的受限接口是在表达 FIFO；需要其他操作说明问题结构不同。"
-  },
-  {
-    "id": "queue-versus-priority",
-    "prompt": "`queue` 与 `priority_queue` 的取出顺序有什么根本差别？",
-    "options": [
-      {
-        "id": "a",
-        "text": "两者都固定取最小值"
-      },
-      {
-        "id": "b",
-        "text": "queue 按进入先后，priority_queue 按比较规则的优先级"
-      },
-      {
-        "id": "c",
-        "text": "queue 按优先级，priority_queue 按进入先后"
-      },
-      {
-        "id": "d",
-        "text": "两者没有任何顺序语义"
-      }
-    ],
-    "correctOptionId": "b",
-    "explanation": "名称相近不代表顺序相同；一个是 FIFO，一个动态维护最高优先级。"
   }
 ]
