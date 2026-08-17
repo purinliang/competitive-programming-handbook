@@ -1,6 +1,6 @@
 # 拓扑排序
 
-> 最近修订：2026-08-17 10:17 +10:00（未审阅）
+> 最近修订：2026-08-17 11:14 +10:00（未审阅）
 
 有些任务必须满足先后关系：先修课程完成后才能学习后续课程，源文件准备好以后才能编译依赖它的目标，某一步工作完成后才能开始下一步。
 
@@ -208,17 +208,24 @@ if ((int)order.size() != n) {
 
 程序读取 $n$ 个点、$m$ 条有向边。存在拓扑序时输出任意一份；存在有向环时输出 `-1`。
 
-`topological_sort` 的 `indegree` 参数按值传递，因为函数需要把它当作“剩余入度”持续减少，而调用者保存的原图入度不必随算法一起被破坏。复制需要 $O(n)$ 时间和空间，不改变总体复杂度。
+邻接表 `g` 和原图入度 `indegree` 都是题目级共享状态。算法内部复制一份
+`current_indegree` 作为剩余入度，避免破坏原图信息；这次复制需要 $O(n)$ 时间和
+空间，不改变总体复杂度。
 
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> topological_sort(int n, const vector<vector<int>>& g,
-                             vector<int> indegree) {
+int n;
+int m;
+vector<vector<int>> g;
+vector<int> indegree;
+
+vector<int> topological_sort() {
+    vector<int> current_indegree = indegree;
     queue<int> q;
     for (int u = 1; u <= n; u++) {
-        if (indegree[u] == 0) {
+        if (current_indegree[u] == 0) {
             q.push(u);
         }
     }
@@ -232,8 +239,8 @@ vector<int> topological_sort(int n, const vector<vector<int>>& g,
         order.push_back(u);
 
         for (int v : g[u]) {
-            indegree[v]--;
-            if (indegree[v] == 0) {
+            current_indegree[v]--;
+            if (current_indegree[v] == 0) {
                 q.push(v);
             }
         }
@@ -242,12 +249,11 @@ vector<int> topological_sort(int n, const vector<vector<int>>& g,
     return order;
 }
 
-int main() {
-    int n, m;
+void solve() {
     scanf("%d%d", &n, &m);
 
-    vector<vector<int>> g(n + 5);
-    vector<int> indegree(n + 5, 0);
+    g.assign(n + 5, {});
+    indegree.assign(n + 5, 0);
 
     for (int i = 1; i <= m; i++) {
         int u, v;
@@ -256,15 +262,19 @@ int main() {
         indegree[v]++;
     }
 
-    vector<int> order = topological_sort(n, g, indegree);
+    vector<int> order = topological_sort();
     if ((int)order.size() != n) {
         printf("-1\n");
-        return 0;
+        return;
     }
 
     for (int i = 0; i < n; i++) {
         printf("%d%c", order[i], " \n"[i + 1 == n]);
     }
+}
+
+int main() {
+    solve();
     return 0;
 }
 ```
@@ -314,7 +324,7 @@ $$
 
 邻接表占用 $O(n+m)$ 空间；入度、队列和答案各占用 $O(n)$ 空间，总空间复杂度是 $O(n+m)$。
 
-按值复制 `indegree` 仍是 $O(n)$，已经包含在上述界限内。
+复制 `indegree` 得到 `current_indegree` 仍是 $O(n)$，已经包含在上述界限内。
 
 ## 指定选择顺序
 
