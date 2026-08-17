@@ -66,7 +66,7 @@
       { "id": "a", "text": "`n + m`" },
       { "id": "b", "text": "`n - m`" },
       { "id": "c", "text": "`n * m`" },
-      { "id": "d", "text": "`max(n, m)`" }
+      { "id": "d", "text": "只执行 `n` 次" }
     ],
     "correctOptionId": "c",
     "explanation": "每个外层取值都对应 m 次内层执行，共有 n 组，因此总次数是 `n * m`。"
