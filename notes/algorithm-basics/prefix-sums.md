@@ -1,6 +1,6 @@
 # 前缀和
 
-> 状态：定稿
+> 最近修订：2026-08-17 11:05 +10:00（未审阅）
 
 给定一个建立后不再修改的数组，如果题目反复询问闭区间 $[l,r]$ 中所有数的和，最直接的做法是每次都从 `a[l]` 累加到 `a[r]`：
 
@@ -169,7 +169,7 @@ n <= 100000
 
 ```cpp
 typedef long long ll;
-ll prefix[MAXN];
+vector<ll> prefix;
 ```
 
 不要只检查单个元素的范围。选择累加类型时，要估算最多累加多少项以及每项的最大绝对值。
@@ -189,11 +189,9 @@ using namespace std;
 
 typedef long long ll;
 
-const int MAXN = 1e5 + 5;
-
 int n;
 int q;
-ll prefix[MAXN];
+vector<ll> prefix;
 
 ll range_sum(int l, int r) {
     return prefix[r] - prefix[l - 1];
@@ -202,7 +200,7 @@ ll range_sum(int l, int r) {
 void solve() {
     scanf("%d%d", &n, &q);
 
-    prefix[0] = 0;
+    prefix.assign(n + 5, 0);
     for (int i = 1; i <= n; i++) {
         ll val;
         scanf("%lld", &val);

@@ -253,7 +253,7 @@
 | 030201 | 枚举 | 待审阅 | [enumeration.md](algorithm-basics/enumeration.md) |
 | 030202 | 模拟 | 待审阅 | [simulation.md](algorithm-basics/simulation.md) |
 | 030203 | 贪心选择与正确性证明 | 待审阅 | [greedy-selection-and-proof.md](algorithm-basics/greedy-selection-and-proof.md) |
-| 030501 | 前缀和 | 定稿 | [prefix-sums.md](algorithm-basics/prefix-sums.md) |
+| 030501 | 前缀和 | 待审阅 | [prefix-sums.md](algorithm-basics/prefix-sums.md) |
 | 030502 | 差分 | 待审阅 | [difference-array.md](algorithm-basics/difference-array.md) |
 | 030605 | 快速排序 | 待审阅 | [quicksort.md](algorithm-basics/quicksort.md) |
 | 030606 | 归并排序 | 待审阅 | [merge-sort.md](algorithm-basics/merge-sort.md) |
@@ -301,7 +301,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 030501 | 前缀和 | 定稿 | [prefix-sums.md](algorithm-basics/prefix-sums.md) |
+| 030501 | 前缀和 | 待审阅 | [prefix-sums.md](algorithm-basics/prefix-sums.md) |
 | 030502 | 差分 | 待审阅 | [difference-array.md](algorithm-basics/difference-array.md) |
 
 ### 排序
