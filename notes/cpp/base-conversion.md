@@ -1,6 +1,6 @@
 # 进制转换
 
-> 最近修订：2026-08-16 20:51 +10:00（未审阅）
+> 最近修订：2026-08-17 10:11 +10:00（未审阅）
 
 [进制表示](base-notation.md) 已经说明，一个 $b$ 进制数的每一位都有对应位权。
 纸笔计算时，我们可以展开所有位权；程序则需要把同一规律改写成一次从左到右的
@@ -84,9 +84,11 @@ value = value * base + digit;
 每一步都只依赖此前前缀的值和当前数字：
 
 ```cpp
-ll to_decimal(const string& text, int base) {
+ll to_decimal(string text, int base) {
     ll value = 0;
-    for (char ch : text) {
+    int n = (int)text.size();
+    for (int i = 0; i < n; i++) {
+        char ch = text[i];
         int digit = digit_to_value(ch);
         value = value * base + digit;
     }
@@ -184,9 +186,11 @@ char value_to_digit(int value) {
     return 'a' + value - 10;
 }
 
-ll to_decimal(const string& text, int base) {
+ll to_decimal(string text, int base) {
     ll value = 0;
-    for (char ch : text) {
+    int n = (int)text.size();
+    for (int i = 0; i < n; i++) {
+        char ch = text[i];
         int digit = digit_to_value(ch);
         value = value * base + digit;
     }
@@ -245,8 +249,9 @@ int main() {
 ## 复杂度与范围
 
 设原表示有 $n$ 位，目标表示有 $m$ 位。转成十进制扫描 $n$ 个字符，转出目标进制
-执行 $m$ 次除法并反转 $m$ 个字符，因此总时间复杂度是 $O(n+m)$，保存结果需要
-$O(m)$ 额外空间。
+执行 $m$ 次除法并反转 $m$ 个字符，因此总时间复杂度是 $O(n+m)$。当前函数按值
+接收字符串，会复制 $n$ 个字符；连同转换结果共使用 $O(n+m)$ 额外空间。学习
+[引用](references.md)以后，可以用只读引用避免这次复制。
 
 复杂度很低不代表数值一定安全。`value * base + digit` 可能超过 `long long`；基础
 版本依赖题目保证中间结果不溢出。位数更长时需要高精度整数，不能仅把返回类型继续
