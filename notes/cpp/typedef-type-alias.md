@@ -206,7 +206,7 @@ typedef long long ll;
 5. `ll product = a * b;` 为什么仍可能先发生 32 位整数溢出？
 6. 为什么类型别名比 `#define ll long long` 更合适？
 
-## 继续阅读
+## 两种类型别名语法
 
 [`using` 类型别名](using-type-aliases.md) 使用另一种语法完成相同任务，并能声明
 别名模板。

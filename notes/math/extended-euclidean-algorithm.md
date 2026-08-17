@@ -248,7 +248,7 @@ $$
 4. 回代后的 $x,y$ 分别是什么？
 5. 为什么裴蜀系数不唯一？本算法是否会自动返回最小非负解？
 
-## 下一步
+## 典型应用
 
 [线性不定方程](linear-diophantine-equations.md)、[线性同余方程](linear-congruences.md) 和
 [模逆元](modular-inverse.md) 会分别使用这组裴蜀系数解决具体问题；
