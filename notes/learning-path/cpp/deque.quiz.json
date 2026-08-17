@@ -17,7 +17,7 @@
       },
       {
         "id": "d",
-        "text": "`queue<deque> values;`"
+        "text": "`deque<> values;`"
       }
     ],
     "correctOptionId": "a",
@@ -205,7 +205,7 @@
       },
       {
         "id": "c",
-        "text": "`stack`，因为能下标访问"
+        "text": "内置数组，因为会自动扩容"
       },
       {
         "id": "d",

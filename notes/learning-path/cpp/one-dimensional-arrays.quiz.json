@@ -45,7 +45,7 @@
       { "id": "d", "text": "运行时长度的内置数组不是标准 C++17" }
     ],
     "correctOptionId": "d",
-    "explanation": "部分编译器把变长数组作为扩展，但可移植的 C++17 应使用编译期容量或 `vector`。"
+    "explanation": "部分编译器把变长数组作为扩展，但标准 C++17 的内置数组容量必须在编译时确定。"
   },
   {
     "id": "array-initialization",
