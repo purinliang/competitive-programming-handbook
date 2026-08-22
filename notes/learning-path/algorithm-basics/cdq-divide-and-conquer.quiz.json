@@ -1,0 +1,62 @@
+[
+  {
+    "id": "dimension-by-recursion",
+    "prompt": "三维偏序的 CDQ 分治中，哪个条件主要由初始排序和递归区间保证？",
+    "options": [
+      { "id": "a", "text": "左点的 `z` 不大于右点的 `z`" },
+      { "id": "b", "text": "左点的 `x` 不大于右点的 `x`" },
+      { "id": "c", "text": "所有点的三个坐标相等" },
+      { "id": "d", "text": "右点一定紧邻左点" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "先按第一维排序，再按位置分治，跨区间的左点在第一维上不晚于右点。"
+  },
+  {
+    "id": "fenwick-invariant",
+    "prompt": "扫描一个右半点时，树状数组中应当包含哪些左半点？",
+    "options": [
+      { "id": "a", "text": "左半区间的全部点" },
+      { "id": "b", "text": "第三维等于零的点" },
+      { "id": "c", "text": "第二维不大于当前右半点的左半点" },
+      { "id": "d", "text": "递归区间以外的点" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "按第二维单调加入后，树状数组前缀和再筛选第三维。"
+  },
+  {
+    "id": "rollback",
+    "prompt": "一次跨区间统计结束后，为什么要撤销树状数组修改？",
+    "options": [
+      { "id": "a", "text": "防止其他递归区间读到不属于自己的左半点" },
+      { "id": "b", "text": "让所有答案变成零" },
+      { "id": "c", "text": "恢复第一维排序" },
+      { "id": "d", "text": "减少递归层数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "树状数组是各递归层复用的临时状态，离开当前合并过程前必须恢复。"
+  },
+  {
+    "id": "merge-order",
+    "prompt": "CDQ 递归返回前为什么要像归并排序一样按第二维合并？",
+    "options": [
+      { "id": "a", "text": "为了删除重复点" },
+      { "id": "b", "text": "为了按答案输出" },
+      { "id": "c", "text": "为了改变第一维坐标" },
+      { "id": "d", "text": "让父递归层能够线性扫描当前区间的第二维" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "左右子区间按第二维有序，父层才能用双指针单调加入左半点。"
+  },
+  {
+    "id": "duplicate-points",
+    "prompt": "完全相同的点合并后，`count` 的主要作用是什么？",
+    "options": [
+      { "id": "a", "text": "保存这个坐标的出现次数并一次恢复全部贡献" },
+      { "id": "b", "text": "保存递归深度" },
+      { "id": "c", "text": "代替第三维坐标" },
+      { "id": "d", "text": "记录树状数组长度" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "相同点互相支配，合并后通过 count 加权即可避免相等边界混乱。"
+  }
+]
