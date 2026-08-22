@@ -12,7 +12,10 @@ import {
 import { authClient } from "@/lib/auth-client";
 import { getAccountState } from "@/lib/collaboration-client";
 
+import { Button, IconButton } from "./button";
 import { DiscussionMarkdown } from "./discussion-markdown";
+import { CheckboxField, TextAreaField } from "./form-controls";
+import { StateMessage } from "./state-message";
 import { TurnstileWidget } from "./turnstile-widget";
 
 import type { AccountState } from "@/lib/collaboration-client";
@@ -315,15 +318,13 @@ export function DiscussionPanel({
             <h2 id={headingId}>{inline ? "评论区" : target.title}</h2>
           </div>
           {!inline ? (
-            <button
+            <IconButton
               aria-label="关闭评论"
-              className="icon-button"
               onClick={onClose}
               ref={closeButtonRef}
-              type="button"
             >
               <X aria-hidden="true" size={18} />
-            </button>
+            </IconButton>
           ) : null}
         </header>
 
@@ -331,15 +332,19 @@ export function DiscussionPanel({
         {initializing || threads.length === 0 ? (
           <div className="discussion-state-slot">
             {initializing ? (
-              <p className="discussion-state-message" role="status">
+              <StateMessage className="discussion-state-message" role="status">
                 正在加载评论……
-              </p>
+              </StateMessage>
             ) : null}
             {!initializing && loadError ? (
-              <p className="discussion-state-message">{loadError}</p>
+              <StateMessage className="discussion-state-message">
+                {loadError}
+              </StateMessage>
             ) : null}
             {!initializing && !loadError ? (
-              <p className="discussion-state-message">这里还没有评论</p>
+              <StateMessage className="discussion-state-message">
+                这里还没有评论
+              </StateMessage>
             ) : null}
           </div>
         ) : null}
@@ -377,22 +382,22 @@ export function DiscussionPanel({
                   <div className="discussion-comment-actions">
                     {account?.user && !comment.deleted && !comment.mine
                       && reportingComment !== comment.id ? (
-                        <button
-                          className="discussion-text-action"
+                        <Button
                           onClick={() => {
                             setReportBody("");
                             setReportingComment(comment.id);
                           }}
-                          type="button"
+                          size="text"
+                          tone="ghost"
                         >
                           举报
-                        </button>
+                        </Button>
                       ) : null}
                   </div>
                 </div>
                 {reportingComment === comment.id ? (
                   <div className="discussion-report-form">
-                    <textarea
+                    <TextAreaField
                       maxLength={500}
                       onChange={(event) => setReportBody(event.target.value)}
                       placeholder="请简要说明举报原因"
@@ -400,24 +405,25 @@ export function DiscussionPanel({
                       value={reportBody}
                     />
                     <div>
-                      <button
-                        className="discussion-text-action"
+                      <Button
                         onClick={() => {
                           setReportBody("");
                           setReportingComment(undefined);
                         }}
-                        type="button"
+                        size="text"
+                        tone="ghost"
                       >
                         取消
-                      </button>
-                      <button
+                      </Button>
+                      <Button
                         className="discussion-primary-action"
                         disabled={!reportBody.trim()}
                         onClick={() => reportComment(comment.id)}
-                        type="button"
+                        size="compact"
+                        tone="primary"
                       >
                         提交举报
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 ) : null}
@@ -429,7 +435,7 @@ export function DiscussionPanel({
           {!reportingComment ? (
             <section className="discussion-compose">
               <h3>发表评论</h3>
-              <textarea
+              <TextAreaField
                 disabled={initializing || Boolean(loadError) || !account?.user}
                 maxLength={4000}
                 onChange={(event) => setBody(event.target.value)}
@@ -453,44 +459,56 @@ export function DiscussionPanel({
                 />
               ) : null}
               <div className="discussion-compose-actions">
-                <label>
-                  <input
-                    checked={privateVisible}
-                    disabled={initializing || Boolean(loadError) || !account?.user}
-                    onChange={(event) => setPrivateVisible(event.target.checked)}
-                    type="checkbox"
-                  />
+                <CheckboxField
+                  checked={privateVisible}
+                  disabled={initializing || Boolean(loadError) || !account?.user}
+                  onChange={(event) => setPrivateVisible(event.target.checked)}
+                >
                   仅自己与管理员可见
-                </label>
+                </CheckboxField>
                 {!initializing && account.authConfigured
                     && !account.user && !loadError ? (
-                  <button
+                  <Button
                     className="discussion-primary-action"
                     onClick={() => authClient.signIn.social({
                       callbackURL: window.location.href,
                       provider: "github",
                     })}
-                    type="button"
+                    size="compact"
+                    tone="primary"
                   >
                     登录后评论
-                  </button>
+                  </Button>
                 ) : (
-                  <button
+                  <Button
                     className="discussion-primary-action"
                     disabled={initializing || Boolean(loadError)
                       || !account?.user || !body.trim()}
                     onClick={createThread}
-                    type="button"
+                    size="compact"
+                    tone="primary"
                   >
                     提交
-                  </button>
+                  </Button>
                 )}
               </div>
               {statusMessage ? (
-                <p className="discussion-status">{statusMessage}</p>
+                <StateMessage
+                  className="discussion-status"
+                  role="status"
+                  tone="success"
+                >
+                  {statusMessage}
+                </StateMessage>
               ) : null}
               {actionError ? (
-                <p className="discussion-error">{actionError}</p>
+                <StateMessage
+                  className="discussion-error"
+                  role="alert"
+                  tone="danger"
+                >
+                  {actionError}
+                </StateMessage>
               ) : null}
             </section>
           ) : null}

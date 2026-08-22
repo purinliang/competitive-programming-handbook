@@ -9,6 +9,7 @@ import {
   resetAccountState,
 } from "@/lib/collaboration-client";
 
+import { Button } from "./button";
 import { LoadingBar } from "./loading-bar";
 
 import type { AccountState } from "@/lib/collaboration-client";
@@ -83,8 +84,8 @@ export function AccountControl() {
     return (
       <div className="account-control-slot">
         <LoadingBar active={pending} immediate />
-        <button
-          className="control-button account-login-button"
+        <Button
+          className="account-login-button"
           disabled={pending}
           onClick={async () => {
             setPending(true);
@@ -97,11 +98,12 @@ export function AccountControl() {
               setPending(false);
             }
           }}
-          type="button"
+          size="compact"
+          tone="ghost"
         >
           <LogIn aria-hidden="true" size={15} />
           登录
-        </button>
+        </Button>
       </div>
     );
   }
@@ -139,8 +141,8 @@ export function AccountControl() {
             <strong>{account.user.name}</strong>
             <span>{account.user.email}</span>
           </div>
-          <button
-            className="control-button account-menu-item"
+          <Button
+            className="account-menu-item"
             disabled={pending}
             onClick={async () => {
               setMenuOpen(false);
@@ -158,11 +160,12 @@ export function AccountControl() {
               }
             }}
             role="menuitem"
-            type="button"
+            size="compact"
+            tone="ghost"
           >
             <LogOut aria-hidden="true" size={15} />
             退出登录
-          </button>
+          </Button>
         </div>
       ) : null}
     </div>

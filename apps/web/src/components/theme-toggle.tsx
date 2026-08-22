@@ -3,6 +3,8 @@
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { IconButton } from "./button";
+
 type Theme = "light" | "dark";
 
 function getInitialTheme(): Theme {
@@ -35,8 +37,13 @@ export function ThemeToggle() {
 
   const dark = theme === "dark";
   return (
-    <button className="icon-button" type="button" onClick={toggleTheme} aria-label={dark ? "切换到浅色模式" : "切换到深色模式"}>
-      {dark ? <Sun aria-hidden="true" size={18} /> : <Moon aria-hidden="true" size={18} />}
-    </button>
+    <IconButton
+      aria-label={dark ? "切换到浅色模式" : "切换到深色模式"}
+      onClick={toggleTheme}
+    >
+      {dark
+        ? <Sun aria-hidden="true" size={18} />
+        : <Moon aria-hidden="true" size={18} />}
+    </IconButton>
   );
 }

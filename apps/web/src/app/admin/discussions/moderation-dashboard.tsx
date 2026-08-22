@@ -1,6 +1,12 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useCallback, useEffect, useState } from "react";
+
+import { Button } from "@/components/button";
+import { Panel } from "@/components/panel";
+import { PanelHeader } from "@/components/panel-header";
+import { StateMessage } from "@/components/state-message";
 
 interface ThreadRecord {
   anonymous: number;
@@ -43,6 +49,21 @@ interface ModerationEvent {
   targetKind: "comment" | "report" | "thread";
 }
 
+function ModerationSection({
+  children,
+  title,
+}: {
+  children: ReactNode;
+  title: string;
+}) {
+  return (
+    <Panel className="moderation-section">
+      <PanelHeader><h2>{title}</h2></PanelHeader>
+      <div className="moderation-list">{children}</div>
+    </Panel>
+  );
+}
+
 export function ModerationDashboard() {
   const [data, setData] = useState<ModerationData>();
   const [error, setError] = useState("");
@@ -82,13 +103,28 @@ export function ModerationDashboard() {
     }
   }
 
-  if (error) return <p className="moderation-message">{error}</p>;
-  if (!data) return <p className="moderation-message">正在加载……</p>;
+  if (error) {
+    return (
+      <StateMessage className="moderation-message" role="alert" tone="danger">
+        {error}
+      </StateMessage>
+    );
+  }
+  if (!data) {
+    return (
+      <StateMessage className="moderation-message" role="status">
+        正在加载……
+      </StateMessage>
+    );
+  }
   return (
-    <div className="moderation-dashboard">
-      <section>
-        <h2>待处理举报</h2>
-        {data.reports.length === 0 ? <p>没有待处理举报。</p> : data.reports.map((report) => (
+    <div className="moderation-dashboard section-stack">
+      <ModerationSection title="待处理举报">
+        {data.reports.length === 0 ? (
+          <StateMessage className="moderation-empty">
+            没有待处理举报。
+          </StateMessage>
+        ) : data.reports.map((report) => (
           <article key={report.id}>
             <div className="moderation-meta">
               <span>作者：{report.authorName}</span>
@@ -97,38 +133,47 @@ export function ModerationDashboard() {
             <blockquote>{report.commentBody}</blockquote>
             <p>举报理由：{report.reason}</p>
             <div className="moderation-actions">
-              <button
+              <Button
                 disabled={Boolean(busy)}
                 onClick={() => moderate(
                   `/api/admin/comments/${report.commentId}/moderate`,
                   "hide",
                 )}
-                type="button"
-              >隐藏留言</button>
-              <button
+                size="compact"
+              >
+                隐藏留言
+              </Button>
+              <Button
                 disabled={Boolean(busy)}
                 onClick={() => moderate(
                   `/api/admin/reports/${report.id}/resolve`,
                   "dismiss",
                 )}
-                type="button"
-              >驳回举报</button>
-              <button
+                size="compact"
+              >
+                驳回举报
+              </Button>
+              <Button
                 disabled={Boolean(busy)}
                 onClick={() => moderate(
                   `/api/admin/reports/${report.id}/resolve`,
                   "resolve",
                 )}
-                type="button"
-              >标记已处理</button>
+                size="compact"
+              >
+                标记已处理
+              </Button>
             </div>
           </article>
         ))}
-      </section>
+      </ModerationSection>
 
-      <section>
-        <h2>最近讨论</h2>
-        {data.threads.length === 0 ? <p>还没有讨论。</p> : data.threads.map((thread) => (
+      <ModerationSection title="最近讨论">
+        {data.threads.length === 0 ? (
+          <StateMessage className="moderation-empty">
+            还没有讨论。
+          </StateMessage>
+        ) : data.threads.map((thread) => (
           <article key={thread.id}>
             <div className="moderation-meta">
               <span>{thread.documentKey}</span>
@@ -139,45 +184,57 @@ export function ModerationDashboard() {
             </div>
             <h3>{thread.authorName}</h3>
             <p>{thread.authorEmail}</p>
-            <p>{thread.commentCount} 条留言，{thread.openReportCount} 条待处理举报</p>
+            <p>
+              {thread.commentCount} 条留言，
+              {thread.openReportCount} 条待处理举报
+            </p>
             <div className="moderation-actions">
               {thread.status === "deleted" ? (
-                <button
+                <Button
                   disabled={Boolean(busy)}
                   onClick={() => moderate(
                     `/api/admin/threads/${thread.id}/moderate`,
                     "restore",
                   )}
-                  type="button"
-                >恢复</button>
+                  size="compact"
+                >
+                  恢复
+                </Button>
               ) : (
                 <>
-                  <button
+                  <Button
                     disabled={Boolean(busy)}
                     onClick={() => moderate(
                       `/api/admin/threads/${thread.id}/moderate`,
                       thread.status === "locked" ? "unlock" : "lock",
                     )}
-                    type="button"
-                  >{thread.status === "locked" ? "解除锁定" : "锁定"}</button>
-                  <button
+                    size="compact"
+                  >
+                    {thread.status === "locked" ? "解除锁定" : "锁定"}
+                  </Button>
+                  <Button
                     disabled={Boolean(busy)}
                     onClick={() => moderate(
                       `/api/admin/threads/${thread.id}/moderate`,
                       "delete",
                     )}
-                    type="button"
-                  >软删除</button>
+                    size="compact"
+                  >
+                    软删除
+                  </Button>
                 </>
               )}
             </div>
           </article>
         ))}
-      </section>
+      </ModerationSection>
 
-      <section>
-        <h2>审核记录</h2>
-        {data.events.length === 0 ? <p>还没有审核操作。</p> : data.events.map((event) => (
+      <ModerationSection title="审核记录">
+        {data.events.length === 0 ? (
+          <StateMessage className="moderation-empty">
+            还没有审核操作。
+          </StateMessage>
+        ) : data.events.map((event) => (
           <article key={event.id}>
             <div className="moderation-meta">
               <span>{event.moderatorName}</span>
@@ -189,7 +246,7 @@ export function ModerationDashboard() {
             {event.reason ? <p>原因：{event.reason}</p> : null}
           </article>
         ))}
-      </section>
+      </ModerationSection>
     </div>
   );
 }

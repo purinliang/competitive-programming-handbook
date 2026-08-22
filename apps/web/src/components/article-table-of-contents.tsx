@@ -3,19 +3,30 @@
 import { useMemo } from "react";
 
 import { ScrollArea } from "./scroll-area";
+import { SidebarHeader } from "./sidebar-header";
 
 import { useActiveSection } from "@/hooks/use-active-section";
 import type { TableOfContentsItem } from "@/lib/content/types";
 import { scrollToElement } from "@/lib/scroll-to-element";
 
-export function ArticleTableOfContents({ articleKey, items }: { articleKey: string; items: TableOfContentsItem[] }) {
+export function ArticleTableOfContents({
+  articleKey,
+  items,
+}: {
+  articleKey: string;
+  items: TableOfContentsItem[];
+}) {
   const sectionIds = useMemo(() => items.map((item) => item.id), [items]);
   const activeId = useActiveSection(sectionIds, 184);
 
   return (
     <aside className="toc-sidebar" aria-label="本文目录">
-      <div className="sidebar-heading sidebar-heading-single"><h2>本文目录</h2></div>
-      <ScrollArea className="sidebar-scroll-area" viewportClassName="sidebar-scroll-viewport" refreshKey={articleKey}>
+      <SidebarHeader title="本文目录" />
+      <ScrollArea
+        className="sidebar-scroll-area"
+        viewportClassName="sidebar-scroll-viewport"
+        refreshKey={articleKey}
+      >
         <nav className="toc-list">
           {items.map((item, index) => {
             const className = [

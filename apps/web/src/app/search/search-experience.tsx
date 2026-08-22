@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { NavigationLink as Link } from "@/components/navigation-link";
 import { Panel } from "@/components/panel";
+import { StateMessage } from "@/components/state-message";
 import { getArticleStatusLabel } from "@/lib/content/status";
 import {
   getSearchDelay,
@@ -106,13 +107,19 @@ export function SearchExperience() {
         className={`search-results${hasResults ? "" : " is-empty"}`}
       >
         {queryPending && !hasResults ? (
-          <p className="search-empty">正在搜索。</p>
+          <StateMessage className="search-empty" role="status">
+            正在搜索。
+          </StateMessage>
         ) : null}
         {!queryPending && !currentQuery ? (
-          <p className="search-empty">请输入知识点、算法缩写或代码标识符。</p>
+          <StateMessage className="search-empty">
+            请输入知识点、算法缩写或代码标识符。
+          </StateMessage>
         ) : null}
         {!queryPending && searchable && records === null ? (
-          <p className="search-empty">正在载入搜索索引。</p>
+          <StateMessage className="search-empty" role="status">
+            正在载入搜索索引。
+          </StateMessage>
         ) : null}
         {records ? results.map((record) => (
           <Link
@@ -131,7 +138,9 @@ export function SearchExperience() {
           </Link>
         )) : null}
         {!queryPending && searchable && records && results.length === 0 ? (
-          <p className="search-empty">没有找到同时包含这些关键词的文章。</p>
+          <StateMessage className="search-empty">
+            没有找到同时包含这些关键词的文章。
+          </StateMessage>
         ) : null}
       </Panel>
     </div>

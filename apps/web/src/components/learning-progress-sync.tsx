@@ -9,6 +9,10 @@ import {
 } from "@/lib/collaboration-client";
 import { readStoredLearningProgress } from "@/lib/learning-progress-storage";
 
+import { Button } from "./button";
+import { Panel } from "./panel";
+import { StateMessage } from "./state-message";
+
 import type { LearningQuiz } from "@/lib/content/types";
 
 const DISMISSED_STORAGE_KEY = "handbook.learning-sync-dismissed.v1";
@@ -158,16 +162,31 @@ export function LearningProgressSync({
 
   if (!pending || count === 0) return null;
   return (
-    <aside className="learning-sync-prompt" aria-live="polite">
+    <Panel as="aside" className="learning-sync-prompt" aria-live="polite">
       <strong>同步本机学习记录？</strong>
       <p>检测到 {count} 条尚未保存在账号中的小测记录。</p>
-      {error ? <p className="learning-sync-error">{error}</p> : null}
+      {error ? (
+        <StateMessage
+          className="learning-sync-error"
+          role="alert"
+          tone="danger"
+        >
+          {error}
+        </StateMessage>
+      ) : null}
       <div>
-        <button disabled={saving} onClick={keepLocal} type="button">仅保存在本机</button>
-        <button disabled={saving} onClick={synchronize} type="button">
+        <Button disabled={saving} onClick={keepLocal} size="compact">
+          仅保存在本机
+        </Button>
+        <Button
+          disabled={saving}
+          onClick={synchronize}
+          size="compact"
+          tone="primary"
+        >
           {saving ? "正在同步……" : "同步到账号"}
-        </button>
+        </Button>
       </div>
-    </aside>
+    </Panel>
   );
 }

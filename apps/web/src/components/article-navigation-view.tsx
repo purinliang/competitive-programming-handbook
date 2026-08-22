@@ -1,6 +1,7 @@
 import { ArticleFamilyList } from "./article-family-list";
 import { CatalogAreaList } from "./catalog-area-list";
 import { ScrollArea } from "./scroll-area";
+import { SidebarHeader } from "./sidebar-header";
 
 import type { ArticleNavigation, NavigationMode } from "@/lib/content/types";
 
@@ -13,7 +14,7 @@ export function ArticleNavigationView({
 }) {
   return (
     <aside className="module-sidebar" aria-label={`${navigation.title}目录`}>
-      <div className="sidebar-heading"><span>{navigation.label}</span><h2>{navigation.title}</h2></div>
+      <SidebarHeader label={navigation.label} title={navigation.title} />
       <ScrollArea
         className="sidebar-scroll-area"
         viewportClassName="sidebar-scroll-viewport"

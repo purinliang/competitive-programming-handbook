@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 
 import { ScrollArea } from "./scroll-area";
+import { SidebarHeader } from "./sidebar-header";
 
 import { useActiveSection } from "@/hooks/use-active-section";
 import { scrollToElement } from "@/lib/scroll-to-element";
@@ -37,9 +38,7 @@ export function DirectorySidebar({
 
   return (
     <aside className="module-sidebar directory-sidebar" aria-label={title}>
-      <div className="sidebar-heading sidebar-heading-single">
-        <h2>{title}</h2>
-      </div>
+      <SidebarHeader title={title} />
       <ScrollArea
         className="sidebar-scroll-area"
         viewportClassName="sidebar-scroll-viewport"

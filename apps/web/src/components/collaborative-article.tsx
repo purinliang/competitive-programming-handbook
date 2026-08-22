@@ -8,7 +8,9 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 
+import { IconButton } from "./button";
 import { DiscussionPanel } from "./discussion-panel";
+import { Panel } from "./panel";
 
 import type { DiscussionTarget } from "./discussion-panel";
 import type { ArticleSection } from "@/lib/content/types";
@@ -53,8 +55,9 @@ export function CollaborativeArticle({
     <>
       {sectionActionSlots.map(({ element, section }) => createPortal(
         <div className="section-collaboration-actions">
-          <button
+          <IconButton
             aria-label={`评论：${section.title}`}
+            compact
             onClick={() => setActiveTarget({
               id: section.id,
               kind: "section",
@@ -62,15 +65,14 @@ export function CollaborativeArticle({
               title: section.title,
             })}
             title="评论"
-            type="button"
           >
             <MessageSquare aria-hidden="true" size={16} />
-          </button>
+          </IconButton>
         </div>,
         element,
         section.id,
       ))}
-      <section className="article-discussion-summary">
+      <Panel className="article-discussion-summary">
         <DiscussionPanel
           documentKey={documentKey}
           inline
@@ -81,7 +83,7 @@ export function CollaborativeArticle({
             title: "整篇文章",
           }}
         />
-      </section>
+      </Panel>
       {activeTarget ? (
         <DiscussionPanel
           documentKey={documentKey}

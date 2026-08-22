@@ -16,6 +16,9 @@
   --accent-hover-text: #4f73e8;
   --secondary-bg: #f9f9fb;
   --secondary-hover-bg: #e7e8ec;
+  --disabled-text: #9b9da8;
+  --disabled-bg: #eceef1;
+  --disabled-border: #d7d9df;
   --code-bg: #f1f2f5;
   --code-border: #e0e1e6;
   --focus: #1b46de;
@@ -26,12 +29,22 @@
   --danger-bg: #fff0f0;
   --danger-border: #f3a6a8;
   --shadow: 0 12px 36px rgba(23, 44, 100, 0.08);
-  --font-body: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
-  --font-code: "SFMono-Regular", Consolas, "Liberation Mono", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace;
+  --overlay-bg: rgb(0 0 0 / 58%);
+  --font-body:
+    Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", ui-sans-serif,
+    system-ui, sans-serif;
+  --font-code:
+    "SFMono-Regular", Consolas, "Liberation Mono", "Noto Sans SC",
+    "PingFang SC", "Microsoft YaHei", monospace;
   --page-gap: 16px;
   --section-gap: 20px;
   --body-gap: 12px;
   --control-gap: 8px;
+  --radius-panel: 12px;
+  --radius-control: 8px;
+  --radius-compact: 6px;
+  --radius-inline: 5px;
+  --radius-code: 10px;
 }
 
 :root[data-theme="dark"] {
@@ -52,6 +65,9 @@
   --accent-hover-text: #8bb4ff;
   --secondary-bg: #19191b;
   --secondary-hover-bg: #292a2e;
+  --disabled-text: #686a74;
+  --disabled-bg: #232428;
+  --disabled-border: #37393f;
   --code-bg: #19191b;
   --code-border: #303136;
   --focus: #8bb4ff;
@@ -62,6 +78,7 @@
   --danger-bg: #3b181a;
   --danger-border: #7f3034;
   --shadow: 0 16px 44px rgba(0, 0, 0, 0.22);
+  --overlay-bg: rgb(0 0 0 / 58%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -83,6 +100,9 @@
     --accent-hover-text: #8bb4ff;
     --secondary-bg: #19191b;
     --secondary-hover-bg: #292a2e;
+    --disabled-text: #686a74;
+    --disabled-bg: #232428;
+    --disabled-border: #37393f;
     --code-bg: #19191b;
     --code-border: #303136;
     --focus: #8bb4ff;
@@ -93,5 +113,6 @@
     --danger-bg: #3b181a;
     --danger-border: #7f3034;
     --shadow: 0 16px 44px rgba(0, 0, 0, 0.22);
+    --overlay-bg: rgb(0 0 0 / 58%);
   }
 }

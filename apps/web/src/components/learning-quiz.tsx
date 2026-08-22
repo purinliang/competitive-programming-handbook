@@ -11,6 +11,9 @@ import {
   writeStoredAnswers,
 } from "@/lib/learning-progress-storage";
 
+import { Button } from "./button";
+import { Panel } from "./panel";
+
 import type { LearningQuiz as LearningQuizData } from "@/lib/content/types";
 
 export function LearningQuiz({
@@ -111,7 +114,7 @@ export function LearningQuiz({
   }
 
   return (
-    <section className="learning-quiz" aria-labelledby="learning-quiz-title">
+    <Panel className="learning-quiz" aria-labelledby="learning-quiz-title">
       <header className="learning-quiz-header">
         <h2 id="learning-quiz-title">小测</h2>
         <span>{correctCount} / {quiz.questions.length} 已答对</span>
@@ -120,11 +123,20 @@ export function LearningQuiz({
       <nav className="quiz-question-navigation" aria-label="题目导航">
         {quiz.questions.map((item, index) => {
           const answer = answers[item.id];
-          const state = answer === undefined ? "unanswered" : answer === item.correctOptionId ? "correct" : "incorrect";
+          const state = answer === undefined
+            ? "unanswered"
+            : answer === item.correctOptionId
+              ? "correct"
+              : "incorrect";
+          const resultLabel = state === "correct"
+            ? "，已答对"
+            : state === "incorrect"
+              ? "，已答错"
+              : "";
           return (
             <button
               aria-current={index === currentIndex ? "step" : undefined}
-              aria-label={`第 ${index + 1} 题${state === "correct" ? "，已答对" : state === "incorrect" ? "，已答错" : ""}`}
+              aria-label={`第 ${index + 1} 题${resultLabel}`}
               className={index === currentIndex ? "is-active" : undefined}
               data-state={state}
               key={item.id}
@@ -182,23 +194,25 @@ export function LearningQuiz({
                   : "回答错误，可以重新选择后再次提交"}
               </p>
             ) : <span />}
-            <button
+            <Button
               className="quiz-explanation-toggle"
               disabled={submittedOptionId === undefined}
               onClick={() => setExplanationVisible((visible) => !visible)}
-              type="button"
+              size="text"
+              tone="ghost"
             >
               {explanationVisible ? "隐藏解析" : "查看解析"}
-            </button>
+            </Button>
           </div>
-          <button
+          <Button
             className="quiz-submit"
             disabled={!selection || submittedOptionId !== undefined}
             onClick={submit}
-            type="button"
+            size="compact"
+            tone="primary"
           >
             提交
-          </button>
+          </Button>
         </div>
         {explanationVisible ? (
           <div className="quiz-explanation">
@@ -210,6 +224,6 @@ export function LearningQuiz({
           </div>
         ) : null}
       </div>
-    </section>
+    </Panel>
   );
 }

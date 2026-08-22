@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from "react";
 
-type PanelElement = "div" | "section";
+type PanelElement = "article" | "aside" | "div" | "section";
 
 export function Panel({
   as = "section",
@@ -12,6 +12,22 @@ export function Panel({
   children: ReactNode;
 }) {
   const resolvedClassName = `panel${className ? ` ${className}` : ""}`;
+
+  if (as === "article") {
+    return (
+      <article className={resolvedClassName} {...props}>
+        {children}
+      </article>
+    );
+  }
+
+  if (as === "aside") {
+    return (
+      <aside className={resolvedClassName} {...props}>
+        {children}
+      </aside>
+    );
+  }
 
   if (as === "div") {
     return (
