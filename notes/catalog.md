@@ -1004,7 +1004,7 @@
 | 090702 | 旋转卡壳 | 计划 | `computational-geometry/rotating-calipers.md` |
 | *990603 | 几何扫描线 | 计划 | `computational-geometry/geometric-sweep-line.md` |
 | *990604 | 最近点对 | 计划 | `computational-geometry/closest-pair-of-points.md` |
-| 090701 | 凸多边形点包含 | 计划 | `computational-geometry/point-in-convex-polygon.md` |
+| 090701 | 凸多边形点包含 | 待审阅 | [point-in-convex-polygon.md](computational-geometry/point-in-convex-polygon.md) |
 | *990606 | 凸多边形：切线与极值查询 | 推迟 | `computational-geometry/convex-polygon-tangents-extrema.md` |
 | 090703 | 半平面交 | 计划 | `computational-geometry/half-plane-intersection.md` |
 | *990608 | 闵可夫斯基和 | 推迟 | `computational-geometry/minkowski-sum.md` |
