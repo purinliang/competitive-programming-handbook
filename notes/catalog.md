@@ -970,7 +970,7 @@
 | *990515 | 形式幂级数：平方根 | 推迟 | `math/formal-power-series-square-root.md` |
 | *990516 | 形式幂级数：幂 | 推迟 | `math/formal-power-series-power.md` |
 | 080315 | 生成函数：基础 | 待审阅 | [math/generating-functions.md](math/generating-functions.md) |
-| 090418 | 线性递推：Berlekamp-Massey | 计划 | `math/berlekamp-massey.md` |
+| 090418 | 线性递推：Berlekamp-Massey | 待审阅 | [berlekamp-massey.md](math/berlekamp-massey.md) |
 
 ### 集合幂级数
 
