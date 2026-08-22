@@ -1095,7 +1095,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 070501 | DAG 上的 DP | 待审阅 | [dag-dp.md](dynamic-programming/dag-dp.md) |
-| 090501 | 自动机 DP | 计划 | `dynamic-programming/automaton-dp.md` |
+| 090501 | 自动机 DP | 待审阅 | [automaton-dp.md](dynamic-programming/automaton-dp.md) |
 
 ### 计数 DP
 
