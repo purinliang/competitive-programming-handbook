@@ -1,0 +1,54 @@
+{
+  "articleKey": "matrix-inverse",
+  "title": "矩阵求逆",
+  "questions": [
+    {
+      "id": "matrix-inverse-1",
+      "prompt": "逆矩阵 A^(-1) 满足什么关系？",
+      "options": [
+        "A * A^(-1) = A^(-1) * A = I",
+        "A + A^(-1) = I",
+        "A^(-1) 等于 A 的每个元素取倒数",
+        "A * A^(-1) = 0"
+      ],
+      "answer": 0,
+      "explanation": "逆矩阵在矩阵乘法下撤销 A 表示的线性变换。"
+    },
+    {
+      "id": "matrix-inverse-2",
+      "prompt": "Gauss-Jordan 求逆使用哪一个增广矩阵？",
+      "options": [
+        "[A | 0]",
+        "[A | I]",
+        "[I | 0]",
+        "[A | A]"
+      ],
+      "answer": 1,
+      "explanation": "右侧单位矩阵同时表示 n 个方程组的单位向量右端。"
+    },
+    {
+      "id": "matrix-inverse-3",
+      "prompt": "某一列在剩余行中找不到非零主元说明什么？",
+      "options": [
+        "这一列可以直接删除",
+        "逆矩阵这一列全为零",
+        "矩阵秩不足 n，因此逆矩阵不存在",
+        "应该把单位矩阵改成零矩阵"
+      ],
+      "answer": 2,
+      "explanation": "可逆方阵必须在每一列建立主元并具有满秩。"
+    },
+    {
+      "id": "matrix-inverse-4",
+      "prompt": "模质数求逆与实数求逆相比，除以主元应怎样处理？",
+      "options": [
+        "直接使用浮点除法",
+        "跳过主元归一化",
+        "把主元向下取整",
+        "乘以主元的模逆元"
+      ],
+      "answer": 3,
+      "explanation": "有限域中的除法由乘法逆元实现，不使用 EPS。"
+    }
+  ]
+}
