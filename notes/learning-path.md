@@ -791,7 +791,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 090408 | Prufer 序列 | 数学 | [math/prufer-sequence.md](math/prufer-sequence.md) |
 | 090409 | 拉格朗日插值 | 数学 | [math/lagrange-interpolation.md](math/lagrange-interpolation.md) |
 | 090410 | FWT 与 FMT | 数学 | [math/fast-subset-transforms.md](math/fast-subset-transforms.md) |
-| 090411 | Burnside 引理 | 数学 | `math/burnside-lemma.md` |
+| 090411 | Burnside 引理 | 数学 | [math/burnside-lemma.md](math/burnside-lemma.md) |
 | 090412 | Polya 定理 | 数学 | `math/polya-enumeration.md` |
 | 090413 | Simpson 公式 | 数学 | `math/simpson-rule.md` |
 | 090414 | 自适应 Simpson | 数学 | `math/adaptive-simpson.md` |

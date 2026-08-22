@@ -903,7 +903,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | *990534 | 群论：置换 | 计划 | `math/permutations.md` |
-| 090411 | Burnside 引理 | 计划 | `math/burnside-lemma.md` |
+| 090411 | Burnside 引理 | 待审阅 | [burnside-lemma.md](math/burnside-lemma.md) |
 | 090412 | Polya 定理 | 计划 | `math/polya-enumeration.md` |
 
 #### 专题：图与路径计数
