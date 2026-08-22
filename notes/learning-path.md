@@ -750,8 +750,8 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 090203 | 树套树：线段树套线段树 | 数据结构 | [data-structures/segment-tree-of-segment-trees.md](data-structures/segment-tree-of-segment-trees.md) |
 | 090204 | 树套树：线段树套平衡树 | 数据结构 | [data-structures/segment-tree-of-balanced-trees.md](data-structures/segment-tree-of-balanced-trees.md) |
 | 090205 | 动态树：Link-Cut Tree | 数据结构 | [data-structures/link-cut-tree.md](data-structures/link-cut-tree.md) |
-| 090206 | KD 树 | 数据结构 | `data-structures/kd-tree.md` |
-| 090207 | 可持久化并查集 | 数据结构 | `data-structures/persistent-disjoint-set-union.md` |
+| 090206 | KD 树 | 数据结构 | [data-structures/kd-tree.md](data-structures/kd-tree.md) |
+| 090207 | 可持久化并查集 | 数据结构 | [data-structures/persistent-disjoint-set-union.md](data-structures/persistent-disjoint-set-union.md) |
 
 ### 单元 03：图论
 

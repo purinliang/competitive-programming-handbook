@@ -477,7 +477,7 @@
 | 080101 | 并查集：扩展域 | 待审阅 | [extended-domain-disjoint-set.md](data-structures/extended-domain-disjoint-set.md) |
 | 080102 | 并查集：带权 | 待审阅 | [weighted-disjoint-set.md](data-structures/weighted-disjoint-set.md) |
 | *990302 | 可撤销并查集 | 计划 | `data-structures/rollback-disjoint-set.md` |
-| 090207 | 可持久化并查集 | 计划 | `data-structures/persistent-disjoint-set-union.md` |
+| 090207 | 可持久化并查集 | 待审阅 | [persistent-disjoint-set-union.md](data-structures/persistent-disjoint-set-union.md) |
 
 ### 树状数组
 
@@ -538,7 +538,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 090202 | 可持久化线段树 | 待审阅 | [persistent-segment-tree.md](data-structures/persistent-segment-tree.md) |
-| 090207 | 可持久化并查集 | 计划 | `data-structures/persistent-disjoint-set-union.md` |
+| 090207 | 可持久化并查集 | 待审阅 | [persistent-disjoint-set-union.md](data-structures/persistent-disjoint-set-union.md) |
 | *080110e1 | 可持久化 FHQ Treap | 推迟 | `data-structures/persistent-fhq-treap.md` |
 
 ### 树上数据结构
@@ -576,7 +576,7 @@
 | --- | --- | --- | --- |
 | 090203 | 树套树：线段树套线段树 | 待审阅 | [segment-tree-of-segment-trees.md](data-structures/segment-tree-of-segment-trees.md) |
 | 090204 | 树套树：线段树套平衡树 | 待审阅 | [segment-tree-of-balanced-trees.md](data-structures/segment-tree-of-balanced-trees.md) |
-| 090206 | KD 树 | 计划 | `data-structures/kd-tree.md` |
+| 090206 | KD 树 | 待审阅 | [kd-tree.md](data-structures/kd-tree.md) |
 | 080108 | 笛卡尔树 | 待审阅 | [data-structures/cartesian-tree.md](data-structures/cartesian-tree.md) |
 | *990316 | Wavelet Matrix | 推迟 | `data-structures/wavelet-matrix.md` |
 
