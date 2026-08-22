@@ -647,7 +647,7 @@
 | --- | --- | --- | --- |
 | 060603 | 最小生成树：Kruskal | 待审阅 | [kruskal.md](graph-theory/kruskal.md) |
 | 060604 | 最小生成树：Prim | 待审阅 | [prim.md](graph-theory/prim.md) |
-| 090306 | Boruvka 算法 | 计划 | `graph-theory/boruvka.md` |
+| 090306 | Boruvka 算法 | 待审阅 | [boruvka.md](graph-theory/boruvka.md) |
 | *990420 | 有向最小生成树：Chu–Liu/Edmonds | 推迟 | `graph-theory/directed-minimum-spanning-tree.md` |
 
 ### 二分图与匹配
