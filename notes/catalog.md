@@ -1012,7 +1012,7 @@
 | 080503 | 圆：切线 | 待审阅 | [computational-geometry/circle-tangents.md](computational-geometry/circle-tangents.md) |
 | 090704 | 圆面积交与面积并 | 待审阅 | [circle-area-intersection-union.md](computational-geometry/circle-area-intersection-union.md) |
 | *990612 | 三维计算几何 | 推迟 | `computational-geometry/three-dimensional-geometry.md` |
-| 090705 | 平面点定位 | 计划 | `computational-geometry/point-location.md` |
+| 090705 | 平面点定位 | 待审阅 | [point-location.md](computational-geometry/point-location.md) |
 | 090706 | 最小圆覆盖 | 计划 | `computational-geometry/minimum-enclosing-circle.md` |
 | *990615 | Voronoi 图 | 推迟 | `computational-geometry/voronoi-diagram.md` |
 | *990616 | 反演几何 | 推迟 | `computational-geometry/inversive-geometry.md` |
