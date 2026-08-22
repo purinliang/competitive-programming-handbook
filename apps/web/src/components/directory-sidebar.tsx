@@ -8,12 +8,18 @@ import { ScrollArea } from "./scroll-area";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { scrollToElement } from "@/lib/scroll-to-element";
 
-interface DirectorySidebarItem {
+export interface DirectorySidebarItem {
   id: string;
   label: string;
 }
 
-export function DirectorySidebar({ title, items }: { title: string; items: DirectorySidebarItem[] }) {
+export function DirectorySidebar({
+  title,
+  items,
+}: {
+  title: string;
+  items: DirectorySidebarItem[];
+}) {
   const pathname = usePathname();
   const sectionIds = useMemo(() => items.map((item) => item.id), [items]);
   const activeId = useActiveSection(sectionIds);
@@ -31,8 +37,14 @@ export function DirectorySidebar({ title, items }: { title: string; items: Direc
 
   return (
     <aside className="module-sidebar directory-sidebar" aria-label={title}>
-      <div className="sidebar-heading sidebar-heading-single"><h2>{title}</h2></div>
-      <ScrollArea className="sidebar-scroll-area" viewportClassName="sidebar-scroll-viewport" refreshKey={items.map((item) => item.id).join(":")}>
+      <div className="sidebar-heading sidebar-heading-single">
+        <h2>{title}</h2>
+      </div>
+      <ScrollArea
+        className="sidebar-scroll-area"
+        viewportClassName="sidebar-scroll-viewport"
+        refreshKey={items.map((item) => item.id).join(":")}
+      >
         <nav className="directory-sidebar-list">
           {items.map((item) => (
             <a

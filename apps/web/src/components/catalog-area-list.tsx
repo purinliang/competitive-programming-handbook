@@ -1,4 +1,5 @@
 import { ArticleFamilyList } from "./article-family-list";
+import { Disclosure } from "./disclosure";
 
 import type { CatalogArea, NavigationMode } from "@/lib/content/types";
 
@@ -22,21 +23,20 @@ export function CatalogAreaList({
           group.entryKeys.includes(activeEntryKey ?? "")
         ));
         return (
-          <details
+          <Disclosure
+            bodyClassName="catalog-area-entries"
             className="catalog-area"
-            data-area-key={area.key}
+            dataAreaKey={area.key}
             open={active}
             key={area.key}
+            summary={area.title}
           >
-            <summary>{area.title}</summary>
-            <div className="catalog-area-entries">
-              <ArticleFamilyList
-                groups={area.groups}
-                activeEntryKey={activeEntryKey}
-                navigation={navigation}
-              />
-            </div>
-          </details>
+            <ArticleFamilyList
+              groups={area.groups}
+              activeEntryKey={activeEntryKey}
+              navigation={navigation}
+            />
+          </Disclosure>
         );
       })}
     </div>

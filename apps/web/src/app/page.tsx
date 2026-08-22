@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 
-import { NavigationLink as Link } from "@/components/navigation-link";
+import { ActionLink } from "@/components/action-link";
 import { SiteHeader } from "@/components/site-header";
 
 export default function HomePage() {
@@ -16,9 +16,9 @@ export default function HomePage() {
             从 C++ 基础到高中竞赛进阶，沿着一条能真正读完的路线学习；也可以按模块查找算法、数据结构和可复制模板。
           </p>
           <div className="hero-actions">
-            <Link className="control-button primary-button hero-primary-action" href="/learning-path/">
+            <ActionLink href="/learning-path/" size="large">
               开始学习 <ArrowRight aria-hidden="true" size={17} />
-            </Link>
+            </ActionLink>
           </div>
         </section>
       </main>

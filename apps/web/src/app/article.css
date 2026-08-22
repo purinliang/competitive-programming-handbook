@@ -162,25 +162,20 @@
   border-bottom: 0;
 }
 
-.article-family > summary {
+.disclosure > summary {
   display: flex;
   gap: 10px;
   align-items: center;
-  justify-content: space-between;
-  min-height: 44px;
-  padding: 8px 16px;
   color: var(--primary-text);
-  font-size: 14px;
-  line-height: 1.6;
   cursor: pointer;
   list-style: none;
 }
 
-.article-family > summary::-webkit-details-marker {
+.disclosure > summary::-webkit-details-marker {
   display: none;
 }
 
-.article-family > summary::before {
+.disclosure > summary::before {
   width: 0;
   height: 0;
   border-top: 5px solid transparent;
@@ -190,8 +185,25 @@
   transition: transform 120ms ease;
 }
 
-.article-family[open] > summary::before {
+.disclosure[open] > summary::before {
   transform: rotate(90deg);
+}
+
+.disclosure > summary.is-selection-guarded {
+  user-select: none;
+}
+
+.disclosure > summary:hover {
+  color: var(--primary-text);
+  background: var(--panel-hover-bg);
+}
+
+.article-family > summary {
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 8px 16px;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .article-family > summary span {
@@ -202,11 +214,6 @@
   color: var(--faint-text);
   font-size: 11px;
   line-height: 1.45;
-}
-
-.article-family > summary:hover {
-  color: var(--primary-text);
-  background: var(--panel-hover-bg);
 }
 
 .sidebar-list .article-family > summary {
@@ -229,44 +236,10 @@
 }
 
 .catalog-area > summary {
-  display: flex;
-  gap: 10px;
-  align-items: center;
   padding: 11px 16px 9px;
-  color: var(--primary-text);
   font-size: 13px;
   font-weight: 600;
   line-height: 1.5;
-  cursor: pointer;
-  list-style: none;
-}
-
-.article-family > summary.is-selection-guarded,
-.catalog-area > summary.is-selection-guarded {
-  user-select: none;
-}
-
-.catalog-area > summary::-webkit-details-marker {
-  display: none;
-}
-
-.catalog-area > summary::before {
-  width: 0;
-  height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 6px solid currentColor;
-  content: "";
-  transition: transform 120ms ease;
-}
-
-.catalog-area[open] > summary::before {
-  transform: rotate(90deg);
-}
-
-.catalog-area > summary:hover {
-  color: var(--primary-text);
-  background: var(--panel-hover-bg);
 }
 
 .catalog-area-entries {

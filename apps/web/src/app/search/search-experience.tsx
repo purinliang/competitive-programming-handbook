@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 import { NavigationLink as Link } from "@/components/navigation-link";
+import { Panel } from "@/components/panel";
 import { getArticleStatusLabel } from "@/lib/content/status";
 import {
   getSearchDelay,
@@ -99,9 +100,10 @@ export function SearchExperience() {
         />
       </label>
       <div className="search-summary" aria-live="polite">{summary}</div>
-      <div
+      <Panel
+        as="div"
         aria-busy={queryPending}
-        className={`panel search-results${hasResults ? "" : " is-empty"}`}
+        className={`search-results${hasResults ? "" : " is-empty"}`}
       >
         {queryPending && !hasResults ? (
           <p className="search-empty">正在搜索。</p>
@@ -119,14 +121,19 @@ export function SearchExperience() {
             href={record.route}
             key={record.articleKey}
           >
-            <div><strong>{record.title}</strong><p>{record.moduleTitle} · {getArticleStatusLabel(record.status)}</p></div>
+            <div>
+              <strong>{record.title}</strong>
+              <p>
+                {record.moduleTitle} · {getArticleStatusLabel(record.status)}
+              </p>
+            </div>
             <span>{record.articleKey}</span>
           </Link>
         )) : null}
         {!queryPending && searchable && records && results.length === 0 ? (
           <p className="search-empty">没有找到同时包含这些关键词的文章。</p>
         ) : null}
-      </div>
+      </Panel>
     </div>
   );
 }

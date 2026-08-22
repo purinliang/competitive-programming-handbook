@@ -417,8 +417,7 @@ a:focus-visible {
 }
 
 .hero-description,
-.page-intro > p:last-child,
-.empty-page > p {
+.page-intro > p:last-child {
   max-width: 700px;
   margin: 24px 0 0;
   color: var(--secondary-text);
@@ -472,37 +471,41 @@ a:focus-visible {
   margin-top: 32px;
 }
 
-.primary-button,
-.secondary-button {
+.action-link {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
   min-height: 40px;
   padding: 0 16px;
   border: 1px solid transparent;
   border-radius: 8px;
+  cursor: pointer;
   font-weight: 500;
 }
 
-.primary-button {
+.action-link.is-primary {
   color: var(--primary-foreground);
   background: var(--primary-bg);
 }
 
-.primary-button:hover {
+.action-link.is-primary:hover {
   background: var(--primary-hover-bg);
 }
 
-.hero-primary-action {
+.action-link.is-large {
   min-height: 44px;
   padding: 0 20px;
   font-size: 15px;
 }
 
-.secondary-button {
+.action-link.is-secondary {
   border-color: var(--strong-border);
   color: var(--secondary-text);
   background: var(--secondary-bg);
 }
 
-.secondary-button:hover {
+.action-link.is-secondary:hover {
   color: var(--primary-text);
   background: var(--secondary-hover-bg);
 }
@@ -679,10 +682,6 @@ a.article-link.is-active:hover {
 
 .empty-page {
   min-height: calc(100vh - 64px);
-}
-
-.empty-page .primary-button {
-  margin-top: 28px;
 }
 
 .search-page {

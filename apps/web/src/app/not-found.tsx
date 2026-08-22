@@ -1,4 +1,7 @@
-import { NavigationLink as Link } from "@/components/navigation-link";
+import { ArrowLeft } from "lucide-react";
+
+import { ActionLink } from "@/components/action-link";
+import { PageIntro } from "@/components/page-intro";
 import { SiteHeader } from "@/components/site-header";
 
 export default function NotFound() {
@@ -6,10 +9,15 @@ export default function NotFound() {
     <>
       <SiteHeader />
       <main className="empty-page page-frame">
-        <p className="eyebrow">404</p>
-        <h1>这一页还不存在</h1>
-        <p>它可能仍在计划中，也可能已经移动到了新的模块。</p>
-        <Link className="control-button primary-button" href="/">返回首页</Link>
+        <PageIntro
+          description="它可能仍在计划中，也可能已经移动到了新的模块。"
+          eyebrow="404"
+          title="这一页还不存在"
+        />
+        <ActionLink href="/">
+          <ArrowLeft aria-hidden="true" size={17} />
+          返回首页
+        </ActionLink>
       </main>
     </>
   );

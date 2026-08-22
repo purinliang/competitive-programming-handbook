@@ -3,10 +3,7 @@
 import { useEffect } from "react";
 
 const GUARD_DURATION_MS = 300;
-const DISCLOSURE_SUMMARY_SELECTOR = [
-  ".article-family > summary",
-  ".catalog-area > summary",
-].join(", ");
+const DISCLOSURE_SUMMARY_SELECTOR = ".disclosure > summary";
 
 export function DisclosureSelectionGuard() {
   useEffect(() => {
