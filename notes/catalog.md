@@ -875,7 +875,7 @@
 | 050606 | 二项式定理 | 待审阅 | [binomial-theorem.md](math/binomial-theorem.md) |
 | 050607 | 杨辉三角 | 待审阅 | [pascal-triangle.md](math/pascal-triangle.md) |
 | 070306 | 组合数：阶乘与逆元预处理 | 待审阅 | [binomial-coefficients-factorials.md](math/binomial-coefficients-factorials.md) |
-| 080316 | 卢卡斯定理 | 计划 | `math/lucas-theorem.md` |
+| 080316 | 卢卡斯定理 | 待审阅 | [lucas-theorem.md](math/lucas-theorem.md) |
 | 090403 | 扩展卢卡斯定理 | 计划 | `math/extended-lucas-theorem.md` |
 | *990538 | 组合计数：抽屉原理 | 计划 | `math/pigeonhole-principle.md` |
 
