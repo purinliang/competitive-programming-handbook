@@ -832,7 +832,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 090401 | 阶与原根 | 待审阅 | [primitive-roots.md](math/primitive-roots.md) |
-| 090402 | BSGS 与离散对数 | 计划 | `math/discrete-logarithm.md` |
+| 090402 | 离散对数与 BSGS | 待审阅 | [discrete-logarithm.md](math/discrete-logarithm.md) |
 | *990506 | 离散对数：Pohlig-Hellman | 推迟 | `math/pohlig-hellman.md` |
 | 090415 | 类欧几里得算法 | 计划 | `math/euclidean-like-algorithm.md` |
 
