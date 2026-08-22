@@ -814,7 +814,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 090601 | 后缀数组 | 字符串 | `strings/suffix-array.md` |
+| 090601 | 后缀数组 | 字符串 | [strings/suffix-array.md](strings/suffix-array.md) |
 | 090602 | 后缀自动机 | 字符串 | `strings/suffix-automaton.md` |
 | 090603 | 回文自动机 | 字符串 | `strings/palindromic-tree.md` |
 | 090604 | 本质不同子串计数 | 字符串 | `strings/distinct-substring-counting.md` |
