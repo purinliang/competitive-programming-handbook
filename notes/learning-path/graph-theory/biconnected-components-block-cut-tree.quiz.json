@@ -1,0 +1,54 @@
+{
+  "articleKey": "biconnected-components-block-cut-tree",
+  "title": "点双连通分量与圆方树",
+  "questions": [
+    {
+      "id": "biconnected-components-block-cut-tree-1",
+      "prompt": "DFS 树边 u -> v 在什么条件下闭合一个以 u 为边界的点双连通分量？",
+      "options": [
+        "low[v] >= dfn[u]",
+        "low[v] > dfn[u] 且 u 必须是根",
+        "dfn[v] < dfn[u]",
+        "low[u] = dfn[v]"
+      ],
+      "answer": 0,
+      "explanation": "该条件说明 v 子树无法绕过 u 到达 u 的祖先，当前分量边界已经确定。"
+    },
+    {
+      "id": "biconnected-components-block-cut-tree-2",
+      "prompt": "为什么无向图 Tarjan 应按父边编号跳过，而不只判断 v == parent？",
+      "options": [
+        "为了让 DFS 顺序按边编号递增",
+        "重边图中只能跳过进入当前点的那一条边，其他平行边仍可能是返祖边",
+        "父节点可能还没有访问",
+        "点编号可能不是从 1 开始"
+      ],
+      "answer": 1,
+      "explanation": "只按父节点跳过会同时忽略所有连接父子的平行边，从而算错 low。"
+    },
+    {
+      "id": "biconnected-components-block-cut-tree-3",
+      "prompt": "圆方树中的方点表示什么？",
+      "options": [
+        "原图中的割点",
+        "原图中的每一条边",
+        "一个点双连通分量",
+        "DFS 树中的叶节点"
+      ],
+      "answer": 2,
+      "explanation": "原图点保留为圆点；每个点双连通分量新建方点，并连接它包含的圆点。"
+    },
+    {
+      "id": "biconnected-components-block-cut-tree-4",
+      "prompt": "DFS 根节点在什么情况下是割点？",
+      "options": [
+        "存在任意一个儿子",
+        "low[root] 等于 dfn[root]",
+        "它出现在 DFS 栈底",
+        "它至少有两个 DFS 树儿子"
+      ],
+      "answer": 3,
+      "explanation": "根删除后，只有至少两棵独立 DFS 子树时才会把剩余图分开。"
+    }
+  ]
+}
