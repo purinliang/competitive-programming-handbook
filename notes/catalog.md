@@ -989,7 +989,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090419 | 线性规划与单纯形法 | 计划 | `math/linear-programming.md` |
+| 090419 | 线性规划与单纯形法 | 待审阅 | [linear-programming.md](math/linear-programming.md) |
 
 ## 06 计算几何
 
