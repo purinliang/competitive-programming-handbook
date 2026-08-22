@@ -936,7 +936,7 @@
 | *080303e1 | 前缀线性基 | 推迟 | `math/prefix-xor-linear-basis.md` |
 | 080304 | 高斯消元 | 待审阅 | [math/gaussian-elimination.md](math/gaussian-elimination.md) |
 | 080305 | 线性代数：行列式 | 待审阅 | [math/determinant.md](math/determinant.md) |
-| 090404 | 矩阵求逆 | 计划 | `math/matrix-inverse.md` |
+| 090404 | 矩阵求逆 | 待审阅 | [matrix-inverse.md](math/matrix-inverse.md) |
 
 ### 概率与期望
 
