@@ -808,7 +808,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 090501 | 自动机 DP | 动态规划 | [dynamic-programming/automaton-dp.md](dynamic-programming/automaton-dp.md) |
 | 090502 | 决策单调性 | 动态规划 | [dynamic-programming/decision-monotonicity.md](dynamic-programming/decision-monotonicity.md) |
 | 090503 | 分治优化 | 动态规划 | [dynamic-programming/divide-conquer-optimization.md](dynamic-programming/divide-conquer-optimization.md) |
-| 090504 | 四边形不等式优化 | 动态规划 | `dynamic-programming/quadrangle-inequality-optimization.md` |
+| 090504 | 四边形不等式优化 | 动态规划 | [dynamic-programming/quadrangle-inequality-optimization.md](dynamic-programming/quadrangle-inequality-optimization.md) |
 
 ### 单元 06：字符串
 
