@@ -794,7 +794,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 090411 | Burnside 引理 | 数学 | [math/burnside-lemma.md](math/burnside-lemma.md) |
 | 090412 | Polya 定理 | 数学 | [math/polya-enumeration.md](math/polya-enumeration.md) |
 | 090413 | Simpson 公式 | 数学 | [math/simpson-rule.md](math/simpson-rule.md) |
-| 090414 | 自适应 Simpson | 数学 | `math/adaptive-simpson.md` |
+| 090414 | 自适应 Simpson | 数学 | [math/adaptive-simpson.md](math/adaptive-simpson.md) |
 | 090415 | 类欧几里得算法 | 数学 | `math/euclidean-like-algorithm.md` |
 | 090416 | 杜教筛 | 数学 | `math/du-jiao-sieve.md` |
 | 090417 | Min_25 筛 | 数学 | `math/min-25-sieve.md` |

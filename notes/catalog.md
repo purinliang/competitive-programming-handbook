@@ -983,7 +983,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 090413 | Simpson 公式 | 待审阅 | [simpson-rule.md](math/simpson-rule.md) |
-| 090414 | 自适应 Simpson | 计划 | `math/adaptive-simpson.md` |
+| 090414 | 自适应 Simpson | 待审阅 | [adaptive-simpson.md](math/adaptive-simpson.md) |
 
 ### 优化
 
