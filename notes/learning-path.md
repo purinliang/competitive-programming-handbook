@@ -770,7 +770,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 090307 | 网络流：最大流 | 图论 | [graph-theory/max-flow-residual-network.md](graph-theory/max-flow-residual-network.md) |
 | 090308 | 网络流：Dinic 算法 | 图论 | [graph-theory/dinic-max-flow.md](graph-theory/dinic-max-flow.md) |
 | 090309 | 网络流：SAP 算法 | 图论 | [graph-theory/sap-max-flow.md](graph-theory/sap-max-flow.md) |
-| 090310 | 网络流：最小费用最大流 | 图论 | `graph-theory/min-cost-max-flow.md` |
+| 090310 | 网络流：最小费用最大流 | 图论 | [graph-theory/min-cost-max-flow.md](graph-theory/min-cost-max-flow.md) |
 | 090311 | 网络流：上下界网络流 | 图论 | `graph-theory/bounded-flow.md` |
 | 090312 | 二分图最大权匹配：KM 算法 | 图论 | `graph-theory/kuhn-munkres.md` |
 | 090313 | Steiner 树 | 图论 | `graph-theory/steiner-tree.md` |
