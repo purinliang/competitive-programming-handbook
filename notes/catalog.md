@@ -657,7 +657,7 @@
 | 040312 | 二分图：判定 | 待审阅 | [bipartite-graph.md](graph-theory/bipartite-graph.md) |
 | 080201 | 二分图：最大匹配 | 待审阅 | [graph-theory/bipartite-matching.md](graph-theory/bipartite-matching.md) |
 | *080201e1 | 二分图最大匹配：Hopcroft–Karp | 推迟 | `graph-theory/hopcroft-karp.md` |
-| 090314 | 二分图最大权匹配：KM 算法 | 计划 | `graph-theory/kuhn-munkres.md` |
+| 090315 | 二分图最大权匹配：KM 算法 | 计划 | `graph-theory/kuhn-munkres.md` |
 | *990421 | 一般图最大匹配 | 推迟 | `graph-theory/general-graph-matching.md` |
 
 ### 连通性
@@ -666,7 +666,8 @@
 | --- | --- | --- | --- |
 | 070201 | 有向图：强连通分量 | 待审阅 | [strongly-connected-components.md](graph-theory/strongly-connected-components.md) |
 | 070202 | 无向图：割点与桥 | 待审阅 | [articulation-points-bridges.md](graph-theory/articulation-points-bridges.md) |
-| 090307 | 点双连通分量与圆方树 | 待审阅 | [biconnected-components-block-cut-tree.md](graph-theory/biconnected-components-block-cut-tree.md) |
+| 090307 | 点双连通分量 | 待审阅 | [vertex-biconnected-components.md](graph-theory/vertex-biconnected-components.md) |
+| 090308 | 圆方树 | 待审阅 | [block-cut-tree.md](graph-theory/block-cut-tree.md) |
 | 080202 | 2-SAT | 待审阅 | [graph-theory/two-sat.md](graph-theory/two-sat.md) |
 | *990423 | 支配树 | 推迟 | `graph-theory/dominator-tree.md` |
 | *990424 | 无向图：全局最小割 | 推迟 | `graph-theory/global-minimum-cut.md` |
@@ -707,7 +708,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 090301 | 点分治 | 待审阅 | [centroid-decomposition.md](graph-theory/centroid-decomposition.md) |
-| 090302 | 边分治 | 计划 | `graph-theory/edge-decomposition.md` |
+| 090302 | 边分治 | 待审阅 | [edge-decomposition.md](graph-theory/edge-decomposition.md) |
 | *990427 | 树分治：动态点分治 | 推迟 | `graph-theory/dynamic-centroid-decomposition.md` |
 
 ### 特殊图结构
@@ -717,25 +718,25 @@
 | *060407 | 基环树 | 待审阅 | [unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
 | *990429 | 函数图 | 待审阅 | [functional-graph.md](graph-theory/functional-graph.md) |
 | *990417 | 竞赛图 | 计划 | `graph-theory/tournament-graph.md` |
-| 090316 | 仙人掌 | 计划 | `graph-theory/cactus-graph.md` |
+| 090317 | 仙人掌 | 计划 | `graph-theory/cactus-graph.md` |
 | *990425 | 弦图 | 推迟 | `graph-theory/chordal-graph.md` |
 
 ### 网络流
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090308 | 最大流与残量网络 | 计划 | `graph-theory/max-flow-residual-network.md` |
-| 090309 | Dinic 算法 | 计划 | `graph-theory/dinic-max-flow.md` |
-| 090310 | SAP 算法 | 计划 | `graph-theory/sap-max-flow.md` |
-| 090311 | 可行流 | 计划 | `graph-theory/feasible-flow.md` |
-| 090312 | 最小费用最大流 | 计划 | `graph-theory/min-cost-max-flow.md` |
-| 090313 | 上下界网络流 | 计划 | `graph-theory/bounded-flow.md` |
+| 090309 | 最大流与残量网络 | 计划 | `graph-theory/max-flow-residual-network.md` |
+| 090310 | Dinic 算法 | 计划 | `graph-theory/dinic-max-flow.md` |
+| 090311 | SAP 算法 | 计划 | `graph-theory/sap-max-flow.md` |
+| 090312 | 可行流 | 计划 | `graph-theory/feasible-flow.md` |
+| 090313 | 最小费用最大流 | 计划 | `graph-theory/min-cost-max-flow.md` |
+| 090314 | 上下界网络流 | 计划 | `graph-theory/bounded-flow.md` |
 
 ### 其他图问题
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090315 | Steiner 树 | 计划 | `graph-theory/steiner-tree.md` |
+| 090316 | Steiner 树 | 计划 | `graph-theory/steiner-tree.md` |
 
 ## 05 数学
 

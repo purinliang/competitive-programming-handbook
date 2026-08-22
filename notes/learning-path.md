@@ -758,21 +758,22 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 090301 | 点分治 | 图论 | [graph-theory/centroid-decomposition.md](graph-theory/centroid-decomposition.md) |
-| 090302 | 边分治 | 图论 | `graph-theory/edge-decomposition.md` |
+| 090302 | 边分治 | 图论 | [graph-theory/edge-decomposition.md](graph-theory/edge-decomposition.md) |
 | 090303 | 虚树 | 图论 | [graph-theory/virtual-tree.md](graph-theory/virtual-tree.md) |
 | 090304 | 树哈希 | 图论 | [graph-theory/tree-hashing.md](graph-theory/tree-hashing.md) |
 | 090305 | 最短路树 | 图论 | [graph-theory/shortest-path-tree.md](graph-theory/shortest-path-tree.md) |
 | 090306 | Boruvka 算法 | 图论 | [graph-theory/boruvka.md](graph-theory/boruvka.md) |
-| 090307 | 点双连通分量与圆方树 | 图论 | [graph-theory/biconnected-components-block-cut-tree.md](graph-theory/biconnected-components-block-cut-tree.md) |
-| 090308 | 最大流与残量网络 | 图论 | `graph-theory/max-flow-residual-network.md` |
-| 090309 | Dinic 算法 | 图论 | `graph-theory/dinic-max-flow.md` |
-| 090310 | SAP 算法 | 图论 | `graph-theory/sap-max-flow.md` |
-| 090311 | 可行流 | 图论 | `graph-theory/feasible-flow.md` |
-| 090312 | 最小费用最大流 | 图论 | `graph-theory/min-cost-max-flow.md` |
-| 090313 | 上下界网络流 | 图论 | `graph-theory/bounded-flow.md` |
-| 090314 | 二分图最大权匹配：KM 算法 | 图论 | `graph-theory/kuhn-munkres.md` |
-| 090315 | Steiner 树 | 图论 | `graph-theory/steiner-tree.md` |
-| 090316 | 仙人掌 | 图论 | `graph-theory/cactus-graph.md` |
+| 090307 | 点双连通分量 | 图论 | [graph-theory/vertex-biconnected-components.md](graph-theory/vertex-biconnected-components.md) |
+| 090308 | 圆方树 | 图论 | [graph-theory/block-cut-tree.md](graph-theory/block-cut-tree.md) |
+| 090309 | 最大流与残量网络 | 图论 | `graph-theory/max-flow-residual-network.md` |
+| 090310 | Dinic 算法 | 图论 | `graph-theory/dinic-max-flow.md` |
+| 090311 | SAP 算法 | 图论 | `graph-theory/sap-max-flow.md` |
+| 090312 | 可行流 | 图论 | `graph-theory/feasible-flow.md` |
+| 090313 | 最小费用最大流 | 图论 | `graph-theory/min-cost-max-flow.md` |
+| 090314 | 上下界网络流 | 图论 | `graph-theory/bounded-flow.md` |
+| 090315 | 二分图最大权匹配：KM 算法 | 图论 | `graph-theory/kuhn-munkres.md` |
+| 090316 | Steiner 树 | 图论 | `graph-theory/steiner-tree.md` |
+| 090317 | 仙人掌 | 图论 | `graph-theory/cactus-graph.md` |
 
 ### 单元 04：数学
 
