@@ -1,0 +1,62 @@
+[
+  {
+    "id": "two-dimensions",
+    "prompt": "线段树套平衡树中，外层与内层分别维护什么？",
+    "options": [
+      { "id": "a", "text": "外层维护位置区间，内层维护该区间的值" },
+      { "id": "b", "text": "两层都只维护数组长度" },
+      { "id": "c", "text": "外层维护随机优先级，内层维护版本" },
+      { "id": "d", "text": "外层维护值域，内层不保存数据" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "外层按下标分解查询范围，内层平衡树统计每段范围中的键值。"
+  },
+  {
+    "id": "point-change",
+    "prompt": "把 `a[pos]` 从旧值改成新值时，外层路径上的每棵 Treap 应做什么？",
+    "options": [
+      { "id": "a", "text": "只插入新值" },
+      { "id": "b", "text": "删除整棵 Treap" },
+      { "id": "c", "text": "删除一次旧值，再插入一次新值" },
+      { "id": "d", "text": "只修改外层根" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "这条路径的每个位置区间都包含 pos，其值集合必须同步替换。"
+  },
+  {
+    "id": "range-rank",
+    "prompt": "区间 `[l,r]` 中 `x` 的排名怎样计算？",
+    "options": [
+      { "id": "a", "text": "区间长度加 x" },
+      { "id": "b", "text": "完整外层节点中严格小于 x 的数量之和再加 1" },
+      { "id": "c", "text": "只查询数组第 l 个位置" },
+      { "id": "d", "text": "只看全局 Treap 的根" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "外层分解出的节点互不相交，内层计数可以直接相加。"
+  },
+  {
+    "id": "kth-binary-search",
+    "prompt": "为什么能通过二分值域求区间第 k 小？",
+    "options": [
+      { "id": "a", "text": "数组位置已经按值排序" },
+      { "id": "b", "text": "Treap 的优先级单调" },
+      { "id": "c", "text": "所有值都相同" },
+      { "id": "d", "text": "不大于候选值的元素数量随候选值单调不减" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "第 k 小是使区间内不大于它的元素数量至少为 k 的最小值。"
+  },
+  {
+    "id": "memory-duplicates",
+    "prompt": "为什么初始结构需要 `O(n log n)` 个元素副本？",
+    "options": [
+      { "id": "a", "text": "每个数组元素被插入外层根到叶路径上的 O(log n) 棵 Treap" },
+      { "id": "b", "text": "每个元素要复制 n 次" },
+      { "id": "c", "text": "Treap 不能保存重复键" },
+      { "id": "d", "text": "值域二分会永久新建节点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "外层每一层都有一个包含该位置的节点，因此每层内树都保存一次该值。"
+  }
+]
