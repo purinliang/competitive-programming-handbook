@@ -757,7 +757,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 090301 | 点分治 | 图论 | `graph-theory/centroid-decomposition.md` |
+| 090301 | 点分治 | 图论 | [graph-theory/centroid-decomposition.md](graph-theory/centroid-decomposition.md) |
 | 090302 | 边分治 | 图论 | `graph-theory/edge-decomposition.md` |
 | 090303 | 虚树 | 图论 | `graph-theory/virtual-tree.md` |
 | 090304 | 树哈希 | 图论 | `graph-theory/tree-hashing.md` |

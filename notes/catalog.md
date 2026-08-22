@@ -706,7 +706,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090301 | 点分治 | 计划 | `graph-theory/centroid-decomposition.md` |
+| 090301 | 点分治 | 待审阅 | [centroid-decomposition.md](graph-theory/centroid-decomposition.md) |
 | 090302 | 边分治 | 计划 | `graph-theory/edge-decomposition.md` |
 | *990427 | 树分治：动态点分治 | 推迟 | `graph-theory/dynamic-centroid-decomposition.md` |
 
