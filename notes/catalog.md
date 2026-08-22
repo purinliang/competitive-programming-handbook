@@ -720,7 +720,7 @@
 | *060407 | 基环树 | 待审阅 | [unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
 | *990429 | 函数图 | 待审阅 | [functional-graph.md](graph-theory/functional-graph.md) |
 | *990417 | 竞赛图 | 计划 | `graph-theory/tournament-graph.md` |
-| 090314 | 仙人掌 | 计划 | `graph-theory/cactus-graph.md` |
+| 090314 | 仙人掌 | 待审阅 | [cactus-graph.md](graph-theory/cactus-graph.md) |
 | *990425 | 弦图 | 推迟 | `graph-theory/chordal-graph.md` |
 
 ### 网络流
