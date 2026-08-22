@@ -961,7 +961,7 @@
 | *050501e3 | 高精度整数：快速乘法 | 待审阅 | [big-integer-fast-multiplication.md](math/big-integer-fast-multiplication.md) |
 | *990517 | 多项式：除法与余数 | 推迟 | `math/polynomial-division-remainder.md` |
 | *990518 | 多项式：多点求值 | 推迟 | `math/multipoint-evaluation.md` |
-| 090409 | 拉格朗日插值 | 计划 | `math/lagrange-interpolation.md` |
+| 090409 | 拉格朗日插值 | 待审阅 | [lagrange-interpolation.md](math/lagrange-interpolation.md) |
 | *990511 | 形式幂级数：形式导数 | 推迟 | `math/formal-derivative.md` |
 | *990512 | 形式幂级数：形式积分 | 推迟 | `math/formal-integral.md` |
 | *990510 | 形式幂级数：求逆 | 推迟 | `math/formal-power-series-inverse.md` |

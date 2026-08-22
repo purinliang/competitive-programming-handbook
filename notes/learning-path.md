@@ -789,7 +789,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 090406 | 最值容斥 | 数学 | [math/min-max-inclusion-exclusion.md](math/min-max-inclusion-exclusion.md) |
 | 090407 | 二项式反演 | 数学 | [math/binomial-inversion.md](math/binomial-inversion.md) |
 | 090408 | Prufer 序列 | 数学 | [math/prufer-sequence.md](math/prufer-sequence.md) |
-| 090409 | 拉格朗日插值 | 数学 | `math/lagrange-interpolation.md` |
+| 090409 | 拉格朗日插值 | 数学 | [math/lagrange-interpolation.md](math/lagrange-interpolation.md) |
 | 090410 | FWT 与 FMT | 数学 | `math/fast-subset-transforms.md` |
 | 090411 | Burnside 引理 | 数学 | `math/burnside-lemma.md` |
 | 090412 | Polya 定理 | 数学 | `math/polya-enumeration.md` |
