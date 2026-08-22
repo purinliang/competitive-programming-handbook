@@ -1,7 +1,7 @@
 [
   {
     "id": "suffix-array-1",
-    "prompt": "sa[order] 保存什么？",
+    "prompt": "`sa[order]` 保存什么？",
     "options": [
       {
         "id": "a",
@@ -21,19 +21,19 @@
       }
     ],
     "correctOptionId": "d",
-    "explanation": "sa 从字典序位置映射回原字符串起点；rank_value 则是相反方向的映射。"
+    "explanation": "`sa` 从字典序位置映射回原字符串起点；`rk` 则是相反方向的映射。"
   },
   {
     "id": "suffix-array-2",
-    "prompt": "倍增算法比较长度 2*width 的前缀时使用哪组关键字？",
+    "prompt": "倍增算法比较长度为 `2 * width` 的前缀时使用哪组关键字？",
     "options": [
       {
         "id": "a",
-        "text": "rank[pos] 与 rank[pos+width]"
+        "text": "`rk[pos]` 与 `rk[pos + width]`"
       },
       {
         "id": "b",
-        "text": "pos 与字符串长度"
+        "text": "`pos` 与字符串长度"
       },
       {
         "id": "c",
@@ -41,7 +41,7 @@
       },
       {
         "id": "d",
-        "text": "sa[pos] 与 lcp[pos]"
+        "text": "`sa[pos]` 与 `lcp[pos]`"
       }
     ],
     "correctOptionId": "a",
@@ -49,7 +49,7 @@
   },
   {
     "id": "suffix-array-3",
-    "prompt": "为什么越过字符串结尾的第二段使用排名 0？",
+    "prompt": "为什么越过字符串结尾的第二段使用排名 `0`？",
     "options": [
       {
         "id": "a",
@@ -57,7 +57,7 @@
       },
       {
         "id": "b",
-        "text": "因为字符 '0' 最小"
+        "text": "因为字符 `0` 最小"
       },
       {
         "id": "c",
@@ -69,7 +69,7 @@
       }
     ],
     "correctOptionId": "c",
-    "explanation": "正常排名从 1 开始，0 作为空串哨兵，准确表达一个后缀已经结束。"
+    "explanation": "正常排名从 `1` 开始，`0` 作为空串哨兵，准确表达一个后缀已经结束。"
   },
   {
     "id": "suffix-array-4",
@@ -81,7 +81,7 @@
       },
       {
         "id": "b",
-        "text": "相邻原位置可从上一匹配长度减一继续，height 的总增减次数都是 O(n)"
+        "text": "相邻原位置可从上一匹配长度减一继续，`height` 的总增减次数都是 $O(n)$"
       },
       {
         "id": "c",
