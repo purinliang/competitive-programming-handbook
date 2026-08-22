@@ -698,7 +698,7 @@
 | 060404 | 倍增 LCA | 待审阅 | [lca-binary-lifting.md](graph-theory/lca-binary-lifting.md) |
 | 080107 | 重链剖分 | 待审阅 | [heavy-light-decomposition.md](graph-theory/heavy-light-decomposition.md) |
 | 060405 | 树上差分 | 待审阅 | [tree-difference.md](graph-theory/tree-difference.md) |
-| 090303 | 虚树 | 计划 | `graph-theory/virtual-tree.md` |
+| 090303 | 虚树 | 待审阅 | [virtual-tree.md](graph-theory/virtual-tree.md) |
 | 090304 | 树哈希 | 计划 | `graph-theory/tree-hashing.md` |
 | *990428 | 长链剖分 | 推迟 | `graph-theory/long-chain-decomposition.md` |
 
