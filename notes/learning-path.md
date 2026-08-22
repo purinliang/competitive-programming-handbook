@@ -821,7 +821,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 090605 | 字典序第 k 小子串 | 字符串 | [strings/kth-lexicographic-substring.md](strings/kth-lexicographic-substring.md) |
 | 090606 | 子串出现次数 | 字符串 | [strings/substring-occurrence-counting.md](strings/substring-occurrence-counting.md) |
 | 090607 | 最长重复子串 | 字符串 | [strings/longest-repeated-substring.md](strings/longest-repeated-substring.md) |
-| 090608 | 最长公共子串 | 字符串 | `strings/longest-common-substring.md` |
+| 090608 | 最长公共子串 | 字符串 | [strings/longest-common-substring.md](strings/longest-common-substring.md) |
 
 ### 单元 07：计算几何
 
