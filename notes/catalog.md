@@ -638,7 +638,7 @@
 | 070203 | 最短路：分层图与状态图 | 待审阅 | [layered-state-shortest-path.md](graph-theory/layered-state-shortest-path.md) |
 | *990408 | SPFA 与队列优化最短路 | 计划 | `graph-theory/spfa.md` |
 | *990410 | 差分约束 | 计划 | `graph-theory/difference-constraints.md` |
-| 090305 | 最短路树 | 计划 | `graph-theory/shortest-path-tree.md` |
+| 090305 | 最短路树 | 待审阅 | [shortest-path-tree.md](graph-theory/shortest-path-tree.md) |
 | *990422 | 最短路：k 短路 | 推迟 | `graph-theory/k-shortest-paths.md` |
 
 ### 生成树
