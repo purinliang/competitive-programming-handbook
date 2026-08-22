@@ -737,7 +737,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090313 | Steiner 树 | 计划 | `graph-theory/steiner-tree.md` |
+| 090313 | 斯坦纳树 | 待审阅 | [steiner-tree.md](graph-theory/steiner-tree.md) |
 
 ## 05 数学
 
