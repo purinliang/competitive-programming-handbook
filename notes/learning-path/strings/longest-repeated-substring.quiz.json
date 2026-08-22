@@ -1,0 +1,54 @@
+{
+  "articleKey": "longest-repeated-substring",
+  "title": "最长重复子串",
+  "questions": [
+    {
+      "id": "longest-repeated-substring-1",
+      "prompt": "最长重复子串长度等于什么？",
+      "options": [
+        "最短后缀长度",
+        "后缀数组中最大起点",
+        "全部后缀长度之和",
+        "相邻后缀 LCP 的最大值"
+      ],
+      "answer": 3,
+      "explanation": "任何重复子串由共享该前缀的连续后缀块中某对相邻后缀见证；任何 LCP 又确实重复出现。"
+    },
+    {
+      "id": "longest-repeated-substring-2",
+      "prompt": "为什么只检查字典序相邻后缀？",
+      "options": [
+        "只有相邻后缀能来自不同起点",
+        "共享同一前缀的后缀连续，其中必有相邻对保留该公共前缀",
+        "其他后缀都没有公共字符",
+        "后缀数组只保存两个后缀"
+      ],
+      "answer": 1,
+      "explanation": "前缀相同的后缀形成连续块，块中任意相邻项也共享这个前缀。"
+    },
+    {
+      "id": "longest-repeated-substring-3",
+      "prompt": "本文允许重叠时，aaa 在 aaaa 中是否是合法重复子串？",
+      "options": [
+        "是，它从位置 1 和 2 开始出现",
+        "否，任何重复都不能共享字符",
+        "否，因为它出现三次",
+        "只有长度为偶数时合法"
+      ],
+      "answer": 0,
+      "explanation": "两个不同后缀起点就代表两次出现；本文没有要求对应区间互不相交。"
+    },
+    {
+      "id": "longest-repeated-substring-4",
+      "prompt": "若题目要求两次出现不重叠，还缺少什么条件？",
+      "options": [
+        "两个后缀必须字典序相等",
+        "字符串长度必须是质数",
+        "两个出现起点的距离至少达到候选子串长度",
+        "LCP 必须等于 0"
+      ],
+      "answer": 2,
+      "explanation": "不重叠要求两个长度为 L 的区间起点至少相距 L；普通最大 LCP 没有记录这条位置约束。"
+    }
+  ]
+}
