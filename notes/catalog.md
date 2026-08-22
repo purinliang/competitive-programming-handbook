@@ -912,7 +912,7 @@
 | --- | --- | --- | --- |
 | 090405 | 矩阵树定理 | 待审阅 | [matrix-tree-theorem.md](math/matrix-tree-theorem.md) |
 | *990530 | 欧拉回路计数：BEST 定理 | 推迟 | `math/best-theorem.md` |
-| 090408 | Prufer 序列 | 计划 | `math/prufer-sequence.md` |
+| 090408 | Prufer 序列 | 待审阅 | [prufer-sequence.md](math/prufer-sequence.md) |
 | *990532 | 路径计数：LGV 引理 | 推迟 | `math/lindstrom-gessel-viennot-lemma.md` |
 | *990546 | 组合计数：杨表 | 计划 | `math/young-tableaux.md` |
 
