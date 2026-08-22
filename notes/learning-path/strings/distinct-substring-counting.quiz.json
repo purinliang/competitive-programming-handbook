@@ -1,0 +1,54 @@
+{
+  "articleKey": "distinct-substring-counting",
+  "title": "本质不同子串计数",
+  "questions": [
+    {
+      "id": "distinct-substring-counting-1",
+      "prompt": "后缀自动机状态 u 为本质不同子串计数贡献多少？",
+      "options": [
+        "max_length[u] - max_length[link[u]]",
+        "max_length[u] + max_length[link[u]]",
+        "occurrence[u]",
+        "child[u] 的数量"
+      ],
+      "answer": 0,
+      "explanation": "状态代表的合法长度是从 link 状态最大长度加 1 到自身最大长度，区间大小正是两者之差。"
+    },
+    {
+      "id": "distinct-substring-counting-2",
+      "prompt": "为什么一个状态的合法长度区间内，每个长度只对应一个子串？",
+      "options": [
+        "所有子串都相等",
+        "每个长度只在文本中出现一次",
+        "状态只保存一个字符",
+        "该长度唯一确定状态最长代表串的一个后缀"
+      ],
+      "answer": 3,
+      "explanation": "同状态子串都是最长代表串的后缀；固定后缀长度后，内容唯一。"
+    },
+    {
+      "id": "distinct-substring-counting-3",
+      "prompt": "后缀数组公式为什么减去相邻后缀的 LCP？",
+      "options": [
+        "LCP 表示后缀长度",
+        "这些前缀已经由字典序更早的后缀提供，不应重复计数",
+        "所有 LCP 都是不合法子串",
+        "为了删除空串"
+      ],
+      "answer": 1,
+      "explanation": "当前后缀的前 lcp 个前缀与前驱相同，只有更长前缀首次出现。"
+    },
+    {
+      "id": "distinct-substring-counting-4",
+      "prompt": "为什么答案需要 64 位整数？",
+      "options": [
+        "后缀自动机状态编号一定超过 32 位",
+        "字符编码必须使用 64 位",
+        "不同子串数量上界 n(n+1)/2 可能超过 32 位范围",
+        "link 数组保存小数"
+      ],
+      "answer": 2,
+      "explanation": "不同子串数量最坏达到全部子串区间数，n 较大时平方级数量超过 int。"
+    }
+  ]
+}
