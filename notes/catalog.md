@@ -818,7 +818,7 @@
 | 070309 | 莫比乌斯函数 | 待审阅 | [mobius-function.md](math/mobius-function.md) |
 | *070309e1 | 莫比乌斯反演 | 计划 | `math/mobius-inversion.md` |
 | 090416 | 杜教筛 | 待审阅 | [du-jiao-sieve.md](math/du-jiao-sieve.md) |
-| 090417 | Min_25 筛 | 计划 | `math/min-25-sieve.md` |
+| 090417 | Min_25 筛 | 待审阅 | [min-25-sieve.md](math/min-25-sieve.md) |
 
 #### 专题：中国剩余定理
 

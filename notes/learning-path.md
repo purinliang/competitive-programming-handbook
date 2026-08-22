@@ -797,7 +797,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 090414 | 自适应 Simpson | 数学 | [math/adaptive-simpson.md](math/adaptive-simpson.md) |
 | 090415 | 类欧几里得算法 | 数学 | [math/euclidean-like-algorithm.md](math/euclidean-like-algorithm.md) |
 | 090416 | 杜教筛 | 数学 | [math/du-jiao-sieve.md](math/du-jiao-sieve.md) |
-| 090417 | Min_25 筛 | 数学 | `math/min-25-sieve.md` |
+| 090417 | Min_25 筛 | 数学 | [math/min-25-sieve.md](math/min-25-sieve.md) |
 | 090418 | 线性递推：Berlekamp-Massey | 数学 | `math/berlekamp-massey.md` |
 | 090419 | 线性规划与单纯形法 | 数学 | `math/linear-programming.md` |
 
