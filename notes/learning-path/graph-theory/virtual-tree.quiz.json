@@ -1,0 +1,54 @@
+{
+  "articleKey": "virtual-tree",
+  "title": "虚树",
+  "questions": [
+    {
+      "id": "virtual-tree-1",
+      "prompt": "除关键节点外，虚树为什么还要加入部分最近公共祖先？",
+      "options": [
+        "它们记录连接关键节点时真正发生分叉的位置",
+        "它们能让原树变成二叉树",
+        "它们保证所有虚树边权相等",
+        "它们用于代替 DFS 序"
+      ],
+      "answer": 0,
+      "explanation": "必要 LCA 是关键节点路径的分叉点；不保留它们就无法正确压缩连接结构。"
+    },
+    {
+      "id": "virtual-tree-2",
+      "prompt": "构造虚树时通常加入哪些 LCA 就足够？",
+      "options": [
+        "所有关键节点两两之间的 LCA",
+        "关键节点按 DFS 序排序后，相邻节点的 LCA",
+        "每个关键节点与原树根的 LCA",
+        "只加入全部关键节点的公共 LCA"
+      ],
+      "answer": 1,
+      "explanation": "DFS 序让子树形成连续区间，相邻关键节点已经能覆盖所有必要分叉边界。"
+    },
+    {
+      "id": "virtual-tree-3",
+      "prompt": "若虚树中 p 是 u 的祖先，虚树边 (p,u) 的权值是什么？",
+      "options": [
+        "depth[u] - depth[p]，无论原树是否带权",
+        "原树输入中编号为 u 的边权",
+        "根到 u 的距离减去根到 p 的距离",
+        "u 与 p 的节点编号之差"
+      ],
+      "answer": 2,
+      "explanation": "祖先关系保证根到 u 的路径包含根到 p 的前缀，两者根距离之差就是压缩路径长度。"
+    },
+    {
+      "id": "virtual-tree-4",
+      "prompt": "一次含 k 个关键节点的虚树查询，临时节点数是什么量级？",
+      "options": [
+        "O(n)",
+        "O(k^2)",
+        "O(log n)",
+        "O(k)"
+      ],
+      "answer": 3,
+      "explanation": "至多加入 k-1 个相邻 LCA，排序去重后的虚树节点仍为 O(k)。"
+    }
+  ]
+}
