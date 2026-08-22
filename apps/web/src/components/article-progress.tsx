@@ -106,12 +106,18 @@ function questionIsCorrect(
   return cloudAnswer.correct;
 }
 
-function articleIsComplete(articleKey: string) {
+function articleQuestionProgress(articleKey: string) {
   const quiz = definitions.get(articleKey);
-  return Boolean(
-    quiz?.questions.length
-    && quiz.questions.every((question) => questionIsCorrect(articleKey, quiz, question)),
-  );
+  const total = quiz?.questions.length ?? 0;
+  const completed = quiz?.questions.filter((question) => (
+    questionIsCorrect(articleKey, quiz, question)
+  )).length ?? 0;
+  return { completed, total };
+}
+
+function articleIsComplete(articleKey: string) {
+  const { completed, total } = articleQuestionProgress(articleKey);
+  return total > 0 && completed === total;
 }
 
 function useProgressRevision() {
@@ -122,13 +128,18 @@ function useProgressRevision() {
 
 export function ArticleProgress({ articleKey }: { articleKey: string }) {
   useProgressRevision();
-  const complete = ready && articleIsComplete(articleKey);
+  const progress = ready ? articleQuestionProgress(articleKey) : { completed: 0, total: 0 };
+  const complete = progress.total > 0 && progress.completed === progress.total;
+  const label = progress.completed > 0 ? `${progress.completed}/${progress.total}` : "";
   return (
     <small
-      aria-label={complete ? "小测已全部答对" : undefined}
+      aria-label={label
+        ? `${progress.completed} 题已答对，共 ${progress.total} 题`
+        : undefined}
       className={`article-progress${complete ? " is-complete" : ""}`}
-      role={complete ? "img" : undefined}
-    />
+    >
+      {label}
+    </small>
   );
 }
 
