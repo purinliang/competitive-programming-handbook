@@ -1,0 +1,54 @@
+{
+  "articleKey": "divide-conquer-optimization",
+  "title": "分治优化",
+  "questions": [
+    {
+      "id": "divide-conquer-optimization-1",
+      "prompt": "compute_layer(left,right,opt_left,opt_right) 中，后两个参数表示什么？",
+      "options": [
+        "当前层数的最小值与最大值",
+        "这些状态的最优决策一定所在的连续范围",
+        "原数组元素的取值范围",
+        "递归深度范围"
+      ],
+      "answer": 1,
+      "explanation": "分治优化同时划分状态区间和候选决策区间；单调性保证后者可以安全缩小。"
+    },
+    {
+      "id": "divide-conquer-optimization-2",
+      "prompt": "求出中点的 best_split 后，左右递归为什么都保留它？",
+      "options": [
+        "因为 best_split 是数组长度",
+        "为了让最后一段为空",
+        "因为分治函数不能使用不同边界",
+        "多个相邻状态可能共享同一个最优决策"
+      ],
+      "answer": 3,
+      "explanation": "决策单调不要求严格递增；排除 best_split 会漏掉等于边界的合法最优决策。"
+    },
+    {
+      "id": "divide-conquer-optimization-3",
+      "prompt": "使用本文优化最关键的正确性前提是什么？",
+      "options": [
+        "已经可靠证明同一层的最优决策单调不降",
+        "数组长度是 2 的幂",
+        "所有 dp 值彼此不同",
+        "转移代价一定是平方"
+      ],
+      "answer": 0,
+      "explanation": "平方段和只是示例；真正允许缩小左右决策范围的是经过证明的决策单调性。"
+    },
+    {
+      "id": "divide-conquer-optimization-4",
+      "prompt": "当转移代价可 O(1) 计算时，本文 k 层 DP 的复杂度是多少？",
+      "options": [
+        "O(k+n)",
+        "O(kn^2)",
+        "O(kn log n)",
+        "O(2^n)"
+      ],
+      "answer": 2,
+      "explanation": "每层同一递归深度的候选范围总量为 O(n)，共有 O(log n) 层递归。"
+    }
+  ]
+}
