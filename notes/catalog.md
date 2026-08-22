@@ -885,7 +885,7 @@
 | --- | --- | --- | --- |
 | *050603 | 容斥原理 | 待审阅 | [inclusion-exclusion.md](math/inclusion-exclusion.md) |
 | 090406 | 最值容斥 | 待审阅 | [min-max-inclusion-exclusion.md](math/min-max-inclusion-exclusion.md) |
-| 090407 | 二项式反演 | 计划 | `math/binomial-inversion.md` |
+| 090407 | 二项式反演 | 待审阅 | [binomial-inversion.md](math/binomial-inversion.md) |
 
 #### 专题：常见数列
 
