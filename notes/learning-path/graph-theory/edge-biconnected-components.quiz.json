@@ -1,0 +1,54 @@
+{
+  "articleKey": "edge-biconnected-components",
+  "title": "边双连通分量",
+  "questions": [
+    {
+      "id": "edge-biconnected-components-1",
+      "prompt": "求出所有桥后，怎样得到边双连通分量？",
+      "options": [
+        "删除所有割点后做 DFS",
+        "禁止经过桥，对剩余图的每个连通分量分别标号",
+        "把所有桥加入同一个分量",
+        "按节点度数排序"
+      ],
+      "answer": 1,
+      "explanation": "桥正是边双分量之间的边界；删除桥后的极大连通区域就是各个边双分量。"
+    },
+    {
+      "id": "edge-biconnected-components-2",
+      "prompt": "DFS 树边 u -> v 成为桥的条件是什么？",
+      "options": [
+        "low[v] = dfn[u]",
+        "low[v] >= dfn[u]",
+        "low[v] > dfn[u]",
+        "dfn[v] < dfn[u]"
+      ],
+      "answer": 2,
+      "explanation": "严格大于说明 v 子树无法通过其他边回到 u 或更高祖先；等于时还能回到 u。"
+    },
+    {
+      "id": "edge-biconnected-components-3",
+      "prompt": "边双连通分量之间能否共享同一个原图点？",
+      "options": [
+        "不能；边双分量构成点的划分",
+        "可以，但只能共享叶节点",
+        "可以，所有割点都必须共享",
+        "只在图不连通时可以"
+      ],
+      "answer": 0,
+      "explanation": "删除桥后的连通分量互不相交。共享割点是点双连通分量的性质。"
+    },
+    {
+      "id": "edge-biconnected-components-4",
+      "prompt": "把每个边双连通分量缩成一点后，桥形成什么结构？",
+      "options": [
+        "完全图",
+        "有向无环图但不一定是树",
+        "二分图中的匹配",
+        "树；原图不连通时是森林"
+      ],
+      "answer": 3,
+      "explanation": "若缩点后仍有环，环上的原桥可以绕行，便不可能是桥。"
+    }
+  ]
+}
