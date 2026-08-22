@@ -1,0 +1,62 @@
+[
+  {
+    "id": "why-learn-splay",
+    "prompt": "本路线在已有 FHQ Treap 的情况下仍学习 Splay，最直接的后续原因是什么？",
+    "options": [
+      { "id": "a", "text": "Splay 不需要任何旋转" },
+      { "id": "b", "text": "Splay 的所有操作都是最坏 `O(1)`" },
+      { "id": "c", "text": "Link-Cut Tree 使用 Splay 维护当前访问的树链" },
+      { "id": "d", "text": "FHQ Treap 不能保存整数" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "Link-Cut Tree 会直接复用旋转和伸展操作，因此 Splay 是它的结构前置。"
+  },
+  {
+    "id": "rotation-order",
+    "prompt": "旋转为什么不会破坏二叉搜索树的键值顺序？",
+    "options": [
+      { "id": "a", "text": "旋转前后的中序遍历顺序相同" },
+      { "id": "b", "text": "旋转会重新随机生成全部键值" },
+      { "id": "c", "text": "旋转只发生在空树中" },
+      { "id": "d", "text": "节点键值在旋转时全部变成零" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "旋转只改变局部父子关系，不改变左、根、右的中序相对顺序。"
+  },
+  {
+    "id": "zig-zig",
+    "prompt": "当前节点与父节点相对各自父亲的方向相同时，应怎样执行两次旋转？",
+    "options": [
+      { "id": "a", "text": "只旋转祖父节点" },
+      { "id": "b", "text": "先旋转当前节点，再旋转祖父" },
+      { "id": "c", "text": "不做任何操作" },
+      { "id": "d", "text": "先旋转父节点，再旋转当前节点" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "同向情形先提升父节点，再提升当前节点，才能获得 Splay 的均摊性质。"
+  },
+  {
+    "id": "erase-two-children",
+    "prompt": "删除根且左右子树都存在时，为什么可以把左子树最大节点伸展成新根？",
+    "options": [
+      { "id": "a", "text": "它一定是整棵树的最小键" },
+      { "id": "b", "text": "它没有右儿子，原右子树可以直接接到它的右侧" },
+      { "id": "c", "text": "它的 `count` 一定为零" },
+      { "id": "d", "text": "它一定没有父节点" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "左子树最大节点小于原右子树全部键值，且没有右儿子，正好提供连接位置。"
+  },
+  {
+    "id": "amortized-complexity",
+    "prompt": "Splay 的“均摊 `O(log n)`”意味着什么？",
+    "options": [
+      { "id": "a", "text": "每一次操作都绝不超过 `O(log n)`" },
+      { "id": "b", "text": "只有查询操作有复杂度" },
+      { "id": "c", "text": "一段操作序列的总成本平均到每次为 `O(log n)`" },
+      { "id": "d", "text": "复杂度依赖随机优先级的期望" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "单次操作可能是 O(n)，但连续操作的总成本受到均摊上界约束。"
+  }
+]
