@@ -1,0 +1,54 @@
+{
+  "articleKey": "extended-lucas-theorem",
+  "title": "扩展卢卡斯定理",
+  "questions": [
+    {
+      "id": "extended-lucas-theorem-1",
+      "prompt": "扩展卢卡斯首先怎样处理合数模数 M？",
+      "options": [
+        "把 M 分解成两两互质的质数幂",
+        "把 M 改成离它最近的质数",
+        "直接对 M 使用费马小定理",
+        "把 M 不断除以 2"
+      ],
+      "answer": 0,
+      "explanation": "每个质数幂下分别计算后，才能用 CRT 合并成模 M 的答案。"
+    },
+    {
+      "id": "extended-lucas-theorem-2",
+      "prompt": "若组合数中质因数 p 的次数 e 不小于 q，模 p^q 的结果是什么？",
+      "options": [
+        "1",
+        "0",
+        "p - 1",
+        "无法判断"
+      ],
+      "answer": 1,
+      "explanation": "此时组合数已经含有完整因子 p^q。"
+    },
+    {
+      "id": "extended-lucas-theorem-3",
+      "prompt": "为什么 factorial_without_p(n) 可以在模 p^q 下求逆？",
+      "options": [
+        "因为它一定等于 1",
+        "因为 p^q 是质数",
+        "其中所有质因数 p 已被删除，因此它与 p^q 互质",
+        "因为 n 一定小于 p"
+      ],
+      "answer": 2,
+      "explanation": "模数只有质因数 p；删除全部 p 后，剩余部分必然可逆。"
+    },
+    {
+      "id": "extended-lucas-theorem-4",
+      "prompt": "各质数幂下的组合数余数最终怎样合并？",
+      "options": [
+        "取它们的最大值",
+        "直接相加",
+        "逐项相乘",
+        "使用中国剩余定理"
+      ],
+      "answer": 3,
+      "explanation": "质数幂模数两两互质，经典 CRT 给出模原模数的唯一结果。"
+    }
+  ]
+}
