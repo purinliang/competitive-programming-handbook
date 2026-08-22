@@ -1,0 +1,54 @@
+{
+  "articleKey": "circle-area-intersection-union",
+  "title": "圆面积交与面积并",
+  "questions": [
+    {
+      "id": "circle-area-intersection-union-1",
+      "prompt": "一个圆完整包含另一个圆时，两圆面积交是多少？",
+      "options": [
+        "两个圆面积之和",
+        "较大圆面积",
+        "零",
+        "较小圆面积"
+      ],
+      "answer": 3,
+      "explanation": "较小圆的全部区域同时属于两个圆，因此公共部分就是较小圆。"
+    },
+    {
+      "id": "circle-area-intersection-union-2",
+      "prompt": "调用 `acos` 前为什么要把理论余弦值夹紧到 `[-1,1]`？",
+      "options": [
+        "浮点误差可能把边界值推到定义域之外并产生 `NaN`",
+        "为了把角度转换成整数",
+        "因为 `acos` 只接受正数",
+        "为了交换两个圆心"
+      ],
+      "answer": 0,
+      "explanation": "相切附近理论值可能是正负 1，舍入后略微越界；夹紧恢复其数学定义域。"
+    },
+    {
+      "id": "circle-area-intersection-union-3",
+      "prompt": "为什么多个圆的面积并不能只用总面积减去所有两两交集？",
+      "options": [
+        "圆没有面积交",
+        "三个或更多圆共同覆盖的区域会被重复扣除，需要更高阶容斥",
+        "两圆交只能用整数表示",
+        "圆心可能不在原点"
+      ],
+      "answer": 1,
+      "explanation": "两两扣除无法正确处理三重及更高重叠；暴露圆弧方法直接描述并集边界。"
+    },
+    {
+      "id": "circle-area-intersection-union-4",
+      "prompt": "面积并算法中，一个圆真正贡献边界的是哪些角区间？",
+      "options": [
+        "被至少两个其他圆覆盖的区间",
+        "所有半径对应的区间",
+        "没有落入任何其他圆内部的暴露圆弧",
+        "只保留角度为整数的圆弧"
+      ],
+      "answer": 2,
+      "explanation": "被覆盖圆弧位于并集内部；只有暴露圆弧属于面积并的外边界。"
+    }
+  ]
+}
