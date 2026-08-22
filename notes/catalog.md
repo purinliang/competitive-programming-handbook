@@ -345,7 +345,7 @@
 | 030705 | 浮点数二分 | 待审阅 | [floating-point-binary-search.md](algorithm-basics/floating-point-binary-search.md) |
 | 030706 | 倍增 | 待审阅 | [doubling.md](algorithm-basics/doubling.md) |
 | *990202 | 三分搜索 | 计划 | `algorithm-basics/ternary-search.md` |
-| *990203 | 整体二分与并行二分 | 计划 | `algorithm-basics/parallel-binary-search.md` |
+| 090102 | 整体二分 | 计划 | `algorithm-basics/parallel-binary-search.md` |
 
 ### 离散化与离线处理
 
@@ -355,6 +355,7 @@
 | 070102 | 离线算法 | 待审阅 | [offline-algorithms.md](algorithm-basics/offline-algorithms.md) |
 | 070103 | 扫描线与事件排序 | 待审阅 | [sweep-line.md](algorithm-basics/sweep-line.md) |
 | 090101 | CDQ 分治 | 待审阅 | [cdq-divide-and-conquer.md](algorithm-basics/cdq-divide-and-conquer.md) |
+| 090102 | 整体二分 | 计划 | `algorithm-basics/parallel-binary-search.md` |
 
 ### 线性表
 
@@ -609,7 +610,7 @@
 | 040305 | 图的存储：邻接矩阵 | 待审阅 | [adjacency-matrix.md](graph-theory/adjacency-matrix.md) |
 | 040306 | 图的存储：邻接表（`vector` 实现） | 待审阅 | [vector-adjacency-list.md](graph-theory/vector-adjacency-list.md) |
 | 060601 | 图的存储：边集 | 定稿 | [edge-list.md](graph-theory/edge-list.md) |
-| 070204 | 图的存储：邻接表（链式前向星实现） | 待审阅 | [chained-forward-star.md](graph-theory/chained-forward-star.md) |
+| 070207 | 图的存储：邻接表（链式前向星实现） | 待审阅 | [chained-forward-star.md](graph-theory/chained-forward-star.md) |
 
 ### 遍历
 
@@ -635,7 +636,7 @@
 | 060502 | 最短路：Bellman–Ford 与负环 | 待审阅 | [bellman-ford.md](graph-theory/bellman-ford.md) |
 | 060503 | 最短路：Floyd–Warshall | 待审阅 | [floyd-warshall.md](graph-theory/floyd-warshall.md) |
 | 060504 | 最短路：0-1 BFS | 待审阅 | [zero-one-bfs.md](graph-theory/zero-one-bfs.md) |
-| 070203 | 最短路：分层图与状态图 | 待审阅 | [layered-state-shortest-path.md](graph-theory/layered-state-shortest-path.md) |
+| 070206 | 最短路：分层图与状态图 | 待审阅 | [layered-state-shortest-path.md](graph-theory/layered-state-shortest-path.md) |
 | *990408 | SPFA 与队列优化最短路 | 计划 | `graph-theory/spfa.md` |
 | *990410 | 差分约束 | 计划 | `graph-theory/difference-constraints.md` |
 | 090305 | 最短路树 | 待审阅 | [shortest-path-tree.md](graph-theory/shortest-path-tree.md) |
@@ -657,7 +658,7 @@
 | 040312 | 二分图：判定 | 待审阅 | [bipartite-graph.md](graph-theory/bipartite-graph.md) |
 | 080201 | 二分图：最大匹配 | 待审阅 | [graph-theory/bipartite-matching.md](graph-theory/bipartite-matching.md) |
 | *080201e1 | 二分图最大匹配：Hopcroft–Karp | 推迟 | `graph-theory/hopcroft-karp.md` |
-| 090315 | 二分图最大权匹配：KM 算法 | 计划 | `graph-theory/kuhn-munkres.md` |
+| 090313 | 二分图最大权匹配：KM 算法 | 计划 | `graph-theory/kuhn-munkres.md` |
 | *990421 | 一般图最大匹配 | 推迟 | `graph-theory/general-graph-matching.md` |
 
 ### 连通性
@@ -666,8 +667,9 @@
 | --- | --- | --- | --- |
 | 070201 | 有向图：强连通分量 | 待审阅 | [strongly-connected-components.md](graph-theory/strongly-connected-components.md) |
 | 070202 | 无向图：割点与桥 | 待审阅 | [articulation-points-bridges.md](graph-theory/articulation-points-bridges.md) |
-| 090307 | 点双连通分量 | 待审阅 | [vertex-biconnected-components.md](graph-theory/vertex-biconnected-components.md) |
-| 090308 | 圆方树 | 待审阅 | [block-cut-tree.md](graph-theory/block-cut-tree.md) |
+| 070203 | 无向图：边双连通分量 | 计划 | `graph-theory/edge-biconnected-components.md` |
+| 070204 | 无向图：点双连通分量 | 待审阅 | [vertex-biconnected-components.md](graph-theory/vertex-biconnected-components.md) |
+| 070205 | 无向图：圆方树 | 待审阅 | [block-cut-tree.md](graph-theory/block-cut-tree.md) |
 | 080202 | 2-SAT | 待审阅 | [graph-theory/two-sat.md](graph-theory/two-sat.md) |
 | *990423 | 支配树 | 推迟 | `graph-theory/dominator-tree.md` |
 | *990424 | 无向图：全局最小割 | 推迟 | `graph-theory/global-minimum-cut.md` |
@@ -676,9 +678,9 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 070205 | 欧拉问题：路径、回路与图 | 待审阅 | [eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
-| 070206 | 哈密顿问题：路径、回路与图 | 定稿 | [hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
-| *070206e1 | 哈密顿问题：小规模回溯 | 定稿 | [hamiltonian-backtracking.md](graph-theory/hamiltonian-backtracking.md) |
+| 070208 | 欧拉问题：路径、回路与图 | 待审阅 | [eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
+| 070209 | 哈密顿问题：路径、回路与图 | 定稿 | [hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
+| *070209e1 | 哈密顿问题：小规模回溯 | 定稿 | [hamiltonian-backtracking.md](graph-theory/hamiltonian-backtracking.md) |
 
 ### 树的基础
 
@@ -718,25 +720,25 @@
 | *060407 | 基环树 | 待审阅 | [unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
 | *990429 | 函数图 | 待审阅 | [functional-graph.md](graph-theory/functional-graph.md) |
 | *990417 | 竞赛图 | 计划 | `graph-theory/tournament-graph.md` |
-| 090317 | 仙人掌 | 计划 | `graph-theory/cactus-graph.md` |
+| 090315 | 仙人掌 | 计划 | `graph-theory/cactus-graph.md` |
 | *990425 | 弦图 | 推迟 | `graph-theory/chordal-graph.md` |
 
 ### 网络流
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090309 | 最大流与残量网络 | 计划 | `graph-theory/max-flow-residual-network.md` |
-| 090310 | Dinic 算法 | 计划 | `graph-theory/dinic-max-flow.md` |
-| 090311 | SAP 算法 | 计划 | `graph-theory/sap-max-flow.md` |
-| 090312 | 可行流 | 计划 | `graph-theory/feasible-flow.md` |
-| 090313 | 最小费用最大流 | 计划 | `graph-theory/min-cost-max-flow.md` |
-| 090314 | 上下界网络流 | 计划 | `graph-theory/bounded-flow.md` |
+| 090307 | 最大流与残量网络 | 计划 | `graph-theory/max-flow-residual-network.md` |
+| 090308 | Dinic 算法 | 计划 | `graph-theory/dinic-max-flow.md` |
+| 090309 | SAP 算法 | 计划 | `graph-theory/sap-max-flow.md` |
+| 090310 | 可行流 | 计划 | `graph-theory/feasible-flow.md` |
+| 090311 | 最小费用最大流 | 计划 | `graph-theory/min-cost-max-flow.md` |
+| 090312 | 上下界网络流 | 计划 | `graph-theory/bounded-flow.md` |
 
 ### 其他图问题
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090316 | Steiner 树 | 计划 | `graph-theory/steiner-tree.md` |
+| 090314 | Steiner 树 | 计划 | `graph-theory/steiner-tree.md` |
 
 ## 05 数学
 
@@ -1119,6 +1121,7 @@
 | 090502 | 决策单调性 | 计划 | `dynamic-programming/decision-monotonicity.md` |
 | 090503 | 分治优化 | 计划 | `dynamic-programming/divide-conquer-optimization.md` |
 | 090504 | 四边形不等式优化 | 计划 | `dynamic-programming/quadrangle-inequality-optimization.md` |
+| *990715 | WQS 二分 | 计划 | `dynamic-programming/wqs-binary-search.md` |
 | *990703 | 分段线性凸函数维护 | 推迟 | `dynamic-programming/slope-trick.md` |
 
 ### 动态 DP

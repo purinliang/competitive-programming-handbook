@@ -619,10 +619,13 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | --- | --- | --- | --- |
 | 070201 | 有向图：强连通分量 | 图论 | [graph-theory/strongly-connected-components.md](graph-theory/strongly-connected-components.md) |
 | 070202 | 无向图：割点与桥 | 图论 | [graph-theory/articulation-points-bridges.md](graph-theory/articulation-points-bridges.md) |
-| 070203 | 最短路：分层图与状态图 | 图论 | [graph-theory/layered-state-shortest-path.md](graph-theory/layered-state-shortest-path.md) |
-| 070204 | 图的存储：邻接表（链式前向星实现） | 图论 | [graph-theory/chained-forward-star.md](graph-theory/chained-forward-star.md) |
-| 070205 | 欧拉问题：路径、回路与图 | 图论 | [graph-theory/eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
-| 070206 | 哈密顿问题：路径、回路与图 | 图论 | [graph-theory/hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
+| 070203 | 无向图：边双连通分量 | 图论 | `graph-theory/edge-biconnected-components.md` |
+| 070204 | 无向图：点双连通分量 | 图论 | [graph-theory/vertex-biconnected-components.md](graph-theory/vertex-biconnected-components.md) |
+| 070205 | 无向图：圆方树 | 图论 | [graph-theory/block-cut-tree.md](graph-theory/block-cut-tree.md) |
+| 070206 | 最短路：分层图与状态图 | 图论 | [graph-theory/layered-state-shortest-path.md](graph-theory/layered-state-shortest-path.md) |
+| 070207 | 图的存储：邻接表（链式前向星实现） | 图论 | [graph-theory/chained-forward-star.md](graph-theory/chained-forward-star.md) |
+| 070208 | 欧拉问题：路径、回路与图 | 图论 | [graph-theory/eulerian-paths-and-circuits.md](graph-theory/eulerian-paths-and-circuits.md) |
+| 070209 | 哈密顿问题：路径、回路与图 | 图论 | [graph-theory/hamiltonian-paths-and-circuits.md](graph-theory/hamiltonian-paths-and-circuits.md) |
 
 ### 单元 03：数学
 
@@ -740,6 +743,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 090101 | CDQ 分治 | 算法基础 | [algorithm-basics/cdq-divide-and-conquer.md](algorithm-basics/cdq-divide-and-conquer.md) |
+| 090102 | 整体二分 | 算法基础 | `algorithm-basics/parallel-binary-search.md` |
 
 ### 单元 02：数据结构
 
@@ -763,17 +767,15 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 090304 | 树哈希 | 图论 | [graph-theory/tree-hashing.md](graph-theory/tree-hashing.md) |
 | 090305 | 最短路树 | 图论 | [graph-theory/shortest-path-tree.md](graph-theory/shortest-path-tree.md) |
 | 090306 | Boruvka 算法 | 图论 | [graph-theory/boruvka.md](graph-theory/boruvka.md) |
-| 090307 | 点双连通分量 | 图论 | [graph-theory/vertex-biconnected-components.md](graph-theory/vertex-biconnected-components.md) |
-| 090308 | 圆方树 | 图论 | [graph-theory/block-cut-tree.md](graph-theory/block-cut-tree.md) |
-| 090309 | 最大流与残量网络 | 图论 | `graph-theory/max-flow-residual-network.md` |
-| 090310 | Dinic 算法 | 图论 | `graph-theory/dinic-max-flow.md` |
-| 090311 | SAP 算法 | 图论 | `graph-theory/sap-max-flow.md` |
-| 090312 | 可行流 | 图论 | `graph-theory/feasible-flow.md` |
-| 090313 | 最小费用最大流 | 图论 | `graph-theory/min-cost-max-flow.md` |
-| 090314 | 上下界网络流 | 图论 | `graph-theory/bounded-flow.md` |
-| 090315 | 二分图最大权匹配：KM 算法 | 图论 | `graph-theory/kuhn-munkres.md` |
-| 090316 | Steiner 树 | 图论 | `graph-theory/steiner-tree.md` |
-| 090317 | 仙人掌 | 图论 | `graph-theory/cactus-graph.md` |
+| 090307 | 最大流与残量网络 | 图论 | `graph-theory/max-flow-residual-network.md` |
+| 090308 | Dinic 算法 | 图论 | `graph-theory/dinic-max-flow.md` |
+| 090309 | SAP 算法 | 图论 | `graph-theory/sap-max-flow.md` |
+| 090310 | 可行流 | 图论 | `graph-theory/feasible-flow.md` |
+| 090311 | 最小费用最大流 | 图论 | `graph-theory/min-cost-max-flow.md` |
+| 090312 | 上下界网络流 | 图论 | `graph-theory/bounded-flow.md` |
+| 090313 | 二分图最大权匹配：KM 算法 | 图论 | `graph-theory/kuhn-munkres.md` |
+| 090314 | Steiner 树 | 图论 | `graph-theory/steiner-tree.md` |
+| 090315 | 仙人掌 | 图论 | `graph-theory/cactus-graph.md` |
 
 ### 单元 04：数学
 
@@ -891,7 +893,6 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | *030609 | 桶排序 | [algorithm-basics/bucket-sort.md](algorithm-basics/bucket-sort.md) |
 | *050204 | 堆排序 | [algorithm-basics/heap-sort.md](algorithm-basics/heap-sort.md) |
 | *990202 | 三分搜索 | `algorithm-basics/ternary-search.md` |
-| *990203 | 整体二分与并行二分 | `algorithm-basics/parallel-binary-search.md` |
 | *990204 | 搜索：迭代加深 | `algorithm-basics/iterative-deepening.md` |
 | *990205 | 搜索：A* | `algorithm-basics/a-star.md` |
 | *990206 | 精确覆盖：Dancing Links（DLX） | `algorithm-basics/dancing-links.md` |
@@ -1002,6 +1003,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | *990711 | 括号序列 DP | `dynamic-programming/bracket-sequence-dp.md` |
 | *990713 | 划分 DP | `dynamic-programming/partition-dp.md` |
 | *990714 | 动态 DP | `dynamic-programming/dynamic-dp.md` |
+| *990715 | WQS 二分 | `dynamic-programming/wqs-binary-search.md` |
 
 ### 08 字符串
 
