@@ -1,0 +1,54 @@
+{
+  "articleKey": "fast-subset-transforms",
+  "title": "FWT 与 FMT",
+  "questions": [
+    {
+      "id": "fast-subset-transforms-1",
+      "prompt": "OR 卷积使用的正向 FMT 汇总什么内容？",
+      "options": [
+        "每个掩码的所有子集之和",
+        "每个掩码的所有超集之和",
+        "所有下标和相同的项",
+        "只汇总大小相同的集合"
+      ],
+      "answer": 0,
+      "explanation": "A | B 是 S 的子集等价于 A、B 都是 S 的子集，因此使用子集和。"
+    },
+    {
+      "id": "fast-subset-transforms-2",
+      "prompt": "FMT 的逆变换怎样撤销正向的 upper += lower？",
+      "options": [
+        "交换两个位置",
+        "在相同位序执行 upper -= lower",
+        "把每个值平方",
+        "整体除以 2^n"
+      ],
+      "answer": 1,
+      "explanation": "每一轮都是可逆的三角变换，按对应关系减回即可恢复原数组。"
+    },
+    {
+      "id": "fast-subset-transforms-3",
+      "prompt": "XOR FWT 对一对值 (x, y) 使用什么蝶形？",
+      "options": [
+        "(x, x + y)",
+        "(x × y, x / y)",
+        "(x + y, x - y)",
+        "(max(x, y), min(x, y))"
+      ],
+      "answer": 2,
+      "explanation": "这个二元变换平方后得到 2 倍恒等变换，是 XOR 对角化的基础。"
+    },
+    {
+      "id": "fast-subset-transforms-4",
+      "prompt": "XOR 逆变换为什么需要把结果除以 N = 2^n？",
+      "options": [
+        "为了让数组长度变回 n",
+        "因为 OR 卷积也这样做",
+        "为了消除浮点误差",
+        "完整 XOR 变换连续执行两次会把每个值乘以 N"
+      ],
+      "answer": 3,
+      "explanation": "每一位的蝶形平方贡献因子 2，n 位合起来就是 2^n。"
+    }
+  ]
+}
