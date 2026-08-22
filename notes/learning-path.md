@@ -780,7 +780,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 090401 | 原根与阶 | 数学 | `math/primitive-roots.md` |
+| 090401 | 阶与原根 | 数学 | [math/primitive-roots.md](math/primitive-roots.md) |
 | 090402 | BSGS 与离散对数 | 数学 | `math/discrete-logarithm.md` |
 | 090403 | 扩展卢卡斯定理 | 数学 | `math/extended-lucas-theorem.md` |
 | 090404 | 矩阵求逆 | 数学 | `math/matrix-inverse.md` |
