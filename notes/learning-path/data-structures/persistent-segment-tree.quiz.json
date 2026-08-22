@@ -1,0 +1,62 @@
+[
+  {
+    "id": "version-root",
+    "prompt": "可持久化线段树为什么只需为每个版本保存一个根节点编号？",
+    "options": [
+      { "id": "a", "text": "根可以通过儿子编号到达这个版本的全部节点" },
+      { "id": "b", "text": "每个版本永远只有一个节点" },
+      { "id": "c", "text": "版本之间不能共享节点" },
+      { "id": "d", "text": "根节点不保存任何信息" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "根是整个不可变节点图的入口，共享关系已经记录在各节点的左右儿子编号中。"
+  },
+  {
+    "id": "path-copying",
+    "prompt": "一次单点修改需要复制哪些节点？",
+    "options": [
+      { "id": "a", "text": "所有历史版本的全部节点" },
+      { "id": "b", "text": "整棵树的所有叶子" },
+      { "id": "c", "text": "从旧版本根到目标叶子的路径" },
+      { "id": "d", "text": "只复制目标叶子，不复制祖先" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "只有这条路径上的区间信息发生变化，另一侧子树可以继续共享。"
+  },
+  {
+    "id": "immutable-old-node",
+    "prompt": "为什么不能原地修改旧版本中的节点？",
+    "options": [
+      { "id": "a", "text": "节点编号必须连续" },
+      { "id": "b", "text": "其他历史版本可能共享该节点，会一同被污染" },
+      { "id": "c", "text": "线段树不能进行单点修改" },
+      { "id": "d", "text": "原地修改会自动清空 vector" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "共享节点一旦被修改，所有能到达它的版本都会看到新值。"
+  },
+  {
+    "id": "query-version",
+    "prompt": "一次查询也要产生新版本，但没有发生修改，应怎样设置新版本根？",
+    "options": [
+      { "id": "a", "text": "重新建立整棵树" },
+      { "id": "b", "text": "设为零" },
+      { "id": "c", "text": "复制所有节点" },
+      { "id": "d", "text": "直接等于被查询版本的根" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "两个版本可以共享整棵不可变的树，不需要新建节点。"
+  },
+  {
+    "id": "space-complexity",
+    "prompt": "初始建树后进行 `m` 次单点修改，节点数量为什么是 `O(n + m log n)`？",
+    "options": [
+      { "id": "a", "text": "每次修改只新建一条长度为 `O(log n)` 的路径" },
+      { "id": "b", "text": "每次修改都会删除旧版本" },
+      { "id": "c", "text": "所有操作都不新建节点" },
+      { "id": "d", "text": "线段树只有 `log n` 个节点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "初始树占 O(n)，每次路径复制增加 O(log n) 个永久节点。"
+  }
+]
