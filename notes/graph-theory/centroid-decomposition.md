@@ -84,9 +84,9 @@ for (auto [centroid, distance] : path[u]) {
 路径上，因此：
 
 $$
-\operatorname{dist}(u,x)
-=\operatorname{dist}(u,centroid)
-+\operatorname{dist}(centroid,x).
+\mathrm{dist}(u,x)
+=\mathrm{dist}(u,centroid)
++\mathrm{dist}(centroid,x).
 $$
 
 `best[centroid]` 不大于 `dist(centroid,x)`，所以枚举 `u` 的所有分治重心并取
@@ -123,8 +123,8 @@ struct CentroidDecomposition {
     vector<vector<pair<int, int>>> path;
 
     CentroidDecomposition(int size)
-        : n(size), g(n + 5), subtree_size(n + 5),
-          best(n + 5, INF), removed(n + 5), path(n + 5) {}
+        : n(size), g(n + 5), subtree_size(n + 5), best(n + 5, INF),
+          removed(n + 5), path(n + 5) {}
 
     void add_edge(int u, int v) {
         g[u].push_back(v);

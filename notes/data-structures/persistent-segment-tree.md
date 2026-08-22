@@ -233,11 +233,9 @@ struct PersistentSegmentTree {
 
         int mid = (l + r) / 2;
         if (pos <= mid) {
-            tree[u].left =
-                update(tree[old_u].left, l, mid, pos, value);
+            tree[u].left = update(tree[old_u].left, l, mid, pos, value);
         } else {
-            tree[u].right =
-                update(tree[old_u].right, mid + 1, r, pos, value);
+            tree[u].right = update(tree[old_u].right, mid + 1, r, pos, value);
         }
         pull(u);
         return u;

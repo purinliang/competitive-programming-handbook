@@ -57,7 +57,7 @@ stack.push_back(u);
 虚树边 `(p,u)` 代表原树中从 `p` 到 `u` 的完整路径，边权为：
 
 $$
-\operatorname{dist}(u)-\operatorname{dist}(p).
+\mathrm{dist}(u)-\mathrm{dist}(p).
 $$
 
 其中 `p` 是 `u` 的祖先，`dist[x]` 表示根到 `x` 的距离。
@@ -92,9 +92,9 @@ struct VirtualTree {
     vector<int> tout;
     vector<ll> distance;
 
-    VirtualTree(int size) : n(size), timer(0), g(n + 5),
-                            depth(n + 5), tin(n + 5),
-                            tout(n + 5), distance(n + 5) {
+    VirtualTree(int size)
+        : n(size), timer(0), g(n + 5), depth(n + 5), tin(n + 5), tout(n + 5),
+          distance(n + 5) {
         log = 1;
         while ((1 << log) <= n) {
             ++log;
@@ -157,9 +157,7 @@ struct VirtualTree {
             return 0;
         }
 
-        auto by_dfs_order = [&](int u, int v) {
-            return tin[u] < tin[v];
-        };
+        auto by_dfs_order = [&](int u, int v) { return tin[u] < tin[v]; };
 
         sort(key.begin(), key.end(), by_dfs_order);
         key.erase(unique(key.begin(), key.end()), key.end());

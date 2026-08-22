@@ -25,8 +25,8 @@
 
 ```cpp
 int mid = (l + r) / 2;
-nth_element(point.begin() + l, point.begin() + mid,
-            point.begin() + r + 1, Compare{dimension});
+nth_element(point.begin() + l, point.begin() + mid, point.begin() + r + 1,
+            Compare{dimension});
 ```
 
 KD 树并不保证某个坐标全局有序。它只保证每个节点按当前分割维度把自己的点集分成

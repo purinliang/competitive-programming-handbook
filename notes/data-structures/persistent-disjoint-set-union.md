@@ -161,8 +161,7 @@ struct PersistentDisjointSetUnion {
         return query(tree[u].right, mid + 1, r, pos);
     }
 
-    int update_parent(int old_u, int l, int r, int pos,
-                      int parent) {
+    int update_parent(int old_u, int l, int r, int pos, int parent) {
         int u = clone(old_u);
         if (l == r) {
             tree[u].info.parent = parent;
@@ -171,11 +170,10 @@ struct PersistentDisjointSetUnion {
 
         int mid = (l + r) / 2;
         if (pos <= mid) {
-            tree[u].left = update_parent(tree[old_u].left, l, mid,
-                                         pos, parent);
+            tree[u].left = update_parent(tree[old_u].left, l, mid, pos, parent);
         } else {
-            tree[u].right = update_parent(tree[old_u].right, mid + 1, r,
-                                          pos, parent);
+            tree[u].right =
+                update_parent(tree[old_u].right, mid + 1, r, pos, parent);
         }
         return u;
     }
@@ -189,11 +187,10 @@ struct PersistentDisjointSetUnion {
 
         int mid = (l + r) / 2;
         if (pos <= mid) {
-            tree[u].left = update_size(tree[old_u].left, l, mid,
-                                       pos, size);
+            tree[u].left = update_size(tree[old_u].left, l, mid, pos, size);
         } else {
-            tree[u].right = update_size(tree[old_u].right, mid + 1, r,
-                                        pos, size);
+            tree[u].right =
+                update_size(tree[old_u].right, mid + 1, r, pos, size);
         }
         return u;
     }

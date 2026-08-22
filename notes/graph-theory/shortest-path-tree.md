@@ -15,8 +15,8 @@
 的边可以成为 `v` 的父边，当且仅当：
 
 $$
-\operatorname{distance}[u]+w
-=\operatorname{distance}[v].
+\mathrm{distance}[u]+w
+=\mathrm{distance}[v].
 $$
 
 这样的有向边称为满足最短路条件的边，常简称紧边。沿紧边从源点走到 `v`，路径
@@ -30,7 +30,7 @@ $$
 边权为正，所以紧边 `u -> v` 满足：
 
 $$
-\operatorname{distance}[u]<\operatorname{distance}[v].
+\mathrm{distance}[u]<\mathrm{distance}[v].
 $$
 
 沿父边反向走时，距离严格减小，不可能形成环，最终会到达源点。因此每个非源点只要
@@ -59,8 +59,7 @@ if (new_distance < distance[v]) {
 若得到相同最短距离，就比较最后一条边的权值：
 
 ```cpp
-if (new_distance == distance[v]
-    && w < edge[parent_edge[v]].weight) {
+if (new_distance == distance[v] && w < edge[parent_edge[v]].weight) {
     parent_edge[v] = edge_id;
 }
 ```
@@ -106,9 +105,8 @@ void dijkstra() {
     distance_value.assign(n + 5, INF);
     parent_edge.assign(n + 5, 0);
 
-    priority_queue<pair<ll, int>,
-                   vector<pair<ll, int>>,
-                   greater<pair<ll, int>>> q;
+    priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>>
+        q;
 
     distance_value[source] = 0;
     q.push({0, source});
@@ -129,8 +127,8 @@ void dijkstra() {
                 distance_value[v] = new_distance;
                 parent_edge[v] = edge_id;
                 q.push({new_distance, v});
-            } else if (new_distance == distance_value[v]
-                       && w < edge[parent_edge[v]].weight) {
+            } else if (new_distance == distance_value[v] &&
+                       w < edge[parent_edge[v]].weight) {
                 parent_edge[v] = edge_id;
             }
         }

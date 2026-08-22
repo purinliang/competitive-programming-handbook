@@ -146,8 +146,7 @@ struct SegmentTreeOfSegmentTrees {
     }
 
     void pull_inner(int u) {
-        inner[u].sum =
-            inner[inner[u].left].sum + inner[inner[u].right].sum;
+        inner[u].sum = inner[inner[u].left].sum + inner[inner[u].right].sum;
     }
 
     int update_inner(int u, int l, int r, int pos, ll value) {
@@ -162,8 +161,7 @@ struct SegmentTreeOfSegmentTrees {
 
         int mid = (l + r) / 2;
         if (pos <= mid) {
-            inner[u].left =
-                update_inner(inner[u].left, l, mid, pos, value);
+            inner[u].left = update_inner(inner[u].left, l, mid, pos, value);
         } else {
             inner[u].right =
                 update_inner(inner[u].right, mid + 1, r, pos, value);
@@ -211,14 +209,8 @@ struct SegmentTreeOfSegmentTrees {
         add(1, 1, n, x, y, value);
     }
 
-    ll rectangle_sum(
-        int u,
-        int l,
-        int r,
-        int ql,
-        int qr,
-        int y1,
-        int y2) const {
+    ll rectangle_sum(int u, int l, int r, int ql, int qr, int y1,
+                     int y2) const {
         if (ql <= l && r <= qr) {
             return query_inner(root[u], 1, n, y1, y2);
         }
@@ -230,8 +222,7 @@ struct SegmentTreeOfSegmentTrees {
             sum += rectangle_sum(u * 2, l, mid, ql, qr, y1, y2);
         }
         if (qr > mid) {
-            sum +=
-                rectangle_sum(u * 2 + 1, mid + 1, r, ql, qr, y1, y2);
+            sum += rectangle_sum(u * 2 + 1, mid + 1, r, ql, qr, y1, y2);
         }
         return sum;
     }

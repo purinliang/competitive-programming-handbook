@@ -200,8 +200,8 @@ struct Splay {
     }
 
     void pull(int u) {
-        tree[u].size = size(tree[u].child[0]) +
-                       size(tree[u].child[1]) + tree[u].count;
+        tree[u].size =
+            size(tree[u].child[0]) + size(tree[u].child[1]) + tree[u].count;
     }
 
     int new_node(int key, int parent) {

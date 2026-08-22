@@ -136,8 +136,7 @@ struct TreapPool {
     vector<Node> tree;
     mt19937 rng;
 
-    TreapPool()
-        : rng(chrono::steady_clock::now().time_since_epoch().count()) {}
+    TreapPool() : rng(chrono::steady_clock::now().time_since_epoch().count()) {}
 
     void init() {
         tree.clear();
@@ -211,8 +210,7 @@ struct TreapPool {
             tree[u].count--;
         } else if (tree[u].left == 0 || tree[u].right == 0) {
             return tree[u].left + tree[u].right;
-        } else if (tree[tree[u].left].priority <
-                   tree[tree[u].right].priority) {
+        } else if (tree[tree[u].left].priority < tree[tree[u].right].priority) {
             u = rotate_right(u);
             tree[u].right = erase(tree[u].right, key);
         } else {
@@ -324,13 +322,7 @@ struct SegmentTreeOfTreaps {
         value[pos] = new_value;
     }
 
-    int count_less(
-        int u,
-        int l,
-        int r,
-        int ql,
-        int qr,
-        ll key) const {
+    int count_less(int u, int l, int r, int ql, int qr, ll key) const {
         if (ql <= l && r <= qr) {
             return treap.count_less(root[u], key);
         }
@@ -370,13 +362,8 @@ struct SegmentTreeOfTreaps {
         return (int)low;
     }
 
-    pair<bool, int> predecessor(
-        int u,
-        int l,
-        int r,
-        int ql,
-        int qr,
-        int key) const {
+    pair<bool, int> predecessor(int u, int l, int r, int ql, int qr,
+                                int key) const {
         if (ql <= l && r <= qr) {
             return treap.predecessor(root[u], key);
         }
@@ -402,13 +389,8 @@ struct SegmentTreeOfTreaps {
         return predecessor(1, 1, n, l, r, key).second;
     }
 
-    pair<bool, int> successor(
-        int u,
-        int l,
-        int r,
-        int ql,
-        int qr,
-        int key) const {
+    pair<bool, int> successor(int u, int l, int r, int ql, int qr,
+                              int key) const {
         if (ql <= l && r <= qr) {
             return treap.successor(root[u], key);
         }

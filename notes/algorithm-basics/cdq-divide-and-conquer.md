@@ -226,20 +226,17 @@ void solve() {
         current.answer = 0;
     }
 
-    sort(
-        input.begin(),
-        input.end(),
-        [](const Point& a, const Point& b) {
-            return tie(a.x, a.y, a.z) < tie(b.x, b.y, b.z);
-        });
+    sort(input.begin(), input.end(), [](const Point& a, const Point& b) {
+        return tie(a.x, a.y, a.z) < tie(b.x, b.y, b.z);
+    });
 
     point.assign(n + 5, {});
     buffer.assign(n + 5, {});
     m = 0;
 
     for (const Point& current : input) {
-        if (m > 0 && point[m].x == current.x &&
-            point[m].y == current.y && point[m].z == current.z) {
+        if (m > 0 && point[m].x == current.x && point[m].y == current.y &&
+            point[m].z == current.z) {
             point[m].count++;
         } else {
             point[++m] = current;

@@ -117,10 +117,9 @@ struct EdgeDecomposition {
     int best_balance;
 
     EdgeDecomposition(int n, ll k)
-        : original_n(n), node_count(n), edge_count(0), limit(k),
-          answer(0), original_g(n + 5), g(2 * n + 5),
-          subtree_size(2 * n + 5), original(2 * n + 5),
-          removed_edge(4 * n + 5) {
+        : original_n(n), node_count(n), edge_count(0), limit(k), answer(0),
+          original_g(n + 5), g(2 * n + 5), subtree_size(2 * n + 5),
+          original(2 * n + 5), removed_edge(4 * n + 5) {
         for (int u = 1; u <= n; ++u) {
             original[u] = true;
         }
@@ -184,8 +183,8 @@ struct EdgeDecomposition {
                 continue;
             }
 
-            int balance = max(subtree_size[edge.v],
-                              total - subtree_size[edge.v]);
+            int balance =
+                max(subtree_size[edge.v], total - subtree_size[edge.v]);
             if (balance < best_balance) {
                 best_balance = balance;
                 cut_edge = edge.id;
@@ -197,15 +196,15 @@ struct EdgeDecomposition {
         }
     }
 
-    void collect_distance(int u, int parent_edge, int blocked_edge,
-                          ll distance, vector<ll>& value) {
+    void collect_distance(int u, int parent_edge, int blocked_edge, ll distance,
+                          vector<ll>& value) {
         if (original[u]) {
             value.push_back(distance);
         }
 
         for (auto edge : g[u]) {
-            if (edge.id == parent_edge || edge.id == blocked_edge
-                || removed_edge[edge.id]) {
+            if (edge.id == parent_edge || edge.id == blocked_edge ||
+                removed_edge[edge.id]) {
                 continue;
             }
             collect_distance(edge.v, edge.id, blocked_edge,
@@ -221,8 +220,7 @@ struct EdgeDecomposition {
         ll count = 0;
         int j = right.size() - 1;
         for (ll left_distance : left) {
-            while (j >= 0
-                   && left_distance + middle_weight + right[j] > limit) {
+            while (j >= 0 && left_distance + middle_weight + right[j] > limit) {
                 --j;
             }
             count += j + 1;

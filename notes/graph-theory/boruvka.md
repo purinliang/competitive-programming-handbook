@@ -20,8 +20,7 @@ Kruskal 把所有边放在一起排序，Prim 从一个连通块向外扩张。B
 因此每个连通块可以独立选择自己的最便宜出边：
 
 ```cpp
-if (best[root] == 0
-    || edge[i].weight < edge[best[root]].weight) {
+if (best[root] == 0 || edge[i].weight < edge[best[root]].weight) {
     best[root] = i;
 }
 ```
@@ -142,12 +141,12 @@ int main() {
                 continue;
             }
 
-            if (best[root_u] == 0
-                || edge[i].weight < edge[best[root_u]].weight) {
+            if (best[root_u] == 0 ||
+                edge[i].weight < edge[best[root_u]].weight) {
                 best[root_u] = i;
             }
-            if (best[root_v] == 0
-                || edge[i].weight < edge[best[root_v]].weight) {
+            if (best[root_v] == 0 ||
+                edge[i].weight < edge[best[root_v]].weight) {
                 best[root_v] = i;
             }
         }
