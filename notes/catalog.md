@@ -976,7 +976,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090410 | FWT 与 FMT | 计划 | `math/fast-subset-transforms.md` |
+| 090410 | FWT 与 FMT | 待审阅 | [fast-subset-transforms.md](math/fast-subset-transforms.md) |
 
 ### 数值方法
 
