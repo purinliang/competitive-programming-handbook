@@ -658,7 +658,7 @@
 | 040312 | 二分图：判定 | 待审阅 | [bipartite-graph.md](graph-theory/bipartite-graph.md) |
 | 080201 | 二分图：最大匹配 | 待审阅 | [graph-theory/bipartite-matching.md](graph-theory/bipartite-matching.md) |
 | *080201e1 | 二分图最大匹配：Hopcroft–Karp | 推迟 | `graph-theory/hopcroft-karp.md` |
-| 090313 | 二分图最大权匹配：KM 算法 | 计划 | `graph-theory/kuhn-munkres.md` |
+| 090312 | 二分图最大权匹配：KM 算法 | 计划 | `graph-theory/kuhn-munkres.md` |
 | *990421 | 一般图最大匹配 | 推迟 | `graph-theory/general-graph-matching.md` |
 
 ### 连通性
@@ -720,7 +720,7 @@
 | *060407 | 基环树 | 待审阅 | [unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
 | *990429 | 函数图 | 待审阅 | [functional-graph.md](graph-theory/functional-graph.md) |
 | *990417 | 竞赛图 | 计划 | `graph-theory/tournament-graph.md` |
-| 090315 | 仙人掌 | 计划 | `graph-theory/cactus-graph.md` |
+| 090314 | 仙人掌 | 计划 | `graph-theory/cactus-graph.md` |
 | *990425 | 弦图 | 推迟 | `graph-theory/chordal-graph.md` |
 
 ### 网络流
@@ -730,15 +730,14 @@
 | 090307 | 最大流 | 待审阅 | [max-flow-residual-network.md](graph-theory/max-flow-residual-network.md) |
 | 090308 | Dinic 算法 | 待审阅 | [dinic-max-flow.md](graph-theory/dinic-max-flow.md) |
 | 090309 | SAP 算法 | 待审阅 | [sap-max-flow.md](graph-theory/sap-max-flow.md) |
-| 090310 | 可行流 | 计划 | `graph-theory/feasible-flow.md` |
-| 090311 | 最小费用最大流 | 计划 | `graph-theory/min-cost-max-flow.md` |
-| 090312 | 上下界网络流 | 计划 | `graph-theory/bounded-flow.md` |
+| 090310 | 最小费用最大流 | 计划 | `graph-theory/min-cost-max-flow.md` |
+| 090311 | 上下界网络流 | 计划 | `graph-theory/bounded-flow.md` |
 
 ### 其他图问题
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090314 | Steiner 树 | 计划 | `graph-theory/steiner-tree.md` |
+| 090313 | Steiner 树 | 计划 | `graph-theory/steiner-tree.md` |
 
 ## 05 数学
 
