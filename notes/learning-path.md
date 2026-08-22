@@ -619,7 +619,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 | --- | --- | --- | --- |
 | 070201 | 有向图：强连通分量 | 图论 | [graph-theory/strongly-connected-components.md](graph-theory/strongly-connected-components.md) |
 | 070202 | 无向图：割点与桥 | 图论 | [graph-theory/articulation-points-bridges.md](graph-theory/articulation-points-bridges.md) |
-| 070203 | 无向图：边双连通分量 | 图论 | `graph-theory/edge-biconnected-components.md` |
+| 070203 | 无向图：边双连通分量 | 图论 | [graph-theory/edge-biconnected-components.md](graph-theory/edge-biconnected-components.md) |
 | 070204 | 无向图：点双连通分量 | 图论 | [graph-theory/vertex-biconnected-components.md](graph-theory/vertex-biconnected-components.md) |
 | 070205 | 无向图：圆方树 | 图论 | [graph-theory/block-cut-tree.md](graph-theory/block-cut-tree.md) |
 | 070206 | 最短路：分层图与状态图 | 图论 | [graph-theory/layered-state-shortest-path.md](graph-theory/layered-state-shortest-path.md) |
@@ -749,7 +749,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 090201 | Splay | 数据结构 | [data-structures/splay.md](data-structures/splay.md) |
+| 090201 | 动态树前置：Splay | 数据结构 | [data-structures/splay.md](data-structures/splay.md) |
 | 090202 | 可持久化线段树 | 数据结构 | [data-structures/persistent-segment-tree.md](data-structures/persistent-segment-tree.md) |
 | 090203 | 树套树：线段树套线段树 | 数据结构 | [data-structures/segment-tree-of-segment-trees.md](data-structures/segment-tree-of-segment-trees.md) |
 | 090204 | 树套树：线段树套平衡树 | 数据结构 | [data-structures/segment-tree-of-balanced-trees.md](data-structures/segment-tree-of-balanced-trees.md) |

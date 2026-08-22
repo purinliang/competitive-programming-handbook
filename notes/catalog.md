@@ -667,7 +667,7 @@
 | --- | --- | --- | --- |
 | 070201 | 有向图：强连通分量 | 待审阅 | [strongly-connected-components.md](graph-theory/strongly-connected-components.md) |
 | 070202 | 无向图：割点与桥 | 待审阅 | [articulation-points-bridges.md](graph-theory/articulation-points-bridges.md) |
-| 070203 | 无向图：边双连通分量 | 计划 | `graph-theory/edge-biconnected-components.md` |
+| 070203 | 无向图：边双连通分量 | 待审阅 | [edge-biconnected-components.md](graph-theory/edge-biconnected-components.md) |
 | 070204 | 无向图：点双连通分量 | 待审阅 | [vertex-biconnected-components.md](graph-theory/vertex-biconnected-components.md) |
 | 070205 | 无向图：圆方树 | 待审阅 | [block-cut-tree.md](graph-theory/block-cut-tree.md) |
 | 080202 | 2-SAT | 待审阅 | [graph-theory/two-sat.md](graph-theory/two-sat.md) |
