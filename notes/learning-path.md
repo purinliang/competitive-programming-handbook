@@ -767,12 +767,12 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 090304 | 树哈希 | 图论 | [graph-theory/tree-hashing.md](graph-theory/tree-hashing.md) |
 | 090305 | 最短路树 | 图论 | [graph-theory/shortest-path-tree.md](graph-theory/shortest-path-tree.md) |
 | 090306 | Boruvka 算法 | 图论 | [graph-theory/boruvka.md](graph-theory/boruvka.md) |
-| 090307 | 最大流与残量网络 | 图论 | [graph-theory/max-flow-residual-network.md](graph-theory/max-flow-residual-network.md) |
-| 090308 | Dinic 算法 | 图论 | `graph-theory/dinic-max-flow.md` |
-| 090309 | SAP 算法 | 图论 | `graph-theory/sap-max-flow.md` |
-| 090310 | 可行流 | 图论 | `graph-theory/feasible-flow.md` |
-| 090311 | 最小费用最大流 | 图论 | `graph-theory/min-cost-max-flow.md` |
-| 090312 | 上下界网络流 | 图论 | `graph-theory/bounded-flow.md` |
+| 090307 | 网络流：最大流 | 图论 | [graph-theory/max-flow-residual-network.md](graph-theory/max-flow-residual-network.md) |
+| 090308 | 网络流：Dinic 算法 | 图论 | [graph-theory/dinic-max-flow.md](graph-theory/dinic-max-flow.md) |
+| 090309 | 网络流：SAP 算法 | 图论 | `graph-theory/sap-max-flow.md` |
+| 090310 | 网络流：可行流 | 图论 | `graph-theory/feasible-flow.md` |
+| 090311 | 网络流：最小费用最大流 | 图论 | `graph-theory/min-cost-max-flow.md` |
+| 090312 | 网络流：上下界网络流 | 图论 | `graph-theory/bounded-flow.md` |
 | 090313 | 二分图最大权匹配：KM 算法 | 图论 | `graph-theory/kuhn-munkres.md` |
 | 090314 | Steiner 树 | 图论 | `graph-theory/steiner-tree.md` |
 | 090315 | 仙人掌 | 图论 | `graph-theory/cactus-graph.md` |
