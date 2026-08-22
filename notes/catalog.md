@@ -1200,7 +1200,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090604 | 本质不同子串计数 | 计划 | `strings/distinct-substring-counting.md` |
+| 090604 | 本质不同子串计数 | 待审阅 | [distinct-substring-counting.md](strings/distinct-substring-counting.md) |
 | 090605 | 字典序第 k 小子串 | 计划 | `strings/kth-lexicographic-substring.md` |
 | 090606 | 子串出现次数 | 计划 | `strings/substring-occurrence-counting.md` |
 | 090607 | 最长重复子串 | 计划 | `strings/longest-repeated-substring.md` |
