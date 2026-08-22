@@ -1,9 +1,9 @@
 {
-  "articleKey": "biconnected-components-block-cut-tree",
-  "title": "点双连通分量与圆方树",
+  "articleKey": "vertex-biconnected-components",
+  "title": "点双连通分量",
   "questions": [
     {
-      "id": "biconnected-components-block-cut-tree-1",
+      "id": "vertex-biconnected-components-1",
       "prompt": "DFS 树边 u -> v 在什么条件下闭合一个以 u 为边界的点双连通分量？",
       "options": [
         "low[v] >= dfn[u]",
@@ -15,7 +15,7 @@
       "explanation": "该条件说明 v 子树无法绕过 u 到达 u 的祖先，当前分量边界已经确定。"
     },
     {
-      "id": "biconnected-components-block-cut-tree-2",
+      "id": "vertex-biconnected-components-2",
       "prompt": "为什么无向图 Tarjan 应按父边编号跳过，而不只判断 v == parent？",
       "options": [
         "为了让 DFS 顺序按边编号递增",
@@ -27,19 +27,19 @@
       "explanation": "只按父节点跳过会同时忽略所有连接父子的平行边，从而算错 low。"
     },
     {
-      "id": "biconnected-components-block-cut-tree-3",
-      "prompt": "圆方树中的方点表示什么？",
+      "id": "vertex-biconnected-components-3",
+      "prompt": "一个割点与一个普通点分别可能属于多少个点双连通分量？",
       "options": [
-        "原图中的割点",
-        "原图中的每一条边",
-        "一个点双连通分量",
-        "DFS 树中的叶节点"
+        "两者都只能属于一个",
+        "割点只能属于一个，普通点可以属于多个",
+        "割点可以属于多个，普通点只属于一个",
+        "两者都必须属于至少两个"
       ],
       "answer": 2,
-      "explanation": "原图点保留为圆点；每个点双连通分量新建方点，并连接它包含的圆点。"
+      "explanation": "割点是相邻分量共享的边界；非割点不会成为多个分量之间的连接处。"
     },
     {
-      "id": "biconnected-components-block-cut-tree-4",
+      "id": "vertex-biconnected-components-4",
       "prompt": "DFS 根节点在什么情况下是割点？",
       "options": [
         "存在任意一个儿子",
