@@ -325,7 +325,7 @@
 | 030605 | 快速排序 | 待审阅 | [quicksort.md](algorithm-basics/quicksort.md) |
 | 030606 | 归并排序 | 待审阅 | [merge-sort.md](algorithm-basics/merge-sort.md) |
 | *030606e1 | 用归并排序统计逆序对 | 待审阅 | [merge-sort-inversion-count.md](algorithm-basics/merge-sort-inversion-count.md) |
-| 090101 | CDQ 分治 | 计划 | `algorithm-basics/cdq-divide-and-conquer.md` |
+| 090101 | CDQ 分治 | 待审阅 | [cdq-divide-and-conquer.md](algorithm-basics/cdq-divide-and-conquer.md) |
 
 ### 其他排序
 
@@ -354,7 +354,7 @@
 | 030801 | 离散化 | 待审阅 | [coordinate-compression.md](algorithm-basics/coordinate-compression.md) |
 | 070102 | 离线算法 | 待审阅 | [offline-algorithms.md](algorithm-basics/offline-algorithms.md) |
 | 070103 | 扫描线与事件排序 | 待审阅 | [sweep-line.md](algorithm-basics/sweep-line.md) |
-| 090101 | CDQ 分治 | 计划 | `algorithm-basics/cdq-divide-and-conquer.md` |
+| 090101 | CDQ 分治 | 待审阅 | [cdq-divide-and-conquer.md](algorithm-basics/cdq-divide-and-conquer.md) |
 
 ### 线性表
 
@@ -494,7 +494,7 @@
 | 060201 | 线段树 | 待审阅 | [segment-tree.md](data-structures/segment-tree.md) |
 | *990301 | 线段树：懒标记的组合顺序 | 待审阅 | [segment-tree-lazy-tags.md](data-structures/segment-tree-lazy-tags.md) |
 | *990305 | 线段树二分与树上下降 | 计划 | `data-structures/segment-tree-descent.md` |
-| 090202 | 可持久化线段树 | 计划 | `data-structures/persistent-segment-tree.md` |
+| 090202 | 可持久化线段树 | 待审阅 | [persistent-segment-tree.md](data-structures/persistent-segment-tree.md) |
 | *990307 | 动态开点线段树 | 推迟 | `data-structures/dynamic-segment-tree.md` |
 | *990308 | Segment Tree Beats | 推迟 | `data-structures/segment-tree-beats.md` |
 | *990321 | 线段树：合并 | 推迟 | `data-structures/segment-tree-merging.md` |
@@ -528,7 +528,7 @@
 | --- | --- | --- | --- |
 | 080109 | Treap | 待审阅 | [data-structures/treap.md](data-structures/treap.md) |
 | 080110 | FHQ Treap | 待审阅 | [data-structures/fhq-treap.md](data-structures/fhq-treap.md) |
-| 090201 | Splay | 计划 | `data-structures/splay.md` |
+| 090201 | Splay | 待审阅 | [splay.md](data-structures/splay.md) |
 | *990325 | 替罪羊树 | 推迟 | `data-structures/scapegoat-tree.md` |
 | *990314 | B 树与 B+ 树 | 推迟 | `data-structures/b-tree-and-b-plus-tree.md` |
 | *080110e1 | 可持久化 FHQ Treap | 推迟 | `data-structures/persistent-fhq-treap.md` |
@@ -537,7 +537,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090202 | 可持久化线段树 | 计划 | `data-structures/persistent-segment-tree.md` |
+| 090202 | 可持久化线段树 | 待审阅 | [persistent-segment-tree.md](data-structures/persistent-segment-tree.md) |
 | 090207 | 可持久化并查集 | 计划 | `data-structures/persistent-disjoint-set-union.md` |
 | *080110e1 | 可持久化 FHQ Treap | 推迟 | `data-structures/persistent-fhq-treap.md` |
 
@@ -549,7 +549,7 @@
 | 080106 | 树上启发式合并 | 待审阅 | [graph-theory/dsu-on-tree.md](graph-theory/dsu-on-tree.md) |
 | 080107 | 重链剖分 | 待审阅 | [heavy-light-decomposition.md](graph-theory/heavy-light-decomposition.md) |
 | *990428 | 长链剖分 | 推迟 | `graph-theory/long-chain-decomposition.md` |
-| 090205 | 动态树：Link-Cut Tree | 计划 | `data-structures/link-cut-tree.md` |
+| 090205 | 动态树：Link-Cut Tree | 待审阅 | [link-cut-tree.md](data-structures/link-cut-tree.md) |
 | *990328 | 链上分块 | 推迟 | `data-structures/chain-block-decomposition.md` |
 | *990329 | 树上分块 | 推迟 | `data-structures/tree-block-decomposition.md` |
 
@@ -574,8 +574,8 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090203 | 树套树：线段树套线段树 | 计划 | `data-structures/segment-tree-of-segment-trees.md` |
-| 090204 | 树套树：线段树套平衡树 | 计划 | `data-structures/segment-tree-of-balanced-trees.md` |
+| 090203 | 树套树：线段树套线段树 | 待审阅 | [segment-tree-of-segment-trees.md](data-structures/segment-tree-of-segment-trees.md) |
+| 090204 | 树套树：线段树套平衡树 | 待审阅 | [segment-tree-of-balanced-trees.md](data-structures/segment-tree-of-balanced-trees.md) |
 | 090206 | KD 树 | 计划 | `data-structures/kd-tree.md` |
 | 080108 | 笛卡尔树 | 待审阅 | [data-structures/cartesian-tree.md](data-structures/cartesian-tree.md) |
 | *990316 | Wavelet Matrix | 推迟 | `data-structures/wavelet-matrix.md` |

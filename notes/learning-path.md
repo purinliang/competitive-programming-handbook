@@ -739,17 +739,17 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 090101 | CDQ 分治 | 算法基础 | `algorithm-basics/cdq-divide-and-conquer.md` |
+| 090101 | CDQ 分治 | 算法基础 | [algorithm-basics/cdq-divide-and-conquer.md](algorithm-basics/cdq-divide-and-conquer.md) |
 
 ### 单元 02：数据结构
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 090201 | Splay | 数据结构 | `data-structures/splay.md` |
-| 090202 | 可持久化线段树 | 数据结构 | `data-structures/persistent-segment-tree.md` |
-| 090203 | 树套树：线段树套线段树 | 数据结构 | `data-structures/segment-tree-of-segment-trees.md` |
-| 090204 | 树套树：线段树套平衡树 | 数据结构 | `data-structures/segment-tree-of-balanced-trees.md` |
-| 090205 | 动态树：Link-Cut Tree | 数据结构 | `data-structures/link-cut-tree.md` |
+| 090201 | Splay | 数据结构 | [data-structures/splay.md](data-structures/splay.md) |
+| 090202 | 可持久化线段树 | 数据结构 | [data-structures/persistent-segment-tree.md](data-structures/persistent-segment-tree.md) |
+| 090203 | 树套树：线段树套线段树 | 数据结构 | [data-structures/segment-tree-of-segment-trees.md](data-structures/segment-tree-of-segment-trees.md) |
+| 090204 | 树套树：线段树套平衡树 | 数据结构 | [data-structures/segment-tree-of-balanced-trees.md](data-structures/segment-tree-of-balanced-trees.md) |
+| 090205 | 动态树：Link-Cut Tree | 数据结构 | [data-structures/link-cut-tree.md](data-structures/link-cut-tree.md) |
 | 090206 | KD 树 | 数据结构 | `data-structures/kd-tree.md` |
 | 090207 | 可持久化并查集 | 数据结构 | `data-structures/persistent-disjoint-set-union.md` |
 
