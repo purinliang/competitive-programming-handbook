@@ -1117,7 +1117,7 @@
 | 070507 | 单调队列优化 | 待审阅 | [monotone-queue-optimization.md](dynamic-programming/monotone-queue-optimization.md) |
 | 070508 | 单调栈优化 | 待审阅 | [dynamic-programming/monotone-stack-optimization.md](dynamic-programming/monotone-stack-optimization.md) |
 | 070509 | 斜率优化 | 待审阅 | [dynamic-programming/convex-hull-trick.md](dynamic-programming/convex-hull-trick.md) |
-| 090502 | 决策单调性 | 计划 | `dynamic-programming/decision-monotonicity.md` |
+| 090502 | 决策单调性 | 待审阅 | [decision-monotonicity.md](dynamic-programming/decision-monotonicity.md) |
 | 090503 | 分治优化 | 计划 | `dynamic-programming/divide-conquer-optimization.md` |
 | 090504 | 四边形不等式优化 | 计划 | `dynamic-programming/quadrangle-inequality-optimization.md` |
 | *990715 | WQS 二分 | 计划 | `dynamic-programming/wqs-binary-search.md` |
