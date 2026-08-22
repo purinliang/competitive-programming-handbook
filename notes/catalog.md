@@ -910,7 +910,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090405 | 矩阵树定理 | 计划 | `math/matrix-tree-theorem.md` |
+| 090405 | 矩阵树定理 | 待审阅 | [matrix-tree-theorem.md](math/matrix-tree-theorem.md) |
 | *990530 | 欧拉回路计数：BEST 定理 | 推迟 | `math/best-theorem.md` |
 | 090408 | Prufer 序列 | 计划 | `math/prufer-sequence.md` |
 | *990532 | 路径计数：LGV 引理 | 推迟 | `math/lindstrom-gessel-viennot-lemma.md` |
