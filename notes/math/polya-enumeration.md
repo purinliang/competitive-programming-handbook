@@ -33,7 +33,7 @@ $$
 设置换 $g$ 共有 $c(g)$ 个循环。每个循环可以独立选择 `m` 种颜色，所以：
 
 $$
-|\operatorname{Fix}(g)|=m^{c(g)}.
+|\mathrm{Fix}(g)|=m^{c(g)}.
 $$
 
 ## Polya 的基本计数公式

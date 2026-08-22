@@ -27,7 +27,7 @@ $$
 对某个旋转 $g$，定义它的固定点集合：
 
 $$
-\operatorname{Fix}(g)
+\mathrm{Fix}(g)
 =
 \{x\in X\mid g(x)=x\}.
 $$
@@ -43,7 +43,7 @@ $$
 |X/G|
 =
 \frac{1}{|G|}
-\sum_{g\in G}|\operatorname{Fix}(g)|
+\sum_{g\in G}|\mathrm{Fix}(g)|
 }
 $$
 
@@ -64,7 +64,7 @@ $$
 按变换 $g$ 统计，二元组总数就是：
 
 $$
-\sum_{g\in G}|\operatorname{Fix}(g)|.
+\sum_{g\in G}|\mathrm{Fix}(g)|.
 $$
 
 再按对象所在轨道统计。设一个轨道含有 $s$ 个不同对象。群的大小为 $|G|$，固定其中
@@ -121,7 +121,7 @@ $$
 固定点数量为：
 
 $$
-|\operatorname{Fix}(shift)|
+|\mathrm{Fix}(shift)|
 =
 \binom{cycle\_count}{k/cycle\_length}.
 $$

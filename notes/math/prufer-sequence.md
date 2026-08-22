@@ -61,10 +61,10 @@ $$
 因此：
 
 $$
-degree(u)=1+\operatorname{count}(u),
+degree(u)=1+\mathrm{count}(u),
 $$
 
-其中 $\operatorname{count}(u)$ 是编号 `u` 在 Prufer 序列中的出现次数。
+其中 $\mathrm{count}(u)$ 是编号 `u` 在 Prufer 序列中的出现次数。
 
 特别地：
 
