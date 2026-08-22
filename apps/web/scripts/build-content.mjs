@@ -804,6 +804,7 @@ await writeFile(
   path.join(cacheRoot, "manifest.json"),
   `${JSON.stringify({ articles: visibleArticles, stages: visibleStages })}\n`,
 );
+await mkdir(path.dirname(learningProgressPath), { recursive: true });
 await writeFile(
   learningProgressPath,
   `${JSON.stringify({ articles: learningProgressArticles })}\n`,
@@ -813,7 +814,6 @@ await writeFile(
   `${JSON.stringify({ documents: interactionDocuments })}\n`,
 );
 
-await mkdir(path.dirname(searchIndexPath), { recursive: true });
 await writeFile(searchIndexPath, `${JSON.stringify(searchRecords)}\n`);
 await writeFile(buildStatePath, `${JSON.stringify(nextState)}\n`);
 
