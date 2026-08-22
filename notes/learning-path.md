@@ -828,7 +828,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 090701 | 凸多边形点包含 | 计算几何 | [computational-geometry/point-in-convex-polygon.md](computational-geometry/point-in-convex-polygon.md) |
-| 090702 | 旋转卡壳 | 计算几何 | `computational-geometry/rotating-calipers.md` |
+| 090702 | 旋转卡壳 | 计算几何 | [computational-geometry/rotating-calipers.md](computational-geometry/rotating-calipers.md) |
 | 090703 | 半平面交 | 计算几何 | `computational-geometry/half-plane-intersection.md` |
 | 090704 | 圆面积交与面积并 | 计算几何 | `computational-geometry/circle-area-intersection-union.md` |
 | 090705 | 平面点定位 | 计算几何 | `computational-geometry/point-location.md` |

@@ -1001,7 +1001,7 @@
 | 070404 | 多边形面积与点的位置 | 待审阅 | [polygon-area-point-location.md](computational-geometry/polygon-area-point-location.md) |
 | 070405 | 凸包 | 待审阅 | [convex-hull.md](computational-geometry/convex-hull.md) |
 | 080502 | 圆：位置关系与交点 | 待审阅 | [computational-geometry/circles.md](computational-geometry/circles.md) |
-| 090702 | 旋转卡壳 | 计划 | `computational-geometry/rotating-calipers.md` |
+| 090702 | 旋转卡壳 | 待审阅 | [rotating-calipers.md](computational-geometry/rotating-calipers.md) |
 | *990603 | 几何扫描线 | 计划 | `computational-geometry/geometric-sweep-line.md` |
 | *990604 | 最近点对 | 计划 | `computational-geometry/closest-pair-of-points.md` |
 | 090701 | 凸多边形点包含 | 待审阅 | [point-in-convex-polygon.md](computational-geometry/point-in-convex-polygon.md) |
