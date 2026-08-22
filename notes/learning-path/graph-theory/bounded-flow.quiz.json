@@ -1,0 +1,54 @@
+{
+  "articleKey": "bounded-flow",
+  "title": "上下界网络流",
+  "questions": [
+    {
+      "id": "bounded-flow-1",
+      "prompt": "强制一条边先发送 lower 后，新网络中这条边应保留多少容量？",
+      "options": [
+        "upper - lower",
+        "upper",
+        "lower",
+        "upper + lower"
+      ],
+      "answer": 0,
+      "explanation": "下界已经固定发送，之后能自由决定的只有从 0 到 upper - lower 的额外流量。"
+    },
+    {
+      "id": "bounded-flow-2",
+      "prompt": "本文定义 balance[u] = 强制流入 - 强制流出。balance[u] > 0 表示什么？",
+      "options": [
+        "u 还需要额外流入",
+        "u 还需要从原网络额外流出 balance[u]",
+        "u 必须成为汇点",
+        "u 的所有边都已满流"
+      ],
+      "answer": 1,
+      "explanation": "强制流入较多，为恢复守恒，额外部分必须从 u 再流出同样的量。"
+    },
+    {
+      "id": "bounded-flow-3",
+      "prompt": "怎样判断无源汇上下界网络存在可行环流？",
+      "options": [
+        "任意原边还有残量",
+        "超级汇点能够到达超级源点",
+        "超级源点到超级汇点的最大流等于所有正 balance 之和",
+        "每条原边都达到 upper"
+      ],
+      "answer": 2,
+      "explanation": "这表示超级源点的全部补偿流都穿过原网络并到达超级汇点。"
+    },
+    {
+      "id": "bounded-flow-4",
+      "prompt": "把有源汇上下界流先转成环流时，应加入哪条人工边？",
+      "options": [
+        "超级源点到 source",
+        "source 到 sink",
+        "source 到超级汇点",
+        "sink 到 source"
+      ],
+      "answer": 3,
+      "explanation": "人工边把汇点收到的流量送回源点，使所有原节点暂时满足环流守恒。"
+    }
+  ]
+}
