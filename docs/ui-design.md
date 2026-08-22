@@ -133,6 +133,22 @@
 - `SettingsControlRow`：左侧说明、右侧控件的设置行。
 - 移动端导航使用覆盖式侧栏或底部导航，不能缩窄正文到不可阅读。
 
+### 当前已经落地的基础组件
+
+- `PageIntro` 统一普通页面的 eyebrow、主标题和说明文字；管理页不得再手写
+  另一套页面标题。
+- `Panel` 与 `PanelHeader` 统一主要内容块；`DirectorySection`、小测、评论区和
+  管理列表都在这一结构上组合。
+- `Button`、`IconButton` 与 `ActionLink` 共用主要、次要、无边框、尺寸和禁用
+  状态规则；题号和选择题选项属于选择控件，不伪装成普通按钮。
+- `CheckboxField` 与 `TextAreaField` 统一当前表单控件；新增输入控件时继续在
+  同一文件扩展，而不是在业务样式中重新定义。
+- `StateMessage` 统一加载、空内容、成功和错误消息；容器只负责布局，不重新
+  指定一套状态颜色。
+- `SidebarHeader`、`ScrollArea` 和 `Disclosure` 分别统一侧栏标题、独立滚动与
+  展开列表。学习路线、模块目录和正文侧栏可以拥有不同内容密度，但不得复制
+  它们的基础交互规则。
+
 ## 本站新增组件
 
 ### MarkdownArticle
