@@ -732,26 +732,104 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 
 ## 09 区域赛金牌
 
-本阶段只收区域赛金牌范围内已经形成稳定问题模型的内容。当前条目统一保持“推迟”，
-不进入公网目录、搜索、统计和正文路由；后续逐专题审核时再从现有高级专题候选池迁入。
+本阶段收录区域赛金牌范围内已经形成稳定问题模型的内容。银牌与金牌阶段不再预先
+细分专题，只按模块组织；等正文数量和真实依赖稳定以后，再判断是否需要增加中间层级。
 
-### 单元 01：字符串：后缀结构
-
-| ID | 知识点 | 模块 | 文件 |
-| --- | --- | --- | --- |
-| 090101 | 后缀数组 | 字符串 | `strings/suffix-array.md` |
-| 090102 | 后缀自动机 | 字符串 | `strings/suffix-automaton.md` |
-| *090103 | 回文自动机 | 字符串 | `strings/palindromic-tree.md` |
-
-### 单元 02：字符串：子串问题
+### 单元 01：算法基础
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 090201 | 本质不同子串计数 | 字符串 | `strings/distinct-substring-counting.md` |
-| 090202 | 字典序第 k 小子串 | 字符串 | `strings/kth-lexicographic-substring.md` |
-| 090203 | 子串出现次数 | 字符串 | `strings/substring-occurrence-counting.md` |
-| 090204 | 最长重复子串 | 字符串 | `strings/longest-repeated-substring.md` |
-| 090205 | 最长公共子串 | 字符串 | `strings/longest-common-substring.md` |
+| 090101 | CDQ 分治 | 算法基础 | `algorithm-basics/cdq-divide-and-conquer.md` |
+
+### 单元 02：数据结构
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 090201 | Splay | 数据结构 | `data-structures/splay.md` |
+| 090202 | 可持久化线段树 | 数据结构 | `data-structures/persistent-segment-tree.md` |
+| 090203 | 树套树：线段树套线段树 | 数据结构 | `data-structures/segment-tree-of-segment-trees.md` |
+| 090204 | 树套树：线段树套平衡树 | 数据结构 | `data-structures/segment-tree-of-balanced-trees.md` |
+| 090205 | 动态树：Link-Cut Tree | 数据结构 | `data-structures/link-cut-tree.md` |
+| 090206 | KD 树 | 数据结构 | `data-structures/kd-tree.md` |
+| 090207 | 可持久化并查集 | 数据结构 | `data-structures/persistent-disjoint-set-union.md` |
+
+### 单元 03：图论
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 090301 | 点分治 | 图论 | `graph-theory/centroid-decomposition.md` |
+| 090302 | 边分治 | 图论 | `graph-theory/edge-decomposition.md` |
+| 090303 | 虚树 | 图论 | `graph-theory/virtual-tree.md` |
+| 090304 | 树哈希 | 图论 | `graph-theory/tree-hashing.md` |
+| 090305 | 最短路树 | 图论 | `graph-theory/shortest-path-tree.md` |
+| 090306 | Boruvka 算法 | 图论 | `graph-theory/boruvka.md` |
+| 090307 | 点双连通分量与圆方树 | 图论 | `graph-theory/biconnected-components-block-cut-tree.md` |
+| 090308 | 最大流与残量网络 | 图论 | `graph-theory/max-flow-residual-network.md` |
+| 090309 | Dinic 算法 | 图论 | `graph-theory/dinic-max-flow.md` |
+| 090310 | SAP 算法 | 图论 | `graph-theory/sap-max-flow.md` |
+| 090311 | 可行流 | 图论 | `graph-theory/feasible-flow.md` |
+| 090312 | 最小费用最大流 | 图论 | `graph-theory/min-cost-max-flow.md` |
+| 090313 | 上下界网络流 | 图论 | `graph-theory/bounded-flow.md` |
+| 090314 | 二分图最大权匹配：KM 算法 | 图论 | `graph-theory/kuhn-munkres.md` |
+| 090315 | Steiner 树 | 图论 | `graph-theory/steiner-tree.md` |
+| 090316 | 仙人掌 | 图论 | `graph-theory/cactus-graph.md` |
+
+### 单元 04：数学
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 090401 | 原根与阶 | 数学 | `math/primitive-roots.md` |
+| 090402 | BSGS 与离散对数 | 数学 | `math/discrete-logarithm.md` |
+| 090403 | 扩展卢卡斯定理 | 数学 | `math/extended-lucas-theorem.md` |
+| 090404 | 矩阵求逆 | 数学 | `math/matrix-inverse.md` |
+| 090405 | 矩阵树定理 | 数学 | `math/matrix-tree-theorem.md` |
+| 090406 | 最值容斥 | 数学 | `math/min-max-inclusion-exclusion.md` |
+| 090407 | 二项式反演 | 数学 | `math/binomial-inversion.md` |
+| 090408 | Prufer 序列 | 数学 | `math/prufer-sequence.md` |
+| 090409 | 拉格朗日插值 | 数学 | `math/lagrange-interpolation.md` |
+| 090410 | FWT 与 FMT | 数学 | `math/fast-subset-transforms.md` |
+| 090411 | Burnside 引理 | 数学 | `math/burnside-lemma.md` |
+| 090412 | Polya 定理 | 数学 | `math/polya-enumeration.md` |
+| 090413 | Simpson 公式 | 数学 | `math/simpson-rule.md` |
+| 090414 | 自适应 Simpson | 数学 | `math/adaptive-simpson.md` |
+| 090415 | 类欧几里得算法 | 数学 | `math/euclidean-like-algorithm.md` |
+| 090416 | 杜教筛 | 数学 | `math/du-jiao-sieve.md` |
+| 090417 | Min_25 筛 | 数学 | `math/min-25-sieve.md` |
+| 090418 | 线性递推：Berlekamp-Massey | 数学 | `math/berlekamp-massey.md` |
+| 090419 | 线性规划与单纯形法 | 数学 | `math/linear-programming.md` |
+
+### 单元 05：动态规划
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 090501 | 自动机 DP | 动态规划 | `dynamic-programming/automaton-dp.md` |
+| 090502 | 决策单调性 | 动态规划 | `dynamic-programming/decision-monotonicity.md` |
+| 090503 | 分治优化 | 动态规划 | `dynamic-programming/divide-conquer-optimization.md` |
+| 090504 | 四边形不等式优化 | 动态规划 | `dynamic-programming/quadrangle-inequality-optimization.md` |
+
+### 单元 06：字符串
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 090601 | 后缀数组 | 字符串 | `strings/suffix-array.md` |
+| 090602 | 后缀自动机 | 字符串 | `strings/suffix-automaton.md` |
+| 090603 | 回文自动机 | 字符串 | `strings/palindromic-tree.md` |
+| 090604 | 本质不同子串计数 | 字符串 | `strings/distinct-substring-counting.md` |
+| 090605 | 字典序第 k 小子串 | 字符串 | `strings/kth-lexicographic-substring.md` |
+| 090606 | 子串出现次数 | 字符串 | `strings/substring-occurrence-counting.md` |
+| 090607 | 最长重复子串 | 字符串 | `strings/longest-repeated-substring.md` |
+| 090608 | 最长公共子串 | 字符串 | `strings/longest-common-substring.md` |
+
+### 单元 07：计算几何
+
+| ID | 知识点 | 模块 | 文件 |
+| --- | --- | --- | --- |
+| 090701 | 凸多边形点包含 | 计算几何 | `computational-geometry/point-in-convex-polygon.md` |
+| 090702 | 旋转卡壳 | 计算几何 | `computational-geometry/rotating-calipers.md` |
+| 090703 | 半平面交 | 计算几何 | `computational-geometry/half-plane-intersection.md` |
+| 090704 | 圆面积交与面积并 | 计算几何 | `computational-geometry/circle-area-intersection-union.md` |
+| 090705 | 平面点定位 | 计算几何 | `computational-geometry/point-location.md` |
+| 090706 | 最小圆覆盖 | 计算几何 | `computational-geometry/minimum-enclosing-circle.md` |
 
 红色争冠内容不建立第 10 章。它们只在模块目录中以“推迟”状态保留资料身份，除非
 以后出现明确学习需求，否则不进入写作和审核队列。
@@ -811,7 +889,6 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | *030608 | 基数排序 | [algorithm-basics/radix-sort.md](algorithm-basics/radix-sort.md) |
 | *030609 | 桶排序 | [algorithm-basics/bucket-sort.md](algorithm-basics/bucket-sort.md) |
 | *050204 | 堆排序 | [algorithm-basics/heap-sort.md](algorithm-basics/heap-sort.md) |
-| *990201 | CDQ 分治 | `algorithm-basics/cdq-divide-and-conquer.md` |
 | *990202 | 三分搜索 | `algorithm-basics/ternary-search.md` |
 | *990203 | 整体二分与并行二分 | `algorithm-basics/parallel-binary-search.md` |
 | *990204 | 搜索：迭代加深 | `algorithm-basics/iterative-deepening.md` |
@@ -830,24 +907,17 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | *990301 | 线段树：懒标记的组合顺序 | [data-structures/segment-tree-lazy-tags.md](data-structures/segment-tree-lazy-tags.md) |
 | *990302 | 可撤销并查集 | `data-structures/rollback-disjoint-set.md` |
 | *990305 | 线段树二分与树上下降 | `data-structures/segment-tree-descent.md` |
-| *990306 | 可持久化线段树 | `data-structures/persistent-segment-tree.md` |
 | *990307 | 动态开点线段树 | `data-structures/dynamic-segment-tree.md` |
 | *990308 | Segment Tree Beats | `data-structures/segment-tree-beats.md` |
 | *990309 | 树状数组的区间修改变体 | `data-structures/fenwick-range-updates.md` |
 | *990310 | 树状数组维护区间最值 | `data-structures/fenwick-range-extrema.md` |
 | *990311 | 左偏树 | `data-structures/leftist-tree.md` |
-| *990313 | Splay | `data-structures/splay.md` |
 | *990314 | B 树与 B+ 树 | `data-structures/b-tree-and-b-plus-tree.md` |
 | *990316 | Wavelet Matrix | `data-structures/wavelet-matrix.md` |
 | *990318 | 斜堆 | `data-structures/skew-heap.md` |
 | *990319 | 配对堆 | `data-structures/pairing-heap.md` |
-| *990320 | 可持久化并查集 | `data-structures/persistent-disjoint-set-union.md` |
 | *990321 | 线段树：合并 | `data-structures/segment-tree-merging.md` |
-| *990322 | 树套树：线段树套线段树 | `data-structures/segment-tree-of-segment-trees.md` |
-| *990323 | 树套树：线段树套平衡树 | `data-structures/segment-tree-of-balanced-trees.md` |
 | *990325 | 替罪羊树 | `data-structures/scapegoat-tree.md` |
-| *990326 | 动态树：Link-Cut Tree | `data-structures/link-cut-tree.md` |
-| *990327 | KD 树 | `data-structures/kd-tree.md` |
 | *990328 | 链上分块 | `data-structures/chain-block-decomposition.md` |
 | *990329 | 树上分块 | `data-structures/tree-block-decomposition.md` |
 | *990330 | 01 Trie | `data-structures/binary-trie.md` |
@@ -857,29 +927,15 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
 | *060407 | 基环树 | [graph-theory/unicyclic-graph.md](graph-theory/unicyclic-graph.md) |
-| *990402 | 无向图：双连通分量与圆方树 | `graph-theory/biconnected-components-block-cut-tree.md` |
-| *990404 | 网络流：Dinic | `graph-theory/dinic-max-flow.md` |
-| *990405 | 最小费用最大流 | `graph-theory/min-cost-max-flow.md` |
-| *990406 | 虚树 | `graph-theory/virtual-tree.md` |
-| *990407 | 点分治 | `graph-theory/centroid-decomposition.md` |
 | *990408 | SPFA 与队列优化最短路 | `graph-theory/spfa.md` |
 | *990410 | 差分约束 | `graph-theory/difference-constraints.md` |
-| *990411 | 树哈希 | `graph-theory/tree-hashing.md` |
-| *990412 | 最短路：最短路树 | `graph-theory/shortest-path-tree.md` |
-| *990413 | 最小生成树：Boruvka | `graph-theory/boruvka.md` |
-| *990414 | 网络流：SAP | `graph-theory/sap-max-flow.md` |
-| *990415 | 网络流：可行流 | `graph-theory/feasible-flow.md` |
-| *990416 | 网络流：上下界 | `graph-theory/bounded-flow.md` |
 | *990417 | 竞赛图 | `graph-theory/tournament-graph.md` |
-| *990418 | Steiner 树 | `graph-theory/steiner-tree.md` |
-| *990419 | 仙人掌 | `graph-theory/cactus-graph.md` |
 | *990420 | 有向最小生成树：Chu–Liu/Edmonds | `graph-theory/directed-minimum-spanning-tree.md` |
 | *990421 | 一般图最大匹配 | `graph-theory/general-graph-matching.md` |
 | *990422 | 最短路：k 短路 | `graph-theory/k-shortest-paths.md` |
 | *990423 | 支配树 | `graph-theory/dominator-tree.md` |
 | *990424 | 无向图：全局最小割 | `graph-theory/global-minimum-cut.md` |
 | *990425 | 弦图 | `graph-theory/chordal-graph.md` |
-| *990426 | 树分治：边分治 | `graph-theory/edge-decomposition.md` |
 | *990427 | 树分治：动态点分治 | `graph-theory/dynamic-centroid-decomposition.md` |
 | *990428 | 长链剖分 | `graph-theory/long-chain-decomposition.md` |
 | *990429 | 函数图 | [graph-theory/functional-graph.md](graph-theory/functional-graph.md) |
@@ -893,7 +949,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | *041003 | 代数：方程与不等式 | [math/equations-and-inequalities-review.md](math/equations-and-inequalities-review.md) |
 | *041004 | 几何：平面几何基础 | [math/plane-geometry-basics.md](math/plane-geometry-basics.md) |
 | *050603 | 容斥原理 | [math/inclusion-exclusion.md](math/inclusion-exclusion.md) |
-| *990505 | BSGS 与离散对数 | `math/discrete-logarithm.md` |
+| *990506 | 离散对数：Pohlig-Hellman | `math/pohlig-hellman.md` |
 | *990510 | 形式幂级数：求逆 | `math/formal-power-series-inverse.md` |
 | *990511 | 形式幂级数：形式导数 | `math/formal-derivative.md` |
 | *990512 | 形式幂级数：形式积分 | `math/formal-integral.md` |
@@ -903,48 +959,29 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | *990516 | 形式幂级数：幂 | `math/formal-power-series-power.md` |
 | *990517 | 多项式：除法与余数 | `math/polynomial-division-remainder.md` |
 | *990518 | 多项式：多点求值 | `math/multipoint-evaluation.md` |
-| *990519 | 多项式：插值 | `math/polynomial-interpolation.md` |
 | *990521 | 质数检测：Miller–Rabin | `math/miller-rabin.md` |
 | *990522 | 整数分解：Pollard–Rho | `math/pollard-rho.md` |
-| *990523 | 原根 | `math/primitive-roots.md` |
 | *990524 | 二次剩余与勒让德符号 | `math/quadratic-residues-legendre-symbol.md` |
 | *990525 | 二次剩余：Cipolla 算法 | `math/cipolla.md` |
 | *990526 | 佩尔方程 | `math/pell-equation.md` |
-| *990528 | 线性递推：Berlekamp–Massey | `math/berlekamp-massey.md` |
-| *990529 | 图论计数：矩阵树定理 | `math/matrix-tree-theorem.md` |
 | *990530 | 欧拉回路计数：BEST 定理 | `math/best-theorem.md` |
-| *990531 | 树的编码：Prufer 序列 | `math/prufer-sequence.md` |
 | *990532 | 路径计数：LGV 引理 | `math/lindstrom-gessel-viennot-lemma.md` |
 | *990534 | 群论：置换 | `math/permutations.md` |
-| *990535 | 群作用计数：Burnside 引理 | `math/burnside-lemma.md` |
-| *990536 | 群作用计数：Polya 定理 | `math/polya-enumeration.md` |
-| *990537 | 线性规划 | `math/linear-programming.md` |
 | *990538 | 组合计数：抽屉原理 | `math/pigeonhole-principle.md` |
-| *990539 | 组合计数：最值容斥 | `math/min-max-inclusion-exclusion.md` |
-| *990540 | 组合计数：二项式反演 | `math/binomial-inversion.md` |
 | *990544 | 常见数列：Bell 数 | `math/bell-numbers.md` |
 | *990545 | 常见数列：Bernoulli 数 | `math/bernoulli-numbers.md` |
 | *990546 | 组合计数：杨表 | `math/young-tableaux.md` |
-| *990547 | 数值积分：Simpson 公式 | `math/simpson-rule.md` |
-| *990548 | 数值积分：自适应 Simpson | `math/adaptive-simpson.md` |
-| *990549 | 集合幂级数：FWT/FMT | `math/fast-subset-transforms.md` |
 | *990550 | 筛法：分段筛 | `math/segmented-sieve.md` |
 
 ### 06 计算几何
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| *990602 | 旋转卡壳 | `computational-geometry/rotating-calipers.md` |
 | *990603 | 几何扫描线 | `computational-geometry/geometric-sweep-line.md` |
 | *990604 | 最近点对 | `computational-geometry/closest-pair-of-points.md` |
-| *990605 | 凸多边形：点包含 | `computational-geometry/point-in-convex-polygon.md` |
 | *990606 | 凸多边形：切线与极值查询 | `computational-geometry/convex-polygon-tangents-extrema.md` |
-| *990607 | 半平面交 | `computational-geometry/half-plane-intersection.md` |
 | *990608 | 闵可夫斯基和 | `computational-geometry/minkowski-sum.md` |
-| *990611 | 圆：面积交与面积并 | `computational-geometry/circle-area-intersection-union.md` |
 | *990612 | 三维计算几何 | `computational-geometry/three-dimensional-geometry.md` |
-| *990613 | 平面点定位 | `computational-geometry/point-location.md` |
-| *990614 | 最小圆覆盖 | `computational-geometry/minimum-enclosing-circle.md` |
 | *990615 | Voronoi 图 | `computational-geometry/voronoi-diagram.md` |
 | *990616 | 反演几何 | `computational-geometry/inversive-geometry.md` |
 | *990617 | Pick 定理 | `computational-geometry/pick-theorem.md` |
@@ -953,7 +990,6 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
-| *990702 | 决策单调性与分治优化 | `dynamic-programming/divide-conquer-optimization.md` |
 | *990703 | 分段线性凸函数维护 | `dynamic-programming/slope-trick.md` |
 | *990704 | 记忆化搜索 | `dynamic-programming/memoized-search.md` |
 | *990705 | 分组背包 | `dynamic-programming/group-knapsack.md` |
@@ -963,17 +999,14 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | *990709 | 轮廓线 DP | `dynamic-programming/profile-dp.md` |
 | *990710 | 插头 DP | `dynamic-programming/plug-dp.md` |
 | *990711 | 括号序列 DP | `dynamic-programming/bracket-sequence-dp.md` |
-| *990712 | 自动机 DP | `dynamic-programming/automaton-dp.md` |
 | *990713 | 划分 DP | `dynamic-programming/partition-dp.md` |
 | *990714 | 动态 DP | `dynamic-programming/dynamic-dp.md` |
-| *990716 | 四边形不等式优化 | `dynamic-programming/quadrangle-inequality-optimization.md` |
 
 ### 08 字符串
 
 | ID | 知识点 | 文件 |
 | --- | --- | --- |
 | *060703 | Z 函数 | [strings/z-function.md](strings/z-function.md) |
-| *090103 | 回文自动机 | `strings/palindromic-tree.md` |
 | *990806 | 后缀树 | `strings/suffix-tree.md` |
 | *990807 | 最小表示法 | `strings/minimum-representation.md` |
 | *990808 | Lyndon 分解 | `strings/lyndon-factorization.md` |
