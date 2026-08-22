@@ -1,0 +1,62 @@
+[
+  {
+    "id": "outer-node-meaning",
+    "prompt": "外层节点表示一段横坐标区间时，它挂载的内层线段树维护什么？",
+    "options": [
+      { "id": "a", "text": "只维护这段横坐标的长度" },
+      { "id": "b", "text": "横坐标落在这段区间内的点按纵坐标汇总的权值" },
+      { "id": "c", "text": "整个网格的横坐标排序" },
+      { "id": "d", "text": "只维护外层节点编号" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "外层确定 x 范围，内层再按 y 统计该范围内所有点。"
+  },
+  {
+    "id": "point-update-path",
+    "prompt": "给点 `(x,y)` 增加权值时，哪些外层节点的内层树需要修改？",
+    "options": [
+      { "id": "a", "text": "外层从根到包含 x 的叶子路径" },
+      { "id": "b", "text": "只修改外层根" },
+      { "id": "c", "text": "只修改与 y 同编号的外层节点" },
+      { "id": "d", "text": "外层全部 O(n) 个节点" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "点 x 属于这条路径上每个节点代表的横坐标区间。"
+  },
+  {
+    "id": "rectangle-query",
+    "prompt": "为什么矩形查询是 `O(log^2 n)`？",
+    "options": [
+      { "id": "a", "text": "网格一定只有两个点" },
+      { "id": "b", "text": "只需建立一棵长度为 log n 的树" },
+      { "id": "c", "text": "访问 O(log n) 个外层节点，每个做 O(log n) 的内层查询" },
+      { "id": "d", "text": "需要枚举整个矩形" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "两个坐标分别由一层线段树分解，复杂度相乘。"
+  },
+  {
+    "id": "dynamic-nodes",
+    "prompt": "为什么内层线段树需要动态开点？",
+    "options": [
+      { "id": "a", "text": "动态开点会把查询变成 O(1)" },
+      { "id": "b", "text": "外层树不能使用数组编号" },
+      { "id": "c", "text": "动态开点可以删除全部历史修改" },
+      { "id": "d", "text": "为 O(n) 个外层节点各建 O(n) 个内层节点会占 O(n^2) 空间" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "初始零区间无需真实节点，动态开点让空间取决于实际修改路径。"
+  },
+  {
+    "id": "vector-reference",
+    "prompt": "内层更新为何返回新根编号，而不把 `inner[u].left` 的引用跨递归传递？",
+    "options": [
+      { "id": "a", "text": "push_back 扩容后，指向 vector 元素成员的引用可能失效" },
+      { "id": "b", "text": "整数编号不能表示节点" },
+      { "id": "c", "text": "返回值会自动降低空间复杂度" },
+      { "id": "d", "text": "引用不能修改整数" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "递归中新建节点可能移动整个 vector，返回稳定的整数编号更安全。"
+  }
+]
