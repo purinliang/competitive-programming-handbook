@@ -1,0 +1,62 @@
+[
+  {
+    "id": "auxiliary-root",
+    "prompt": "为什么不能用 `parent[u] == 0` 判断 `u` 是辅助 Splay 的根？",
+    "options": [
+      { "id": "a", "text": "辅助树根的 parent 还可能表示实树中的路径父节点" },
+      { "id": "b", "text": "所有 parent 永远为零" },
+      { "id": "c", "text": "Splay 没有父节点信息" },
+      { "id": "d", "text": "只有叶子拥有 parent" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "LCT 复用 parent 表示辅助父子关系和辅助树之间的路径关系。"
+  },
+  {
+    "id": "access-purpose",
+    "prompt": "`access(u)` 的直接结果是什么？",
+    "options": [
+      { "id": "a", "text": "删除 u 所在实树" },
+      { "id": "b", "text": "把实树根到 u 的路径改成首选路径，并将 u 伸展到辅助树根" },
+      { "id": "c", "text": "永久固定所有重链" },
+      { "id": "d", "text": "把 u 的权值清零" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "access 重组辅助树表示，不改变实树边。"
+  },
+  {
+    "id": "make-root",
+    "prompt": "`make_root(u)` 在 `access(u)` 后还要做什么？",
+    "options": [
+      { "id": "a", "text": "删除 u 的全部儿子" },
+      { "id": "b", "text": "新建一棵普通线段树" },
+      { "id": "c", "text": "翻转辅助路径的左右顺序" },
+      { "id": "d", "text": "把 parent 全部改成零" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "翻转根到 u 的路径方向后，u 才成为新的实树根。"
+  },
+  {
+    "id": "path-query",
+    "prompt": "执行 `split(u,v)` 后，路径聚合值保存在哪里？",
+    "options": [
+      { "id": "a", "text": "固定保存在节点 1" },
+      { "id": "b", "text": "保存在 u 的实树父亲" },
+      { "id": "c", "text": "保存在任意叶子" },
+      { "id": "d", "text": "保存在辅助树根 v 的聚合信息中" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "make_root(u) 后 access(v)，整条 u 到 v 路径成为以 v 为根的辅助 Splay。"
+  },
+  {
+    "id": "safe-link",
+    "prompt": "连接 `u` 与 `v` 以前为什么要检查它们是否已经连通？",
+    "options": [
+      { "id": "a", "text": "避免在森林中产生环" },
+      { "id": "b", "text": "避免查询权值" },
+      { "id": "c", "text": "保证两个点编号相同" },
+      { "id": "d", "text": "让所有边变成有向边" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Link-Cut Tree 的这套操作维护森林；连接同一棵树内的两个点会破坏前提。"
+  }
+]
