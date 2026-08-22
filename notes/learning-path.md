@@ -832,7 +832,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 090703 | 半平面交 | 计算几何 | [computational-geometry/half-plane-intersection.md](computational-geometry/half-plane-intersection.md) |
 | 090704 | 圆面积交与面积并 | 计算几何 | [computational-geometry/circle-area-intersection-union.md](computational-geometry/circle-area-intersection-union.md) |
 | 090705 | 平面点定位 | 计算几何 | [computational-geometry/point-location.md](computational-geometry/point-location.md) |
-| 090706 | 最小圆覆盖 | 计算几何 | `computational-geometry/minimum-enclosing-circle.md` |
+| 090706 | 最小圆覆盖 | 计算几何 | [computational-geometry/minimum-enclosing-circle.md](computational-geometry/minimum-enclosing-circle.md) |
 
 红色争冠内容不建立第 10 章。它们只在模块目录中以“推迟”状态保留资料身份，除非
 以后出现明确学习需求，否则不进入写作和审核队列。
