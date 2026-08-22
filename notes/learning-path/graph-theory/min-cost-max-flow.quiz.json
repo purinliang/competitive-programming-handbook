@@ -1,0 +1,54 @@
+{
+  "articleKey": "min-cost-max-flow",
+  "title": "最小费用最大流",
+  "questions": [
+    {
+      "id": "min-cost-max-flow-1",
+      "prompt": "最小费用最大流首先优化哪个目标？",
+      "options": [
+        "先让流量最大，再在最大流中让费用最小",
+        "先让费用最小，再考虑是否增加流量",
+        "让每条边的费用分别最小",
+        "让使用的边数最少"
+      ],
+      "answer": 0,
+      "explanation": "这是按字典序比较的两个目标：最大流量优先，同流量时才比较费用。"
+    },
+    {
+      "id": "min-cost-max-flow-2",
+      "prompt": "原边单位费用为 cost 时，反向残量边应使用什么费用？",
+      "options": [
+        "0",
+        "-cost",
+        "cost",
+        "capacity - cost"
+      ],
+      "answer": 1,
+      "explanation": "沿反向边发送流量表示撤销旧流量，因此必须抵消原来增加的费用。"
+    },
+    {
+      "id": "min-cost-max-flow-3",
+      "prompt": "为什么基础实现使用 SPFA 而不能直接套普通 Dijkstra？",
+      "options": [
+        "因为网络流一定是无向图",
+        "因为容量可能大于 32 位整数",
+        "残量网络中的反向边可能具有负费用",
+        "因为 SPFA 不需要邻接表"
+      ],
+      "answer": 2,
+      "explanation": "即使原边费用非负，已经发送过流量的边也会产生负费用反向残量边。"
+    },
+    {
+      "id": "min-cost-max-flow-4",
+      "prompt": "费用最短的增广路瓶颈为 value，路径单位费用和为 path_cost，这轮总费用怎样变化？",
+      "options": [
+        "只增加 path_cost",
+        "只增加 value",
+        "增加 value + path_cost",
+        "增加 value * path_cost"
+      ],
+      "answer": 3,
+      "explanation": "路径上的每一单位流都产生 path_cost，总共发送 value 单位。"
+    }
+  ]
+}
