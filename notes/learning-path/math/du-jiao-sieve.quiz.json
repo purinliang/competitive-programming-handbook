@@ -1,0 +1,54 @@
+{
+  "articleKey": "du-jiao-sieve",
+  "title": "杜教筛",
+  "questions": [
+    {
+      "id": "du-jiao-sieve-1",
+      "prompt": "欧拉函数与常函数 1 的狄利克雷卷积等于什么？",
+      "options": [
+        "恒零函数",
+        "莫比乌斯函数",
+        "单位函数 epsilon",
+        "id(n) = n"
+      ],
+      "answer": 3,
+      "explanation": "经典恒等式 Σ(d|n)phi(d) = n 正是 phi * 1 = id。"
+    },
+    {
+      "id": "du-jiao-sieve-2",
+      "prompt": "为什么递推求 F(n) 时要把 i = 1 的一项单独分离？",
+      "options": [
+        "这一项正是 F(n)，移项后才能用更小参数递归表示它",
+        "因为 i = 1 时除法没有定义",
+        "为了让所有商都不同",
+        "因为 f(1) 必须等于 0"
+      ],
+      "answer": 0,
+      "explanation": "floor(n/1)=n；不分离就会让右侧仍直接包含待求的 F(n)。"
+    },
+    {
+      "id": "du-jiao-sieve-3",
+      "prompt": "固定 left 后，令 quotient = n / left，相同整除商区间的右端点是什么？",
+      "options": [
+        "left + quotient",
+        "n / quotient",
+        "n - left",
+        "quotient - 1"
+      ],
+      "answer": 1,
+      "explanation": "所有 i 到 floor(n/quotient) 为止都保持 floor(n/i)=quotient。"
+    },
+    {
+      "id": "du-jiao-sieve-4",
+      "prompt": "杜教筛能够高效工作的关键前提是什么？",
+      "options": [
+        "目标函数必须恒为正数",
+        "n 必须是质数",
+        "能找到卷积伙伴，使卷积前缀和及递推区间权重容易计算",
+        "必须把 1..n 的全部目标函数值先筛出"
+      ],
+      "answer": 2,
+      "explanation": "递推来自卷积关系；没有容易处理的卷积结果，就不存在这套快速前缀和公式。"
+    }
+  ]
+}
