@@ -1203,7 +1203,7 @@
 | 090604 | 本质不同子串计数 | 待审阅 | [distinct-substring-counting.md](strings/distinct-substring-counting.md) |
 | 090605 | 字典序第 k 小子串 | 待审阅 | [kth-lexicographic-substring.md](strings/kth-lexicographic-substring.md) |
 | 090606 | 子串出现次数 | 待审阅 | [substring-occurrence-counting.md](strings/substring-occurrence-counting.md) |
-| 090607 | 最长重复子串 | 计划 | `strings/longest-repeated-substring.md` |
+| 090607 | 最长重复子串 | 待审阅 | [longest-repeated-substring.md](strings/longest-repeated-substring.md) |
 | 090608 | 最长公共子串 | 计划 | `strings/longest-common-substring.md` |
 
 ### 字符串表示与分解
