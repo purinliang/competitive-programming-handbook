@@ -1186,7 +1186,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 080402 | Manacher | 待审阅 | [strings/manacher.md](strings/manacher.md) |
-| 090603 | 回文自动机 | 计划 | `strings/palindromic-tree.md` |
+| 090603 | 回文自动机 | 待审阅 | [palindromic-tree.md](strings/palindromic-tree.md) |
 
 ### 后缀结构
 
