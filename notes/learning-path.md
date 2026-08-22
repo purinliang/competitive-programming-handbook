@@ -786,7 +786,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 090403 | 扩展卢卡斯定理 | 数学 | [math/extended-lucas-theorem.md](math/extended-lucas-theorem.md) |
 | 090404 | 矩阵求逆 | 数学 | [math/matrix-inverse.md](math/matrix-inverse.md) |
 | 090405 | 矩阵树定理 | 数学 | [math/matrix-tree-theorem.md](math/matrix-tree-theorem.md) |
-| 090406 | 最值容斥 | 数学 | `math/min-max-inclusion-exclusion.md` |
+| 090406 | 最值容斥 | 数学 | [math/min-max-inclusion-exclusion.md](math/min-max-inclusion-exclusion.md) |
 | 090407 | 二项式反演 | 数学 | `math/binomial-inversion.md` |
 | 090408 | Prufer 序列 | 数学 | `math/prufer-sequence.md` |
 | 090409 | 拉格朗日插值 | 数学 | `math/lagrange-interpolation.md` |
