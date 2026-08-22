@@ -1145,7 +1145,7 @@
 | 080401 | AC 自动机 | 待审阅 | [strings/aho-corasick.md](strings/aho-corasick.md) |
 | 080402 | Manacher | 待审阅 | [strings/manacher.md](strings/manacher.md) |
 | 090601 | 后缀数组 | 待审阅 | [suffix-array.md](strings/suffix-array.md) |
-| 090602 | 后缀自动机 | 计划 | `strings/suffix-automaton.md` |
+| 090602 | 后缀自动机 | 待审阅 | [suffix-automaton.md](strings/suffix-automaton.md) |
 
 ### 字符串基础
 
@@ -1193,7 +1193,7 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 090601 | 后缀数组 | 待审阅 | [suffix-array.md](strings/suffix-array.md) |
-| 090602 | 后缀自动机 | 计划 | `strings/suffix-automaton.md` |
+| 090602 | 后缀自动机 | 待审阅 | [suffix-automaton.md](strings/suffix-automaton.md) |
 | *990806 | 后缀树 | 推迟 | `strings/suffix-tree.md` |
 
 ### 子串问题
