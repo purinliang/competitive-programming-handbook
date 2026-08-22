@@ -1,54 +1,98 @@
-{
-  "articleKey": "prufer-sequence",
-  "title": "Prufer 序列",
-  "questions": [
-    {
-      "id": "prufer-sequence-1",
-      "prompt": "一棵 n 个有标号节点的树对应多长的 Prufer 序列？",
-      "options": [
-        "n",
-        "n - 1",
-        "n - 2",
-        "2n - 2"
-      ],
-      "answer": 2,
-      "explanation": "编码删除 n - 2 个叶子，最后留下两个节点，因此记录 n - 2 项。"
-    },
-    {
-      "id": "prufer-sequence-2",
-      "prompt": "节点 u 在 Prufer 序列中出现 k 次，它在原树中的度数是多少？",
-      "options": [
-        "k",
-        "n - k",
-        "2k",
-        "k + 1"
-      ],
-      "answer": 3,
-      "explanation": "每次出现对应失去一条边，最后还保留一条边，所以度数比出现次数多 1。"
-    },
-    {
-      "id": "prufer-sequence-3",
-      "prompt": "为什么编码时必须固定删除当前编号最小的叶子？",
-      "options": [
-        "使同一棵树只得到一个确定序列",
-        "否则树一定会产生环",
-        "否则序列会超过 n - 2 项",
-        "为了让所有节点度数相同"
-      ],
-      "answer": 0,
-      "explanation": "固定叶子选择规则才能让编码唯一，并与最小堆解码互为逆过程。"
-    },
-    {
-      "id": "prufer-sequence-4",
-      "prompt": "Cayley 公式为什么给出 n^(n-2)？",
-      "options": [
-        "因为树恰好有 n - 1 条边",
-        "长度 n - 2 的序列每个位置都有 n 种独立选择",
-        "因为每个节点都有 n - 2 个邻居",
-        "因为所有树都能排成一条链"
-      ],
-      "answer": 1,
-      "explanation": "树与序列一一对应，而序列的每个位置都可取 1..n 中任一编号。"
-    }
-  ]
-}
+[
+  {
+    "id": "prufer-sequence-1",
+    "prompt": "一棵 n 个有标号节点的树对应多长的 Prufer 序列？",
+    "options": [
+      {
+        "id": "a",
+        "text": "n"
+      },
+      {
+        "id": "b",
+        "text": "n - 1"
+      },
+      {
+        "id": "c",
+        "text": "n - 2"
+      },
+      {
+        "id": "d",
+        "text": "2n - 2"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "编码删除 n - 2 个叶子，最后留下两个节点，因此记录 n - 2 项。"
+  },
+  {
+    "id": "prufer-sequence-2",
+    "prompt": "节点 u 在 Prufer 序列中出现 k 次，它在原树中的度数是多少？",
+    "options": [
+      {
+        "id": "a",
+        "text": "k"
+      },
+      {
+        "id": "b",
+        "text": "n - k"
+      },
+      {
+        "id": "c",
+        "text": "2k"
+      },
+      {
+        "id": "d",
+        "text": "k + 1"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每次出现对应失去一条边，最后还保留一条边，所以度数比出现次数多 1。"
+  },
+  {
+    "id": "prufer-sequence-3",
+    "prompt": "为什么编码时必须固定删除当前编号最小的叶子？",
+    "options": [
+      {
+        "id": "a",
+        "text": "使同一棵树只得到一个确定序列"
+      },
+      {
+        "id": "b",
+        "text": "否则树一定会产生环"
+      },
+      {
+        "id": "c",
+        "text": "否则序列会超过 n - 2 项"
+      },
+      {
+        "id": "d",
+        "text": "为了让所有节点度数相同"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "固定叶子选择规则才能让编码唯一，并与最小堆解码互为逆过程。"
+  },
+  {
+    "id": "prufer-sequence-4",
+    "prompt": "Cayley 公式为什么给出 n^(n-2)？",
+    "options": [
+      {
+        "id": "a",
+        "text": "因为树恰好有 n - 1 条边"
+      },
+      {
+        "id": "b",
+        "text": "长度 n - 2 的序列每个位置都有 n 种独立选择"
+      },
+      {
+        "id": "c",
+        "text": "因为每个节点都有 n - 2 个邻居"
+      },
+      {
+        "id": "d",
+        "text": "因为所有树都能排成一条链"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "树与序列一一对应，而序列的每个位置都可取 1..n 中任一编号。"
+  }
+]

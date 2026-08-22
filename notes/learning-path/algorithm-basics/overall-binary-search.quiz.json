@@ -1,54 +1,98 @@
-{
-  "articleKey": "overall-binary-search",
-  "title": "整体二分",
-  "questions": [
-    {
-      "id": "overall-binary-search-1",
-      "prompt": "整体二分递归维护的 [value_left,value_right] 表示什么？",
-      "options": [
-        "当前查询可能答案的值域",
-        "树状数组的下标范围",
-        "输入操作的时间范围",
-        "某个查询的原数组区间"
-      ],
-      "answer": 0,
-      "explanation": "整体二分按答案值域分治；位置范围由树状数组中的 l、r 查询负责。"
-    },
-    {
-      "id": "overall-binary-search-2",
-      "prompt": "若区间中不超过 mid 的元素有 count 个，且 count < k，查询怎样进入右侧？",
-      "options": [
-        "保持 k 不变",
-        "令 k = k - count",
-        "令 k = count",
-        "令 k = r - l + 1 - k"
-      ],
-      "answer": 1,
-      "explanation": "左半的 count 个元素都排在答案前面，右半只需寻找剩余元素中的第 k-count 小。"
-    },
-    {
-      "id": "overall-binary-search-3",
-      "prompt": "当前递归层结束后为什么要撤销加入树状数组的事件？",
-      "options": [
-        "为了让答案值域恢复原大小",
-        "为了重新读取输入",
-        "兄弟递归区间不能继承不属于自己的左半值域贡献",
-        "因为树状数组只能执行一次查询"
-      ],
-      "answer": 2,
-      "explanation": "树状数组是递归层的临时状态；不回滚会污染随后处理的其他值域。"
-    },
-    {
-      "id": "overall-binary-search-4",
-      "prompt": "整体二分与并行二分的主要区别是什么？",
-      "options": [
-        "整体二分不能处理单调问题",
-        "并行二分不使用二分边界",
-        "两者完全同义，只是中英文名称不同",
-        "整体二分递归分流事件与查询，并行二分常按各查询中点分桶、逐轮扫描"
-      ],
-      "answer": 3,
-      "explanation": "两者共享批量单调判定思想，但状态组织和典型适用模型不同。"
-    }
-  ]
-}
+[
+  {
+    "id": "overall-binary-search-1",
+    "prompt": "整体二分递归维护的 [value_left,value_right] 表示什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "当前查询可能答案的值域"
+      },
+      {
+        "id": "b",
+        "text": "树状数组的下标范围"
+      },
+      {
+        "id": "c",
+        "text": "输入操作的时间范围"
+      },
+      {
+        "id": "d",
+        "text": "某个查询的原数组区间"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "整体二分按答案值域分治；位置范围由树状数组中的 l、r 查询负责。"
+  },
+  {
+    "id": "overall-binary-search-2",
+    "prompt": "若区间中不超过 mid 的元素有 count 个，且 count < k，查询怎样进入右侧？",
+    "options": [
+      {
+        "id": "a",
+        "text": "保持 k 不变"
+      },
+      {
+        "id": "b",
+        "text": "令 k = k - count"
+      },
+      {
+        "id": "c",
+        "text": "令 k = count"
+      },
+      {
+        "id": "d",
+        "text": "令 k = r - l + 1 - k"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "左半的 count 个元素都排在答案前面，右半只需寻找剩余元素中的第 k-count 小。"
+  },
+  {
+    "id": "overall-binary-search-3",
+    "prompt": "当前递归层结束后为什么要撤销加入树状数组的事件？",
+    "options": [
+      {
+        "id": "a",
+        "text": "为了让答案值域恢复原大小"
+      },
+      {
+        "id": "b",
+        "text": "为了重新读取输入"
+      },
+      {
+        "id": "c",
+        "text": "兄弟递归区间不能继承不属于自己的左半值域贡献"
+      },
+      {
+        "id": "d",
+        "text": "因为树状数组只能执行一次查询"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "树状数组是递归层的临时状态；不回滚会污染随后处理的其他值域。"
+  },
+  {
+    "id": "overall-binary-search-4",
+    "prompt": "整体二分与并行二分的主要区别是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "整体二分不能处理单调问题"
+      },
+      {
+        "id": "b",
+        "text": "并行二分不使用二分边界"
+      },
+      {
+        "id": "c",
+        "text": "两者完全同义，只是中英文名称不同"
+      },
+      {
+        "id": "d",
+        "text": "整体二分递归分流事件与查询，并行二分常按各查询中点分桶、逐轮扫描"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "两者共享批量单调判定思想，但状态组织和典型适用模型不同。"
+  }
+]

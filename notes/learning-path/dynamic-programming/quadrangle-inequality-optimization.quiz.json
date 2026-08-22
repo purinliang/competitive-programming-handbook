@@ -1,54 +1,98 @@
-{
-  "articleKey": "quadrangle-inequality-optimization",
-  "title": "四边形不等式优化",
-  "questions": [
-    {
-      "id": "quadrangle-inequality-optimization-1",
-      "prompt": "相邻石子合并中，区间 [left,right] 的最后一次操作怎样划分子问题？",
-      "options": [
-        "删除区间中最小的石子堆",
-        "任取两个不相邻的子序列",
-        "把 [left,split] 与 [split+1,right] 两个已合并区间合在一起",
-        "只合并 left 与 right 两个端点"
-      ],
-      "answer": 2,
-      "explanation": "相邻合并始终保持连续区间，最后一次合并必然在某个 split 处分成左右两个连续子区间。"
-    },
-    {
-      "id": "quadrangle-inequality-optimization-2",
-      "prompt": "本文优化后，opt[left][right] 的候选范围是什么？",
-      "options": [
-        "从 opt[left][right-1] 到 opt[left+1][right]，并限制 split<right",
-        "只检查区间中点",
-        "从 1 到 n 的全部位置",
-        "只检查 left 和 right"
-      ],
-      "answer": 0,
-      "explanation": "Knuth–Yao 决策夹逼用两个相邻短区间给出当前最优分割点的上下界。"
-    },
-    {
-      "id": "quadrangle-inequality-optimization-3",
-      "prompt": "为什么非负区间和满足区间包含单调性？",
-      "options": [
-        "因为任何区间和都等于 0",
-        "因为区间越长，元素个数一定是质数",
-        "因为所有最优分割点都相同",
-        "扩大区间只会加入非负重量，区间和不会减小"
-      ],
-      "answer": 3,
-      "explanation": "被包含区间的元素全部仍在大区间中，额外加入的元素非负，所以总和不下降。"
-    },
-    {
-      "id": "quadrangle-inequality-optimization-4",
-      "prompt": "本文把相邻石子合并的复杂度从多少降到多少？",
-      "options": [
-        "从 O(n) 降到 O(log n)",
-        "从 O(n^3) 降到 O(n^2)",
-        "从 O(2^n) 降到 O(n^3)",
-        "从 O(n^2) 降到 O(n)"
-      ],
-      "answer": 1,
-      "explanation": "原始区间 DP 有 O(n²) 个状态、每个枚举 O(n) 决策；决策夹逼使总枚举量降为 O(n²)。"
-    }
-  ]
-}
+[
+  {
+    "id": "quadrangle-inequality-optimization-1",
+    "prompt": "相邻石子合并中，区间 [left,right] 的最后一次操作怎样划分子问题？",
+    "options": [
+      {
+        "id": "a",
+        "text": "删除区间中最小的石子堆"
+      },
+      {
+        "id": "b",
+        "text": "任取两个不相邻的子序列"
+      },
+      {
+        "id": "c",
+        "text": "把 [left,split] 与 [split+1,right] 两个已合并区间合在一起"
+      },
+      {
+        "id": "d",
+        "text": "只合并 left 与 right 两个端点"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "相邻合并始终保持连续区间，最后一次合并必然在某个 split 处分成左右两个连续子区间。"
+  },
+  {
+    "id": "quadrangle-inequality-optimization-2",
+    "prompt": "本文优化后，opt[left][right] 的候选范围是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "从 opt[left][right-1] 到 opt[left+1][right]，并限制 split<right"
+      },
+      {
+        "id": "b",
+        "text": "只检查区间中点"
+      },
+      {
+        "id": "c",
+        "text": "从 1 到 n 的全部位置"
+      },
+      {
+        "id": "d",
+        "text": "只检查 left 和 right"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Knuth–Yao 决策夹逼用两个相邻短区间给出当前最优分割点的上下界。"
+  },
+  {
+    "id": "quadrangle-inequality-optimization-3",
+    "prompt": "为什么非负区间和满足区间包含单调性？",
+    "options": [
+      {
+        "id": "a",
+        "text": "因为任何区间和都等于 0"
+      },
+      {
+        "id": "b",
+        "text": "因为区间越长，元素个数一定是质数"
+      },
+      {
+        "id": "c",
+        "text": "因为所有最优分割点都相同"
+      },
+      {
+        "id": "d",
+        "text": "扩大区间只会加入非负重量，区间和不会减小"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "被包含区间的元素全部仍在大区间中，额外加入的元素非负，所以总和不下降。"
+  },
+  {
+    "id": "quadrangle-inequality-optimization-4",
+    "prompt": "本文把相邻石子合并的复杂度从多少降到多少？",
+    "options": [
+      {
+        "id": "a",
+        "text": "从 O(n) 降到 O(log n)"
+      },
+      {
+        "id": "b",
+        "text": "从 O(n^3) 降到 O(n^2)"
+      },
+      {
+        "id": "c",
+        "text": "从 O(2^n) 降到 O(n^3)"
+      },
+      {
+        "id": "d",
+        "text": "从 O(n^2) 降到 O(n)"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "原始区间 DP 有 O(n²) 个状态、每个枚举 O(n) 决策；决策夹逼使总枚举量降为 O(n²)。"
+  }
+]

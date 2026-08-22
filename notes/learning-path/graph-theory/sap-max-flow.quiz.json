@@ -1,54 +1,98 @@
-{
-  "articleKey": "sap-max-flow",
-  "title": "SAP 算法",
-  "questions": [
-    {
-      "id": "sap-max-flow-1",
-      "prompt": "SAP 的 distance[u] 表示什么？",
-      "options": [
-        "当前残量网络中 u 到汇点的距离标号",
-        "源点已经向 u 发送的流量",
-        "u 的当前弧编号",
-        "u 所属最小割的容量"
-      ],
-      "answer": 0,
-      "explanation": "SAP 从汇点初始化距离，只沿距离每次减一的允许边向汇点增广。"
-    },
-    {
-      "id": "sap-max-flow-2",
-      "prompt": "从汇点反向 BFS 时，枚举记录 u -> v，为什么检查 edge[i ^ 1] 的残量？",
-      "options": [
-        "为了把所有边容量加倍",
-        "配对边表示 v -> u；它有残量时 v 才能走到当前点 u",
-        "因为正向边永远没有残量",
-        "为了找到原图中的无向边"
-      ],
-      "answer": 1,
-      "explanation": "反向 BFS 要判断邻点能否沿真实残量方向到达当前点。"
-    },
-    {
-      "id": "sap-max-flow-3",
-      "prompt": "u 无法继续沿允许边发送流量时，怎样重新标号？",
-      "options": [
-        "distance[u] 减一",
-        "distance[u] 直接设为 0",
-        "设为所有正残量后继距离的最小值加一",
-        "复制源点距离"
-      ],
-      "answer": 2,
-      "explanation": "任何从 u 到汇点的路径都要先走一条正残量边，因此取最优后继再加一。"
-    },
-    {
-      "id": "sap-max-flow-4",
-      "prompt": "gap 优化在 count[d] 变成 0 时利用了什么性质？",
-      "options": [
-        "所有容量都必须相等",
-        "源点一定处在距离 d",
-        "当前流量一定等于 d",
-        "断层上方的允许路径不可能跨过缺失的距离层到达汇点"
-      ],
-      "answer": 3,
-      "explanation": "允许边让距离每次恰减一；缺少某层时，更高层节点无法连续下降到汇点。"
-    }
-  ]
-}
+[
+  {
+    "id": "sap-max-flow-1",
+    "prompt": "SAP 的 distance[u] 表示什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "当前残量网络中 u 到汇点的距离标号"
+      },
+      {
+        "id": "b",
+        "text": "源点已经向 u 发送的流量"
+      },
+      {
+        "id": "c",
+        "text": "u 的当前弧编号"
+      },
+      {
+        "id": "d",
+        "text": "u 所属最小割的容量"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "SAP 从汇点初始化距离，只沿距离每次减一的允许边向汇点增广。"
+  },
+  {
+    "id": "sap-max-flow-2",
+    "prompt": "从汇点反向 BFS 时，枚举记录 u -> v，为什么检查 edge[i ^ 1] 的残量？",
+    "options": [
+      {
+        "id": "a",
+        "text": "为了把所有边容量加倍"
+      },
+      {
+        "id": "b",
+        "text": "配对边表示 v -> u；它有残量时 v 才能走到当前点 u"
+      },
+      {
+        "id": "c",
+        "text": "因为正向边永远没有残量"
+      },
+      {
+        "id": "d",
+        "text": "为了找到原图中的无向边"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "反向 BFS 要判断邻点能否沿真实残量方向到达当前点。"
+  },
+  {
+    "id": "sap-max-flow-3",
+    "prompt": "u 无法继续沿允许边发送流量时，怎样重新标号？",
+    "options": [
+      {
+        "id": "a",
+        "text": "distance[u] 减一"
+      },
+      {
+        "id": "b",
+        "text": "distance[u] 直接设为 0"
+      },
+      {
+        "id": "c",
+        "text": "设为所有正残量后继距离的最小值加一"
+      },
+      {
+        "id": "d",
+        "text": "复制源点距离"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "任何从 u 到汇点的路径都要先走一条正残量边，因此取最优后继再加一。"
+  },
+  {
+    "id": "sap-max-flow-4",
+    "prompt": "gap 优化在 count[d] 变成 0 时利用了什么性质？",
+    "options": [
+      {
+        "id": "a",
+        "text": "所有容量都必须相等"
+      },
+      {
+        "id": "b",
+        "text": "源点一定处在距离 d"
+      },
+      {
+        "id": "c",
+        "text": "当前流量一定等于 d"
+      },
+      {
+        "id": "d",
+        "text": "断层上方的允许路径不可能跨过缺失的距离层到达汇点"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "允许边让距离每次恰减一；缺少某层时，更高层节点无法连续下降到汇点。"
+  }
+]

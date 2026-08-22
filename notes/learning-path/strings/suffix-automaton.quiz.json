@@ -1,54 +1,98 @@
-{
-  "articleKey": "suffix-automaton",
-  "title": "后缀自动机",
-  "questions": [
-    {
-      "id": "suffix-automaton-1",
-      "prompt": "后缀自动机为什么能让多个不同子串共享一个状态？",
-      "options": [
-        "它们长度一定相同",
-        "它们拥有相同 endpos，继续向右延伸的行为相同",
-        "它们只出现一次",
-        "它们字典序相邻"
-      ],
-      "answer": 1,
-      "explanation": "状态按结束位置集合等价类合并；相同 endpos 决定相同的可延伸位置和未来转移。"
-    },
-    {
-      "id": "suffix-automaton-2",
-      "prompt": "状态 u 代表的子串长度范围是什么？",
-      "options": [
-        "只有 max_length[u] 一个长度",
-        "从 1 到 max_length[link[u]]",
-        "从 max_length[link[u]]+1 到 max_length[u]",
-        "从 link[u] 到 u"
-      ],
-      "answer": 2,
-      "explanation": "同一 endpos 等价类中的长度连续，最短长度比后缀链接状态的最大长度大 1。"
-    },
-    {
-      "id": "suffix-automaton-3",
-      "prompt": "克隆状态的 occurrence 为什么初始化为 0？",
-      "options": [
-        "克隆只拆分已有状态的等价类，没有对应一个新加入的文本前缀结束位置",
-        "克隆永远不会被访问",
-        "克隆只代表空串",
-        "出现次数不能存进克隆"
-      ],
-      "answer": 0,
-      "explanation": "只有每次扩展新建的 current 对应新前缀终点；clone 只重组状态结构。"
-    },
-    {
-      "id": "suffix-automaton-4",
-      "prompt": "怎样得到每个状态代表子串的出现次数？",
-      "options": [
-        "只统计状态的出边数",
-        "把 max_length 当成出现次数",
-        "沿转移边从根向下累加",
-        "按 max_length 从大到小把 occurrence[u] 加到 occurrence[link[u]]"
-      ],
-      "answer": 3,
-      "explanation": "深状态的每个结束位置也是其后缀状态的结束位置，逆长度传播汇总完整 endpos 集合。"
-    }
-  ]
-}
+[
+  {
+    "id": "suffix-automaton-1",
+    "prompt": "后缀自动机为什么能让多个不同子串共享一个状态？",
+    "options": [
+      {
+        "id": "a",
+        "text": "它们长度一定相同"
+      },
+      {
+        "id": "b",
+        "text": "它们拥有相同 endpos，继续向右延伸的行为相同"
+      },
+      {
+        "id": "c",
+        "text": "它们只出现一次"
+      },
+      {
+        "id": "d",
+        "text": "它们字典序相邻"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "状态按结束位置集合等价类合并；相同 endpos 决定相同的可延伸位置和未来转移。"
+  },
+  {
+    "id": "suffix-automaton-2",
+    "prompt": "状态 u 代表的子串长度范围是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "只有 max_length[u] 一个长度"
+      },
+      {
+        "id": "b",
+        "text": "从 1 到 max_length[link[u]]"
+      },
+      {
+        "id": "c",
+        "text": "从 max_length[link[u]]+1 到 max_length[u]"
+      },
+      {
+        "id": "d",
+        "text": "从 link[u] 到 u"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "同一 endpos 等价类中的长度连续，最短长度比后缀链接状态的最大长度大 1。"
+  },
+  {
+    "id": "suffix-automaton-3",
+    "prompt": "克隆状态的 occurrence 为什么初始化为 0？",
+    "options": [
+      {
+        "id": "a",
+        "text": "克隆只拆分已有状态的等价类，没有对应一个新加入的文本前缀结束位置"
+      },
+      {
+        "id": "b",
+        "text": "克隆永远不会被访问"
+      },
+      {
+        "id": "c",
+        "text": "克隆只代表空串"
+      },
+      {
+        "id": "d",
+        "text": "出现次数不能存进克隆"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "只有每次扩展新建的 current 对应新前缀终点；clone 只重组状态结构。"
+  },
+  {
+    "id": "suffix-automaton-4",
+    "prompt": "怎样得到每个状态代表子串的出现次数？",
+    "options": [
+      {
+        "id": "a",
+        "text": "只统计状态的出边数"
+      },
+      {
+        "id": "b",
+        "text": "把 max_length 当成出现次数"
+      },
+      {
+        "id": "c",
+        "text": "沿转移边从根向下累加"
+      },
+      {
+        "id": "d",
+        "text": "按 max_length 从大到小把 occurrence[u] 加到 occurrence[link[u]]"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "深状态的每个结束位置也是其后缀状态的结束位置，逆长度传播汇总完整 endpos 集合。"
+  }
+]

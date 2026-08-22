@@ -1,54 +1,98 @@
-{
-  "articleKey": "half-plane-intersection",
-  "title": "半平面交",
-  "questions": [
-    {
-      "id": "half-plane-intersection-1",
-      "prompt": "有向直线 `a -> b` 保留左侧时，点 `p` 满足哪一个条件？",
-      "options": [
-        "`dot(b-a, p-a) == 0`",
-        "`cross(b-a, p-a) <= 0`",
-        "`cross(b-a, p-a) >= 0`",
-        "`distance(a, p) <= distance(b, p)`"
-      ],
-      "answer": 2,
-      "explanation": "在横轴向右、纵轴向上的坐标系中，方向向量到点向量的叉积非负表示左侧或边界。"
-    },
-    {
-      "id": "half-plane-intersection-2",
-      "prompt": "两条同方向平行直线应怎样预处理？",
-      "options": [
-        "只保留左半平面更严格的一条",
-        "把两条方向都反转",
-        "计算它们不存在的交点",
-        "无条件保留输入较早的一条"
-      ],
-      "answer": 0,
-      "explanation": "较宽松半平面完全包含较严格半平面，不会改变最终交集，是冗余约束。"
-    },
-    {
-      "id": "half-plane-intersection-3",
-      "prompt": "为什么一条新直线可能需要删除双端队列的队首？",
-      "options": [
-        "因为队首角度一定最大",
-        "方向角首尾构成环，新约束也可能切掉当前边界的前端交点",
-        "为了让队列长度保持偶数",
-        "因为队首直线没有方向"
-      ],
-      "answer": 1,
-      "explanation": "半平面边界最终闭合成环；按线性角度顺序处理时，新约束仍可能影响序列另一端。"
-    },
-    {
-      "id": "half-plane-intersection-4",
-      "prompt": "为什么本文不自动加入一个坐标极大的包围盒？",
-      "options": [
-        "矩形不能表示成半平面",
-        "包围盒会让排序复杂度变成立方",
-        "浮点数不能保存矩形",
-        "未经证明的边界会把无界交集伪装成有限区域并可能截掉真实答案"
-      ],
-      "answer": 3,
-      "explanation": "人工常数必须由题目坐标与答案范围证明安全；否则它改变了原问题。"
-    }
-  ]
-}
+[
+  {
+    "id": "half-plane-intersection-1",
+    "prompt": "有向直线 `a -> b` 保留左侧时，点 `p` 满足哪一个条件？",
+    "options": [
+      {
+        "id": "a",
+        "text": "`dot(b-a, p-a) == 0`"
+      },
+      {
+        "id": "b",
+        "text": "`cross(b-a, p-a) <= 0`"
+      },
+      {
+        "id": "c",
+        "text": "`cross(b-a, p-a) >= 0`"
+      },
+      {
+        "id": "d",
+        "text": "`distance(a, p) <= distance(b, p)`"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "在横轴向右、纵轴向上的坐标系中，方向向量到点向量的叉积非负表示左侧或边界。"
+  },
+  {
+    "id": "half-plane-intersection-2",
+    "prompt": "两条同方向平行直线应怎样预处理？",
+    "options": [
+      {
+        "id": "a",
+        "text": "只保留左半平面更严格的一条"
+      },
+      {
+        "id": "b",
+        "text": "把两条方向都反转"
+      },
+      {
+        "id": "c",
+        "text": "计算它们不存在的交点"
+      },
+      {
+        "id": "d",
+        "text": "无条件保留输入较早的一条"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "较宽松半平面完全包含较严格半平面，不会改变最终交集，是冗余约束。"
+  },
+  {
+    "id": "half-plane-intersection-3",
+    "prompt": "为什么一条新直线可能需要删除双端队列的队首？",
+    "options": [
+      {
+        "id": "a",
+        "text": "因为队首角度一定最大"
+      },
+      {
+        "id": "b",
+        "text": "方向角首尾构成环，新约束也可能切掉当前边界的前端交点"
+      },
+      {
+        "id": "c",
+        "text": "为了让队列长度保持偶数"
+      },
+      {
+        "id": "d",
+        "text": "因为队首直线没有方向"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "半平面边界最终闭合成环；按线性角度顺序处理时，新约束仍可能影响序列另一端。"
+  },
+  {
+    "id": "half-plane-intersection-4",
+    "prompt": "为什么本文不自动加入一个坐标极大的包围盒？",
+    "options": [
+      {
+        "id": "a",
+        "text": "矩形不能表示成半平面"
+      },
+      {
+        "id": "b",
+        "text": "包围盒会让排序复杂度变成立方"
+      },
+      {
+        "id": "c",
+        "text": "浮点数不能保存矩形"
+      },
+      {
+        "id": "d",
+        "text": "未经证明的边界会把无界交集伪装成有限区域并可能截掉真实答案"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "人工常数必须由题目坐标与答案范围证明安全；否则它改变了原问题。"
+  }
+]

@@ -1,54 +1,98 @@
-{
-  "articleKey": "lagrange-interpolation",
-  "title": "拉格朗日插值",
-  "questions": [
-    {
-      "id": "lagrange-interpolation-1",
-      "prompt": "唯一确定一个次数不超过 k 的多项式，至少需要多少个横坐标不同的已知点？",
-      "options": [
-        "k - 1 个",
-        "k 个",
-        "2k 个",
-        "k + 1 个"
-      ],
-      "answer": 3,
-      "explanation": "两个候选多项式的差次数不超过 k；拥有 k + 1 个不同根时只能恒为零。"
-    },
-    {
-      "id": "lagrange-interpolation-2",
-      "prompt": "拉格朗日基多项式 L[i](x) 在各个已知位置应满足什么性质？",
-      "options": [
-        "在 x[i] 处为 1，在其他已知位置为 0",
-        "在所有已知位置都为 1",
-        "只在 x[i] 处为 0",
-        "次数必须大于 k"
-      ],
-      "answer": 0,
-      "explanation": "这种开关性质使 Σ y[i]L[i](x) 在每个已知点准确恢复 y[i]。"
-    },
-    {
-      "id": "lagrange-interpolation-3",
-      "prompt": "已知位置为 0..k 时，第 i 项分母等于什么？",
-      "options": [
-        "i! × (k-i)!",
-        "i! × (k-i)! × (-1)^(k-i)",
-        "k! × (-1)^i",
-        "2^k"
-      ],
-      "answer": 1,
-      "explanation": "右侧的 k-i 个差值都是负数，因此还要带上 (-1)^(k-i)。"
-    },
-    {
-      "id": "lagrange-interpolation-4",
-      "prompt": "前后缀积在连续位置插值中解决了什么问题？",
-      "options": [
-        "计算多项式次数",
-        "寻找重复横坐标",
-        "在线性总时间内求出每一项排除 (x-i) 后的分子乘积",
-        "把合数模数变成质数"
-      ],
-      "answer": 2,
-      "explanation": "第 i 项分子由 i 左侧前缀积和右侧后缀积相乘得到。"
-    }
-  ]
-}
+[
+  {
+    "id": "lagrange-interpolation-1",
+    "prompt": "唯一确定一个次数不超过 k 的多项式，至少需要多少个横坐标不同的已知点？",
+    "options": [
+      {
+        "id": "a",
+        "text": "k - 1 个"
+      },
+      {
+        "id": "b",
+        "text": "k 个"
+      },
+      {
+        "id": "c",
+        "text": "2k 个"
+      },
+      {
+        "id": "d",
+        "text": "k + 1 个"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "两个候选多项式的差次数不超过 k；拥有 k + 1 个不同根时只能恒为零。"
+  },
+  {
+    "id": "lagrange-interpolation-2",
+    "prompt": "拉格朗日基多项式 L[i](x) 在各个已知位置应满足什么性质？",
+    "options": [
+      {
+        "id": "a",
+        "text": "在 x[i] 处为 1，在其他已知位置为 0"
+      },
+      {
+        "id": "b",
+        "text": "在所有已知位置都为 1"
+      },
+      {
+        "id": "c",
+        "text": "只在 x[i] 处为 0"
+      },
+      {
+        "id": "d",
+        "text": "次数必须大于 k"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "这种开关性质使 Σ y[i]L[i](x) 在每个已知点准确恢复 y[i]。"
+  },
+  {
+    "id": "lagrange-interpolation-3",
+    "prompt": "已知位置为 0..k 时，第 i 项分母等于什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "i! × (k-i)!"
+      },
+      {
+        "id": "b",
+        "text": "i! × (k-i)! × (-1)^(k-i)"
+      },
+      {
+        "id": "c",
+        "text": "k! × (-1)^i"
+      },
+      {
+        "id": "d",
+        "text": "2^k"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "右侧的 k-i 个差值都是负数，因此还要带上 (-1)^(k-i)。"
+  },
+  {
+    "id": "lagrange-interpolation-4",
+    "prompt": "前后缀积在连续位置插值中解决了什么问题？",
+    "options": [
+      {
+        "id": "a",
+        "text": "计算多项式次数"
+      },
+      {
+        "id": "b",
+        "text": "寻找重复横坐标"
+      },
+      {
+        "id": "c",
+        "text": "在线性总时间内求出每一项排除 (x-i) 后的分子乘积"
+      },
+      {
+        "id": "d",
+        "text": "把合数模数变成质数"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "第 i 项分子由 i 左侧前缀积和右侧后缀积相乘得到。"
+  }
+]

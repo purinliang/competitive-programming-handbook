@@ -1,54 +1,98 @@
-{
-  "articleKey": "matrix-tree-theorem",
-  "title": "矩阵树定理",
-  "questions": [
-    {
-      "id": "matrix-tree-theorem-1",
-      "prompt": "无向图的拉普拉斯矩阵怎样定义？",
-      "options": [
-        "L = D - A，其中 D 是度数矩阵，A 是邻接矩阵",
-        "L = D + A",
-        "L = A * A",
-        "L 等于单位矩阵"
-      ],
-      "answer": 0,
-      "explanation": "对角线记录度数，非对角线记录邻接边数的相反数。"
-    },
-    {
-      "id": "matrix-tree-theorem-2",
-      "prompt": "矩阵树定理怎样从拉普拉斯矩阵得到生成树数量？",
-      "options": [
-        "计算完整矩阵的迹",
-        "删除任意同编号行列后计算余子式行列式",
-        "把所有元素相加",
-        "只乘完整矩阵的对角线"
-      ],
-      "answer": 1,
-      "explanation": "任意拉普拉斯主余子式的行列式都等于无向图生成树数量。"
-    },
-    {
-      "id": "matrix-tree-theorem-3",
-      "prompt": "为什么完整拉普拉斯矩阵的行列式总是 0？",
-      "options": [
-        "因为图中没有边",
-        "因为所有对角线元素都为 0",
-        "每行元素之和为 0，因此矩阵行向量线性相关",
-        "因为拉普拉斯矩阵不是方阵"
-      ],
-      "answer": 2,
-      "explanation": "全 1 向量位于它的零空间中，所以完整矩阵必然奇异。"
-    },
-    {
-      "id": "matrix-tree-theorem-4",
-      "prompt": "图不连通时，拉普拉斯余子式怎样反映不存在生成树？",
-      "options": [
-        "行列式变成 1",
-        "矩阵自动缩小",
-        "所有元素变成负数",
-        "余子式不满秩，行列式为 0"
-      ],
-      "answer": 3,
-      "explanation": "不连通会留下额外零空间方向，删除一行一列仍不能得到满秩矩阵。"
-    }
-  ]
-}
+[
+  {
+    "id": "matrix-tree-theorem-1",
+    "prompt": "无向图的拉普拉斯矩阵怎样定义？",
+    "options": [
+      {
+        "id": "a",
+        "text": "L = D - A，其中 D 是度数矩阵，A 是邻接矩阵"
+      },
+      {
+        "id": "b",
+        "text": "L = D + A"
+      },
+      {
+        "id": "c",
+        "text": "L = A * A"
+      },
+      {
+        "id": "d",
+        "text": "L 等于单位矩阵"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "对角线记录度数，非对角线记录邻接边数的相反数。"
+  },
+  {
+    "id": "matrix-tree-theorem-2",
+    "prompt": "矩阵树定理怎样从拉普拉斯矩阵得到生成树数量？",
+    "options": [
+      {
+        "id": "a",
+        "text": "计算完整矩阵的迹"
+      },
+      {
+        "id": "b",
+        "text": "删除任意同编号行列后计算余子式行列式"
+      },
+      {
+        "id": "c",
+        "text": "把所有元素相加"
+      },
+      {
+        "id": "d",
+        "text": "只乘完整矩阵的对角线"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "任意拉普拉斯主余子式的行列式都等于无向图生成树数量。"
+  },
+  {
+    "id": "matrix-tree-theorem-3",
+    "prompt": "为什么完整拉普拉斯矩阵的行列式总是 0？",
+    "options": [
+      {
+        "id": "a",
+        "text": "因为图中没有边"
+      },
+      {
+        "id": "b",
+        "text": "因为所有对角线元素都为 0"
+      },
+      {
+        "id": "c",
+        "text": "每行元素之和为 0，因此矩阵行向量线性相关"
+      },
+      {
+        "id": "d",
+        "text": "因为拉普拉斯矩阵不是方阵"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "全 1 向量位于它的零空间中，所以完整矩阵必然奇异。"
+  },
+  {
+    "id": "matrix-tree-theorem-4",
+    "prompt": "图不连通时，拉普拉斯余子式怎样反映不存在生成树？",
+    "options": [
+      {
+        "id": "a",
+        "text": "行列式变成 1"
+      },
+      {
+        "id": "b",
+        "text": "矩阵自动缩小"
+      },
+      {
+        "id": "c",
+        "text": "所有元素变成负数"
+      },
+      {
+        "id": "d",
+        "text": "余子式不满秩，行列式为 0"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "不连通会留下额外零空间方向，删除一行一列仍不能得到满秩矩阵。"
+  }
+]

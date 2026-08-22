@@ -1,54 +1,98 @@
-{
-  "articleKey": "binomial-inversion",
-  "title": "二项式反演",
-  "questions": [
-    {
-      "id": "binomial-inversion-1",
-      "prompt": "若 g[n] = Σ C(n, k)f[k]，二项式反演怎样恢复 f[n]？",
-      "options": [
-        "Σ C(n, k)g[k]",
-        "Σ (-1)^(n-k)C(n, k)g[k]",
-        "g[n] - f[n - 1]",
-        "只保留 k = n 的一项"
-      ],
-      "answer": 1,
-      "explanation": "逆变换保留相同二项式系数，并按照 n-k 的奇偶交替加减。"
-    },
-    {
-      "id": "binomial-inversion-2",
-      "prompt": "任意一张有标号简单图为什么能按非孤立点数量唯一分类？",
-      "options": [
-        "每张图都必须连通",
-        "孤立点可以任意连接边",
-        "度数大于 0 的点集由图本身唯一确定",
-        "所有图的非孤立点数量相同"
-      ],
-      "answer": 2,
-      "explanation": "选择并不是人为任取的；一张具体图的非孤立点集合已经唯一确定。"
-    },
-    {
-      "id": "binomial-inversion-3",
-      "prompt": "k 个有标号点一共有多少张简单无向图？",
-      "options": [
-        "k!",
-        "2^k",
-        "k^(k-2)",
-        "2^(C(k, 2))"
-      ],
-      "answer": 3,
-      "explanation": "每一对不同点对应一条可能的边，共有 C(k, 2) 对，每条边有存在或不存在两种选择。"
-    },
-    {
-      "id": "binomial-inversion-4",
-      "prompt": "证明反演公式时，为什么所有 f[j]（j < n）的贡献会消失？",
-      "options": [
-        "其系数含有 (1 - 1)^(n-j)，因此等于 0",
-        "因为 f[j] 本身都等于 0",
-        "因为只允许选择 n 个元素",
-        "因为组合数在 j < n 时没有定义"
-      ],
-      "answer": 0,
-      "explanation": "重排组合数后，固定 f[j] 的内层交替和正好是二项式展开 (1 - 1)^(n-j)。"
-    }
-  ]
-}
+[
+  {
+    "id": "binomial-inversion-1",
+    "prompt": "若 g[n] = Σ C(n, k)f[k]，二项式反演怎样恢复 f[n]？",
+    "options": [
+      {
+        "id": "a",
+        "text": "Σ C(n, k)g[k]"
+      },
+      {
+        "id": "b",
+        "text": "Σ (-1)^(n-k)C(n, k)g[k]"
+      },
+      {
+        "id": "c",
+        "text": "g[n] - f[n - 1]"
+      },
+      {
+        "id": "d",
+        "text": "只保留 k = n 的一项"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "逆变换保留相同二项式系数，并按照 n-k 的奇偶交替加减。"
+  },
+  {
+    "id": "binomial-inversion-2",
+    "prompt": "任意一张有标号简单图为什么能按非孤立点数量唯一分类？",
+    "options": [
+      {
+        "id": "a",
+        "text": "每张图都必须连通"
+      },
+      {
+        "id": "b",
+        "text": "孤立点可以任意连接边"
+      },
+      {
+        "id": "c",
+        "text": "度数大于 0 的点集由图本身唯一确定"
+      },
+      {
+        "id": "d",
+        "text": "所有图的非孤立点数量相同"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "选择并不是人为任取的；一张具体图的非孤立点集合已经唯一确定。"
+  },
+  {
+    "id": "binomial-inversion-3",
+    "prompt": "k 个有标号点一共有多少张简单无向图？",
+    "options": [
+      {
+        "id": "a",
+        "text": "k!"
+      },
+      {
+        "id": "b",
+        "text": "2^k"
+      },
+      {
+        "id": "c",
+        "text": "k^(k-2)"
+      },
+      {
+        "id": "d",
+        "text": "2^(C(k, 2))"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "每一对不同点对应一条可能的边，共有 C(k, 2) 对，每条边有存在或不存在两种选择。"
+  },
+  {
+    "id": "binomial-inversion-4",
+    "prompt": "证明反演公式时，为什么所有 f[j]（j < n）的贡献会消失？",
+    "options": [
+      {
+        "id": "a",
+        "text": "其系数含有 (1 - 1)^(n-j)，因此等于 0"
+      },
+      {
+        "id": "b",
+        "text": "因为 f[j] 本身都等于 0"
+      },
+      {
+        "id": "c",
+        "text": "因为只允许选择 n 个元素"
+      },
+      {
+        "id": "d",
+        "text": "因为组合数在 j < n 时没有定义"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "重排组合数后，固定 f[j] 的内层交替和正好是二项式展开 (1 - 1)^(n-j)。"
+  }
+]

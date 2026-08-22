@@ -1,54 +1,98 @@
-{
-  "articleKey": "decision-monotonicity",
-  "title": "决策单调性",
-  "questions": [
-    {
-      "id": "decision-monotonicity-1",
-      "prompt": "本文 opt[right] 表示什么？",
-      "options": [
-        "得到当前状态最小值的最小分割位置",
-        "前缀中的最大元素",
-        "当前已经划分的段数",
-        "所有分割位置的数量"
-      ],
-      "answer": 0,
-      "explanation": "opt 记录最优转移来源；出现多个最优来源时，本文固定取最小分割位置。"
-    },
-    {
-      "id": "decision-monotonicity-2",
-      "prompt": "为什么平方段和代价的证明要求原序列非负？",
-      "options": [
-        "非负数才能使用 long long",
-        "非负数会让所有最优决策相同",
-        "前缀和增量才非负，展开后的 2XZ 才能保证不小于 0",
-        "负数不能计算平方"
-      ],
-      "answer": 2,
-      "explanation": "Monge 四点关系来自 2XZ>=0；允许负数后 X 或 Z 可能变号，该不等式不再保证成立。"
-    },
-    {
-      "id": "decision-monotonicity-3",
-      "prompt": "为什么最优决策相等时要固定破同分规则？",
-      "options": [
-        "为了改变最优值",
-        "避免在多个等价决策间任意选择，从而破坏所声明的单调序列",
-        "为了让段可以为空",
-        "为了减少前缀和长度"
-      ],
-      "answer": 1,
-      "explanation": "最优值相同不代表决策编号相同；固定取最小者才能把单调性表述成确定的 opt 序列。"
-    },
-    {
-      "id": "decision-monotonicity-4",
-      "prompt": "观察随机数据中的最优决策都单调，能否直接使用分治优化？",
-      "options": [
-        "能，十组随机数据就等于证明",
-        "能，只要 n 足够小",
-        "不能，因为分治优化只适用于图论",
-        "不能；还需要证明、题目保证或条件完全匹配的定理"
-      ],
-      "answer": 3,
-      "explanation": "随机测试只能找反例，不能证明不存在反例；优化正确性必须建立在可靠的单调性依据上。"
-    }
-  ]
-}
+[
+  {
+    "id": "decision-monotonicity-1",
+    "prompt": "本文 opt[right] 表示什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "得到当前状态最小值的最小分割位置"
+      },
+      {
+        "id": "b",
+        "text": "前缀中的最大元素"
+      },
+      {
+        "id": "c",
+        "text": "当前已经划分的段数"
+      },
+      {
+        "id": "d",
+        "text": "所有分割位置的数量"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "opt 记录最优转移来源；出现多个最优来源时，本文固定取最小分割位置。"
+  },
+  {
+    "id": "decision-monotonicity-2",
+    "prompt": "为什么平方段和代价的证明要求原序列非负？",
+    "options": [
+      {
+        "id": "a",
+        "text": "非负数才能使用 long long"
+      },
+      {
+        "id": "b",
+        "text": "非负数会让所有最优决策相同"
+      },
+      {
+        "id": "c",
+        "text": "前缀和增量才非负，展开后的 2XZ 才能保证不小于 0"
+      },
+      {
+        "id": "d",
+        "text": "负数不能计算平方"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "Monge 四点关系来自 2XZ>=0；允许负数后 X 或 Z 可能变号，该不等式不再保证成立。"
+  },
+  {
+    "id": "decision-monotonicity-3",
+    "prompt": "为什么最优决策相等时要固定破同分规则？",
+    "options": [
+      {
+        "id": "a",
+        "text": "为了改变最优值"
+      },
+      {
+        "id": "b",
+        "text": "避免在多个等价决策间任意选择，从而破坏所声明的单调序列"
+      },
+      {
+        "id": "c",
+        "text": "为了让段可以为空"
+      },
+      {
+        "id": "d",
+        "text": "为了减少前缀和长度"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "最优值相同不代表决策编号相同；固定取最小者才能把单调性表述成确定的 opt 序列。"
+  },
+  {
+    "id": "decision-monotonicity-4",
+    "prompt": "观察随机数据中的最优决策都单调，能否直接使用分治优化？",
+    "options": [
+      {
+        "id": "a",
+        "text": "能，十组随机数据就等于证明"
+      },
+      {
+        "id": "b",
+        "text": "能，只要 n 足够小"
+      },
+      {
+        "id": "c",
+        "text": "不能，因为分治优化只适用于图论"
+      },
+      {
+        "id": "d",
+        "text": "不能；还需要证明、题目保证或条件完全匹配的定理"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "随机测试只能找反例，不能证明不存在反例；优化正确性必须建立在可靠的单调性依据上。"
+  }
+]

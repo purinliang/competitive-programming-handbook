@@ -1,54 +1,98 @@
-{
-  "articleKey": "max-flow-residual-network",
-  "title": "最大流",
-  "questions": [
-    {
-      "id": "max-flow-residual-network-1",
-      "prompt": "原边 u -> v 已发送 flow 单位流量时，反向残量 flow 表示什么？",
-      "options": [
-        "可以撤销至多 flow 单位旧流量，并重新调整路线",
-        "原图自动增加了一条同容量反向运输边",
-        "v 必须再向 u 发送 flow 单位新流量",
-        "这条原边已经完全失效"
-      ],
-      "answer": 0,
-      "explanation": "反向残量记录撤销能力，不是原网络凭空得到的新容量。"
-    },
-    {
-      "id": "max-flow-residual-network-2",
-      "prompt": "一条增广路本次最多能增加多少流量？",
-      "options": [
-        "路径上的最大残量",
-        "路径上所有残量的最小值",
-        "路径长度",
-        "源点全部出边容量之和"
-      ],
-      "answer": 1,
-      "explanation": "增广量不能超过路径任何一条边的剩余容量，因此受瓶颈边限制。"
-    },
-    {
-      "id": "max-flow-residual-network-3",
-      "prompt": "沿增广路发送 value 后，怎样更新边对？",
-      "options": [
-        "正向和反向残量都减去 value",
-        "正向和反向残量都增加 value",
-        "正向残量减去 value，反向残量增加 value",
-        "只修改源点和汇点相邻边"
-      ],
-      "answer": 2,
-      "explanation": "正向可用容量减少，同时未来可撤销的流量增加。"
-    },
-    {
-      "id": "max-flow-residual-network-4",
-      "prompt": "残量网络中不存在源点到汇点的路径时，为什么当前流是最大流？",
-      "options": [
-        "因为每条原边都一定满流",
-        "因为 BFS 已访问所有点",
-        "因为源点出度变成 0",
-        "源点可达集与不可达集形成一个容量已被当前流达到的割"
-      ],
-      "answer": 3,
-      "explanation": "任何流都不超过任意源汇割容量；当前流达到一个割的容量，因此已经最优。"
-    }
-  ]
-}
+[
+  {
+    "id": "max-flow-residual-network-1",
+    "prompt": "原边 u -> v 已发送 flow 单位流量时，反向残量 flow 表示什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "可以撤销至多 flow 单位旧流量，并重新调整路线"
+      },
+      {
+        "id": "b",
+        "text": "原图自动增加了一条同容量反向运输边"
+      },
+      {
+        "id": "c",
+        "text": "v 必须再向 u 发送 flow 单位新流量"
+      },
+      {
+        "id": "d",
+        "text": "这条原边已经完全失效"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "反向残量记录撤销能力，不是原网络凭空得到的新容量。"
+  },
+  {
+    "id": "max-flow-residual-network-2",
+    "prompt": "一条增广路本次最多能增加多少流量？",
+    "options": [
+      {
+        "id": "a",
+        "text": "路径上的最大残量"
+      },
+      {
+        "id": "b",
+        "text": "路径上所有残量的最小值"
+      },
+      {
+        "id": "c",
+        "text": "路径长度"
+      },
+      {
+        "id": "d",
+        "text": "源点全部出边容量之和"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "增广量不能超过路径任何一条边的剩余容量，因此受瓶颈边限制。"
+  },
+  {
+    "id": "max-flow-residual-network-3",
+    "prompt": "沿增广路发送 value 后，怎样更新边对？",
+    "options": [
+      {
+        "id": "a",
+        "text": "正向和反向残量都减去 value"
+      },
+      {
+        "id": "b",
+        "text": "正向和反向残量都增加 value"
+      },
+      {
+        "id": "c",
+        "text": "正向残量减去 value，反向残量增加 value"
+      },
+      {
+        "id": "d",
+        "text": "只修改源点和汇点相邻边"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "正向可用容量减少，同时未来可撤销的流量增加。"
+  },
+  {
+    "id": "max-flow-residual-network-4",
+    "prompt": "残量网络中不存在源点到汇点的路径时，为什么当前流是最大流？",
+    "options": [
+      {
+        "id": "a",
+        "text": "因为每条原边都一定满流"
+      },
+      {
+        "id": "b",
+        "text": "因为 BFS 已访问所有点"
+      },
+      {
+        "id": "c",
+        "text": "因为源点出度变成 0"
+      },
+      {
+        "id": "d",
+        "text": "源点可达集与不可达集形成一个容量已被当前流达到的割"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "任何流都不超过任意源汇割容量；当前流达到一个割的容量，因此已经最优。"
+  }
+]

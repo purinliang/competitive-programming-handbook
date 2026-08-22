@@ -1,54 +1,98 @@
-{
-  "articleKey": "minimum-enclosing-circle",
-  "title": "最小圆覆盖",
-  "questions": [
-    {
-      "id": "minimum-enclosing-circle-1",
-      "prompt": "除单点情况外，最小覆盖圆通常由至多几个边界点确定？",
-      "options": [
-        "1 个",
-        "2 个",
-        "3 个",
-        "必须由全部点"
-      ],
-      "answer": 2,
-      "explanation": "最优圆由一对直径端点或三个不共线点的外接圆确定，因此边界约束至多三个。"
-    },
-    {
-      "id": "minimum-enclosing-circle-2",
-      "prompt": "新点落在当前最小圆外时，重构后的最优圆可以怎样选择？",
-      "options": [
-        "让新点位于圆周上",
-        "让新点成为圆心",
-        "删除新点",
-        "让半径保持不变"
-      ],
-      "answer": 0,
-      "explanation": "若新点严格在新圆内部，还能向约束方向缩小或移动，直到它成为边界约束。"
-    },
-    {
-      "id": "minimum-enclosing-circle-3",
-      "prompt": "三个边界点共线时，应怎样构造覆盖它们的最小圆？",
-      "options": [
-        "圆心固定为原点",
-        "把距离最远的一对作为直径端点",
-        "继续除以为零的外接圆分母",
-        "半径取三段距离之和"
-      ],
-      "answer": 1,
-      "explanation": "共线点的最小覆盖区间由两个极端点决定，对应圆就是最远点对的直径圆。"
-    },
-    {
-      "id": "minimum-enclosing-circle-4",
-      "prompt": "随机打乱在最小圆覆盖算法中的主要作用是什么？",
-      "options": [
-        "把精确答案变成近似答案",
-        "让圆心坐标变成整数",
-        "删除全部重复点",
-        "降低频繁触发边界重构的概率，使期望复杂度为线性"
-      ],
-      "answer": 3,
-      "explanation": "随机顺序使某点成为当前边界约束的概率很低；答案正确性不依赖具体顺序。"
-    }
-  ]
-}
+[
+  {
+    "id": "minimum-enclosing-circle-1",
+    "prompt": "除单点情况外，最小覆盖圆通常由至多几个边界点确定？",
+    "options": [
+      {
+        "id": "a",
+        "text": "1 个"
+      },
+      {
+        "id": "b",
+        "text": "2 个"
+      },
+      {
+        "id": "c",
+        "text": "3 个"
+      },
+      {
+        "id": "d",
+        "text": "必须由全部点"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "最优圆由一对直径端点或三个不共线点的外接圆确定，因此边界约束至多三个。"
+  },
+  {
+    "id": "minimum-enclosing-circle-2",
+    "prompt": "新点落在当前最小圆外时，重构后的最优圆可以怎样选择？",
+    "options": [
+      {
+        "id": "a",
+        "text": "让新点位于圆周上"
+      },
+      {
+        "id": "b",
+        "text": "让新点成为圆心"
+      },
+      {
+        "id": "c",
+        "text": "删除新点"
+      },
+      {
+        "id": "d",
+        "text": "让半径保持不变"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "若新点严格在新圆内部，还能向约束方向缩小或移动，直到它成为边界约束。"
+  },
+  {
+    "id": "minimum-enclosing-circle-3",
+    "prompt": "三个边界点共线时，应怎样构造覆盖它们的最小圆？",
+    "options": [
+      {
+        "id": "a",
+        "text": "圆心固定为原点"
+      },
+      {
+        "id": "b",
+        "text": "把距离最远的一对作为直径端点"
+      },
+      {
+        "id": "c",
+        "text": "继续除以为零的外接圆分母"
+      },
+      {
+        "id": "d",
+        "text": "半径取三段距离之和"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "共线点的最小覆盖区间由两个极端点决定，对应圆就是最远点对的直径圆。"
+  },
+  {
+    "id": "minimum-enclosing-circle-4",
+    "prompt": "随机打乱在最小圆覆盖算法中的主要作用是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "把精确答案变成近似答案"
+      },
+      {
+        "id": "b",
+        "text": "让圆心坐标变成整数"
+      },
+      {
+        "id": "c",
+        "text": "删除全部重复点"
+      },
+      {
+        "id": "d",
+        "text": "降低频繁触发边界重构的概率，使期望复杂度为线性"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "随机顺序使某点成为当前边界约束的概率很低；答案正确性不依赖具体顺序。"
+  }
+]

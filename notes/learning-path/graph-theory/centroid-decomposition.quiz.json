@@ -1,54 +1,98 @@
-{
-  "articleKey": "centroid-decomposition",
-  "title": "点分治",
-  "questions": [
-    {
-      "id": "centroid-decomposition-1",
-      "prompt": "点分治为什么选择当前连通块的重心作为分界点？",
-      "options": [
-        "重心一定是原树编号最小的点",
-        "删除重心后，每个剩余连通块至多为原来的一半",
-        "重心到所有点的距离之和一定最小",
-        "重心一定是树直径的中点"
-      ],
-      "answer": 1,
-      "explanation": "规模至多减半保证分治树高度为 O(log n)，这是点分治复杂度的来源。"
-    },
-    {
-      "id": "centroid-decomposition-2",
-      "prompt": "本文的 path[u] 保存什么？",
-      "options": [
-        "u 在原树中的全部祖先",
-        "u 到所有标记节点的距离",
-        "u 所属各层分治重心以及到这些重心的原树距离",
-        "重心分解树中 u 的所有儿子"
-      ],
-      "answer": 2,
-      "explanation": "一次更新或查询只需枚举这 O(log n) 对信息。"
-    },
-    {
-      "id": "centroid-decomposition-3",
-      "prompt": "为什么查询 u 到最近标记节点时可以枚举 u 的分治重心？",
-      "options": [
-        "u 与最优标记节点第一次被分开的那层重心位于两者的原树路径上",
-        "每个标记节点都是某一层的重心",
-        "重心分解树上的距离等于原树距离",
-        "所有路径都经过整棵树的第一个重心"
-      ],
-      "answer": 0,
-      "explanation": "第一次分开两点的重心截断了它们的原树路径，经该重心组合的距离会覆盖最优答案。"
-    },
-    {
-      "id": "centroid-decomposition-4",
-      "prompt": "本文只用 best[centroid] 保存最短距离时，直接支持哪种修改？",
-      "options": [
-        "任意增加和删除标记",
-        "只删除标记",
-        "修改原树边权",
-        "只增加标记"
-      ],
-      "answer": 3,
-      "explanation": "最小值可以随新增标记单调减小；删除当前最优来源时，仅有一个 best 无法恢复次小值。"
-    }
-  ]
-}
+[
+  {
+    "id": "centroid-decomposition-1",
+    "prompt": "点分治为什么选择当前连通块的重心作为分界点？",
+    "options": [
+      {
+        "id": "a",
+        "text": "重心一定是原树编号最小的点"
+      },
+      {
+        "id": "b",
+        "text": "删除重心后，每个剩余连通块至多为原来的一半"
+      },
+      {
+        "id": "c",
+        "text": "重心到所有点的距离之和一定最小"
+      },
+      {
+        "id": "d",
+        "text": "重心一定是树直径的中点"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "规模至多减半保证分治树高度为 O(log n)，这是点分治复杂度的来源。"
+  },
+  {
+    "id": "centroid-decomposition-2",
+    "prompt": "本文的 path[u] 保存什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "u 在原树中的全部祖先"
+      },
+      {
+        "id": "b",
+        "text": "u 到所有标记节点的距离"
+      },
+      {
+        "id": "c",
+        "text": "u 所属各层分治重心以及到这些重心的原树距离"
+      },
+      {
+        "id": "d",
+        "text": "重心分解树中 u 的所有儿子"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "一次更新或查询只需枚举这 O(log n) 对信息。"
+  },
+  {
+    "id": "centroid-decomposition-3",
+    "prompt": "为什么查询 u 到最近标记节点时可以枚举 u 的分治重心？",
+    "options": [
+      {
+        "id": "a",
+        "text": "u 与最优标记节点第一次被分开的那层重心位于两者的原树路径上"
+      },
+      {
+        "id": "b",
+        "text": "每个标记节点都是某一层的重心"
+      },
+      {
+        "id": "c",
+        "text": "重心分解树上的距离等于原树距离"
+      },
+      {
+        "id": "d",
+        "text": "所有路径都经过整棵树的第一个重心"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "第一次分开两点的重心截断了它们的原树路径，经该重心组合的距离会覆盖最优答案。"
+  },
+  {
+    "id": "centroid-decomposition-4",
+    "prompt": "本文只用 best[centroid] 保存最短距离时，直接支持哪种修改？",
+    "options": [
+      {
+        "id": "a",
+        "text": "任意增加和删除标记"
+      },
+      {
+        "id": "b",
+        "text": "只删除标记"
+      },
+      {
+        "id": "c",
+        "text": "修改原树边权"
+      },
+      {
+        "id": "d",
+        "text": "只增加标记"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "最小值可以随新增标记单调减小；删除当前最优来源时，仅有一个 best 无法恢复次小值。"
+  }
+]

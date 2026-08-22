@@ -1,54 +1,98 @@
-{
-  "articleKey": "euclidean-like-algorithm",
-  "title": "类欧几里得算法",
-  "questions": [
-    {
-      "id": "euclidean-like-algorithm-1",
-      "prompt": "把闭区间 i=1..n 平移为内部下标 j=0..n-1 后，截距怎样变化？",
-      "options": [
-        "变成 b - a",
-        "保持 b 不变",
-        "变成 a × b",
-        "变成 a + b"
-      ],
-      "answer": 3,
-      "explanation": "令 i = j + 1，则 ai + b = aj + (a + b)。"
-    },
-    {
-      "id": "euclidean-like-algorithm-2",
-      "prompt": "若 slope = q × modulus + r，整倍数 q 对零起点取整和贡献多少？",
-      "options": [
-        "q × count × (count - 1) / 2",
-        "q × count",
-        "q × modulus",
-        "q"
-      ],
-      "answer": 0,
-      "explanation": "每一项提出 q×i，对 i=0..count-1 求和得到该式。"
-    },
-    {
-      "id": "euclidean-like-algorithm-3",
-      "prompt": "参数已经满足 0 <= A,B < M 时，坐标交换主要互换哪两个量？",
-      "options": [
-        "项数与截距",
-        "斜率 A 与模数 M",
-        "答案与项数",
-        "截距与答案"
-      ],
-      "answer": 1,
-      "explanation": "逐列计数改成逐行计数后，新分母是原斜率，原分母成为新斜率。"
-    },
-    {
-      "id": "euclidean-like-algorithm-4",
-      "prompt": "为什么当前模板不能直接接受负的 slope 或 intercept？",
-      "options": [
-        "负数不能参与加法",
-        "欧几里得算法只适用于质数",
-        "C++ 整数除法向 0 取整，与数学 floor 对负数的行为不同",
-        "负数一定令答案溢出"
-      ],
-      "answer": 2,
-      "explanation": "必须先定义并使用真正的向下取整除法，再正确提出负的整商部分。"
-    }
-  ]
-}
+[
+  {
+    "id": "euclidean-like-algorithm-1",
+    "prompt": "把闭区间 i=1..n 平移为内部下标 j=0..n-1 后，截距怎样变化？",
+    "options": [
+      {
+        "id": "a",
+        "text": "变成 b - a"
+      },
+      {
+        "id": "b",
+        "text": "保持 b 不变"
+      },
+      {
+        "id": "c",
+        "text": "变成 a × b"
+      },
+      {
+        "id": "d",
+        "text": "变成 a + b"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "令 i = j + 1，则 ai + b = aj + (a + b)。"
+  },
+  {
+    "id": "euclidean-like-algorithm-2",
+    "prompt": "若 slope = q × modulus + r，整倍数 q 对零起点取整和贡献多少？",
+    "options": [
+      {
+        "id": "a",
+        "text": "q × count × (count - 1) / 2"
+      },
+      {
+        "id": "b",
+        "text": "q × count"
+      },
+      {
+        "id": "c",
+        "text": "q × modulus"
+      },
+      {
+        "id": "d",
+        "text": "q"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每一项提出 q×i，对 i=0..count-1 求和得到该式。"
+  },
+  {
+    "id": "euclidean-like-algorithm-3",
+    "prompt": "参数已经满足 0 <= A,B < M 时，坐标交换主要互换哪两个量？",
+    "options": [
+      {
+        "id": "a",
+        "text": "项数与截距"
+      },
+      {
+        "id": "b",
+        "text": "斜率 A 与模数 M"
+      },
+      {
+        "id": "c",
+        "text": "答案与项数"
+      },
+      {
+        "id": "d",
+        "text": "截距与答案"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "逐列计数改成逐行计数后，新分母是原斜率，原分母成为新斜率。"
+  },
+  {
+    "id": "euclidean-like-algorithm-4",
+    "prompt": "为什么当前模板不能直接接受负的 slope 或 intercept？",
+    "options": [
+      {
+        "id": "a",
+        "text": "负数不能参与加法"
+      },
+      {
+        "id": "b",
+        "text": "欧几里得算法只适用于质数"
+      },
+      {
+        "id": "c",
+        "text": "C++ 整数除法向 0 取整，与数学 floor 对负数的行为不同"
+      },
+      {
+        "id": "d",
+        "text": "负数一定令答案溢出"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "必须先定义并使用真正的向下取整除法，再正确提出负的整商部分。"
+  }
+]

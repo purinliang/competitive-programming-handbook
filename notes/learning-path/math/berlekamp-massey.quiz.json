@@ -1,54 +1,98 @@
-{
-  "articleKey": "berlekamp-massey",
-  "title": "线性递推：Berlekamp–Massey",
-  "questions": [
-    {
-      "id": "berlekamp-massey-1",
-      "prompt": "Berlekamp–Massey 算法的主要输出是什么？",
-      "options": [
-        "序列所有项的质因数分解",
-        "能够解释已知前缀的最短线性递推",
-        "序列的单调区间",
-        "一个最短路矩阵"
-      ],
-      "answer": 1,
-      "explanation": "算法从有限序列中恢复最短连接多项式，再把它转换成线性递推系数。"
-    },
-    {
-      "id": "berlekamp-massey-2",
-      "prompt": "更新 C(x)=C(x)-(d/b)x^mB(x) 的直接目的是什么？",
-      "options": [
-        "把所有系数变成正数",
-        "把递推阶数固定为 m",
-        "删除序列的第一项",
-        "利用 B 在相应位置的旧偏差 b，恰好消去当前偏差 d"
-      ],
-      "answer": 3,
-      "explanation": "平移后的 B 贡献偏差 b，乘 d/b 后贡献 d，相减便使新偏差为零。"
-    },
-    {
-      "id": "berlekamp-massey-3",
-      "prompt": "为什么常见模板要求模数为质数？",
-      "options": [
-        "每个非零偏差都必须能求逆，质数模下非零元素构成域",
-        "质数模能让所有序列都变成 Fibonacci 数列",
-        "只有质数能存进 64 位整数",
-        "为了让递推阶数始终为 1"
-      ],
-      "answer": 0,
-      "explanation": "修正系数需要计算 d/b；在质数模下，非零 b 一定有乘法逆元。"
-    },
-    {
-      "id": "berlekamp-massey-4",
-      "prompt": "恢复 L 阶递推后，本文怎样计算很远的第 n 项？",
-      "options": [
-        "从第 0 项顺序递推到第 n 项",
-        "对原序列进行二分查找",
-        "计算 x^n 对特征多项式的余数，再线性组合前 L 项",
-        "只保留序列中的最大值"
-      ],
-      "answer": 2,
-      "explanation": "余数给出 x^n 在 1,x,...,x^(L-1) 下的系数，同一线性关系作用于数列。"
-    }
-  ]
-}
+[
+  {
+    "id": "berlekamp-massey-1",
+    "prompt": "Berlekamp–Massey 算法的主要输出是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "序列所有项的质因数分解"
+      },
+      {
+        "id": "b",
+        "text": "能够解释已知前缀的最短线性递推"
+      },
+      {
+        "id": "c",
+        "text": "序列的单调区间"
+      },
+      {
+        "id": "d",
+        "text": "一个最短路矩阵"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "算法从有限序列中恢复最短连接多项式，再把它转换成线性递推系数。"
+  },
+  {
+    "id": "berlekamp-massey-2",
+    "prompt": "更新 C(x)=C(x)-(d/b)x^mB(x) 的直接目的是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "把所有系数变成正数"
+      },
+      {
+        "id": "b",
+        "text": "把递推阶数固定为 m"
+      },
+      {
+        "id": "c",
+        "text": "删除序列的第一项"
+      },
+      {
+        "id": "d",
+        "text": "利用 B 在相应位置的旧偏差 b，恰好消去当前偏差 d"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "平移后的 B 贡献偏差 b，乘 d/b 后贡献 d，相减便使新偏差为零。"
+  },
+  {
+    "id": "berlekamp-massey-3",
+    "prompt": "为什么常见模板要求模数为质数？",
+    "options": [
+      {
+        "id": "a",
+        "text": "每个非零偏差都必须能求逆，质数模下非零元素构成域"
+      },
+      {
+        "id": "b",
+        "text": "质数模能让所有序列都变成 Fibonacci 数列"
+      },
+      {
+        "id": "c",
+        "text": "只有质数能存进 64 位整数"
+      },
+      {
+        "id": "d",
+        "text": "为了让递推阶数始终为 1"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "修正系数需要计算 d/b；在质数模下，非零 b 一定有乘法逆元。"
+  },
+  {
+    "id": "berlekamp-massey-4",
+    "prompt": "恢复 L 阶递推后，本文怎样计算很远的第 n 项？",
+    "options": [
+      {
+        "id": "a",
+        "text": "从第 0 项顺序递推到第 n 项"
+      },
+      {
+        "id": "b",
+        "text": "对原序列进行二分查找"
+      },
+      {
+        "id": "c",
+        "text": "计算 x^n 对特征多项式的余数，再线性组合前 L 项"
+      },
+      {
+        "id": "d",
+        "text": "只保留序列中的最大值"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "余数给出 x^n 在 1,x,...,x^(L-1) 下的系数，同一线性关系作用于数列。"
+  }
+]

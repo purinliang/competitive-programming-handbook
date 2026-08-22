@@ -1,54 +1,98 @@
-{
-  "articleKey": "substring-occurrence-counting",
-  "title": "子串出现次数",
-  "questions": [
-    {
-      "id": "substring-occurrence-counting-1",
-      "prompt": "模式在位置 pos 出现，等价于什么后缀条件？",
-      "options": [
-        "模式与整个后缀长度相同",
-        "后缀是模式的前缀",
-        "模式是从 pos 开始后缀的前缀",
-        "模式与后缀没有公共字符"
-      ],
-      "answer": 2,
-      "explanation": "从 pos 开始连续读出模式全部字符，正是模式成为 suffix(pos) 前缀的定义。"
-    },
-    {
-      "id": "substring-occurrence-counting-2",
-      "prompt": "为什么以同一模式开头的后缀在后缀数组中连续？",
-      "options": [
-        "共享同一前缀的字符串构成字典序连续区间",
-        "它们的起点一定连续",
-        "它们长度一定相同",
-        "后缀数组按起点排序"
-      ],
-      "answer": 0,
-      "explanation": "不共享该前缀的字符串会在模式结束前出现更小或更大的字符，只能位于整个前缀块之外。"
-    },
-    {
-      "id": "substring-occurrence-counting-3",
-      "prompt": "两次二分分别寻找什么？",
-      "options": [
-        "最短后缀和最长后缀",
-        "第一个比较结果 >=0 的位置和第一个比较结果 >0 的位置",
-        "两个任意匹配位置",
-        "文本的最小字符和最大字符"
-      ],
-      "answer": 1,
-      "explanation": "比较结果为 0 的匹配块恰好夹在这两个边界之间。"
-    },
-    {
-      "id": "substring-occurrence-counting-4",
-      "prompt": "为什么 aa 在 aaaa 中的三个重叠出现都会计数？",
-      "options": [
-        "算法会复制每个后缀三次",
-        "所有重叠区间被视为同一个起点",
-        "LCP 会把答案乘三",
-        "三个不同起点对应三个都以 aa 开头的不同后缀"
-      ],
-      "answer": 3,
-      "explanation": "后缀按起点区分；出现区间即使重叠，起点仍不同，因此匹配后缀数量正确。"
-    }
-  ]
-}
+[
+  {
+    "id": "substring-occurrence-counting-1",
+    "prompt": "模式在位置 pos 出现，等价于什么后缀条件？",
+    "options": [
+      {
+        "id": "a",
+        "text": "模式与整个后缀长度相同"
+      },
+      {
+        "id": "b",
+        "text": "后缀是模式的前缀"
+      },
+      {
+        "id": "c",
+        "text": "模式是从 pos 开始后缀的前缀"
+      },
+      {
+        "id": "d",
+        "text": "模式与后缀没有公共字符"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "从 pos 开始连续读出模式全部字符，正是模式成为 suffix(pos) 前缀的定义。"
+  },
+  {
+    "id": "substring-occurrence-counting-2",
+    "prompt": "为什么以同一模式开头的后缀在后缀数组中连续？",
+    "options": [
+      {
+        "id": "a",
+        "text": "共享同一前缀的字符串构成字典序连续区间"
+      },
+      {
+        "id": "b",
+        "text": "它们的起点一定连续"
+      },
+      {
+        "id": "c",
+        "text": "它们长度一定相同"
+      },
+      {
+        "id": "d",
+        "text": "后缀数组按起点排序"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "不共享该前缀的字符串会在模式结束前出现更小或更大的字符，只能位于整个前缀块之外。"
+  },
+  {
+    "id": "substring-occurrence-counting-3",
+    "prompt": "两次二分分别寻找什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "最短后缀和最长后缀"
+      },
+      {
+        "id": "b",
+        "text": "第一个比较结果 >=0 的位置和第一个比较结果 >0 的位置"
+      },
+      {
+        "id": "c",
+        "text": "两个任意匹配位置"
+      },
+      {
+        "id": "d",
+        "text": "文本的最小字符和最大字符"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "比较结果为 0 的匹配块恰好夹在这两个边界之间。"
+  },
+  {
+    "id": "substring-occurrence-counting-4",
+    "prompt": "为什么 aa 在 aaaa 中的三个重叠出现都会计数？",
+    "options": [
+      {
+        "id": "a",
+        "text": "算法会复制每个后缀三次"
+      },
+      {
+        "id": "b",
+        "text": "所有重叠区间被视为同一个起点"
+      },
+      {
+        "id": "c",
+        "text": "LCP 会把答案乘三"
+      },
+      {
+        "id": "d",
+        "text": "三个不同起点对应三个都以 aa 开头的不同后缀"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "后缀按起点区分；出现区间即使重叠，起点仍不同，因此匹配后缀数量正确。"
+  }
+]

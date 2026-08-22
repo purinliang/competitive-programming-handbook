@@ -1,54 +1,98 @@
-{
-  "articleKey": "shortest-path-tree",
-  "title": "最短路树",
-  "questions": [
-    {
-      "id": "shortest-path-tree-1",
-      "prompt": "边 u -> v、权值 w 能成为 v 的最短路树父边，需要满足什么？",
-      "options": [
-        "distance[u] + w = distance[v]",
-        "u 的编号小于 v",
-        "w 是整张图的最小边权",
-        "u 的度数小于 v"
-      ],
-      "answer": 0,
-      "explanation": "父边必须延续一条到 u 的最短路，并恰好得到 v 的最短距离。"
-    },
-    {
-      "id": "shortest-path-tree-2",
-      "prompt": "正边权时，为每个非源点独立选择一条紧入边为什么不会形成环？",
-      "options": [
-        "因为每个点的编号沿父边减小",
-        "因为到源点的最短距离沿父边反向严格减小",
-        "因为 Dijkstra 只访问每个点一次",
-        "因为所有紧边权值相同"
-      ],
-      "answer": 1,
-      "explanation": "正边权使父节点的距离严格小于子节点，环不可能让距离一路严格减小后回到起点。"
-    },
-    {
-      "id": "shortest-path-tree-3",
-      "prompt": "怎样在所有最短路树中最小化所选边的权值总和？",
-      "options": [
-        "让每个点选择编号最小的父节点",
-        "选择字典序最小的一条源点最短路",
-        "让每个非源点选择权值最小的紧入边",
-        "保留所有紧边后再求最大生成树"
-      ],
-      "answer": 2,
-      "explanation": "正边权下各点父边选择互不冲突，总和中的每一项可以独立取最小。"
-    },
-    {
-      "id": "shortest-path-tree-4",
-      "prompt": "若允许零边权，本文的独立选择证明会出现什么问题？",
-      "options": [
-        "Dijkstra 一定无法计算最短距离",
-        "任何零边都不能成为父边",
-        "最短路树必须包含全部零边",
-        "相同距离的节点可能互选零权父边并形成环"
-      ],
-      "answer": 3,
-      "explanation": "零紧边不再让距离严格变化，所以逐点选择不能自动保证父边无环。"
-    }
-  ]
-}
+[
+  {
+    "id": "shortest-path-tree-1",
+    "prompt": "边 u -> v、权值 w 能成为 v 的最短路树父边，需要满足什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "distance[u] + w = distance[v]"
+      },
+      {
+        "id": "b",
+        "text": "u 的编号小于 v"
+      },
+      {
+        "id": "c",
+        "text": "w 是整张图的最小边权"
+      },
+      {
+        "id": "d",
+        "text": "u 的度数小于 v"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "父边必须延续一条到 u 的最短路，并恰好得到 v 的最短距离。"
+  },
+  {
+    "id": "shortest-path-tree-2",
+    "prompt": "正边权时，为每个非源点独立选择一条紧入边为什么不会形成环？",
+    "options": [
+      {
+        "id": "a",
+        "text": "因为每个点的编号沿父边减小"
+      },
+      {
+        "id": "b",
+        "text": "因为到源点的最短距离沿父边反向严格减小"
+      },
+      {
+        "id": "c",
+        "text": "因为 Dijkstra 只访问每个点一次"
+      },
+      {
+        "id": "d",
+        "text": "因为所有紧边权值相同"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "正边权使父节点的距离严格小于子节点，环不可能让距离一路严格减小后回到起点。"
+  },
+  {
+    "id": "shortest-path-tree-3",
+    "prompt": "怎样在所有最短路树中最小化所选边的权值总和？",
+    "options": [
+      {
+        "id": "a",
+        "text": "让每个点选择编号最小的父节点"
+      },
+      {
+        "id": "b",
+        "text": "选择字典序最小的一条源点最短路"
+      },
+      {
+        "id": "c",
+        "text": "让每个非源点选择权值最小的紧入边"
+      },
+      {
+        "id": "d",
+        "text": "保留所有紧边后再求最大生成树"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "正边权下各点父边选择互不冲突，总和中的每一项可以独立取最小。"
+  },
+  {
+    "id": "shortest-path-tree-4",
+    "prompt": "若允许零边权，本文的独立选择证明会出现什么问题？",
+    "options": [
+      {
+        "id": "a",
+        "text": "Dijkstra 一定无法计算最短距离"
+      },
+      {
+        "id": "b",
+        "text": "任何零边都不能成为父边"
+      },
+      {
+        "id": "c",
+        "text": "最短路树必须包含全部零边"
+      },
+      {
+        "id": "d",
+        "text": "相同距离的节点可能互选零权父边并形成环"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "零紧边不再让距离严格变化，所以逐点选择不能自动保证父边无环。"
+  }
+]

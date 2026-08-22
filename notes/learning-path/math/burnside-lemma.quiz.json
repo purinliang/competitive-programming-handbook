@@ -1,54 +1,98 @@
-{
-  "articleKey": "burnside-lemma",
-  "title": "Burnside 引理",
-  "questions": [
-    {
-      "id": "burnside-lemma-1",
-      "prompt": "Burnside 引理怎样计算群作用下的轨道数量？",
-      "options": [
-        "对象总数除以最大轨道大小",
-        "所有群元素固定点数量之和除以群大小",
-        "只统计恒等变换的固定点",
-        "把每个轨道大小相乘"
-      ],
-      "answer": 1,
-      "explanation": "轨道数等于固定点数在全部群元素上的平均值。"
-    },
-    {
-      "id": "burnside-lemma-2",
-      "prompt": "长度 n 的项链旋转 shift 个位置会形成多少个位置循环？",
-      "options": [
-        "n / shift",
-        "shift",
-        "gcd(n, shift)",
-        "n - shift"
-      ],
-      "answer": 2,
-      "explanation": "沿 shift 不断移动回到起点的轨道划分数量正是 gcd(n, shift)。"
-    },
-    {
-      "id": "burnside-lemma-3",
-      "prompt": "一次旋转的循环长度为 L。存在恰好 k 颗黑珠的固定排列需要满足什么条件？",
-      "options": [
-        "k 必须等于 n",
-        "k 必须是质数",
-        "k 必须小于循环数量",
-        "k 必须能被 L 整除"
-      ],
-      "answer": 3,
-      "explanation": "固定排列的每个循环必须整体同色，染黑一个循环会贡献 L 颗黑珠。"
-    },
-    {
-      "id": "burnside-lemma-4",
-      "prompt": "若还允许把项链翻转，为什么不能把只考虑旋转的答案直接除以 2？",
-      "options": [
-        "某些项链本身具有反射对称，加入翻转后轨道大小并不统一翻倍",
-        "因为翻转不是一种变换",
-        "因为黑珠数量会改变",
-        "因为所有旋转都会失效"
-      ],
-      "answer": 0,
-      "explanation": "仍需把每种反射的固定点加入 Burnside 平均，不能假设所有轨道等大。"
-    }
-  ]
-}
+[
+  {
+    "id": "burnside-lemma-1",
+    "prompt": "Burnside 引理怎样计算群作用下的轨道数量？",
+    "options": [
+      {
+        "id": "a",
+        "text": "对象总数除以最大轨道大小"
+      },
+      {
+        "id": "b",
+        "text": "所有群元素固定点数量之和除以群大小"
+      },
+      {
+        "id": "c",
+        "text": "只统计恒等变换的固定点"
+      },
+      {
+        "id": "d",
+        "text": "把每个轨道大小相乘"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "轨道数等于固定点数在全部群元素上的平均值。"
+  },
+  {
+    "id": "burnside-lemma-2",
+    "prompt": "长度 n 的项链旋转 shift 个位置会形成多少个位置循环？",
+    "options": [
+      {
+        "id": "a",
+        "text": "n / shift"
+      },
+      {
+        "id": "b",
+        "text": "shift"
+      },
+      {
+        "id": "c",
+        "text": "gcd(n, shift)"
+      },
+      {
+        "id": "d",
+        "text": "n - shift"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "沿 shift 不断移动回到起点的轨道划分数量正是 gcd(n, shift)。"
+  },
+  {
+    "id": "burnside-lemma-3",
+    "prompt": "一次旋转的循环长度为 L。存在恰好 k 颗黑珠的固定排列需要满足什么条件？",
+    "options": [
+      {
+        "id": "a",
+        "text": "k 必须等于 n"
+      },
+      {
+        "id": "b",
+        "text": "k 必须是质数"
+      },
+      {
+        "id": "c",
+        "text": "k 必须小于循环数量"
+      },
+      {
+        "id": "d",
+        "text": "k 必须能被 L 整除"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "固定排列的每个循环必须整体同色，染黑一个循环会贡献 L 颗黑珠。"
+  },
+  {
+    "id": "burnside-lemma-4",
+    "prompt": "若还允许把项链翻转，为什么不能把只考虑旋转的答案直接除以 2？",
+    "options": [
+      {
+        "id": "a",
+        "text": "某些项链本身具有反射对称，加入翻转后轨道大小并不统一翻倍"
+      },
+      {
+        "id": "b",
+        "text": "因为翻转不是一种变换"
+      },
+      {
+        "id": "c",
+        "text": "因为黑珠数量会改变"
+      },
+      {
+        "id": "d",
+        "text": "因为所有旋转都会失效"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "仍需把每种反射的固定点加入 Burnside 平均，不能假设所有轨道等大。"
+  }
+]

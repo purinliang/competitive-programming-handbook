@@ -1,54 +1,98 @@
-{
-  "articleKey": "polya-enumeration",
-  "title": "Polya 定理",
-  "questions": [
-    {
-      "id": "polya-enumeration-1",
-      "prompt": "一个位置置换有 c 个循环，使用 m 种颜色时有多少种染色被它固定？",
-      "options": [
-        "m^c",
-        "c^m",
-        "m × c",
-        "m^n"
-      ],
-      "answer": 0,
-      "explanation": "每个循环必须整体同色，而不同循环可以独立选择 m 种颜色。"
-    },
-    {
-      "id": "polya-enumeration-2",
-      "prompt": "n 为奇数时，一次反射把位置分成多少个循环？",
-      "options": [
-        "n / 2",
-        "(n + 1) / 2",
-        "n - 1",
-        "2n"
-      ],
-      "answer": 1,
-      "explanation": "有一个固定位置，其余 n - 1 个位置两两交换，共得到 (n + 1) / 2 个循环。"
-    },
-    {
-      "id": "polya-enumeration-3",
-      "prompt": "n 为偶数时，为什么反射必须分成两类？",
-      "options": [
-        "两类使用不同颜色",
-        "只有一类属于群",
-        "对称轴穿过相对顶点或相对边时，固定位置数量和循环数不同",
-        "其中一类会改变 n"
-      ],
-      "answer": 2,
-      "explanation": "穿过顶点的反射有两个单点循环，穿过边的反射没有单点循环。"
-    },
-    {
-      "id": "polya-enumeration-4",
-      "prompt": "循环指标中代入 s[j] = x[1]^j + ... + x[m]^j 有什么作用？",
-      "options": [
-        "只计算颜色总数",
-        "把所有置换变成恒等置换",
-        "消除 Burnside 平均中的除法",
-        "让展开式记录每种颜色具体使用了多少个位置"
-      ],
-      "answer": 3,
-      "explanation": "长度 j 的循环选择某种颜色会一次贡献该颜色的 j 个位置。"
-    }
-  ]
-}
+[
+  {
+    "id": "polya-enumeration-1",
+    "prompt": "一个位置置换有 c 个循环，使用 m 种颜色时有多少种染色被它固定？",
+    "options": [
+      {
+        "id": "a",
+        "text": "m^c"
+      },
+      {
+        "id": "b",
+        "text": "c^m"
+      },
+      {
+        "id": "c",
+        "text": "m × c"
+      },
+      {
+        "id": "d",
+        "text": "m^n"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "每个循环必须整体同色，而不同循环可以独立选择 m 种颜色。"
+  },
+  {
+    "id": "polya-enumeration-2",
+    "prompt": "n 为奇数时，一次反射把位置分成多少个循环？",
+    "options": [
+      {
+        "id": "a",
+        "text": "n / 2"
+      },
+      {
+        "id": "b",
+        "text": "(n + 1) / 2"
+      },
+      {
+        "id": "c",
+        "text": "n - 1"
+      },
+      {
+        "id": "d",
+        "text": "2n"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "有一个固定位置，其余 n - 1 个位置两两交换，共得到 (n + 1) / 2 个循环。"
+  },
+  {
+    "id": "polya-enumeration-3",
+    "prompt": "n 为偶数时，为什么反射必须分成两类？",
+    "options": [
+      {
+        "id": "a",
+        "text": "两类使用不同颜色"
+      },
+      {
+        "id": "b",
+        "text": "只有一类属于群"
+      },
+      {
+        "id": "c",
+        "text": "对称轴穿过相对顶点或相对边时，固定位置数量和循环数不同"
+      },
+      {
+        "id": "d",
+        "text": "其中一类会改变 n"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "穿过顶点的反射有两个单点循环，穿过边的反射没有单点循环。"
+  },
+  {
+    "id": "polya-enumeration-4",
+    "prompt": "循环指标中代入 s[j] = x[1]^j + ... + x[m]^j 有什么作用？",
+    "options": [
+      {
+        "id": "a",
+        "text": "只计算颜色总数"
+      },
+      {
+        "id": "b",
+        "text": "把所有置换变成恒等置换"
+      },
+      {
+        "id": "c",
+        "text": "消除 Burnside 平均中的除法"
+      },
+      {
+        "id": "d",
+        "text": "让展开式记录每种颜色具体使用了多少个位置"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "长度 j 的循环选择某种颜色会一次贡献该颜色的 j 个位置。"
+  }
+]

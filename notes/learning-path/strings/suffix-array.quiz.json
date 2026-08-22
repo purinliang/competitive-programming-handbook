@@ -1,54 +1,98 @@
-{
-  "articleKey": "suffix-array",
-  "title": "后缀数组",
-  "questions": [
-    {
-      "id": "suffix-array-1",
-      "prompt": "sa[order] 保存什么？",
-      "options": [
-        "从某个位置开始的后缀排名",
-        "两个相邻后缀的最长公共前缀",
-        "长度为 order 的子串数量",
-        "字典序第 order 小的后缀起点"
-      ],
-      "answer": 3,
-      "explanation": "sa 从字典序位置映射回原字符串起点；rank_value 则是相反方向的映射。"
-    },
-    {
-      "id": "suffix-array-2",
-      "prompt": "倍增算法比较长度 2*width 的前缀时使用哪组关键字？",
-      "options": [
-        "rank[pos] 与 rank[pos+width]",
-        "pos 与字符串长度",
-        "当前字符与整个后缀哈希",
-        "sa[pos] 与 lcp[pos]"
-      ],
-      "answer": 0,
-      "explanation": "两个旧排名分别概括前半段和后半段，二元组完整决定双倍长度前缀的顺序。"
-    },
-    {
-      "id": "suffix-array-3",
-      "prompt": "为什么越过字符串结尾的第二段使用排名 0？",
-      "options": [
-        "为了把所有后缀视为相等",
-        "因为字符 '0' 最小",
-        "空部分应小于任何非空部分，使短后缀在相同前缀下排在前面",
-        "为了让后缀起点从 0 开始"
-      ],
-      "answer": 2,
-      "explanation": "正常排名从 1 开始，0 作为空串哨兵，准确表达一个后缀已经结束。"
-    },
-    {
-      "id": "suffix-array-4",
-      "prompt": "Kasai 算法为什么能在线性时间构造全部 LCP？",
-      "options": [
-        "它不比较任何字符",
-        "相邻原位置可从上一匹配长度减一继续，height 的总增减次数都是 O(n)",
-        "每个后缀长度都是常数",
-        "后缀数组已经直接保存全部 LCP"
-      ],
-      "answer": 1,
-      "explanation": "删除两个后缀的首字符后，已有公共前缀至多损失一个字符，因此比较指针不会反复回退。"
-    }
-  ]
-}
+[
+  {
+    "id": "suffix-array-1",
+    "prompt": "sa[order] 保存什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "从某个位置开始的后缀排名"
+      },
+      {
+        "id": "b",
+        "text": "两个相邻后缀的最长公共前缀"
+      },
+      {
+        "id": "c",
+        "text": "长度为 order 的子串数量"
+      },
+      {
+        "id": "d",
+        "text": "字典序第 order 小的后缀起点"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "sa 从字典序位置映射回原字符串起点；rank_value 则是相反方向的映射。"
+  },
+  {
+    "id": "suffix-array-2",
+    "prompt": "倍增算法比较长度 2*width 的前缀时使用哪组关键字？",
+    "options": [
+      {
+        "id": "a",
+        "text": "rank[pos] 与 rank[pos+width]"
+      },
+      {
+        "id": "b",
+        "text": "pos 与字符串长度"
+      },
+      {
+        "id": "c",
+        "text": "当前字符与整个后缀哈希"
+      },
+      {
+        "id": "d",
+        "text": "sa[pos] 与 lcp[pos]"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两个旧排名分别概括前半段和后半段，二元组完整决定双倍长度前缀的顺序。"
+  },
+  {
+    "id": "suffix-array-3",
+    "prompt": "为什么越过字符串结尾的第二段使用排名 0？",
+    "options": [
+      {
+        "id": "a",
+        "text": "为了把所有后缀视为相等"
+      },
+      {
+        "id": "b",
+        "text": "因为字符 '0' 最小"
+      },
+      {
+        "id": "c",
+        "text": "空部分应小于任何非空部分，使短后缀在相同前缀下排在前面"
+      },
+      {
+        "id": "d",
+        "text": "为了让后缀起点从 0 开始"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "正常排名从 1 开始，0 作为空串哨兵，准确表达一个后缀已经结束。"
+  },
+  {
+    "id": "suffix-array-4",
+    "prompt": "Kasai 算法为什么能在线性时间构造全部 LCP？",
+    "options": [
+      {
+        "id": "a",
+        "text": "它不比较任何字符"
+      },
+      {
+        "id": "b",
+        "text": "相邻原位置可从上一匹配长度减一继续，height 的总增减次数都是 O(n)"
+      },
+      {
+        "id": "c",
+        "text": "每个后缀长度都是常数"
+      },
+      {
+        "id": "d",
+        "text": "后缀数组已经直接保存全部 LCP"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "删除两个后缀的首字符后，已有公共前缀至多损失一个字符，因此比较指针不会反复回退。"
+  }
+]

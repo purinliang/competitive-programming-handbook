@@ -1,54 +1,98 @@
-{
-  "articleKey": "kth-lexicographic-substring",
-  "title": "字典序第 k 小子串",
-  "questions": [
-    {
-      "id": "kth-lexicographic-substring-1",
-      "prompt": "当前后缀新增的本质不同子串数量是多少？",
-      "options": [
-        "lcp[order]",
-        "suffix_length - lcp[order]",
-        "suffix_length + lcp[order]",
-        "order"
-      ],
-      "answer": 1,
-      "explanation": "长度不超过 lcp 的前缀已经出现，只有 lcp+1 到完整后缀长度是新增内容。"
-    },
-    {
-      "id": "kth-lexicographic-substring-2",
-      "prompt": "为什么只扣除与字典序直接前驱的 LCP 就够了？",
-      "options": [
-        "其他后缀都比当前后缀短",
-        "直接前驱一定与当前后缀完全相同",
-        "共享同一前缀的后缀连续，任意更早后缀能共享的前缀不会超过直接前驱",
-        "LCP 只对直接前驱有定义，其他重复可以忽略"
-      ],
-      "answer": 2,
-      "explanation": "拥有给定前缀的后缀形成连续区间；若更早后缀共享该前缀，直接前驱也在同一区间。"
-    },
-    {
-      "id": "kth-lexicographic-substring-3",
-      "prompt": "若 k 落入当前后缀的新增块，答案长度是多少？",
-      "options": [
-        "suffix_length",
-        "k - lcp[order]",
-        "sa[order] + k",
-        "lcp[order] + k"
-      ],
-      "answer": 3,
-      "explanation": "当前块从长度 lcp+1 开始，块内第 k 个前缀长度正好是 lcp+k。"
-    },
-    {
-      "id": "kth-lexicographic-substring-4",
-      "prompt": "同一后缀的新增前缀为什么按长度递增就是字典序递增？",
-      "options": [
-        "较短前缀是较长前缀的真前缀，因此字典序更小",
-        "字符串越长字典序一定越小",
-        "所有前缀首字符不同",
-        "后缀数组会反转它们"
-      ],
-      "answer": 0,
-      "explanation": "两个前缀在短者结束以前完全相同，字典序规定短者先出现。"
-    }
-  ]
-}
+[
+  {
+    "id": "kth-lexicographic-substring-1",
+    "prompt": "当前后缀新增的本质不同子串数量是多少？",
+    "options": [
+      {
+        "id": "a",
+        "text": "lcp[order]"
+      },
+      {
+        "id": "b",
+        "text": "suffix_length - lcp[order]"
+      },
+      {
+        "id": "c",
+        "text": "suffix_length + lcp[order]"
+      },
+      {
+        "id": "d",
+        "text": "order"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "长度不超过 lcp 的前缀已经出现，只有 lcp+1 到完整后缀长度是新增内容。"
+  },
+  {
+    "id": "kth-lexicographic-substring-2",
+    "prompt": "为什么只扣除与字典序直接前驱的 LCP 就够了？",
+    "options": [
+      {
+        "id": "a",
+        "text": "其他后缀都比当前后缀短"
+      },
+      {
+        "id": "b",
+        "text": "直接前驱一定与当前后缀完全相同"
+      },
+      {
+        "id": "c",
+        "text": "共享同一前缀的后缀连续，任意更早后缀能共享的前缀不会超过直接前驱"
+      },
+      {
+        "id": "d",
+        "text": "LCP 只对直接前驱有定义，其他重复可以忽略"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "拥有给定前缀的后缀形成连续区间；若更早后缀共享该前缀，直接前驱也在同一区间。"
+  },
+  {
+    "id": "kth-lexicographic-substring-3",
+    "prompt": "若 k 落入当前后缀的新增块，答案长度是多少？",
+    "options": [
+      {
+        "id": "a",
+        "text": "suffix_length"
+      },
+      {
+        "id": "b",
+        "text": "k - lcp[order]"
+      },
+      {
+        "id": "c",
+        "text": "sa[order] + k"
+      },
+      {
+        "id": "d",
+        "text": "lcp[order] + k"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "当前块从长度 lcp+1 开始，块内第 k 个前缀长度正好是 lcp+k。"
+  },
+  {
+    "id": "kth-lexicographic-substring-4",
+    "prompt": "同一后缀的新增前缀为什么按长度递增就是字典序递增？",
+    "options": [
+      {
+        "id": "a",
+        "text": "较短前缀是较长前缀的真前缀，因此字典序更小"
+      },
+      {
+        "id": "b",
+        "text": "字符串越长字典序一定越小"
+      },
+      {
+        "id": "c",
+        "text": "所有前缀首字符不同"
+      },
+      {
+        "id": "d",
+        "text": "后缀数组会反转它们"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "两个前缀在短者结束以前完全相同，字典序规定短者先出现。"
+  }
+]

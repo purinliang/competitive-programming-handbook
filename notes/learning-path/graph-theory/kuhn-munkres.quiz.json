@@ -1,54 +1,98 @@
-{
-  "articleKey": "kuhn-munkres",
-  "title": "二分图最大权完美匹配",
-  "questions": [
-    {
-      "id": "kuhn-munkres-1",
-      "prompt": "基础 KM 算法直接解决什么问题？",
-      "options": [
-        "等规模完整二分图的最大权完美匹配",
-        "任意图的最大匹配",
-        "无向图的最小生成树",
-        "二分图的最大流"
-      ],
-      "answer": 0,
-      "explanation": "一般最大权匹配需要先通过虚拟点、禁边权值等方式转成完整指派问题。"
-    },
-    {
-      "id": "kuhn-munkres-2",
-      "prompt": "哪一条边属于当前顶标的相等子图？",
-      "options": [
-        "label_x[x] + label_y[y] > weight[x][y]",
-        "label_x[x] + label_y[y] == weight[x][y]",
-        "label_x[x] - label_y[y] == 0",
-        "weight[x][y] == 0"
-      ],
-      "answer": 1,
-      "explanation": "相等边恰好取到顶标不等式给出的权值上界。"
-    },
-    {
-      "id": "kuhn-munkres-3",
-      "prompt": "slack[y] 的含义是什么？",
-      "options": [
-        "右点 y 已经匹配的边权",
-        "右点 y 的度数",
-        "让交替树连接到未访问右点 y 还需缩小的最小顶标差",
-        "以 y 为根的子树大小"
-      ],
-      "answer": 2,
-      "explanation": "最小 slack 决定下一次顶标调整量，并保证至少出现一条新相等边。"
-    },
-    {
-      "id": "kuhn-munkres-4",
-      "prompt": "相等子图中找到完美匹配后，为什么它一定具有最大权值？",
-      "options": [
-        "因为它使用的边数最少",
-        "因为所有边权都非负",
-        "因为每个右点的顶标都是零",
-        "它的权值达到所有完美匹配共同的顶标上界"
-      ],
-      "answer": 3,
-      "explanation": "完美匹配中的每条边都取等号，使匹配总权等于左右顶标总和。"
-    }
-  ]
-}
+[
+  {
+    "id": "kuhn-munkres-1",
+    "prompt": "基础 KM 算法直接解决什么问题？",
+    "options": [
+      {
+        "id": "a",
+        "text": "等规模完整二分图的最大权完美匹配"
+      },
+      {
+        "id": "b",
+        "text": "任意图的最大匹配"
+      },
+      {
+        "id": "c",
+        "text": "无向图的最小生成树"
+      },
+      {
+        "id": "d",
+        "text": "二分图的最大流"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "一般最大权匹配需要先通过虚拟点、禁边权值等方式转成完整指派问题。"
+  },
+  {
+    "id": "kuhn-munkres-2",
+    "prompt": "哪一条边属于当前顶标的相等子图？",
+    "options": [
+      {
+        "id": "a",
+        "text": "label_x[x] + label_y[y] > weight[x][y]"
+      },
+      {
+        "id": "b",
+        "text": "label_x[x] + label_y[y] == weight[x][y]"
+      },
+      {
+        "id": "c",
+        "text": "label_x[x] - label_y[y] == 0"
+      },
+      {
+        "id": "d",
+        "text": "weight[x][y] == 0"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "相等边恰好取到顶标不等式给出的权值上界。"
+  },
+  {
+    "id": "kuhn-munkres-3",
+    "prompt": "slack[y] 的含义是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "右点 y 已经匹配的边权"
+      },
+      {
+        "id": "b",
+        "text": "右点 y 的度数"
+      },
+      {
+        "id": "c",
+        "text": "让交替树连接到未访问右点 y 还需缩小的最小顶标差"
+      },
+      {
+        "id": "d",
+        "text": "以 y 为根的子树大小"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "最小 slack 决定下一次顶标调整量，并保证至少出现一条新相等边。"
+  },
+  {
+    "id": "kuhn-munkres-4",
+    "prompt": "相等子图中找到完美匹配后，为什么它一定具有最大权值？",
+    "options": [
+      {
+        "id": "a",
+        "text": "因为它使用的边数最少"
+      },
+      {
+        "id": "b",
+        "text": "因为所有边权都非负"
+      },
+      {
+        "id": "c",
+        "text": "因为每个右点的顶标都是零"
+      },
+      {
+        "id": "d",
+        "text": "它的权值达到所有完美匹配共同的顶标上界"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "完美匹配中的每条边都取等号，使匹配总权等于左右顶标总和。"
+  }
+]

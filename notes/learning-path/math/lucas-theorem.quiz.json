@@ -1,54 +1,98 @@
-{
-  "articleKey": "lucas-theorem",
-  "title": "卢卡斯定理",
-  "questions": [
-    {
-      "id": "lucas-theorem-1",
-      "prompt": "卢卡斯定理的基础形式要求模数 p 满足什么条件？",
-      "options": [
-        "p 是质数",
-        "p 是偶数",
-        "p 大于 n",
-        "p 是完全平方数"
-      ],
-      "answer": 0,
-      "explanation": "质数保证中间二项式系数被 p 整除，并保证小于 p 的阶乘可逆。"
-    },
-    {
-      "id": "lucas-theorem-2",
-      "prompt": "若某一位 p 进制数位满足 k_i > n_i，会发生什么？",
-      "options": [
-        "这一位可以忽略",
-        "整个组合数模 p 为 0",
-        "需要向高位借位后继续",
-        "模数要改成 p^2"
-      ],
-      "answer": 1,
-      "explanation": "对应的小组合数 C(n_i,k_i) 为 0，乘积因此为 0。"
-    },
-    {
-      "id": "lucas-theorem-3",
-      "prompt": "基础实现为什么只需预处理到 (p - 1)!？",
-      "options": [
-        "因为 n 一定小于 p",
-        "因为 k 一定等于 p - 1",
-        "卢卡斯把询问拆成参数都小于 p 的数位组合数",
-        "因为更大的阶乘都等于 1"
-      ],
-      "answer": 2,
-      "explanation": "每个 digit_n 与 digit_k 都位于 0 到 p - 1。"
-    },
-    {
-      "id": "lucas-theorem-4",
-      "prompt": "单次卢卡斯询问为什么只需 O(log_p n) 轮？",
-      "options": [
-        "每轮把 n 加上 p",
-        "每轮枚举一个质数",
-        "每轮把模数平方",
-        "每轮取最低 p 进制位并让 n、k 除以 p"
-      ],
-      "answer": 3,
-      "explanation": "循环次数就是 p 进制数位数量。"
-    }
-  ]
-}
+[
+  {
+    "id": "lucas-theorem-1",
+    "prompt": "卢卡斯定理的基础形式要求模数 p 满足什么条件？",
+    "options": [
+      {
+        "id": "a",
+        "text": "p 是质数"
+      },
+      {
+        "id": "b",
+        "text": "p 是偶数"
+      },
+      {
+        "id": "c",
+        "text": "p 大于 n"
+      },
+      {
+        "id": "d",
+        "text": "p 是完全平方数"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "质数保证中间二项式系数被 p 整除，并保证小于 p 的阶乘可逆。"
+  },
+  {
+    "id": "lucas-theorem-2",
+    "prompt": "若某一位 p 进制数位满足 k_i > n_i，会发生什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "这一位可以忽略"
+      },
+      {
+        "id": "b",
+        "text": "整个组合数模 p 为 0"
+      },
+      {
+        "id": "c",
+        "text": "需要向高位借位后继续"
+      },
+      {
+        "id": "d",
+        "text": "模数要改成 p^2"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "对应的小组合数 C(n_i,k_i) 为 0，乘积因此为 0。"
+  },
+  {
+    "id": "lucas-theorem-3",
+    "prompt": "基础实现为什么只需预处理到 (p - 1)!？",
+    "options": [
+      {
+        "id": "a",
+        "text": "因为 n 一定小于 p"
+      },
+      {
+        "id": "b",
+        "text": "因为 k 一定等于 p - 1"
+      },
+      {
+        "id": "c",
+        "text": "卢卡斯把询问拆成参数都小于 p 的数位组合数"
+      },
+      {
+        "id": "d",
+        "text": "因为更大的阶乘都等于 1"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "每个 digit_n 与 digit_k 都位于 0 到 p - 1。"
+  },
+  {
+    "id": "lucas-theorem-4",
+    "prompt": "单次卢卡斯询问为什么只需 O(log_p n) 轮？",
+    "options": [
+      {
+        "id": "a",
+        "text": "每轮把 n 加上 p"
+      },
+      {
+        "id": "b",
+        "text": "每轮枚举一个质数"
+      },
+      {
+        "id": "c",
+        "text": "每轮把模数平方"
+      },
+      {
+        "id": "d",
+        "text": "每轮取最低 p 进制位并让 n、k 除以 p"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "循环次数就是 p 进制数位数量。"
+  }
+]

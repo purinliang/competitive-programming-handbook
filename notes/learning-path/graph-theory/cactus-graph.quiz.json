@@ -1,54 +1,98 @@
-{
-  "articleKey": "cactus-graph",
-  "title": "仙人掌",
-  "questions": [
-    {
-      "id": "cactus-graph-1",
-      "prompt": "仙人掌对每条边提出什么限制？",
-      "options": [
-        "每条边至多属于一个简单环",
-        "每条边必须属于一个简单环",
-        "每条边的权值必须相同",
-        "每条边都必须是桥"
-      ],
-      "answer": 0,
-      "explanation": "树没有环，也满足这条限制，因此树是仙人掌的特殊情况。"
-    },
-    {
-      "id": "cactus-graph-2",
-      "prompt": "仙人掌中的两个不同简单环最多可以共享什么？",
-      "options": [
-        "任意多条边",
-        "一个点",
-        "一条完整路径",
-        "两个点和它们之间的路径"
-      ],
-      "answer": 1,
-      "explanation": "共享两个点会形成更多简单环，使部分边属于多个环。"
-    },
-    {
-      "id": "cactus-graph-3",
-      "prompt": "为什么检测环重叠时应标记边而不是点？",
-      "options": [
-        "因为 DFS 不能访问点",
-        "因为点没有编号",
-        "合法的两个环可以共享一个割点，但不能共享边",
-        "因为所有点都必须位于环上"
-      ],
-      "answer": 2,
-      "explanation": "点标记会把共享一个割点的合法结构错误判成冲突。"
-    },
-    {
-      "id": "cactus-graph-4",
-      "prompt": "一个长度为 length 的仙人掌环对生成树数量贡献多少种选择？",
-      "options": [
-        "1",
-        "2",
-        "length - 1",
-        "length"
-      ],
-      "answer": 3,
-      "explanation": "生成树必须且只需删除环中的一条边，共有 length 种删除方法。"
-    }
-  ]
-}
+[
+  {
+    "id": "cactus-graph-1",
+    "prompt": "仙人掌对每条边提出什么限制？",
+    "options": [
+      {
+        "id": "a",
+        "text": "每条边至多属于一个简单环"
+      },
+      {
+        "id": "b",
+        "text": "每条边必须属于一个简单环"
+      },
+      {
+        "id": "c",
+        "text": "每条边的权值必须相同"
+      },
+      {
+        "id": "d",
+        "text": "每条边都必须是桥"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "树没有环，也满足这条限制，因此树是仙人掌的特殊情况。"
+  },
+  {
+    "id": "cactus-graph-2",
+    "prompt": "仙人掌中的两个不同简单环最多可以共享什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "任意多条边"
+      },
+      {
+        "id": "b",
+        "text": "一个点"
+      },
+      {
+        "id": "c",
+        "text": "一条完整路径"
+      },
+      {
+        "id": "d",
+        "text": "两个点和它们之间的路径"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "共享两个点会形成更多简单环，使部分边属于多个环。"
+  },
+  {
+    "id": "cactus-graph-3",
+    "prompt": "为什么检测环重叠时应标记边而不是点？",
+    "options": [
+      {
+        "id": "a",
+        "text": "因为 DFS 不能访问点"
+      },
+      {
+        "id": "b",
+        "text": "因为点没有编号"
+      },
+      {
+        "id": "c",
+        "text": "合法的两个环可以共享一个割点，但不能共享边"
+      },
+      {
+        "id": "d",
+        "text": "因为所有点都必须位于环上"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "点标记会把共享一个割点的合法结构错误判成冲突。"
+  },
+  {
+    "id": "cactus-graph-4",
+    "prompt": "一个长度为 length 的仙人掌环对生成树数量贡献多少种选择？",
+    "options": [
+      {
+        "id": "a",
+        "text": "1"
+      },
+      {
+        "id": "b",
+        "text": "2"
+      },
+      {
+        "id": "c",
+        "text": "length - 1"
+      },
+      {
+        "id": "d",
+        "text": "length"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "生成树必须且只需删除环中的一条边，共有 length 种删除方法。"
+  }
+]

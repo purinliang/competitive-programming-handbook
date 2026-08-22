@@ -1,54 +1,98 @@
-{
-  "articleKey": "discrete-logarithm",
-  "title": "离散对数与 BSGS",
-  "questions": [
-    {
-      "id": "discrete-logarithm-1",
-      "prompt": "离散对数问题要求求出哪个量？",
-      "options": [
-        "满足 a^x 同余于 b 的指数 x",
-        "a 与 b 的最大公约数",
-        "模数 p 的质因数",
-        "a 的乘法逆元"
-      ],
-      "answer": 0,
-      "explanation": "它是模运算中从幂的结果反向恢复指数的问题。"
-    },
-    {
-      "id": "discrete-logarithm-2",
-      "prompt": "BSGS 把指数写成什么形式？",
-      "options": [
-        "x = q + r",
-        "x = q * m + r，其中 0 <= r < m",
-        "x = q / m + r",
-        "x = 2^q + r"
-      ],
-      "answer": 1,
-      "explanation": "取 m 约等于根号 p 后，q 和 r 都只需枚举约根号 p 种值。"
-    },
-    {
-      "id": "discrete-logarithm-3",
-      "prompt": "Giant Step 每轮为什么乘 a^(-m)？",
-      "options": [
-        "为了让模数变小",
-        "为了把 b 变成质数",
-        "把 a^(qm+r)=b 改写成 a^r=b*a^(-qm)，与 Baby Step 相遇",
-        "为了计算 a 的平方根"
-      ],
-      "answer": 2,
-      "explanation": "相遇时左侧指数是 r，右侧已经消去 q 组大小为 m 的指数。"
-    },
-    {
-      "id": "discrete-logarithm-4",
-      "prompt": "质数模数下离散对数仍可能无解的原因是什么？",
-      "options": [
-        "质数不能作为模数",
-        "快速幂不能处理非负指数",
-        "所有余数都等于零",
-        "b 可能不属于 a 的幂生成的子群"
-      ],
-      "answer": 3,
-      "explanation": "a 不一定是原根，它的幂可能只能覆盖非零余数的一部分。"
-    }
-  ]
-}
+[
+  {
+    "id": "discrete-logarithm-1",
+    "prompt": "离散对数问题要求求出哪个量？",
+    "options": [
+      {
+        "id": "a",
+        "text": "满足 a^x 同余于 b 的指数 x"
+      },
+      {
+        "id": "b",
+        "text": "a 与 b 的最大公约数"
+      },
+      {
+        "id": "c",
+        "text": "模数 p 的质因数"
+      },
+      {
+        "id": "d",
+        "text": "a 的乘法逆元"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "它是模运算中从幂的结果反向恢复指数的问题。"
+  },
+  {
+    "id": "discrete-logarithm-2",
+    "prompt": "BSGS 把指数写成什么形式？",
+    "options": [
+      {
+        "id": "a",
+        "text": "x = q + r"
+      },
+      {
+        "id": "b",
+        "text": "x = q * m + r，其中 0 <= r < m"
+      },
+      {
+        "id": "c",
+        "text": "x = q / m + r"
+      },
+      {
+        "id": "d",
+        "text": "x = 2^q + r"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "取 m 约等于根号 p 后，q 和 r 都只需枚举约根号 p 种值。"
+  },
+  {
+    "id": "discrete-logarithm-3",
+    "prompt": "Giant Step 每轮为什么乘 a^(-m)？",
+    "options": [
+      {
+        "id": "a",
+        "text": "为了让模数变小"
+      },
+      {
+        "id": "b",
+        "text": "为了把 b 变成质数"
+      },
+      {
+        "id": "c",
+        "text": "把 a^(qm+r)=b 改写成 a^r=b*a^(-qm)，与 Baby Step 相遇"
+      },
+      {
+        "id": "d",
+        "text": "为了计算 a 的平方根"
+      }
+    ],
+    "correctOptionId": "c",
+    "explanation": "相遇时左侧指数是 r，右侧已经消去 q 组大小为 m 的指数。"
+  },
+  {
+    "id": "discrete-logarithm-4",
+    "prompt": "质数模数下离散对数仍可能无解的原因是什么？",
+    "options": [
+      {
+        "id": "a",
+        "text": "质数不能作为模数"
+      },
+      {
+        "id": "b",
+        "text": "快速幂不能处理非负指数"
+      },
+      {
+        "id": "c",
+        "text": "所有余数都等于零"
+      },
+      {
+        "id": "d",
+        "text": "b 可能不属于 a 的幂生成的子群"
+      }
+    ],
+    "correctOptionId": "d",
+    "explanation": "a 不一定是原根，它的幂可能只能覆盖非零余数的一部分。"
+  }
+]
