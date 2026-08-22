@@ -767,7 +767,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | 090304 | 树哈希 | 图论 | [graph-theory/tree-hashing.md](graph-theory/tree-hashing.md) |
 | 090305 | 最短路树 | 图论 | [graph-theory/shortest-path-tree.md](graph-theory/shortest-path-tree.md) |
 | 090306 | Boruvka 算法 | 图论 | [graph-theory/boruvka.md](graph-theory/boruvka.md) |
-| 090307 | 最大流与残量网络 | 图论 | `graph-theory/max-flow-residual-network.md` |
+| 090307 | 最大流与残量网络 | 图论 | [graph-theory/max-flow-residual-network.md](graph-theory/max-flow-residual-network.md) |
 | 090308 | Dinic 算法 | 图论 | `graph-theory/dinic-max-flow.md` |
 | 090309 | SAP 算法 | 图论 | `graph-theory/sap-max-flow.md` |
 | 090310 | 可行流 | 图论 | `graph-theory/feasible-flow.md` |
