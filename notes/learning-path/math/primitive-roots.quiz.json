@@ -1,0 +1,54 @@
+{
+  "articleKey": "primitive-roots",
+  "title": "阶与原根",
+  "questions": [
+    {
+      "id": "primitive-roots-1",
+      "prompt": "ord_m(a) 表示什么？",
+      "options": [
+        "使 a^k 同余于 1 的最小正整数 k",
+        "a 与 m 的最大公约数",
+        "小于 m 的质数个数",
+        "a 的质因数个数"
+      ],
+      "answer": 0,
+      "explanation": "乘法阶描述 a 的幂在模 m 意义下第一次回到 1 的正指数。"
+    },
+    {
+      "id": "primitive-roots-2",
+      "prompt": "g 是模 m 的原根意味着什么？",
+      "options": [
+        "g 一定是质数",
+        "ord_m(g) = phi(m)",
+        "g 等于 m - 1",
+        "g 的平方同余于 0"
+      ],
+      "answer": 1,
+      "explanation": "达到最大可能阶时，g 的幂生成全部与 m 互质的余数。"
+    },
+    {
+      "id": "primitive-roots-3",
+      "prompt": "质数 p 下判定 g 为原根，需要检查 p - 1 的哪些因数？",
+      "options": [
+        "只检查因数 1",
+        "检查所有合数因数",
+        "检查所有不同质因数 q 对应的 g^((p-1)/q)",
+        "不需要分解 p - 1"
+      ],
+      "answer": 2,
+      "explanation": "任何真因数阶都会被 p - 1 商中的至少一个质因数检测出来。"
+    },
+    {
+      "id": "primitive-roots-4",
+      "prompt": "为什么不能对任意 a 和 m 都直接定义本文的乘法阶？",
+      "options": [
+        "因为 m 必须是偶数",
+        "因为 a 必须小于 2",
+        "因为模运算不允许乘法",
+        "a 与 m 不互质时，正幂未必能够回到 1"
+      ],
+      "answer": 3,
+      "explanation": "互质保证 a 属于模 m 的可逆剩余类，欧拉定理才提供回到 1 的指数。"
+    }
+  ]
+}
