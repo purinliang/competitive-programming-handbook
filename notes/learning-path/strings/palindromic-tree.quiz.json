@@ -1,0 +1,54 @@
+{
+  "articleKey": "palindromic-tree",
+  "title": "回文自动机",
+  "questions": [
+    {
+      "id": "palindromic-tree-1",
+      "prompt": "回文自动机为什么建立长度 -1 和长度 0 两个根？",
+      "options": [
+        "为了保存两个输入字符串",
+        "为了把状态数量固定为偶数",
+        "统一处理单字符、奇数长度和偶数长度回文的扩展边界",
+        "为了让所有回文长度为负数"
+      ],
+      "answer": 2,
+      "explanation": "奇根保证单字符扩展必定成功，偶根表示空串，两者让奇偶回文共用同一查找逻辑。"
+    },
+    {
+      "id": "palindromic-tree-2",
+      "prompt": "加入位置 pos 的字符时，状态 u 能被扩展的比较位置是什么？",
+      "options": [
+        "pos + length[u]",
+        "length[u] - pos",
+        "pos - 1",
+        "pos - length[u] - 1"
+      ],
+      "answer": 3,
+      "explanation": "状态回文占据新字符之前的后缀；再向左一格才是需要与新右端字符相等的位置。"
+    },
+    {
+      "id": "palindromic-tree-3",
+      "prompt": "为什么 occurrence 要按回文长度从大到小沿 fail 传播？",
+      "options": [
+        "长回文的每个结束位置也是其严格回文后缀的结束位置",
+        "短回文永远只出现一次",
+        "fail 指针指向更长回文",
+        "为了删除所有偶数回文"
+      ],
+      "answer": 0,
+      "explanation": "逆长度顺序让深层贡献先汇入短后缀，并能继续沿失败链向上传播。"
+    },
+    {
+      "id": "palindromic-tree-4",
+      "prompt": "只求一个字符串的最长回文子串时，通常哪个算法更直接？",
+      "options": [
+        "Dijkstra",
+        "Manacher",
+        "Kruskal",
+        "线性筛"
+      ],
+      "answer": 1,
+      "explanation": "Manacher 直接维护每个中心的最大回文半径；回文自动机更适合不同回文及其后缀关系。"
+    }
+  ]
+}
