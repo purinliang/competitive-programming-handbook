@@ -743,7 +743,7 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 090101 | CDQ 分治 | 算法基础 | [algorithm-basics/cdq-divide-and-conquer.md](algorithm-basics/cdq-divide-and-conquer.md) |
-| 090102 | 整体二分 | 算法基础 | `algorithm-basics/parallel-binary-search.md` |
+| 090102 | 整体二分 | 算法基础 | [algorithm-basics/overall-binary-search.md](algorithm-basics/overall-binary-search.md) |
 
 ### 单元 02：数据结构
 

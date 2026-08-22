@@ -345,7 +345,7 @@
 | 030705 | 浮点数二分 | 待审阅 | [floating-point-binary-search.md](algorithm-basics/floating-point-binary-search.md) |
 | 030706 | 倍增 | 待审阅 | [doubling.md](algorithm-basics/doubling.md) |
 | *990202 | 三分搜索 | 计划 | `algorithm-basics/ternary-search.md` |
-| 090102 | 整体二分 | 计划 | `algorithm-basics/parallel-binary-search.md` |
+| 090102 | 整体二分 | 待审阅 | [overall-binary-search.md](algorithm-basics/overall-binary-search.md) |
 
 ### 离散化与离线处理
 
@@ -355,7 +355,7 @@
 | 070102 | 离线算法 | 待审阅 | [offline-algorithms.md](algorithm-basics/offline-algorithms.md) |
 | 070103 | 扫描线与事件排序 | 待审阅 | [sweep-line.md](algorithm-basics/sweep-line.md) |
 | 090101 | CDQ 分治 | 待审阅 | [cdq-divide-and-conquer.md](algorithm-basics/cdq-divide-and-conquer.md) |
-| 090102 | 整体二分 | 计划 | `algorithm-basics/parallel-binary-search.md` |
+| 090102 | 整体二分 | 待审阅 | [overall-binary-search.md](algorithm-basics/overall-binary-search.md) |
 
 ### 线性表
 
