@@ -11,6 +11,7 @@ import { StateMessage } from "./state-message";
 
 import {
   createRuntimeCatalog,
+  getCachedRuntimeNavigationManifest,
   getRuntimeNavigationManifest,
 } from "@/lib/content/runtime-data";
 
@@ -40,7 +41,9 @@ export function RuntimeDirectoryExperience({
 }) {
   const [attempt, setAttempt] = useState(0);
   const [error, setError] = useState(false);
-  const [manifest, setManifest] = useState<ContentManifest>();
+  const [manifest, setManifest] = useState<ContentManifest | undefined>(
+    getCachedRuntimeNavigationManifest,
+  );
 
   useEffect(() => {
     let cancelled = false;

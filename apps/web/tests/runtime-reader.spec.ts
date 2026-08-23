@@ -94,12 +94,37 @@ test("独立目录、搜索索引和正文错误状态可以读取", async ({ pa
     level: 1,
     name: "学习路线",
   })).toBeVisible();
+  await page.waitForTimeout(500);
 
-  await page.goto("/catalog/");
+  await page.evaluate(() => {
+    const state = window as Window & {
+      directoryLoadingSeen?: boolean;
+      directoryMarker?: string;
+    };
+    state.directoryLoadingSeen = false;
+    state.directoryMarker = "kept";
+    const observer = new MutationObserver(() => {
+      if (document.body.textContent?.includes("正在读取目录。")) {
+        state.directoryLoadingSeen = true;
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+
+  await page.locator(".site-nav").getByRole("link", {
+    name: "模块目录",
+  }).click();
   await expect(page.getByRole("heading", {
     level: 1,
     name: "模块目录",
   })).toBeVisible();
+  await expect.poll(() => page.evaluate(() => (
+    (window as Window & { directoryMarker?: string }).directoryMarker
+  ))).toBe("kept");
+  expect(await page.evaluate(() => (
+    (window as Window & { directoryLoadingSeen?: boolean })
+      .directoryLoadingSeen
+  ))).toBe(false);
 
   await page.goto("/search/");
   await page.getByPlaceholder("搜索标题、概念或代码名称").fill("ST表");

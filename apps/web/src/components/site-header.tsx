@@ -28,22 +28,28 @@ export function SiteHeader({
   return (
     <header className="site-header">
       <div className="site-header-inner">
-        <Link className="brand" href="/">
+        <Link appRoute className="brand" href="/">
           <Book aria-hidden="true" size={20} />
           <span>算法竞赛手册</span>
         </Link>
         <nav className="site-nav" aria-label="主导航">
           <Link
+            appRoute
             className={linkClass("learning-path")}
             href={learningPathHref}
             scroll={!learningPathHref.includes("article=")}
           >学习路线</Link>
           <Link
+            appRoute
             className={linkClass("catalog")}
             href={catalogHref}
             scroll={!catalogHref.includes("article=")}
           >模块目录</Link>
-          <Link className={linkClass("search")} href={searchHref}>搜索</Link>
+          <Link
+            appRoute
+            className={linkClass("search")}
+            href={searchHref}
+          >搜索</Link>
         </nav>
         <AccountControl />
       </div>

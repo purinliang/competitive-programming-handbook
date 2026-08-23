@@ -20,11 +20,13 @@ import type {
 import type { SearchRecord } from "../search-ranking";
 
 let contentManifestPromise: Promise<RuntimeContentManifest> | undefined;
+let navigationManifest: ContentManifest | undefined;
 let navigationManifestPromise: Promise<ContentManifest> | undefined;
 let releasePromise: Promise<RuntimeContentRelease> | undefined;
 
 export function resetRuntimeContentCache() {
   contentManifestPromise = undefined;
+  navigationManifest = undefined;
   navigationManifestPromise = undefined;
   releasePromise = undefined;
 }
@@ -76,11 +78,18 @@ export function getRuntimeNavigationManifest() {
   navigationManifestPromise ??= getRuntimeRelease()
     .then((release) => readRuntimeObject<ContentManifest>(
       release.navigation,
-    )).catch((error) => {
+    )).then((manifest) => {
+      navigationManifest = manifest;
+      return manifest;
+    }).catch((error) => {
       navigationManifestPromise = undefined;
       throw error;
     });
   return navigationManifestPromise;
+}
+
+export function getCachedRuntimeNavigationManifest() {
+  return navigationManifest;
 }
 
 export async function getRuntimeLearningProgressManifest() {
