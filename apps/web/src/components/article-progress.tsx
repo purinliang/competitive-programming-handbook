@@ -3,6 +3,7 @@
 import { useEffect, useSyncExternalStore } from "react";
 
 import { getLearningProgress } from "@/lib/collaboration-client";
+import { getRuntimeLearningProgressManifest } from "@/lib/content/runtime-data";
 import {
   LEARNING_PROGRESS_CHANGED_EVENT,
   LEARNING_PROGRESS_STORAGE_KEY,
@@ -42,10 +43,8 @@ function initializeProgress() {
   window.addEventListener("storage", (event) => {
     if (event.key === LEARNING_PROGRESS_STORAGE_KEY) refreshLocalProgress();
   });
-  fetch("/content/learning-progress.json")
-    .then(async (response) => {
-      if (!response.ok) throw new Error("小测清单加载失败");
-      const manifest = await response.json() as LearningProgressManifest;
+  getRuntimeLearningProgressManifest()
+    .then((manifest: LearningProgressManifest) => {
       definitions = new Map(Object.entries(manifest.articles));
       ready = true;
       emitChange();

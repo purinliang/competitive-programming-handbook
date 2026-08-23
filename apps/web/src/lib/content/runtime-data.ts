@@ -6,6 +6,7 @@ import type {
   CatalogArea,
   ContentManifest,
   DirectoryReturnTarget,
+  LearningProgressManifest,
   LearningQuiz,
   LearningStage,
   ModuleRecord,
@@ -13,11 +14,14 @@ import type {
   RenderedArticle,
   RuntimeContentManifest,
   RuntimeContentObject,
+  RuntimeContentRelease,
   RuntimeContentVariant,
 } from "./types";
+import type { SearchRecord } from "../search-ranking";
 
 let contentManifestPromise: Promise<RuntimeContentManifest> | undefined;
 let navigationManifestPromise: Promise<ContentManifest> | undefined;
+let releasePromise: Promise<RuntimeContentRelease> | undefined;
 
 async function readJson<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, init);
@@ -34,26 +38,55 @@ function verifiedObjectPath(object: RuntimeContentObject): string {
   return object.objectPath;
 }
 
-export function getRuntimeContentManifest() {
-  contentManifestPromise ??= readJson<RuntimeContentManifest>(
-    "/content/article-manifest.json",
+async function readRuntimeObject<T>(object: RuntimeContentObject) {
+  return await readJson<T>(verifiedObjectPath(object), {
+    cache: "force-cache",
+  });
+}
+
+export function getRuntimeRelease() {
+  releasePromise ??= readJson<RuntimeContentRelease>(
+    "/content/release.json",
     { cache: "no-cache" },
   ).catch((error) => {
-    contentManifestPromise = undefined;
+    releasePromise = undefined;
     throw error;
   });
+  return releasePromise;
+}
+
+export function getRuntimeContentManifest() {
+  contentManifestPromise ??= getRuntimeRelease()
+    .then((release) => readRuntimeObject<RuntimeContentManifest>(
+      release.articleManifest,
+    )).catch((error) => {
+      contentManifestPromise = undefined;
+      throw error;
+    });
   return contentManifestPromise;
 }
 
 export function getRuntimeNavigationManifest() {
-  navigationManifestPromise ??= readJson<ContentManifest>(
-    "/content/navigation.json",
-    { cache: "no-cache" },
-  ).catch((error) => {
-    navigationManifestPromise = undefined;
-    throw error;
-  });
+  navigationManifestPromise ??= getRuntimeRelease()
+    .then((release) => readRuntimeObject<ContentManifest>(
+      release.navigation,
+    )).catch((error) => {
+      navigationManifestPromise = undefined;
+      throw error;
+    });
   return navigationManifestPromise;
+}
+
+export async function getRuntimeLearningProgressManifest() {
+  const release = await getRuntimeRelease();
+  return await readRuntimeObject<LearningProgressManifest>(
+    release.learningProgress,
+  );
+}
+
+export async function getRuntimeSearchIndex() {
+  const release = await getRuntimeRelease();
+  return await readRuntimeObject<SearchRecord[]>(release.searchIndex);
 }
 
 export async function getRuntimeArticle(
@@ -412,9 +445,12 @@ export function createRuntimeCatalog(manifest: ContentManifest) {
   }
 
   return {
+    catalogAreas,
     catalogFallback,
     catalogNavigations,
     getArticle,
+    getModules,
+    learningGroups,
     learningFallback,
     learningNavigations,
   };

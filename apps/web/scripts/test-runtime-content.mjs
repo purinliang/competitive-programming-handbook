@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import {
-  access,
   readFile,
   readdir,
 } from "node:fs/promises";
@@ -35,13 +34,29 @@ async function verifyObject(object, expected = {}) {
   for (const [key, value] of Object.entries(expected)) {
     assert.equal(parsed[key], value);
   }
+  return parsed;
 }
 
-const [articleManifest, navigationManifest] = await Promise.all([
-  readJson(path.join(contentRoot, "article-manifest.json")),
-  readJson(path.join(contentRoot, "navigation.json")),
+const release = await readJson(path.join(contentRoot, "release.json"));
+assert.equal(release.version, 1);
+assert.match(release.releaseId, /^[0-9a-f]{16}$/u);
+
+const [
+  articleManifest,
+  interactionManifest,
+  learningProgress,
+  navigationManifest,
+  searchIndex,
+] = await Promise.all([
+  verifyObject(release.articleManifest, { version: 2 }),
+  verifyObject(release.interactionManifest, { version: 1 }),
+  verifyObject(release.learningProgress),
+  verifyObject(release.navigation),
+  verifyObject(release.searchIndex),
 ]);
 assert.equal(articleManifest.version, 2);
+assert.equal(Array.isArray(searchIndex), true);
+assert.equal(typeof learningProgress.articles, "object");
 
 const published = navigationManifest.articles.filter((article) => (
   article.exists && !["计划", "推迟"].includes(article.status)
@@ -70,10 +85,27 @@ for (const article of published) {
   }
 }
 
-await Promise.all([
-  access(path.join(contentRoot, "learning-progress.json")),
-  access(path.join(contentRoot, "search-index.json")),
-]);
+for (const [documentKey, document] of Object.entries(
+  interactionManifest.documents,
+)) {
+  await verifyObject(document, {
+    contentRevision: document.contentRevision,
+    documentEpoch: document.documentEpoch,
+  });
+  assert(documentKey.startsWith("learning-path:"));
+}
+
+const compatibilityFiles = {
+  "article-manifest.json": release.articleManifest,
+  "interaction-manifest.json": release.interactionManifest,
+  "learning-progress.json": release.learningProgress,
+  "navigation.json": release.navigation,
+  "search-index.json": release.searchIndex,
+};
+for (const [name, object] of Object.entries(compatibilityFiles)) {
+  const source = await readFile(path.join(contentRoot, name));
+  assert.equal(sha256(source), object.contentHash);
+}
 
 const readerHtml = await readFile(
   path.join(outputRoot, "reader/index.html"),

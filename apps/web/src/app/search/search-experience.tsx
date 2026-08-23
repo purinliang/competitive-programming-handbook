@@ -7,6 +7,7 @@ import { NavigationLink as Link } from "@/components/navigation-link";
 import { Panel } from "@/components/panel";
 import { StateMessage } from "@/components/state-message";
 import { getArticleStatusLabel } from "@/lib/content/status";
+import { getRuntimeSearchIndex } from "@/lib/content/runtime-data";
 import {
   getSearchDelay,
   isSearchableQuery,
@@ -50,8 +51,7 @@ export function SearchExperience() {
     }
 
     let cancelled = false;
-    void fetch("/content/search-index.json")
-      .then((response) => response.json())
+    void getRuntimeSearchIndex()
       .then((result: SearchRecord[]) => {
         if (!cancelled) setRecords(result);
       });

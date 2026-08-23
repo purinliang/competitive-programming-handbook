@@ -179,3 +179,13 @@ export interface RuntimeContentManifest {
   >;
   version: 2;
 }
+
+export interface RuntimeContentRelease {
+  articleManifest: RuntimeContentObject;
+  interactionManifest: RuntimeContentObject;
+  learningProgress: RuntimeContentObject;
+  navigation: RuntimeContentObject;
+  releaseId: string;
+  searchIndex: RuntimeContentObject;
+  version: 1;
+}
