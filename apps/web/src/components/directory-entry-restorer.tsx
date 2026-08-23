@@ -4,6 +4,13 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useLayoutEffect } from "react";
 
 import { scrollToElement } from "@/lib/scroll-to-element";
+import {
+  clearLegacyEntryQuery,
+  commitNavigationEntry,
+  readNavigationEntry,
+} from "@/lib/navigation-entry";
+
+import type { NavigationMode } from "@/lib/content/types";
 
 function findByDataAttribute(
   attribute: "areaKey" | "articleKey" | "entryKey" | "groupKey",
@@ -46,11 +53,26 @@ export function DirectoryEntryRestorer() {
   useLayoutEffect(() => {
     if (!/^\/(?:learning-path|catalog)\/?$/u.test(pathname)) return;
 
-    const entryKey = searchParams.get("entry");
+    const mode: NavigationMode = pathname.startsWith("/catalog")
+      ? "catalog"
+      : "learning-path";
+    const legacyEntryKey = searchParams.get("entry");
     const groupKey = searchParams.get("group");
     const areaKey = searchParams.get("area");
     const sectionKey = searchParams.get("section");
     const articleKey = searchParams.get("article");
+    const entryKey = legacyEntryKey ?? (articleKey
+      ? readNavigationEntry(articleKey, mode)
+      : null);
+    if (legacyEntryKey && articleKey) {
+      commitNavigationEntry({
+        articleKey,
+        entryKey: legacyEntryKey,
+        mode,
+      }, true);
+    } else if (legacyEntryKey) {
+      clearLegacyEntryQuery();
+    }
     const target = (entryKey ? findByDataAttribute("entryKey", entryKey) : undefined)
       ?? (articleKey
         ? findByDataAttribute("articleKey", articleKey)

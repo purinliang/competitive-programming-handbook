@@ -23,7 +23,6 @@ export function ArticleLink({
   );
   const title = `${article.kind === "extension" ? "*" : ""}${visibleTitle}`;
   const route = navigation === "learning-path" ? article.learningPathRoute : article.catalogRoute;
-  const href = entryKey ? `${route}?entry=${encodeURIComponent(entryKey)}` : route;
   const unavailable = !article.exists || article.status === "计划";
   if (unavailable) {
     return (
@@ -45,7 +44,12 @@ export function ArticleLink({
       className={`article-link${active ? " is-active" : ""}`}
       data-article-key={article.articleKey}
       data-entry-key={entryKey}
-      href={href}
+      href={route}
+      navigationEntry={entryKey && navigation ? {
+        articleKey: article.articleKey,
+        entryKey,
+        mode: navigation,
+      } : undefined}
     >
       <span>{title}</span>
       <ArticleProgress articleKey={article.articleKey} />

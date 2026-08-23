@@ -79,13 +79,7 @@ export async function ArticleExperience({
       <Suspense fallback={<SiteHeader activeSection={mode} />}>
         <ContextualSiteHeader
           articleKey={article.articleKey}
-          catalogEntryKeys={moduleNavigations.map((navigation) => (
-            navigation.activeEntryKey
-          ))}
           catalogFallback={getCatalogDirectoryFallback(article.articleKey)}
-          learningEntryKeys={learningNavigations.map((navigation) => (
-            navigation.activeEntryKey
-          ))}
           learningFallback={getLearningDirectoryFallback(article.articleKey)}
           mode={mode}
         />
@@ -94,7 +88,11 @@ export async function ArticleExperience({
         <Suspense
           fallback={<ArticleNavigationView mode={mode} navigation={defaultNavigation} />}
         >
-          <ContextualArticleNavigation mode={mode} navigations={navigations} />
+          <ContextualArticleNavigation
+            articleKey={article.articleKey}
+            mode={mode}
+            navigations={navigations}
+          />
         </Suspense>
 
         <main className="article-column">
@@ -146,7 +144,11 @@ export async function ArticleExperience({
               />
             )}
           >
-            <ContextualArticleNeighbors mode={mode} navigations={navigations} />
+            <ContextualArticleNeighbors
+              articleKey={article.articleKey}
+              mode={mode}
+              navigations={navigations}
+            />
           </Suspense>
         </main>
 
