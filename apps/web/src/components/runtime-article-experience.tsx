@@ -4,6 +4,7 @@ import {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -26,6 +27,7 @@ import {
   getRuntimeNavigationManifest,
   getRuntimeQuiz,
   parseArticleLocation,
+  resetRuntimeContentCache,
 } from "@/lib/content/runtime-data";
 import {
   commitNavigationEntry,
@@ -139,6 +141,7 @@ function RuntimeLoadingShell() {
 }
 
 export function RuntimeArticleExperience() {
+  const developmentScrollPosition = useRef<number | undefined>(undefined);
   const [attempt, setAttempt] = useState(0);
   const [activeEntryKey, setActiveEntryKey] = useState("");
   const [error, setError] = useState("");
@@ -153,6 +156,42 @@ export function RuntimeArticleExperience() {
     }
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  useEffect(() => {
+    if (process.env.NODE_ENV !== "development") return;
+    let disposed = false;
+    let releaseId = "";
+
+    async function checkForContentUpdate() {
+      try {
+        const response = await fetch(
+          `/content/release.json?development=${Date.now()}`,
+          { cache: "no-store" },
+        );
+        if (!response.ok || disposed) return;
+        const release = await response.json() as { releaseId?: string };
+        if (!release.releaseId) return;
+        if (!releaseId) {
+          releaseId = release.releaseId;
+          return;
+        }
+        if (release.releaseId === releaseId) return;
+        releaseId = release.releaseId;
+        developmentScrollPosition.current = window.scrollY;
+        resetRuntimeContentCache();
+        setAttempt((value) => value + 1);
+      } catch {
+        // 保存过程中 release.json 可能正被原子替换，下一轮会重试。
+      }
+    }
+
+    void checkForContentUpdate();
+    const timer = window.setInterval(checkForContentUpdate, 750);
+    return () => {
+      disposed = true;
+      window.clearInterval(timer);
+    };
   }, []);
 
   useEffect(() => {
@@ -250,6 +289,12 @@ export function RuntimeArticleExperience() {
     window.dispatchEvent(new CustomEvent("handbook:article-content-ready", {
       detail: { articleKey: loaded.article.articleKey },
     }));
+    const savedScrollPosition = developmentScrollPosition.current;
+    if (savedScrollPosition !== undefined) {
+      developmentScrollPosition.current = undefined;
+      window.scrollTo({ top: savedScrollPosition });
+      return;
+    }
     const id = decodeURIComponent(window.location.hash.slice(1));
     if (id) {
       document.getElementById(id)?.scrollIntoView({ block: "start" });

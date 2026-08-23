@@ -23,6 +23,12 @@ let contentManifestPromise: Promise<RuntimeContentManifest> | undefined;
 let navigationManifestPromise: Promise<ContentManifest> | undefined;
 let releasePromise: Promise<RuntimeContentRelease> | undefined;
 
+export function resetRuntimeContentCache() {
+  contentManifestPromise = undefined;
+  navigationManifestPromise = undefined;
+  releasePromise = undefined;
+}
+
 async function readJson<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, init);
   if (!response.ok) {
