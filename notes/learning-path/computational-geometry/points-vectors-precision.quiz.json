@@ -3,72 +3,72 @@
     "id": "point-vector-difference",
     "prompt": "点与向量最重要的语义区别是什么？",
     "options": [
-      { "id": "a", "text": "点表示位置，向量表示位移" },
-      { "id": "b", "text": "点只能用整数，向量只能用浮点数" },
-      { "id": "c", "text": "点有两个坐标，向量只有一个坐标" },
-      { "id": "d", "text": "二者在几何含义上完全相同" }
+      { "id": "a", "text": "点表示方向，向量表示位置" },
+      { "id": "b", "text": "点只能在二维中使用" },
+      { "id": "c", "text": "点表示位置，向量表示大小和方向" },
+      { "id": "d", "text": "二者在数学意义上完全相同" }
     ],
-    "correctOptionId": "a",
-    "explanation": "它们可以共用坐标结构，但一个回答在哪里，另一个回答移动多少。"
+    "correctOptionId": "c",
+    "explanation": "点回答在哪里，向量回答沿什么方向移动多少；二者只是在坐标表示上可以复用。"
   },
   {
     "id": "directed-vector",
     "prompt": "从点 $A$ 指向点 $B$ 的向量怎样计算？",
     "options": [
       { "id": "a", "text": "$A+B$" },
-      { "id": "b", "text": "$A-B$" },
-      { "id": "c", "text": "$B-A$" },
-      { "id": "d", "text": "$A\\times B$" }
-    ],
-    "correctOptionId": "c",
-    "explanation": "从起点走到终点所需的位移等于终点坐标减起点坐标。"
-  },
-  {
-    "id": "integer-geometry",
-    "prompt": "输入坐标为整数且计算只含加、减、乘时，为什么优先保留整数？",
-    "options": [
-      { "id": "a", "text": "因为整数一定更省内存" },
-      { "id": "b", "text": "可以避免不必要的浮点误差并进行精确判断" },
-      { "id": "c", "text": "因为 C++ 不支持浮点运算" },
-      { "id": "d", "text": "因为整数乘积永远不会溢出" }
+      { "id": "b", "text": "$B-A$" },
+      { "id": "c", "text": "$A-B$" },
+      { "id": "d", "text": "$-A-B$" }
     ],
     "correctOptionId": "b",
-    "explanation": "整数运算在范围内是精确的，但仍需选择足够宽的类型防止溢出。"
+    "explanation": "从起点到终点的位移等于终点坐标减起点坐标。"
   },
   {
-    "id": "epsilon-comparison",
-    "prompt": "判断浮点结果 $x$ 是否可视为 0，较合理的写法是什么？",
+    "id": "scalar-multiplication",
+    "prompt": "把非零向量 $a$ 乘以负数 $k$ 后，结果有什么变化？",
     "options": [
-      { "id": "a", "text": "`x == 0` 在所有情况下都可靠" },
-      { "id": "b", "text": "只判断 `x < 0`" },
-      { "id": "c", "text": "把 `x` 强制转换成整数" },
-      { "id": "d", "text": "判断 `abs(x) <= EPS`" }
-    ],
-    "correctOptionId": "d",
-    "explanation": "理论零值经过浮点运算后可能留下很小误差，需要允许一个误差范围。"
-  },
-  {
-    "id": "output-precision",
-    "prompt": "`setprecision(10)` 的主要作用是什么？",
-    "options": [
-      { "id": "a", "text": "规定浮点结果如何输出显示" },
-      { "id": "b", "text": "把所有计算改成精确有理数" },
-      { "id": "c", "text": "自动选择合适的 `EPS`" },
-      { "id": "d", "text": "防止整数乘法溢出" }
+      { "id": "a", "text": "方向反转，长度变为原来的 $|k|$ 倍" },
+      { "id": "b", "text": "方向不变，长度变为原来的 $k$ 倍" },
+      { "id": "c", "text": "方向反转，长度保持不变" },
+      { "id": "d", "text": "一定得到零向量" }
     ],
     "correctOptionId": "a",
-    "explanation": "输出格式不会改变此前计算使用的类型和内部误差。"
+    "explanation": "负号使方向反转，长度只能是非负数，因此按 $|k|$ 倍缩放。"
   },
   {
-    "id": "squared-distance",
-    "prompt": "只比较两段距离大小时，为什么常比较距离平方？",
+    "id": "unit-vector",
+    "prompt": "为什么不能把零向量单位化？",
     "options": [
-      { "id": "a", "text": "距离平方一定小于原距离" },
-      { "id": "b", "text": "它会改变两段距离的大小关系" },
-      { "id": "c", "text": "可以避免开方，并可能保持整数精度" },
-      { "id": "d", "text": "因为 `sqrt` 只能处理负数" }
+      { "id": "a", "text": "因为它的坐标不是整数" },
+      { "id": "b", "text": "因为单位向量只能存在于三维空间" },
+      { "id": "c", "text": "因为零向量与所有向量垂直" },
+      { "id": "d", "text": "因为它没有方向，而且需要除以长度 $0$" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "单位化需要除以向量长度；零向量长度为 0，也没有可以保留的方向。"
+  },
+  {
+    "id": "dot-product",
+    "prompt": "两个非零向量的点积为 $0$，能够推出什么？",
+    "options": [
+      { "id": "a", "text": "两个向量同向" },
+      { "id": "b", "text": "两个向量长度相等" },
+      { "id": "c", "text": "两个向量垂直" },
+      { "id": "d", "text": "两个向量都为单位向量" }
     ],
     "correctOptionId": "c",
-    "explanation": "非负数上平方根单调，比较平方与比较距离的顺序一致。"
+    "explanation": "由 $a\\cdot b=\\lVert a\\rVert\\lVert b\\rVert\\cos\\theta$，非零向量点积为 0 时夹角为 90 度。"
+  },
+  {
+    "id": "two-dimensional-cross-product",
+    "prompt": "在通常的二维坐标系中，$a\\times b>0$ 表示什么？",
+    "options": [
+      { "id": "a", "text": "从 $a$ 到 $b$ 顺时针转动" },
+      { "id": "b", "text": "从 $a$ 到 $b$ 逆时针转动" },
+      { "id": "c", "text": "$a$ 与 $b$ 垂直" },
+      { "id": "d", "text": "$a$ 与 $b$ 长度相等" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "在横轴向右、纵轴向上的坐标系中，二维叉积为正表示逆时针转动。"
   }
 ]

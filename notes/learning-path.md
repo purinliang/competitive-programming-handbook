@@ -653,7 +653,7 @@ IEEE 754 和整数类型的平台位宽继续作为浮点类型与整数类型�
 
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
-| 070401 | 坐标、点、向量与精度 | 计算几何 | [computational-geometry/points-vectors-precision.md](computational-geometry/points-vectors-precision.md) |
+| 070401 | 向量 | 计算几何 | [computational-geometry/points-vectors-precision.md](computational-geometry/points-vectors-precision.md) |
 | 070402 | 点积、叉积与方向判断 | 计算几何 | [computational-geometry/dot-cross-orientation.md](computational-geometry/dot-cross-orientation.md) |
 | 070403 | 直线、线段与相交判定 | 计算几何 | [computational-geometry/lines-segments-intersections.md](computational-geometry/lines-segments-intersections.md) |
 | 070404 | 多边形面积与点的位置 | 计算几何 | [computational-geometry/polygon-area-point-location.md](computational-geometry/polygon-area-point-location.md) |

@@ -1001,7 +1001,7 @@
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 070401 | 坐标、点、向量与精度 | 待审阅 | [points-vectors-precision.md](computational-geometry/points-vectors-precision.md) |
+| 070401 | 向量 | 待审阅 | [points-vectors-precision.md](computational-geometry/points-vectors-precision.md) |
 | 070402 | 点积、叉积与方向判断 | 待审阅 | [dot-cross-orientation.md](computational-geometry/dot-cross-orientation.md) |
 | 080501 | 极角排序 | 待审阅 | [computational-geometry/polar-angle-sort.md](computational-geometry/polar-angle-sort.md) |
 | 070403 | 直线、线段与相交判定 | 待审阅 | [lines-segments-intersections.md](computational-geometry/lines-segments-intersections.md) |
