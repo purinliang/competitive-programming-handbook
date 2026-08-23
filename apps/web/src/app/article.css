@@ -2,7 +2,7 @@
 .directory-layout,
 .search-layout {
   display: grid;
-  grid-template-columns: 248px minmax(0, 720px) 184px;
+  grid-template-columns: 264px minmax(0, 720px) 208px;
   gap: 24px;
   justify-content: center;
   width: 100%;
@@ -1271,16 +1271,16 @@
   .docs-layout,
   .directory-layout,
   .search-layout {
-    grid-template-columns: 232px minmax(0, 720px) 164px;
+    grid-template-columns: 248px minmax(0, 720px) 188px;
     gap: 20px;
   }
 }
 
-@media (max-width: 1160px) {
+@media (max-width: 1200px) {
   .docs-layout,
   .directory-layout,
   .search-layout {
-    grid-template-columns: 232px minmax(0, 720px);
+    grid-template-columns: 248px minmax(0, 720px);
   }
 
   .directory-layout {
