@@ -2,17 +2,17 @@
 .directory-layout,
 .search-layout {
   display: grid;
-  grid-template-columns: 248px minmax(0, 780px) 220px;
-  gap: 32px;
+  grid-template-columns: 224px minmax(0, 840px) 196px;
+  gap: 28px;
   justify-content: center;
   width: 100%;
-  max-width: 1356px;
+  max-width: 1480px;
   margin: 0 auto;
-  padding-inline: 40px;
+  padding-inline: var(--page-gutter);
 }
 
 .docs-layout {
-  padding: 32px 40px 96px;
+  padding: 32px var(--page-gutter) 96px;
 }
 
 .toc-sidebar,
@@ -357,8 +357,8 @@
 
 .markdown-body {
   color: var(--primary-text);
-  font-size: 16px;
-  line-height: 1.85;
+  font-size: 17px;
+  line-height: 1.8;
 }
 
 .markdown-body .katex {
@@ -1209,7 +1209,7 @@
   .docs-layout,
   .directory-layout,
   .search-layout {
-    grid-template-columns: 220px minmax(0, 760px);
+    grid-template-columns: 204px minmax(0, 800px);
   }
 
   .directory-layout {
@@ -1233,8 +1233,8 @@
 
   .docs-layout {
     display: block;
-    width: min(100% - 32px, 780px);
-    padding-inline: 0;
+    width: 100%;
+    padding-inline: var(--page-gutter);
     padding-top: 28px;
   }
 
@@ -1244,18 +1244,18 @@
 
   .directory-layout {
     display: block;
-    width: min(100% - 28px, 1120px);
-    padding-inline: 0;
+    width: 100%;
+    padding-inline: var(--page-gutter);
   }
 
   .search-layout {
     display: block;
-    width: min(100% - 28px, 780px);
-    padding-inline: 0;
+    width: 100%;
+    padding-inline: var(--page-gutter);
   }
 
   .markdown-body {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .markdown-body pre,
