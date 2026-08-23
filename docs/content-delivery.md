@@ -1,27 +1,33 @@
 # 正文数据与页面外壳分离
 
-> 最近修订：2026-08-23
+> 最近修订：2026-08-24
 
 本文记录如何让正文不再静态嵌入每篇文章的 HTML 和 Next.js 导航载荷，以及迁移
-过程中的测量、协议和回滚边界。2026-08-23 起，后缀数组两篇正文已经作为第一批
-公网试点使用运行时正文对象；其余文章仍使用原有静态正文，整站共享 SPA 尚未切换。
+过程中的测量、协议和回滚边界。
 
-## 当前试点
+## 当前实现
 
-受版本控制的 `apps/web/runtime-content.json` 目前登记：
+全部已发表文章已经使用同一个 `/reader/` React 阅读外壳。Worker 把原有文章 URL
+内部映射到这个外壳，浏览器地址仍保持：
 
-- `strings/suffix-array`；
-- `strings/suffix-array-lcp-array`。
+```text
+/learning-path/<module>/<slug>/
+/catalog/<module>/<slug>/
+```
 
-构建流程把两个导航版本编译到 `public/content/objects/<sha256>.json`，并在
-`public/content/article-manifest.json` 建立映射。相同的学习正文和模块正文自动复用
-同一个对象。页面仍由 Next.js 静态导出，但初始 HTML 与 RSC 只保留正文骨架、目录和
-交互元数据，不再包含正文句子或代码；浏览器从同源 `/content/*` 读取正文。
+构建流程把正文、小测、导航、搜索索引和逐文章交互定义编译到
+`public/content/objects/<sha256>.json`。相同的学习正文和模块正文自动复用同一个
+对象。`release.json` 是唯一的可变版本指针：发布器先写完所有不可变对象，最后才
+覆盖它。初始 HTML 与 RSC 只包含页面骨架，不包含正文句子、代码、目录数据或题目。
 
 Worker 已经接管 `/content/*`：若存在 `CONTENT` R2 binding，则优先读取 R2；否则或
-对象未命中时回退到同路径 Static Assets。清单使用一分钟重新验证缓存，内容哈希对象
-使用一年不可变缓存。当前 Cloudflare 账户尚未启用 R2，公网试点正在使用已经验证的
-Static Assets 回退；这个差异不改变浏览器协议。
+对象未命中时回退到同路径 Static Assets。`release.json` 使用一分钟重新验证缓存，
+内容哈希对象使用一年不可变缓存。本地构建与迁移期部署使用同一份 Static Assets
+数据源，因此 UI 测试不依赖公网 R2。
+
+原来编译进 Worker 的 `interaction-manifest.json` 已拆成逐文章对象。评论、已阅和
+答题接口按当前 release 读取交互定义，正文修改不会再迫使 Worker 重新打包 2.6 MB
+出版数据。
 
 文章链接不再生成 `?entry=`。当前导航入口保存在 `history.state`，并用当前标签页的
 `sessionStorage` 作为刷新后备；旧链接仍会读取一次参数并通过
@@ -48,9 +54,9 @@ Git Markdown ──编译──> 版本化正文对象 ──读取──> 共�
 初始 HTML 只包含应用外壳、加载占位和 JavaScript 入口，不包含任何文章正文。
 浏览器从当前 URL 得到导航模式与 `article_key`，再读取相应正文对象。
 
-## 当前问题
+## 迁移前的问题与测量
 
-当前 `next.config.ts` 使用 `output: "export"`。学习路线和模块目录分别调用
+迁移前 `next.config.ts` 使用 `output: "export"`。学习路线和模块目录分别调用
 `generateStaticParams()`，为每篇公开正文生成一条静态路由。构建时，Next.js 把
 正文写入初始 HTML，又把相同内容写入客户端导航所需的 RSC 载荷。
 
@@ -154,7 +160,7 @@ objects/<sha256>.json
 
 直接打开文章时：
 
-1. 静态资源服务为任意文章 URL 返回同一个 `index.html`；
+1. Worker 为任意文章 URL 返回同一个 `/reader/` 静态外壳；
 2. 客户端路由从 URL 解析导航模式和 `article_key`；
 3. 页面显示固定高度的正文骨架，同时读取文章清单和对应导航；
 4. 根据清单读取版本化正文对象；
@@ -183,11 +189,12 @@ objects/<sha256>.json
 
 内容哈希对象使用长期不可变缓存。文章清单使用短缓存和重新验证；发布顺序必须先
 上传新对象，再更新清单，因此读者不会得到指向尚不存在对象的入口。旧对象至少保留
-一个回滚周期，清理工作独立进行。
+一个回滚版本。发布状态记录每个版本的完整引用集合；第三个版本切换成功后，仅删除
+“过期版本引用 − 当前版与上一版引用”的对象。Git 历史负责更早版本的重新构建。
 
 ## 平台选择
 
-### 推荐：React SPA、Static Assets 与 R2
+### 推荐：共享 React 阅读壳、Static Assets 与 R2
 
 严格要求“正文不进入初始 HTML”时，React SPA 与这个模型最一致：构建只产生一个
 HTML 外壳和共享 JavaScript/CSS。Cloudflare Workers Static Assets 支持把未命中
@@ -197,9 +204,9 @@ Worker：
 - [Cloudflare SPA 路由](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/)
 - [Cloudflare Static Assets](https://developers.cloudflare.com/workers/static-assets/)
 
-当前 UI 组件可以继续使用 React。仓库中直接依赖 `next/link`、`next/navigation` 或
-Next 页面约定的文件数量很少，主要集中在路由和上下文恢复边界；迁移不等于重写视觉
-组件。Vite 只负责产生共享 SPA 资源，内容协议与具体前端构建工具无关。
+当前 UI 继续使用 React 和 Next.js 静态导出，但只生成固定数量的页面外壳。文章站内
+切换由共享阅读器管理，普通文章链接仍可直接访问、刷新、前进、后退和带锚点打开。
+内容协议不依赖 Next.js 页面数量，以后更换前端构建工具也不需要迁移正文数据。
 
 R2 对象读写具有全局强一致性，适合发布版本化文档对象：
 
@@ -240,35 +247,32 @@ KV 的一致性限制和 OpenNext 当前能力分别见：
 前提下增加只负责元数据或搜索引擎快照的渲染层。不能为了尚未测量的 SEO 需求恢复
 全量路由复制。
 
-## 迁移顺序
+## 迁移状态
 
-1. 保留当前公网版本，先让内容编译器稳定生成去重后的正文、小测和导航对象；
-2. 为本地开发增加与 R2 相同的文件数据源，使 UI 测试不依赖线上资源；
-3. 建立 React SPA 阅读外壳，迁移当前导航、正文目录、小测、评论和登录状态组件；
-4. 在独立预览入口验证直接访问、刷新、站内跳转、返回目录、锚点、搜索和错误状态；
-5. 创建 R2 bucket 和 `/content/*` Worker 路由，上传对象后再更新发布清单；
-6. 将 Static Assets 改为 SPA 回落，切换正式文章路由；
-7. 删除两组 `generateStaticParams()` 和按文章生成的 HTML/RSC 文件；
-8. 分离 `build:web`、`publish:content` 和 `deploy:worker`：正文修改只执行内容发布，
-   UI 与 Worker 修改才执行各自部署；
-9. 保留切换前的 Cloudflare Worker 版本和旧静态资源，完成公网验收后再清理旧对象。
+1. 已完成全站正文、小测、导航、搜索和交互定义的内容寻址编译；
+2. 已完成 Static Assets 本地数据源和 R2 读取回退；
+3. 已完成共享 React 阅读外壳与正式文章路由切换；
+4. 已删除两组 `generateStaticParams()` 和逐文章 HTML/RSC；
+5. 已验证直接访问、刷新、锚点、站内切换、浏览器返回和公开讨论读取；
+6. 已完成 R2 增量发布器及本地模拟测试；
+7. 已启用 R2、创建 `handbook-content` bucket 并加入 `CONTENT` binding；
+8. 待首次上传后完成公网登录、评论、答题、缓存和回滚验收，再拆分自动部署触发条件。
 
 迁移不修改 D1 表，也不改变 `article_key`、`documentEpoch`、分节 ID 或题目 ID。出现
 问题时可以直接把流量切回当前静态导出版本，内容对象不影响旧站运行。
 
-## 本地原型
+## 本地验证
 
 运行：
 
 ```bash
 cd apps/web
 pnpm content:prepare
-pnpm content:prototype
+pnpm test:runtime-content
+pnpm test:runtime-browser
+pnpm test:content-publish
 ```
 
-脚本读取现有 `.content-cache/`，把相同出版版本按内容哈希合并，结果写入已忽略的
-`.content-object-prototype/`。目录包含固定 `shell.html`、`shell.js`、正文与小测
-对象、文章清单、导航、搜索索引和测量报告。脚本会检查页面壳不含正文身份，并验证
-清单引用的每个正文对象都存在；连续运行时不会重写已有的内容哈希对象。
-
-这个原型只验证发布模型和规模，不接管现有路由，也不代表最终 UI 实现。
+第一项检查 release 及其全部引用；第二项通过真实浏览器检查文章路由、锚点、站内
+切换、目录、搜索和错误状态；第三项使用 Wrangler 本地 R2，验证相同版本不上传、
+单篇正文变化只增加必要对象、release 最后切换，并只保留当前版与上一版。

@@ -21,10 +21,16 @@ pnpm db:migrate:remote
 
 ## GitHub 登录
 
-GitHub OAuth App 的 Homepage URL 使用网站公开 origin，Authorization callback URL 为：
+GitHub OAuth App 的 Homepage URL 为：
 
 ```text
-https://<公开域名>/api/auth/callback/github
+https://competitive-programming-handbook.purinliang.workers.dev/
+```
+
+Authorization callback URL 为：
+
+```text
+https://competitive-programming-handbook.purinliang.workers.dev/api/auth/callback/github
 ```
 
 第一版只有“使用 GitHub 登录”，没有站内密码注册表单。首次授权成功后，Better Auth 会自动建立站内用户。
@@ -61,10 +67,15 @@ pnpm deploy
 
 ## 正文对象与 R2
 
-`pnpm content:prepare` 会根据 `runtime-content.json` 生成被 Git 忽略的
-`public/content/`。发布产物必须包含清单和它引用的全部内容哈希对象。Worker 为清单
-设置短缓存，为 `objects/<sha256>.json` 设置不可变缓存；不能先发布引用一个尚未存在
-对象的新清单。
+`pnpm content:prepare` 会生成被 Git 忽略的 `public/content/`。发布产物包含
+`release.json` 及其引用的全部内容哈希对象。Worker 为 release 设置短缓存，为
+`objects/<sha256>.json` 设置不可变缓存。`pnpm publish:content` 只上传 R2 中尚不存在
+的对象，随后更新兼容清单，最后才原子覆盖 `release.json`。
+
+发布状态会记录每个版本实际引用的对象。R2 只保留当前版本和上一个版本：第三个版本
+成功切换后，发布器计算“过期版本引用 − 两个保留版本引用”，只删除这个差集和过期
+版本快照。共享对象不会重复上传，也不会因为另一个版本过期而被误删；更早版本由
+Git 历史重新构建。
 
 没有 R2 binding 时，`/content/*` 自动回退到 Static Assets，可以完成本地预览和迁移
 期部署。要启用 R2，先在 Cloudflare Dashboard 为账户启用 R2，再创建私有 bucket：
@@ -74,9 +85,15 @@ pnpm exec wrangler r2 bucket create handbook-content
 ```
 
 随后在 `wrangler.jsonc` 中加入 `CONTENT` R2 binding。bucket 不需要公开域名；浏览器
-始终从同源 Worker 读取。上传流程必须先写入内容哈希对象，全部成功后再覆盖
-`article-manifest.json`。R2 未启用以前不能提前加入一个指向不存在 bucket 的生产
-binding，否则 Worker 部署会失败。
+始终从同源 Worker 读取。R2 未启用以前不能提前加入一个指向不存在 bucket 的生产
+binding，否则 Worker 部署会失败。首次上传和后续增量发布统一运行：
+
+```bash
+pnpm publish:content
+```
+
+GitHub Actions 使用的 Cloudflare API Token 除 Workers 编辑权限外，还需要目标账户的
+R2 对象读写权限；本地 `wrangler login` 的 OAuth 凭据不会进入 GitHub。
 
 ## GitHub 自动部署
 
