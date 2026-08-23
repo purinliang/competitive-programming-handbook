@@ -15,16 +15,16 @@
 
 > 当前静态导出已经完成第一阶段上线，但正文数量增长后暴露出按文章生成 HTML/RSC
 > 的显著重复。下一阶段的正文与页面外壳分离研究、测量和迁移边界见
-> [正文数据与页面外壳分离](content-delivery.md)。迁移完成以前，下面仍描述当前公网
-> 版本，不表示新的正文发布方式已经生效。
+> [正文数据与页面外壳分离](content-delivery.md)。后缀数组两篇已经进入运行时正文
+> 试点，其余文章仍处于静态正文阶段；下面同时描述当前主架构与已经生效的迁移边界。
 
 网站统一部署在 Cloudflare：
 
 - 第一阶段使用 Next.js App Router 静态导出；Cloudflare Workers Static Assets 直接分发 HTML、RSC 数据、CSS、JavaScript、SVG 和搜索索引，不部署 Next.js 运行时 Worker。
 - Markdown、目录与 Shiki 只在构建期运行。正文增长只增加静态资源，不占用 Worker 脚本大小额度。
-- 用户数据由只处理 `/api/*` 的轻量 Worker 提供；公开正文仍保持静态，不随请求重新渲染。
+- 用户数据由 `/api/*` 的轻量 Worker 提供；`/content/*` 负责读取构建期生成的静态正文对象，不在请求时渲染 Markdown。
 - D1 保存用户、进度、作答和讨论等结构化数据。
-- R2 只在出现用户上传图片或附件时启用。
+- R2 计划保存版本化正文对象，也可以在以后保存用户上传图片或附件；账户尚未启用 R2 时，正文协议回退到 Static Assets。
 - Turnstile 用于保护注册、登录、留言和试卷提交等公开入口。
 - Queues、Cron Triggers、KV 和 Durable Objects 只在出现相应需求时启用，不为了凑齐产品而提前引入。
 

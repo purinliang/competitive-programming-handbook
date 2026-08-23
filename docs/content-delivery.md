@@ -1,10 +1,31 @@
 # 正文数据与页面外壳分离
 
-> 研究日期：2026-08-23
+> 最近修订：2026-08-23
 
-本文研究如何让正文不再静态嵌入每篇文章的 HTML 和 Next.js 导航载荷。它记录
-目标架构、原型测量和迁移边界；迁移完成以前，当前公网版本仍使用原有静态导出，
-不能把本文当作已经生效的部署说明。
+本文记录如何让正文不再静态嵌入每篇文章的 HTML 和 Next.js 导航载荷，以及迁移
+过程中的测量、协议和回滚边界。2026-08-23 起，后缀数组两篇正文已经作为第一批
+公网试点使用运行时正文对象；其余文章仍使用原有静态正文，整站共享 SPA 尚未切换。
+
+## 当前试点
+
+受版本控制的 `apps/web/runtime-content.json` 目前登记：
+
+- `strings/suffix-array`；
+- `strings/suffix-array-lcp-array`。
+
+构建流程把两个导航版本编译到 `public/content/objects/<sha256>.json`，并在
+`public/content/article-manifest.json` 建立映射。相同的学习正文和模块正文自动复用
+同一个对象。页面仍由 Next.js 静态导出，但初始 HTML 与 RSC 只保留正文骨架、目录和
+交互元数据，不再包含正文句子或代码；浏览器从同源 `/content/*` 读取正文。
+
+Worker 已经接管 `/content/*`：若存在 `CONTENT` R2 binding，则优先读取 R2；否则或
+对象未命中时回退到同路径 Static Assets。清单使用一分钟重新验证缓存，内容哈希对象
+使用一年不可变缓存。当前 Cloudflare 账户尚未启用 R2，公网试点正在使用已经验证的
+Static Assets 回退；这个差异不改变浏览器协议。
+
+文章链接不再生成 `?entry=`。当前导航入口保存在 `history.state`，并用当前标签页的
+`sessionStorage` 作为刷新后备；旧链接仍会读取一次参数并通过
+`history.replaceState()` 清理 URL。
 
 ## 结论
 

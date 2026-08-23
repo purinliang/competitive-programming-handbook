@@ -1,6 +1,8 @@
 # Cloudflare 协作学习部署
 
-公开正文由 Workers Static Assets 直接分发，只有 `/api/*` 进入 Hono Worker。D1 保存账户与用户状态，不保存 Markdown、题目正文或 SVG。
+公开页面由 Workers Static Assets 分发。`/api/*` 进入 Hono Worker；`/content/*`
+同样先进入 Worker，并在可选 R2 与 Static Assets 之间使用同一套正文对象协议。D1
+保存账户与用户状态，不保存 Markdown、题目正文或 SVG。
 
 ## 首次建立资源
 
@@ -56,6 +58,25 @@ pnpm deploy
 ```
 
 部署后至少检查公开文章、`/api/health`、GitHub 登录、已阅同步、私密讨论和匿名公开讨论。
+
+## 正文对象与 R2
+
+`pnpm content:prepare` 会根据 `runtime-content.json` 生成被 Git 忽略的
+`public/content/`。发布产物必须包含清单和它引用的全部内容哈希对象。Worker 为清单
+设置短缓存，为 `objects/<sha256>.json` 设置不可变缓存；不能先发布引用一个尚未存在
+对象的新清单。
+
+没有 R2 binding 时，`/content/*` 自动回退到 Static Assets，可以完成本地预览和迁移
+期部署。要启用 R2，先在 Cloudflare Dashboard 为账户启用 R2，再创建私有 bucket：
+
+```bash
+pnpm exec wrangler r2 bucket create handbook-content
+```
+
+随后在 `wrangler.jsonc` 中加入 `CONTENT` R2 binding。bucket 不需要公开域名；浏览器
+始终从同源 Worker 读取。上传流程必须先写入内容哈希对象，全部成功后再覆盖
+`article-manifest.json`。R2 未启用以前不能提前加入一个指向不存在 bucket 的生产
+binding，否则 Worker 部署会失败。
 
 ## GitHub 自动部署
 
