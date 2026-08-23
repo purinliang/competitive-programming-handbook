@@ -50,7 +50,7 @@ export function SearchExperience() {
     }
 
     let cancelled = false;
-    void fetch("/search-index.json")
+    void fetch("/content/search-index.json")
       .then((response) => response.json())
       .then((result: SearchRecord[]) => {
         if (!cancelled) setRecords(result);

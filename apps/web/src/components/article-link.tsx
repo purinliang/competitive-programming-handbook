@@ -23,7 +23,8 @@ export function ArticleLink({
   );
   const title = `${article.kind === "extension" ? "*" : ""}${visibleTitle}`;
   const route = navigation === "learning-path" ? article.learningPathRoute : article.catalogRoute;
-  const unavailable = !article.exists || article.status === "计划";
+  const unavailable = !article.exists
+    || ["计划", "推迟"].includes(article.status);
   if (unavailable) {
     return (
       <span

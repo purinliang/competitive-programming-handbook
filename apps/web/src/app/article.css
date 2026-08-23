@@ -397,6 +397,17 @@
   text-align: center;
 }
 
+.article-runtime-route-error {
+  display: grid;
+  min-height: calc(100vh - 68px);
+  place-content: center;
+  justify-items: center;
+  gap: 18px;
+  padding: clamp(24px, 4vw, 48px);
+  color: var(--secondary-text);
+  text-align: center;
+}
+
 @keyframes runtime-content-pulse {
   from {
     opacity: 0.42;

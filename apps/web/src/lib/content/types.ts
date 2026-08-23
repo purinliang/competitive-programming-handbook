@@ -75,6 +75,11 @@ export interface LearningStage {
   units: LearningUnit[];
 }
 
+export interface ContentManifest {
+  articles: ArticleRecord[];
+  stages: LearningStage[];
+}
+
 export interface LearningUnit {
   key: string;
   number: string;
@@ -153,4 +158,24 @@ export interface LearningQuestion {
 export interface LearningQuiz {
   revision: string;
   questions: LearningQuestion[];
+}
+
+export interface RuntimeContentObject {
+  bytes: number;
+  contentHash: string;
+  objectPath: string;
+}
+
+export interface RuntimeContentVariant extends RuntimeContentObject {
+  contentRevision: string;
+  documentEpoch: number;
+  quiz?: RuntimeContentObject & { revision: string };
+}
+
+export interface RuntimeContentManifest {
+  articles: Record<
+    string,
+    Partial<Record<NavigationMode, RuntimeContentVariant>>
+  >;
+  version: 2;
 }

@@ -19,6 +19,21 @@ import type { AppEnv } from "./types";
 
 const app = new Hono<AppEnv>();
 
+app.on(
+  ["GET", "HEAD"],
+  [
+    "/learning-path/:module/:slug",
+    "/learning-path/:module/:slug/",
+    "/catalog/:module/:slug",
+    "/catalog/:module/:slug/",
+  ],
+  async (c) => {
+    const assetUrl = new URL("/reader/", c.req.url);
+    const request = new Request(assetUrl, c.req.raw);
+    return await c.env.ASSETS.fetch(request);
+  },
+);
+
 function contentCacheControl(key: string) {
   return key.startsWith("objects/")
     ? "public, max-age=31536000, immutable"

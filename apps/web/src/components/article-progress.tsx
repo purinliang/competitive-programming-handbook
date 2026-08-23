@@ -42,7 +42,7 @@ function initializeProgress() {
   window.addEventListener("storage", (event) => {
     if (event.key === LEARNING_PROGRESS_STORAGE_KEY) refreshLocalProgress();
   });
-  fetch("/learning-progress.json")
+  fetch("/content/learning-progress.json")
     .then(async (response) => {
       if (!response.ok) throw new Error("小测清单加载失败");
       const manifest = await response.json() as LearningProgressManifest;
