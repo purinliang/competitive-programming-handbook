@@ -51,13 +51,14 @@ function visibleName(
   return "匿名同学";
 }
 
-function validateTarget(
+async function validateTarget(
+  env: AppEnv["Bindings"],
   documentKey: string,
   targetKind: string,
   targetId: string,
   targetRevision: string,
 ) {
-  const document = getDocument(documentKey);
+  const document = await getDocument(env, documentKey);
   if (!document) {
     throw new HTTPException(404, { message: "文章不存在" });
   }
@@ -75,7 +76,7 @@ function validateTarget(
   if (targetKind !== "section") {
     throw new HTTPException(400, { message: "讨论目标无效" });
   }
-  const section = getSection(documentKey, targetId);
+  const section = getSection(document, targetId);
   if (!section || section.revision !== targetRevision) {
     throw new HTTPException(409, { message: "本节已经更新，请刷新页面" });
   }
@@ -91,7 +92,7 @@ export const discussionRoutes = new Hono<AppEnv>();
 
 discussionRoutes.get("/api/discussions/summary", async (c) => {
   const documentKey = c.req.query("document_key") ?? "";
-  const document = getDocument(documentKey);
+  const document = await getDocument(c.env, documentKey);
   if (!document) {
     throw new HTTPException(404, { message: "文章不存在" });
   }
@@ -139,7 +140,7 @@ discussionRoutes.get("/api/discussions", async (c) => {
   const includeHistory = targetKind === "article"
     && targetId === "article"
     && c.req.query("include_history") === "1";
-  const document = getDocument(documentKey);
+  const document = await getDocument(c.env, documentKey);
   if (!document || !["article", "section"].includes(targetKind) || !targetId) {
     throw new HTTPException(400, { message: "讨论目标无效" });
   }
@@ -147,7 +148,7 @@ discussionRoutes.get("/api/discussions", async (c) => {
   const viewer = await getOptionalViewer(c);
   const isAdmin = viewer?.role === "admin" ? 1 : 0;
   const viewerId = viewer?.id ?? "";
-  const targetIds = getSectionIds(documentKey, targetId);
+  const targetIds = getSectionIds(document, targetId);
   const targetPlaceholders = targetIds.map(() => "?").join(", ");
   const currentSectionIds = document.sections.flatMap(
     (section) => [section.id, ...section.legacyIds],
@@ -213,7 +214,7 @@ discussionRoutes.get("/api/discussions", async (c) => {
   const threads = [];
   for (const thread of threadResult.results) {
     const currentSection = thread.targetKind === "section"
-      ? getSection(documentKey, thread.targetId)
+      ? getSection(document, thread.targetId)
       : undefined;
     const comments = (commentsByThread.get(thread.id) ?? []).flatMap((comment) => {
       if (comment.status === "hidden" && viewer?.role !== "admin") {
@@ -285,7 +286,13 @@ discussionRoutes.post("/api/discussions", requireSession, async (c) => {
   }
   const visibility = body.visibility === "public" ? "public" : "private";
   const anonymous = body.anonymous === true;
-  const target = validateTarget(documentKey, targetKind, targetId, targetRevision);
+  const target = await validateTarget(
+    c.env,
+    documentKey,
+    targetKind,
+    targetId,
+    targetRevision,
+  );
   const user = c.get("user");
   const threadId = crypto.randomUUID();
   const commentId = crypto.randomUUID();

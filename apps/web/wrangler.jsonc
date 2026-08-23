@@ -22,5 +22,11 @@
       "database_id": "b7c18c04-76ec-49fc-857b-33d9a3eded25",
       "migrations_dir": "migrations"
     }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "CONTENT",
+      "bucket_name": "handbook-content"
+    }
   ]
 }

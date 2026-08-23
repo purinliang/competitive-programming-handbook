@@ -10,6 +10,7 @@ import {
   getSection,
   getSectionIds,
 } from "./content-manifest";
+import { getPublishedContent } from "./content-store";
 import { discussionRoutes } from "./discussions";
 import { assertSameOrigin, readObject } from "./request";
 import { enforceRateLimit } from "./security";
@@ -53,29 +54,10 @@ app.on(["GET", "HEAD"], ["/content/*"], async (c) => {
     throw new HTTPException(404, { message: "正文对象不存在" });
   }
 
-  if (c.env.CONTENT) {
-    try {
-      const object = await c.env.CONTENT.get(key);
-      if (object) {
-        const headers = new Headers();
-        headers.set("cache-control", contentCacheControl(key));
-        headers.set(
-          "content-type",
-          object.httpMetadata?.contentType
-            ?? "application/json; charset=utf-8",
-        );
-        headers.set("etag", object.httpEtag);
-        return new Response(c.req.method === "HEAD" ? null : object.body, {
-          headers,
-        });
-      }
-    } catch (error) {
-      console.error("R2 正文读取失败，回退到 Static Assets", error);
-    }
+  const asset = await getPublishedContent(c.env, key, c.req.method);
+  if (!asset) {
+    throw new HTTPException(404, { message: "正文对象不存在" });
   }
-
-  const asset = await c.env.ASSETS.fetch(c.req.raw);
-  if (!asset.ok) return asset;
   const headers = new Headers(asset.headers);
   headers.set("cache-control", contentCacheControl(key));
   return new Response(c.req.method === "HEAD" ? null : asset.body, {
@@ -144,7 +126,7 @@ app.get("/api/me", async (c) => {
 
 app.get("/api/learning/state", requireSession, async (c) => {
   const documentKey = c.req.query("document_key") ?? "";
-  const document = getDocument(documentKey);
+  const document = await getDocument(c.env, documentKey);
   if (!document) {
     throw new HTTPException(404, { message: "文章不存在" });
   }
@@ -174,7 +156,7 @@ app.get("/api/learning/state", requireSession, async (c) => {
 
   const currentSections = new Map<string, SectionProgressRow>();
   for (const record of sections.results) {
-    const section = getSection(documentKey, record.sectionId);
+    const section = getSection(document, record.sectionId);
     if (!section) continue;
     const current = currentSections.get(section.id);
     if (!current || record.updatedAt > current.updatedAt) {
@@ -207,7 +189,7 @@ app.get("/api/learning/progress", requireSession, async (c) => {
      WHERE position = 1`,
   ).bind(c.get("user").id).all<LearningProgressRow>();
 
-  const documents = getDocuments();
+  const documents = await getDocuments(c.env);
   const progress = new Map<string, {
     documentEpoch: number;
     documentKey: string;
@@ -251,14 +233,14 @@ app.post("/api/learning/sections", requireSession, async (c) => {
     throw new HTTPException(400, { message: "已阅状态无效" });
   }
   const read = body.read;
-  const document = getDocument(documentKey);
-  const section = getSection(documentKey, sectionId);
+  const document = await getDocument(c.env, documentKey);
+  const section = document ? getSection(document, sectionId) : undefined;
   if (!document || !section || section.revision !== sectionRevision) {
     throw new HTTPException(409, { message: "本节内容已经更新，请刷新页面" });
   }
 
   const user = c.get("user");
-  const sectionIds = getSectionIds(documentKey, section.id);
+  const sectionIds = getSectionIds(document, section.id);
   const placeholders = sectionIds.map(() => "?").join(", ");
   const now = Date.now();
   const archiveProgress = c.env.DB.prepare(
@@ -315,8 +297,10 @@ app.post("/api/learning/questions/attempts", requireSession, async (c) => {
   const questionId = typeof body.questionId === "string" ? body.questionId : "";
   const questionRevision = typeof body.questionRevision === "string" ? body.questionRevision : "";
   const selectedOptionId = typeof body.selectedOptionId === "string" ? body.selectedOptionId : "";
-  const document = getDocument(documentKey);
-  const question = getQuestion(documentKey, questionId);
+  const document = await getDocument(c.env, documentKey);
+  const question = document
+    ? getQuestion(document, questionId)
+    : undefined;
   if (!document || !question || question.revision !== questionRevision) {
     throw new HTTPException(409, { message: "题目已经更新，请刷新页面" });
   }
