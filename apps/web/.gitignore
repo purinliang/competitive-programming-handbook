@@ -12,3 +12,5 @@ public/content-assets/
 public/content/
 public/learning-progress.json
 public/search-index.json
+playwright-report/
+test-results/
