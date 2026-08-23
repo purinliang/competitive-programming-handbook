@@ -13,6 +13,11 @@
 
 ## 平台边界
 
+> 当前静态导出已经完成第一阶段上线，但正文数量增长后暴露出按文章生成 HTML/RSC
+> 的显著重复。下一阶段的正文与页面外壳分离研究、测量和迁移边界见
+> [正文数据与页面外壳分离](content-delivery.md)。迁移完成以前，下面仍描述当前公网
+> 版本，不表示新的正文发布方式已经生效。
+
 网站统一部署在 Cloudflare：
 
 - 第一阶段使用 Next.js App Router 静态导出；Cloudflare Workers Static Assets 直接分发 HTML、RSC 数据、CSS、JavaScript、SVG 和搜索索引，不部署 Next.js 运行时 Worker。
