@@ -125,23 +125,6 @@ function useProgressRevision() {
   return current;
 }
 
-export function ArticleProgress({ articleKey }: { articleKey: string }) {
-  useProgressRevision();
-  const progress = ready ? articleQuestionProgress(articleKey) : { completed: 0, total: 0 };
-  const complete = progress.total > 0 && progress.completed === progress.total;
-  const label = progress.completed > 0 ? `${progress.completed}/${progress.total}` : "";
-  return (
-    <small
-      aria-label={label
-        ? `${progress.completed} 题已答对，共 ${progress.total} 题`
-        : undefined}
-      className={`article-progress${complete ? " is-complete" : ""}`}
-    >
-      {label}
-    </small>
-  );
-}
-
 export function ArticleGroupProgress({ articleKeys }: { articleKeys: string[] }) {
   useProgressRevision();
   const tracked = [...new Set(articleKeys)].filter((articleKey) => (

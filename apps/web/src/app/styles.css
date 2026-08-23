@@ -649,20 +649,11 @@ a.article-link.is-active:hover {
   font-size: 12px;
 }
 
-.article-progress,
 .article-group-progress {
   flex: none;
   color: var(--faint-text);
   font-variant-numeric: tabular-nums;
   text-align: right;
-}
-
-.article-progress {
-  width: 4ch;
-}
-
-.article-progress.is-complete {
-  color: color-mix(in srgb, var(--accent-text) 55%, var(--faint-text));
 }
 
 .article-group-progress {

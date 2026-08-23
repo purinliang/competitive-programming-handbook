@@ -1,6 +1,5 @@
 import type { ArticleRecord, NavigationMode } from "@/lib/content/types";
 
-import { ArticleProgress } from "./article-progress";
 import { NavigationLink as Link } from "./navigation-link";
 
 interface ArticleLinkProps {
@@ -53,7 +52,6 @@ export function ArticleLink({
       } : undefined}
     >
       <span>{title}</span>
-      <ArticleProgress articleKey={article.articleKey} />
     </Link>
   );
 }

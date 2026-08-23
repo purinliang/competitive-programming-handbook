@@ -26,6 +26,11 @@ test("共享阅读器支持直达、锚点和无刷新切换", async ({ page }) 
     level: 2,
     name: "小测",
   })).toBeAttached();
+  const codeBlocks = article.locator("pre");
+  expect(await codeBlocks.count()).toBeGreaterThan(0);
+  await expect(article.locator(".code-copy-button")).toHaveCount(
+    await codeBlocks.count(),
+  );
 
   for (const endpoint of [
     "/api/discussions/summary?document_key=learning-path:strings/suffix-array",
@@ -58,6 +63,23 @@ test("共享阅读器支持直达、锚点和无刷新切换", async ({ page }) 
   await page.reload();
   await expect(article).toBeVisible();
   expect(pageErrors).toEqual([]);
+});
+
+test("中等宽度不会由侧栏挤出代码块", async ({ page }) => {
+  for (const width of [1242, 900]) {
+    await page.setViewportSize({ height: 900, width });
+    await page.goto(suffixArrayPath);
+    const article = page.locator(
+      'article[data-article-key="strings/suffix-array"]',
+    );
+    await expect(article).toBeVisible();
+    const overflowCount = await article.locator("pre").evaluateAll(
+      (blocks) => blocks.filter(
+        (block) => block.scrollWidth > block.clientWidth + 1,
+      ).length,
+    );
+    expect(overflowCount).toBe(0);
+  }
 });
 
 test("独立目录、搜索索引和正文错误状态可以读取", async ({ page }) => {

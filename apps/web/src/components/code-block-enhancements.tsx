@@ -22,10 +22,11 @@ export function CodeBlockEnhancements({ articleKey }: { articleKey: string }) {
   useEffect(() => {
     const buttons: HTMLButtonElement[] = [];
     const timers = new Set<number>();
+    let observer: MutationObserver | undefined;
 
     function enhance() {
       const article = document.querySelector<HTMLElement>(
-        `[data-article-key="${CSS.escape(articleKey)}"]`,
+        `.markdown-body[data-article-key="${CSS.escape(articleKey)}"]`,
       );
       if (!article) return;
 
@@ -69,6 +70,13 @@ export function CodeBlockEnhancements({ articleKey }: { articleKey: string }) {
     }
 
     enhance();
+    const article = document.querySelector<HTMLElement>(
+      `.markdown-body[data-article-key="${CSS.escape(articleKey)}"]`,
+    );
+    if (article) {
+      observer = new MutationObserver(enhance);
+      observer.observe(article, { childList: true, subtree: true });
+    }
     window.addEventListener(
       "handbook:article-content-ready",
       handleContentReady,
@@ -79,6 +87,7 @@ export function CodeBlockEnhancements({ articleKey }: { articleKey: string }) {
         "handbook:article-content-ready",
         handleContentReady,
       );
+      observer?.disconnect();
       for (const timer of timers) {
         window.clearTimeout(timer);
       }
