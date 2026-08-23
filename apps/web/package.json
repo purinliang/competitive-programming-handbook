@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "content:prepare": "node scripts/build-content.mjs --incremental && node scripts/sync-content-assets.mjs --incremental",
-    "content:prepare:full": "node scripts/build-content.mjs --full && node scripts/sync-content-assets.mjs --full",
+    "content:prepare": "node scripts/build-content.mjs --incremental && node scripts/build-runtime-content.mjs && node scripts/sync-content-assets.mjs --incremental",
+    "content:prepare:full": "node scripts/build-content.mjs --full && node scripts/build-runtime-content.mjs && node scripts/sync-content-assets.mjs --full",
     "content:prototype": "node scripts/prototype-runtime-content.mjs",
     "predev": "pnpm content:prepare",
     "dev": "next dev",
