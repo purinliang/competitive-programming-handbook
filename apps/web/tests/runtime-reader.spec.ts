@@ -73,6 +73,12 @@ test("中等宽度不会由侧栏挤出代码块", async ({ page }) => {
       'article[data-article-key="strings/suffix-array"]',
     );
     await expect(article).toBeVisible();
+    if (width === 1242) {
+      await expect(page.locator(".toc-sidebar")).toBeVisible();
+      expect(await page.locator(".article-column").evaluate(
+        (column) => column.getBoundingClientRect().width,
+      )).toBeLessThanOrEqual(780);
+    }
     const overflowCount = await article.locator("pre").evaluateAll(
       (blocks) => blocks.filter(
         (block) => block.scrollWidth > block.clientWidth + 1,

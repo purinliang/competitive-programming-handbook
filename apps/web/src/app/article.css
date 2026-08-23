@@ -2,7 +2,7 @@
 .directory-layout,
 .search-layout {
   display: grid;
-  grid-template-columns: 224px minmax(0, 840px) 196px;
+  grid-template-columns: 224px minmax(0, 780px) 196px;
   gap: 28px;
   justify-content: center;
   width: 100%;
@@ -1267,7 +1267,16 @@
   font-size: 12px;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1300px) {
+  .docs-layout,
+  .directory-layout,
+  .search-layout {
+    grid-template-columns: 192px minmax(0, 780px) 168px;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1160px) {
   .docs-layout,
   .directory-layout,
   .search-layout {
