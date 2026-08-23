@@ -4,7 +4,8 @@
 >
 > 本文是课程结构的唯一权威规划。它保留已经确认的教学关系和内容要求，但消除
 > 讨论过程中的试探、重复与口语表达。逐篇迁移方式见
-> [课程结构整改执行计划](curriculum-remediation.md)。
+> [课程结构整改执行计划](curriculum-remediation.md)。几何基础与计算几何的下一轮
+> 重组见 [计算几何整理专项计划](computational-geometry-remediation.md)。
 
 ## 总体章界
 
