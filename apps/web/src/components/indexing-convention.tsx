@@ -2,8 +2,19 @@ export function IndexingConvention() {
   return (
     <aside className="route-convention" aria-label="阅读约定">
       <p>
-        <strong>下标与区间约定</strong>
-        <span>本书自定义的对象默认从 1 开始编号并使用闭区间；讲解 C++ 与 STL 接口时，保留其原生的从 0 开始编号和左闭右开区间。</span>
+        <strong>下标约定</strong>
+        <span>
+          本书自定义的数组、数据结构、图和树默认从 1 开始编号，0 留给空节点、
+          空前缀、边界或哨兵。原生 <code>string</code> 的字符位置保留 0-based；
+          后缀数组、自动机等自定义结构仍从 1 开始编号。
+        </span>
+      </p>
+      <p>
+        <strong>区间约定</strong>
+        <span>
+          本书自定义的操作默认使用闭区间 <code>[l, r]</code>；讲解 C++ 与 STL
+          接口时，保留其原生的左闭右开区间、起点加长度等规则。
+        </span>
       </p>
       <p>
         <strong>扩展阅读</strong>
