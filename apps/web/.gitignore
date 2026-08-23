@@ -1,6 +1,7 @@
 .next/
 .open-next/
 .content-cache/
+.content-object-prototype/
 out/
 .wrangler/
 node_modules/

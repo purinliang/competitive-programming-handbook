@@ -5,6 +5,7 @@
   "scripts": {
     "content:prepare": "node scripts/build-content.mjs --incremental && node scripts/sync-content-assets.mjs --incremental",
     "content:prepare:full": "node scripts/build-content.mjs --full && node scripts/sync-content-assets.mjs --full",
+    "content:prototype": "node scripts/prototype-runtime-content.mjs",
     "predev": "pnpm content:prepare",
     "dev": "next dev",
     "prebuild": "pnpm content:prepare",
