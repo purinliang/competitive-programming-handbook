@@ -2,8 +2,8 @@
 .directory-layout,
 .search-layout {
   display: grid;
-  grid-template-columns: 224px minmax(0, 744px) 196px;
-  gap: 28px;
+  grid-template-columns: 248px minmax(0, 720px) 184px;
+  gap: 24px;
   justify-content: center;
   width: 100%;
   max-width: 1480px;
@@ -503,7 +503,7 @@
   border-radius: var(--radius-code);
   background: var(--code-bg);
   font-family: var(--font-code);
-  font-size: 15px;
+  font-size: 14.5px;
   line-height: 1.65;
   tab-size: 4;
 }
@@ -1271,7 +1271,7 @@
   .docs-layout,
   .directory-layout,
   .search-layout {
-    grid-template-columns: 192px minmax(0, 744px) 168px;
+    grid-template-columns: 232px minmax(0, 720px) 164px;
     gap: 20px;
   }
 }
@@ -1280,7 +1280,7 @@
   .docs-layout,
   .directory-layout,
   .search-layout {
-    grid-template-columns: 204px minmax(0, 744px);
+    grid-template-columns: 232px minmax(0, 720px);
   }
 
   .directory-layout {
