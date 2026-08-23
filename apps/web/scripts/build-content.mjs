@@ -686,6 +686,8 @@ const searchRecords = [];
 const interactionDocuments = {};
 const learningProgressArticles = {};
 const rebuiltArticles = new Set();
+const articlesUsingOlderRenderer = new Set();
+const quizzesUsingOlderRenderer = new Set();
 let quizCount = 0;
 let rebuiltQuizCount = 0;
 
@@ -693,25 +695,54 @@ async function loadArticleVariant(article, variant, sourcePath, title, markdown,
   const stateKey = `${variant}:${article.articleKey}`;
   const outputPath = path.join(articleCacheRoot, variant, `${article.articleKey}.json`);
   const displayTitle = article.kind === "extension" ? `*${title}` : title;
-  const inputHash = hashParts("article-v1", compilerRevision, sourcePath, displayTitle, markdown);
-  nextState.articles[stateKey] = {
-    hash: inputHash,
-    outputPath: path.relative(cacheRoot, outputPath),
-  };
-
+  const inputHash = hashParts("article-v2", sourcePath, displayTitle, markdown);
   const previous = previousState?.version === 1 ? previousState.articles?.[stateKey] : undefined;
-  if (!fullBuild && previous?.hash === inputHash && await fileExists(outputPath)) {
+  const legacyInputHash = previousState?.compilerRevision
+    ? hashParts(
+        "article-v1",
+        previousState.compilerRevision,
+        sourcePath,
+        displayTitle,
+        markdown,
+      )
+    : undefined;
+  const sourceUnchanged = previous?.hash === inputHash
+    || previous?.hash === legacyInputHash;
+  const previousRendererRevision = previous?.rendererRevision
+    ?? previousState?.compilerRevision;
+  if (!fullBuild && sourceUnchanged && await fileExists(outputPath)) {
     const cached = await readJson(outputPath);
     if (cached) {
-      return cached;
+      nextState.articles[stateKey] = {
+        hash: inputHash,
+        outputPath: path.relative(cacheRoot, outputPath),
+        rendererRevision: previousRendererRevision,
+      };
+      if (previousRendererRevision !== compilerRevision) {
+        articlesUsingOlderRenderer.add(article.articleKey);
+      }
+      return {
+        rendered: cached,
+        rendererRevision: previousRendererRevision,
+      };
     }
   }
 
-  const rendered = fallback ?? await renderArticle(sourcePath, displayTitle, markdown);
+  const rendered = fallback?.rendered
+    ?? await renderArticle(sourcePath, displayTitle, markdown);
+  const rendererRevision = fallback?.rendererRevision ?? compilerRevision;
   await mkdir(path.dirname(outputPath), { recursive: true });
   await writeFile(outputPath, `${JSON.stringify(rendered)}\n`);
+  nextState.articles[stateKey] = {
+    hash: inputHash,
+    outputPath: path.relative(cacheRoot, outputPath),
+    rendererRevision,
+  };
+  if (rendererRevision !== compilerRevision) {
+    articlesUsingOlderRenderer.add(article.articleKey);
+  }
   rebuiltArticles.add(article.articleKey);
-  return rendered;
+  return { rendered, rendererRevision };
 }
 
 for (const article of publishedArticles) {
@@ -740,9 +771,9 @@ for (const article of publishedArticles) {
   if (learningArticleKeys.has(article.articleKey)) {
     interactionDocuments[`learning-path:${article.articleKey}`] = {
       articleKey: article.articleKey,
-      contentRevision: learningRendered.contentRevision,
-      documentEpoch: learningRendered.documentEpoch,
-      sections: learningRendered.sections,
+      contentRevision: learningRendered.rendered.contentRevision,
+      documentEpoch: learningRendered.rendered.documentEpoch,
+      sections: learningRendered.rendered.sections,
     };
   }
   searchRecords.push({
@@ -764,21 +795,37 @@ const compiledQuizzes = await Promise.all([...learningArticleKeys].map(async (ar
 
   quizCount += 1;
   const source = await readFile(sourcePath, "utf8");
-  const inputHash = hashParts("quiz-v1", compilerRevision, source);
+  const inputHash = hashParts("quiz-v2", source);
   const outputPath = path.join(quizCacheRoot, `${articleKey}.json`);
-  nextState.quizzes[articleKey] = {
-    hash: inputHash,
-    outputPath: path.relative(cacheRoot, outputPath),
-  };
   const previous = previousState?.version === 1 ? previousState.quizzes?.[articleKey] : undefined;
-  if (!fullBuild && previous?.hash === inputHash && await fileExists(outputPath)) {
+  const legacyInputHash = previousState?.compilerRevision
+    ? hashParts("quiz-v1", previousState.compilerRevision, source)
+    : undefined;
+  const sourceUnchanged = previous?.hash === inputHash
+    || previous?.hash === legacyInputHash;
+  const previousRendererRevision = previous?.rendererRevision
+    ?? previousState?.compilerRevision;
+  if (!fullBuild && sourceUnchanged && await fileExists(outputPath)) {
     const cached = await readJson(outputPath);
     if (cached) {
+      nextState.quizzes[articleKey] = {
+        hash: inputHash,
+        outputPath: path.relative(cacheRoot, outputPath),
+        rendererRevision: previousRendererRevision,
+      };
+      if (previousRendererRevision !== compilerRevision) {
+        quizzesUsingOlderRenderer.add(articleKey);
+      }
       return [articleKey, cached];
     }
   }
 
   rebuiltQuizCount += 1;
+  nextState.quizzes[articleKey] = {
+    hash: inputHash,
+    outputPath: path.relative(cacheRoot, outputPath),
+    rendererRevision: compilerRevision,
+  };
   return [articleKey, await compileLearningQuiz(articleKey, source)];
 }));
 for (const [articleKey, quiz] of compiledQuizzes) {
@@ -822,3 +869,13 @@ console.log(
   `内容预编译（${modeLabel}）：重新生成 ${rebuiltArticles.size} 篇、复用 ${publishedArticles.length - rebuiltArticles.size} 篇；`
   + `重新生成 ${rebuiltQuizCount} 份题目、复用 ${quizCount - rebuiltQuizCount} 份。`,
 );
+if (
+  !fullBuild
+  && (articlesUsingOlderRenderer.size > 0 || quizzesUsingOlderRenderer.size > 0)
+) {
+  console.log(
+    `保留 ${articlesUsingOlderRenderer.size} 篇正文和 `
+      + `${quizzesUsingOlderRenderer.size} 份题目的既有渲染结果；`
+      + "需要应用最新渲染规则时运行 pnpm content:prepare:full。",
+  );
+}

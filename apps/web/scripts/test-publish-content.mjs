@@ -104,29 +104,26 @@ async function writeRelease(bodyText) {
     path.join(contentRoot, "release.json"),
     jsonSource(release),
   );
+  return release;
 }
 
-function runPublisher({
-  now = 1_000,
-  retainedReleases = 2,
-} = {}) {
+function runContentScript(script, parameters, environment = {}) {
   return new Promise((resolve, reject) => {
     const child = spawn(
       "node",
-      ["scripts/publish-content.mjs", "--local"],
+      [script, ...parameters],
       {
         cwd: appRoot,
         env: {
           ...process.env,
           HANDBOOK_CONTENT_BUCKET: `publish-test-${process.pid}`,
           HANDBOOK_CONTENT_ROOT: contentRoot,
-          HANDBOOK_CONTENT_RETAIN_RELEASES: String(retainedReleases),
-          HANDBOOK_PUBLISH_NOW: String(now),
           HANDBOOK_PUBLISH_STATE_PATH: path.join(
             testRoot,
             "publish-state.json",
           ),
           HANDBOOK_R2_PERSIST_TO: path.join(testRoot, "r2"),
+          ...environment,
         },
       },
     );
@@ -148,6 +145,27 @@ function runPublisher({
   });
 }
 
+function runPublisher({
+  now = 1_000,
+  retainedReleases = 2,
+} = {}) {
+  return runContentScript(
+    "scripts/publish-content.mjs",
+    ["--local"],
+    {
+      HANDBOOK_CONTENT_RETAIN_RELEASES: String(retainedReleases),
+      HANDBOOK_PUBLISH_NOW: String(now),
+    },
+  );
+}
+
+function runRollback() {
+  return runContentScript(
+    "scripts/rollback-content.mjs",
+    ["previous", "--local"],
+  );
+}
+
 await rm(testRoot, { force: true, recursive: true });
 await mkdir(objectRoot, { recursive: true });
 
@@ -158,7 +176,7 @@ assert.match(
   /已经在线，无需上传/u,
 );
 
-await writeRelease("第二版");
+const secondRelease = await writeRelease("第二版");
 assert.match(await runPublisher({ now: 3_000 }), /4 个新对象/u);
 
 await writeRelease("第三版");
@@ -176,7 +194,14 @@ assert.equal(state.version, 2);
 assert.equal(state.releases.length, 2);
 assert.equal(state.releases[0].objectPaths.length, 7);
 
+assert.match(await runRollback(), /正文已从 .* 回滚到/u);
+const rollbackState = JSON.parse(await readFile(
+  path.join(testRoot, "publish-state.json"),
+  "utf8",
+));
+assert.equal(rollbackState.currentReleaseId, secondRelease.releaseId);
+
 console.log(
   "R2 增量发布检查通过：相同版本跳过，正文更新只上传四个新对象，"
-    + "并只保留当前版与上一版。",
+    + "只保留当前版与上一版，并可原子回滚。",
 );

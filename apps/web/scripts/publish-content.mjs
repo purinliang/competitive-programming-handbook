@@ -17,6 +17,9 @@ const publishNow = Number(
 const retainedReleaseCount = Number(
   process.env.HANDBOOK_CONTENT_RETAIN_RELEASES ?? 2,
 );
+const uploadConcurrency = Number(
+  process.env.HANDBOOK_CONTENT_UPLOAD_CONCURRENCY ?? 2,
+);
 const arguments_ = new Set(process.argv.slice(2));
 const allowedArguments = new Set(["--dry-run", "--local", "--remote"]);
 const unknownArguments = [...arguments_].filter(
@@ -29,6 +32,8 @@ if (
   || !Number.isFinite(publishNow)
   || !Number.isInteger(retainedReleaseCount)
   || retainedReleaseCount < 1
+  || !Number.isInteger(uploadConcurrency)
+  || uploadConcurrency < 1
 ) {
   throw new Error(
     "用法：node scripts/publish-content.mjs "
@@ -148,6 +153,25 @@ async function forEachConcurrent(items, concurrency, operation) {
       () => worker(),
     ),
   );
+}
+
+function formatDuration(milliseconds) {
+  const seconds = Math.max(0, Math.round(milliseconds / 1000));
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return minutes > 0
+    ? `${minutes}m${String(remainingSeconds).padStart(2, "0")}s`
+    : `${remainingSeconds}s`;
+}
+
+function uploadProgress(completed, total, startedAt) {
+  const width = 20;
+  const ratio = total === 0 ? 1 : completed / total;
+  const filled = Math.round(width * ratio);
+  const bar = "█".repeat(filled) + "░".repeat(width - filled);
+  return `[${bar}] ${completed}/${total} `
+    + `${Math.round(ratio * 100)}%  已用 `
+    + formatDuration(Date.now() - startedAt);
 }
 
 async function reachableObjectPaths(release) {
@@ -297,15 +321,25 @@ async function main() {
     return;
   }
 
-  const concurrency = targetFlag === "--local" ? 1 : 8;
+  const concurrency = targetFlag === "--local" ? 1 : uploadConcurrency;
+  const uploadStartedAt = Date.now();
+  let uploadedObjects = 0;
   await forEachConcurrent(
     missingObjects,
     concurrency,
-    async (objectPath, index) => {
+    async (objectPath) => {
       const key = contentKey(objectPath);
       await putObject(key, path.join(contentRoot, key), true);
-      if ((index + 1) % 50 === 0 || index + 1 === missingObjects.length) {
-        console.log(`已上传 ${index + 1}/${missingObjects.length} 个新对象。`);
+      uploadedObjects += 1;
+      if (
+        uploadedObjects % 25 === 0
+        || uploadedObjects === missingObjects.length
+      ) {
+        console.log(uploadProgress(
+          uploadedObjects,
+          missingObjects.length,
+          uploadStartedAt,
+        ));
       }
     },
   );
