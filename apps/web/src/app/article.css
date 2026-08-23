@@ -2,7 +2,7 @@
 .directory-layout,
 .search-layout {
   display: grid;
-  grid-template-columns: 224px minmax(0, 780px) 196px;
+  grid-template-columns: 224px minmax(0, 744px) 196px;
   gap: 28px;
   justify-content: center;
   width: 100%;
@@ -1271,7 +1271,7 @@
   .docs-layout,
   .directory-layout,
   .search-layout {
-    grid-template-columns: 192px minmax(0, 780px) 168px;
+    grid-template-columns: 192px minmax(0, 744px) 168px;
     gap: 20px;
   }
 }
@@ -1280,7 +1280,7 @@
   .docs-layout,
   .directory-layout,
   .search-layout {
-    grid-template-columns: 204px minmax(0, 800px);
+    grid-template-columns: 204px minmax(0, 744px);
   }
 
   .directory-layout {
