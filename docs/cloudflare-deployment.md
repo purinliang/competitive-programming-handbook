@@ -63,6 +63,10 @@ pnpm test:collaboration
 pnpm deploy
 ```
 
+`pnpm deploy` 先增量准备内容、构建并部署共享网站外壳，再运行 R2 增量正文发布。
+正文哈希没有变化时，最后一步只读取远端发布状态，不会重新上传对象。自动部署需要
+只更新网站外壳时使用内部命令 `pnpm deploy:web`，避免无意义地触发正文发布。
+
 部署后至少检查公开文章、`/api/health`、GitHub 登录、已阅同步、私密讨论和匿名公开讨论。
 
 ## 正文对象与 R2
@@ -92,14 +96,31 @@ binding，否则 Worker 部署会失败。首次上传和后续增量发布统�
 pnpm publish:content
 ```
 
+平常发布使用上述增量命令。只有 Markdown 渲染规则确实需要应用到全部历史文章时，才
+运行 `pnpm publish:content:full`；修改网站样式不需要全量重编译正文。
+
+新版本出现问题时，可以不重新构建而直接切回仍保留的上一版：
+
+```bash
+pnpm rollback:content
+```
+
+更早版本仍保存在 Git 中，应检出对应提交并重新运行 `pnpm publish:content`。
+
 GitHub Actions 使用的 Cloudflare API Token 除 Workers 编辑权限外，还需要目标账户的
 R2 对象读写权限；本地 `wrangler login` 的 OAuth 凭据不会进入 GitHub。
 
 ## GitHub 自动部署
 
 仓库中的 [部署工作流](../.github/workflows/deploy.yml) 会在 `main` 分支收到新提交后
-检查内容身份、完整构建网站并部署到 Cloudflare。同一时间只保留最新的一次部署，
-旧提交仍在构建时会被自动取消；也可以在 GitHub Actions 页面手动触发。
+判断发布范围。只修改 Markdown 或小测源文件时，仅编译并增量发布 R2 正文，不重新
+部署 Worker；修改 `apps/web/**` 或 `notes/assets/**` 时才重新构建并部署网站。两类修改
+出现在同一提交中时，先部署能够读取旧版对象的新阅读器，再原子切换新版正文，避免
+发布失败使生产环境失去可读版本。同一时间只保留最新的一次工作流，旧提交仍在运行时
+会被自动取消；也可以在 GitHub Actions 页面手动触发完整发布。
+
+Actions 会跨提交恢复被 Git 忽略的 `.content-cache/`。Git 差异只决定是否启动正文
+任务；任务内部仍逐篇核对源文件哈希，因此缓存不会漏掉未按预期路径归类的正文变化。
 
 GitHub Actions 不能复用开发电脑上由 `wrangler login` 保存的 OAuth 登录状态。需要在
 仓库的 `Settings > Secrets and variables > Actions` 中建立两个 Repository Secret：
