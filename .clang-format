@@ -3,7 +3,8 @@ BasedOnStyle: LLVM
 Language: Cpp
 Standard: c++17
 IndentWidth: 4
-ColumnLimit: 80
+NamespaceIndentation: All
+ColumnLimit: 76
 PointerAlignment: Left
 ReferenceAlignment: Left
 BreakBeforeBraces: Attach

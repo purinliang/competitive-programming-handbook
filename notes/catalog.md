@@ -8,9 +8,13 @@
 
 <!-- legacy-drafts: -->
 
-## 下标与区间约定
+## 下标约定
 
-本书自定义的对象默认从 1 开始编号并使用闭区间；讲解 C++ 与 STL 接口时，保留其原生的从 0 开始编号和左闭右开区间。完整的容量、哨兵和接口转换规则见 [learning-path.md](learning-path.md#下标与区间约定)。
+本书自定义的数组、数据结构、图和树默认从 `1` 开始编号，`0` 留给空节点、空前缀、边界或哨兵。原生 `string` 的字符位置保留 0-based；后缀数组、自动机等自定义结构的逻辑位置仍从 `1` 开始，访问 `string` 时再映射到 `pos - 1`。完整规则见 [learning-path.md](learning-path.md#下标约定)。
+
+## 区间约定
+
+本书自定义的操作默认使用闭区间 `[l, r]`；直接讲解 C++ 与 STL 接口时，保留其原生的左闭右开区间、起点加长度等规则。完整规则见 [learning-path.md](learning-path.md#区间约定)。
 
 ## 01 C++
 
@@ -1144,8 +1148,9 @@
 | 060705 | 字符串构造 | 待审阅 | [strings/string-construction.md](strings/string-construction.md) |
 | 080401 | AC 自动机 | 待审阅 | [strings/aho-corasick.md](strings/aho-corasick.md) |
 | 080402 | Manacher | 待审阅 | [strings/manacher.md](strings/manacher.md) |
-| 090601 | 后缀数组 | 待审阅 | [suffix-array.md](strings/suffix-array.md) |
-| 090602 | 后缀自动机 | 待审阅 | [suffix-automaton.md](strings/suffix-automaton.md) |
+| 090601 | 后缀数组 | 已审阅 | [suffix-array.md](strings/suffix-array.md) |
+| 090602 | 后缀数组：最长公共前缀数组 | 待审阅 | [suffix-array-lcp-array.md](strings/suffix-array-lcp-array.md) |
+| 090603 | 后缀自动机 | 待审阅 | [suffix-automaton.md](strings/suffix-automaton.md) |
 
 ### 字符串基础
 
@@ -1186,25 +1191,26 @@
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 080402 | Manacher | 待审阅 | [strings/manacher.md](strings/manacher.md) |
-| 090603 | 回文自动机 | 待审阅 | [palindromic-tree.md](strings/palindromic-tree.md) |
+| 090604 | 回文自动机 | 待审阅 | [palindromic-tree.md](strings/palindromic-tree.md) |
 
 ### 后缀结构
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090601 | 后缀数组 | 待审阅 | [suffix-array.md](strings/suffix-array.md) |
-| 090602 | 后缀自动机 | 待审阅 | [suffix-automaton.md](strings/suffix-automaton.md) |
+| 090601 | 后缀数组 | 已审阅 | [suffix-array.md](strings/suffix-array.md) |
+| 090602 | 后缀数组：最长公共前缀数组 | 待审阅 | [suffix-array-lcp-array.md](strings/suffix-array-lcp-array.md) |
+| 090603 | 后缀自动机 | 待审阅 | [suffix-automaton.md](strings/suffix-automaton.md) |
 | *990806 | 后缀树 | 推迟 | `strings/suffix-tree.md` |
 
 ### 子串问题
 
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
-| 090604 | 本质不同子串计数 | 待审阅 | [distinct-substring-counting.md](strings/distinct-substring-counting.md) |
-| 090605 | 字典序第 k 小子串 | 待审阅 | [kth-lexicographic-substring.md](strings/kth-lexicographic-substring.md) |
-| 090606 | 子串出现次数 | 待审阅 | [substring-occurrence-counting.md](strings/substring-occurrence-counting.md) |
-| 090607 | 最长重复子串 | 待审阅 | [longest-repeated-substring.md](strings/longest-repeated-substring.md) |
-| 090608 | 最长公共子串 | 待审阅 | [longest-common-substring.md](strings/longest-common-substring.md) |
+| 090605 | 本质不同子串计数 | 待审阅 | [distinct-substring-counting.md](strings/distinct-substring-counting.md) |
+| 090606 | 字典序第 k 小子串 | 待审阅 | [kth-lexicographic-substring.md](strings/kth-lexicographic-substring.md) |
+| 090607 | 子串出现次数 | 待审阅 | [substring-occurrence-counting.md](strings/substring-occurrence-counting.md) |
+| 090608 | 最长重复子串 | 待审阅 | [longest-repeated-substring.md](strings/longest-repeated-substring.md) |
+| 090609 | 最长公共子串 | 待审阅 | [longest-common-substring.md](strings/longest-common-substring.md) |
 
 ### 字符串表示与分解
 

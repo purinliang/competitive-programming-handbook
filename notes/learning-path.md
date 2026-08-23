@@ -15,11 +15,17 @@
 `5` 附近接触提高级，06–07 承接提高级主干。NOI 级标签只用于核对是否漏项；文章
 进入 08、09 还是长期推迟，由区域赛能力分级和实际教学价值共同决定。
 
-## 下标与区间约定
+## 下标约定
 
-本书自己定义的数组、字符串、图、树和算法状态默认使用 1-based 下标：长度为 `n` 的对象使用 `1..n`，位置 `0` 留给空前缀、空节点、边界或哨兵。自定义区间默认是闭区间 `[l, r]`，长度为 `r - l + 1`；动态存储在逻辑容量之外统一保留 `+5` 余量，并单独保存真实长度。
+本书自己定义的数组、数据结构、图、树和算法状态默认使用 1-based 下标：`1` 表示第一个有效元素或节点，`0` 留给空节点、空前缀、边界或哨兵。这既符合从第一个元素开始计数的习惯，也能简化前缀和、空树节点与树根等常见边界。题目给出规模上界时，通常在全局定义已包含少量余量的容量，例如 `const int MAXN = 1e6 + 5;`，而不在每个容器中重复写 `n + 5`。
 
-直接讲解或调用 C++ / STL 时保留原生规则，例如 `string`、`vector` 和内置数组的下标从 `0` 开始，迭代器区间通常左闭右开。正文会在接口边界明确转换，不会让同一个算法内部交替使用两套约定。
+`string` 是明确的例外：原生字符位置保留 C++ 的 0-based 规则，长度为 `n` 的字符串使用 `s[0]..s[n - 1]`。这样可以直接使用 `size()`、拼接、比较、`substr()` 和其他标准库操作。字符串上建立的自定义结构仍保留 1-based：例如 `sa[1]` 是字典序最小的后缀，其内部逻辑起点也使用 `1..n`；真正访问 `string` 时，逻辑位置 `pos` 映射到 `s[pos - 1]`。后缀自动机的状态也从 `1` 开始编号。数学说明与代码对同一对象始终使用同一套下标，正文会在首次交叉使用时明确说明两者的含义。
+
+## 区间约定
+
+本书自己定义的数组、图上序列和数据结构操作默认使用闭区间 `[l, r]`，长度为 `r - l + 1`。字符串正文中的子串也可以写成闭区间 `s[l..r]`，但此时字符位置按上文从 `0` 开始。
+
+直接讲解或调用 C++ / STL 时保留接口的真实规则：迭代器区间通常左闭右开，`substr()` 使用起点和长度。正文会在接口边界明确转换，不让同一段推导在没有说明的情况下交替使用两套区间。
 
 ## 01 C++ 基础
 
@@ -815,13 +821,14 @@ FHQ Treap 高于银牌，但作为明确的主动学习例外保留在本阶段�
 | ID | 知识点 | 模块 | 文件 |
 | --- | --- | --- | --- |
 | 090601 | 后缀数组 | 字符串 | [strings/suffix-array.md](strings/suffix-array.md) |
-| 090602 | 后缀自动机 | 字符串 | [strings/suffix-automaton.md](strings/suffix-automaton.md) |
-| 090603 | 回文自动机 | 字符串 | [strings/palindromic-tree.md](strings/palindromic-tree.md) |
-| 090604 | 本质不同子串计数 | 字符串 | [strings/distinct-substring-counting.md](strings/distinct-substring-counting.md) |
-| 090605 | 字典序第 k 小子串 | 字符串 | [strings/kth-lexicographic-substring.md](strings/kth-lexicographic-substring.md) |
-| 090606 | 子串出现次数 | 字符串 | [strings/substring-occurrence-counting.md](strings/substring-occurrence-counting.md) |
-| 090607 | 最长重复子串 | 字符串 | [strings/longest-repeated-substring.md](strings/longest-repeated-substring.md) |
-| 090608 | 最长公共子串 | 字符串 | [strings/longest-common-substring.md](strings/longest-common-substring.md) |
+| 090602 | 后缀数组：最长公共前缀数组 | 字符串 | [strings/suffix-array-lcp-array.md](strings/suffix-array-lcp-array.md) |
+| 090603 | 后缀自动机 | 字符串 | [strings/suffix-automaton.md](strings/suffix-automaton.md) |
+| 090604 | 回文自动机 | 字符串 | [strings/palindromic-tree.md](strings/palindromic-tree.md) |
+| 090605 | 本质不同子串计数 | 字符串 | [strings/distinct-substring-counting.md](strings/distinct-substring-counting.md) |
+| 090606 | 字典序第 k 小子串 | 字符串 | [strings/kth-lexicographic-substring.md](strings/kth-lexicographic-substring.md) |
+| 090607 | 子串出现次数 | 字符串 | [strings/substring-occurrence-counting.md](strings/substring-occurrence-counting.md) |
+| 090608 | 最长重复子串 | 字符串 | [strings/longest-repeated-substring.md](strings/longest-repeated-substring.md) |
+| 090609 | 最长公共子串 | 字符串 | [strings/longest-common-substring.md](strings/longest-common-substring.md) |
 
 ### 单元 07：计算几何
 

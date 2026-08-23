@@ -65,7 +65,7 @@ Markdown 手稿以 Typora 友好为优先：普通 Markdown、代码块、LaTeX 
 
 本仓库首先是 handbook，不是从零开始的 tutorial。笔记按功能或领域组织，每篇文章尽量自洽，允许收录暂时用不到但值得了解的知识。
 
-教程和模板的默认下标、区间与容量规则见 [学习路线中的约定](notes/learning-path.md#下标与区间约定)。
+教程和模板的默认下标、区间与容量规则见 [学习路线中的下标约定](notes/learning-path.md#下标约定)。
 
 ## 模板验证
 

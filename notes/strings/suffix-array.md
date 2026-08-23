@@ -1,14 +1,14 @@
 # 后缀数组
 
-> 最近修订：2026-08-23 09:55 +10:00（未审阅）
+> 最近修订：2026-08-23 18:15 +10:00（已审阅）
 
 ## 为什么需要后缀数组
 
 给定一个不会修改的字符串 $s$，我们可能需要反复回答一类与连续子串有关的问题：某个模式串是否出现、出现在哪里，哪些子串重复出现，或者不同子串按照字典序怎样排列。最直接的统一做法是枚举并保存所有子串；有了这张完整的表，查找、计数和排序都会变得容易。但是长度为 $n$ 的字符串共有 $n(n+1)/2$ 个非空子串，较长字符串无法承担这样的预处理时间和存储空间。
 
-关键的观察是：子串不必单独保存。例如 `banana` 中从位置 2 到位置 4 的子串 `ana`，就是后缀 `anana` 的前三个字符。一般地，子串 $s[l..r]$ 一定是后缀 $s[l..n]$ 的前 $r-l+1$ 个字符。只要找到这个后缀，就能在它的开头找到原来的子串。
+关键的观察是：子串不必单独保存。例如 `banana` 中从第 2 个字符到第 4 个字符的子串 `ana`，就是后缀 `anana` 的前三个字符。后缀数组作为本书自定义的结构，内部位置统一使用 1-based，因此子串 $s[l..r]$ 一定是后缀 $s[l..n]$ 的前 $r-l+1$ 个字符。只要找到这个后缀，就能在它的开头找到原来的子串。
 
-长度为 $n$ 的字符串只有 $n$ 个后缀。后缀数组把这些后缀按照字典序排列，但数组中只保存每个后缀的起点。排序以后，以同一个模式串开头的后缀会连续出现，所以查找模式串可以转化为寻找一段连续区间；重复子串则可以通过相邻后缀的公共前缀发现。这就是后缀数组的核心思路。
+长度为 $n$ 的字符串只有 $n$ 个后缀。后缀数组把这些后缀按照字典序排列，但数组中只保存每个后缀的起点。排序以后，以同一个模式串开头的后缀会连续出现，所以查找模式串可以转化为寻找一段连续区间。这就是后缀数组的核心思路。
 
 ## 后缀数组是什么
 
@@ -34,14 +34,14 @@
 3  nana
 ```
 
-后缀数组保存的就是排序后的起点。用方括号依次列出从 1 到 6 的值：
+后缀数组保存的就是排序后的起点。后缀排名和逻辑起点都使用 1-based：
 
 ```text
 order = [1, 2, 3, 4, 5, 6]
 sa    = [6, 4, 2, 1, 5, 3]
 ```
 
-一般地，正文使用从 1 开始的位置，并定义：
+`sa[order]` 中的 `order` 和数组值都是后缀数组的逻辑下标。因此 `sa[1] = 6` 表示字典序最小的后缀从第 6 个字符开始；真正访问原生 `string` 时，第 `pos` 个字符对应 `s[pos - 1]`。一般地：
 
 ```text
 sa[order] = 字典序第 order 小的后缀起点
@@ -50,7 +50,7 @@ sa[order] = 字典序第 order 小的后缀起点
 已知起点、需要反过来查询排名时，使用它的逆映射 `rk`：
 
 ```text
-rk[pos] = 从 pos 开始的后缀排名
+rk[pos] = 从字符串位置 pos 开始的后缀排名
 ```
 
 对 `banana`：
@@ -66,224 +66,262 @@ rk  = [4, 3, 6, 2, 5, 1]
 rk[sa[order]] = order;
 ```
 
-相邻后缀之间的相似程度由最长公共前缀数组 `lcp` 保存：
-
-```text
-lcp[order] = 从 sa[order - 1] 和 sa[order] 开始的两个后缀
-             的最长公共前缀长度
-```
-
-规定 `lcp[1] = 0`。对 `banana`：
-
-```text
-order = [1, 2, 3, 4, 5, 6]
-lcp   = [0, 1, 3, 0, 0, 2]
-```
-
-例如 `anana` 与前一个后缀 `ana` 的最长公共前缀是 `ana`，所以对应值为 `3`。严格来说，`sa` 才是后缀数组；`rk` 和 `lcp` 是经常与它配套使用的数组。
+严格来说，`sa` 才是后缀数组，`rk` 是它的逆映射。它们共同保存后缀的字典序，却还没有记录两个后缀究竟有多少个开头字符相同。
 
 ## 怎样构造后缀数组
 
-### 直接排序的瓶颈
+### 用排名代替重复比较
 
-若把每个后缀当成普通字符串排序，一次比较最坏会逐字符扫描 $O(n)$，排序又需要 $O(n\log n)$ 次比较，总时间可能达到：
+最直接的构造方法是把每个后缀当成普通字符串交给 `sort`。但是一次比较最坏会扫描 $O(n)$ 个字符，排序又需要 $O(n\log n)$ 次比较，总时间可能达到 $O(n^2\log n)$。
 
-$$
-O(n^2\log n).
-$$
+问题在于，同一段字符会在不同后缀比较中被反复扫描。我们可以先给短前缀排名，以后只比较排名，不再重新比较已经处理过的字符。初始时只看第一个字符；对 `banana`，可以把 `a`、`b`、`n` 依次编号为 1、2、3：
 
-倍增算法逐轮建立排名：先按第一个字符排名，随后依次确定长度不超过 $2,4,8,\ldots$ 的前缀排名。每一轮复用上一轮已经得到的短前缀排名，不再反复扫描字符。
-
-### 按第一个字符排序
-
-初始时，每个位置的排名只由当前字符决定：
-
-```cpp
-rk[i] = (unsigned char)s[i] + 1;
+```text
+pos  = [1, 2, 3, 4, 5, 6]
+char = [b, a, n, a, n, a]
+rk   = [2, 1, 3, 1, 3, 1]
 ```
 
-读入的 `string` 原生下标从 0 开始；构造函数在开头补一个不参与排序的占位字符，使成员 `s` 的有效字符位置与 `sa`、`rk` 和 `lcp` 一样从 1 开始。先把字符转成 `unsigned char`，可以避免实现将 `char` 解释为负数时得到错误排名。
+本文限定输入只包含小写拉丁字母 `a` 到 `z`，因此直接把字符编号为 1 到 26，并把排名 0 留给已经越过字符串结尾的空部分：
 
-字符编号额外加 `1`，把排名 `0` 留给“已经越过字符串结尾”的空部分。空字符串比任何非空字符串小，这个哨兵排名会让短后缀自然排在拥有相同前缀的长后缀前面。
+```cpp
+rk[pos] = s[pos - 1] - 'a' + 1;
+```
 
-### 倍增已经比较的长度
+### 把已知长度翻倍
 
-用 `width` 表示当前排名已经覆盖的长度。假设已经知道每个位置开头、长度为 `width` 的字符串排名，长度为 `2 * width` 的部分可以拆成两半：
+用 `width` 表示当前排名已经能够区分的前缀长度。假设长度为 `width` 的前缀已经有正确排名，那么长度为 `2 * width` 的前缀可以拆成两段：
 
 ```text
 [pos, pos + width - 1]
 [pos + width, pos + 2 * width - 1]
 ```
 
-所以位置 `pos` 的新排序关键字是二元组（`rk[pos]`, `rk[pos + width]`）。
+第一段的排名是 `rk[pos]`，第二段的排名是 `rk[pos + width]`，所以新的排序关键字是二元组（`rk[pos]`, `rk[pos + width]`）。若第二段越过字符串结尾，就把它的排名记为 0。
 
-若第二段越过结尾，就使用排名 `0`。两个旧排名分别完整描述前半段和后半段，因此两个位置的二元组相同，当且仅当它们长度不超过 `2 * width` 的前缀相同。
+第一次进入倍增时 `width = 1`。对 `banana`，每个位置的二元组是：
 
-比较两个整数二元组是 $O(1)$。本轮排序完成后，把相同二元组压成同一个新排名，不同二元组依次编号为 $1,2,\ldots$。当排名种类达到 $n$ 时，所有后缀已经互不相同，可以提前结束。
+```text
+pos = [1,     2,     3,     4,     5,     6]
+key = [(2,1), (1,3), (3,1), (1,3), (3,1), (1,0)]
+```
 
-### 排序排名二元组
+按二元组排序后，位置顺序是 `[6, 2, 4, 1, 3, 5]`。其中位置 2 和位置 4 的关键字相同，说明前两个字符都是 `an`，暂时无法区分；位置 3 和位置 5 同理。把相同二元组赋予相同新排名，就得到：
 
-直接用 `sort` 比较二元组，每轮是 $O(n\log n)$，总计 $O(n\log^2 n)$。这是最容易理解的倍增实现。后缀排名始终是不超过 `n` 的整数，还可以使用稳定计数排序把每轮降为 $O(n)$。
+```text
+pos = [1, 2, 3, 4, 5, 6]
+rk  = [3, 2, 4, 2, 4, 1]
+```
 
-首先构造已经按第二段排名排列的待排序起点 `order`：
+下一轮令 `width = 2`，同一套过程就会比较长度为 4 的前缀。随后比较长度为 8、16、32，直到所有后缀的排名都不同，或者已比较长度覆盖整个字符串。
 
-1. 先放入最后 `width` 个位置，它们的第二段为空，排名为 `0`；
-2. 再按照旧 `sa` 顺序，把每个大于 `width` 的起点减去 `width`。
+### 先用 `sort` 完成每一轮
 
-第二类位置 `pos = sa[i] - width` 的第二段恰好从 `sa[i]` 开始，因此仍保持旧后缀排名顺序。整个 `order` 已按二元组第二关键字稳定有序。
+知道二元组以后，最容易写出的版本就是直接排序所有起点：
 
-再只按第一关键字 `rk[order[i]]` 做一次稳定计数排序，就得到两个关键字共同的顺序。这相当于先按第二关键字、再稳定地按第一关键字排序，因此结果就是二元组的字典序。
+```cpp
+for (int i = 1; i <= n; ++i) {
+    ord[i] = i;
+}
 
-这里每一趟使用的是计数排序：统计每个整数排名出现的次数，再通过前缀和确定稳定的写入位置。桶排序会先把元素分配到若干范围桶中，并可能继续在桶内排序；两者不应在正文中混用。对二元组先排第二关键字、再稳定地排第一关键字，整体采用的是基数排序思路。
+sort(ord + 1, ord + n + 1, [&](int left, int right) {
+    if (rk[left] != rk[right]) {
+        return rk[left] < rk[right];
+    }
+    return rank_at(left + width) < rank_at(right + width);
+});
+```
 
-### 构造 LCP 数组
+`rank_at(pos)` 在 `pos > n` 时返回 0，否则返回 `rk[pos]`。排序完成后，`ord[1..n]` 就是当前轮的后缀顺序。接下来按这个顺序重新编号：
 
-后缀数组完成后，还需要计算相邻后缀的最长公共前缀。
+```cpp
+int rk_cnt = 1;
+nrk[ord[1]] = 1;
 
-设从位置 `pos` 开始的后缀与它的字典序前驱已有 `height` 个相同字符。若 `height > 0`，删除两个后缀的首字符后，剩余后缀仍有至少 `height - 1` 个相同字符，而且字典序关系不变。即使后一个位置的直接前驱换成了另一个后缀，它与前驱的 LCP 也不会小于这个已经得到的下界。
+for (int i = 2; i <= n; ++i) {
+    int prev = ord[i - 1];
+    int cur = ord[i];
 
-因此处理 `pos + 1` 时，不必从 `0` 重新比较，只需先把 `height` 减一，再继续向后扩展。每处理一个位置，`height` 至多减少一次；它始终非负，所以所有向后扩展的总次数也是 $O(n)$。这通常称为 Kasai 算法。
+    if (rk[prev] != rk[cur] ||
+        rank_at(prev + width) != rank_at(cur + width)) {
+        ++rk_cnt;
+    }
+    nrk[cur] = rk_cnt;
+}
+
+for (int pos = 1; pos <= n; ++pos) {
+    rk[pos] = nrk[pos];
+}
+for (int i = 1; i <= n; ++i) {
+    sa[i] = ord[i];
+}
+```
+
+每轮排序需要 $O(n\log n)$，一共进行 $O(\log n)$ 轮，因此这个直观版本已经能在 $O(n\log^2 n)$ 时间内构造后缀数组。
+
+### 为什么改用计数排序
+
+`sort` 不知道关键字的范围，只能不断比较两个元素。这里的正常排名却是从 1 开始的连续整数，最大值不超过 $n$，排名 0 只表示越过结尾的空部分。我们可以统计每个排名出现多少次，再用前缀和直接算出每个元素的写入位置。这就是计数排序能够把一轮排序降到 $O(n)$ 的原因。
+
+二元组有两个关键字。先按第二关键字稳定排序，再按第一关键字稳定排序，最终顺序就是二元组的字典序。这是基数排序处理多关键字的通用方法：
+
+```cpp
+counting_sort(width, rk_cnt);
+counting_sort(0, rk_cnt);
+```
+
+`offset = width` 表示读取第二段排名，`offset = 0` 表示读取第一段排名。一次稳定计数排序的核心过程是：
+
+```cpp
+fill(cnt.begin(), cnt.begin() + rk_cnt + 1, 0);
+
+for (int i = 1; i <= n; ++i) {
+    ++cnt[rank_at(ord[i] + offset)];
+}
+for (int val = 1; val <= rk_cnt; ++val) {
+    cnt[val] += cnt[val - 1];
+}
+for (int i = n; i >= 1; --i) {
+    int key = rank_at(ord[i] + offset);
+    buf[cnt[key]--] = ord[i];
+}
+
+for (int i = 1; i <= n; ++i) {
+    ord[i] = buf[i];
+}
+```
+
+从后向前写入保证排序稳定。本文故意保留两趟计数排序：有些模板会利用上一轮 `sa` 已有的顺序省去其中一趟，但那只是常数优化，会掩盖“先排第二关键字，再排第一关键字”的直接推导。
+
+到这里可以明确区分两类知识：用短前缀排名组成二元组、每轮把已知长度翻倍、越过结尾时使用排名 0，是后缀数组倍增算法的结构；计数排序和稳定的多关键字排序是通用排序工具，并非后缀数组独有。
 
 ### 复杂度
 
 后缀前缀长度每轮翻倍，共 $O(\log n)$ 轮。每轮构造顺序、计数排序和重新编号都是 $O(n)$：
 
 - 构造后缀数组：$O(n\log n)$；
-- 构造 LCP：$O(n)$；
-- 空间复杂度：$O(n)$。
+- 构造时的工作区：$O(n+\Sigma)$，其中 $\Sigma$ 是字符集大小；
+- 构造完成后保留 `sa` 和 `rk`：$O(n)$。
 
 若把每轮计数排序换成比较排序，代码可以更短，但复杂度会变成 $O(n\log^2 n)$。还有能够在线性时间构造后缀数组的算法，但它们不属于本文的主线实现。
 
+本文的小写拉丁字母字符集有 $\Sigma=26$。后缀数组不会为每个位置永久保存一整张字符转移表；Trie、AC 自动机和后缀自动机若使用稠密转移数组，转移部分则需要 $O(\text{状态数}\times\Sigma)$ 空间。它们也可以换用稀疏转移，但时间常数和代码形态会随之改变。
+
 ### 完整代码
 
-输入一个不含空白字符的非空字符串。按字典序输出每个后缀的 1-based 起点，以及它与前一个后缀的最长公共前缀长度。
+输入一个只含小写拉丁字母的非空字符串，按字典序输出每个后缀的 1-based 逻辑起点。
 
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-struct SuffixArray {
-    string s;
-    int n;
-    vector<int> sa;
-    vector<int> rk;
-    vector<int> lcp;
+const int MAXN = 1e6 + 5;
 
-    SuffixArray(const string& source) {
-        n = source.size();
-        s = " " + source;
-        sa.assign(n + 5, 0);
-        rk.assign(n + 5, 0);
-        lcp.assign(n + 5, 0);
-        build_suffix_array();
-        build_lcp();
+int n;
+string s;
+
+namespace SuffixArray {
+    int sa[MAXN];
+    int rk[MAXN];
+
+    int rank_at(int pos) {
+        if (pos > n) {
+            return 0;
+        }
+        return rk[pos];
     }
 
-    void counting_sort(const vector<int>& order, int max_rank) {
-        vector<int> count(max(n, max_rank) + 5, 0);
+    void counting_sort(vector<int>& ord, int offset, int rk_cnt) {
+        static vector<int> buf(MAXN);
+        static vector<int> cnt(MAXN);
+
+        fill(cnt.begin(), cnt.begin() + rk_cnt + 1, 0);
 
         for (int i = 1; i <= n; ++i) {
-            ++count[rk[order[i]]];
+            ++cnt[rank_at(ord[i] + offset)];
         }
-        for (int value = 1; value <= max_rank; ++value) {
-            count[value] += count[value - 1];
+        for (int val = 1; val <= rk_cnt; ++val) {
+            cnt[val] += cnt[val - 1];
         }
         for (int i = n; i >= 1; --i) {
-            int pos = order[i];
-            sa[count[rk[pos]]--] = pos;
+            int key = rank_at(ord[i] + offset);
+            buf[cnt[key]--] = ord[i];
+        }
+        for (int i = 1; i <= n; ++i) {
+            ord[i] = buf[i];
         }
     }
 
-    void build_suffix_array() {
-        vector<int> order(n + 5, 0);
-        vector<int> new_rk(n + 5, 0);
+    int rebuild_rk(const vector<int>& ord, vector<int>& nrk, int width) {
+        int rk_cnt = 1;
+        nrk[ord[1]] = 1;
 
-        for (int i = 1; i <= n; ++i) {
-            order[i] = i;
-            rk[i] = (unsigned char)s[i] + 1;
+        for (int i = 2; i <= n; ++i) {
+            int prev = ord[i - 1];
+            int cur = ord[i];
+            bool different = rk[prev] != rk[cur];
+
+            if (width > 0 &&
+                rank_at(prev + width) != rank_at(cur + width)) {
+                different = true;
+            }
+            if (different) {
+                ++rk_cnt;
+            }
+            nrk[cur] = rk_cnt;
         }
-        counting_sort(order, 256);
-
-        int max_rank = 256;
-        for (int width = 1; width < n; width *= 2) {
-            int order_count = 0;
-
-            for (int pos = n - width + 1; pos <= n; ++pos) {
-                order[++order_count] = pos;
-            }
-            for (int i = 1; i <= n; ++i) {
-                if (sa[i] > width) {
-                    order[++order_count] = sa[i] - width;
-                }
-            }
-
-            counting_sort(order, max_rank);
-
-            int rank_count = 1;
-            new_rk[sa[1]] = 1;
-
-            for (int i = 2; i <= n; ++i) {
-                int previous = sa[i - 1];
-                int current = sa[i];
-                int previous_second =
-                    previous + width <= n ? rk[previous + width] : 0;
-                int current_second =
-                    current + width <= n ? rk[current + width] : 0;
-
-                if (rk[previous] != rk[current] ||
-                    previous_second != current_second) {
-                    ++rank_count;
-                }
-                new_rk[current] = rank_count;
-            }
-
-            rk.swap(new_rk);
-            max_rank = rank_count;
-            if (rank_count == n) {
-                break;
-            }
-        }
-
-        for (int i = 1; i <= n; ++i) {
-            rk[sa[i]] = i;
-        }
-    }
-
-    void build_lcp() {
-        int height = 0;
 
         for (int pos = 1; pos <= n; ++pos) {
-            int order = rk[pos];
-            if (order == 1) {
-                height = 0;
-                continue;
+            rk[pos] = nrk[pos];
+        }
+        return rk_cnt;
+    }
+
+    void build_sa() {
+        static vector<int> ord(MAXN);
+        static vector<int> nrk(MAXN);
+
+        for (int i = 1; i <= n; ++i) {
+            int pos = i;
+            ord[i] = pos;
+            rk[pos] = s[pos - 1] - 'a' + 1;
+        }
+        counting_sort(ord, 0, 26);
+
+        int rk_cnt = rebuild_rk(ord, nrk, 0);
+
+        for (int width = 1; width < n && rk_cnt < n; width *= 2) {
+            for (int i = 1; i <= n; ++i) {
+                ord[i] = i;
             }
 
-            int previous = sa[order - 1];
-            while (pos + height <= n && previous + height <= n &&
-                   s[pos + height] == s[previous + height]) {
-                ++height;
-            }
-            lcp[order] = height;
+            counting_sort(ord, width, rk_cnt);
+            counting_sort(ord, 0, rk_cnt);
+            rk_cnt = rebuild_rk(ord, nrk, width);
+        }
 
-            if (height > 0) {
-                --height;
-            }
+        for (int i = 1; i <= n; ++i) {
+            sa[i] = ord[i];
         }
     }
-};
+
+    void build() {
+        build_sa();
+    }
+} // namespace SuffixArray
+
+using namespace SuffixArray;
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    string s;
     cin >> s;
+    n = s.size();
 
-    SuffixArray suffix_array(s);
-    for (int order = 1; order <= suffix_array.n; ++order) {
-        cout << suffix_array.sa[order] << ' ' << suffix_array.lcp[order]
-             << '\n';
+    build();
+    for (int i = 1; i <= n; ++i) {
+        cout << sa[i] << '\n';
     }
 
     return 0;
@@ -293,9 +331,13 @@ int main() {
 ### 实现时需要注意
 
 - `sa[order]` 从排名映射到起点，`rk[pos]` 从起点映射到排名；
-- `lcp[order]` 比较的是 `sa[order - 1]` 和 `sa[order]`；
 - 越过字符串结尾的第二段使用比所有正常排名更小的 `0`；
-- 构造函数只在接口边界给 `s` 补一次占位字符，算法内部的字符位置和三个数组统一使用 1-based 下标。
+- 后缀数组内部的起点和两个结果数组使用 1-based；访问原生 `string` 时，逻辑位置 `pos` 映射到 `s[pos - 1]`；
+- `s` 和 `n` 属于题目，`build()` 负责构造索引；如果同一道题需要同时保存多份后缀数组，再改用 `struct` 封装每个实例。
+- `sa` 和 `rk` 是构造结果。`ord` 和 `nrk` 属于 `build_sa()`，`buf` 和 `cnt` 属于 `counting_sort()`；这些工作区都是固定容量的局部 `static vector`，名称不离开所属函数，大块元素存储也不会进入调用栈。
+- `ord`、`nrk` 和 `buf` 的本次有效范围都会在读取前完整覆写，因此不需要额外清空。`cnt` 会累加计数，所以每趟计数排序开始时必须使用 `fill` 重置实际排名范围。这套覆写规则也保证 `build()` 可以对新字符串重新调用。
+- `rank_at()` 会把越过字符串结尾的第二段明确映射为排名 `0`。`+5` 只是少量容量余量，不能代替这个逻辑边界检查，因为 `pos + width` 最远可以接近 `2 * n`。
+- `MAXN` 已经包含 `+5` 余量；题目上限不是 $10^6$ 时应直接修改这个容量常量。
 
 ## 后缀数组的应用
 
@@ -310,29 +352,13 @@ anana
 
 它们在后缀顺序中连续。比较模式串与一个后缀的前缀，并分别二分区间的左右边界，就能找到所有以模式串开头的后缀；这些后缀在 `sa` 中保存的起点，也就是模式串的全部出现位置。
 
-若每次比较都直接扫描模式串，查询长度为 $m$ 的模式串需要 $O(m\log n)$ 时间。更复杂的实现可以利用 LCP 减少重复比较，但不改变“相同前缀形成连续区间”这个核心转换。
+若每次比较都从第一个字符开始，查询长度为 $m$ 的模式串需要 $O(m\log n)$ 时间。还可以在二分时分别维护模式串与左右边界后缀已经匹配的前缀长度，检查中点时直接跳过已知相同的部分。整次查询新增的逐字符比较总数为 $O(m)$，再加上 $O(\log n)$ 次区间缩小，因此可以做到 $O(m+\log n)$。这只是查询时的边界优化，不改变“相同前缀形成连续区间”这个核心转换。
 
-### 重复子串与公共子串
+完整的二分边界、重叠出现次数和代码见 [子串出现次数](substring-occurrence-counting.md)。
 
-一个子串出现至少两次，意味着至少两个后缀以它为公共前缀。所有拥有这个前缀的后缀排列在同一个连续区间中，因此其中必然有一对相邻后缀仍然拥有这个前缀。最长重复子串的长度就是：
+### 后缀与循环移位的字典序
 
-$$
-\max_{2\le i\le n}\mathrm{lcp}[i].
-$$
-
-求两个字符串的最长公共子串时，可以用一个不会在原串中出现的分隔符把它们连接。只检查分别来自两个原字符串的相邻后缀，并取其中最大的 LCP，就能得到答案。
-
-### 不同子串计数
-
-排名为 $i$ 的后缀拥有 $n-\mathrm{sa}[i]+1$ 个非空前缀。它与排在前面的所有后缀能够共享的最长前缀，恰好是它与相邻前驱的 LCP；更早的后缀如果共享更长前缀，也会被排列到两者之间。因此前 $\mathrm{lcp}[i]$ 个前缀已经出现过，当前后缀新增的不同子串数量是：
-
-$$
-n-\mathrm{sa}[i]+1-\mathrm{lcp}[i].
-$$
-
-把每个后缀的贡献相加，就能统计不同子串数量。对 `banana`，全部子串共有 21 个，相邻后缀的 LCP 之和为 6，所以不同子串共有 15 个。同一组贡献还可以继续用于寻找字典序第 $k$ 小的不同子串。
-
-### 循环移位与最小表示
+`rk[pos]` 已经给出从 `pos` 开始的后缀在全部后缀中的排名。因此比较两个完整后缀时，只需比较它们的 `rk`，不再扫描字符。
 
 把字符串 `s` 复制一遍得到 `s + s`。原字符串的每一种循环移位，恰好是 `s + s` 中从位置 $1$ 到 $n$ 开始、长度为 $n$ 的子串，也就是这些后缀长度为 $n$ 的前缀。
 
@@ -340,13 +366,10 @@ $$
 
 这个转换能够直接复用后缀数组，但只解决最小循环表示时，线性的 Booth 算法更直接。
 
-### 后缀数组的能力边界
+### 后缀数组没有保存的信息
 
-后缀数组最擅长处理静态字符串中与以下关系有关的问题：
+`sa` 和 `rk` 只记录后缀的字典序。若要知道两个后缀究竟有多少个开头字符相同，当前代码仍然只能从第一个字符开始比较，单次最坏需要 $O(n)$ 时间。重复进行这种比较时，已经比较过的字符会被反复扫描。
 
-- 配合 LCP 的区间最小值查询，判断两个连续子串是否相等；
-- 子串或后缀的字典序；
-- 两个后缀共享多长的前缀；
-- 由公共前缀得到的重复子串、公共子串和不同子串统计。
+相邻后缀的最长公共前缀能够补上这部分信息。[后缀数组：最长公共前缀数组](suffix-array-lcp-array.md) 将定义 `lcp`，推导线性构造方法，并把任意两个后缀的最长公共前缀查询转化为区间最小值查询。
 
-这里的“静态”很重要：原字符串发生插入、删除或修改后，原有后缀顺序通常不再有效，不能像平衡树那样局部维护。后缀数组也不会直接解决不连续的子序列、允许失配的近似匹配，或与字典序和公共前缀无关的区间统计；这些问题需要动态规划、自动机或其他数据结构。即使一个问题能够转换到后缀数组，也应继续比较是否存在更直接的专用算法。
+后缀数组仍然只适合不会修改的静态字符串。原字符串发生插入、删除或修改后，原有后缀顺序通常全部失效，不能像平衡树那样只更新局部。它也不会直接解决不连续的子序列、允许失配的近似匹配，或者与字典序和公共前缀无关的区间统计。
