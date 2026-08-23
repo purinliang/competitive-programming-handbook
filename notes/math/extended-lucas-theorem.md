@@ -41,13 +41,13 @@ CRT 会给出模 $M$ 的唯一答案。
 
 真正困难的部分因此缩小为：怎样计算组合数模一个质数幂 $p^q$。
 
-## 阶乘中质因数 p 的次数
+## 阶乘中质因数 $p$ 的次数
 
 $n!$ 中含有多少个质因数 $p$，由勒让德公式给出：
 
 $$
-v_p(n!)=left\lfloor\frac np\right\rfloor
-+\left\lfloor\frac n{p^2}\right\rfloor+cdots.
+v_p(n!)=\left\lfloor\frac{n}{p}\right\rfloor
++\left\lfloor\frac{n}{p^2}\right\rfloor+\cdots.
 $$
 
 代码反复让 `n /= p`：
