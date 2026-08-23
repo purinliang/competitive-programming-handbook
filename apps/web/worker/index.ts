@@ -19,6 +19,57 @@ import type { AppEnv } from "./types";
 
 const app = new Hono<AppEnv>();
 
+function contentCacheControl(key: string) {
+  return key.startsWith("objects/")
+    ? "public, max-age=31536000, immutable"
+    : "public, max-age=60, must-revalidate";
+}
+
+function validContentKey(key: string) {
+  return Boolean(key)
+    && !key.includes("..")
+    && !key.includes("\\")
+    && /^[a-zA-Z0-9][a-zA-Z0-9._/-]*$/u.test(key);
+}
+
+app.on(["GET", "HEAD"], ["/content/*"], async (c) => {
+  const key = c.req.path.slice("/content/".length);
+  if (!validContentKey(key)) {
+    throw new HTTPException(404, { message: "正文对象不存在" });
+  }
+
+  if (c.env.CONTENT) {
+    try {
+      const object = await c.env.CONTENT.get(key);
+      if (object) {
+        const headers = new Headers();
+        headers.set("cache-control", contentCacheControl(key));
+        headers.set(
+          "content-type",
+          object.httpMetadata?.contentType
+            ?? "application/json; charset=utf-8",
+        );
+        headers.set("etag", object.httpEtag);
+        return new Response(c.req.method === "HEAD" ? null : object.body, {
+          headers,
+        });
+      }
+    } catch (error) {
+      console.error("R2 正文读取失败，回退到 Static Assets", error);
+    }
+  }
+
+  const asset = await c.env.ASSETS.fetch(c.req.raw);
+  if (!asset.ok) return asset;
+  const headers = new Headers(asset.headers);
+  headers.set("cache-control", contentCacheControl(key));
+  return new Response(c.req.method === "HEAD" ? null : asset.body, {
+    headers,
+    status: asset.status,
+    statusText: asset.statusText,
+  });
+});
+
 interface SectionProgressRow {
   readAt: number;
   sectionId: string;
