@@ -12,7 +12,6 @@ const appRoot = process.cwd();
 const cacheRoot = path.join(appRoot, ".content-cache");
 const outputRoot = path.join(appRoot, "public/content");
 const objectRoot = path.join(outputRoot, "objects");
-const configPath = path.join(appRoot, "runtime-content.json");
 
 async function exists(filePath) {
   try {
@@ -42,26 +41,21 @@ async function writeObject(source) {
 }
 
 async function main() {
-  const config = JSON.parse(await readFile(configPath, "utf8"));
   const sourceManifest = JSON.parse(await readFile(
     path.join(cacheRoot, "manifest.json"),
     "utf8",
   ));
-  const articlesByKey = new Map(
-    sourceManifest.articles.map((article) => [article.articleKey, article]),
-  );
   const manifest = {
     articles: {},
-    version: 1,
+    version: 2,
   };
+  let articleCount = 0;
+  let quizCount = 0;
 
   await mkdir(objectRoot, { recursive: true });
 
-  for (const articleKey of config.articles) {
-    const article = articlesByKey.get(articleKey);
-    if (!article?.exists || ["计划", "推迟"].includes(article.status)) {
-      throw new Error(`运行时正文不存在或尚未发表：${articleKey}`);
-    }
+  for (const article of sourceManifest.articles) {
+    if (!article.exists || ["计划", "推迟"].includes(article.status)) continue;
 
     const variants = {};
     for (const mode of ["catalog", "learning-path"]) {
@@ -69,12 +63,14 @@ async function main() {
         cacheRoot,
         "articles",
         mode,
-        `${articleKey}.json`,
+        `${article.articleKey}.json`,
       );
       const source = await readFile(cachePath, "utf8");
       const rendered = JSON.parse(source);
       if (!rendered.html || !rendered.contentRevision) {
-        throw new Error(`正文对象缺少必要字段：${articleKey} (${mode})`);
+        throw new Error(
+          `正文对象缺少必要字段：${article.articleKey} (${mode})`,
+        );
       }
       variants[mode] = {
         ...await writeObject(source),
@@ -82,32 +78,79 @@ async function main() {
         documentEpoch: rendered.documentEpoch,
       };
     }
-    manifest.articles[articleKey] = variants;
+
+    const quizPath = path.join(
+      cacheRoot,
+      "quizzes",
+      `${article.articleKey}.json`,
+    );
+    if (await exists(quizPath)) {
+      const quizSource = await readFile(quizPath, "utf8");
+      const quiz = JSON.parse(quizSource);
+      variants["learning-path"].quiz = {
+        ...await writeObject(quizSource),
+        revision: quiz.revision,
+      };
+      quizCount += 1;
+    }
+
+    manifest.articles[article.articleKey] = variants;
+    articleCount += 1;
   }
 
-  const manifestSource = `${JSON.stringify(manifest)}\n`;
-  const temporaryPath = path.join(outputRoot, "article-manifest.tmp.json");
-  const manifestPath = path.join(outputRoot, "article-manifest.json");
-  await writeFile(temporaryPath, manifestSource);
-  await rename(temporaryPath, manifestPath);
+  const publications = [
+    {
+      name: "article-manifest.json",
+      source: `${JSON.stringify(manifest)}\n`,
+    },
+    {
+      name: "navigation.json",
+      source: `${JSON.stringify(sourceManifest)}\n`,
+    },
+    {
+      name: "search-index.json",
+      source: await readFile(
+        path.join(appRoot, "public/search-index.json"),
+        "utf8",
+      ),
+    },
+    {
+      name: "learning-progress.json",
+      source: await readFile(
+        path.join(appRoot, "public/learning-progress.json"),
+        "utf8",
+      ),
+    },
+  ];
+
+  for (const publication of publications) {
+    const temporaryPath = path.join(
+      outputRoot,
+      `${publication.name}.tmp`,
+    );
+    await writeFile(temporaryPath, publication.source);
+    await rename(temporaryPath, path.join(outputRoot, publication.name));
+  }
 
   for (const variants of Object.values(manifest.articles)) {
     for (const variant of Object.values(variants)) {
-      const objectPath = path.join(
-        appRoot,
-        "public",
-        variant.objectPath.replace(/^\//u, ""),
-      );
-      const source = await readFile(objectPath, "utf8");
-      if (sha256(source) !== variant.contentHash) {
-        throw new Error(`正文对象哈希校验失败：${variant.objectPath}`);
+      for (const object of [variant, variant.quiz].filter(Boolean)) {
+        const objectPath = path.join(
+          appRoot,
+          "public",
+          object.objectPath.replace(/^\//u, ""),
+        );
+        const source = await readFile(objectPath, "utf8");
+        if (sha256(source) !== object.contentHash) {
+          throw new Error(`内容对象哈希校验失败：${object.objectPath}`);
+        }
       }
     }
   }
 
   console.log(
-    `运行时正文：生成 ${config.articles.length} 篇文章、`
-      + `${config.articles.length * 2} 个导航版本。`,
+    `运行时内容：生成 ${articleCount} 篇文章、`
+      + `${articleCount * 2} 个正文版本和 ${quizCount} 份小测。`,
   );
 }
 
