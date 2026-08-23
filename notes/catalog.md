@@ -997,30 +997,52 @@
 
 ## 06 计算几何
 
+### 基础表示与几何判定
+
 | ID | 知识点 | 状态 | 文件 |
 | --- | --- | --- | --- |
 | 070401 | 坐标、点、向量与精度 | 待审阅 | [points-vectors-precision.md](computational-geometry/points-vectors-precision.md) |
 | 070402 | 点积、叉积与方向判断 | 待审阅 | [dot-cross-orientation.md](computational-geometry/dot-cross-orientation.md) |
+| 080501 | 极角排序 | 待审阅 | [computational-geometry/polar-angle-sort.md](computational-geometry/polar-angle-sort.md) |
 | 070403 | 直线、线段与相交判定 | 待审阅 | [lines-segments-intersections.md](computational-geometry/lines-segments-intersections.md) |
+
+### 多边形与凸包
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
 | 070404 | 多边形面积与点的位置 | 待审阅 | [polygon-area-point-location.md](computational-geometry/polygon-area-point-location.md) |
 | 070405 | 凸包 | 待审阅 | [convex-hull.md](computational-geometry/convex-hull.md) |
-| 080502 | 圆：位置关系与交点 | 待审阅 | [computational-geometry/circles.md](computational-geometry/circles.md) |
-| 090702 | 旋转卡壳 | 待审阅 | [rotating-calipers.md](computational-geometry/rotating-calipers.md) |
-| *990603 | 几何扫描线 | 计划 | `computational-geometry/geometric-sweep-line.md` |
-| *990604 | 最近点对 | 计划 | `computational-geometry/closest-pair-of-points.md` |
 | 090701 | 凸多边形点包含 | 待审阅 | [point-in-convex-polygon.md](computational-geometry/point-in-convex-polygon.md) |
+| 090702 | 旋转卡壳 | 待审阅 | [rotating-calipers.md](computational-geometry/rotating-calipers.md) |
 | *990606 | 凸多边形：切线与极值查询 | 推迟 | `computational-geometry/convex-polygon-tangents-extrema.md` |
 | 090703 | 半平面交 | 待审阅 | [half-plane-intersection.md](computational-geometry/half-plane-intersection.md) |
 | *990608 | 闵可夫斯基和 | 推迟 | `computational-geometry/minkowski-sum.md` |
-| 080501 | 极角排序 | 待审阅 | [computational-geometry/polar-angle-sort.md](computational-geometry/polar-angle-sort.md) |
+| *990617 | Pick 定理 | 计划 | `computational-geometry/pick-theorem.md` |
+
+### 圆
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| 080502 | 圆：位置关系与交点 | 待审阅 | [computational-geometry/circles.md](computational-geometry/circles.md) |
 | 080503 | 圆：切线 | 待审阅 | [computational-geometry/circle-tangents.md](computational-geometry/circle-tangents.md) |
 | 090704 | 圆面积交与面积并 | 待审阅 | [circle-area-intersection-union.md](computational-geometry/circle-area-intersection-union.md) |
-| *990612 | 三维计算几何 | 推迟 | `computational-geometry/three-dimensional-geometry.md` |
-| 090705 | 平面点定位 | 待审阅 | [point-location.md](computational-geometry/point-location.md) |
 | 090706 | 最小圆覆盖 | 待审阅 | [minimum-enclosing-circle.md](computational-geometry/minimum-enclosing-circle.md) |
-| *990615 | Voronoi 图 | 推迟 | `computational-geometry/voronoi-diagram.md` |
 | *990616 | 反演几何 | 推迟 | `computational-geometry/inversive-geometry.md` |
-| *990617 | Pick 定理 | 计划 | `computational-geometry/pick-theorem.md` |
+
+### 平面几何算法
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990603 | 几何扫描线 | 计划 | `computational-geometry/geometric-sweep-line.md` |
+| *990604 | 最近点对 | 计划 | `computational-geometry/closest-pair-of-points.md` |
+| 090705 | 平面点定位 | 待审阅 | [point-location.md](computational-geometry/point-location.md) |
+| *990615 | Voronoi 图 | 推迟 | `computational-geometry/voronoi-diagram.md` |
+
+### 空间几何
+
+| ID | 知识点 | 状态 | 文件 |
+| --- | --- | --- | --- |
+| *990612 | 三维计算几何 | 推迟 | `computational-geometry/three-dimensional-geometry.md` |
 
 ## 07 动态规划
 
@@ -1218,12 +1240,3 @@
 | --- | --- | --- | --- |
 | *990807 | 最小表示法 | 推迟 | `strings/minimum-representation.md` |
 | *990808 | Lyndon 分解 | 推迟 | `strings/lyndon-factorization.md` |
-
-## 09 其他
-
-### 编码
-
-| ID | 知识点 | 状态 | 文件 |
-| --- | --- | --- | --- |
-| *030204e1 | 格雷码 | 待审阅 | [gray-code.md](other/gray-code.md) |
-| 050203 | 哈夫曼编码 | 待审阅 | [huffman-coding.md](other/huffman-coding.md) |
