@@ -13,6 +13,7 @@ import {
 } from "./contextual-article-navigation";
 import { LearningQuiz } from "./learning-quiz";
 import { LearningProgressSync } from "./learning-progress-sync";
+import { RuntimeArticleBody } from "./runtime-article-body";
 import { SiteHeader } from "./site-header";
 
 import {
@@ -23,10 +24,19 @@ import {
   getLearningDirectoryFallback,
 } from "@/lib/content/catalog";
 import { getLearningQuiz, getRenderedArticle } from "@/lib/content/compiled";
+import runtimeContent from "../../runtime-content.json";
 
 import type { NavigationMode } from "@/lib/content/types";
 
-export async function ArticleExperience({ articleKey, mode }: { articleKey: string; mode: NavigationMode }) {
+const runtimeArticleKeys = new Set(runtimeContent.articles);
+
+export async function ArticleExperience({
+  articleKey,
+  mode,
+}: {
+  articleKey: string;
+  mode: NavigationMode;
+}) {
   const article = getArticle(articleKey);
   if (!article?.exists || article.status === "计划") {
     notFound();
@@ -41,6 +51,10 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
   }
 
   const rendered = await getRenderedArticle(article, mode);
+  const usesRuntimeContent = runtimeArticleKeys.has(article.articleKey);
+  const collaborationSections = usesRuntimeContent
+    ? rendered.sections.map((section) => ({ ...section, quotedText: "" }))
+    : rendered.sections;
   const quiz = mode === "learning-path" ? await getLearningQuiz(article) : undefined;
   const tableOfContents = mode === "learning-path"
     ? [
@@ -84,7 +98,21 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
         </Suspense>
 
         <main className="article-column">
-          <article className="markdown-body" data-article-key={article.articleKey} data-content-revision={rendered.contentRevision} dangerouslySetInnerHTML={{ __html: rendered.html }} />
+          {usesRuntimeContent ? (
+            <RuntimeArticleBody
+              articleKey={article.articleKey}
+              expectedContentRevision={rendered.contentRevision}
+              key={`${mode}:${article.articleKey}`}
+              mode={mode}
+            />
+          ) : (
+            <article
+              className="markdown-body"
+              data-article-key={article.articleKey}
+              data-content-revision={rendered.contentRevision}
+              dangerouslySetInnerHTML={{ __html: rendered.html }}
+            />
+          )}
           <CodeBlockEnhancements articleKey={article.articleKey} />
           {mode === "learning-path" ? (
             <>
@@ -104,7 +132,7 @@ export async function ArticleExperience({ articleKey, mode }: { articleKey: stri
                 <CollaborativeArticle
                   articleKey={article.articleKey}
                   contentRevision={rendered.contentRevision}
-                  sections={rendered.sections}
+                  sections={collaborationSections}
                 />
               </div>
             </>

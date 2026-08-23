@@ -361,6 +361,58 @@
   line-height: 1.8;
 }
 
+.article-runtime-loading {
+  display: grid;
+  min-height: 64vh;
+  align-content: start;
+  gap: 18px;
+  padding-top: 10px;
+}
+
+.article-runtime-loading span {
+  display: block;
+  width: 100%;
+  height: 18px;
+  border-radius: var(--radius-inline);
+  background: var(--panel-header-bg);
+  animation: runtime-content-pulse 1.4s ease-in-out infinite alternate;
+}
+
+.article-runtime-loading span:first-child {
+  width: 52%;
+  height: 42px;
+  margin-bottom: 18px;
+}
+
+.article-runtime-loading span:nth-child(3n) {
+  width: 76%;
+}
+
+.article-runtime-error {
+  display: grid;
+  min-height: 48vh;
+  place-content: center;
+  justify-items: center;
+  color: var(--secondary-text);
+  text-align: center;
+}
+
+@keyframes runtime-content-pulse {
+  from {
+    opacity: 0.42;
+  }
+
+  to {
+    opacity: 0.78;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-runtime-loading span {
+    animation: none;
+  }
+}
+
 .markdown-body .katex {
   font-size: 1.21em;
 }

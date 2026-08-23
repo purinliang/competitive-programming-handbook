@@ -32,11 +32,16 @@ export function useActiveSection(sectionIds: string[], threshold = 112) {
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate);
     window.addEventListener("hashchange", scheduleUpdate);
+    window.addEventListener("handbook:article-content-ready", scheduleUpdate);
     return () => {
       if (frame) window.cancelAnimationFrame(frame);
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
       window.removeEventListener("hashchange", scheduleUpdate);
+      window.removeEventListener(
+        "handbook:article-content-ready",
+        scheduleUpdate,
+      );
     };
   }, [sectionIds, threshold]);
 

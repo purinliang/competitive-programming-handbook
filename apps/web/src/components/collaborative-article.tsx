@@ -38,17 +38,38 @@ export function CollaborativeArticle({
   );
 
   useLayoutEffect(() => {
-    const article = document.querySelector<HTMLElement>(
-      `.markdown-body[data-article-key="${articleKey}"]`,
+    function collectSectionSlots() {
+      const article = document.querySelector<HTMLElement>(
+        `.markdown-body[data-article-key="${articleKey}"]`,
+      );
+      if (!article) return;
+      const slots = [...article.querySelectorAll<HTMLElement>(
+        "[data-section-action-slot]",
+      )].flatMap((element) => {
+        const section = sectionMap.get(
+          element.dataset.sectionActionSlot ?? "",
+        );
+        return section ? [{ element, section }] : [];
+      });
+      setSectionActionSlots(slots);
+    }
+
+    function handleContentReady(event: Event) {
+      const readyEvent = event as CustomEvent<{ articleKey?: string }>;
+      if (readyEvent.detail?.articleKey === articleKey) {
+        collectSectionSlots();
+      }
+    }
+
+    collectSectionSlots();
+    window.addEventListener(
+      "handbook:article-content-ready",
+      handleContentReady,
     );
-    if (!article) return;
-    const slots = [...article.querySelectorAll<HTMLElement>(
-      "[data-section-action-slot]",
-    )].flatMap((element) => {
-      const section = sectionMap.get(element.dataset.sectionActionSlot ?? "");
-      return section ? [{ element, section }] : [];
-    });
-    setSectionActionSlots(slots);
+    return () => window.removeEventListener(
+      "handbook:article-content-ready",
+      handleContentReady,
+    );
   }, [articleKey, sectionMap]);
 
   return (
