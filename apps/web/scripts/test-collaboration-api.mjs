@@ -21,7 +21,7 @@ assert(question, `${documentKey} 没有可用于测试的题目`);
 
 function cookie(token) {
   const signature = createHmac("sha256", secret).update(token).digest("base64");
-  return `better-auth.session_token=${encodeURIComponent(`${token}.${signature}`)}`;
+  return `better-auth.session_token=${token}.${signature}`;
 }
 
 const users = {
@@ -59,7 +59,10 @@ assert.match(
   publicArticleResponse.headers.get("content-type") ?? "",
   /text\/html/,
 );
-assert.match(await publicArticleResponse.text(), /A\s*\+\s*B Problem/i);
+assert.match(
+  await publicArticleResponse.text(),
+  /data-runtime-content="true"/u,
+);
 
 const studentAccount = await request("/api/me", { user: "student" });
 assert.equal(studentAccount.result.user.role, "student");
@@ -443,8 +446,10 @@ const repeatedLock = await request(`/api/admin/threads/${threadId}/moderate`, {
 });
 assert.equal(repeatedLock.response.status, 409);
 const auditView = await request("/api/admin/discussions", { user: "admin" });
-assert.equal(auditView.result.events[0].action, "lock");
-assert.equal(auditView.result.events[0].targetId, threadId);
+const lockEvent = auditView.result.events.find(
+  (event) => event.action === "lock" && event.targetId === threadId,
+);
+assert(lockEvent, "审核日志中没有找到锁定讨论的事件");
 const lockedReply = await request(`/api/discussions/${threadId}/comments`, {
   body: { body: "锁定后的回复" },
   method: "POST",

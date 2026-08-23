@@ -3,6 +3,8 @@ set -euo pipefail
 
 TEST_STATE_DIR=$(mktemp -d)
 TEST_LOG="$TEST_STATE_DIR/wrangler.log"
+TEST_PORT="${COLLABORATION_TEST_PORT:-$((20000 + RANDOM % 20000))}"
+TEST_URL="http://127.0.0.1:$TEST_PORT"
 SERVER_PID=""
 
 cleanup() {
@@ -24,7 +26,7 @@ pnpm exec wrangler d1 execute handbook-learning \
 
 pnpm exec wrangler dev \
     --persist-to "$TEST_STATE_DIR" \
-    --port 8790 \
+    --port "$TEST_PORT" \
     --var BETTER_AUTH_SECRET:test-secret-for-local-only-1234567890 \
     --var GITHUB_CLIENT_ID:test-client \
     --var GITHUB_CLIENT_SECRET:test-client-secret \
@@ -32,8 +34,12 @@ pnpm exec wrangler dev \
 SERVER_PID=$!
 
 for _ in {1..30}; do
-    if curl --fail --silent http://127.0.0.1:8790/api/health >/dev/null; then
-        node scripts/test-collaboration-api.mjs
+    if curl --fail --silent "$TEST_URL/api/health" >/dev/null; then
+        if ! COLLABORATION_TEST_URL="$TEST_URL" \
+            node scripts/test-collaboration-api.mjs; then
+            cat "$TEST_LOG"
+            exit 1
+        fi
         pnpm exec wrangler d1 execute handbook-learning \
             --file scripts/fixtures/collaboration-test-state.sql \
             --json --local --persist-to "$TEST_STATE_DIR" \
